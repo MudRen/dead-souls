@@ -11,11 +11,11 @@ protected void create() {
     room::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("Village Road Intersection");
-    SetNightLong("You are in the main intersection of the village, lit by a town lamp post. Saquivor road extends north and south, intersected east to west by a road that leads west toward a wilderness, and east toward shore.\n%^GREEN%^There is a sign here you can read.%^RESET%^");
-    SetDayLong("You are in the main intersection of the village. Saquivor road extends north and south, intersected east to west by a road that leads west toward a wilderness, and east toward shore.\n%^GREEN%^There is a sign here you can read.%^RESET%^");
+    SetShort("村庄道路交叉口");
+    SetNightLong("你位于村庄的主要交叉口，被路灯照亮。萨奎弗路向北和向南延伸，被一条东西向的道路横穿，这条路向西通往荒野，向东通往海岸。\n%^GREEN%^这里有一个标牌，你可以使用'read sign'命令阅读。%^RESET%^");
+    SetDayLong("你位于村庄的主要交叉口。萨奎弗路向北和向南延伸，被一条东西向的道路横穿，这条路向西通往荒野，向东通往海岸。\n%^GREEN%^这里有一个标牌，你可以使用'read sign'命令阅读。%^RESET%^");
     SetItems( ([
-                "sign":"A large sign on the road. To read it, 'read sign'.",
+                "sign":"路边的一个大标牌。要阅读它，请使用'read sign'命令。",
                 ]) );
     SetSkyDomain("town");
     SetExits( ([
