@@ -1,13 +1,13 @@
-# The Dead Souls 3.8.6 with FluffOS v2019
+# 亡者之魂 3.8.6 - FluffOS v2019
 
-## Current status
+## 当前状态
 
-- [X] : Boots.
-- [X] : works under Websocket.
-- [ ] : Don't require special configs from FluffOS 2019.
-- [ ] : No warning or errors
+- [X] 启动正常
+- [X] 支持Websocket
+- [ ] 不需要FluffOS 2019特殊配置
+- [ ] 无警告或错误
 
-## How to test and contribute
+## 如何测试和贡献
 
 ```
 git clone --recurse-submodules https://github.com/fluffos/dead-souls.git
@@ -16,20 +16,20 @@ cd dead-souls
 ./run.sh
 ```
 
-Connect to http://localhost:5555 and play!
+连接到 http://localhost:8888 开始游戏！
 
-## Admin
+## 管理员设置
 
-1. Edit ```lib/secure/cfg/groups.cfg``` and replace ```sunyc``` with the lower-case name of your admin character you will create below.
-2. Connect via web browser to http://localhost:5555 or via mudclient to localhost port 6666.
-3. Select Creator instead of player.
-4. Set your character name to match the name you used above.
-5. Enjoy!
+1. 编辑 `lib/secure/cfg/groups.cfg` 将 `mudren` 替换为你将要创建的管理员角色名（小写）
+2. 通过浏览器连接到 http://localhost:8888 或使用mud客户端连接到本地端口6666
+3. 选择创建者而非玩家
+4. 设置角色名与上面使用的名称匹配
+5. 开始游戏！
 
-## Screenshot
+## 截图
 
-![image](https://user-images.githubusercontent.com/1256464/71966839-2f444180-31b7-11ea-8cd4-f2fdf5f0cec7.png)
+![游戏界面](https://user-images.githubusercontent.com/1256464/71966839-2f444180-31b7-11ea-8cd4-f2fdf5f0cec7.png)
 
-## Contribution
+## 贡献
 
-Send PR to fix stuff!
+发送PR来修复问题！

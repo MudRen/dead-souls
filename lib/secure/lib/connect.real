@@ -169,8 +169,8 @@ private void InputName(string namen, string kill_me) {
     }
 
     if(!CheckIp()){
-        receive("\nToo many users from your site are currently logged on.\n");
-        receive("Please try again later.\n");
+        receive("\n来自你地址的用户过多，目前无法登录。\n");
+        receive("请稍后再试。\n");
         flush_messages();
         Destruct();
         return;
@@ -182,7 +182,7 @@ private void InputName(string namen, string kill_me) {
 
     if(lower_case(name) == "guest" && !GUEST_ALLOWED){
         name = "";
-        receive("\nThe guest account is disabled.\n");
+        receive("\n访客账户已禁用。\n");
     }
 
     if( !name || name == "" ) {
@@ -193,8 +193,8 @@ private void InputName(string namen, string kill_me) {
         }
         else {
             if(!Moved){
-                receive("\nYou must enter a name in order to join!\n");
-                receive("\nWhat name do you wish? ");
+                receive("\n你必须输入一个名字才能加入！\n");
+                receive("\n你想要什么名字？ ");
             }
             input_to((: InputName :), I_NOESC, "kill me");
             return;
@@ -219,10 +219,10 @@ private void InputName(string namen, string kill_me) {
             news = "Too many players logged in!";
         }
         else news = read_file(NEWS_LOCKED) || "No reason logged.";
-        receive("\n" + mud_name() + " is locked.  Reason:\n" + news + "\n");
-        if( CanLogin() ) receive("\n        >>> Access allowed <<<\n");
+        receive("\n" + mud_name() + "已锁定。原因:\n" + news + "\n");
+        if( CanLogin() ) receive("\n        >>>允许访问<<<\n");
         else {
-            receive("\n        >>> Access denied <<<\n");
+            receive("\n        >>>拒绝访问<<<\n");
             flush_messages();
             Destruct();
             return;
@@ -261,21 +261,21 @@ private void InputPassword(string pass, string cap) {
     if(Name != "guest"){
 
         if( !pass || pass == "" ) {
-            receive("\nYou must enter a password.  Please try again later.\n");
+            receive("\n你必须输入密码。请稍后再试。\n");
             Destruct();
             return;
         }
         if(!cap || cap == "") {
-            receive("\nAn unusual error has occurred.  Please try again.\n");
+            receive("\n发生了异常错误。请重试。\n");
             Destruct();
             return;
         }
 
         control = PLAYERS_D->GetPlayerData(Name,"Password");
         if( control != crypt(pass, control) ) {
-            receive("\nInvalid password.\n");
+            receive("\n密码无效。\n");
             if( ++CrackCount > MAX_PASSWORD_TRIES ) {
-                receive("\nNo more attempts allowed\n");
+                receive("\n不允许再尝试\n");
                 unguarded( (: log_file("/secure/log/security",
                   "Maximum password tries exceeded by " +
                         Name + " from " + client_ip + extra + "\n") :) );
@@ -297,7 +297,7 @@ private void InputPassword(string pass, string cap) {
 
     Player = master()->player_object(Name);
     if( !Player ) {
-        receive("\nIt seems some work is being done right now, try later.\n");
+        receive("\n现在似乎正在进行一些工作，请稍后再试。\n");
         Destruct();
         return;
     }
@@ -318,14 +318,13 @@ private void eventCreatePlayer(string cap) {
     string tmpdir, lcname = lower_case(Name);
     string *tmpfiles = ({});
     if( !(BANISH_D->valid_name(lcname)) ) {
-        receive(capitalize(cap) + " is not a valid name.\n");
-        receive(mud_name() + " requires that all names meet the following "
-                "requirements:\n");
-        receive("\tAll characters must be:\n");
+        receive(capitalize(cap) + "不是一个有效的名字。\n");
+        receive(mud_name() + "要求所有名字必须符合以下要求:\n");
+        receive("\t所有字符必须是:\n");
         receive("\t\tA-Z\n\t\ta-z\n\t\t'\n\t\t-\n");
-        receive("\tMinimum length: " + MIN_USER_NAME_LENGTH + "\n");
-        receive("\tMaximum length: " + MAX_USER_NAME_LENGTH + "\n");
-        receive("\nPlease enter a new name: \n");
+        receive("\t最小长度: " + MIN_USER_NAME_LENGTH + "\n");
+        receive("\t最大长度: " + MAX_USER_NAME_LENGTH + "\n");
+        receive("\n请输入一个新名字: \n");
         input_to( (: InputName :), I_NOESC );
         return;
     }
@@ -339,7 +338,7 @@ private void eventCreatePlayer(string cap) {
     }
     foreach(string tmpfile in tmpfiles){
         if(!strsrch(tmpfile, lcname+".")){
-            receive("\nThat name is taken. Please choose a new one.\n");
+            receive("\n这个名字已被使用。请选择一个新的。\n");
             input_to( (: InputName :), I_NOESC );
             return;
         }
@@ -353,31 +352,31 @@ private void eventCreatePlayer(string cap) {
         Destruct();
         return;
     }
-    receive("Do you really wish to be known as " + cap + "? (y/n) \n");
+    receive("你真的希望被称为" + cap + "吗？是(y)/否(n)\n");
     input_to((: ConfirmName :), I_NOESC, cap);
 }
 
 private BlindCheck(string ans, string cap){
     if( !ans || ans == "" || lower_case(ans)[0..0] == "y" ) {
-        receive("\nOk, disabling default overhead map.\n");
+        receive("\n好的，禁用默认的俯视地图。\n");
         blindmode = 1;
     }
-    else receive("\Ok, allowing default overhead map behavior.\n");
+    else receive("\n好的，允许默认俯视地图行为。\n");
     log_file("new_players", Name + " (" + ctime(time()) + ")\n");
-    receive("\nCreate a password of at least 5 letters: \n");
+    receive("\n创建至少5个字符的密码：\n");
     input_to((: CreatePassword :), I_NOECHO | I_NOESC, cap);
 }
 
 private void AgeCheck(string ans, string cap) {
     if( !ans || ans == "" || lower_case(ans)[0..0] != "y" ) {
-        receive("\nSorry. You are not old enough to play here.\n");
+        receive("\n抱歉。你年龄不够，不能在这里游玩。\n");
         Destruct();
         return;
     }
     log_file("new_players", Name + " (" + ctime(time()) + ")\n");
     unguarded( (: log_file("/secure/log/new_players", Name + " from "
       + client_ip + extra + " (" + ctime(time()) + ")\n") :) );
-    receive("\nDo you use a screen reader for the visually impaired? (y/n)\n");
+    receive("\n你是否使用视觉障碍者的屏幕阅读器？是(y)/否(n)\n");
     input_to((: BlindCheck :), I_NOESC, cap);
 }
 
@@ -387,7 +386,7 @@ private void ConfirmName(string ans, string cap) {
         input_to( (: InputName :), I_NOESC );
         return;
     }
-    receive("\nAre you 13 years of age or older? (y/n) \n");
+    receive("\n你是否年满13岁或更大？是(y)/否(n)\n");
     input_to((: AgeCheck :), I_NOESC, cap);
 }
 
@@ -517,7 +516,7 @@ private void CreatePassword(string pass, string cap) {
         input_to( (: CreatePassword :), I_NOECHO | I_NOESC, cap);
         return;
     }
-    receive("\nPlease confirm your password: ");
+    receive("\n请确认你的密码：");
     input_to( (: ConfirmPassword :), I_NOECHO | I_NOESC, cap, pass);
 }
 
@@ -526,11 +525,11 @@ private void ConfirmPassword(string control, string cap, string pass) {
         Player = master()->player_object(Name);
         pass = crypt(pass, 0);
         Passwort = pass;
-        receive("\n\nPlease choose an interesting gender (male, female, neutral, or none): \n");
+        receive("\n\n请选择一个有趣的性别：男性(male)/女性(female)/中性(neutral)/无(none)\n");
         input_to((: InputGender :), I_NOESC, cap);
         return;
     }
-    receive("\nPassword entries do not match, re-choose password: ");
+    receive("\n密码输入不匹配，请重新选择密码：");
     input_to((: CreatePassword :), I_NOECHO | I_NOESC, cap);
     return;
 }
@@ -538,8 +537,8 @@ private void ConfirmPassword(string control, string cap, string pass) {
 private void InputGender(string str, string cap) {
     if( str != "male" && str != "female"
             && str != "neuter" && str != "neutral" && str != "none") {
-        receive("\nCute, but pretend to be male, female, neutral, or none instead.\n");
-        receive("Gender: ");
+        receive("\n可爱，但还是假装成男性(male)、女性(female)、中性(neutral)或无(none)吧。\n");
+        receive("性别：");
         input_to((: InputGender :), I_NOESC, cap);
         return;
     }
@@ -908,7 +907,7 @@ private void eventTimeout() {
         Destruct();
     }
     else if( query_idle(this_object()) > LOGON_TIMEOUT ) {
-        receive("\nLogin timed out.\n");
+        receive("\n登录超时。\n");
         Destruct();
     }
     else call_out( (: eventTimeout :), LOGON_TIMEOUT );
