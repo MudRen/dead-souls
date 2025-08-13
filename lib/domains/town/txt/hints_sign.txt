@@ -1,91 +1,79 @@
-HELPFUL HINTS
+有用提示
 
-- This is a special sample area of places, objects and creatures.
-It is not a mud. It is a set of examples that can be used in making
-a mud. If you are reading this, it's because you are in a mud that
-is under construction.
+- 这是一个特殊的示例区域，包含地点、物品和生物。
+它不是完整的MUD，而是一组可用于创建MUD的示例。
+如果你正在阅读这个，说明你正处于建设中的MUD里。
 
-- Read the players handbook. It is really very helpful. You read
-it like this:
+- 阅读玩家手册，它真的很有帮助。你可以这样阅读：
 
 read chapter 1 in handbook
-read index in handbook
+read index in handbook  
 read chapter 2 in handbook
 
-- If you want to know what is inside a container (like a bag or
-a box) you have to look *in* it. Example: look in bag
+- 如果你想知道容器内有什么（比如袋子或盒子），
+你必须查看*里面*。例如：look in bag
 
-- If you don't have the "two-handed" or "two-weapon" combat
-skills, you will fight very poorly when wielding multiple or
-two-handed weapons. Generally only fighters train in these skills.
-Wield just one weapon, unless you're a fighter.
+- 如果你没有"双手武器"或"双武器"战斗技能，
+当你使用多把武器或双手武器时会战斗得很差。
+通常只有战士会训练这些技能。只装备一把武器，
+除非你是战士。
 
-- The wimpy command will make you automatically run away from 
-combat when your health hits the percentage you specify.
+- wimpy命令会让你在生命值降到指定百分比时
+自动逃离战斗。
 
-- Armor is very important. Without it, it is very easy to lose life 
-and limb.
+- 护甲非常重要。没有它，很容易失去生命和肢体。
 
-- If you can't carry all your money, deposit some in the bank.
+- 如果你携带不了所有金钱，存一些到银行。
 
-- "wear all" is a quick way to equip, but don't forget to 
-"wield", too.
+- "wear all"是快速装备的方法，但别忘了也要"wield"。
 
-- If you're hurt, go to Clepius for healing. He can also cure 
-diseases, restore severed limbs, and extract foreign objects.
+- 如果你受伤了，去找克勒庇乌斯治疗。他还能治愈疾病、
+恢复断肢，并取出异物。
 
-- Make sure to read any signs or lists you see. They contain 
-important instructions.
+- 务必阅读你看到的任何标牌或清单。它们包含重要指示。
 
-- Advancing in levels improves your statistics and enhances 
-your abilities. See Dirk in the Adventurer's Hall for details.
+- 提升等级会改善你的属性和增强你的能力。详情咨询
+冒险者大厅的德克。
 
-- Once you choose a class, such as fighter or mage, it is
- hard to switch again, and expensive.
+- 一旦你选择了职业，如战士或法师，很难再转换，
+而且很昂贵。
 
-- Anyone can learn spells, but it's easier for mages and they 
-get more bang for the buck. However, mages are pretty weak, 
-physically.
+- 任何人都可以学习法术，但对法师更容易，他们
+能获得更好的效果。然而，法师在物理上很弱。
 
-- Fighters are big and tough, but being dumb and clumsy 
-has drawbacks.
+- 战士高大强壮，但笨拙迟钝有缺点。
 
-- Getting drunk and sleeping enhances healing rate, but 
-once you are asleep you have to wait to wake up. It can be 
-anywhere between two and ten minutes.
+- 喝醉和睡觉会提高治疗速度，但一旦睡着了
+你就必须等待醒来。可能需要2到10分钟不等。
 
-- Avoiding hunger and thirst enhances healing.
+- 避免饥饿和口渴会提高治疗效果。
 
-- Bags and packs to put things in make it easier to carry a lot 
-of stuff around.
+- 用袋子或包裹装东西能更容易携带大量物品。
 
-- Without a weapon, humanoids are quite vulnerable in combat.
+- 没有武器，人形生物在战斗中很脆弱。
 
-- If your foot or leg is severed, you cannot stand or walk. 
-To go anywhere while lying down, you must "crawl". For 
-example, "crawl south".
+- 如果你的脚或腿被切断，你无法站立或行走。
+躺着移动时，你必须"crawl"。例如："crawl south"。
 
-- If you are lying down or sitting, you cannot fight.
+- 如果你躺着或坐着，你无法战斗。
 
-- Your skills improve with use. For example, spellcasting, 
-combat, defense, and stealing, all get better the more 
-you do it.
+- 你的技能会随着使用而提升。例如，施法、
+战斗、防御和偷窃，做得越多越熟练。
 
-- If you are badly overmatched in a fight, try 
-finding magical items to enhance your abilities. 
-Or heck, ask a friend to connect and help you fight.
+- 如果你在战斗中严重处于劣势，试着
+寻找魔法物品来增强你的能力。
+或者叫个朋友来帮你战斗。
 
-- Room lighting can be deceptive. You might be able to see 
-enough to make out what a room looks like, but not enough to 
-see all the exits or all the stuff in a room. If in doubt, 
-use a light source, like a torch or flashlight.
+- 房间照明可能有欺骗性。你可能能看清房间的样子，
+但不足以看清所有出口或所有物品。如有疑问，
+使用光源，如火把或手电筒。
 
-- Even if you can see the room well, some items may be hidden. 
-"search" is a useful command for finding hidden items.
+- 即使你能清楚看到房间，有些物品可能隐藏。
+"search"是寻找隐藏物品的有用命令。
 
-- Sometimes having many similar objects can be confusing. Or 
-you might have armor that can be worn on different limbs. 
-You may have to be specific. Examples:
+- 有时拥有许多相似物品会造成困惑。或者
+你可能有可以穿戴在不同肢体的护甲。
+你可能需要具体指定。示例：
 	- sell first boot to otik
 	- buy large flashlight from otik
 	- put small knife in leather pack
@@ -95,13 +83,13 @@ You may have to be specific. Examples:
 	- read inscription on ring (instead of read ring)
 	- push second button
 	- eat my first ham sandwich
-	- articulate grand unification theory (doesn't work quite yet)
+	- articulate grand unification theory (还无法正常工作)
 
-- South of the church is a newbie mansion, with lots 
-of treasure and stuff for newbies. There's even a quest 
-or two to solve. Just don't expect to get past the guard 
-after reaching non-newbie status.
+- 教堂南面有个新手公馆，有大量
+宝藏和新手物品。甚至还有一两个任务
+要解决。只是别指望达到非新手状态后
+能通过守卫。
 
-- This mud is under construction, so you may get stuck or 
-find a bad bug. Don't get mad. Just report the bug or ask for help.
+- 这个MUD正在建设中，所以你可能卡住或
+遇到严重bug。别生气。只需报告bug或寻求帮助。
 

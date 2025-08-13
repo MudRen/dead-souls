@@ -7,36 +7,25 @@ void create() {
     SetProperty("light", 3);
     SetProperty("night light", 1);
     SetProperty("no castle", 1);
-    SetShort( "West Boc La in Praxis");
-    SetDayLong("The local pub on the southwest corner of the square "
-            "east of here gets little business at the height of "
-            "the day.  As twilight fall into dusk, however, you "
-            "will notice more people making their way into the pub "
-            "to cap off a day of adventure.  The road you are on, "
-            "West Boc La, leads into the western districts of "
-            "Praxis and east to the centre of town.");
-    SetNightLong("The street lamps provide you with barely enough "
-            "light to see, but can you can just see Krasna Square east and "
-            "Lars' Pub to the south.  You can also make out a chapel to "
-            "the north, but you see no entrance.");
+    SetShort("普瑞克斯的博克拉路西段");
+    SetDayLong("广场西南角当地的酒馆在白天高峰期生意寥寥。当黄昏降临，然而，你会注意到更多人走向酒馆，为一天的冒险画上句号。你所处的这条路，博克拉路西段，通往普瑞克斯的西部区域，向东则通往市中心。");
+    SetNightLong("街灯为你提供勉强足够的光线，但你可以看到东侧的克拉斯纳广场和南侧的Lars酒馆。你也可以辨认出北侧有一座小教堂，但看不到入口。");
 
-    SetListen("default", "Cheers of local adventurers "
-            "resonate from inside the pub.");
+    SetListen("default", "当地冒险者的欢呼声从酒馆里传出。");
     SetExits( 
             (["east" : "/domains/Praxis/square",
              "west" : "/domains/Praxis/w_boc_la2",
              "south" : "/domains/Praxis/pub"]) );
     SetItems( 
-            (["church" : "It looks like the entrance might be on the "
-             "road leading north from Monument Square.",
-             ({"lamps", "lamp", "street lamp"}) : "All of the street "
-             "lamps along the road provide minimal light at night.",
-             ({"pub", "lars pub", "lars' pub"}) : "Local adventurers "
-             "wind down their day in Lars' Pub.",
-             ({"road", "west boc la", "boc la"}) : "It goes beyond the "
-             "western districts of Praxis into the mountains.",
-             "square" : "At the centre of Praxis, it is where "
-             "Boc La and Centre Path meet."]) );
+            (["church" : "看起来入口可能在从纪念碑广场向北的道路上。",
+             ({"lamps", "lamp", "street lamp"}) : "道路沿线的所有街灯"
+             "在夜晚提供微弱的光线。",
+             ({"pub", "lars pub", "lars' pub"}) : "当地冒险者"
+             "在拉尔斯酒馆结束他们的一天。",
+             ({"road", "west boc la", "boc la"}) : "它穿过"
+             "普瑞克斯的西部区域，一直延伸到山脉。",
+             "square" : "在普瑞克斯的中心，是 "
+             "博克拉路与中心大道交汇的地方。"]) );
     SetSkyDomain("town");
 }
 void init(){

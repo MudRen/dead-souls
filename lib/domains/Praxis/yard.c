@@ -7,16 +7,12 @@ void create() {
     SetProperty("light", 3);
     SetProperty("night light", 2);
     SetProperty("no castle", 1);
-    SetShort("A small yard");
-    SetDayLong( "Daytime makes this beautiful yard at the end of a "
-            "small alley glow with peace. Quaint houses surround the yard "
-            "on all flanks except to the west where the alley intersects "
-            "Centre Path. There is a manhole where the alley meets the "
-            "yard.");
-    SetNightLong( "Very little stirs at the end of this small alley "
-            "in the dark of the night. Some light illuminates the area from "
-            "the lamps which are posted in front of the houses which "
-            "surround the yard at the end of the alley.");
+    SetShort("一个小庭院");
+    SetDayLong( "白天让这条小巷尽头美丽的小庭院充满宁静祥和。古朴的房屋环绕着庭院 "
+            "四周，只有西侧小巷与中心大道相交的地方除外。在小巷与庭院 "
+            "交界处有一个检修孔。");
+    SetNightLong( "在漆黑的夜晚，这条小巷尽头很少有动静。一些光线从 "
+            "环绕小巷尽头庭院的房屋前方路灯照亮了这片区域。");
 
     SetDoor("/domains/Praxis/sewer_ent","down");
     "/domains/Praxis/sewer_ent"->SetOpen("manhole", 0);
@@ -25,8 +21,8 @@ void create() {
              "north" : "/domains/Praxis/sheriff",
              "down" : "/domains/Praxis/sewer_ent"]) );
     SetItems(
-            (["alley" : "It looks beautiful here.",
-             ({ "lamp", "lamps" }) : "Dimly illuminated lights.",
+            (["alley" : "这里看起来很美丽。",
+             ({ "lamp", "lamps" }) : "昏暗的灯光。",
              "manhole" : (: this_object(), "look_at_manhole" :) ]) );
     SetSkyDomain("town");
     SetInventory(([
