@@ -5,11 +5,11 @@
 # Lines beginning with a # or a newline are ignored.                          #
 ###############################################################################
 # name of this mud
-name : DeadSouls-FluffOS2019
+name : 亡者之魂
 
 # port number to accept users on
 # port number : 6666
-external_port_1 : websocket 5555
+external_port_1 : websocket 8888
 websocket http dir: ./www
 external_port_2 : telnet 6666
 

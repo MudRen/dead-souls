@@ -6,3 +6,6 @@
 /lib/secure/save
 /lib/save/*.o
 /lib/daemon/tmp
+/lib/realms/
+/lib/doc/RELEASE_NOTES_HTTP
+/lib/www/mudlist.txt
