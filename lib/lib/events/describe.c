@@ -15,14 +15,14 @@ void eventDescribeEnvironment(int brief){
     string altern_obvious = "";
 
     if(!(env = environment(this_object()))){
-        this_object()->eventPrint("You are nowhere.", MSG_ROOMDESC);
+        this_object()->eventPrint("你不在任何地方。", MSG_ROOMDESC);
         return;
     }
 
     if(env->GetMount() || base_name(env) == LIB_CORPSE){ 
         env = environment(environment(this_player()));
         if(!env){
-            this_object()->eventPrint("You are in serious trouble. Ask an admin for help.");
+            this_object()->eventPrint("你遇到了严重问题。请向管理员寻求帮助。");
             return;
         }
         i = this_object()->GetEffectiveVision(env); 
@@ -31,19 +31,19 @@ void eventDescribeEnvironment(int brief){
     else i =  this_object()->GetEffectiveVision();
     switch( i ){
         case VISION_BLIND:
-            this_object()->eventPrint("You are blind and can see nothing.");
+            this_object()->eventPrint("你失明了，什么也看不见。");
             break;
         case VISION_TOO_DARK:
-            this_object()->eventPrint("It is much too dark to see.");
+            this_object()->eventPrint("这里太黑了，什么也看不见。");
             break;
         case VISION_DARK:
-            this_object()->eventPrint("It is too dark to see.");
+            this_object()->eventPrint("这里太暗了，什么也看不见。");
             break;
         case VISION_TOO_BRIGHT:
-            this_object()->eventPrint("It is much too %^YELLOW%^bright%^RESET%^ to see.");
+            this_object()->eventPrint("这里太%^YELLOW%^明亮%^RESET%^了，什么也看不见。");
             break;
         case VISION_BRIGHT:
-            this_object()->eventPrint("It is too %^YELLOW%^bright%^RESET%^ to see.");
+            this_object()->eventPrint("这里太%^YELLOW%^亮%^RESET%^了，什么也看不见。");
             break;
     }
     if( !brief ){
@@ -56,7 +56,7 @@ void eventDescribeEnvironment(int brief){
             if(!NM_STYLE_EXITS){
                 desc = capitalize(env->GetShort()+"\n" || "\n");
                 if(!(env->GetNoObviousExits())){
-                    altern_obvious = "Obvious exit$Q: "+env->GetObviousExits() || "none";
+                    altern_obvious = "明显的出口$Q: "+env->GetObviousExits() || "无";
                 }
             }
         }
@@ -94,14 +94,14 @@ void eventDescribeEnvironment(int brief){
                     desc += " [" + tmp + "]";
                 else desc += "\n";
             }
-            else altern_obvious = "Obvious exits: "+env->GetObviousExits() || "none";
+            else altern_obvious = "明显的出口: "+env->GetObviousExits() || "无";
         }
         else desc = "\n";
     }
     if( desc ) this_object()->eventPrint(desc, MSG_ROOMDESC);
     if(sizeof(altern_obvious)){
         int quant = sizeof(env->GetExits()) + sizeof(env->GetEnters());
-        if(quant > 1) altern_obvious = replace_string(altern_obvious,"$Q","s");
+        if(quant > 1) altern_obvious = replace_string(altern_obvious,"$Q","有");
         else altern_obvious = replace_string(altern_obvious,"$Q","");
         this_object()->eventPrint(altern_obvious,MSG_ROOMDESC);
     }
@@ -144,8 +144,8 @@ void eventDescribeEnvironment(int brief){
             }
             if( i == maxi - 1 ){
                 if( maxi > 1 || val >1 )
-                    desc += " are here.%^RESET%^\n";
-                else desc += " is here.%^RESET%^\n";
+                    desc += " 在这里。%^RESET%^\n";
+                else desc += " 在这里。%^RESET%^\n";
             }
             else if( i == maxi - 2 ){
                 if( maxi == 2 ){
@@ -224,18 +224,18 @@ void eventDescribeEnvironment(int brief){
 
             if(lying[globaltmp]>1 && !furniture[globaltmp]){
                 desc += capitalize(consolidate(val, globaltmp)) +
-                    "%^RESET%^ are lying down.";
+                    "%^RESET%^ 躺着。";
             }
             else if(lying[globaltmp]<2 && !furniture[globaltmp]){
-                desc += capitalize(key) + "%^RESET%^ is lying down.";
+                desc += capitalize(key) + "%^RESET%^ 躺着。";
             }
             else if(furniture[globaltmp]){
-                desc += capitalize(key) + "%^RESET%^ is lying down"+
-                    ((furniture[globaltmp]) ? furniture[globaltmp] : "") +".";
+                desc += capitalize(key) + "%^RESET%^ 躺着"+
+                    ((furniture[globaltmp]) ? furniture[globaltmp] : "") +"。";
             }
             else if(furniture[key]){
-                desc += capitalize(key) + "%^RESET%^ is lying down"+
-                    ((furniture[key]) ? furniture[key] : "") +".";
+                desc += capitalize(key) + "%^RESET%^ 躺着"+
+                    ((furniture[key]) ? furniture[key] : "") +"。";
             }
 
 
@@ -254,18 +254,18 @@ void eventDescribeEnvironment(int brief){
 
             if(sitting[globaltmp]>1 && !furniture[globaltmp]){
                 desc += capitalize(consolidate(val, globaltmp)) +
-                    "%^RESET%^ are sitting down.";
+                    "%^RESET%^ 坐在这里。";
             }
             else if(sitting[globaltmp]<2 && !furniture[globaltmp]){
-                desc += capitalize(key) + "%^RESET%^ is sitting down.";
+                desc += capitalize(key) + "%^RESET%^ 坐在这里。";
             }
             else if(furniture[globaltmp]){
-                desc += capitalize(key) + "%^RESET%^ is sitting down"+
-                    ((furniture[globaltmp]) ? furniture[globaltmp] : "") +".";
+                desc += capitalize(key) + "%^RESET%^ 坐着"+
+                    ((furniture[globaltmp]) ? furniture[globaltmp] : "") +"。";
             }
             else if(furniture[key]){
-                desc += capitalize(key) + "%^RESET%^ is sitting down"+
-                    ((furniture[key]) ? furniture[key] : "") +".";
+                desc += capitalize(key) + "%^RESET%^ 坐着"+
+                    ((furniture[key]) ? furniture[key] : "") +"。";
             }
 
 
@@ -280,44 +280,44 @@ void eventDescribeEnvironment(int brief){
                 sscanf(key,"%sBEGIN%*s",key);
             }
             if( val<2 )
-                desc += capitalize(key) + "%^RESET%^ is standing here.";
+                desc += capitalize(key) + "%^RESET%^ 站在这里。";
             else desc += capitalize(consolidate(val, key)) +
-                "%^RESET%^ are standing here.";
+                "%^RESET%^ 站在这里。";
             desc += "\n";
         }
         foreach(key, val in flying){
             if( val<2 )
-                desc += capitalize(key) + "%^RESET%^ is hovering here.";
+                desc += capitalize(key) + "%^RESET%^ 悬浮在这里。";
             else desc += capitalize(consolidate(val, key)) +
-                "%^RESET%^ are hovering here.";
+                "%^RESET%^ 悬浮在这里。";
             desc += "\n";
         }
         foreach(key, val in floating){
             if( val<2 )
-                desc += capitalize(key) + "%^RESET%^ is floating here.";
+                desc += capitalize(key) + "%^RESET%^ 漂浮在这里。";
             else desc += capitalize(consolidate(val, key)) +
-                "%^RESET%^ are floating here.";
+                "%^RESET%^ 漂浮在这里。";
             desc += "\n";
         }
         foreach(key, val in swimming){
             if( val<2 )
-                desc += capitalize(key) + "%^RESET%^ is swimming here.";
+                desc += capitalize(key) + "%^RESET%^ 游在这里。";
             else desc += capitalize(consolidate(val, key)) +
-                "%^RESET%^ are swimming here.";
+                "%^RESET%^ 游在这里。";
             desc += "\n";
         }
         foreach(key, val in kneeling){
             if( val<2 )
-                desc += capitalize(key) + "%^RESET%^ is kneeling here.";
+                desc += capitalize(key) + "%^RESET%^ 跪在这里。";
             else desc += capitalize(consolidate(val, key)) +
-                "%^RESET%^ are kneeling here.";
+                "%^RESET%^ 跪在这里。";
             desc += "\n";
         }
         foreach(key, val in null){
             if( val<2 )
-                desc += capitalize(key) + "%^RESET%^ is here.";
+                desc += capitalize(key) + "%^RESET%^ 在这里。";
             else desc += capitalize(consolidate(val, key)) +
-                "%^RESET%^ are here.";
+                "%^RESET%^ 在这里。";
             desc += "\n";
         }
     }
@@ -342,26 +342,26 @@ void eventDescribeEnvironment(int brief){
         if(inherits(LIB_CHAMBER,transport)){
             string tmpdesc = transport->GetVehicleInterior();
             if(!tmpdesc || !sizeof(tmpdesc)){ 
-                desc += "\nYou are in "+
-                    transport->GetPlainShort()+".";
+                desc += "\n你在"+
+                    transport->GetPlainShort()+"里面。";
             }
             else desc += "\n"+tmpdesc;
-            desc += "\nHere you see: "+mount_inv+".";
+            desc += "\n你在这里看到："+mount_inv+"。";
         }
         else if(inherits(LIB_VEHICLE,transport)){
             string tmpdesc = transport->GetVehicleInterior();
             if(!tmpdesc || !sizeof(tmpdesc)){
-                desc += "\nYou are riding in "+
-                    transport->GetPlainShort()+".";
+                desc += "\n你乘坐在"+
+                    transport->GetPlainShort()+"里。";
             }
             else desc += "\n"+tmpdesc;
-            desc += "\nHere you see: "+mount_inv+".";
+            desc += "\n你在这里看到："+mount_inv+"。";
         }
         else {
-            desc += "\nYou are riding on "+
-                transport->GetPlainShort()+".";
-            desc += "\nOn "+transport->GetPlainShort()+
-                " you see: "+mount_inv+".";
+            desc += "\n你骑在"+
+                transport->GetPlainShort()+"上。";
+            desc += "\n在"+transport->GetPlainShort()+
+                "上你看到："+mount_inv+"。";
         }
     }
     if( sizeof(desc) ){
