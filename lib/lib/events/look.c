@@ -206,12 +206,12 @@ varargs mixed eventShow(object who, string component){
             (!sizeof(this_object()->GetLiers()) && !sizeof(this_object()->GetSitters()))){
         if(inherits(LIB_SURFACE,this_object()) ||
                 this_object()->GetOpacity() < 33){
-            (functionp(desc) ? evaluate(desc) : who->eventPrint(desc));
+            (functionp(desc) ? evaluate(desc) : who->eventPrint(wrap(desc)));
             this_object()->eventShowInterior(who);
         }
-        else (functionp(desc) ? evaluate(desc) : who->eventPrint(desc));
+        else (functionp(desc) ? evaluate(desc) : who->eventPrint(wrap(desc)));
     }
-    else (functionp(desc) ? evaluate(desc) : who->eventPrint(desc));
+    else (functionp(desc) ? evaluate(desc) : who->eventPrint(wrap(desc)));
     return 1;
 }
 

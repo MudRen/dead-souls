@@ -25,7 +25,7 @@ mkdir build && cd build
 starttime=`date +'%Y-%m-%d %H:%M:%S'`
 
 # 编译 fluffos，使用多线程编译，开启 SQLite 数据库和默认数据库支持 -DMARCH_NATIVE=OFF -DSTATIC=ON -DCMAKE_BUILD_TYPE=Release
-cmake -G "MSYS Makefiles" -DPACKAGE_DB_MYSQL="" -DPACKAGE_DB_SQLITE=2 -DPACKAGE_DB_DEFAULT_DB=2 -DPACKAGE_UIDS=OFF ../driver && make -j$(nproc) install
+cmake -G "MSYS Makefiles" -DPACKAGE_DB_MYSQL="" -DPACKAGE_DB_SQLITE=1 -DPACKAGE_DB_DEFAULT_DB=1 -DPACKAGE_UIDS=OFF ../driver && make -j$(nproc) install
 
 # 记录结束时间
 endtime=`date +'%Y-%m-%d %H:%M:%S'`

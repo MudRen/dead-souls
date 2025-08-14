@@ -352,7 +352,7 @@ private void eventCreatePlayer(string cap) {
         Destruct();
         return;
     }
-    receive("你真的希望被称为 " + cap + " 吗? (y/n) \n");
+    receive("你真的希望被称为 " + cap + " 吗？是(y)/否(n)\n");
     input_to((: ConfirmName :), I_NOESC, cap);
 }
 
@@ -386,7 +386,7 @@ private void ConfirmName(string ans, string cap) {
         input_to( (: InputName :), I_NOESC );
         return;
     }
-    receive("\n你是否已满13周岁? (y/n) \n");
+    receive("\n你是否已满13周岁？是(y)/否(n)\n");
     input_to((: AgeCheck :), I_NOESC, cap);
 }
 
@@ -612,7 +612,7 @@ private void InputRace(string str) {
     string *valid = ( RACES_D->GetRaces(1) || ({}) );
 
     if( str == "" || !str ) {
-        receive("\nRace: ");
+        receive("\n种族: ");
         input_to((: InputRace :), I_NOESC);
         return;
     }
@@ -650,7 +650,7 @@ private void cmdHelp(string args) {
     string help;
 
     f = function(string str) {
-        receive("\nRace: \n");
+        receive("\n种族: \n");
         input_to((: InputRace :), I_NOESC);
     };
     if( !args ) {
@@ -673,7 +673,7 @@ private void cmdList() {
 
     list = format_page(sort_array(RACES_D->GetRaces(1), 1), 5);
     receive(list);
-    receive("\nRace: \n");
+    receive("\n种族: \n");
     input_to((: InputRace :), I_NOESC);
 }
 
@@ -719,7 +719,7 @@ private void eventSelectClass(){
     receive("\tpick 职业名称 - 为你自己选择一个特定的职业\n");
     receive("\n\t可选职业: ");
     receive(implode(sort_array(CLASSES_D->GetClasses(1), 1), " "));
-    receive("\nClass: \n");
+    receive("\n职业: \n");
     input_to((: InputClass :), I_NOESC);
 }
 
@@ -728,7 +728,7 @@ private void InputClass(string str){
     string *valid = ( CLASSES_D->GetClasses(1) || ({}) );
 
     if( str == "" || !str ) {
-        receive("\nClass: ");
+        receive("\n职业: ");
         input_to((: InputClass :), I_NOESC);
         return;
     }
@@ -766,7 +766,7 @@ private void cmdHelpClass(string args){
     string help;
 
     f = function(string str) {
-        receive("\nClass: \n");
+        receive("\n职业: \n");
         input_to((: InputClass :), I_NOESC);
     };
     if( !args ) {
@@ -789,7 +789,7 @@ private void cmdListClasses() {
 
     list = format_page(sort_array(CLASSES_D->GetClasses(1), 1), 5);
     receive(list);
-    receive("\nClass: \n");
+    receive("\n职业: \n");
     input_to((: InputClass :), I_NOESC);
 }
 

@@ -115,7 +115,7 @@ varargs string user_path(string name, int legacy);
 string version();
 varargs int visibility(object ob);
 varargs int visible(object detectee_obj, object detector_obj);
-varargs string wrap(string str, int width);
+varargs string wrap(string str, int width, int indent);
 void write(string str);
 int tail(string file);
 void tell_player(mixed player, string msg);

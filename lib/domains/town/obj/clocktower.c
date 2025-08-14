@@ -7,16 +7,11 @@ int eventReadClock();
 
 protected void create(){
     item::create();
-    SetKeyName("clock tower");
+    SetKeyName("钟楼");
     SetId( ({"great clock tower rising majestically into the sky", "great clock of the town", "clock", "tower", "structure", "architecture", "clocktower"}) );
     SetAdjectives( ({"large", "great", "majestic", "impressive", "proud"}) );
-    SetShort("a great clock tower rising majestically into the sky");
-    SetLong("This is a large clock tower, rising magestically into "+
-            "the sky. Some forty feet up you can see the great clock of "+
-            "the town, which can be read to know the local time. The "+
-            "intricate details of its architecture are deeply impressive, "+
-            "and there is little doubt that this great structure is the "+
-            "pride of this little town.");
+    SetShort("一座雄伟高耸入云的大钟楼");
+    SetLong("这是一座大钟楼，雄伟地高耸入云。大约四十英尺高的地方你可以看到城镇的大钟，可以用来了解当地时间。其建筑的精致细节令人印象深刻，毫无疑问这座伟大的建筑是这个小镇的骄傲。");
     SetMass(1000000);
     SetBaseCost("silver",40);
     SetDefaultRead( (: eventReadClock :) );
@@ -26,7 +21,7 @@ void init(){
     ::init();
 }
 
-mixed CanGet(object ob) { return "This is a clock tower. It's not gettable.";}
+mixed CanGet(object ob) { return "这是一座钟楼，无法拾取。";}
 
 int eventReadClock(){
     int hour, minutes;
@@ -62,7 +57,7 @@ int eventReadClock(){
 
     if(minute_string == "thirteen") minute_string = "one";
 
-    write("According to the clock, it is "+hour_string+" "+minute_string+".");
+    write("根据钟楼的时钟，现在是"+hour_string+" "+minute_string+"。");
 
     return 1;
 }

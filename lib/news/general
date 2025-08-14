@@ -1,12 +1,12 @@
-			     General news
+			     综合公告
 			    /news/general
 
-* To enable colored text, type: 
+* 要启用彩色文本，请输入：
 
 terminal ansi
 
-* New characters have the new Players Handbook. It's not that
-long, and it's super helpful. To get started, type:
+* 新角色拥有新的玩家手册。
+虽然不长，但非常有帮助。要开始阅读，请输入：
 
 read chapter 1 in handbook
 

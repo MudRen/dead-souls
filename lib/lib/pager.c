@@ -103,7 +103,7 @@ protected int Page(mixed tmpfile){
     tmpcurrline = file["CurrentLine"];
     tmparr2 = tmparr[tmpcurrline..endline];
     err = catch(page = implode(tmparr2, "\n"));
-    eventPrint(page, file["MessageClass"]);
+    if(!err) eventPrint(page, file["MessageClass"]);
     if( creatorp() && file["Name"] != "" ) prompt = file["Name"] + " ";
     else prompt = "";
     if( endline < file["Size"] - 1 ){

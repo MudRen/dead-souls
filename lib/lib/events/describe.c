@@ -73,7 +73,7 @@ void eventDescribeEnvironment(int brief){
                 desc += MAP_D->GetMap(environment(this_object()),6)+"\n"; 
             }
 #endif
-            desc += env->GetLong();
+            desc += wrap(env->GetLong());
         }
         if(functionp(tmp = env->GetSmell("default")))
             tmp = (*tmp)("default");
