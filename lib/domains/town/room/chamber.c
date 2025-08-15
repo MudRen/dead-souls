@@ -5,23 +5,20 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("The Healing Chamber");
-    SetLong("This is the work chamber of Clepius the healer. "
-            "This is where he performs medical procedures on "
-            "his customers. A desk in the corner overflows with "
-            "notes and books. The reception and waiting area is "
-            "east of here.");
+    SetShort("治疗室");
+    SetLong("这是治疗师克勒庇乌斯的工作室。"
+            "这里就是他为顾客进行医疗程序的地方。"
+            "角落里的书桌上堆满了笔记和书籍。"
+            "接待和等候区在东边。");
     SetItems( ([
-                "desk" : "This is where Clepius does "
-                "paperwork and research.",
-                ({"notes","books","notes and books"}) : "These "
-                "are the contents of the doctor's desk.",
-                "corner" : "Location of the desk."
+                "desk" : "这是克勒庇乌斯处理文书工作和研究的地方。",
+                ({"notes","books","notes and books"}) : "这些是医生书桌上的内容。",
+                "corner" : "书桌所在的位置。"
                 ]) );
     SetExits( ([ 
                 "east" : "/domains/town/room/healer",
                 ]) );
-    SetRead( ({"notes","books","notes and books"}) , "That belongs to Clepius and it's private." ); 
+    SetRead( ({"notes","books","notes and books"}) , "这是克勒庇乌斯的私人物品，请勿翻阅。" ); 
     SetProperty("no attack", 1);
     SetInventory(([
                 "/domains/town/obj/bbucket" :1,
@@ -32,8 +29,8 @@ protected void create() {
 }
 int CanReceive(object ob) {
     if(playerp(ob) && !creatorp(ob) && GetProperty("busy") == 1){
-        message("info","The doctor is with a patient right now. Please "+
-                "wait until you are called.",ob);
+        message("info","医生正在给病人看病。请"+
+                "等待叫号。",ob);
         return 0;
     }
     return 1;

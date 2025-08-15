@@ -6,15 +6,14 @@ protected void create() {
     bank::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("First Village Bank");
-    SetLong("This simple place is the hub of financial activity for the village. Though not at all a fancy institution, this bank is trusted by the citizenry as being as safe as it gets for keeping their money.\n%^GREEN%^A sign you can read hangs here.%^RESET%^");
+    SetShort("第一村庄银行");
+    SetLong("这个简单的地方是村庄金融活动的中心。虽然完全不是一个华丽的机构，但这家银行被市民们信任为保管他们钱财最安全的地方。\n%^GREEN%^这里挂着一个你可以阅读的标牌。%^RESET%^");
     SetInventory( ([
         "/domains/town/npc/zoe" : ({60, 1})
       ]) );
     SetItems( ([
-        "sign" : "A sign you can read.",
-        ({"bank","First Village Bank"}) : "The primary financial "
-        "institution in town.",
+        "sign" : "一个你可以阅读的标牌。",
+        ({"bank","First Village Bank"}) : "镇上的主要金融机构。",
       ]) );
     SetExits( ([
         "west" : "/domains/town/room/mountain_road.c",
@@ -24,22 +23,20 @@ protected void create() {
 }
 int ReadSign(){
     write( @EndText
-- This bank requires a minimum balance to open an account.
-To use any of the bank's services, you must first open an
-account (see below as to how).
+- 这家银行需要最低余额才能开设账户。
+要使用银行的任何服务，你必须先开设一个账户（见下文如何操作）。
 
-- This bank charges for certain transactions, such as
-currency exchange.
+- 这家银行对某些交易收费，比如货币兑换。
 
-To conduct business here:
+在这里办理业务：
 
-request account from TELLER
-request balance from TELLER
-ask TELLER to deposit AMOUNT CURRENCY
-ask TELLER to withdraw AMOUNT CURRENCY
-ask TELLER to exchange AMOUNT CURRENCY for CURRENCY
+request account from 出纳员
+request balance from 出纳员
+ask 出纳员 to deposit 金额 货币
+ask 出纳员 to withdraw 金额 货币
+ask 出纳员 to exchange 金额 货币 for 货币
 
-examples:
+示例：
 
 request account from zoe
 request balance from zoe

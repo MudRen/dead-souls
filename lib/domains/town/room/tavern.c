@@ -5,20 +5,20 @@ protected void create() {
     ::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("The Local Tavern");
-    SetLong("You are in the local pub. You can order drinks and a sandwich here:\n\n"+
-            "\tFirst class ale:\t\t\t\t10 silver\n"
-            "\tSpecial of the house:\t\t\t\t20 silver\n"
-            "\tFirebreather:\t\t\t\t\t50 silver\n"
-            "\tSpring water:\t\t\t\t\t2 silver\n"
-            "\tRegular coffee:\t\t\t\t\t5 silver\n"
-            "\tImported espresso:\t\t\t\t15 silver\n"
-            "\tHam sandwich:\t\t\t\t\t10 silver\n\n\n"
-            "To order a bottle of water, \"buy water from lars\"\n"
-            "\nThere is a framed portrait on the wall.\n"
+    SetShort("当地酒馆");
+    SetLong("你正在当地的酒馆里。你可以在这里点饮品和三明治：\n\n"+
+            "\t顶级啤酒：\t\t\t\t10银币\n"
+            "\t特色招牌：\t\t\t\t20银币\n"
+            "\t喷火者：\t\t\t\t\t50银币\n"
+            "\t山泉水：\t\t\t\t\t2银币\n"
+            "\t普通咖啡：\t\t\t\t\t5银币\n"
+            "\t进口浓缩咖啡：\t\t\t\t15银币\n"
+            "\t火腿三明治：\t\t\t\t\t10银币\n\n\n"
+            "要点一瓶水，请使用命令\"buy water from lars\"\n"
+            "\n墙上挂着一幅装裱的肖像画。\n"
            );
     SetItems(([
-                ({ "portrait", "framed portrait", "frame", "picture" }) : "It is a dramatic portrait of an ancient dragon of immense beauty and grace. It is titled \"Daelas: Heir of Arodaleas\".",
+                ({ "portrait", "framed portrait", "frame", "picture" }) : "这是一幅戏剧性的古老巨龙肖像，展现出极致的美丽与优雅。标题是\"戴拉斯：阿罗达利亚斯的后裔\".",
                 ]));
     SetInventory(([
                 "/domains/town/obj/btable" : 1,

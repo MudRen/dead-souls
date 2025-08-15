@@ -5,21 +5,16 @@ protected void create() {
     room::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("North Saquivor Road");
-    SetNightLong("Illuminated by lamplight here is Saquivor road, leading north-south through the village. To the east is the village pub, the legendary watering hole used by thousands of rogues, paladins, and everyone in between. The Healers' Guild is west. To the south is a major intersection. The road continues north into the gloom.");
-    SetDayLong("You are on Saquivor road, leading north-south through the village. To the east is the village pub, the legendary watering hole used by thousands of rogues, paladins, and everyone in between. The Healers' Guild is west, and to the north you can see a road leading up to the plateau where the Fortress on the Frontiers stands. To the south is a major intersection.");
+    SetShort("萨奎弗路北段");
+    SetNightLong("路灯照亮了萨奎弗路，这条南北向的道路贯穿村庄。东边是村里的酒馆，这个传奇的聚会场所曾被无数盗贼、圣骑士以及介于两者之间的所有人使用。西边是医疗师公会。南边是一个主要交叉口。道路向北延伸进入黑暗中。");
+    SetDayLong("你在萨奎弗路上，这条南北向的道路贯穿村庄。东边是村里的酒馆，这个传奇的聚会场所曾被无数盗贼、圣骑士以及介于两者之间的所有人使用。西边是医疗师公会，向北你可以看到一条通往高原的道路，那里矗立着边境要塞。南边是一个主要交叉口。");
     SetItems( ([
-                ({"pub","tavern","village pub"}) : "The is the town's "
-                "legendary watering hole, where refreshments are served "
-                "and tall tales are swapped.",
-                ({"guild","healers guild"}) : "In this building is "
-                "the office of the only doctor in town.",
-                "clouds" : "Little puffy clouds surround the "
-                "peaks of the northern mountains.",
+                ({"pub","tavern","village pub"}) : "这是镇上传奇的聚会场所，提供饮品并交换各种夸张的故事。",
+                ({"guild","healers guild"}) : "这栋楼里是镇上唯一的医生的办公室。",
+                "clouds" : "小小的蓬松云朵环绕着北部山峰。",
                 ({"northern mountains","mountains","range","mountain range"}): 
-                "Majestic mountains are far to the north, seeming "
-                "almost purple from here.",
-                "intersection" : "The main town crossroads is south."
+                "雄伟的群山在遥远的北方，从这里看几乎是紫色的。",
+                "intersection" : "主要的镇交叉口在南边。"
                 ]) );
     SetSkyDomain("town");
     SetInventory(([
