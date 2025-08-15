@@ -24,23 +24,21 @@ void create() {
     SetProperty("no castle", 1);
     SetProperty("light", 2);
     SetProperty("night light", 2);
-    SetShort( "the bank of praxis");
+    SetShort( "普瑞克斯银行");
     SetLong(
-            "Welcome to the Bank of Praxis!\n"
-            "The Bank of Praxis is a lovely looking building. Red carpeting "
-            "covers the worn floor, and to the north there is a polished wooden "
-            "counter. In the back of the bank there is a vault where all "
-            "the town's deposits are kept. A sign by the teller details "
-            "all commands. The exit to the bank is back south.");
+            "欢迎来到普瑞克斯银行！\n"
+            "普瑞克斯银行是一栋漂亮的建筑。红色地毯覆盖着磨损的地板，"
+            "北边有一个抛光的木制柜台。银行后面有一个金库，"
+            "存放着城里所有的存款。出纳员旁边的标牌详细说明了"
+            "所有命令。银行的出口在南边。");
     SetItems(
-            (["bank" : "You are in its huge lobby. There is a counter in "
-             "front of you\nand and exit behind you.",
-             "citizens" : "They are wandering about aimlessly.",
-             "account" : "You're a damn loon.",
-             "sign" : "Reading it will give you a list of commands.",
-             "teller" : "The teller looks at you impatiently.",
-             "counter" : "A teller waits behind it for you to do something.",
-             "exit" : "It leads out into the alley.",
+            (["bank" : "你位于它巨大的大堂里。你前面有一个柜台，后面有一个出口。",
+             "citizens" : "他们正在漫无目的地游荡。",
+             "account" : "你是个该死的疯子。",
+             "sign" : "阅读它会给你提供命令列表。",
+             "teller" : "出纳员不耐烦地看着你。",
+             "counter" : "出纳员在后面等你做点什么。",
+             "exit" : "它通向小巷。",
              "vault" : (: this_object(), "look_at_vault" :) ]) );
     SetExits( 
             (["south":"/domains/Praxis/alley1"]) );
@@ -56,9 +54,8 @@ void reset() {
         mon->SetId( ({ "guard", "bank guard", "big ogre" }) );
         mon->SetRace( "ogre");
         mon->SetGender("male");
-        mon->SetShort( "Bank guard");
-        mon->SetLong( "A big, ugly ogre hired to guard the "
-                "newly open bank.\n");
+        mon->SetShort( "银行守卫");
+        mon->SetLong( "一个被雇来保护新开业银行的丑陋大食人魔。\n");
         mon->SetLevel(14);
         mon->SetRace("human");
         mon->SetHealthPoints(500 + random(100));
@@ -68,20 +65,20 @@ void reset() {
         mon->SetSkills("defense", 70);
         mon->SetSkills("blade", 90);
         mon->set_emotes(9, 
-                ({ "Guard says: Goddamn thief!",
-                 "Guard grunts.",
-                 "Guard says: No way you're getting past me!",
-                 "Guard says: You disgust me."}), 1);
+                ({ "守卫说：该死的贼！",
+                 "守卫咕哝了一声。",
+                 "守卫说：你别想从我这里过去！",
+                 "守卫说：你真让我恶心。"}), 1);
         mon->set_emotes(3,
-                ({ "Guard munches on a rat pie.", 
-                 "Guard says: I hate rogues." }), 0);
+                ({ "守卫嚼着一块鼠肉派。", 
+                 "守卫说：我讨厌盗贼。" }), 0);
         mon->SetWielding_limbs( ({ "right hand", "left hand" }) );
         mon->move(this_object());
         weapon = new(LIB_ITEM);
         weapon->SetKeyName("broadsword");
         weapon->SetId( ({ "broadsword", "sword" }) );
-        weapon->SetShort( "Broadsword");
-        weapon->SetLong( "A huge broadsword.");
+        weapon->SetShort( "阔剑");
+        weapon->SetLong( "一把巨大的阔剑。");
         weapon->SetClass(13);
         weapon->SetType("blade");
         weapon->SetMass(700);
@@ -91,8 +88,8 @@ void reset() {
         key = new(LIB_ITEM);
         key->SetKeyName("key");
         key->SetId( ({ "bank key", "key", "bronze key" }) );
-        key->SetShort( "Bronze key");
-        key->SetLong( "An unremarkable bronze key.");
+        key->SetShort( "青铜钥匙");
+        key->SetLong( "一把毫不起眼的青铜钥匙。");
         key->SetMass(29);
         key->SetValue(35);
         key->move(mon);
@@ -127,13 +124,13 @@ int do_drunkard() {
 int read(string str) {
     if(str != "sign") return notify_fail("Read what?\n");
     message("info",
-            "You may do any of the following at Praxis Merchant's Bank:\n"
-            "<open account>\nWill open an account for you.\n\n"
-            "<close account>\nCloses your account.\n\n"
-            "<balance>\nGives you account balance information.\n\n"
-            "<deposit [#] [type]>\nDeposits # of currency of type.\n\n"
-            "<withdraw [#] [type]>\nWithdraws # of currency of type.\n\n"
-            "<exchange [#] of [type1] for [type2]>\nExchanges currencies.  There is a 10% charge.\n\n",
+            "你可以在普瑞克斯商人银行进行以下操作：\n"
+            "<open account>\n为你开设一个账户。\n\n"
+            "<close account>\n关闭你的账户。\n\n"
+            "<balance>\n提供你的账户余额信息。\n\n"
+            "<deposit [#] [type]>\n存入指定类型和数量的货币。\n\n"
+            "<withdraw [#] [type]>\n提取指定类型和数量的货币。\n\n"
+            "<exchange [#] of [type1] for [type2]>\n兑换货币。将收取10%的手续费。\n\n",
             this_player()
            );
     return 1;

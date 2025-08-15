@@ -7,19 +7,15 @@ void create() {
     SetProperties( ([ "light" : 2, "indoors" : 1, "no attack" : 1, "no steal" : 1 ]) );
     SetExits( 
             (["south" : "/domains/Praxis/monastery"]) );
-    SetShort("The chapel");
+    SetShort("小教堂");
     SetLong( 
-            sprintf("The %s chapel is solemn and ancient with stained glass "
-                "windows and dark oak pews.  Most wedding ceremonies "
-                "are performed here.  Type <help marriage> for "
-                "information on weddings.", mud_name()) );
+            sprintf("%s的小教堂庄严肃穆且古老，有着彩色玻璃窗和深色橡木长椅。"
+                "大多数婚礼仪式都在这里举行。输入<help marriage>获取"
+                "关于婚礼的信息。", mud_name()) );
     SetItems(
-            (["pews" : "Ancient oak seats, darkened by eons of "
-             "bottoms resting on them.",
-             "windows" : "The windows show highlights of "
-             "mud history, many of them gorey.",
-             "ceremony" : "The ceremony is only visible when you "
-             "scroll back."]) );
+            (["pews" : "古老的橡木座椅，被无数个世纪以来坐过的人们的臀部染成深色。",
+             "windows" : "窗户呈现了亡者之魂历史上的重要事件，其中多幅画面相当血腥。",
+             "ceremony" : "只有当你向上滚动时才可以看到仪式。"]) );
 }
 void init(){
     ::init();

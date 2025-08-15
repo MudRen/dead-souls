@@ -15,24 +15,20 @@ void init() {
 
 void create() {
     ::create();
-    SetShort( "Praxis post office");
+    SetShort( "普瑞克斯邮局");
     SetLong(
-            "Welcome to the Praxis Post Office!\n"
-            "The Praxis post office is a quaint whitewashed building. The floor "
-            "is a worn wood, due to all the customers that walk upon its floors. "
-            "Red trim lines the walls, and a window in the far corner lets in "
-            "a slight breeze. "
-            "People come here to read and post mail.  Type <mail> to access "
-            "your mailbox, or <mail name> to send mail to player name.  "
-            "The Nightmare post office runs on the intermud system, meaning "
-            "that you can send mails to players on any other mud on the system.  "
-            "Type <muds> to find out who is on the system.  The groups available "
-            "can be accessed by typing <g> at the % prompt."    );
+            "欢迎来到普瑞克斯邮局！\n"
+            "普瑞克斯邮局是一栋别致的白漆建筑。由于所有顾客都在地板上行走，"
+            "地板是磨损的木头。红色的装饰线条沿着墙壁，远处角落的窗户"
+            "透进一丝微风。"
+            "人们来这里阅读和发送邮件。输入<mail>访问你的邮箱，"
+            "或输入<mail name>向玩家name发送邮件。"
+            "梦魇邮局运行在跨MUD游戏系统上，意味着你可以向系统上任何其他MUD游戏的玩家发送邮件。"
+            "输入<muds>查看系统上有哪些MUD游戏。可用的群组可以通过在%提示符下输入<g>来访问。"    );
     SetProperty("no castle", 1);
     SetProperty("light", 2);
     SetProperty("indoors", 1);
-    SetItems( ([ "list" : "A list of commands you may use at the "
-                "post office."]) );
+    SetItems( ([ "list" : "你可以在邮局使用的命令列表。"]) );
     //exit changed by drakken 17.aug
     AddExit("north","/domains/Praxis/alley1",(: this_object(),"more" :) );
     SetProperty("no attack", 1);
@@ -43,7 +39,7 @@ int mail(string str) {
     object ob;
 
     if(this_player()->query_name() == "guest") {
-        notify_fail("Guest may not use the mailer.\n");
+        notify_fail("游客不能使用邮件系统。\n");
         return 0;
     }
     ob = new(OB_POSTAL);

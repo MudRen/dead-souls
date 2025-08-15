@@ -6,6 +6,6 @@
 #define IRN_PASSWORD3            "Delta"
 #define IMC2_CLIENT_PW "51hcDcYfcp"
 #define IMC2_SERVER_PW "60ayXVhvPJ"
-#define I3_SERVER_PW 198090218
+#define I3_SERVER_PW 962599507
 #define INSTANCE_PW              "1234567890"
 #endif /* s_secrets_h */
