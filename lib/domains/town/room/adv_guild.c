@@ -11,17 +11,12 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("The Adventurers' Guild");
-    SetLong("This small building is where adventurers can record their adventures and leave messages and announcements for other brave souls. This is also the place one can seek advancement, so if you deserve to be a higher level adventurer, asking the guild master for it will make it so. A scroll lists quests one may perform, and a sign contains some instructions. The Creator's Hall is south of here. A special skills training area is upstairs. A conference room is east, where folks can discuss things in privacy.");
+    SetShort("冒险者公会");
+    SetLong("这座小建筑是冒险者们记录冒险经历并为其他勇敢的灵魂留下消息和公告的地方。这里也是寻求提升等级的地方，如果你应该成为更高级别的冒险者，向公会会长请求即可。一个卷轴列出了可以执行的任务，一个标牌包含了一些说明。创造者的殿堂在南边，楼上有专门的技能训练区域，东边是会议室，人们可以在那里私下讨论。");
     SetItems( ([
-                ({ "list","scroll"}) : "A scroll hangs from the wall, listing "
-                "some adventures you can perform which may have rewards "
-                "for you.",
-                ({"sign","instructions"}) : "This sign contains some "
-                "general instructions on how to gain experience and "
-                "attain advancement.",
-                ({"building","small building","here"}) : "You are in the "
-                "Adventurers' Guild.",
+                ({ "list","scroll"}) : "一个卷轴挂在墙上，列出了一些你可以执行的冒险任务，这些任务可能会给你带来奖励。",
+                ({"sign","instructions"}) : "这个标牌包含了一些关于如何获得经验和提升等级的一般说明。"
+                ({"building","small building","here"}) : "你在冒险者公会里。"
                 ]) );
     SetExits( ([
                 "north" : "/domains/town/room/vill_road2",
@@ -45,7 +40,7 @@ protected void create() {
     ob->SetId( ({ "board", "chalkboard", "dusty board", "dusty chalkboard" }) );    
     ob->set_board_id("adv_guild_board");
     ob->set_max_posts(30);
-    ob->SetShort("a dusty chalkboard");
+    ob->SetShort("一个布满灰尘的写字板");
     ob->eventMove(this_object());
     SetNoClean(1);
 }

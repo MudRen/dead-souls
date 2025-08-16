@@ -11,14 +11,14 @@ int PreExit(){
             (!this_player()->GetInvis() && !creatorp(this_player()) &&
              !present("testchar badge",this_player()))){
         if(guard && living(guard)){
-            present("gate guard",this_object())->eventForce("say You're too big to slip by me now. You're not going to the mansion any more.");
+            present("gate guard",this_object())->eventForce("say 你现在太大了，无法从我身边溜过去。你不能再进入公馆了。");
             return 0;
         }
     }
     if((newbiep(this_player()) || this_player()->GetLevel() <= maxnoob)
             && guard && living(guard)){
-        tell_object(this_player(),"You are such a newbie that the gate guard doesn't even notice you slip by him.");
-        tell_room(this_object(),this_player()->GetName()+" sneaks past the gate guard.",({ this_player() }) );
+        tell_object(this_player(),"你是个如此的新手，门卫甚至没注意到你从他身边溜过去。");
+        tell_room(this_object(),this_player()->GetName()+" 偷偷溜过门卫。",({ this_player() }) );
     }
     return 1;
 }	
@@ -27,32 +27,17 @@ protected void create() {
     room::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("Mansion Gate");
-    SetLong("You are standing just north of the gate to a large, "+
-            "beautiful mansion, which stands to the south. The "+
-            "Corinthian capitals on the front pillars bespeak "+
-            "of the wealth and importance of the person who "+
-            "lives here. Lush ivy wraps around the gate and the "+
-            "brick wall surrounding the estate.");
+    SetShort("公馆大门");
+    SetLong("你站在一座大型美丽公馆的大门前，公馆位于南边。前柱子上的科林斯柱头表明了居住在这里的人物的财富和重要性。茂密的常春藤缠绕着大门和环绕庄园的砖墙。");
     SetItems( ([
-                "gate" : "A handsome, wrought-iron entry control point.",
-                ({"estate", "mansion"}) : "The grounds of a mansion are to the south.",
+                "gate" : "一个漂亮的锻铁入口控制点。",
+                ({"estate", "mansion"}) : "公馆的庭地在南边。",
                 ({"capital","capitals","corinthian capital","corinthian capitals"}) :
-                "These are the headpieces of the pillars supporting the "
-                "mansion's front overhang. The beautifully detailed "
-                "carvings of encanthus leaves distinguish them as "
-                "Corinthian.",
-                ({"overhang","front overhang"}) : "A fancy and unnecessary "
-                "structure in front of the mansion supported by "
-                "columns.",
-                ({"pillar","pillars","column","columns"}) : "Load-bearing "
-                "structures supporting the mansion's front overhang.",
-                ({"ivy","lush ivy"}) : "Vines of the ivy plant run "
-                "over and along the walls and gate, so thickly that "
-                "they nearly obscure them.",
-                ({"wall","walls"}) : "Architectural features which prevent "
-                "casual entry. They are made of brick and appear old "
-                "and strong.",
+                "这些是支撑公馆前悬垂物的柱子顶部。精美详细的茛苕叶雕刻使它们被区分为科林斯式。",
+                ({"overhang","front overhang"}) : "公馆前由柱子支撑的华丽而不必要的结构。",
+                ({"pillar","pillars","column","columns"}) : "支撑公馆前悬垂物的承重结构。",
+                ({"ivy","lush ivy"}) : "常春藤植物的藤蔓在墙壁和大门上来回缠绕，如此茂密以至于几乎将它们遮蔽。",
+                ({"wall","walls"}) : "防止随意进入的建筑特征。它们由砖块制成，看起来古老而坚固。",
                 ]) );
     SetSkyDomain("town");
     SetExits( ([

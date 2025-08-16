@@ -41,14 +41,14 @@ void create() {
     SetAmbientLight(30);
     SetDayLight(30);
     SetNightLight(30);
-    SetShort("water shaft");
-    SetLong("This is the vertical shaft of what seems to be a natural spring. It seems as though a bright light from below illuminates this area.");
+    SetShort("水井竖井");
+    SetLong("这是似乎是天然泉水的竖井。看起来来自下方的明亮光线照亮了这个区域。");
     SetClimate("temperate");
     SetTown("wilderness");
     SetTerrainType(T_UNDERWATER);
     SetMedium(MEDIUM_WATER);
     SetItems( ([
-                ({ "shaft","passage" }) : "An underwater vertical passage.",
+                ({ "shaft","passage" }) : "一条水下的垂直通道。"
                 ]) );
     SetExits( ([
                 "up" : "/domains/town/virtual/forest/-13,13",

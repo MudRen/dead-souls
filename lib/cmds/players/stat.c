@@ -19,11 +19,11 @@ mixed cmd(string args) {
 
     if( args == "" || !args || args == "me" ) ob = this_player();
     else if(args && !creatorp(this_player())) {
-        write("You can only stat yourself.");
+        write("你只能查看自己的状态。");
         return 1;
     }
     if(!environment(this_player())){
-        write("You have no environment. Stats are the least of your worries.");
+        write("你没有环境。统计数据是你最不用担心的事情。");
         return 1;
     }
     gargs = args;
@@ -34,8 +34,8 @@ mixed cmd(string args) {
         if( !(ob = find_player(convert_name(args))) &&
                 !(ob = find_living(lower_case(args))) &&
                 !(ob = find_object(args)) )
-            return capitalize(args) + " is nowhere to be found.";
-    if(!living(ob)) return capitalize(args) + " is not alive.";
+            return capitalize(args) + " 无处可寻。";
+    if(!living(ob)) return capitalize(args) + " 不是活的。";
     cols = (this_player()->GetScreen())[0];
     tmp1 = ob->GetCapName() + " aka " + ob->GetShort() +
         ", level " + ob->GetLevel() + " " + ob->GetGender();
@@ -136,9 +136,9 @@ mixed cmd(string args) {
 }
 
 string GetHelp(){
-    string ret = "Syntax: stat";
-    if(creatorp(this_player())) ret += " [living]";
-    ret += "\n\nDisplays statistical information of a living object.\n"+
-        "See also: score, status, env.";
+    string ret = "语法：stat";
+    if(creatorp(this_player())) ret += " [生物]";
+    ret += "\n\n显示一个生物的统计信息。\n"+
+        "另见：score, status, env.";
     return ret;
 }

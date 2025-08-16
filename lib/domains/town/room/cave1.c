@@ -6,8 +6,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(5);
-    SetShort("A Dark Cave");
-    SetLong("This is a small cave at the base of a cliff. A stone door is set into the south wall.");
+    SetShort("黑暗洞穴");
+    SetLong("这是悬崖底部的一个小洞穴。南墙上有一扇石门。");
     SetClimate("indoors");
     SetInventory(([
                 "/domains/town/weap/fellsword" : 1,

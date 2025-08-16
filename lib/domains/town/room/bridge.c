@@ -5,26 +5,16 @@ protected void create() {
     room::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("Humpbacked bridge");
-    SetNightLong("This is an old, humpbacked bridge, lit by a lamp post. It's seen better days, though it appears still quite stable enough. Some peculiar writing is scrawled on the bridge. A town is east of here. To the west is darkness. There is an unlit path leading down below the bridge.");
-    SetDayLong("This is an old, humpbacked bridge. It's seen better days, though it appears still quite stable enough. Some peculiar writing is scrawled on the bridge. The bridge spans a river below. A town is east of here, and a dark forest looms west. There is a small path leading down below the bridge.");
+    SetShort("驼背桥");
+    SetNightLong("这是一座古老的驼背桥，由路灯照亮。它曾经辉煌过，但仍然相当稳固。桥上有一些奇怪的文字。东边是小镇，西边是黑暗。有一条没有照明的路径通向桥下。");
+    SetDayLong("这是一座古老的驼背桥。它曾经辉煌过，但仍然相当稳固。桥上有一些奇怪的文字。桥横跨下方的小河。东边是小镇，西边是黑暗的森林。有一条小路通向桥下。");
     SetItems( ([
-                ({"cracks","surface","bridge"}) : "The bridge "
-                "surface has a few cracks, but they seem old "
-                "and minor...mostly signs of how long the "
-                "structure has withstood the the elements.",
-                ({"span","river","stream","bank"}) : "Below "
-                "you is a small river with a powerful, "
-                "swift current. You might be able to climb "
-                "down the bridge to get to the riverbank "
-                "below.",
-                "town" : "A small town lies east of here.",
+                ({"cracks","surface","bridge"}) : "桥面上有一些裂缝，但它们看起来陈旧且微小...主要是这座结构经受住自然元素考验多长时间的标志。",
+                ({"span","river","stream","bank"}) : "下方是一条小河，水流湍急有力。你可能可以爬下桥到达下方的河岸。"
+                "town" : "东边有一个小镇。"
                 ({"writing","scrawl","grafitti","grafitto"}):
-                "Grafitti is written here, in an odd and "
-                "uncertain hand, as if unused to the effort "
-                "of writing.",
-                ({"path","forest","dark forest"}) : "West of the "
-                "bridge is a path going into a dark forest."
+                "这里写着涂鸦，字迹奇怪且不确定，好像不习惯写字的努力。"
+                ({"path","forest","dark forest"}) : "桥的西边有一条通往黑暗森林的小路。"
                 ]) );
     SetSkyDomain("town");
     SetExits( ([

@@ -5,25 +5,15 @@ protected void create() {
     room::create();
     SetClimate("outdoors");
     SetAmbientLight(40);
-    SetShort("Mansion Exterior");
-    SetNightLong("You are standing outside a large, beautiful mansion to the south, illuminated by lamplight. It towers over you and overhead you can see one of the second floor windows is open. The grass seems a bit wild around here, and the lawn continues west into the darkness. The mansion gate is north.");
-    SetDayLong("You are standing outside a large, beautiful mansion to the south. It towers over you and overhead you can see one of the second floor windows is open. The grass seems a bit wild around here, and the lawn continues west into an overgrown garden. The mansion gate is north.");
-    SetLong("You are standing outside a large, beautiful mansion "
-            "that stands south of you. It towers over you and "
-            "overhead you can see one of the second floor "
-            "windows is open. The grass seems a bit wild "
-            "around here, and the lawn continues west into "
-            "an overgrown garden. The mansion gate is north.");
+    SetShort("公馆外部");
+你站在一座大型美丽公馆的外面，公馆位于南边，被灯光照亮。它高耸于你之上，头顶上你可以看到二楼的一个窗户是开着的。这里的草看起来有些野性，草坪向西延伸到黑暗中。公馆大门在北边。
+你站在一座大型美丽公馆的外面，公馆位于南边。它高耸于你之上，头顶上你可以看到二楼的一个窗户是开着的。这里的草看起来有些野性，草坪向西延伸到一个杂草丛生的花园。公馆大门在北边。
+你站在一座大型美丽公馆的外面，公馆位于你南边。它高耸于你之上，头顶上你可以看到二楼的一个窗户是开着的。这里的草看起来有些野性，草坪向西延伸到一个杂草丛生的花园。公馆大门在北边。
     SetItems( ([
-                ({"house","mansion"}) : "A stately pleasure dome.",
-                ({"window","second floor window"}) : "This is "
-                "an open window, high above you. If you had a ladder, you "
-                "might be able to climb up enough to enter.",
-                ({"grass","lawn","garden"}) : "Rather unkempt "
-                "greenery. Looks like the gardener's been on "
-                "vacation.",
-                ({"gate","mansion gate"}) : "The entry point into "
-                "the estate on which you now stand."
+                ({"house","mansion"}) : "一座庄严的欢乐宫殿。",
+                ({"window","second floor window"}) : "这是一个开着的窗户，在你头顶很高处。如果你有梯子，你可能能够爬上去进入。"
+                ({"grass","lawn","garden"}) : "相当杂乱的绿植。看起来园丁一直在度假。"
+                ({"gate","mansion gate"}) : "你现在所站立的庄园的入口点。"
                 ]) );
     SetSkyDomain("town");
     SetExits( ([

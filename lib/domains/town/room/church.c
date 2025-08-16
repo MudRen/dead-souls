@@ -4,32 +4,16 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("The Village Church");
-    SetLong("Decades ago this tiny, one-room church was the center "
-            "of activity in the village. As the village prospered and secularized, "
-            "townsfolk attended less and less, until it became "
-            "dilapidated and abandoned, as you see here. The place "
-            "is overrun with vermin and cobwebs, but there has been "
-            "no vandalism. Just dusty neglect. West Village road "
-            "is south of here, and what looks like an elevator is "
-            "in the west wall.\n%^GREEN%^There is a button next "
-            "to the elevator.%^RESET%^");
+    SetShort("村庄教堂");
+    SetLong("几十年前，这个小单间教堂是村庄活动的中心。随着村庄繁荣和世俗化，镇民们越来越少参加，直到它变得破败和被遗弃，就像你现在看到的那样。这个地方布满了害虫和蜘蛛网，但没有遭到破坏。只是积满灰尘的忽视。西村路在南边，西墙上看起来像是一部电梯。\n%^GREEN%^电梯旁边有一个按钮。%^RESET%^");
     SetItems(([
-                ({"elevator","elevator door","door"}) : "Set into the "
-                "west wall is a thoroughly modern-looking elevator, which seems "
-                "out of place in this rustic, colonial church. There is a button "+
-                "next to it, presumably to call the elevator car.",
-                "road" : "The road is south of here.",
-                ({"wall","west wall"}) : "Set into the "
-                "west wall is a thoroughly modern-looking elevator, which seems "
-                "out of place in this rustic, colonial church. There is a button "+
-                "next to it, presumably to call the elevator car.",
-                "road" : "The road is south of here.",
-                ({"church","place"}) : "An old church.",
-                ({"cobwebs","webs","web","vermin","dust","dirt"}) : "No vermin can presently "
-                "be seen, but from the cobwebs and dirt it's pretty clear "
-                "minor pests have made their home here.",
-                "vandalism" : "You don't see any of that."
+                ({"elevator","elevator door","door"}) : "嵌入西墙的是一部看起来非常现代化的电梯，在这个质朴的殖民式教堂里显得格格不入。旁边有一个按钮，大概是用来呼叫电梯的。",
+                "road" : "路在南边。",
+                ({"wall","west wall"}) : "嵌入西墙的是一部看起来非常现代化的电梯，在这个质朴的殖民式教堂里显得格格不入。旁边有一个按钮，大概是用来呼叫电梯的。"
+                "road" : "路在南边。",
+                ({"church","place"}) : "一座老教堂。"
+                ({"cobwebs","webs","web","vermin","dust","dirt"}) : "目前看不到任何害虫，但从蜘蛛网和灰尘来看，很清楚小动物已经把这里当作了家。"
+                "vandalism" : "你没有看到任何破坏行为。"
                 ]) );
     SetInventory(([
                 "/domains/town/obj/charity" : 1,

@@ -6,13 +6,10 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Mansion Master Bedroom");
-    SetLong("You are in the master bedroom. The decor here is "
-            "beautiful, ornate, and extravagant. It is obvious that "
-            "the people who live here are rich and possess great "
-            "taste. ");
+    SetShort("公馆主卧室");
+你在主卧室里。这里的装饰美丽、华丽而奢华。很明显，住在这里的人很富有且品味高雅。 ";
     SetItems( ([
-                "decor" : "Impressive, ornate, and beautiful.",
+                "decor" : "令人印象深刻、华丽而美丽。",
                 ]) );
     SetInventory( ([
                 "/domains/town/obj/bed" : 1,
@@ -29,12 +26,12 @@ protected void create() {
 int OpenPassage(){
     string desc;
     if(open == 1) return 1;
-    tell_room(environment(this_player()),"A secret passageway is revealed!");
+    tell_room(environment(this_player()),"一个秘密通道被发现了！");
     open = 1;
     desc = GetLong();
-    desc += "\n%^MAGENTA%^There is a newly-opened secret passageway here. %^RESET%^";
+    desc += "\n%^MAGENTA%^这里有一个新开放的秘密通道。 %^RESET%^";
     SetLong(desc);
-    AddItem(({"secret passageway","passageway"}) , "A passageway you can enter.");
+    AddItem(({"secret passageway","passageway"}) , "你可以进入的通道。");
     SetEnters(([ 
                 "passageway" : "/domains/town/room/mansion_room11",
                 "secret passageway" : "/domains/town/room/mansion_room11"

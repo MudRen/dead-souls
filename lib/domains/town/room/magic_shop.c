@@ -6,11 +6,11 @@ protected void create() {
     ::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("The Magic Shop");
-    SetLong("This is the local magic shop. Magical items can be bought and sold here. The storeroom is upstairs and the town Mages' Guild is south.");
+    SetShort("魔法商店");
+    SetLong("这是当地的魔法商店。可以在这里买卖魔法物品。储藏室在楼上，城镇法师公会在南边。");
     SetItems(([
-                ({"store","shop","place"}) : "This is the local magic shop.",
-                ({ "sign" ,"sign on the wall" }): "A sign on the wall, meant for reading.",
+                ({"store","shop","place"}) : "这是当地的魔法商店。",
+                ({ "sign" ,"sign on the wall" }): "墙上的一块标牌，用于阅读。",
                 ]));
     SetExits( ([
                 "south" : "/domains/town/room/magic_guild",
@@ -24,16 +24,16 @@ protected void create() {
                 ]) );
 }
 int read_sign(){
-    write("HOW TO CONDUCT BUSINESS HERE\n");
-    write("list : Get a list of all the items Oana has for sale");
-    write("appraise <item> : Ask Oana to tell you how much she would pay you for your item");
-    write("price <item> : Ask Oana the price of her item");
-    write("show <item> : Ask Oana for a closer look at her item\n");
+    write("如何在这里进行交易\n");
+    write("list : 获取奥娜出售的所有物品列表");
+    write("appraise <item> : 请奥娜告诉你她愿意为你的物品支付多少钱");
+    write("price <item> : 询问奥娜她的物品价格");
+    write("show <item> : 请奥娜让你更仔细地查看她的物品\n");
     write("\nbuy <item> from oana\nsell <item> to oana\n");
-    write("Prices shown are in silver coins.");
-    write("\n\nWe're still under construction, so there's");
-    write("not much to buy. But if you want, you can go ");
-    write("south to the mage's guild and join up!");
+    write("显示的价格以银币为单位。");
+    write("\n\n我们仍在建设中，所以这里");
+    write("没有太多东西可买。但如果你愿意，你可以");
+    write("向南去法师公会并加入！");
 
     return 1;
 }

@@ -7,18 +7,15 @@ protected void create() {
     SetAmbientLight(30);
     SetNightLight(10);
     SetDayLight(30);
-    SetShort("Forest Path");
-    SetLong("You are in a forest outside the town. To the southwest the path continues toward a clearing. To the east it leads to a bridge over a river toward a town. Trees and bushes of various kinds border the path making it impossible to go south but to the north the vegetation is less dense.");
+    SetShort("森林小径");
+    SetLong("你在镇外的森林里。向西南方向，小径继续通往一片空地。向东，它通往一座横跨河流的桥，通向镇上。各种树木和灌木丛包围着小径，使得向南走不可能，但向北植被变得稀疏。");
     SetItems( ([
-                "forest" : "You are on a path in a dark, creepy forest. The "
-                "vegetation is thick and feels somehow oppressive.",
+                "forest" : "你在一条黑暗、令人毛骨悚然的森林小径上。植被茂密，不知何故给人一种压抑的感觉。",
                 ({"plants","bushes","vegetation","tree","trees","bush"}) : 
-                "The plants, bushes, and trees grow thick and wild "
-                "here, limiting visibility beyond the path.",
-                "bridge" : "An old bridge is east of here.",
-                "clearing" : "It looks like there is a clearing in the "
-                "forest to the west.",
-                "path" : "You are on a path in a forest."
+                "植物、灌木和树木在这里生长得茂密而野性，限制了小径之外的视野。"
+                "bridge" : "一座老桥在东边。"
+                "clearing" : "看起来西边森林里有一片空地。"
+                "path" : "你在森林小径上。"
                 ]) );
     SetSkyDomain("town");
     SetExits( ([
@@ -38,7 +35,7 @@ int CanReceive(object ob){
     }
     if(living(ob) && !interactive(ob) &&
             (!ob->GetRiders() || !sizeof(ob->GetRiders()))){
-        ob->eventPrint("You find yourself unable to leave the forest.");
+        ob->eventPrint("你发现自己无法离开森林。");
         return 0;
     }
     return ::CanReceive();

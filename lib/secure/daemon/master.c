@@ -498,10 +498,10 @@ protected void crash(mixed args...) {
     string guilty_obs = identify(previous_object(-1));
     if(sizeof(args)) err = args[0];
     write_file(DIR_LOGS "/crashes",
-            mud_name() + " crashed " + ctime(time()) + " with error " +
+            mud_name() + " 崩溃了 " + ctime(time()) + " 错误 " +
             err+".\n"+guilty_stack+"\n"+guilty_obs+"\n---\n");
-    message("system", "Reality implosion!!!  Everyone duck!!!", users());
-    message("system", "You are being forced to quit.", users());
+    message("system", "现实崩塌！！！大家快躲！！！", users());
+    message("system", "你被迫退出游戏。", users());
     users()->cmdQuit();
 }
 
@@ -647,7 +647,7 @@ string error_handler(mapping mp, int caught) {
              * the only effective countermeasure is a hard reboot
              * of the mud.
              */
-            debug_message("Shut'er down, Clancy! She's a-pumpin' mud!!\n");
+            debug_message("关闭它，克兰西！它正在泵送亡者之魂！！\n");
             shutdown(-9);
         }
     }
@@ -664,10 +664,10 @@ string error_handler(mapping mp, int caught) {
             if( !strsrch(file_name(this_player(1)), LIB_CONNECT) ) {
                 return "/log/login\n"+standard_trace(mp)+"\n--\n";
             }
-            this_player()->eventPrint("A runtime error occurred.");
+            this_player()->eventPrint("发生运行时错误。");
             if (find_object(CHAT_D)) {
-              CHAT_D->eventSendChannel("System", "error", "A runtime error "
-                                                          "occurred to " +
+              CHAT_D->eventSendChannel("系统", "error", "发生运行时错误 "
+                                                          "影响玩家 " +
                   this_player(1)->GetCapName()+".");
             }
             rlog = "-----\n" +timestamp()+ ": "+this_player(1)->GetCapName()+"\n";

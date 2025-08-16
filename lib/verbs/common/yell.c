@@ -18,7 +18,7 @@ protected void create() {
     SetRules("","in WRD STR","STR");
 }
 
-mixed can_yell() { return "Yell what?"; }
+mixed can_yell() { return "喊什么？"; }
 
 mixed can_yell_str(string str) {
     string lang;

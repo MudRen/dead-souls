@@ -5,12 +5,10 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("The Church Basement");
-    SetLong("This is the dark, musty basement of the village church. An elevator door is in the west wall.");
+    SetShort("教堂地下室");
+    SetLong("这是村庄教堂黑暗潮湿的地下室。西墙上有一扇电梯门。");
     SetItems(([
-                ({"elevator","elevator door","door","wall","west wall"}) : "Set into the "+
-                "west wall is an elevator. There is a button "+
-                "next to it, presumably to call the elevator car.",
+                ({"elevator","elevator door","door","wall","west wall"}) : "嵌入西墙的是一部电梯。旁边有一个按钮，大概是用来呼叫电梯的。"
                 ]) );
     SetInventory(([
                 "/domains/town/obj/couch" : 1,

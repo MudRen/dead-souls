@@ -6,8 +6,8 @@ protected void create() {
     SetTown("town");
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Town Clerk");
-    SetLong("This small office is where people come to conduct their official public business. The main area of the town hall is south.");
+    SetShort("镇公所办事员");
+    SetLong("这个小办公室是人们来办理官方公共事务的地方。镇公所的主要区域在南边。");
     SetProperties (([
                 "no attack":1, 
                 "no bump":1, 

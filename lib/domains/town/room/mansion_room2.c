@@ -6,32 +6,29 @@ string SearchFun(){
     string result;
     if(found == 0){
         object ob = new("/domains/town/obj/safe_key");
-        result="You search the room and find a complex key!";
+        result="你搜索房间并找到了一把复杂的钥匙！";
         tell_room(this_object(),this_player()->GetName()+ 
-                " searches the room and finds something ",
+                " 搜索房间并找到了什么东西 ",
                 ({ this_player() }) );
         if(ob->eventMove(this_player()))
             ob->eventMove(this_object());
         found = 1;
         return result;
     }
-    return "You find nothing special.";
+    return "你没发现什么特别的东西。";
 }
 protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Mansion Guest Room West");
-    SetLong("You are in the west upstairs guest room of the mansion. "
-            "The room is sumptuously appointed and furnished. "
-            "It looks as though nobody has dusted here in a "
-            "very long time. ");
+    SetShort("公馆西客房");
+你在公馆的楼上西客房里。房间布置豪华，家具精美。看起来这里很久没有人打扫了。
     SetExits( ([
                 "east" : "/domains/town/room/mansion_uhall1"
                 ]) );
     SetItems( ([ 
-                ({"here","area","place","room"}) : "A guest room in the mansion.",
-                "dust" : "There's some dust here, a bit more than one might expect in such a nice place.",
+                ({"here","area","place","room"}) : "公馆里的客房。",
+                "dust" : "这里有些灰尘，比这种好地方应有的要多一点。"
                 ]) );
     SetInventory(([
                 "/domains/town/obj/gbed" : 1,

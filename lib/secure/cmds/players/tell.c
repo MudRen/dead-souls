@@ -31,15 +31,15 @@ mixed cmd(string str) {
     int i, maxi, insttell;
     string who, msg, tmp, tmp2, machine_message, retname, me;
 
-    if(!str) return notify_fail("Syntax: tell <who> <message>\n");
+    if(!str) return notify_fail("语法：tell <玩家> <消息>\n");
     if(str == "hist" || str == "history"){
-        string ret = "Your tell history: \n\n"; 
+        string ret = "你的tell历史： \n\n"; 
         ret += implode(this_player()->GetTellHistory(),"\n");
         print_long_string(this_player(), ret);
         return 1;
     }
     if(!creatorp(this_player()) && this_player()->GetMagicPoints() < 15) {
-        write("You lack sufficient magic to tell to anyone right now.");
+        write("你目前没有足够的魔法值来发送tell消息。");
         return 1;
     }
     mud = 0;
@@ -72,7 +72,7 @@ mixed cmd(string str) {
             }
         }
         if(!CheckMud(mud) && !(IMC2_D->GetMudName(mud))){
-            write("No such mud found.");
+            write("找不到这样的MUD。");
             return 1;
         }
         if(!sizeof(msg)) return notify_fail("Syntax: tell <who> <message>\n");
@@ -105,7 +105,7 @@ mixed cmd(string str) {
                         "%^BLUE%^%^BOLD%^"+ msg + "%^RESET%^");
                 insttell = 1;
                 INSTANCES_D->SendTell(retname, msg);
-                write("Tell whom what?");
+                write("告诉谁什么内容？");
                 return 1;
             }
             else {
@@ -113,13 +113,13 @@ mixed cmd(string str) {
                     write("Malformed message.");
                 }
                 else {
-                    write(mud_name()+" is offline or doesn't exist.\n");
+                    write(mud_name()+" 离线或不存在。\n");
                 }
                 return 1;
             }
         }
         if(msg == ""){
-            write("What do you wish to tell?\n");
+            write("你想告诉什么内容？\n");
             return 1;
         }
     }
@@ -173,7 +173,7 @@ mixed cmd(string str) {
                     "%^BLUE%^%^BOLD%^"+ msg + "%^RESET%^");
             if(query_verb() == "tell") return "Tell whom what?";
             else {
-                write("Tell whom what?");
+                write("告诉谁什么内容？");
                 return 1;
             }
         }
@@ -213,11 +213,10 @@ mixed cmd(string str) {
 }
 
 string GetHelp(){
-    return ("Syntax: tell <player> <message>\n"
-            "        tell <player>@<mud> <message>\n\n"
-            "Sends the message to the player named either on this mud if no "
-            "mud is specified, or to the player named on another mud when "
-            "another mud is specified. If the other mud is on an IMC2 network "
-            "rather than an Intermud-3 network, use \"imc2 tell\""
-            "\nSee also: imc2, say, shout, yell, emote");
+    return ("语法：tell <玩家> <消息>\n"
+            "        tell <玩家>@<MUD> <消息>\n\n"
+            "将消息发送给指定名称的玩家，如果没有指定MUD则发送到本MUD，"
+            "如果指定了其他MUD则发送到该MUD上的玩家。如果目标MUD在IMC2网络而非"
+            "Intermud-3网络，请使用 \"imc2 tell\""
+            "\n另见：imc2, say, shout, yell, emote");
 }

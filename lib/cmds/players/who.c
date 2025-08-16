@@ -48,7 +48,7 @@ int cmd(string args) {
     object *obs;
 
     if (args && args[0] == '@') { //If there's an @ in the first arg character, it's an rwho request.
-        if( sizeof(args) <=1 ) return notify_fail("Get a remote who from where?"); //If there's only an @, tell them to RTFM.
+        if( sizeof(args) <=1 ) return notify_fail("从哪个地方获取远程who列表？"); //If there's only an @, tell them to RTFM.
         "/cmds/players/rwho"->cmd(args[1..]); //Pass it the mud name without the @
         return 1;
     } else {
@@ -130,7 +130,7 @@ int cmd(string args) {
                 continue;
             }
             if(instinfo["mudname"]) inst = instinfo["mudname"];
-            tmp += "\n"+center("--- Instance: "+capitalize(inst)+" ---\n");
+            tmp += "\n"+center("--- 实例： "+capitalize(inst)+" ---\n");
             if(!mapp(instinfo["users"])){
                 continue;
             }
@@ -163,11 +163,11 @@ int cmd(string args) {
             tmp = "";
         }    
         ret+=SEP;
-        x="There ";
-        (p==1) ? x+="is " : x+="are ";
+        x="当前";
+        (p==1) ? x+="有 " : x+="有 ";
         x+=cardinal(p);
-        (p==1) ? x+=" member " : x+=" members ";
-        x+="of our reality.\n";
+        (p==1) ? x+="位成员 " : x+="位成员 ";
+        x+="在我们的世界中。\n";
         ret+=center(x);
         if(check_string_length(ret)) this_player()->eventPrint(""+ret+"");
         else print_long_string(this_player(),ret);
@@ -176,6 +176,6 @@ int cmd(string args) {
 }
 
 string GetHelp(){
-    return ("Syntax: who [@mud]\n\n"
-            "Gives you a who list in abbreviated form from this mud or other muds on the I3 or IMC2 network.");
+    return ("语法：who [@mud]\n\n"
+            "显示来自本MUD或I3/IMC2网络上其他MUD的简略在线列表。");
 }

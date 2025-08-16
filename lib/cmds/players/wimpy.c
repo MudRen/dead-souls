@@ -18,9 +18,9 @@ mixed cmd(string args) {
         percentage = this_player()->GetWimpy();
         cmd = this_player()->GetWimpyCommand();
         if( !percentage )
-            this_player()->eventPrint("You have wimpy turned off.", MSG_SYSTEM);
-        else this_player()->eventPrint("Percentage: " + percentage + "%\n"
-                "Command: " + cmd, MSG_SYSTEM);
+            this_player()->eventPrint("你已关闭wimpy功能。", MSG_SYSTEM);
+        else this_player()->eventPrint("百分比: " + percentage + "%\n"
+                "命令: " + cmd, MSG_SYSTEM);
         return 1;
     }
     if( args == "0" ) {
@@ -43,7 +43,7 @@ mixed cmd(string args) {
     if( !cmd ) {
         if( !percentage ) {
             this_player()->SetWimpy(0);
-            this_player()->eventPrint("Wimpy is now off!  You are so brave!",
+            this_player()->eventPrint("wimpy功能已关闭！你真勇敢！",
                     MSG_SYSTEM);
             return 1;
         }

@@ -79,15 +79,15 @@ mixed cmd(string str) {
     int totalscore, myscore, theirscore;
 
     if(!str){
-        write("Consider what?");
+        write("考虑什么？");
         return 1;
     }
     if(!(thing = present(str,environment(this_player())))){
-        write("That isn't here.");
+        write("那东西不在这里。");
         return 1;
     }
     if(!living(thing)){
-        write("That isn't a living thing.");
+        write("那不是活物。");
         return 1;
     }
 
@@ -95,28 +95,25 @@ mixed cmd(string str) {
     myscore = eventConsider(this_player(), thing);
 
     totalscore = myscore - theirscore;
-    if(totalscore > 100) write("Piece of cake.");
-    else if(totalscore > 80) write("No problem.");
-    else if(totalscore > 60) write("Very easy.");
-    else if(totalscore > 40) write("Fairly easy.");
-    else if(totalscore > 20) write("You'd probably do fine");
-    else if(totalscore > 0) write("A fair match.");
-    else if(totalscore > -20) write("A workout.");
-    else if(totalscore > -40) write("A serious match.");
-    else if(totalscore > -60) write("A major challenge.");
-    else if(totalscore > -80) write("An unwise choice.");
-    else if(totalscore > -100) write("Really a bad idea.");
-    else write("Suicide.");
+    if(totalscore > 100) write("小菜一碟。");
+    else if(totalscore > 80) write("毫无问题。");
+    else if(totalscore > 60) write("非常容易。");
+    else if(totalscore > 40) write("相当容易。");
+    else if(totalscore > 20) write("你大概会没事的。");
+    else if(totalscore > 0) write("势均力敌。");
+    else if(totalscore > -20) write("需要努力。");
+    else if(totalscore > -40) write("一场硬仗。");
+    else if(totalscore > -60) write("重大挑战。");
+    else if(totalscore > -80) write("不明智的选择。");
+    else if(totalscore > -100) write("真的很糟糕的主意。");
+    else write("自杀行为。");
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: consider <creature>\n\n"
-            "Gives you an idea of how tough a creature would be to defeat "
-            "in combat. Gauges relative strengths, skills, weapons, "
-            "armor, levels, health, and so on. The resulting comparison "
-            "may not be very useful, because a change during combat (such "
-        "as the opponent changing weapons) or items of unusual class "
-            "or protection (such as magical armor) may not be taken into "
-            "account.");
+    return ("语法：consider <生物>\n\n"
+            "让你了解击败一个生物的难度。评估相对实力、技能、武器、"
+            "护甲、等级、生命值等。最终的比较可能不太有用，因为战斗中的变化（如"
+            "对手更换武器）或不寻常的等级或保护物品（如魔法护甲）可能"
+            "没有被考虑在内。");
 }

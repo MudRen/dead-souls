@@ -12,7 +12,7 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("off the mortal coil");
+    SetShort("脱离凡尘");
     SetLong( (:FunkyPic:) );
     SetObviousExits("no exit");
     set_heart_beat(10);
@@ -31,33 +31,27 @@ string FunkyPic(){
 }
 
 int regenerate(){
-    write("With a great rush of matter and energy, you rematerialize "+
-            "into a corporeal state, and find yourself in a familiar place...");
+    write("随着物质和能量的巨大涌动，你重新物质化成一个实体状态，发现自己在一个熟悉的地方...");
     this_player()->eventRevive();
     this_player()->eventMoveLiving(ROOM_START);
     return 1;
 }
 
 int wander(){
-    write("There is a strange, hollow vibration all around you, and you "+
-            "realize that some force is compelling your ethereal form elsewhere..."+
-            "you find yourself in a place that is known to you, yet oddly new.");
+    write("你周围有一种奇怪而空洞的振动，你意识到某种力量正在将你的空灵形态带往其他地方...你发现自己在一个你所知的地方，却又出奇地新鲜。");
     this_player()->eventMoveLiving(ROOM_START);
     return 1;
 }
 
 void heart_beat(){
-    tell_room(this_object(), "A voice whispers: \" You may choose to "+
-            "regenerate into a new body here.\"");
+    tell_room(this_object(), "一个声音低语：\"你可以选择在这里重生成一个新的身体。\"");
     return;
 }
 
 
 int CanRelease(object ob){
     if(userp(ob) && ob->GetGhost() && environment(ob) == this_object()) {
-        tell_player(ob,"\n%^RED%^Your undead spirit is recalled and as you leave "+
-                "the underworld a new body regenerates around you. "+
-                "You live again!%^RESET%^\n");
+        tell_player(ob,"\n%^RED%^你的亡灵灵魂被召回，当你离开冥界时，一个新的身体在你周围重生。你又活过来了！%^RESET%^\n");
         ob->eventRevive();
     }
     return 1;

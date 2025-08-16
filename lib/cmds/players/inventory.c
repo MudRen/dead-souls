@@ -39,11 +39,11 @@ void eventInventory() {
             (: $1->GetEquippedShort() :));
     shorts = items + wieldeds + worns;
     if( !(i = sizeof(shorts)) ) {
-        message("system", "You are carrying nothing.", this_player());
+        message("system", "你没有携带任何东西。", this_player());
         return;
     }
-    if( i == 1 ) ret = "You are carrying just this one item:\n";
-    else ret = "You are carrying the following items:\n";
+    if( i == 1 ) ret = "你只携带了这一个物品：\n";
+    else ret = "你携带了以下物品：\n";
     foreach(shorts in ({ items, wieldeds, worns })){
         i = sizeof(shorts);
         if(!i) continue;
@@ -62,8 +62,7 @@ void eventInventory() {
 }
 
 string GetHelp() {
-    return ("Syntax: inventory\n\n"
-            "Lists all items you are carrying currently. This command "
-            "will take up one round of combat if you happen to be in "
-            "combat.");
+    return ("语法：inventory\n\n"
+            "列出你当前携带的所有物品。如果你在战斗中，"
+            "这个命令会占用一轮战斗时间。");
 }

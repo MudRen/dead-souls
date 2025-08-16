@@ -15,23 +15,23 @@ varargs mixed eventScore();
 protected void create() {
     daemon::create();
     SetNoClean(1);
-    SetHelp("Syntax: score\n\n"
-            "Displays information about your character.\n"
-            "See also: stat, status, env");
+    SetHelp("语法：score\n\n"
+            "显示关于你角色的信息。\n"
+            "另见：stat, status, env");
 }
 
 nosave string *FoodDegree =
-({ "starving!", "very hungry.",
- "hungry.", " partially hungry.",
- "feeling full.", "quite full." });
+({ "饿坏了！", "非常饥饿。",
+ "饥饿。", "有点饿。",
+ "感觉饱了。", "很饱。" });
 
 nosave string *DrunkDegree =
-({ "sober", "tipsy", "drunk", "blitzed",
- "three sheets to the wind", "FUBAR" });
+({ "清醒", "微醺", "醉酒", "酩酊大醉",
+ "烂醉如泥", "完全不省人事" });
 
 nosave string *DrinkDegree =
-({ "parched", "extremely thirsty", "very thirsty", "thirsty",
- "somewhat thirsty", "unthirsty" });
+({ "极度口渴", "非常口渴", "很口渴", "口渴",
+ "有点口渴", "不渴" });
 
 mixed cmd(string arg) {
     eventScore(arg);
