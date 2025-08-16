@@ -5,10 +5,10 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("kitchen");
-    SetLong("This is a very large kitchen designed to "
-            "accommodate dozens of cooks. It looks like nobody "
-            "has prepared a meal here in quite some time.");
+    SetShort("厨房");
+    SetLong("这是一个非常大的厨房，设计用来"
+            "容纳数十名厨师。看起来已经很久"
+            "没有人在这里做饭了。");
     SetExits( ([
                 "west" : "/domains/town/room/mansion_dhall2.c",
                 ]) );

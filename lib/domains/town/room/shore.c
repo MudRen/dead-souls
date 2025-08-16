@@ -27,8 +27,8 @@ int ActionFunction(){
 }
 
 varargs string readSign() {
-    string ret = "WARNING! Orcs, dwarves, and some other races cannot "+
-        "swim! If you jump into the sea you will sink and drown!";
+    string ret = "警告！兽人、矮人和其他一些种族不能"+
+        "游泳！如果你跳进海里你会下沉并淹死！";
     return ret;
 }
 
@@ -52,15 +52,15 @@ protected void create() {
     fishing::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("Shore Edge");
-    SetNightLong("You are on the shore, at the far eastern end of town. A road travels west into the heart of town. A great sea stretches out into the eastern horizon. A lone lamp post lights this area. \n%^GREEN%^There is a sign here you can read.%^RESET%^");
-    SetDayLong("You are on the shore, at the far eastern end of town. A road travels west into the heart of town. A great sea stretches out into the eastern horizon. \n%^GREEN%^There is a sign here you can read.%^RESET%^");
+    SetShort("海岸边缘");
+    SetNightLong("你在海岸上，在小镇的最东端。一条路向西通向镇中心。一片大海延伸到东方的地平线。一个孤独的路灯照亮了这个区域。\n%^GREEN%^这里有一个标牌你可以阅读。%^RESET%^");
+    SetDayLong("你在海岸上，在小镇的最东端。一条路向西通向镇中心。一片大海延伸到东方的地平线。\n%^GREEN%^这里有一个标牌你可以阅读。%^RESET%^");
     SetItems( ([
-                "sign":"A sign on the ground. To read it, 'read sign'.",
-                "ground":"The local surface.",
-                "horizon":"Where the sky loves the sea.",
-                "town":"A population center to the west.",
-                "road":"Leads west, to the town.",
+                "sign":"地上的一个标牌。要阅读它，请使用'read sign'命令。",
+                "ground":"当地的地表。"
+                "horizon":"天空与大海相爱的地方。"
+                "town":"西边的人口中心。"
+                "road":"向西通向小镇。"
                 ]) );
     SetExits( ([
                 "west" : "/domains/town/room/vill_road4",
@@ -79,8 +79,8 @@ protected void create() {
     //element is picked from the array at random. If it is a string,
     //that string is displayed to the living things in the room.
     //If it is a function, that function is evaluated.
-    SetAction(2, ({"A cool breeze flows in from the east, "
-                "bringing with it the bracing salty smells of the sea.",
+    SetAction(2, ({"一阵凉爽的微风从东边吹来，"
+                "带来了大海清新的咸味。",
                 (: ActionFunction :) }) );
     SetChance(90);
     SetFish( ([
@@ -90,8 +90,8 @@ protected void create() {
     //This is a function that allows for a set of actions
     //with different trigger frequencies.
     SetActionsMap( ([ 
-                "A soft breeze cools your brow." : 5,
-                "You briefly hear seagulls far in the distance." : 7,
+                "柔和的微风冷却着你的额头。" : 5,
+                "你短暂地听到远处海鸥的叫声。" : 7,
                 (: ActionFunction2 :) : 2,
                 ]) );
     SetInventory( ([

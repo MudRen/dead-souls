@@ -5,8 +5,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Otik's storage room");
-    SetLong("This is a small, bare room where Otik keeps his goods. The main store is above.");
+    SetShort("奥蒂克的储藏室");
+    SetLong("这是奥蒂克存放货物的小而简陋的房间。主商店在上面。");
     SetInventory(([
                 "/domains/town/weap/sword" : 30,
                 "/domains/town/obj/rucksack" : 10,
@@ -39,7 +39,7 @@ int CanReceive(object sneak) {
     foreach(object ob in living_stack){
         if(living(ob) && !creatorp(ob) &&
                 !member_group(ob,"TEST")) {
-            message("info","Otik's back room is for authorized personnel only.", ob); 
+            message("info","奥蒂克的后屋只授权人员进入。", ob); 
             return 0;
         }
     }

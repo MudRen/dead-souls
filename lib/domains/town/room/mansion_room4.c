@@ -5,15 +5,13 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Game room");
-    SetLong("You are in the game room. The walls have been paneled "
-            "in beautiful oak, and the thick carpeting "
-            "feels quite nice under your feet.");
+    SetShort("游戏室");
+    SetLong("你在游戏室里。墙壁用美丽的橡木镶板装饰，"
+            "厚厚的地毯踩在你脚下感觉非常舒服。");
     SetItems( ([
-                ({"wall","walls"}) : "It's beautiful oak paneling, "
-                "with a deep, rich coat of stain.",
-                ({"carpet","carpeting"}) : "It's plush, soft, and "
-                "very comfortable."
+                ({"wall","walls"}) : "美丽的橡木镶板，"
+                "有着深沉丰富的着色涂层。",
+                ({"carpet","carpeting"}) : "它柔软、舒适且非常舒服。"
                 ]) );
     AddStuff( ({
                 "/domains/town/obj/btable",

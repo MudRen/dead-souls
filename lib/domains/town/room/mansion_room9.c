@@ -7,15 +7,13 @@ protected void create(){
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Sitting Room");
-    SetLong("You are in a luxurious sitting room, decorated "
-            "and furnished with the same excellent taste and "
-            "attention to detail as the rest of the "
-            "mansion.");
+    SetShort("起居室");
+    SetLong("你在一个豪华的起居室里，装饰"
+            "和布置都与公馆其他部分一样"
+            "品味卓越且注重细节。");
     SetItems( ([
                 ({"furniture","furnishings","decorations"}) :
-                "You see evidence of a refined aesthetic "
-                "sensibility."
+                "你看到了精致审美品味的证据。"
                 ]) );
     SetExits( ([
                 "west" : "/domains/town/room/mansion_int.c",
@@ -32,12 +30,12 @@ int TellRevealed(){
 }
 int RevealDoor(){
     if(revealed == 1) {
-        tell_room(this_object(),"The trapdoor is already visible.");	
+        tell_room(this_object(),"活板门已经可见。");	
         return 1;
     }
     revealed = 1;
 
-    tell_room(this_object(),"A trapdoor is revealed!");
+    tell_room(this_object(),"一个活板门被发现了！");
     AddExit("down","/domains/town/room/mansion_room12");
     SetDoor("down","/domains/town/doors/trapdoor");
     return 1;

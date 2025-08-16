@@ -7,7 +7,7 @@ protected void create() {
     SetClimate("indoors");
     SetAmbientLight(30);
     SetShort("公馆主卧室");
-你在主卧室里。这里的装饰美丽、华丽而奢华。很明显，住在这里的人很富有且品味高雅。 ";
+    SetLong("你在主卧室里。这里的装饰美丽、华丽而奢华。很明显，住在这里的人很富有且品味高雅。");
     SetItems( ([
                 "decor" : "令人印象深刻、华丽而美丽。",
                 ]) );

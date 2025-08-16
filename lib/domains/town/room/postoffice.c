@@ -10,20 +10,15 @@ protected void create(){
     SetTown("Town");
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("the town post office");
-    SetLong("This is a small office containing rows of mailboxes and "+
-            "various other postal implements. There is a sign on the wall behind the "+
-            "counter, outlining instructions for how to mail other users. "+
-            "Fort road is east of here.");
+    SetShort("城镇邮局");
+    SetLong("这是一个小办公室，里面排列着邮箱和各种其他邮政用具。柜台后面的墙上有一个标牌，概述了如何给其他用户发送邮件的说明。要塞之路在东边。");
     SetItems( ([ 
-                ({"box","boxes","mailboxes","mailbox"}) : "Rows of mailboxes for "+
-                "the denizens of Frontiers.",
-                "sign" : "This is a sign on the wall describing how to mail messages.",
-                ({"wall","walls"}) : "Gray-painted institutional walls of the kind you'd "+
-                "expect in a post office.",
-                "implements" : "Ink, paper, etc.",
-                "instructions" : "Try reading them.",
-                "counter" : "A counter folks use to lean on while writing messages." ]) );
+                ({"box","boxes","mailboxes","mailbox"}) : "为边境居民准备的邮箱排列。",
+                "sign" : "这是墙上描述如何发送消息的标志。"
+                ({"wall","walls"}) : "你会在邮局里看到的那种灰色的机构墙壁。"
+                "implements" : "墨水、纸张等。"
+                "instructions" : "试着阅读它们。"
+                "counter" : "人们写消息时用来倚靠的柜台。" ]) );
     SetExits( ([
                 "east" : "/domains/town/room/mountain_road.c",
                 ]) );
@@ -35,18 +30,18 @@ void init(){
 }
 int instr(string str){
     if(str=="instructions"||str=="sign"){
-        write("To mail someone, type mail <person's name here>.\n"+
-                "Enter a subject line.\n"+
-                "Enter your message.\n"+
-                "Once you've finished, enter a period (.) on a blank line.\n"+
-                "Hit x, then s to send it. You're done!\n");
+        write("要给某人发送邮件，输入 mail <此人的名字>。\n"+
+                "输入主题行。\n"+
+                "输入你的消息。\n"+
+                "完成后，在空白行输入一个句点(.)。\n"+
+                "输入 x，然后输入 s 发送。你就完成了！\n");
         return 1;
     }
 }
 mixed CanMail(object who, string args) {
     if( !interactive(who) ) return 0;
     if( GetTown() != who->GetTown() )
-        return "Any mail you might have will be at your home post office.";
+        return "你可能有的任何邮件都会在你的家乡邮局。";
     return 1;
 }
 mixed eventMail(object who, string args) {

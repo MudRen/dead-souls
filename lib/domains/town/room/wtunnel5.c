@@ -5,15 +5,15 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(0);
-    SetShort("a dark tunnel");
-    SetLong("This tunnel has very smooth stone walls and runs north and south.");
+    SetShort("黑暗隧道");
+    SetLong("这条隧道有非常光滑的石墙，南北走向。");
     SetItems(([
-                ({ "hole", "holes", "floor" }) : "These holes appear to be where spring water enters to flood the chamber and fill the well east of here. ",
-                ({ "dirt", "dust" }) : "There's plenty of that here. Empty wells rarely get much priority on cleaning day.",
-                ({ "bottom", "well" }) : "Dirty, musty, and unpleasant.",
-                ({ "vermin", "rats", "bugs" }) : "Looks like they're hiding from you at the moment.",
-                "haven" : "A nice place for vermin.",
-                ({ "rock", "bedrock" }) : "This is dense, hard stuff deep underground.",
+                ({ "hole", "holes", "floor" }) : "这些孔洞似乎是泉水进入的地方，用来淹没这个房间并填满东边的水井。",
+                ({ "dirt", "dust" }) : "这里有很多灰尘。空井很少会在清洁日得到优先考虑。",
+                ({ "bottom", "well" }) : "肮脏、发霉且令人不愉快。",
+                ({ "vermin", "rats", "bugs" }) : "看起来他们此刻正在躲着你。",
+                "haven" : "害虫的好地方。",
+                ({ "rock", "bedrock" }) : "这是地下深处致密坚硬的岩石。",
                 ]));
     SetFlowLimit(3);
     SetExits( ([

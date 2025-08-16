@@ -4,9 +4,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Shower Stall");
-    SetLong("You are standing in a shower stall. People come "
-            "here to get clean.");
+    SetShort("淋浴间");
+    SetLong("你站在淋浴间里。人们来这里是为了变干净。");
     SetExits( ([
                 "out" : "/domains/town/room/mansion_room3"
                 ]) );

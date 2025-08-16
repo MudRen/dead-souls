@@ -3,18 +3,18 @@ inherit LIB_ROOM;
 int humidity = 0;
 
 string GetDryDesc(){
-    string ret = "This is the bottom of the old town well. It is quite dark "+
-        "and unpleasant down here. Years of disuse have provided a haven for "+
-        "vermin, dirt, and dust here. A service door of some kind is set in "+
-        "the west wall here.\n%^GREEN%^There is a lever set in the wall here."+
+    string ret = "这是旧镇水井的底部。这里相当黑暗"+
+        "且令人不愉快。多年的废弃为"+
+        "害虫、泥土和灰尘提供了避风港。某种维修门安装在"+
+        "西墙上。\n%^GREEN%^墙上安装着一个拉杆。"+
         "%^RESET%^";
     return ret;
 }
 
 string GetWetDesc(){
-    string ret = "This is the bottom of the old town well. It is quite dark "+
-        "and humid down here. A service door of some kind is set in "+
-        "the west wall here.\n%^GREEN%^There is a lever set in the wall here."+
+    string ret = "这是旧镇水井的底部。这里相当黑暗"+
+        "且潮湿。某种维修门安装在"+
+        "西墙上。\n%^GREEN%^墙上安装着一个拉杆。"+
         "%^RESET%^";
     return ret;
 }
@@ -30,18 +30,13 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(0);
-    SetShort("Town Well");
+    SetShort("镇水井");
     SetLong( (: GetWellDesc :) );
     SetItems( ([
-                ({ "bottom","well" }) : "Dirty, musty, "
-                "and unpleasant.",
-                "haven" : "A nice place for vermin.",
-                ({"dirt","dust"}) : "There's plenty of that "
-                "here. Empty wells rarely get much "
-                "priority on cleaning day.",
-                ({"vermin","rats","bugs"}) : "Looks "
-                "like they're hiding from you at the "
-                "moment."
+                ({ "bottom","well" }) : "肮脏、发霉且令人不愉快。",
+                "haven" : "害虫的好地方。",
+                ({"dirt","dust"}) : "这里有很多灰尘。空井很少会在清洁日得到优先考虑。",
+                ({"vermin","rats","bugs"}) : "看起来他们此刻正在躲着你。"
                 ]) );
     SetInventory(([
                 "/domains/town/obj/well_lever" : 1,

@@ -22,7 +22,7 @@ protected void create() {
     SetClimate("indoors");
     SetAmbientLight(30);
     SetShort("公馆西客房");
-你在公馆的楼上西客房里。房间布置豪华，家具精美。看起来这里很久没有人打扫了。
+    SetLong("你在公馆的楼上西客房里。房间布置豪华，家具精美。看起来这里很久没有人打扫了。");
     SetExits( ([
                 "east" : "/domains/town/room/mansion_uhall1"
                 ]) );

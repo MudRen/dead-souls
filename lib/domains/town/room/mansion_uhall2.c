@@ -5,14 +5,12 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Upstairs Mansion Hallway");
-    SetLong("You are in the beautifully decorated upstairs "
-            "hallway of the mansion. There are rooms to "
-            "the east and west, and the hallway continues "
-            "north and south."); 
+    SetShort("公馆二楼走廊");
+    SetLong("你在公馆装饰精美的二楼走廊里。"
+            "东边和西边都有房间，走廊"
+            "向北和向南延伸。"); 
     SetItems( ([
-                ({"hall","hallway"}) : "A corridor permitting "+
-                "travel from one part of the mansion to another."
+                ({"hall","hallway"}) : "一条连接公馆各个部分的走廊。"
                 ]) );
     SetExits( ([
                 "south" : "/domains/town/room/mansion_uhall3",
