@@ -14,10 +14,10 @@ protected void create(){
     SetLong("这是一个小办公室，里面排列着邮箱和各种其他邮政用具。柜台后面的墙上有一个标牌，概述了如何给其他用户发送邮件的说明。要塞之路在东边。");
     SetItems( ([ 
                 ({"box","boxes","mailboxes","mailbox"}) : "为边境居民准备的邮箱排列。",
-                "sign" : "这是墙上描述如何发送消息的标志。"
-                ({"wall","walls"}) : "你会在邮局里看到的那种灰色的机构墙壁。"
-                "implements" : "墨水、纸张等。"
-                "instructions" : "试着阅读它们。"
+                "sign" : "这是墙上描述如何发送消息的标志。",
+                ({"wall","walls"}) : "你会在邮局里看到的那种灰色的机构墙壁。",
+                "implements" : "墨水、纸张等。",
+                "instructions" : "试着阅读它们。",
                 "counter" : "人们写消息时用来倚靠的柜台。" ]) );
     SetExits( ([
                 "east" : "/domains/town/room/mountain_road.c",
