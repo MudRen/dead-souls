@@ -7,13 +7,13 @@ protected void create() {
     verb::create();
     SetVerb("use");
     SetRules("OBJ", "OBJ to STR");
-    SetErrorMessage("Use what to do what?");
-    SetHelp("Syntax: use OBJ to CMD\n\n"
-            "Certain objects, like scrolls, allow you to perform acts beyond "
-            "your naturaly abilities.  Of course, the only way to know if an "
-            "object can so empower you is either to try it or to somehow "
-            "detect its magic.\n\n"
-            "See also: detect, discern");
+    SetErrorMessage("用什么做什么？");
+    SetHelp("语法：use <物品> to <命令>\n\n"
+            "某些物品，如卷轴，允许你执行超出"
+            "你自然能力的行为。当然，要知道一个物品"
+            "是否能赋予你这种力量，唯一的办法要么是尝试它，"
+            "要么是设法探测它的魔法。\n\n"
+            "参见：detect, discern");
 }
 
 mixed can_use_obj(mixed args...){ 
@@ -26,7 +26,7 @@ mixed can_use_obj_to_str(mixed args...){
 
 mixed do_use_obj_to_str(object ob, string str) {
     if(!ob){
-        write("That's not here.");
+        write("这里没有那个。");
         return 1;
     }
     return ob->eventUse(this_player(), str);

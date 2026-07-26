@@ -17,7 +17,7 @@ protected void create() {
     SetRules("STR");
 }
 
-mixed can_codesay() { return "Say what?"; }
+mixed can_codesay() { return "说什么？"; }
 
 mixed can_codesay_str(string str) {
     if( !str ) return 0;
@@ -27,16 +27,16 @@ mixed can_codesay_str(string str) {
 varargs mixed do_codesay_str(string str) {
     string filename = DIR_TMP + "/" + this_player()->GetKeyName() + ".codesay";
     if( !str ) {
-        write("Huh?");
+        write("什么？");
         return 1;
     }
     if(!creatorp(this_player())) {
-        write("This is a command for creators.");
+        write("这是管理员专用命令。");
         return 1;
     }
     if(strsrch(str,";") == -1){
-        write("You codesay: "+"%^BOLD%^CYAN%^"+str+"%^RESET%^");
-        say(this_player()->GetCapName()+" codesays: "+
+        write("你代码说道："+"%^BOLD%^CYAN%^"+str+"%^RESET%^");
+        say(this_player()->GetCapName()+" 代码说道："+
                 "%^BOLD%^CYAN%^"+str+"%^RESET%^");
     }
     else {
@@ -46,8 +46,8 @@ varargs mixed do_codesay_str(string str) {
         write_file(filename,str,1);
         write_file(filename+"_rule","I",1);
         load_object(CMD_LSED)->cmd(filename+"_rule "+filename);
-        write("You codesay: ");
-        say(this_player()->GetCapName()+" codesays: ");
+        write("你代码说道：");
+        say(this_player()->GetCapName()+" 代码说道：");
         tell_room(environment(this_player()),"\n"+
                 "%^BOLD%^CYAN%^"+read_file(filename)+"%^RESET%^");
     }
@@ -57,13 +57,12 @@ varargs mixed do_codesay_str(string str) {
 mixed do_codesay() { return do_codesay_str(); }
 
 string GetHelp() {
-    return ("Syntax: codesay <MESSAGE>\n\n"
-            "Sends out a message that everyone in the room can see. "
-            "This message will be stripped of normal punctuation so "
-            "that text that needs to be seen literally does not "
-            "cause confusion. "
-            "If the message contains a semicolon, this command will attempt "
-            "to format it in indented LPC style. "
+    return ("语法：codesay <消息>\n\n"
+            "发送一条房间内所有人可见的消息。"
+            "此消息会去除普通标点符号，"
+            "使需要逐字显示的文本不会引起混淆。"
+            "如果消息中包含分号，此命令会尝试"
+            "以缩进的LPC风格格式化它。"
             "\n"
-            "See also: shout, speak, reply, tell, whisper");
+            "参见：shout, speak, reply, tell, whisper");
 }

@@ -13,9 +13,9 @@ protected void create() {
     SetRules("OBJ at OBJ", "OBJ with OBJ",
             "OBJ WRD", "OBJ WRD at WRD");
     SetSynonyms("fire", "gat", "gank");
-    SetErrorMessage("Shoot what?");
-    SetHelp("Syntax: shoot OBJECT at ENEMY\n\n"
-            "Shoots a target.\n\n");
+    SetErrorMessage("射击什么？");
+    SetHelp("语法：shoot <武器> at <敌人>\n\n"
+            "射击一个目标。\n\n");
 }
 
 varargs mixed eventShoot(mixed device, mixed target, string dir, string whom){
@@ -23,24 +23,24 @@ varargs mixed eventShoot(mixed device, mixed target, string dir, string whom){
     object tmpob, who = this_player();
 
     if(!device || !objectp(device) || target == device ){
-        write("You can't shoot that with that.");
+        write("你无法用那个射击这个。");
         return 0;
     }
     if(device->MustCarry() && environment(device) != who) {
-        write("You are not holding the weapon.");
+        write("你没有持有武器。");
         return 1;
     }
     if(device->MustWield() && device->GetWorn() == 0 && !creatorp(who)) {
-        write("You are not wielding the weapon.");
+        write("你没有装备武器。");
         return 1;
     }
     if((!target || !objectp(target)) && !dir){
-        write("It seems that is not a valid target.");
+        write("那似乎不是有效目标。");
         return 0;
     }
     if(target && !present(target,environment(who)) && 
             !present(target,environment(device))){
-        write("That target is not here.");
+        write("那个目标不在这里。");
         return 1;
     }
 
@@ -48,7 +48,7 @@ varargs mixed eventShoot(mixed device, mixed target, string dir, string whom){
     if(living(target) || target->isDummy()){
         attackable = target->GetAttackable();
         if(!attackable || !intp(attackable) || attackable != 1){
-            write("You are unable to shoot "+target->GetShort()+".");
+            write("你无法射击"+target->GetShort()+"。");
             return 1;
         }
     }

@@ -6,9 +6,9 @@ protected void create() {
     verb::create();
     SetVerb("donate");
     SetRules("STR STR", "STR STR to STR");
-    SetErrorMessage("Donate <AMOUNT> <CURRENCY>");
-    SetHelp("Syntax: donate <AMOUNT> <CURRENCY>\n\n"
-            "The donate command is used to donate money.");
+    SetErrorMessage("donate <数量> <货币>");
+    SetHelp("语法：donate <数量> <货币>\n\n"
+            "捐赠命令用于捐赠金钱。");
 }
 
 mixed can_donate_str_str(string amount, string currency){
@@ -37,7 +37,7 @@ mixed do_donate_str_str(string amount, string currency) {
         donate_boxes[0]->eventDonate(amount, currency);
     }
 
-    else write("There is nowhere to donate that.");
+    else write("没有地方可以捐赠这个。");
 
     return 1;
 }

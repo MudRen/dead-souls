@@ -9,11 +9,11 @@ protected void create() {
     verb::create();
     SetVerb("dismount");
     SetRules("","LIV", "from LIV");
-    SetErrorMessage("Dismount something?");
-    SetHelp("Syntax: dismount <CREATURE>\n\n"
-            "This command allows you to get off a  "
-            "creature you are riding.\n"
-            "See also: mount, befriend, abandon");
+    SetErrorMessage("下什么？");
+    SetHelp("语法：dismount <生物>\n\n"
+            "此命令允许你从骑乘的"
+            "生物身上下来。\n"
+            "参见：mount, befriend, abandon");
 }
 
 mixed can_dismount_liv() {
@@ -45,11 +45,11 @@ mixed do_dismount() {
         if(!new_env) new_env = find_object(ROOM_START);
         else {
             write("你从死去的坐骑上下来了。");
-            say(this_player()->GetName()+" gets off "+possessive(this_player())+
-                    " dead mount.");
+            say(this_player()->GetName()+"从"+possessive(this_player())+
+                    "死去的坐骑上下来了。");
         }
         this_player()->eventMoveLiving(new_env);
     }
-    else return write("You don't seem to have a mount.");
+    else return write("你似乎没有坐骑。");
 
 }

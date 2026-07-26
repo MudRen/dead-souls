@@ -8,10 +8,10 @@ protected void create() {
     SetVerb("load");
     SetSynonyms("charge", "recharge");
     SetRules("", "OBJ","OBJ with OBJ","OBJ into OBJ","OBJ in OBJ");
-    SetErrorMessage("Load something?");
-    SetHelp("Syntax: load THING\n"
-            "        load THING on THING\n"
-            "Synonyms: charge, recharge\n");  
+    SetErrorMessage("加载什么？");
+    SetHelp("语法：load <物品>\n"
+            "        load <物品> on <物品>\n"
+            "同义词：charge, recharge\n");  
 }
 
 mixed can_load() {
@@ -27,7 +27,7 @@ mixed can_load_obj_word_obj(mixed foo) {
 }
 
 mixed do_load() {
-    write("Load what?");
+    write("加载什么？");
     return 1;
 }
 

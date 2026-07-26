@@ -18,22 +18,22 @@ protected void create() {
     SetVerb("throw");
     SetSynonyms("toss");
     SetRules("OBJ", "OBJ at OBJ", "OBJ into OBJ");
-    SetErrorMessage("Throw what?");
-    SetHelp("Syntax: <throw OBJ>\n"
-            "        <throw OBJ at OBJ>\n"
-            "        <throw OBJ into OBJ>\n\n"
-            "Allows you to throw an object.  Some object you may also "
-            "use offensively by throwing them.  Other places may simply "
-            "allow you to throw objects into them, say like throwing "
-            "equipment down to a friend in a chasm.\n"
-            "Note that throwing a weapon at someone will initiate "
-            "combat.\n\n"
-            "Synonyms: toss");
+    SetErrorMessage("投掷什么？");
+    SetHelp("语法：<throw 物品>\n"
+            "        <throw 物品 at 物品>\n"
+            "        <throw 物品 into 物品>\n\n"
+            "允许你投掷一个物品。有些物品你也可以"
+            "用来攻击性地投掷。其他地方可能只是"
+            "允许你把物品扔进去，比如把装备"
+            "扔给深渊里的朋友。\n"
+            "注意，向某人投掷武器会引发"
+            "战斗。\n\n"
+            "同义词：toss");
 }
 
 mixed can_throw_obj() {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你无法做任何事情。";
     }
     if(intp(check_light())) return this_player()->CanManipulate();
     else return check_light();
@@ -57,12 +57,12 @@ mixed do_throw_obj_word_obj(object what, string word, object where) {
         enemy = 0;
     }
     if(env && env->GetProperty("no attack")){
-        write("A mystical force prevents your malice.");
+        write("一股神秘的力量阻止了你的恶意行为。");
         return 1;
     }
     if( this_player()->GetInCombat() || enemy ) {
-        this_player()->eventPrint("You prepare to throw " +
-                what->GetShort() + ".");
+        this_player()->eventPrint("你准备投掷" +
+                what->GetShort() + "。");
         this_player()->SetAttack(enemy, (: eventThrow, this_player(), what,
                     where :), (enemy ? ROUND_WEAPON :
                         ROUND_OTHER));
@@ -78,7 +78,7 @@ void eventThrow(object who, object what, object where) {
         return;
     }
     if( !what || environment(what) != who ) {
-        who->eventPrint("You no longer have anything to throw.");
+        who->eventPrint("你已经没有东西可以投掷了。");
         return;
     }
     what->eventThrow(who, where);

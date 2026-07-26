@@ -6,12 +6,11 @@ protected void create() {
     verb::create();
     SetVerb("rock");
     SetRules("","OBJ", "WRD OBJ", "STR on OBJ");
-    SetErrorMessage("Rock what? Or rock what on what?");
-    SetHelp("Syntax: <rock OBJECT>\n"
-            "        <rock THING on OBJECT>\n\n"
-            "Allows you to rock an object, or perhaps a thing on the "
-            "object.  For example, you might want to "
-            "\"rock the halo\", or simply \"rock in rocking chair\".\n\n"
+    SetErrorMessage("摇摆什么？或者摇摆什么在什么上？");
+    SetHelp("语法：<rock 物品>\n"
+            "        <rock 物品 on 物品>\n\n"
+            "允许你摇摆一个物品，或者摇摆物品上的某个东西。"
+            "例如，你可能想\"摇摆光环\"，或者简单地\"在摇椅上摇摆\"。\n\n"
             "");
 }
 
@@ -36,8 +35,8 @@ mixed do_rock(){
     if(furn && objectp(furn)){
         return furn->eventRock(this_player());
     }
-    write("You rock back and forth.");
-    say(this_player()->GetCapName()+" rocks back and forth.");
+    write("你前后摇摆。");
+    say(this_player()->GetCapName()+" 前后摇摆。");
     return 1;
 }
 

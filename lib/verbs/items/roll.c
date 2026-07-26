@@ -8,9 +8,9 @@ protected void create() {
     verb::create();
     SetVerb("roll");
     SetRules("OBS","OBS on OBJ","OBS on STR","OBS here","STR","STR on OBJ");
-    SetErrorMessage("Roll something?");
-    SetHelp("Syntax: roll THING\n"
-            "roll THING on THING        \n"
+    SetErrorMessage("掷什么？");
+    SetHelp("语法：roll <物品>\n"
+            "roll <物品> on <物品>        \n"
             "");  
 }
 
@@ -44,7 +44,7 @@ varargs mixed can_roll_str(string foo) {
 }
 
 mixed do_roll() {
-    return "Roll what?";
+    return "掷什么？";
 }
 
 varargs mixed do_roll_obj(mixed arg1, mixed arg2, mixed arg3, mixed arg4) {
@@ -85,7 +85,7 @@ varargs mixed do_roll_obs_on_obj(mixed arg1, mixed arg2, mixed arg3, mixed arg4)
 varargs mixed do_roll_obj_on_str(mixed arg1, mixed arg2, mixed arg3, mixed arg4) {
     if(arg2 == "floor" || arg2 == "ground" || arg2 == "here") arg2 = environment(this_player());
     else {
-        write("That's not here.");
+        write("这里没有那个。");
         return 0;
     }
     return arg1->eventRoll(arg2);
@@ -111,7 +111,7 @@ varargs mixed do_roll_str_on_obj(string foo, object where, string arg1, string a
         sscanf(foo,"d%d",d2);
     }
     if(!d2){
-        write("Roll what? Are you sure you have the die?");
+        write("掷什么？你确定有骰子吗？");
         return 0;
     }
     if(!d1) d1 = 1;
@@ -119,7 +119,7 @@ varargs mixed do_roll_str_on_obj(string foo, object where, string arg1, string a
     if(arg2 && !where) where = get_object(arg2, this_player());
     dice = filter(all_inventory(this_player()), (: answers_to(globalstr, $1) :) );
     if(sizeof(dice) < d1){
-        write("You seem to lack sufficient dice of that denomination.");
+        write("你似乎没有足够多的这种面值的骰子。");
         return 0;
     }
     if(sizeof(dice) > d1){

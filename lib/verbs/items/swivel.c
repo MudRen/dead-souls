@@ -7,13 +7,12 @@ protected void create() {
     SetVerb("swivel");
     SetRules("","OBJ", "WRD OBJ", "STR on OBJ");
     SetSynonyms("spin");
-    SetErrorMessage("Swivel what? Or swivel what on what?");
-    SetHelp("Syntax: <swivel OBJECT>\n"
-            "        <swivel THING on OBJECT>\n\n"
-            "Allows you to swivel an object, or perhaps a thing on the "
-            "object.  For example, you might want to "
-            "\"swivel the gimbal\", or simply \"swivel in chair\".\n\n"
-            "Synonyms: spin");
+    SetErrorMessage("旋转什么？或者旋转什么在什么上？");
+    SetHelp("语法：<swivel 物品>\n"
+            "        <swivel 物品 on 物品>\n\n"
+            "允许你旋转一个物品，或者旋转物品上的某个东西。"
+            "例如，你可能想\"旋转万向节\"，或者简单地\"在椅子上旋转\"。\n\n"
+            "同义词：spin");
 }
 
 mixed can_swivel(){
@@ -37,8 +36,8 @@ mixed do_swivel(){
     if(furn && objectp(furn)){
         return furn->eventSwivel(this_player());
     }
-    write("You swivel to and fro.");
-    say(this_player()->GetCapName()+" swivels to and fro.");
+    write("你来回旋转。");
+    say(this_player()->GetCapName()+" 来回旋转。");
     return 1;
 }
 

@@ -9,9 +9,9 @@ protected void create() {
     verb::create();
     SetVerb("weigh");
     SetRules("OBJ");
-    SetErrorMessage("What would you like to weigh?");
-    SetHelp("Syntax: weigh OBJ\n\n"
-            "A general estimate of how much a thing weighs."
+    SetErrorMessage("你想称什么？");
+    SetHelp("语法：weigh <物品>\n\n"
+            "对物品重量的大致估计。"
             "");
 }
 
@@ -21,21 +21,21 @@ mixed can_weigh_obj() {
 
 mixed do_weigh_obj(object obj) {
     string name, verb = "heft";
-    if(!obj) return "You must weigh something.";
+    if(!obj) return "你必须称量某个东西。";
 
     /* Check for presence of objects */
     name = obj->GetShort();
     if( environment(obj) != this_player() ) {
-        this_player()->eventPrint("You do not have "+name+".");
+        this_player()->eventPrint("你没有"+name+"。");
         return 1;
     }
 
     if(obj->GetWorn()) verb = "get a feel for";
 
-    this_player()->eventPrint("You stare intently at " + name + " and " +
-            verb + " it.");
+    this_player()->eventPrint("你专注地盯着" + name + "，并" +
+            verb + "它。");
     environment(this_player())->eventPrint( this_player()->GetName() +
-            " looks at " + name + ".", this_player());
+            "看了看" + name + "。", this_player());
     if( this_player()->GetInCombat() )
         this_player()->SetAttack(0,
                 (: eventWeigh, this_player(), obj :),
@@ -57,14 +57,13 @@ int eventWeigh(object who, object obj){
     if(diff > 0) error = to_float(random(percent(diff, curr)));
     else diff = 0;
     if((environment(obj) != who)){
-        who->eventPrint("You must have the item in your possession "
-                "to weigh it.");
+        who->eventPrint("你必须拥有该物品才能称量它。");
         return 0;
     }
     if(cost > who->GetStaminaPoints()){
-        who->eventPrint("You are too weary to weigh right now.");
+        who->eventPrint("你现在太累了，无法称量。");
         environment(who)->eventPrint(
-                who->GetName() + " looks tired.", who);
+                who->GetName() + "看起来很疲惫。", who);
         return 0;
     }
     who->AddStaminaPoints(-cost);
@@ -72,10 +71,10 @@ int eventWeigh(object who, object obj){
     tmp = to_float(ret) * (error * 0.01);
     ret += to_int(tmp);
     ret /= 100;
-    if(ret < 1) ret_str = "less than one pound.";
-    else if(ret < 2) ret_str = "about one pound.";
-    else ret_str = "about " + cardinal(ret) + " pounds.";
-    write("You make a rough estimate that " + name + " weighs " +
+    if(ret < 1) ret_str = "不到一磅。";
+    else if(ret < 2) ret_str = "大约一磅。";
+    else ret_str = "大约" + cardinal(ret) + "磅。";
+    write("你粗略估计" + name + "重" +
             ret_str);
     return 1;
 } 
