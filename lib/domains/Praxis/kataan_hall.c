@@ -19,7 +19,7 @@ int CanReceive(object ob) {
                 this_player()->query_class()))
         return ::CanReceive(ob);
     else {
-        message("my_action", "You have not yet voted for your class leader.  Please do so now.", this_player());
+        message("my_action", "你还没有投票选举你的职业领袖。请现在就去投票。", this_player());
         call_out("move_me", 5, this_player());
     }
     return ::CanReceive(ob);

@@ -165,7 +165,7 @@ int pray_func(string str) {
                         "You feel the might of the shadow and repeat the prayer as you notice that "
                         "the shadow is an incarnation of Tempos himself! "
                         "Tempos notices his %^CYAN%^warhammer%^RESET%^ on top of the altar and hands it to you!");
-                tell_room(this_object(),"The shadow disappears as the prayer ends.",({}));
+                tell_room(this_object(),"祈祷结束后，暗影消失了。",({}));
                 is_hammer = 0;
                 SaveObject(SAVE_FILE);	// save is_hammer
                 ob2->move(ob);
@@ -193,7 +193,7 @@ int pray_func(string str) {
                         "You feel the might of the shadow and repeat the prayer as you notice that "
                         "the shadow is an incarnation of Tempos himself! "
                         "Tempos notices his phylactery on top of the altar and hands it to you!");
-                tell_room(this_object(),"The shadow disappears as the prayer ends.",({}));
+                tell_room(this_object(),"祈祷结束后，暗影消失了。",({}));
                 is_phyl = 0;
                 SaveObject(SAVE_FILE);	// save is_phyl
                 ob2->move(ob);

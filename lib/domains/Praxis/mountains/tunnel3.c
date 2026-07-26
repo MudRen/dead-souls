@@ -24,8 +24,8 @@ void reset() {
 void ball() {
     object ob;
 
-    write("You find a crystal ball.");
-    say(this_player()->query_name()+" finds a crystal ball.");
+    write("你找到了一个水晶球。");
+    say(this_player()->query_name()+" 找到了一个水晶球。");
     RemoveSearch("default");
     RemoveSearch("tunnel");
     ob = new("/domains/Praxis/obj/magic/ball");

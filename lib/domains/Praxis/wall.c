@@ -40,8 +40,8 @@ int scribble(string str) {
     text_scan += ({ str });
     personal_log("graffitti: "+ this_player()->query_name()+" "+ctime(time())+"\n"+str+"\n");
     unguarded( (: SaveObject("/domains/Praxis/data/wall") :) );
-    message("my_action", sprintf("You scribble: %s", str), this_player());
-    message("other_action", sprintf("%s scribbles some graffitti on the wall.",
+    message("my_action", sprintf("你涂鸦道：%s", str), this_player());
+    message("other_action", sprintf("%s 在墙上涂鸦。",
                 this_player()->query_cap_name()), this_object(),
             ({ this_player() }));
     return 1;

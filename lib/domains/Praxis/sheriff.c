@@ -446,7 +446,7 @@ string death_by_the_pit(object who) {
             "即将死在可怕的蜘蛛坑中。");
     new("/"+__DIR__+"obj/misc/handcuffs")->move(who);
     call_out("pit_part_two", 5, who);
-    return "The execution has begun.";
+    return "处刑已经开始。";
 }
 
 
@@ -512,7 +512,7 @@ int prevent_down() {
 
 string death_by_stoning(object who) {
     if(member_array(who, __Prisoners) == -1) 
-        return who->query_cap_name()+" is not a prisoner.";
+        return who->query_cap_name()+" 不是囚犯。";
     message("say", "%^RED%^A guard enters and ties your hands together "
             "with a thick rope.", who);
     message("say", "\n%^BOLD%^%^RED%^A guard tells you:%^RESET%^ Right "
@@ -545,16 +545,16 @@ void stoning_part_two(object who) {
     (DIR_STANDARD_DOMAIN+"/square")->SetProperty("no bump", 1);
     new("/"+__DIR__+"obj/misc/stones")->move(DIR_STANDARD_DOMAIN+"/square");
     who->eventMoveLiving(DIR_STANDARD_DOMAIN+"/square");
-    message("say", "\n%^RED%^Upon arrival to the town square, the guard "
-            "ties you to a wooden post, facing the jeering crowd.   With a "
-            "grim smirk upon his face, he wishes you a good afterlife and "
-            "leaves you to die at the hands of the countless victims of "
-            "your crimes.", who);
-    message("say", "Upon arrival to the town square, the guard ties "+
-            who->query_cap_name()+" to the post, smirks, and leaves.  "
-            "Immedately the towns people pick up their rocks and expend "
-            "thier frustration upon the criminal who caused them so much "
-            "grief.", environment(who), who);
+    message("say", "\n%^RED%^到达镇广场后，守卫 "
+            "把你绑在木柱上，面对着嘲笑的人群。他脸上 "
+            "带着冷酷的微笑，祝你来世好运，然后 "
+            "让你死在无数受害者手中。",
+            who);
+    message("say", "到达镇广场后，守卫将 "+
+            who->query_cap_name()+" 绑在柱子上，冷笑一声便离开了。"
+            "镇民们立刻捡起石头，向给他们带来"
+            "如此多痛苦的罪犯发泄愤怒。",
+            environment(who), who);
 }
 
 void control_townsfolk(mixed *them) {
@@ -562,15 +562,14 @@ void control_townsfolk(mixed *them) {
 
     for(x=0; x<sizeof(them[1]); x++)
         switch(random(5)) {
-            case 0 : message("saY", them[1][x]->query_cap_name()+" cheers "
-                             "enthustically!", environment(them[1][x])); break;
-            case 1 : message("say", them[1][x]->query_cap_name()+"yells: "
-                             "Scumbag!!", environment(them[1][x])); break;
-            case 2 : message("say", them[1][x]->query_cap_name()+" spits on " +
-                             them[0]->query_cap_name()+"!", environment(them[1][x]));
+            case 0 : message("saY", them[1][x]->query_cap_name()+" 热情地欢呼！",
+                             environment(them[1][x])); break;
+            case 1 : message("say", them[1][x]->query_cap_name()+" 大喊："
+                             "人渣！！", environment(them[1][x])); break;
+            case 2 : message("say", them[1][x]->query_cap_name()+" 向 " +
+                             them[0]->query_cap_name()+" 吐口水！", environment(them[1][x]));
                      break;
-            case 3 : message("say", them[1][x]->query_cap_name()+"boos "
-                             "and hisses.", environment(them[1][x])); break;
+            case 3 : message("say", them[1][x]->query_cap_name()+" 发出嘘声。", environment(them[1][x])); break;
             case 4 : them[1][x]->command("get stone");
                      them[1][x]->command("throw stone at "+them[0]->query_name());
                      break;
@@ -583,8 +582,8 @@ void control_townsfolk(mixed *them) {
 
 void stoning_part_three(mixed *townsfolk) {
     int x;
-    message("say", "The townsfolk head back to their respective "
-            "homes.", environment(townsfolk[0][0]));
+    message("say", "镇民们回到了各自的"
+            "家中。", environment(townsfolk[0][0]));
     present("stone pile", environment(townsfolk[0][0]))->destruct();
     for(x=0; x < sizeof(townsfolk[0]); x++)
         townsfolk[0][x]->eventMoveLiving(townsfolk[1][x]);
@@ -592,25 +591,23 @@ void stoning_part_three(mixed *townsfolk) {
 
 string death_by_beheading(object who) {
     if(member_array(who, __Prisoners) == -1) 
-        return who->query_cap_name()+" is not a prisoner.";
-    message("say", "%^RED%^A large, burly guard enters your cell and securly "
-            "ties your hands with a thick rope.  He grabs your arm and pulls "
-            "you towards the exit of the prison, in the direction of the town "
-            "square.", who);
-    shout("%^RED%^Distant bells ring thrice, signaling the "
-            "public beheading of "+who->query_cap_name()+" at the town "
-            "square");
+        return who->query_cap_name()+" 不是囚犯。";
+    message("say", "%^RED%^一个高大魁梧的守卫走进你的牢房，用粗绳"
+            "牢牢地绑住你的双手。他抓住你的手臂，把你"
+            "拉向监狱出口，朝着镇广场的方向走去。", who);
+    shout("%%^RED%^远处的钟声响了三下，预示着"
+            +who->query_cap_name()+"将在镇广场"
+            "被公开斩首");
     new("/"+__DIR__+"obj/misc/handcuffs")->move(who);
     call_out("beheading_part_two", 2, who);
-    return "The execution has begun";
+    return "处刑已经开始";
 }
 
 void beheading_part_two(object who) {
     (DIR_STANDARD_DOMAIN+"/square")->SetProperty("no bump", 1);
     clone_guards(4)->move(DIR_STANDARD_DOMAIN+"/square");
-    message("say", "A group of guards enter, bringing with them a large "
-            "platform with a thick round wooden stump covered with dried "
-            "blood.", DIR_STANDARD_DOMAIN+"/square");
+    message("say", "一群守卫走了进来，带着一个巨大的"
+            "平台，上面放着一个沾满干涸血迹的粗圆木桩。", DIR_STANDARD_DOMAIN+"/square");
     who->eventMoveLiving(DIR_STANDARD_DOMAIN+"/square");
     message("say", "\n%^RED%^Upon arrival to the town square, you notice "
             "a large platform with a blood-stained wooden stump.  Standing "

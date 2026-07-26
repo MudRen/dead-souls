@@ -69,7 +69,7 @@ void reset() {
 
 int go_north() {
     if(present("orc")) {
-        present("orc")->eventForce("speak in orcish No one gets past us!");
+        present("orc")->eventForce("speak in orcish 没人能从我们这里过去！");
         return 0;
     }
     else return 1;

@@ -30,7 +30,7 @@ void reset() {
 
 string shop_long(string str) {
     if(query_night()) 
-        return "Horace's is now closed.";
+        return "霍勒斯的店已经关门了。";
 }
 
 void shop_closing(string str) {

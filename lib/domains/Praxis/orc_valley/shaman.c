@@ -39,7 +39,7 @@ void reset() {
 
 int go_north() {
     if(!present("shaman")) return 1;
-    write("The shaman smashes you as you try to go north!");
+    write("萨满在你试图向北走时猛击了你！");
     this_player()->add_hp(-(random(10)));
     return 0;
 }
