@@ -84,7 +84,7 @@ mixed direct_get_obj(object target){
     if( environment() != environment(this_player()) ){
         string str = this_object()->GetShort();
 
-        if( !str ) str = "It";
+        if( !str ) str = "它";
         else str = capitalize(str);
         return "#你可能需要靠近一点。也许 "+
             "试试 \"get "+this_object()->GetKeyName()+" from\" 某个东西？";
@@ -97,7 +97,7 @@ mixed direct_get_obj_out_of_obj(object target, object src){
     string str;
 
     env = environment();
-    if( !(str = this_object()->GetShort()) ) str = "It";
+    if( !(str = this_object()->GetShort()) ) str = "它";
     else str = capitalize(str);
     if( env==this_player() || env ==environment(this_player()) || living(env) ){
         return "#你现在不能那样做。";
