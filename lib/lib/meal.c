@@ -95,7 +95,7 @@ mixed eventDrink(object who){
         ob->SetDestroyOnSell();
     }
     if( !(ob->eventMove(who)) ){
-        who->eventPrint("You drop " + ob->GetShort() + ".");
+        who->eventPrint("你丢下了" + ob->GetShort() + "。");
         environment(who)->eventPrint(who->GetName() +
                 " drops " + ob->GetShort() + ".", who);
         ob->eventMove(environment(who));
@@ -140,10 +140,10 @@ mixed eventEat(object who){
 }
 
 int eventPoison(object who, object agent, int x){
-    who->eventPrint("You put some poison "
-            "in " + add_article(GetShort()) + ".");
-    environment(who)->eventPrint( who->GetName()+" puts something "
-            "in " + add_article(GetShort()) + ".", who);
+    who->eventPrint("你在"
+            + add_article(GetShort()) + "里下了毒。");
+    environment(who)->eventPrint( who->GetName()+" 在"
+            + add_article(GetShort()) + "里下了什么东西。", who);
     AddPoison(x);
     return 1;
 }
@@ -169,8 +169,8 @@ int SetMealType(int x){
 
     if( x & MEAL_FOOD ){
         vt |= VT_FOOD;
-        MyMessage = "You eat your food.";
-        OtherMessage = "$N eats $P food.";
+        MyMessage = "你吃了你的食物。";
+        OtherMessage = "$N 吃了 $P 的食物。";
     }
     if( x & MEAL_DRINK ) vt |= VT_DRINK;
     SetVendorType(vt);

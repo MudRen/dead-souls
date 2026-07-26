@@ -44,7 +44,7 @@ mixed do_dismount() {
         object new_env = environment(environment(this_player()));
         if(!new_env) new_env = find_object(ROOM_START);
         else {
-            write("You get off your dead mount.");
+            write("你从死去的坐骑上下来了。");
             say(this_player()->GetName()+" gets off "+possessive(this_player())+
                     " dead mount.");
         }

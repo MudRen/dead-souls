@@ -154,7 +154,7 @@ protected void eventCatch(object who, string fish, object pole){
             fish->GetShort() + " on " + pole->GetShort() +
             "!", this_object(), ({ who }));
     if( !(food->eventMove(who)) ){
-        message("my_action", "You drop " + food->GetShort() + "!",
+        message("my_action", "你丢下了" + food->GetShort() + "！",
                 who);
         message("other_action", who->GetName() + " drops " +
                 food->GetShort() + "!", this_object(), ({ who }) );

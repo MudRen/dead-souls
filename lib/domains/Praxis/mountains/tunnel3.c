@@ -30,7 +30,7 @@ void ball() {
     RemoveSearch("tunnel");
     ob = new("/domains/Praxis/obj/magic/ball");
     if(ob->move(this_player())) {
-        message("my_action", "You drop the crystal ball!", this_player());
+        message("my_action", "你丢下了水晶球！", this_player());
         message("other_action", this_player()->query_cap_name()+
                 " drops the crystal ball!", this_object(),({this_player()}));
         ob->move(this_object());

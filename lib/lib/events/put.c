@@ -73,7 +73,7 @@ varargs mixed eventPut(object who, object storage, string prep){
         who->eventPrint("The "+remove_article(this_object()->GetShort())+" stays where it is.");
         return 0;
     }
-    who->eventPrint("You put " + GetShort() + prep +
+    who->eventPrint("你把" + GetShort() + "放" + prep +
             storage->GetShort() + ".");
     environment(who)->eventPrint(who->GetName() + " puts " +
             GetShort() + prep +

@@ -141,7 +141,7 @@ varargs mixed eventClose(object who){
             else (val["Rooms"])->eventPrint(capitalize(GetShort(side)) + " closes.");
         }
         if(who){
-            who->eventPrint("You close " + GetShort(tmp) + ".");
+            who->eventPrint("你关上了" + GetShort(tmp) + "。");
             room->eventPrint(who->GetName() + " closes " + GetShort(tmp) + ".",
                     who);
         }
@@ -216,7 +216,7 @@ varargs int eventOpen(object who, object tool){
             else (val["Rooms"])->eventPrint(capitalize(GetShort(side)) + " opens.");
         }
         if(who){
-            who->eventPrint("You open " + GetShort(tmp) + ".");
+            who->eventPrint("你打开了" + GetShort(tmp) + "。");
             room->eventPrint(who->GetName() + " opens " + GetShort(tmp) + ".",
                     who);
         }
