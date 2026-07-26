@@ -7,8 +7,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Church Elevator");
-    SetLong("This is the elevator in the village church. The elevator door is on the east wall. Two buttons are set into the wall next to the door, labeled '1' and 'b'.");
+    SetShort("教堂电梯");
+    SetLong("这是村庄教堂里的电梯。电梯门在东墙上。门旁边的墙上嵌入了两个按钮，分别标着 '1' 和 'b'。");
     floor=1;
     moving = 0;
     closed=1;
@@ -19,9 +19,9 @@ protected void create() {
     SetItems(([
                 //new("/domains/town/obj/ebutton1") : 1,
                 //new("/domains/town/obj/ebutton2") : 1,
-                "elevator" : "A means of vertical indoors transportation.",
-                "wall" : "The buttons are on the wall.",
-                ({"elevator door","door"}) : "The door to the outside."
+                "elevator" : "一种室内垂直交通工具。",
+                "wall" : "按钮在墙上。",
+                ({"elevator door","door"}) : "通往外面的门。"
                 ]) );
     AddItem(new("/domains/town/obj/ebutton2"));
     AddItem(new("/domains/town/obj/ebutton1"));

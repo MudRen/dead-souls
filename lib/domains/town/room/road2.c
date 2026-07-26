@@ -6,13 +6,13 @@ protected void create() {
     room::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("West Village road");
-    SetNightLong("This is a well-traveled road, illuminated by a lamp light. It leads east into town and west toward an old, humpbacked bridge. A grand mansion is south.");
-    SetDayLong("This is a well-traveled road, leading east into town and west away from it. An old, humpbacked bridge is west of here. A grand mansion is south.");
+    SetShort("西村路");
+    SetNightLong("这是一条繁忙的道路，由灯光照亮。向东通往城镇，向西通往一座古老的拱桥。南边是一座宏伟的庄园。");
+    SetDayLong("这是一条繁忙的道路，向东通往城镇，向西远离城镇。西边有一座古老的拱桥。南边是一座宏伟的庄园。");
     SetItems(([
-                ({ "fort", "fortress", "fortress in the distance" }) : "It can't be seen well from here, but far north is what appears to be a large fortress built on a high plateau.",
-                ({ "road", "roads" }) : "This is a simple east-west road that goes east into town and west away from it. Another road, paved with cobblestones, intersects here to the north and leads high toward a fortress in the distance.",
-                "cobblestone road" : "This is where a cobblestone road begins that is built on an steep incline and rises up as it leads north to a high plateau.",
+                ({ "fort", "fortress", "fortress in the distance" }) : "从这里看不清楚，但北方远处似乎是一座建在高原上的大型堡垒。",
+                ({ "road", "roads" }) : "这是一条简单的东西向道路，向东通往城镇，向西远离城镇。另一条鹅卵石路在这里与北方交汇，通往远处高原上的堡垒。",
+                "cobblestone road" : "一条鹅卵石路从这里开始，沿着陡峭的斜坡向上延伸，通往北方的高原。",
                 ]));
     SetSkyDomain("town");
     SetExits( ([

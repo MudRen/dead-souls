@@ -27,12 +27,12 @@ void create() {
     SetKeyName("portal");
     SetAdjectives( ({"strangely","glowing","pulsating","orange"}) );
     SetId( ({ "aperture" }) );
-    SetShort("a glowing orange portal");
-    SetLong("A strangely glowing and pulsating portal.");
+    SetShort("发光的橙色传送门");
+    SetLong("一个奇异发光、脉动的传送门。");
     SetMass(0);
     SetBaseCost("silver",1);
     SetMaxCarry(0);
-    SetPreventGet("You fail.");
+    SetPreventGet("你失败了。");
     SetNoClean(1);
     SetNoCondition(1);
     call_out( (: RegisterPortal :), 0);

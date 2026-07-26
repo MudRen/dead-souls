@@ -6,11 +6,11 @@ protected void create() {
     ::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("The Magic Shop");
-    SetLong("This is the local magic shop. Magical items can be bought and sold here. The storeroom is upstairs and the town Mages' Guild is south.");
+    SetShort("魔法商店");
+    SetLong("这里是当地的魔法商店。可以在这里买卖魔法物品。储藏室在楼上，城镇法师公会在南边。");
     SetItems(([
-                ({"store","shop","place"}) : "This is the local magic shop.",
-                ({ "sign" ,"sign on the wall" }): "A sign on the wall, meant for reading.",
+                ({"store","shop","place"}) : "这里是当地的魔法商店。",
+                ({ "sign" ,"sign on the wall" }): "墙上的一块告示牌，供人阅读。",
                 ]));
     SetExits( ([
                 "south" : "/domains/town/room/magic_guild",

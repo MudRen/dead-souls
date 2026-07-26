@@ -6,11 +6,11 @@ protected void create() {
     ::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("The General Store");
-    SetLong("This is the local general store. You can buy or sell items here. A sign on the wall hangs here, explaining how things work. Try 'read sign'. East Village Road is south of here. The storeroom is below.");
+    SetShort("杂货店");
+    SetLong("这里是当地的杂货店。你可以在这里买卖物品。墙上挂着一块告示牌，说明了如何操作。试试 'read sign'。东村路在南边，储藏室在下面。");
     SetItems(([
-                ({"store","shop","place"}) : "This is the local store.",
-                ({ "sign" ,"sign on the wall" }): "A sign on the wall, meant for reading.",
+                ({"store","shop","place"}) : "这里是当地的商店。",
+                ({ "sign" ,"sign on the wall" }): "墙上的一块告示牌，供人阅读。",
                 ]));
     SetExits( ([
                 "south" : "/domains/town/room/vill_road2",

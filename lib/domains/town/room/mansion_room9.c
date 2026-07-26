@@ -7,15 +7,11 @@ protected void create(){
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Sitting Room");
-    SetLong("You are in a luxurious sitting room, decorated "
-            "and furnished with the same excellent taste and "
-            "attention to detail as the rest of the "
-            "mansion.");
+    SetShort("起居室");
+    SetLong("你在一间豪华的起居室里，装饰和家具与庄园的其他地方一样，品味卓越，注重细节。");
     SetItems( ([
                 ({"furniture","furnishings","decorations"}) :
-                "You see evidence of a refined aesthetic "
-                "sensibility."
+                "你看到了精致审美品味的体现。"
                 ]) );
     SetExits( ([
                 "west" : "/domains/town/room/mansion_int.c",

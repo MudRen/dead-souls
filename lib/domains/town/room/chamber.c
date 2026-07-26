@@ -5,18 +5,12 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("The Healing Chamber");
-    SetLong("This is the work chamber of Clepius the healer. "
-            "This is where he performs medical procedures on "
-            "his customers. A desk in the corner overflows with "
-            "notes and books. The reception and waiting area is "
-            "east of here.");
+    SetShort("治疗室");
+    SetLong("这里是治疗师克莱皮乌斯的工作室。他在此为顾客进行医疗处置。角落里的一张桌子上堆满了笔记和书籍。接待和等候区在东边。");
     SetItems( ([
-                "desk" : "This is where Clepius does "
-                "paperwork and research.",
-                ({"notes","books","notes and books"}) : "These "
-                "are the contents of the doctor's desk.",
-                "corner" : "Location of the desk."
+                "desk" : "这是克莱皮乌斯处理文书和研究的地方。",
+                ({"notes","books","notes and books"}) : "这些是医生桌子上的物品。",
+                "corner" : "桌子所在的位置。"
                 ]) );
     SetExits( ([ 
                 "east" : "/domains/town/room/healer",

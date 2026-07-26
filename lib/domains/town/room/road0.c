@@ -5,21 +5,16 @@ protected void create() {
     room::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("Saquivor Road");
-    SetNightLong("Illuminated by lamplight here is Saquivor road, leading north-south through the village. The road continues north toward some buildings, and south toward an intersection.");
-    SetDayLong("This is Saquivor road, leading north-south through the village. A bit further north are what look like a pub and some kind of guild. To the south is a major intersection.");
+    SetShort("萨奎沃路");
+    SetNightLong("灯光照亮的萨奎沃路南北贯穿村庄。道路继续向北通往一些建筑，向南通往一个路口。");
+    SetDayLong("这是萨奎沃路，南北贯穿村庄。北边稍远处看起来像是一家酒吧和某种公会。南边是一个主要路口。");
     SetItems( ([
-                ({"pub","tavern","village pub"}) : "The is the town's "
-                "legendary watering hole, where refreshments are served "
-                "and tall tales are swapped.",
-                ({"guild","healers guild"}) : "In this building is "
-                "the office of the only doctor in town.",
-                "clouds" : "Little puffy clouds surround the "
-                "peaks of the northern mountains.",
-                ({"northern mountains","mountains","range","mountain range"}): 
-                "Majestic mountains are far to the north, seeming "
-                "almost purple from here.",
-                "intersection" : "The main town crossroads is south."
+                ({"pub","tavern","village pub"}) : "这是镇上传奇的饮酒之地，提供饮品，人们在这里交换夸大的故事。",
+                ({"guild","healers guild"}) : "这栋建筑里是镇上唯一一位医生的诊所。",
+                "clouds" : "蓬松的小云朵环绕着北方山脉的山峰。",
+                ({"northern mountains","mountains","range","mountain range"}):
+                "雄伟的山脉远在北方，从这里看几乎是紫色的。",
+                "intersection" : "镇上主要的十字路口在南边。"
                 ]) );
     SetSkyDomain("town");
     SetInventory(([

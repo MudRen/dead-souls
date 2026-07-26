@@ -6,9 +6,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Secret Chamber");
-    SetLong("You are in a secret underground chamber beneath the "
-            "mansion.");
+    SetShort("密室");
+    SetLong("你在庄园下方的一间秘密地下室里。");
     SetExits( ([
                 "up" : "/domains/town/room/mansion_room9"
                 ]) );

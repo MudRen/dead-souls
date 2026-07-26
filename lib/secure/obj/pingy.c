@@ -18,13 +18,11 @@ void create(){
     SetKeyName("pinger");
     SetId( ({"pinger"}) );
     SetAdjectives( ({"pinger"}) );
-    SetShort("a pinger");
-    SetLong("This thing can be set to periodically output a string, "
-            "with the purpose of keeping fickle telnet connections up. "
-            "\nTo set the interval: interval <heartbeats> \n"
-            "To set the string: vassily <string>\n"
-            "\nNote that this object is deprecated in favor of the "
-            "keepalive command.");
+    SetShort("保活器");
+    SetLong("这个东西可以设置为定期输出字符串，目的是保持不稳定的telnet连接。"+
+            "\n设置间隔：interval <心跳数> \n"+
+            "设置字符串：vassily <字符串>\n"+
+            "\n注意：此对象已弃用，请使用keepalive命令。");
     SetNoCondition(1);
     SetMass(20);
     SetBaseCost("silver",10);

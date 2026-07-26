@@ -14,13 +14,10 @@ void create(){
     SetKeyName("remote control");
     SetId(({"device","controller","remote","control"}));
     SetAdjectives(({"small","electronic"}));
-    SetShort("a remote control");
-    SetLong("This is a small electronic "+
-            "device with various labeled buttons on it. "+
-            "It seems you can \"control something\" with "+
-            "it, and also \"release\" it. To command your "+
-            "remote servant, you evidently have to preface the command "+
-            "with the ] character (example: ] look at menu).");
+    SetShort("遥控器");
+    SetLong("这是一个小型电子设备，上面有各种标记的按钮。"+
+            "看起来你可以用它\"控制某物\"，也可以\"释放\"它。"+
+            "要命令你的远程仆人，你需要在命令前加上]字符（例如：] look at menu）。");
     SetProperties(([
                 "no steal" : 1,
                 ]));
@@ -46,12 +43,11 @@ int control(string str){
     }
     ob=present(str, environment(this_player()));
     if(!ob){
-        write("There is no such thing to be controlled here.");
+        write("这里没有可以控制的东西。");
         return 1;
     }
     if(!builderp(this_player())){
-        write("Your puny mortal mind can't wrap itself around the use "
-                "of this powerful instrument.");
+        write("你渺小的凡人之心无法理解这个强大工具的用法。");
         log_file("adm/control",capitalize(this_player()->GetKeyName())+
                 " attempted to use the remote control on "+str+": "+timestamp()+"\n");
         tell_creators("SECURITY: "+capitalize(this_player()->GetKeyName())+
@@ -59,26 +55,26 @@ int control(string str){
         return 1;
     }
     if(!living(ob)){
-        write(capitalize(ob->GetKeyName())+" is not a living thing.");
+        write(capitalize(ob->GetKeyName())+"不是活物。");
         return 1;
     }
 
     if(!creatorp(this_player()) && strsrch(base_name(ob), homedir(this_player()))){
-        write("Only creators can control NPC's that don't belong to them.");
-        say(this_player()->GetName()+" tries to establish control over "+ob->GetName()+" and fails.\n");
+        write("只有创造者才能控制不属于他们的NPC。");
+        say(this_player()->GetName()+"试图控制"+ob->GetName()+"，但失败了。\n");
         return 1;
     }
     if(!strsrch(base_name(ob),"/secure") ){
-        write(ob->GetName()+" is not controllable with this device.");
-        say(this_player()->GetName()+" tries to establish control over "+ob->GetName()+" and fails.\n");
+        write(ob->GetName()+"无法用这个设备控制。");
+        say(this_player()->GetName()+"试图控制"+ob->GetName()+"，但失败了。\n");
         return 1;
     }
     if(controlling){
-        write("Your remote control is busy controlling some other creature.");
+        write("你的遥控器正在控制其他生物。");
         return 1;
     }
     if(ob->GetOwner() && ob->GetOwner() != "NONE"){
-        write("That creature is already in someone's thrall.");
+        write("那个生物已经在别人的控制之下了。");
         return 1;
     }
     if(!(ob->GetOwner())) new("/shadows/drone")->eventShadow(ob);
@@ -89,8 +85,8 @@ int control(string str){
     eyedees = ob->GetId();
     eyedees += ({"servant","drone","thrall"});
     ob->SetId(eyedees);
-    write("You establish a remote control connection with "+capitalize(str)+".");
-    say(this_player()->GetName()+" establishes a control link with "+capitalize(str)+".");
+    write("你与"+capitalize(str)+"建立了远程控制连接。");
+    say(this_player()->GetName()+"与"+capitalize(str)+"建立了控制链接。");
     controlling=1;
     return 1;
 }
@@ -98,23 +94,23 @@ int control(string str){
 int do_control(string str){
     object obj;
     if(!controlling){
-        write("You are not currently linked to any living thing.");
+        write("你目前没有与任何活物连接。");
         return 1;
     }
     if(!str || str == ""){
-        write("Nothing happens.");
+        write("什么都没发生。");
         return 1;
     }
     if(environment() != owner){
-        write("You don't seem to be in possession of the remote control.");
-        tell_object(environment(),"Possible security violation on remote control.");
-        error("Illegal access of remote control: "+get_stack()+" "+identify(previous_object(-1)));
+        write("你似乎没有遥控器。");
+        tell_object(environment(),"遥控器可能存在安全违规。");
+        error("非法访问遥控器："+get_stack()+" "+identify(previous_object(-1)));
         return 1;
     }
     obj=find_object(remote);
     if(obj) obj->eventReceiveCommand(str);
-    else { 
-        write("There seems to be a problem.");
+    else {
+        write("似乎出了点问题。");
         this_object()->release();
     }
     return 1;
@@ -127,7 +123,7 @@ int release(){
         remove_shadow(dingus);
     }
     controlling=0;
-    write("You release your remote link.");
+    write("你释放了远程链接。");
     return 1;
 }
 

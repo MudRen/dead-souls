@@ -13,20 +13,20 @@ protected void create() {
     fishing::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("Dock of the Bay");
-    SetNightLong("This is an area comprised of a raised wooden platform that extends into the water so that folks with boats can conveniently enter and exit their vehicles. The dock runs south along the shoreline, turning into a boardwalk. The town shore is north. A great sea stretches out into the eastern horizon. A lone lamp post lights this area. \n%^GREEN%^There is a sign here you can read.%^RESET%^");
-    SetDayLong("This is an area comprised of a raised wooden platform that extends into the water so that folks with boats can conveniently enter and exit their vehicles. The dock runs south along the shoreline, turning into a boardwalk. The town shore is north. A great sea stretches out into the eastern horizon. \n%^GREEN%^There is a sign here you can read.%^RESET%^");
+    SetShort("海湾码头");
+    SetNightLong("这里是一片架高的木制平台，延伸到水中，方便有船的人上下船只。码头沿着海岸线向南延伸，变成一条木栈道。城镇海岸在北边。辽阔的大海向东方的地平线延伸。一盏孤灯照亮了这片区域。\n%^GREEN%^这里有一块你可以阅读的告示牌。%^RESET%^");
+    SetDayLong("这里是一片架高的木制平台，延伸到水中，方便有船的人上下船只。码头沿着海岸线向南延伸，变成一条木栈道。城镇海岸在北边。辽阔的大海向东方的地平线延伸。\n%^GREEN%^这里有一块你可以阅读的告示牌。%^RESET%^");
     SetItems( ([
-                "sign":"A sign on the ground. To read it, 'read sign'.",
-                "platform":"The local surface.",
-                "raised wooden platform":"The local surface.",
-                "wooden platform":"The local surface.",
-                "raised platform":"The local surface.",
-                "horizon":"Where the sky loves the sea.",
-                "town":"A population center to the northwest.",
-                "boardwalk":"Leads south from here.",
-                "dock":"What boats do here.",
-                "shoreline":"The demarcator of discontinuity between land and sea.",
+                "sign":"地上的一块告示牌。输入 'read sign' 来阅读。",
+                "platform":"脚下的地面。",
+                "raised wooden platform":"脚下的地面。",
+                "wooden platform":"脚下的地面。",
+                "raised platform":"脚下的地面。",
+                "horizon":"天空与大海相接之处。",
+                "town":"西北方的一处人口聚集地。",
+                "boardwalk":"从这里向南延伸。",
+                "dock":"船只停靠之处。",
+                "shoreline":"陆地与海洋的分界线。",
                 ]) );
     SetExits( ([
                 "north" : "/domains/town/room/shore",

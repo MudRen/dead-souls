@@ -10,20 +10,15 @@ protected void create(){
     SetTown("Town");
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("the town post office");
-    SetLong("This is a small office containing rows of mailboxes and "+
-            "various other postal implements. There is a sign on the wall behind the "+
-            "counter, outlining instructions for how to mail other users. "+
-            "Fort road is east of here.");
-    SetItems( ([ 
-                ({"box","boxes","mailboxes","mailbox"}) : "Rows of mailboxes for "+
-                "the denizens of Frontiers.",
-                "sign" : "This is a sign on the wall describing how to mail messages.",
-                ({"wall","walls"}) : "Gray-painted institutional walls of the kind you'd "+
-                "expect in a post office.",
-                "implements" : "Ink, paper, etc.",
-                "instructions" : "Try reading them.",
-                "counter" : "A counter folks use to lean on while writing messages." ]) );
+    SetShort("镇邮局");
+    SetLong("这是一间小办公室，里面有一排排邮箱和各种邮政用具。柜台后面的墙上有一块告示牌，说明了如何给其他玩家寄信。堡垒路在东边。");
+    SetItems( ([
+                ({"box","boxes","mailboxes","mailbox"}) : "为边疆居民准备的一排排邮箱。",
+                "sign" : "这是墙上的一块告示牌，描述了如何寄送消息。",
+                ({"wall","walls"}) : "邮局里常见的灰色油漆 institutional 墙壁。",
+                "implements" : "墨水、纸张等。",
+                "instructions" : "试试阅读它们。",
+                "counter" : "人们写信时可以倚靠的柜台。" ]) );
     SetExits( ([
                 "east" : "/domains/town/room/mountain_road.c",
                 ]) );

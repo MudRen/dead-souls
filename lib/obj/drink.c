@@ -8,14 +8,14 @@ protected void create() {
     meal::create();
     SetKeyName("drink");
     SetId(({"drink","generic drink"}));
-    SetShort("a generic drink");
-    SetLong("This is a generic drink.");
+    SetShort("普通饮料");
+    SetLong("这是一杯普通饮料。");
     SetMass(10);
     SetStrength(20);
     SetBaseCost("silver",10);
     SetMealType(MEAL_DRINK);
-    SetMealMessages("You quaff your drink. Mmm!",
-            "$N quaffs $P drink.");
+    SetMealMessages("你一饮而尽。嗯！",
+            "$N一饮而尽了$P的饮料。");
     SetNoCondition(1);
 }
 void init(){

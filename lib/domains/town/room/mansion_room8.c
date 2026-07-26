@@ -5,13 +5,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Grand Ballroom");
-    SetLong("This huge room is spectacular both in size "
-            "and decor. Clearly the centerpiece of the mansion, "
-            "this ballroom could easily accommodate hundreds of "
-            "guests. The vaulted ceiling is dozens of feet high, and "
-            "the polished marble floors feature beautiful, "
-            "dazzling designs.");
+    SetShort("大舞厅");
+    SetLong("这个巨大的房间在规模和装饰上都令人叹为观止。作为庄园的核心，这个舞厅可以轻松容纳数百位宾客。拱形天花板高达数十英尺，抛光的大理石地板上有着美丽而耀眼的图案。");
     SetExits( ([
                 "east" : "/domains/town/room/mansion_dhall3"
                 ]) );

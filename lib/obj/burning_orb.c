@@ -16,9 +16,8 @@ protected void create() {
     SetVendorType(VT_MAGIC);
     SetId("orb");
     SetAdjectives("burning", "flaming");
-    SetShort("a burning orb");
-    SetLong("A flaming orb that does not burn you when you touch it.  You "
-            "might be able to burn other things with it or light torches.");
+    SetShort("燃烧的宝珠");
+    SetLong("一个触碰时不会灼伤你的燃烧宝珠。你可以用它点燃其他东西或火把。");
     SetRadiantLight(5);
     SetMinHeat(10);
     SetFuelRequired(1);

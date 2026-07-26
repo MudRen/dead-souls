@@ -8,8 +8,8 @@ void create() {
     SetKeyName("container");
     SetId( ({ "container" }) );
     SetAdjectives( ({ "generic","nondescript" }) );
-    SetShort("a generic container");
-    SetLong("It is a thing that holds other things.");
+    SetShort("普通容器");
+    SetLong("这是一个可以容纳其他物品的容器。");
     SetCanClose(1);
     SetMass(274);
     SetBaseCost("silver",1);

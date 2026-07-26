@@ -17,26 +17,24 @@ protected void create() {
     SetKeyName("portal");
     SetId("portal");
     SetAdjectives("pulsating", "shimmering");
-    SetShort("%^YELLOW%^a shimmering portal%^RESET%^");
+    SetShort("%^YELLOW%^闪烁的传送门%^RESET%^");
     SetLong((: eventShowPortal :));
-    SetPreventGet("The portal is pure magic and lacks substance.");
-    SetPreventPut("The portal is pure magic and lacks substabce.");
+    SetPreventGet("传送门是纯粹的魔法，没有实体。");
+    SetPreventPut("传送门是纯粹的魔法，没有实体。");
     SetMass(0);
     SetValue(0);
 }
 
 string eventShowPortal() {
     string str;
-    str = "A shimmering, magical portal that pulsates different "
-        "shades of white and blue. It was created by Talima "
-        "for her faithful servent " + Caster + ". ";
+    str = "一个闪烁的魔法传送门，散发着不同深浅的白色和蓝色光芒。"
+        "它是由塔利玛为她忠实的仆人" + Caster + "所创造的。";
     if( sizeof(LinkRoom) ) {
         object ob = load_object(LinkRoom);
-        if( !ob ) return "There are problems with this portal.";
-        str += "Gazing into its fitful depths, you can barely see "
-            "an occasional glimpse of " + ob->GetShort() + ".";
+        if( !ob ) return "这个传送门出了问题。";
+        str += "凝视着它深邃的内部，你偶尔能隐约看到" + ob->GetShort() + "的景象。";
     }
-    else str += "You see nothing in its depths.";
+    else str += "你在它的深处什么也看不到。";
     return str;
 }
 
@@ -65,24 +63,23 @@ string SetCaster(string str) { return (Caster = str); }
 string GetCaster() { return Caster; }
 
 mixed CanEnter(object who, string what) {
-    if( !sizeof(LinkRoom) ) return "The portal is non-functional.";
+    if( !sizeof(LinkRoom) ) return "传送门无法使用。";
     else return 1;
 }
 
 int eventEnter(object who) {
     if( !who ) return 0;
-    who->eventPrint("%^RED%^%^BOLD%^You step into the portal "
-            "and feel reality shift around you.");
+    who->eventPrint("%^RED%^%^BOLD%^你踏入传送门，感觉周围的现实在扭曲。");
     who->eventMoveLiving(LinkRoom,
-            "%^GREEN%^$N steps into the portal and disappears.",
-            "%^GREEN%^$N steps out of a shimmering portal.");
+            "%^GREEN%^$N踏入传送门，消失了。",
+            "%^GREEN%^$N从闪烁的传送门中走了出来。");
     return 1;
 }
 
 int eventDestruct() {
     object env = environment();
     if( env ) {
-        env->eventPrint("A shimmering portal winks out of existance.");
+        env->eventPrint("一个闪烁的传送门消失了。");
     }
     ::eventDestruct();
 }

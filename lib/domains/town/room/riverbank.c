@@ -6,8 +6,8 @@ protected void create() {
     SetTown("town");
     SetClimate("temperate");
     SetAmbientLight(30);
-    SetShort("riverbank");
-    SetLong("This is the bank of a narrow but swift-moving river. A steep path leads back up to the bridge. There is a cave in the steep east wall of the riverbank.");
+    SetShort("河岸");
+    SetLong("这是一条狭窄但水流湍急的河流的岸边。一条陡峭的小路通向上面的桥。河岸陡峭的东墙上有一个洞穴。");
     SetProperties (([
                 "no attack":0, 
                 "no bump":0, 

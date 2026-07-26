@@ -19,10 +19,9 @@ protected void create(){
     SetKeyName("staff");
     SetId( ({ "staff", "stick", "tanstaafl"  }) );
     SetAdjectives( ({ "wood","wooden","creator","creator's","creation" }) );
-    SetShort("a wooden staff");
-    SetLong("This staff is old, weathered, "+
-            "and lumpy. However, it feels quite sturdy "+
-            "and solid. For more info: help staff");
+    SetShort("木制法杖");
+    SetLong("这根法杖古老、风化、凹凸不平。然而，它感觉相当坚固和结实。"+
+            "更多信息：help staff");
     SetProperties(([
                 "no steal" : 1,
                 ]));

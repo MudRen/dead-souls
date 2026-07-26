@@ -6,9 +6,9 @@ protected void create() {
     barkeep::create();
     SetKeyName("barkeep");
     SetId( ({ "barman" }) );
-    SetShort("a generic barkeep");
+    SetShort("普通酒保");
     SetLevel(1);
-    SetLong("A nondescript being whose job is to sell food and drink.");
+    SetLong("一个不起眼的人，工作是出售食物和饮料。");
     SetMenuItems(([
                 ]));
     SetGender("male");

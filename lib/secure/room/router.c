@@ -6,18 +6,17 @@ inherit LIB_ROOM;
 int ftp, hftp, http, rcp, i3, oob;
 
 string LongDesc(){
-    string ret = "This room is like the network room to its north, "
-        "but it receives messages from the various network servers "
-        "that this mud can run. If this mud does not serve as a "
-        "network server, this room should be quiet. Otherwise "
-        "this may be the noisiest damn room on your mud.\n";
-    ret += "FTP server monitoring: "+(ftp?"%^GREEN%^online%^RESET%^":"%^RED%^OFFLINE%^RESET%^")+"\n";
-    ret += "HFTP server monitoring: "+(hftp?"%^GREEN%^online%^RESET%^":"%^RED%^OFFLINE%^RESET%^")+"\n";
-    ret += "HTTP server monitoring: "+(http?"%^GREEN%^online%^RESET%^":"%^RED%^OFFLINE%^RESET%^")+"\n";
-    ret += "RCP server monitoring: "+(rcp?"%^GREEN%^online%^RESET%^":"%^RED%^OFFLINE%^RESET%^")+"\n";
-    ret += "I3 server monitoring: "+(i3?"%^GREEN%^online%^RESET%^":"%^RED%^OFFLINE%^RESET%^")+"\n";
-    ret += "OOB server monitoring: "+(i3?"%^GREEN%^online%^RESET%^":"%^RED%^OFFLINE%^RESET%^")+"\n";
-    ret += "\nTo enable server monitoring, you may, for example, type:\n"
+    string ret = "这个房间就像它北边的网络室，"+
+        "但它接收来自此MUD可以运行的各种网络服务器的消息。"+
+        "如果此MUD不作为网络服务器，这个房间应该很安静。"+
+        "否则这可能是你MUD上最吵闹的房间。\n";
+    ret += "FTP服务器监控："+(ftp?"%^GREEN%^在线%^RESET%^":"%^RED%^离线%^RESET%^")+"\n";
+    ret += "HFTP服务器监控："+(hftp?"%^GREEN%^在线%^RESET%^":"%^RED%^离线%^RESET%^")+"\n";
+    ret += "HTTP服务器监控："+(http?"%^GREEN%^在线%^RESET%^":"%^RED%^离线%^RESET%^")+"\n";
+    ret += "RCP服务器监控："+(rcp?"%^GREEN%^在线%^RESET%^":"%^RED%^离线%^RESET%^")+"\n";
+    ret += "I3服务器监控："+(i3?"%^GREEN%^在线%^RESET%^":"%^RED%^离线%^RESET%^")+"\n";
+    ret += "OOB服务器监控："+(i3?"%^GREEN%^在线%^RESET%^":"%^RED%^离线%^RESET%^")+"\n";
+    ret += "\n要启用服务器监控，你可以输入：\n"
         "i3 on\n"
         "ftp on\n"
         "hftp on\n"
@@ -34,7 +33,7 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Server monitoring room");
+    SetShort("服务器监控室");
     SetLong( LongDesc() );
     SetExits(([
                 "north" : "/secure/room/network",
@@ -43,8 +42,7 @@ protected void create() {
 
 int CanReceive(object ob) {
     if( !archp(ob)  ){
-        message("info","The server room is available only to "+
-                "admins, sorry.",ob);
+        message("info","服务器监控室仅供管理员使用，抱歉。",ob);
         return 0;
     }
     return 1;
@@ -72,150 +70,150 @@ void init(){
 
 int ListenI3(string str){
     if(!str || (str != "on" && str != "off")){
-        write("Please specify whether you want it on or off.");
+        write("请指定你要开启还是关闭。");
         return 1;
     }
     if(str == "on"){
         if(i3){
-            write("This room is already receiving i3 data.");
+            write("这个房间已经在接收i3数据了。");
             return 1;
         }
-        write(capitalize(this_player()->GetKeyName())+" enables i3 data monitoring.");
-        say("You enable i3 data monitoring.");
+        write(capitalize(this_player()->GetKeyName())+"启用了i3数据监控。");
+        say("你启用了i3数据监控。");
         i3 = 1;
         return 1;
     }
     if(!i3){
-        write("This room is already blocking i3 data.");
+        write("这个房间已经在屏蔽i3数据了。");
         return 1;
     }
-    write(capitalize(this_player()->GetKeyName())+" disables i3 data monitoring.");
-    say("You disable i3 data monitoring.");
+    write(capitalize(this_player()->GetKeyName())+"禁用了i3数据监控。");
+    say("你禁用了i3数据监控。");
     i3 = 0;
     return 1;
 }
 
 int ListenFTP(string str){
     if(!str || (str != "on" && str != "off")){
-        write("Please specify whether you want it on or off.");
+        write("请指定你要开启还是关闭。");
         return 1;
     }
     if(str == "on"){
         if(ftp){
-            write("This room is already receiving ftp data.");
+            write("这个房间已经在接收ftp数据了。");
             return 1;
         }
-        write(capitalize(this_player()->GetKeyName())+" enables ftp data monitoring.");
-        say("You enable ftp data monitoring.");
+        write(capitalize(this_player()->GetKeyName())+"启用了ftp数据监控。");
+        say("你启用了ftp数据监控。");
         ftp = 1;
         return 1;
     }
     if(!ftp){
-        write("This room is already blocking ftp data.");
+        write("这个房间已经在屏蔽ftp数据了。");
         return 1;
     }
-    write(capitalize(this_player()->GetKeyName())+" disables ftp data monitoring.");
-    say("You disable ftp data monitoring.");
+    write(capitalize(this_player()->GetKeyName())+"禁用了ftp数据监控。");
+    say("你禁用了ftp数据监控。");
     ftp = 0;
     return 1;
 }
 
 int ListenHFTP(string str){
     if(!str || (str != "on" && str != "off")){
-        write("Please specify whether you want it on or off.");
+        write("请指定你要开启还是关闭。");
         return 1;
     }
     if(str == "on"){
         if(hftp){
-            write("This room is already receiving hftp data.");
+            write("这个房间已经在接收hftp数据了。");
             return 1;
         }
-        write(capitalize(this_player()->GetKeyName())+" enables hftp data monitoring.");
-        say("You enable hftp data monitoring.");
+        write(capitalize(this_player()->GetKeyName())+"启用了hftp数据监控。");
+        say("你启用了hftp数据监控。");
         hftp = 1;
         return 1;
     }
     if(!hftp){
-        write("This room is already blocking hftp data.");
+        write("这个房间已经在屏蔽hftp数据了。");
         return 1;
     }
-    write(capitalize(this_player()->GetKeyName())+" disables hftp data monitoring.");
-    say("You disable hftp data monitoring.");
+    write(capitalize(this_player()->GetKeyName())+"禁用了hftp数据监控。");
+    say("你禁用了hftp数据监控。");
     hftp = 0;
     return 1;
 }
 
 int ListenHTTP(string str){
     if(!str || (str != "on" && str != "off")){
-        write("Please specify whether you want it on or off.");
+        write("请指定你要开启还是关闭。");
         return 1;
     }
     if(str == "on"){
         if(http){
-            write("This room is already receiving http data.");
+            write("这个房间已经在接收http数据了。");
             return 1;
         }
-        write(capitalize(this_player()->GetKeyName())+" enables http data monitoring.");
-        say("You enable http data monitoring.");
+        write(capitalize(this_player()->GetKeyName())+"启用了http数据监控。");
+        say("你启用了http数据监控。");
         http = 1;
         return 1;
     }
     if(!http){
-        write("This room is already blocking http data.");
+        write("这个房间已经在屏蔽http数据了。");
         return 1;
     }
-    write(capitalize(this_player()->GetKeyName())+" disables http data monitoring.");
-    say("You disable http data monitoring.");
+    write(capitalize(this_player()->GetKeyName())+"禁用了http数据监控。");
+    say("你禁用了http数据监控。");
     http = 0;
     return 1;
 }
 
 int ListenRCP(string str){
     if(!str || (str != "on" && str != "off")){
-        write("Please specify whether you want it on or off.");
+        write("请指定你要开启还是关闭。");
         return 1;
     }
     if(str == "on"){
         if(rcp){
-            write("This room is already receiving rcp data.");
+            write("这个房间已经在接收rcp数据了。");
             return 1;
         }
-        write(capitalize(this_player()->GetKeyName())+" enables rcp data monitoring.");
-        say("You enable rcp data monitoring.");
+        write(capitalize(this_player()->GetKeyName())+"启用了rcp数据监控。");
+        say("你启用了rcp数据监控。");
         rcp = 1;
         return 1;
     }
     if(!rcp){
-        write("This room is already blocking rcp data.");
+        write("这个房间已经在屏蔽rcp数据了。");
         return 1;
     }
-    write(capitalize(this_player()->GetKeyName())+" disables rcp data monitoring.");
-    say("You disable rcp data monitoring.");
+    write(capitalize(this_player()->GetKeyName())+"禁用了rcp数据监控。");
+    say("你禁用了rcp数据监控。");
     rcp = 0;
     return 1;
 }
 
 int ListenOOB(string str){
     if(!str || (str != "on" && str != "off")){
-        write("Please specify whether you want it on or off.");
+        write("请指定你要开启还是关闭。");
         return 1;
     }
     if(str == "on"){
         if(oob){
-            write("This room is already receiving oob data.");
+            write("这个房间已经在接收oob数据了。");
             return 1;
         }
-        write(capitalize(this_player()->GetKeyName())+" enables oob data monitoring.");
-        say("You enable oob data monitoring.");
+        write(capitalize(this_player()->GetKeyName())+"启用了oob数据监控。");
+        say("你启用了oob数据监控。");
         oob = 1;
         return 1;
     }
     if(!oob){
-        write("This room is already blocking oob data.");
+        write("这个房间已经在屏蔽oob数据了。");
         return 1;
     }
-    write(capitalize(this_player()->GetKeyName())+" disables oob data monitoring.");
-    say("You disable oob data monitoring.");
+    write(capitalize(this_player()->GetKeyName())+"禁用了oob数据监控。");
+    say("你禁用了oob数据监控。");
     oob = 0;
     return 1;
 }

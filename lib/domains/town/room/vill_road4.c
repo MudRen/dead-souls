@@ -6,13 +6,13 @@ protected void create() {
     room::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("Village Path");
-    SetNightLong("Still illuminated by lamp post, Village Road becomes less of a road here and more of a dirt path. The shore of the eastern sea is almost visible from here. The village schoolhouse is north, and the shore is east. The village stables are south.");
-    SetDayLong("As it travels from west to east, Village Road becomes less of a road here and more of a dirt path. The shore of the eastern sea is almost visible from here. The village schoolhouse is north, and the shore is east. The village stables are south.");
+    SetShort("村庄小径");
+    SetNightLong("虽然仍有灯柱照亮，但村庄道路在这里变得更像一条土路而非道路。从这里几乎可以看到东海的海岸。村学堂在北边，海岸在东边，村庄马厩在南边。");
+    SetDayLong("从西向东延伸，村庄道路在这里变得更像一条土路而非道路。从这里几乎可以看到东海的海岸。村学堂在北边，海岸在东边，村庄马厩在南边。");
     SetItems(([
-                ({ "building", "schoolhouse", "school", "village school", "village schoolhouse" }) : "A small but well-kept wooden building where townsfolk and their children go to acquire knowledge.",
-                ({ "building", "buildings" }) : "Structures designed for human occupancy.",
-                ({ "shore", "village shore" }) : "The shore of the eastern sea is east of here.",
+                ({ "building", "schoolhouse", "school", "village school", "village schoolhouse" }) : "一座小巧但维护良好的木制建筑，镇民和他们的孩子来这里获取知识。",
+                ({ "building", "buildings" }) : "供人类居住的建筑结构。",
+                ({ "shore", "village shore" }) : "东海的海岸在东边。",
                 ]));
     SetSkyDomain("town");
     AddTerrainType(T_ROAD);

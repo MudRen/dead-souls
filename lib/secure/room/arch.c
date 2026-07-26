@@ -137,12 +137,11 @@ string SignRead(){
 }
 
 string LongDesc(){
-    string desc = "This is a polished antiseptic room composed of some "+
-        "white gleaming material. There is a viewscreen on a wall here, "+
-        "with a control panel alongside it. "+
-        "A long printout hangs from the panel."
-        "\nThe network troubleshooting room is down from here.";
-    desc += "\nA sign on the wall reads: "+SignRead();
+    string desc = "这是一个由某种白色闪亮材料构成的抛光无菌房间。"+
+        "墙上有一个显示屏，旁边有一个控制面板。"+
+        "面板上挂着一条长长的打印输出。"+
+        "\n网络故障排除室在下面。";
+    desc += "\n墙上的标志写着："+SignRead();
     return desc;
 }
 
@@ -151,32 +150,24 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Arch Room");
+    SetShort("管理员房间");
     SetLong( LongDesc() );
-    SetItems( ([ ({"wall","walls"}) : "The walls seem composed "
-                "of some advanced polymer. They are extremely clean and highly "
-                "polished.",
-                "room" : "This looks like it might be the control room "
-                "for the mud.",
+    SetItems( ([ ({"wall","walls"}) : "墙壁似乎由某种先进的聚合物构成。它们极其干净且高度抛光。",
+                "room" : "这看起来可能是MUD的控制室。",
                 //({"screen","viewscreen"}) : "This is a display screen of some sort.",
                 ({"screen","viewscreen"}) : (: eventReadScreen :) ,
                 ({"printout"}) : (: eventReadPrintout :) ,
-                ({"sign"}) : "A sign you can read.",
-                ({"panel","control panel"}): "This seems to be the main control "
-                "panel for the mud. It contains a bewildering array of "
-                "keypads, but the most prominent feature of the control panel "
-                "is a metallic plate in its center, shaped in the form of a "
-                "human hand.",
-                ({"camera","hal","HAL"}) : "This is the rectangular faceplate of "
-                "a camera mounted within the wall. On the upper end of the "
-                "rectangle is a stamped label. On the lower end is the lens, "
-                "which has at its center a glowing red light.",
-                ({"label","stamped label"}) : "A stamped metal label. The label "
-                "reads: 'HAL 9000'.",
-                ({"plate","metallic plate","identification plate"}) : "This "
-                    "appears to be an identification plate of some sort, designed "
-                        "to accomodate a human hand.",
-                    "portal" : "A portal to another place." ]) );
+                ({"sign"}) : "一个你可以阅读的标志。",
+                ({"panel","control panel"}): "这似乎是MUD的主控制面板。"+
+                "它包含一系列令人眼花缭乱的键盘，但控制面板最显著的特征"+
+                "是其中心的一块金属板，形状像人手。",
+                ({"camera","hal","HAL"}) : "这是安装在墙内的摄像机的矩形面板。"+
+                "矩形的上端是一个压印标签。下端是镜头，"+
+                "中心有一个发光的红灯。",
+                ({"label","stamped label"}) : "一个压印的金属标签。标签上写着：'HAL 9000'。",
+                ({"plate","metallic plate","identification plate"}) : "这似乎是一种"+
+                    "识别板，设计用于容纳人手。",
+                    "portal" : "通往另一个地方的传送门。"]) );
     SetExits( ([
                 "north" : "/domains/default/room/wiz_hall",
                 "down" : "/secure/room/network.c",
@@ -190,8 +181,8 @@ protected void create() {
     SetRead("printout", (: eventReadPrintout :) );
     SetRead("sign", (: SignRead :) );
 
-    SetListen("default", "You can faintly hear a low hum coming from the walls.");
-    SetListen( ({"wall","walls"}), "You hear a low throbbing sound, as if from machinery.");
+    SetListen("default", "你能隐约听到墙壁传来的低沉嗡嗡声。");
+    SetListen( ({"wall","walls"}), "你听到低沉的脉动声，仿佛来自机器。");
     SetInventory( ([
                 "/secure/obj/arch_board" : 1,
                 ]) );
@@ -199,8 +190,7 @@ protected void create() {
 }
 int CanReceive(object ob) {
     if( !archp(ob)  && base_name(ob) != "/secure/obj/arch_board"){
-        message("info","The arch room is available only to "+
-                "admins, sorry.",ob);
+        message("info","管理员房间仅供管理员使用，抱歉。",ob);
         return 0;
     }
     return 1;

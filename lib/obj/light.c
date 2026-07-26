@@ -19,12 +19,12 @@ int eventDematerialize(){
         return 1;
     }
     if(owner){
-        what = owner->GetName()+"'s magical glow";
+        what = owner->GetName()+"的魔法光辉";
     }
-    else what = "The magical glow";
-    tell_room(env,what+" fades away.", ({ owner }));
+    else what = "魔法光辉";
+    tell_room(env,what+"逐渐消散了。", ({ owner }));
     if(owner){
-        tell_object(owner,"%^BOLD%^%^CYAN%^Your magical glow fades away."+
+        tell_object(owner,"%^BOLD%^%^CYAN%^你的魔法光辉逐渐消散了。"+
                 "%^RESET%^");
     }
     ::eventDestruct();
@@ -36,8 +36,8 @@ protected void create() {
     AddSave( ({ "Duration" }) );
     SetKeyName("magic glow");
     SetId( ({ "magic glow spell"}));
-    SetShort("a brilliant glow");
-    SetLong("A magical source of light.");
+    SetShort("明亮的光辉");
+    SetLong("一个魔法光源。");
     SetMass(0);
     SetPreventDrop(1);
     SetInvis(1);
@@ -69,7 +69,7 @@ void heart_beat(){
 
 string GetAffectLong(object ob) {
     if(!ob || !living(ob)) return 0;
-    return "There is a magical glow around " + ob->GetName() + ".";
+    return ob->GetName() + "周围环绕着魔法光辉。";
 }
 
 int CanSell(){

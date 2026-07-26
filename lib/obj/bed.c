@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("bed");
     SetId( ({ "bed" }) );
     SetAdjectives( ({ "generic","nondescript"}) );
-    SetShort("a generic bed");
-    SetLong("A nondescript bed.");
+    SetShort("普通床铺");
+    SetLong("一张不起眼的床。");
     SetMass(400);
     SetBaseCost("silver",150);
     SetMaxSitters(2);

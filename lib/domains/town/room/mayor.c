@@ -6,8 +6,8 @@ protected void create() {
     SetTown("town");
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Mayor's office");
-    SetLong("This is the rather cramped office of the town's mayor. Despite\na fair amount of clutter, it seems well suited to the mayor's \nworking style and habits.");
+    SetShort("镇长办公室");
+    SetLong("这是镇长相当狭小的办公室。尽管有些杂乱，但似乎很适合镇长的工作风格和习惯。");
     SetProperties (([
                 "no attack":1, 
                 "no bump":1, 

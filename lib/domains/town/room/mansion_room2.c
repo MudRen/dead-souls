@@ -21,17 +21,14 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Mansion Guest Room West");
-    SetLong("You are in the west upstairs guest room of the mansion. "
-            "The room is sumptuously appointed and furnished. "
-            "It looks as though nobody has dusted here in a "
-            "very long time. ");
+    SetShort("庄园西客房");
+    SetLong("你在庄园楼上的西客房里。房间装饰和家具都很豪华。看起来已经很久没有人打扫这里了。");
     SetExits( ([
                 "east" : "/domains/town/room/mansion_uhall1"
                 ]) );
-    SetItems( ([ 
-                ({"here","area","place","room"}) : "A guest room in the mansion.",
-                "dust" : "There's some dust here, a bit more than one might expect in such a nice place.",
+    SetItems( ([
+                ({"here","area","place","room"}) : "庄园里的一间客房。",
+                "dust" : "这里有一些灰尘，在这样好的地方，灰尘比预期的要多一些。",
                 ]) );
     SetInventory(([
                 "/domains/town/obj/gbed" : 1,

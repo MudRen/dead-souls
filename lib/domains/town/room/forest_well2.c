@@ -41,15 +41,15 @@ void create() {
     SetAmbientLight(30);
     SetDayLight(30);
     SetNightLight(30);
-    SetShort("Spring bottom");
-    SetLong("This is the bedrock floor of a natural spring. A passage leads up.\n%^BLUE%^There is a large, glowing egg here.%^RESET%^");
+    SetShort("泉底");
+    SetLong("这是天然泉水的基岩底部。一条通道向上延伸。\n%^BLUE%^这里有一颗巨大的发光蛋。%^RESET%^");
     SetClimate("temperate");
     SetTown("wilderness");
     SetTerrainType(T_SEAFLOOR);
     SetMedium(MEDIUM_WATER);
     SetItems( ([
-                ({ "shaft","passage" }) : "An underwater vertical passage.",
-                ({ "egg","large egg","large glowing egg","glowing egg" }) : "About a meter in diameter, this large egg seems to glow and pulsate with energy.",
+                ({ "shaft","passage" }) : "一条水下垂直通道。",
+                ({ "egg","large egg","large glowing egg","glowing egg" }) : "这颗直径约一米的巨大蛋似乎在发光，并随着能量脉动。",
                 ]) );
     SetExits(([
                 "up" : "/domains/town/room/forest_well1",

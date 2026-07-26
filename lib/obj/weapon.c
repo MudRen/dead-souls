@@ -10,8 +10,8 @@ protected void create() {
     SetKeyName("generic weapon");
     SetId( ({ "weapon"}));
     SetAdjectives( ({ "generic" }));
-    SetShort("a generic weapon");
-    SetLong("A weapon of indeterminate proportions.");
+    SetShort("普通武器");
+    SetLong("一件尺寸不定的武器。");
     SetMass(50);
     SetVendorType(VT_WEAPON);
     SetClass(30);

@@ -6,13 +6,10 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Mansion Master Bedroom");
-    SetLong("You are in the master bedroom. The decor here is "
-            "beautiful, ornate, and extravagant. It is obvious that "
-            "the people who live here are rich and possess great "
-            "taste. ");
+    SetShort("庄园主卧");
+    SetLong("你在主卧室里。这里的装饰华丽、精美、奢华。显然住在这里的人既富有又有很高的品味。");
     SetItems( ([
-                "decor" : "Impressive, ornate, and beautiful.",
+                "decor" : "令人印象深刻，华丽而美丽。",
                 ]) );
     SetInventory( ([
                 "/domains/town/obj/bed" : 1,

@@ -9,9 +9,8 @@ void create(){
     SetKeyName("generic quest object");
     SetId( ({"thing","item","thang","dingus", "object"}) );
     SetAdjectives( ({"generic","sample","template","quest"}) );
-    SetShort("a generic quest object");
-    SetLong("This is a relic of an older time, and here for "+
-            "compatibility purposes.");
+    SetShort("普通任务物品");
+    SetLong("这是一个古老时代的遗物，为了兼容性而存在。");
     SetMass(20);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

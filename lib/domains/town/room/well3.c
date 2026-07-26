@@ -5,15 +5,15 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(0);
-    SetShort("Dry Spring");
-    SetLong("This small, dark chamber appears to have been carved out of the bedrock, and contains a hole bored into the floor. Considering the difficulty of digging into such solid stuff, this wellwater system must have taken a fortune and a vast amount of labor to construct. A door leads east to the water tunnel and the well.");
+    SetShort("干涸泉眼");
+    SetLong("这个狭小黑暗的房间似乎是从基岩中开凿出来的，地板上钻有一个洞。考虑到在如此坚硬的物质中挖掘的难度，这套井水系统一定花费了大量金钱和人力来建造。一扇门向东通往水道隧道和水井。");
     SetItems(([
-                ({ "hole", "floor" }) : "This hole appears to be where spring water enters to flood the chamber and fill the well east of here. ",
-                ({ "dirt", "dust" }) : "There's plenty of that here. Empty wells rarely get much priority on cleaning day.",
-                ({ "bottom", "well" }) : "Dirty, musty, and unpleasant.",
-                ({ "vermin", "rats", "bugs" }) : "Looks like they're hiding from you at the moment.",
-                "haven" : "A nice place for vermin.",
-                ({ "rock", "bedrock" }) : "This is dense, hard stuff deep underground.",
+                ({ "hole", "floor" }) : "这个洞似乎是泉水流入并注满东边水井的入口。",
+                ({ "dirt", "dust" }) : "这里到处都是灰尘。废弃的水井在清洁日很少受到重视。",
+                ({ "bottom", "well" }) : "肮脏、发霉、令人不快。",
+                ({ "vermin", "rats", "bugs" }) : "看起来它们现在正躲着你。",
+                "haven" : "害虫的好去处。",
+                ({ "rock", "bedrock" }) : "这是地下深处致密坚硬的岩石。",
                 ]));
     SetFlowLimit(3);
     SetExits( ([

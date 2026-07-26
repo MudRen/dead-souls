@@ -5,11 +5,11 @@ protected void create() {
     room::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("a narrow path");
-    SetLong("This is a narrow path running north and south through a dense forest. The thick vegetation makes travel off the path impossible.");
+    SetShort("狭窄小径");
+    SetLong("这是一条南北向穿过茂密森林的狭窄小径。茂密的植被使得偏离小径变得不可能。");
     SetItems(([
-                ({ "path", "trail" }) : "A very narrow path that seems threatened all around by the looming woods. It's hard to imagine what force might have cut this thin trail into the vegetation here.",
-                ({ "forest", "wood", "vegetation" }) : "All around is vegetation growing so incredibly dense that it is impossible to wander off the path.",
+                ({ "path", "trail" }) : "一条非常狭窄的小径，四周似乎受到迫近的树林威胁。很难想象是什么力量在这里的植被中开辟出这条小径。",
+                ({ "forest", "wood", "vegetation" }) : "四周的植被生长得异常茂密，让人无法偏离小路。",
                 ]));
     SetSkyDomain("town");
     SetExits( ([

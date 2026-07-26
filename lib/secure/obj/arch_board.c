@@ -9,8 +9,8 @@ void create(){
     SetKeyName("chalkboard");
     SetId(({ "board", "chalkboard" }));
     set_board_id("admin_board");
-    SetShort("The Arch Board");
-    SetLong("This is the Arch board. You know how to use it.");
+    SetShort("管理员公告板");
+    SetLong("这是管理员公告板。你知道怎么使用它。");
 }
 
 void init(){

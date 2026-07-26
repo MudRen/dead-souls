@@ -82,7 +82,7 @@ void init()
 
 int ReadScreen()
 {
-    write("stargate network status\n");
+    write("星门网络状态\n");
     write("-----------------------\n");
     write("\n");
 

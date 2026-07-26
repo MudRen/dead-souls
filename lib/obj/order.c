@@ -7,8 +7,8 @@ void create(){
     SetKeyName("generic thing");
     SetId( ({"thing","item","thang","dingus"}) );
     SetAdjectives( ({"generic","sample","template"}) );
-    SetShort("a generic thing");
-    SetLong("This is an object of indeterminate nature and proportions.");
+    SetShort("普通物品");
+    SetLong("这是一个性质和尺寸不定的物品。");
     SetMass(20);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

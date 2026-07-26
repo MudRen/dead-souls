@@ -5,13 +5,10 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Mansion Guest Room East");
-    SetLong("You are in the east upstairs guest room of the mansion. "
-            "The room is sumptuously appointed and furnished. "
-            "The state of the bed suggests that someone has "
-            "been staying here recently.");
+    SetShort("庄园东客房");
+    SetLong("你在庄园楼上的东客房里。房间装饰和家具都很豪华。床的状态表明最近有人在这里住过。");
     SetItems( ([
-                ({"furniture","furnishings"}) : "Comfortable and attractive."
+                ({"furniture","furnishings"}) : "舒适而美观。"
                 ]) );
     SetExits( ([
                 "west" : "/domains/town/room/mansion_uhall1"

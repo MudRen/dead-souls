@@ -12,8 +12,8 @@ protected void create() {
     SetKeyName("cambot");
     SetId( ({"bot", "robot"}) );
     SetAdjectives(({"non-player", "non player"}));
-    SetShort("a cambot");
-    SetLong("This is a metallic sphere, about one foot in diameter, with numerous lenses affixed to its surface.");
+    SetShort("摄像机器人");
+    SetLong("这是一个金属球体，直径约一英尺，表面装有许多镜头。");
     SetPosition(POSITION_FLYING);
     SetLevel(1);
     SetPacifist(1);
@@ -110,12 +110,12 @@ int eventTurnOn(object ob){
         return 1;
     }
     if(!archp(this_player())){
-        write("This is an arch-level cambot. You may not tamper with it.");
+        write("这是管理员级别的摄像机器人。你不能摆弄它。");
         return 0;
     }
     if(!recording){
-        write("You turn on the cambot.");
-        say(this_player()->GetName()+" turns on a cambot.");
+        write("你打开了摄像机器人。");
+        say(this_player()->GetName()+"打开了摄像机器人。");
         SetShort(baseshort+" %^BOLD%^RED%^%^FLASH%^recording%^RESET%^");
         if(!sizeof(recfile)) recfile = truncate(generate_tmp(),2)+".txt";
         write("Recording file is: "+recfile);
@@ -132,12 +132,12 @@ int eventTurnOn(object ob){
 varargs mixed eventTurnOff(string str){
     if(this_player() != environment()  && environment(this_player()) !=environment()) { write("It isn't within reach."); return 1; }
     if(!archp(this_player())){
-        write("This is an arch-level cambot. You may not tamper with it.");
+        write("这是管理员级别的摄像机器人。你不能摆弄它。");
         return 0;
     }
     if(recording){
-        write("You turn off the cambot.");
-        say(this_player()->GetName()+" turns off a cambot.");
+        write("你关闭了摄像机器人。");
+        say(this_player()->GetName()+"关闭了摄像机器人。");
         SetShort(baseshort);
         recording = 0;
         return 1;
@@ -178,7 +178,7 @@ int eventForce(string str){
 
 int eventMove(mixed dest){
     if(recording){
-        write("Cambot cannot move while in recording mode.");
+        write("摄像机器人在录制模式下无法移动。");
         return 0;
     }
     else return sentient::eventMove(dest);
@@ -186,7 +186,7 @@ int eventMove(mixed dest){
 
 int eventMoveLiving(mixed dest){
     if(recording){
-        write("Cambot cannot travel while in recording mode.");
+        write("摄像机器人在录制模式下无法移动。");
         return 0;
     }
     else return sentient::eventMoveLiving(dest);

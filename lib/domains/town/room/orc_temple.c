@@ -5,19 +5,13 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(15);
-    SetShort("The Orc Fortress");
-    SetLong("You are deep in the orc stronghold. Like the rest of the fortress you have seen, this looks hastily put together and rather clumsily built, with poor maintenance besides. This is some kind of ceremonial chamber or temple. Dried blood surrounds a raised altar, and skulls of various types adorn the walls. The rest of the fort is east of here.");
+    SetShort("兽人堡垒");
+    SetLong("你深入兽人据点的腹地。就像你见过的堡垒其他部分一样，这里看起来是匆忙搭建的，建造得相当笨拙，而且维护很差。这里是某种仪式室或神殿。干涸的血迹环绕着一个高起的祭坛，各种头骨装饰着墙壁。堡垒的其他部分在东边。");
     SetItems(([
-                ({ "skull","skulls" }) : "You see some skulls whose race you "+
-                "recognize, but most you don't. There is at least one "+
-                "human skull here. Some of them are so fresh they are "+
-                "still wet and have tissue hanging from them.",
-                ({"chamber","ceremonial chamber","temple"}) : "A place "+
-                "where orcish rituals are performed.",
-                ({"blood","dried blood"}) : "Evidently the ground around "+
-                "the altar has collected blood from whatever happens on "+
-                "the altar.",
-                ({"wall","walls"}) : "Rough-hewn walls of earth and wood.",
+                ({ "skull","skulls" }) : "你看到一些你能认出种族的头骨，但大多数你认不出来。这里至少有一个人类头骨。有些头骨非常新鲜，还是湿的，上面还挂着组织。",
+                ({"chamber","ceremonial chamber","temple"}) : "一个进行兽人仪式的地方。",
+                ({"blood","dried blood"}) : "显然祭坛周围的地面收集了祭坛上发生的事件所产生的血迹。",
+                ({"wall","walls"}) : "粗糙的土木墙壁。",
                 ]) );
     SetExits( ([ 
                 "east" : "/domains/town/room/orc_fortress",

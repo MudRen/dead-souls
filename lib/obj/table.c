@@ -8,8 +8,8 @@ void create() {
     SetKeyName("generic table");
     SetId( ({ "table","surface" }) );
     SetAdjectives( ({ "generic"}) );
-    SetShort("a generic table");
-    SetLong("It is a surface that can hold things.");
+    SetShort("普通桌子");
+    SetLong("这是一个可以放置物品的平面。");
     SetBaseCost("silver",1);
     SetMaxCarry(500);
 

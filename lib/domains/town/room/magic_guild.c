@@ -34,15 +34,10 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("The Mages' Guild");
-    SetLong("This is the local mage's guild. Here you can ask "+
-            "the guildmaster to let you join, or to teach you spells. "+
-            "For example, you may \"ask herkimer to join\" or "+
-            "\"ask herkimer to teach missile\". The magic shop "+
-            "is north."
-            "\n%^GREEN%^There is a list of spells you can read.%^RESET%^");
+    SetShort("法师公会");
+    SetLong("这里是当地的法师公会。你可以在这里请求公会会长让你加入，或者教你法术。例如，你可以 \"ask herkimer to join\" 或 \"ask herkimer to teach missile\"。魔法商店在北边。\n%^GREEN%^这里有一份你可以阅读的法术清单。%^RESET%^");
     SetItems( ([
-                ({"list","list on the wall"}) : "A list of available spells",
+                ({"list","list on the wall"}) : "一份可用法术的清单",
                 ]) );
     SetInventory(([
                 "/domains/town/npc/herkimer" : ({60, 1}),

@@ -6,19 +6,13 @@ protected void create() {
     room::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("East Village Road");
-    SetNightLong("You are on a long road, lit by a lamp post. The general store is north. The road stretches east and west through the town. The Adventurers' Guild is south.");
-    SetDayLong("You are on a long road. The general store is north. The road stretches east and west through the town. The Adventurers' Guild is south.");
+    SetShort("东村路");
+    SetNightLong("你在一条长长的路上，由灯柱照亮。杂货店在北边。道路东西贯穿城镇。冒险者公会在南边。");
+    SetDayLong("你在一条长长的路上。杂货店在北边。道路东西贯穿城镇。冒险者公会在南边。");
     SetItems( ([
-                ({"adventurers guild","guild"}) : "This small "
-                "building on the southern side of the road is where "
-                "adventurers, great and small, come to record "
-                "their exploits and seek advancement.",
-                ({"shop","store","general store"}) : "This is the "
-                "general store, where almost anything can be "
-                "bought or sold.",
-                ({"road","long road"}) : "An east-west cobblestone "
-                "road through town.",
+                ({"adventurers guild","guild"}) : "路南边的这座小建筑是冒险者们——无论大小——来记录他们的功绩并寻求晋升的地方。",
+                ({"shop","store","general store"}) : "这是杂货店，几乎任何东西都可以在这里买卖。",
+                ({"road","long road"}) : "一条东西走向、贯穿城镇的鹅卵石路。",
                 ]) );
     SetSkyDomain("town");
     AddTerrainType(T_ROAD);

@@ -27,32 +27,17 @@ protected void create() {
     room::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("Mansion Gate");
-    SetLong("You are standing just north of the gate to a large, "+
-            "beautiful mansion, which stands to the south. The "+
-            "Corinthian capitals on the front pillars bespeak "+
-            "of the wealth and importance of the person who "+
-            "lives here. Lush ivy wraps around the gate and the "+
-            "brick wall surrounding the estate.");
+    SetShort("庄园大门");
+    SetLong("你正站在一座宏伟美丽庄园的大门北边，庄园矗立在南边。前柱上的科林斯柱头彰显着居住于此之人的财富与地位。茂盛的常春藤缠绕着大门和环绕庄园的砖墙。");
     SetItems( ([
-                "gate" : "A handsome, wrought-iron entry control point.",
-                ({"estate", "mansion"}) : "The grounds of a mansion are to the south.",
+                "gate" : "一道漂亮的锻铁入口关卡。",
+                ({"estate", "mansion"}) : "南边是庄园的领地。",
                 ({"capital","capitals","corinthian capital","corinthian capitals"}) :
-                "These are the headpieces of the pillars supporting the "
-                "mansion's front overhang. The beautifully detailed "
-                "carvings of encanthus leaves distinguish them as "
-                "Corinthian.",
-                ({"overhang","front overhang"}) : "A fancy and unnecessary "
-                "structure in front of the mansion supported by "
-                "columns.",
-                ({"pillar","pillars","column","columns"}) : "Load-bearing "
-                "structures supporting the mansion's front overhang.",
-                ({"ivy","lush ivy"}) : "Vines of the ivy plant run "
-                "over and along the walls and gate, so thickly that "
-                "they nearly obscure them.",
-                ({"wall","walls"}) : "Architectural features which prevent "
-                "casual entry. They are made of brick and appear old "
-                "and strong.",
+                "这些是支撑庄园前廊悬挑的柱头。精美的莨苕叶雕刻使其具有科林斯风格。",
+                ({"overhang","front overhang"}) : "庄园前方由柱子支撑的华丽而不必要的建筑结构。",
+                ({"pillar","pillars","column","columns"}) : "支撑庄园前廊悬挑的承重结构。",
+                ({"ivy","lush ivy"}) : "常春藤的藤蔓沿着墙壁和大门蔓延，茂密得几乎将它们遮蔽。",
+                ({"wall","walls"}) : "防止随意进入的建筑结构。它们由砖块砌成，看起来古老而坚固。",
                 ]) );
     SetSkyDomain("town");
     SetExits( ([

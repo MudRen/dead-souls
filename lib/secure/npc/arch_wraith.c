@@ -76,9 +76,9 @@ int eventDrain(mixed args...){
             default: break;
         }
         if(which < 100){
-            tell_object(enemy,"The wraith drains your vital essence!");
-            tell_room(environment(this_object()), "The wraith drains "+
-                    enemy->GetName()+" of precious bodily essence!", ({ enemy }));
+            tell_object(enemy,"幽灵吸取了你的生命精华！");
+            tell_room(environment(this_object()), "幽灵吸取了"+
+                    enemy->GetName()+"的宝贵身体精华！", ({ enemy }));
         }
     }
     return 0;
@@ -91,8 +91,8 @@ protected void create() {
     SetKeyName("archwraith");
     SetAdjectives( ({"arch", "shadowy", "undead", "unholy", "malevolent", "spiteful"}) );
     SetId( ({"archwraith", "wraith", "specter", "ghost", "apparition", "manifestation"}) );
-    SetShort("an archwraith");
-    SetLong("This shadowy manifestation is an undead, unholy apparition, oozing malevolence and spite.");
+    SetShort("幽灵领主");
+    SetLong("这个阴暗的存在是一个亡灵、邪恶的幽灵，散发着恶意和怨恨。");
     SetPosition(POSITION_FLYING);
     SetRace("wraith");
     SetClass("fighter");

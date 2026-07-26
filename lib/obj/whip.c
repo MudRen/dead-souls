@@ -19,13 +19,12 @@ int eventDematerialize(){
         return 1;
     }
     if(owner){
-        what = owner->GetName()+"'s energy whip";
+        what = owner->GetName()+"的能量鞭";
     }
-    else what = "The energy whip";
-    tell_room(env,what+" fades away and disappears.", ({ owner }));
+    else what = "能量鞭";
+    tell_room(env,what+"逐渐消散，消失了。", ({ owner }));
     if(owner){
-        tell_object(owner,"%^CYAN%^Your energy whip fades away and  "
-                "disappears.%^RESET%^");
+        tell_object(owner,"%^CYAN%^你的能量鞭逐渐消散，消失了。%^RESET%^");
     }
     ::eventDestruct();
     return 1;
@@ -41,8 +40,8 @@ protected void create() {
     SetKeyName("energy whip");
     SetId( ({ "whip"}));
     SetAdjectives( ({ "energy","magic","magical" }));
-    SetShort("an energy whip");
-    SetLong("A whip made of magical energy");
+    SetShort("能量鞭");
+    SetLong("一条由魔法能量制成的鞭子。");
     SetMass(0);
     SetVendorType(VT_WEAPON);
     SetClass(30);

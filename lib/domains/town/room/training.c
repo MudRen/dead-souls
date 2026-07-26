@@ -5,15 +5,13 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("the training area");
-    SetLong("You are in a large room with a very high ceiling, mirrored walls, and a hardwood floor. This area is designed for skills training, though at the moment no workshops are scheduled. The rest of the Adventurers' Guild is downstairs.");
+    SetShort("训练区");
+    SetLong("你在一个天花板很高、墙壁装有镜子、地板为硬木的大房间里。这个区域是为技能训练设计的，不过目前没有安排任何研讨会。冒险者公会的其他部分在楼下。");
     SetItems( ([
-                ({"wall","walls"}) : "The walls have mirrors set into them.",
-                ({"mirror","mirrors"}) : "Peekaboo!",
-                ({"hardwoord floor", "floor"}) : "The floor is made of polished wood, and is "+
-                "reminiscent of what you might expect in a dancing school.",
-                ({"ceiling","high ceiling"}) : "The high, vaulted ceiling "+
-                "provides plenty of headroom." 
+                ({"wall","walls"}) : "墙壁上镶嵌着镜子。",
+                ({"mirror","mirrors"}) : "躲猫猫！",
+                ({"hardwoord floor", "floor"}) : "地板由抛光木材制成，让人联想到舞蹈学校的地板。",
+                ({"ceiling","high ceiling"}) : "高高的拱形天花板提供了充足的空间。"
                 ]) );
     SetExits( ([ 
                 "down" : "/domains/town/room/adv_guild",

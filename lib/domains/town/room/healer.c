@@ -26,18 +26,13 @@ protected void create() {
     ::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("The Healers Guild");
-    SetLong("You are in the Healer's Guild. People come "
-            "here when they have medical problems, and "
-            "for a price, they are helped. "
-            "It seems that the doctor's work area is "
-            "west of here. Saquivor Road is east."
-            "\n%^GREEN%^There is a list here you can read.%^RESET%^");
+    SetShort("治疗师公会");
+    SetLong("你在治疗师公会里。人们遇到医疗问题时会来这里，付出一定费用就能得到帮助。医生的工作区似乎在西边。萨奎沃路在东边。\n%^GREEN%^这里有一份你可以阅读的清单。%^RESET%^");
     SetItems( ([
-                ({"list","list on the wall"}) : "A list of available procedures",
-                "wall" : "A flat, vertical structure supporting the ceiling.",
-                ({"work area","doctor's work area"}) : "It is west of here.",
-                ({"road","tavern road"}) : "The road is outside, east of here."
+                ({"list","list on the wall"}) : "一份可用治疗项目的清单",
+                "wall" : "支撑天花板的平坦垂直结构。",
+                ({"work area","doctor's work area"}) : "在西边。",
+                ({"road","tavern road"}) : "道路在外面，东边。"
                 ]) );
     SetRead( ({"list","list on wall"}) , (: ReadList :) );
     SetInventory(([

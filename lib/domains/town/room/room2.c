@@ -5,8 +5,8 @@ protected void create() {
     room::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("a generic place");
-    SetLong("This is an utterly plain, blank place.");
+    SetShort("普通之地");
+    SetLong("这是一个极其普通、空白的地方。");
 }
 void init(){
     ::init();

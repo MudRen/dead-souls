@@ -25,16 +25,15 @@ void create(){
                 "lastchecked","lastmessage"}));
     SetKeyName("answering machine");
     SetId( ({"machine","voicemail"}) );
-    SetShort("an answering machine");
-    SetLong("This is a portable answering machine. There is a label on "
-            "it you can read.");
+    SetShort("答录机");
+    SetLong("这是一台便携式答录机。上面有一个可以阅读的标签。");
     SetItems(([
-                "label" : "A label you can read.",
+                "label" : "一个你可以阅读的标签。",
                 ]));
     SetRead(([
                 "label" : (: read_it :),
                 ]));
-    SetDefaultRead("Try: read label on machine");
+    SetDefaultRead("试试：read label on machine");
     SetProperties(([
                 "no steal" : 1,
                 ]));
@@ -78,8 +77,7 @@ void heart_beat(){
         count = 0;
         if(lastchecked < lastmessage){
             if(environment()){
-                environment()->eventPrint("The answering machine %^GREEN%^"+
-                        "BEEPS%^RESET%^.");
+                environment()->eventPrint("答录机%^GREEN%^哔哔%^RESET%^响了。");
             }
         }
     }
@@ -117,7 +115,7 @@ int tellforward(string str){
 int toggle_answer(string str){
     if(str=="on"){
         if(state==1){
-            write("The answering machine is already on.\n");
+            write("答录机已经打开了。\n");
             return 1;
         }
         state=1;
@@ -126,14 +124,14 @@ int toggle_answer(string str){
         logged=1;
         unguarded( (: owner = this_player() :) );
         unguarded( (: name = this_player()->GetKeyName() :) );
-        this_object()->log_it("*** Answering machine activated on "+
-                local_ctime(time())+".\n");
-        write("The answering machine is on.\n");
+        this_object()->log_it("*** 答录机于"+
+                local_ctime(time())+"激活。\n");
+        write("答录机已打开。\n");
         return 1;
     }
     if(str=="off"){
         if(state==0){
-            write("The machine is already turned off.\n");
+            write("答录机已经关闭了。\n");
             return 1;
         }
         state=0;
@@ -146,7 +144,7 @@ int toggle_answer(string str){
         tempy=0;
         forwardee=0;
         forwarding=0;
-        write("The answering machine is off.\n");
+        write("答录机已关闭。\n");
         return 1;
     }
 }
@@ -209,7 +207,7 @@ protected int final(){
 int set_ann(string str){
     if(!validate()) return 0;
     if(!state){
-        write("The machine is not turned on.\n");
+        write("答录机没有打开。\n");
         return 1;
     }
     announce=str;
@@ -223,9 +221,8 @@ int get_ann(){
         unguarded( (: announce=read_file(homedir(owner)+"/log/annc") :) );
     }
     if(!sizeof(announce)){
-        announce=capitalize(name)+" cannot "+
-            "answer your tell right now. Your message has been recorded "+
-            "and "+nominative(owner)+" will get back to you as soon as possible.";
+        announce=capitalize(name)+"现在无法回复你的消息。"+
+            "你的消息已被记录，"+nominative(owner)+"会尽快回复你。";
     }
     return 1;
 }
@@ -241,13 +238,11 @@ int check_mess(string str){
 
 string read_it(string str){
     string ret = "\n"+
-        "answer on/off   - on activates the machine. off doesn't.\n"+
-        "announce <msg>  - '<msg>' is whatever you want the sender to see.\n"+
-        "tells           - lists messages by date, time and sender.\n"+
-        "erase tape      - erases all messages on the machine.\n"+
-        "archive tape    - copies tape onto backup archive file.\n"+
-        //"tellforward <name>  - Forwards any tells you receive to the "+
-        //"person specifed. Use with GREAT caution.\n"+
+        "answer on/off   - on激活答录机，off关闭。\n"+
+        "announce <消息> - '<消息>'是发送者看到的内容。\n"+
+        "tells           - 按日期、时间和发送者列出消息。\n"+
+        "erase tape      - 删除答录机上的所有消息。\n"+
+        "archive tape    - 将磁带复制到备份归档文件。\n"+
         "\n"+
         "\n";
     return ret;
@@ -256,7 +251,7 @@ string read_it(string str){
 int erase(string str){
     if(!validate()) return 1;
     if(str=="tape"){
-        write("You erase the answering machine tape.\n");
+        write("你擦除了答录机磁带。\n");
         rm(homedir(owner)+"/log/messages");
         return 1;
     }
@@ -266,8 +261,7 @@ int arch_it(string str){
     string temp;
     if(!validate()) return 0;
     if(str=="tape"){
-        write("You save the contents of the answering machine tape "
-                "into "+homedir(owner)+"/log/archive.\n");
+        write("你将答录机磁带的内容保存到"+homedir(owner)+"/log/archive。\n");
         temp=read_file(homedir(owner)+"/log/messages");
         write_file(homedir(owner)+"/log/archive", temp);
         return 1;

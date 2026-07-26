@@ -24,8 +24,8 @@ void create() {
     SetKeyName("post box");
     SetId( ({ "post box", "box", POSTAL_ID }) );
     SetAdjectives( ({ "post", "a", "imaginary" }) );
-    SetShort("a post box");
-    SetLong("A post box.");
+    SetShort("邮箱");
+    SetLong("一个邮箱。");
     SetProperty("no steal", 1);
     SetInvis(1);
     SetMass(0);

@@ -12,15 +12,14 @@ varargs string readMenu() {
 void create(){
     ::create();
     SetAmbientLight(30);
-    SetShort("Harry's Pub");
-    SetLong("Harry's Pub is a simple place where lonely sailors pass the time away and talk about their homes. Known to serve some mean drinks and customers, the place is clean and spare, with few things to break over someone's head. A menu on the wall lists the available refreshments. There appears to be some kind of back room to the west.");
+    SetShort("哈里酒吧");
+    SetLong("哈里酒吧是一个简单的地方，孤独的水手们在这里消磨时光，谈论他们的家乡。这里以供应烈酒和粗鲁的顾客闻名，但地方干净整洁，没什么东西可以砸在别人头上。墙上的菜单列出了可用的饮品。西边似乎有个后屋。");
     SetClimate("indoors");
     SetItems( ([
-                ({"wall", "walls"}) : "If only they could speak, eh?",
-                "menu" : "A menu you can read. Oddly it has as its logo a severed "+
-                "wolf's head on a stick.",
-                ({"room","back room"}) : "Perhaps a storage area.",
-                "harry" : "Nobody's seen Harry since the jive ring thing.",
+                ({"wall", "walls"}) : "要是墙壁能说话就好了，对吧？",
+                "menu" : "一份你可以阅读的菜单。奇怪的是，它的标志是一颗插在棍子上的狼头。",
+                ({"room","back room"}) : "也许是个储藏区。",
+                "harry" : "自从那件假戒指的事之后，就没人见过哈里了。",
                 ]) );
     SetSkyDomain("town");
     SetRead("menu", (: readMenu :) );

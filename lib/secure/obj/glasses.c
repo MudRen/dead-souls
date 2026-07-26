@@ -24,8 +24,8 @@ protected void create(){
     //qcs staff
     SetId(({"tanstaafl"}));
     SetAdjectives(({"wire", "rimmed"}));
-    SetShort("wire-rimmed glasses");
-    SetLong("A pair of glasses with magic properties for Creators.");
+    SetShort("金属框眼镜");
+    SetLong("一副具有魔法属性的创造者眼镜。");
     SetMass(5);
     SetDamagePoints(1);
     SetProtection(BLUNT,1);

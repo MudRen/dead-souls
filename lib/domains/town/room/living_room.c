@@ -5,14 +5,14 @@ protected void create() {
     room::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("living room");
-    SetLong("This is the living room of the old house. It is a small, modest home, apparently constructed with an eye toward practicality rather than fanciness. A doorway north leads to the front porch.");
+    SetShort("客厅");
+    SetLong("这是老房子的客厅。这是一座简朴的小房子，显然是以实用性而非华丽为建造目标。北边的门廊通往前廊。");
     SetItems(([
-                ({ "forest", "wood", "vegetation" }) : "All around is vegetation growing so incredibly dense that it is impossible to wander off the path.",
-                ({ "porch", "front porch" }) : "The wooden front porch of an old white house.",
-                ({ "trail", "path" }) : "To the north, a narrow path leads into the woods.",
-                ({ "clearing", "woods" }) : "As if by powerful magic, the woods clear here, where the house stands.",
-                ({ "house", "white house", "old house" }) : "The house looks weatherbeaten, ill maintained, and rather old. Its construction is of an archaic design no longer used. Despite its abused appearance, the house seems to have a quiet dignity about it, as if many people had been its friends over the years, and it simply waited for their return.",
+                ({ "forest", "wood", "vegetation" }) : "四周的植被生长得异常茂密，让人无法偏离小路。",
+                ({ "porch", "front porch" }) : "一座白色旧房子的木质前廊。",
+                ({ "trail", "path" }) : "北边有一条狭窄的小路通向树林。",
+                ({ "clearing", "woods" }) : "仿佛有某种强大的魔法，树林在这里变得开阔，房子就矗立于此。",
+                ({ "house", "white house", "old house" }) : "这座房子看起来饱经风霜、年久失修，相当老旧。它的建筑风格已经过时。尽管外表破旧，这座房子似乎有一种静谧的尊严，仿佛多年来许多人曾是它的朋友，而它只是在等待他们的归来。",
                 ]));
     SetInventory(([
                 "/domains/town/obj/sofa" : 1,

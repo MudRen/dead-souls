@@ -8,14 +8,14 @@ protected void create() {
     meal::create();
     SetKeyName("meal");
     SetId(({"meal","generic meal"}));
-    SetShort("a generic meal");
-    SetLong("This is a generic meal.");
+    SetShort("普通餐食");
+    SetLong("这是一顿普通餐食。");
     SetMass(10);
     SetStrength(20);
     SetBaseCost("silver",10);
     SetMealType(MEAL_FOOD);
-    SetMealMessages("You eat your food. Mmm!",
-            "$N eats $P food.");
+    SetMealMessages("你吃完了食物。嗯！",
+            "$N吃完了$P的食物。");
     SetNoCondition(1);
 }
 void init(){

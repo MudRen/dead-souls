@@ -106,10 +106,9 @@ void create(){
     SetKeyName("weirding module");
     SetId( ({"module", "box", "weirder"}) );
     SetAdjectives( ({"small","featureless","black"}) );
-    SetShort("a small black box");
-    SetLong("A small, featureless black box. Whatever it is, "
-            "you are somehow deeply certain it is not your business, "
-            "and you must leave it alone.");
+    SetShort("小黑盒");
+    SetLong("一个小型、无特征的黑盒子。不管它是什么，"+
+            "你内心深处确信这不关你的事，你最好不要碰它。");
     SetMass(20);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

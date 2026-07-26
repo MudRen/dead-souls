@@ -8,8 +8,8 @@ protected void create() {
     SetKeyName("chair");
     SetId("chair");
     SetAdjectives( ({ "generic","nondescript" }) );
-    SetShort("a generic chair");
-    SetLong("A nondescript chair.");
+    SetShort("普通椅子");
+    SetLong("一把不起眼的椅子。");
     SetMass(150);
     SetDollarCost(15);
     SetMaxSitters(1);

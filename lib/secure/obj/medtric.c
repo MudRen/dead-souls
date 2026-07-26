@@ -11,45 +11,37 @@ int allowed,statpoints,statlevel,statclass,tempint,i;
 int skilllevel,skillclass,skillpoints;
 string name;
 string *stumps;
-string warning = "We remind you that the tricorder cannot speak. In the event "+
-"that it does speak, you are instructed to disregard its advice.";
+string warning = "我们提醒你，三录仪不会说话。如果它真的说话了，"+
+"请忽略它的建议。";
 
 void create(){
     item::create();
     SetKeyName("creator tricorder");
     SetId(({"tricorder","scanner","device","tool","medtric","tric"}));
     SetAdjectives(({"electronic","admin","diagnostic"}));
-    SetShort("a medical tricorder");
-    SetLong("This is a palm-sized electronic device designed to run various "+
-            "medical tests and provide treatment of disease and injury. "+
-            "Written in bold red letters across its face are the words: \"%^BOLD%^RED%^FOR AUTHORIZED TEST CHARACTER "+
-            "USE ONLY%^RESET%^\".\n%^YELLOW%^NOTE: Some functions do not work "+
-            "with drones. This is due to safeguards in the master object security "+
-            "model, and it will not be \"fixed\".%^RESET%^\n"+
-            "There is a warning on the tricorder you can read.\n"+
-            "\n Labeled buttons on this device read:\n"+
-            //"* medscan: scan for disease, poison, etc\t%^RED%^offline%^RESET%^\n"+
-            "* fscan: readout of all files inherited\t\t%^GREEN%^ONLINE%^RESET%^\n"+
-            //"* enshadow: move a shadow to an object\t\t%^RED%^offline%^RESET%^\n"+
-            "* deshadow: remove all shadows from an object\t%^GREEN%^ONLINE%^RESET%^\n"+
-            //"* inject: insert substance into patient\t\t%^RED%^offline%^RESET%^\n"+
-            "* extract: remove a foreign body or substance\t%^GREEN%^ONLINE%^RESET%^ (slugs only)\n"+
-            "* modhealth: raise or lower health level\t%^GREEN%^ONLINE%^RESET%^\n"+
-            "* modcaff: raise or lower caffeine level\t%^GREEN%^ONLINE%^RESET%^\n"+
-            "* modalc: raise or lower alcohol level\t\t%^GREEN%^ONLINE%^RESET%^\n"+
-            "* modfood: raise or lower food level\t\t%^GREEN%^ONLINE%^RESET%^\n"+
-            "* moddrink: raise or lower drink level\t\t%^GREEN%^ONLINE%^RESET%^\n"+
-            "* modmag: raise or lower magic level\t\t%^GREEN%^ONLINE%^RESET%^\n"+
-            "* modstam: raise or lower stamina\t\t%^GREEN%^ONLINE%^RESET%^\n"+
-            "* modtox: raise or lower poison\t\t\t%^GREEN%^ONLINE%^RESET%^\n"+
-            "* setskill: set skill level\t\t\t%^GREEN%^ONLINE%^RESET%^\n"+
-            "* setstat: set stat level\t\t\t%^GREEN%^ONLINE%^RESET%^\n"+
-            "* amputate: remove limb\t\t\t\t%^GREEN%^ONLINE%^RESET%^\n"+
-            "* regenerate: restore all amputated limbs\t%^GREEN%^ONLINE%^RESET%^\n"+
-            "* cure: eliminate known diseases\t\t%^GREEN%^ONLINE%^RESET%^\n"+
-            "* infect: introduce disease into patient\t%^GREEN%^ONLINE%^RESET%^\n"+
-            //"* inoculate: raise immunity to a disease\t%^RED%^offline%^RESET%^\n"+
-            //"* posture: change your own posture.\t\t%^RED%^offline%^RESET%^\n"+
+    SetShort("医疗三录仪");
+    SetLong("这是一款掌上电子设备，设计用于进行各种医疗测试并提供疾病和伤害的治疗。"+
+            "其表面用粗体红字写着：\"%^BOLD%^RED%^仅供授权测试角色使用%^RESET%^\"。\n%^YELLOW%^注意：某些功能对无人机无效。"+
+            "这是由于主对象安全模型中的保护措施，不会被\"修复\"。%^RESET%^\n"+
+            "三录仪上有一条警告，你可以阅读。\n"+
+            "\n 设备上的标记按钮显示：\n"+
+            "* fscan: 读取所有继承的文件\t\t%^GREEN%^在线%^RESET%^\n"+
+            "* deshadow: 移除对象上的所有阴影\t%^GREEN%^在线%^RESET%^\n"+
+            "* extract: 移除异物或物质\t\t%^GREEN%^在线%^RESET%^（仅限弹丸）\n"+
+            "* modhealth: 提高或降低生命值\t\t%^GREEN%^在线%^RESET%^\n"+
+            "* modcaff: 提高或降低咖啡因水平\t%^GREEN%^在线%^RESET%^\n"+
+            "* modalc: 提高或降低酒精水平\t\t%^GREEN%^在线%^RESET%^\n"+
+            "* modfood: 提高或降低食物水平\t\t%^GREEN%^在线%^RESET%^\n"+
+            "* moddrink: 提高或降低饮水水平\t\t%^GREEN%^在线%^RESET%^\n"+
+            "* modmag: 提高或降低魔法水平\t\t%^GREEN%^在线%^RESET%^\n"+
+            "* modstam: 提高或降低体力\t\t%^GREEN%^在线%^RESET%^\n"+
+            "* modtox: 提高或降低毒素\t\t\t%^GREEN%^在线%^RESET%^\n"+
+            "* setskill: 设置技能等级\t\t\t%^GREEN%^在线%^RESET%^\n"+
+            "* setstat: 设置属性等级\t\t\t%^GREEN%^在线%^RESET%^\n"+
+            "* amputate: 移除肢体\t\t\t%^GREEN%^在线%^RESET%^\n"+
+            "* regenerate: 恢复所有截断的肢体\t%^GREEN%^在线%^RESET%^\n"+
+            "* cure: 消除已知疾病\t\t\t%^GREEN%^在线%^RESET%^\n"+
+            "* infect: 向患者引入疾病\t\t%^GREEN%^在线%^RESET%^\n"+
             "");
     SetRead( "default" , warning);
     SetRead( "warning", warning );
@@ -101,27 +93,26 @@ varargs int preAction(int restricted){
     if(!this_player()) return 0;
 
     if(!present(tricorder, scanner)){
-        write("You are not holding the tricorder.");
+        write("你没有拿着三录仪。");
         return 2;
     }
 
     if(restricted && !creatorp(this_player())){
-        write("This function is not permitted to builders.");
+        write("此功能不允许建筑者使用。");
         return 2;
     }
     if(!builderp(this_player())){
-        write("Your puny mortal mind can't wrap itself around the use "
-                "of this powerful instrument.");
+        write("你渺小的凡人之心无法理解这个强大工具的用法。");
         log_file("adm/tricorder",capitalize(this_player()->GetKeyName())+
                 " attempted to use the medical tricorder: "+timestamp()+"\n");
-        tell_creators("SECURITY: "+capitalize(this_player()->GetKeyName())+
-                " attempted to use the medical tricorder.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        tell_creators("安全警告："+capitalize(this_player()->GetKeyName())+
+                "试图使用医疗三录仪。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 2;
     }
 
-    say(scanner->GetName()+" operates a medical tricorder.",scanner);
-    write("The tricorder makes a low, warbling sound.");
+    say(scanner->GetName()+"操作着医疗三录仪。",scanner);
+    write("三录仪发出低沉的嗡嗡声。");
     return 1;
 }
 

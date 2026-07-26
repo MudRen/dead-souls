@@ -19,17 +19,16 @@ void create(){
     ::create();
     SetKeyName("string replacer");
     SetId(({"replacer","thing","gadget","string replacer","device"}));
-    SetShort("a string replacer");
-    SetLong("This is the most dangerous device on the mud.\n"+
-            "It allows you to replace strings in files.\n"+
-            "To use it, you must first \"turn on replacer\"\n"+
-            "Then you have two options:\n"+
-            "To replace a word in one file: replace <filename> <oldword> <newword>\n"+
-            "To replace a word in EVERY FILE IN YOUR CURRENT WORKING DIRECTORY:\n autorep <oldword> <newword>\n\n"+
-            "It does not handle spaces or special characters well. Using "+
-            "strings with parentheses, brackets, or anything other than "+
-            "the english alphabet may have unexpected results."+
-            "\n%^RED%^%^BOLD%^ADMIN USE ONLY!%^RESET%^");
+    SetShort("字符串替换器");
+    SetLong("这是MUD上最危险的设备。\n"+
+            "它允许你替换文件中的字符串。\n"+
+            "要使用它，你必须先\"turn on replacer\"\n"+
+            "然后你有两个选择：\n"+
+            "替换一个文件中的单词：replace <文件名> <旧词> <新词>\n"+
+            "替换当前工作目录中每个文件中的单词：\n autorep <旧词> <新词>\n\n"+
+            "它不能很好地处理空格或特殊字符。使用带有括号、方括号或"+
+            "英语字母以外的任何内容的字符串可能会产生意想不到的结果。"+
+            "\n%^RED%^%^BOLD%^仅供管理员使用！%^RESET%^");
     SetMass(20);
     SetValue(10);
     SetVendorType(VT_TREASURE);
@@ -43,8 +42,7 @@ void init(){
 
 int eventActivate(){
     validate();
-    write("With an unearthly roar, the string replacer comes "+
-            "to life. You sense great danger.");
+    write("随着一声诡异的轰鸣，字符串替换器启动了。你感到了巨大的危险。");
     write("\n\nWARNING: Your current working directory is:\n\n");
     write(this_player()->query_cwd()+"\n\n");
     say(this_player()->GetName()+" turns on "+possessive(this_player())+
@@ -56,10 +54,8 @@ int eventActivate(){
 
 int eventDeactivate(){
     validate();
-    write("The string replacer powers off with a peculiar "+
-            "mechanical whine. You feel safer.");
-    say(this_player()->GetName()+"'s string replacer "+
-            "powers down.");
+    write("字符串替换器伴随着奇特的机械声关闭了。你感觉安全了。");
+    say(this_player()->GetName()+"的字符串替换器关闭了。");
     active = 0;
     return 1;
 }

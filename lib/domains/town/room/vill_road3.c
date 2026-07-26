@@ -6,13 +6,13 @@ protected void create() {
     room::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("East Village Road");
-    SetNightLong("A lamp-lit long road going through the village. Town Hall is north. The main part of the town is west of here.");
-    SetDayLong("A long road going through the village. Town Hall is north. The main part of the town is west of here.");
+    SetShort("东村路");
+    SetNightLong("一条灯光照亮的长路穿过村庄。市政厅在北边。城镇的主要部分在西边。");
+    SetDayLong("一条长路穿过村庄。市政厅在北边。城镇的主要部分在西边。");
     SetItems(([
-                ({ "office", "post office" }) : "Mail can be received and sent from the post office.",
-                ({ "building", "buildings" }) : "Structures designed for human occupancy.",
-                ({ "hall", "town hall" }) : "This is the modest building where official town business takes place.",
+                ({ "office", "post office" }) : "可以在邮局收发邮件。",
+                ({ "building", "buildings" }) : "供人类居住的建筑结构。",
+                ({ "hall", "town hall" }) : "这是一座朴素的建筑，镇上公务在此办理。",
                 ]));
     SetSkyDomain("town");
     SetExits( ([ 

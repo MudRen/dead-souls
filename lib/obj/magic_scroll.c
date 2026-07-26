@@ -10,10 +10,9 @@ inherit OBJECT ;
 void create() {
     ::create();
     set ("id", ({ "scroll" }) ) ;
-    set ("short", "a magical scroll") ;
+    set ("short", "魔法卷轴") ;
     set ("long",
-            "This is a magic scroll on which spells can be written. At the moment
-            "+"it is blank.\n") ;
+            "这是一张可以在上面书写法术的魔法卷轴。目前它是空白的。\n") ;
     set ("mass", 10) ;
     set ("bulk", 4) ;
 }
@@ -32,7 +31,7 @@ void set_spell (string str) {
     //	set ("spell", str) ;
     //	set ("short", "A scroll of "+str) ;
     set ("long",
-            "This is a magic scroll with the "+str+" spell written on it.\n") ;
+            "这是一张写有"+str+"法术的魔法卷轴。\n") ;
 }
 
 int write_scroll (string str) {
@@ -44,14 +43,14 @@ int write_scroll (string str) {
     //		notify_fail ("You don't know any "+str+" spell to write.\n") ;
     //		return 0 ;
     //	}
-    write ("You write the "+str+" spell onto the scroll.\n") ;
+    write ("你将"+str+"法术写在了卷轴上。\n") ;
     //	set_spell(str) ;
     return 1 ;
 }
 
 int read_scroll (string str) {
     if (!query("spell")) {
-        write("You haven't written any spells on the scroll.\n");
+        write("你还没有在卷轴上写任何法术。\n");
         return 1;
     }
     //	if (str!="scroll" && str!="scroll of "+query("spell")) return 0 ;
@@ -75,11 +74,10 @@ int cast_args (string str) {
 
 int help (string str) {
     if (str!="scroll") return 0 ;
-    write ("If you know the read spell, you can cast it on the scroll and\n"+
-            "you will learn the spell written on the scroll, if there is one.\n"+
-            "If you don't know the read spell, you should find someone who can\n"+
-            "teach it to you.\n"+
-            "You can also simply \"read\" the scroll and cast the spell written\n"+
-            "on it, but if you do that you will not learn the spell.\n") ;
+    write ("如果你会阅读法术，你可以对卷轴施放它，\n"+
+            "你将学会卷轴上写的法术（如果有的话）。\n"+
+            "如果你不会阅读法术，你应该找一个能教你的人。\n"+
+            "你也可以直接\"阅读\"卷轴并施放上面写的法术，\n"+
+            "但这样做你不会学会该法术。\n") ;
     return 1 ;
 }

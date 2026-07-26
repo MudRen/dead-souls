@@ -27,32 +27,32 @@ void SetType(string what) {
     SetGender(({"female","male"})[random(2)]);
     switch(what) {
         case "rodent":
-            SetLong("A cute little chipmunk.");
-            SetShort("a chipmunk");
+            SetLong("一只可爱的小花栗鼠。");
+            SetShort("花栗鼠");
             SetKeyName("chipmunk");
             SetId(({"chipmunk"}));
             break;
         case "bear":
-            SetLong("A big black bear.");
-            SetShort("a bear");
+            SetLong("一只大黑熊。");
+            SetShort("黑熊");
             SetId(({"bear"}));
             SetKeyName("bear");
             break;
         case "golem":
-            SetLong("A threatening looking golem.");
-            SetShort("a golem");
+            SetLong("一个面目狰狞的石魔像。");
+            SetShort("石魔像");
             SetId(({"golem"}));
             SetKeyName("golem");
             break;
         case "unicorn":
-            SetLong("A noble unicorn.");
-            SetShort("a unicorn");
+            SetLong("一只高贵的独角兽。");
+            SetShort("独角兽");
             SetId(({"unicorn"}));
             SetKeyName("unicorn");
             break;
         case "dragon":
-            SetLong("A huge dragon with a threatening visage.");
-            SetShort("a dragon");
+            SetLong("一条面目狰狞的巨大龙。");
+            SetShort("巨龙");
             SetId(({"dragon"}));
             SetKeyName("dragon");
             break;

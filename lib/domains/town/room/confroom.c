@@ -13,7 +13,7 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(40);
-    SetShort("Conference Room");
+    SetShort("会议室");
     SetLong((: ExtraDesc :));
     SetInventory(([
                 "/domains/town/obj/chair" : 4,
@@ -117,8 +117,8 @@ int privacy(string str){
 }
 
 string ExtraDesc(){
-    string extra = "%^YELLOW%^A privacy force field is active around this room.%^RESET%^";
-    string desc = "This is an enchanted room, with the magical power to prevent uninvited people from entering. It is used for meetings where three or more people need to share information without interruption or privately. To enable privacy, 'privacy on'. To disable it, 'privacy off'. The privacy field automatically deactivates after approximately 20 minutes.\n";
+    string extra = "%^YELLOW%^隐私力场已在此房间周围激活。%^RESET%^";
+    string desc = "这是一间附魔房间，拥有阻止未受邀者进入的魔法力量。用于三个或更多人需要不受打扰地私下分享信息的会议。要启用隐私，输入 'privacy on'。要禁用，输入 'privacy off'。隐私力场大约20分钟后会自动关闭。\n";
     if(privacy) return desc+extra;
-    else return desc+"%^RED%^The privacy field is DISABLED.";
+    else return desc+"%^RED%^隐私力场已禁用。";
 }

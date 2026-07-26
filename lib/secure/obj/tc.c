@@ -12,14 +12,14 @@ protected void create()
     string myname = mud_name();
     item::create();
     SetKeyName("telnet_room_client");
-    SetShort( "a telnet client" ) ;
+    SetShort( "telnet客户端" ) ;
     SetId(({"client","telnet client"}));
-    SetLong( "It's a small pocket sized telnet terminal.\n"
-            "It appears customized to connect to Dead Souls MUD only.\n"
-            "Use 'telnet' or 'connect' to begin.\n\nCommands:\n"
-            "[connect|telnet] : start telnet session.\nreset [client]"
-            " : reset the telnet client.\nreconnect : reconnect to session"
-            " (if you go netdead)\n");
+    SetLong( "这是一个小型口袋大小的telnet终端。\n"+
+            "它似乎是专门定制用于连接Dead Souls MUD的。\n"+
+            "使用'telnet'或'connect'开始。\n\n命令：\n"+
+            "[connect|telnet] : 开始telnet会话。\nreset [client]"+
+            " : 重置telnet客户端。\nreconnect : 重新连接到会话"+
+            "（如果你断线了）\n");
     SetMass(0) ;
     attempting = 0 ;
     connected = 0 ;
@@ -58,10 +58,10 @@ int do_reconnect()
 {
     if( !connected )
     {
-        notify_fail( "The telnet client is not connected!\n" ) ;
+        notify_fail( "telnet客户端未连接！\n" ) ;
         return 0 ;
     }
-    write("Reconnecting into telnet session.\n");
+    write("重新连接到telnet会话。\n");
     person = this_player() ;
     input_to( "parse_comm", 0 ) ;
     return 1 ;
@@ -78,7 +78,7 @@ int do_reset( string args )
     {
         return 0 ;
     }
-    write("Resetting telnet client ...\n");
+    write("正在重置telnet客户端...\n");
     if( connected )
     {
         if( socket )
@@ -90,17 +90,17 @@ int do_reset( string args )
     connected = 0 ;
     socket = 0 ;
     person = 0 ;
-    write("Done!\n");
+    write("完成！\n");
     return 1 ;
 }
 
 string help()
 {
     return "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"
-        "  Usage : connect [ip_address] [port]\n"
+        "  用法：connect [IP地址] [端口]\n"
         "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"
-        "Note: use telnet port number 23 if you \n"
-        "      are connecting to a normal site. \n"
+        "注意：如果你连接的是普通站点，\n"
+        "      请使用telnet端口号23。\n"
         "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n" ;
 }
 
@@ -115,8 +115,7 @@ varargs int do_connect(string args, object whom)
     if(args != DS_IP){
         if(!this_player()) return 1;
         if(!telnet_privp(this_player())){
-            this_player()->eventPrint("You aren't a member of the group of users permitted "
-                    "to use this mud's telnet facility.");
+            this_player()->eventPrint("你不是允许使用此MUD telnet设施的用户组成员。");
             return 1;
         }
     }
@@ -133,12 +132,12 @@ varargs int do_connect(string args, object whom)
     }
     if( attempting )
     {
-        notify_fail( "Telnet connection attempt already in progress.\n" ) ;
+        notify_fail( "telnet连接尝试已在进行中。\n" ) ;
         return 0 ;
     }
     if( connected )
     {
-        notify_fail( "Already connected...\n" ) ;
+        notify_fail( "已经连接...\n" ) ;
         return 0 ;
     }
     new_socket = socket_create( STREAM, "read_callback", "close_callback" ) ;
@@ -147,36 +146,36 @@ varargs int do_connect(string args, object whom)
         switch( new_socket )
         {
             case EEMODENOTSUPP :
-                error = "Socket mode not supported.\n" ;
+                error = "不支持的套接字模式。\n" ;
                 break ;
             case EESOCKET :
-                error = "Problem creating socket.\n" ;
+                error = "创建套接字时出现问题。\n" ;
                 break ;
             case EESETSOCKOPT :
-                error = "Problem with setsockopt.\n" ;
+                error = "setsockopt出现问题。\n" ;
                 break ;
             case EENONBLOCK :
-                error = "Problem with setting non-blocking mode.\n" ;
+                error = "设置非阻塞模式时出现问题。\n" ;
                 break ;
             case EENOSOCKS :
-                error = "No more available efun sockets.\n" ;
+                error = "没有更多可用的efun套接字。\n" ;
                 break ;
             case EESECURITY :
-                error = "Security violation attempted.\n" ;
+                error = "检测到安全违规尝试。\n" ;
                 break ;
             default :
-                error = "Unknown error code: " + new_socket + ".\n" ;
+                error = "未知错误代码：" + new_socket + "。\n" ;
                 break ;
         }
-        notify_fail( "Unable to connect, problem with socket_create.\n"
-                "Reason: " + error ) ;
+        notify_fail( "无法连接，socket_create出现问题。\n"
+                "原因：" + error ) ;
         return 0 ;
     }
     sc_result = socket_connect( new_socket, ip_address + " " + port,
             "read_callback", "write_callback" ) ;
     if( sc_result != EESUCCESS )
     {
-        notify_fail( "Failed to connect.\n" ) ;
+        notify_fail( "连接失败。\n" ) ;
         return 0 ;
     }
     attempting = 1 ;
@@ -197,13 +196,13 @@ void close_callback( int fd )
 {
     if( connected )
     {
-        write("Connection closed by foreign host.\n");
+        write("连接被远程主机关闭。\n");
     }
     if( attempting )
-    {       
-        write("Attempt failed.\n");
+    {
+        write("连接尝试失败。\n");
     }
-    write("Type 'dcon' to finalize exit.\n");
+    write("输入'dcon'以完成退出。\n");
     socket_close( fd ) ;
     attempting = 0 ;
     connected = 0 ;
@@ -220,7 +219,7 @@ int parse_comm( string str )
 {
     if(str=="dcon" || str=="quit")
     {
-        write("You return from your visit to another mud!\n");
+        write("你从访问另一个MUD返回了！\n");
         socket_close( socket ) ;
         attempting = 0 ;
         connected = 0 ;
@@ -231,14 +230,13 @@ int parse_comm( string str )
     } else {
         if( !connected )
         {
-            write("You are not connected. Type 'dcon' to exit.\n");
+            write("你未连接。输入'dcon'退出。\n");
             input_to( "parse_comm", 0 ) ;
             return 1 ;
         }
         if( attempting )
         {
-            write("Please wait, still attempting connection, "
-                    "type 'dcon' to exit.\n");
+            write("请等待，仍在尝试连接，输入'dcon'退出。\n");
             input_to( "parse_comm", 0 ) ;
             return 1 ;
         }

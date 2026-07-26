@@ -52,15 +52,15 @@ protected void create() {
     fishing::create();
     SetClimate("outdoors");
     SetAmbientLight(30);
-    SetShort("Shore Edge");
-    SetNightLong("You are on the shore, at the far eastern end of town. A road travels west into the heart of town. A great sea stretches out into the eastern horizon. A lone lamp post lights this area. \n%^GREEN%^There is a sign here you can read.%^RESET%^");
-    SetDayLong("You are on the shore, at the far eastern end of town. A road travels west into the heart of town. A great sea stretches out into the eastern horizon. \n%^GREEN%^There is a sign here you can read.%^RESET%^");
+    SetShort("海岸边缘");
+    SetNightLong("你在海岸上，位于城镇的最东端。一条道路向西通往城镇中心。辽阔的大海向东方的地平线延伸。一盏孤灯照亮了这片区域。\n%^GREEN%^这里有一块你可以阅读的告示牌。%^RESET%^");
+    SetDayLong("你在海岸上，位于城镇的最东端。一条道路向西通往城镇中心。辽阔的大海向东方的地平线延伸。\n%^GREEN%^这里有一块你可以阅读的告示牌。%^RESET%^");
     SetItems( ([
-                "sign":"A sign on the ground. To read it, 'read sign'.",
-                "ground":"The local surface.",
-                "horizon":"Where the sky loves the sea.",
-                "town":"A population center to the west.",
-                "road":"Leads west, to the town.",
+                "sign":"地上的一块告示牌。输入 'read sign' 来阅读。",
+                "ground":"脚下的地面。",
+                "horizon":"天空与大海相接之处。",
+                "town":"西边的一处人口聚集地。",
+                "road":"通往西边城镇的道路。",
                 ]) );
     SetExits( ([
                 "west" : "/domains/town/room/vill_road4",

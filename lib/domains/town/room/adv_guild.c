@@ -11,17 +11,12 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("The Adventurers' Guild");
-    SetLong("This small building is where adventurers can record their adventures and leave messages and announcements for other brave souls. This is also the place one can seek advancement, so if you deserve to be a higher level adventurer, asking the guild master for it will make it so. A scroll lists quests one may perform, and a sign contains some instructions. The Creator's Hall is south of here. A special skills training area is upstairs. A conference room is east, where folks can discuss things in privacy.");
+    SetShort("冒险者公会");
+    SetLong("这是一座小型建筑，冒险者们可以在此记录他们的冒险经历，并为其他勇敢的灵魂留下消息和公告。这里也是寻求晋升的地方，如果你有资格成为更高级别的冒险者，向公会会长提出请求即可。一份卷轴列出了可以完成的任务，一块告示牌上写着一些说明。创造者大厅在南边，楼上是特殊技能训练区。东边有一间会议室，供人们私下讨论事务。");
     SetItems( ([
-                ({ "list","scroll"}) : "A scroll hangs from the wall, listing "
-                "some adventures you can perform which may have rewards "
-                "for you.",
-                ({"sign","instructions"}) : "This sign contains some "
-                "general instructions on how to gain experience and "
-                "attain advancement.",
-                ({"building","small building","here"}) : "You are in the "
-                "Adventurers' Guild.",
+                ({ "list","scroll"}) : "一份卷轴挂在墙上，列出了你可以完成的一些冒险任务，完成后可能会获得奖励。",
+                ({"sign","instructions"}) : "这块告示牌上写着关于如何获取经验值和获得晋升的一般性说明。",
+                ({"building","small building","here"}) : "你正身处冒险者公会之中。",
                 ]) );
     SetExits( ([
                 "north" : "/domains/town/room/vill_road2",

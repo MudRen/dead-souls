@@ -11,8 +11,8 @@ protected void create() {
     SetTown("town");
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Registrar of Voters");
-    SetLong("This small office is where people come to perform their civic duty of voting. Here you may also 'nominate CANDIDATE'. There is a list of candidates here. The main area of the town hall is southwest.");
+    SetShort("选民登记处");
+    SetLong("这间小办公室是人们履行投票公民义务的地方。你也可以在这里 'nominate 候选人'。这里有一份候选人名单。市政厅的主厅在西南方。");
     SetItems( ([ "list" : "This is the list of candidates." ]) );
     SetExits( ([ 
                 "southwest" : "/domains/town/room/thall",

@@ -7,18 +7,15 @@ protected void create() {
     SetAmbientLight(30);
     SetNightLight(10);
     SetDayLight(30);
-    SetShort("Forest Path");
-    SetLong("You are in a forest outside the town. To the southwest the path continues toward a clearing. To the east it leads to a bridge over a river toward a town. Trees and bushes of various kinds border the path making it impossible to go south but to the north the vegetation is less dense.");
+    SetShort("森林小径");
+    SetLong("你在城镇外的一片森林中。西南方向的小径通向一片空地，东边通向一座跨越河流、通往城镇的桥。各种树木和灌木丛生在小径两旁，使得无法向南前进，但北边的植被较为稀疏。");
     SetItems( ([
-                "forest" : "You are on a path in a dark, creepy forest. The "
-                "vegetation is thick and feels somehow oppressive.",
-                ({"plants","bushes","vegetation","tree","trees","bush"}) : 
-                "The plants, bushes, and trees grow thick and wild "
-                "here, limiting visibility beyond the path.",
-                "bridge" : "An old bridge is east of here.",
-                "clearing" : "It looks like there is a clearing in the "
-                "forest to the west.",
-                "path" : "You are on a path in a forest."
+                "forest" : "你在一条黑暗、令人毛骨悚然的森林小径上。植被茂密，给人一种压抑的感觉。",
+                ({"plants","bushes","vegetation","tree","trees","bush"}) :
+                "植物、灌木和树木在这里生长得茂密而野性，限制了小径以外的视野。",
+                "bridge" : "东边有一座古老的桥。",
+                "clearing" : "西边的森林里似乎有一片空地。",
+                "path" : "你在森林中的一条小径上。"
                 ]) );
     SetSkyDomain("town");
     SetExits( ([

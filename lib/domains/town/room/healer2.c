@@ -5,8 +5,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Healer's Guild Storeroom");
-    SetLong("This blank room is where the guild keeps their junk.");
+    SetShort("治疗师公会储藏室");
+    SetLong("这间空荡荡的房间是公会存放杂物的地方。");
     SetInventory(([
                 "/domains/town/meals/claritin" : 20,
                 "/domains/town/obj/slip_heal" : 100,

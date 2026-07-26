@@ -7,14 +7,12 @@ void create(){
     SetId("generic trainer");
     SetGender("male");
     SetRace("human");
-    SetShort("a generic trainer");
-    SetLong("This is a person whose job it is to teach you things. "+
-            "For example, 'ask trainer "+
-            "to teach wibbling' would prompt him to begin a wibble learning "+
-            "lesson with you, if wibbling is in his skill set and you have "+
-            "earned sufficient training points. If you lack training points, then "+
-            "do some adventuring and earn a level promotion. You will "+
-            "then be awarded training points."); 
+    SetShort("普通训练师");
+    SetLong("这是一个教你技能的人。"+
+            "例如，'ask trainer to teach wibbling'会让他开始教你wibbling技能，"+
+            "前提是他会这项技能，并且你有足够的训练点数。"+
+            "如果你缺少训练点数，那就去冒险升级吧。"+
+            "升级后你将获得训练点数。");
     SetLevel(1);
     AddTrainingSkills( ({"wibbling"}));
 }

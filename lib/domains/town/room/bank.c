@@ -6,15 +6,14 @@ protected void create() {
     bank::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("First Village Bank");
-    SetLong("This simple place is the hub of financial activity for the village. Though not at all a fancy institution, this bank is trusted by the citizenry as being as safe as it gets for keeping their money.\n%^GREEN%^A sign you can read hangs here.%^RESET%^");
+    SetShort("村庄第一银行");
+    SetLong("这个简朴的地方是村庄金融活动的中心。虽然算不上什么豪华机构，但村民们信任这家银行，认为它是存放钱财最安全的地方。\n%^GREEN%^这里挂着一块你可以阅读的告示牌。%^RESET%^");
     SetInventory( ([
         "/domains/town/npc/zoe" : ({60, 1})
       ]) );
     SetItems( ([
-        "sign" : "A sign you can read.",
-        ({"bank","First Village Bank"}) : "The primary financial "
-        "institution in town.",
+        "sign" : "一块你可以阅读的告示牌。",
+        ({"bank","First Village Bank"}) : "镇上主要的金融机构。",
       ]) );
     SetExits( ([
         "west" : "/domains/town/room/mountain_road.c",

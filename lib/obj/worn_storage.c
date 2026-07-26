@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("generic worn storage");
     SetId(({"thing","worn_storage","storage","article"}));
     SetAdjectives(({"article of","generic","worn"}));
-    SetShort("a generic article of worn storage");
-    SetLong("This is a thing that can be worn which can also hold things.");
+    SetShort("普通穿戴式储物装备");
+    SetLong("这是一件可以穿戴的装备，也可以容纳物品。");
     SetCanClose(1);
     SetMaxCarry(100);
     SetMass(200);

@@ -23,12 +23,12 @@ protected void create() {
     SetKeyName("wedding ring");
     SetId( ({ "ring", "official wedding ring" }) );
     SetAdjectives( ({ "golden", "gold" }) );
-    SetShort("a wedding ring of gold");
+    SetShort("金质结婚戒指");
     SetLong( (:RealLong:) );
     SetVendorType(VT_ARMOR | VT_MAGIC);
     SetMass(10);
     SetValue(0);
-    SetPreventDrop("You may not drop your wedding ring!");
+    SetPreventDrop("你不能丢弃你的结婚戒指！");
     SetRetainOnDeath(1);
     SetDamagePoints(1000000);
     SetProtection(BLUNT, 3);
@@ -58,7 +58,6 @@ string SetSpouse(string str) {
 string GetSpouse() { return Spouse; }
 
 string RealLong() {
-    return ("This beautiful golden band was given to you by " +
-            GetSpouse() + " to capture your eternal love.");
+    return ("这枚美丽的金戒指是" + GetSpouse() + "送给你的，象征着你们永恒的爱情。");
 }
 

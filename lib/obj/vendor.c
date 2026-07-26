@@ -8,9 +8,9 @@ protected void create() {
     SetKeyName("vendor");
     SetId( ({ "shopkeep" }) );
     SetAdjectives( ({ "generic" }) );
-    SetShort("a generic vendor");
+    SetShort("普通商人");
     SetLevel(1);
-    SetLong("A nondescript person whose job it is to sell things.");
+    SetLong("一个不起眼的人，工作是出售物品。");
     SetGender("male");
     SetRace("human");
     SetSkill("bargaining", 1);

@@ -14,11 +14,10 @@ void create(){
     SetKeyName("snooper object");
     SetId( ({"thing","item","thang","dingus","snooper","object"}) );
     SetAdjectives( ({"invisible","snooper","snoop"}) );
-    SetShort("an invisible object");
-    SetLong("This is an object of indeterminate nature and proportions. "
-            "It is intentionally invisible, and your attempts to "
-            "understand it may constitute a security breach. You'd "
-            "be well advised to leave it alone.");
+    SetShort("隐形对象");
+    SetLong("这是一个性质和尺寸不定的对象。"+
+            "它是故意隐形的，你试图理解它的行为可能构成安全漏洞。"+
+            "你最好不要碰它。");
     SetInvis(1);
     set_heart_beat(10);
     SetNoClean(1);

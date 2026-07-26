@@ -6,13 +6,11 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Network room");
-    SetLong("This is where all network messages go. It is an extremely "
-            "noisy and uncomfortable location, just like network rooms all around "
-            "the world. It is here for debugging and troubleshooting purposes, so "
-            "if that's not what you're doing, you should probably leave. " 
-            "The arch room is above. The router room is south. "
-            "The catch_tell room is east.");
+    SetShort("网络室");
+    SetLong("这是所有网络消息的汇集处。这是一个极其嘈杂和不舒适的地方，"+
+            "就像世界各地的网络室一样。它是为了调试和故障排除而存在的，"+
+            "所以如果你不是在做这些，你可能应该离开。"+
+            "管理员房间在上面。路由器室在南边。catch_tell室在东边。");
     SetExits( ([
                 "south" : "/secure/room/router",
                 "up" : "/secure/room/arch",
@@ -22,8 +20,7 @@ protected void create() {
 }
 int CanReceive(object ob) {
     if( !archp(ob) ){
-        message("info","The network room is available only to "+
-                "admins, sorry.",ob);
+        message("info","网络室仅供管理员使用，抱歉。",ob);
         return 0;
     }
     return 1;
