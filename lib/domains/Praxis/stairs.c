@@ -7,16 +7,16 @@ void create() {
     SetProperty("light", 1);
     SetProperty("indoors", 1);
     SetProperty("no castle", 1);
-    SetShort( "Monastary stairwell");
+    SetShort( "修道院楼梯间");
     SetLong(
-            "A spiraling flight of stairs leads up to the monastery "
-            "attic and down to the cellar.  The prayer area is west.");
-    SetExits( 
+            "一段螺旋楼梯向上通往修道院阁楼，向下通往地窖。"
+            "祈祷区在西边。");
+    SetExits(
             (["west" : "/domains/Praxis/monastery",
              "up" : "/domains/Praxis/monk_join",
              "down" : "/domains/Praxis/immortal_hall"]) );
     SetItems(
-            (["stairs" : "They spiral up and down in this old monastery."]) );
+            (["stairs" : "它们在这座古老的修道院里螺旋上升和下降。"]) );
     SetProperty("no castle", 1);
 }
 void init(){

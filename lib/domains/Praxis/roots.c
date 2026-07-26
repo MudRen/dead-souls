@@ -5,32 +5,27 @@ void create() {
     object for_test_only;
 
     ::create();
-    SetShort("among the roots of the tree");
+    SetShort("在树根之间");
     SetLong(
-            "Here, among the huge, stalactite-like roots of the fabled mages' tree, a "+
-            "large room has been excavated. All moisture is magically funneled to the "+
-            "roots, so the air here is very dry. Apart from the tree itself (and the "+
-        "occasional mage), no life dares intrude upon the silence of this place. "+
-            "In the center of this room, a small pedestral juts up from the ground, while, "+
-            "Close to the north wall, a donations box reminds you of your financial "+
-            "responsibility to your class. A small stairway to the east leads up into "+
-            "the heart of the mage tree. ");
+            "在这里，在传说中的法师树巨大钟乳石般的根部之间，一个大房间"
+            "被挖掘出来。所有的水分都被魔法引导到根部，所以这里的空气非常干燥。"
+            "除了树本身（偶尔还有法师），没有生命敢打扰这里的寂静。"
+            "房间中央，一个小基座从地面突出，而在北墙附近，一个捐款箱"
+            "提醒你对职业的财务责任。东边的小楼梯通往法师树的核心。");
     SetProperties( (["light"     : 2, 
                 "indoors"   : 1 ,
                 "no castle" : 1]) );
     SetItems( ([
                 "room"       :  (: this_object(), "print_long" :),
-                "tree"       : "You are among the roots of the tree.",
-                "north wall" : "Near the north wall of the tree there's a donation box",
-                "wall"       : "Near the north wall of the tree there's a donation box",
-                "roots"      : "These enormous roots supply nourishment for the immense mage "+
-                "tree. According to legend, the roots reach the very core of "+
-                "the world, effectively making the mage tree as permanent as "+
-                "the Earth. ",
-                "stairway"   : "The stairway has been carved out of the roots.  It seems "+
-                "unsturdy, but as soon as you step on it you are reassured, "+
-                "for the stairway partakes of the infinite stability of the "+
-                "tree itself. "]) );
+                "tree"       : "你在树根之间。",
+                "north wall" : "树的北墙附近有一个捐款箱",
+                "wall"       : "树的北墙附近有一个捐款箱",
+                "roots"      : "这些巨大的根部为庞大的法师树提供养分。"
+                "根据传说，根部直达世界的核心，"
+                "有效地使法师树像地球一样永久存在。",
+                "stairway"   : "楼梯是从根部雕刻出来的。看起来不太坚固，"
+                "但当你踏上去时你就放心了，"
+                "因为楼梯分享了树本身的无限稳定性。"]) );
     SetExits( (["up" : "/domains/Praxis/mage_hall"]) );
     //box = new("/realms/nialson/mages/donation");
     //box->move(this_object());

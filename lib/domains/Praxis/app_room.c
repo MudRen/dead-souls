@@ -8,11 +8,10 @@ void create() {
                 "light":2,
                 "indoors":1
                 ]) );
-    SetShort("approval room");
-    SetLong("This is the meeting room of the approval team. In this room "
-            "problems, suggestions and new approval changes can be posted on the "
-            "board so that everyone is informed about the newest stuff. Up from this "
-            "room is the hall of immortals.");
+    SetShort("审批室");
+    SetLong("这是审批团队的会议室。在这个房间里，"
+            "问题、建议和新的审批变更可以发布在布告板上，"
+            "以便每个人都能了解最新动态。楼上是不朽者大厅。");
     SetExits( ([
                 "up": __DIR__ "adv_inner"
                 ]) );

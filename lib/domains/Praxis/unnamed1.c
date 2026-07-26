@@ -7,13 +7,12 @@ void create() {
     SetProperty("light", 2);
     SetProperty("night light", 1);
     SetProperty("no castle", 1);
-    SetShort( "Outside the financial district");
+    SetShort( "金融区外");
     SetLong(
-            "Leading out east into the rural lands outside of Praxis, this unnamed "
-            "dirt road sits almost entirely untravelled.  The business district "
-            "of Praxis is west.");
-    SetItems( 
-            (["road" : "It is temporarily blocked going east."]) );
+            "向东通往普拉克西斯郊外的乡村地带，这条无名土路"
+            "几乎无人行走。普拉克西斯的商业区在西边。");
+    SetItems(
+            (["road" : "向东的路暂时被封锁了。"]) );
     SetSkyDomain("town");
     SetExits( ([ 
                 "west" : "/domains/Praxis/s_centre3",

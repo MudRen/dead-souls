@@ -3,8 +3,8 @@ inherit "/lib/std/room";
 void create() {
     int i;
     ::create();
-    SetShort( "Adventurer's Supply Storage Room");
-    SetLong( "Horace stores weapons and such here.");
+    SetShort( "冒险者杂货储藏室");
+    SetLong( "霍勒斯在这里存放武器等物品。");
     SetExits( 
             (["south" : "/domains/Praxis/supply"]) );
     new("/domains/Praxis/obj/misc/vial")->move(this_object());

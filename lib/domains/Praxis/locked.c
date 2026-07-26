@@ -10,11 +10,11 @@ void init() {
 void create() {
     ::create();
     SetNoClean(1);
-    SetShort("the locked room");
+    SetShort("上锁的房间");
     SetProperties(([ "no scry" : 1, "light" : 1, "indoors" : 1 ]));
     SetLong(
-            "You have been assimilated.\n"
-            "From this time on, you will service the Borg.");
+            "你已被同化。\n"
+            "从现在起，你将为博格服务。");
     SetExits( 
             (["square" : "/domains/Praxis/square"]) );
 }

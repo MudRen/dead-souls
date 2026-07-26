@@ -2,29 +2,26 @@ inherit "/lib/std/room";
 
 void create() {
     ::create();
-    SetShort("the upper trunk");
+    SetShort("树干上部");
     SetLong(
-            "A very large room has been carved out of the upper trunk of the mage tree. "+
-            "A small stairway leads down to the entrance of the tree, while upwards it "+
-            "leads out of the tree, and into the wide canopy of the branches. ");
+            "法师树的上部树干中雕刻出了一个非常大的房间。"
+            "小楼梯向下通往树的入口，向上则通往树外，"
+            "进入广阔的树枝树冠。");
     SetProperties( (["light"     : 2, 
                 "indoors"   : 1 ,
                 "no castle" : 1]) );
     SetItems( ([
-                "mage tree"   : "You cannot see the tree for the living wooden walls "+
-                "surrounding you.",
-                "upper trunk" : "You are in the trunk of the tree.",
-                "entrance"    : "The entrance is in the room below you.",
-                "canopy"      : "Above you are leafy green branches. Go up into them.",
+                "mage tree"   : "你被活生生的木质墙壁环绕，看不到树的全貌。",
+                "upper trunk" : "你在树干里。",
+                "entrance"    : "入口在你下面的房间里。",
+                "canopy"      : "你上方是绿叶繁茂的树枝。上去吧。",
                 "room"        :  (: this_object(), "print_long" :),
-                "trunk"       : "You are in the trunk of the tree.",
-                "tree"        : "You cannot see the tree for the living wooden walls "+
-                "surrounding you.",
-                "branches"    : "Above you are leafy green branches. Go up into them.",
-                "walls"       : "This room has walls. Fancy that. They're made of wood, "+
-                "which makes sense since you are inside of a tree.",
-                "stairway"    : "The wooden stairway creaks and groans as you put your weight "+
-                "on it."]) );
+                "trunk"       : "你在树干里。",
+                "tree"        : "你被活生生的木质墙壁环绕，看不到树的全貌。",
+                "branches"    : "你上方是绿叶繁茂的树枝。上去吧。",
+                "walls"       : "这个房间有墙壁。想想看。它们是木制的，"
+                "这很合理，因为你在一棵树里面。",
+                "stairway"    : "当你把体重压上去时，木质楼梯嘎吱作响。"]) );
     SetExits( (["down" : "/domains/Praxis/mage_hall",
                 "up"   : "/domains/Praxis/branches"]) );
 }
