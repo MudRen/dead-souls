@@ -5,27 +5,22 @@ inherit LIB_ROOM;
 void create() {
     ::create();
     SetAmbientLight(25);
-    SetShort( "a mountain pass");
+    SetShort( "山口");
     SetLong(
-            "You are at the zenith of the dark pass which runs through "
-            "the Daroq Mountains. Looking down below, you can see "
-            "the barren Qajip Desert off to the west. It is rumored "
-            "that upon entering the desert, few make it out alive. "
-            "Far off to the east you can see the gentle swells of "
-            "a forest valley. Directly ahead a small cave opens "
-            "up into the mountain.");
+            "你处于穿越达洛克山脉的黑暗山口的最高点。"
+            "向下望去，你可以看到西边贫瘠的加吉普沙漠。"
+            "据传进入沙漠的人很少能活着出来。"
+            "远处东方你可以看到森林山谷的柔和起伏。"
+            "正前方，一个小洞穴通向山中。");
     SetItems(
-            (["point" : "From here it looks like you can see the entire world.",
-             "pass" : "It winds around from the west to the southeast.",
-             "mountains" : "A huge mountain range separating the fertile "
-             "lands of the east from the desert.",
-             "valley" : "A huge forested valley.",
-             "desert" : "The Qajip Desert where many travellers have "
-             "lost their way and not been found.",
-             "forest" : "It is dark and gloomy near the mountains, but "
-             "it looks friendlier off to the east.",
-             "cave" : "The cave stands very darkly and ominously before you.",
-             "mountain" : "It is one of the lower ones, guarding the pass."]) );
+            (["point" : "从这里看起来你能看到整个世界。",
+             "pass" : "它从西蜿蜒到东南。",
+             "mountains" : "一条巨大的山脉，将东方肥沃的土地与沙漠分隔开来。",
+             "valley" : "一个巨大的森林覆盖的山谷。",
+             "desert" : "加吉普沙漠，许多旅行者在那里迷路且未被找到。",
+             "forest" : "山附近黑暗而阴沉，但东边看起来更友好。",
+             "cave" : "洞穴在你面前显得非常黑暗和不祥。",
+             "mountain" : "它是较低的山峰之一，守护着山口。"]) );
     SetSkyDomain("town");
     SetExits( 
             (["west" : "/domains/Praxis/pass3",

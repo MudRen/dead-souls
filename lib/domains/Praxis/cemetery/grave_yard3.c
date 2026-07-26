@@ -4,21 +4,15 @@ inherit LIB_ROOM;
 void create() {
     ::create();
     SetProperty("light", 1);
-    SetShort( "Darkone's grave");
+    SetShort( "暗影之墓");
     SetLong(
-            "You are in the southern-most area of the cemetery.  You hear "
-            "no friendly sounds, only an ominous silence.  There is a "
-            "solitary grave here, with a small headstone at the head of it.");
+            "你在墓地最南端的区域。你听不到友好的声音，只有不祥的寂静。"
+            "这里有一座孤坟，坟头有一块小墓碑。");
     SetItems(
-            (["headstone" : "The headstone is a deep cobalt blue, and "
-             "has writing on it.",
-             "cemetery" : "All about you stretch the silent graves.  "
-             "You feel like you are being watched.",
-             "grave" : "The grave is covered with soft grass, and has "
-             "been here a long time",
-             "writing" : "Here lies Darkone.  He was lynched, suitably "
-             "enough, by an irate mob of young immortals for nit-picking "
-             "in their castles."]) );
+            (["headstone" : "墓碑是深钴蓝色的，上面有文字。",
+             "cemetery" : "寂静的坟墓在你周围延伸。你感觉有人在注视着你。",
+             "grave" : "坟墓覆盖着柔软的青草，已经在这里很长时间了。",
+             "writing" : "暗影长眠于此。他被一群愤怒的年轻不朽者绞死了，因为他们嫌他在城堡里太吹毛求疵。"]) );
     SetSkyDomain("town");
     SetExits( 
             (["north" : "/domains/Praxis/cemetery/grave_yard2",
@@ -41,6 +35,6 @@ int read(string str) {
         write (::GetLong("writing"));
         return 1;
     }
-    notify_fail("Read what?\n");
+    notify_fail("读什么？\n");
     return 0;
 }

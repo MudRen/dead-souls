@@ -8,17 +8,14 @@ void create() {
     SetExits( 
             (["west" : "/domains/Praxis/east_road2",
              "east" : "/domains/Praxis/cemetery/grave_yard2"]) );
-    SetShort("Cemetary Entrance");
+    SetShort("墓地入口");
     SetLong(
-            "You stand between the gates of an ancient, nearly "
-            "forgotten cemetery. The air is very still here, and "
-            "preternaturally quiet.  You feel uneasy and look over "
-            "your shoulder.  No one comes here anymore for some reason. "
-            "You see a headstone off to the east. ");
+            "你站在一座古老、几乎被遗忘的墓地大门之间。"
+            "这里的空气非常静止，异常安静。你感到不安，回头看了看。"
+            "不知为何，再也没有人来这里了。东边你可以看到一块墓碑。");
     SetItems(
-            (["headstone" : "The headstone is too far away to read.",
-             "gates" : "The gates are antiques.  No one makes gates "
-             "like these anymore."]) );
+            (["headstone" : "墓碑太远了，看不清上面的字。",
+             "gates" : "这些门是古董。再也没有人制作这样的门了。"]) );
     SetSkyDomain("town");
 }
 void init(){
