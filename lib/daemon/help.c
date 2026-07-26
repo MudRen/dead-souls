@@ -434,22 +434,22 @@ string GetHelpByIndex(string index, string topic) {
         case "daemon objects":
             topic = GetTopic(index, topic);
             if( !topic || catch(help = topic->GetHelp(topic)) ) {
-                Error = "An error occurred in attempting to access help for that.";
+                Error = "访问帮助时发生错误。";
                 return 0;
             }
             if( !help ) {
-                help = "No synopsis available for this object.\n\n";
+                help = "此对象无可用摘要。\n\n";
             }
             else {
-                help = "Synopsis:\n" + help + "\n\n";
+                help = "摘要:\n" + help + "\n\n";
             }
             tmparr = stat(topic + ".c");
-            tmpstr = "Object: " + topic + "\n"
-                "Last Modified: " + ctime(tmparr[1]) + "\n";
-            if( tmparr[2] ) tmpstr += "Last Loaded: " + ctime(tmparr[2]) + "\n\n";
+            tmpstr = "对象: " + topic + "\n"
+                "最后修改: " + ctime(tmparr[1]) + "\n";
+            if( tmparr[2] ) tmpstr += "最后加载: " + ctime(tmparr[2]) + "\n\n";
             tmparr = inherit_list(ob = find_object(topic));
-            if( !sizeof(tmparr) ) tmpstr += "No inherited objects\n\n";
-            else tmpstr += "Inherits:\n" + format_page(tmparr, 4) + "\n";
+            if( !sizeof(tmparr) ) tmpstr += "无继承对象\n\n";
+            else tmpstr += "继承:\n" + format_page(tmparr, 4) + "\n";
             tmparr = functions(ob, 1);
             tmpmap = ([]);
             foreach(fun in tmparr) {
@@ -460,11 +460,11 @@ string GetHelpByIndex(string index, string topic) {
                         "args" : (fun[1] ?  fun[3..] : ({})) ]);
             }
             help = tmpstr + help;
-            if( !sizeof(tmparr) ) help += "No functions\n\n";
+            if( !sizeof(tmparr) ) help += "无函数\n\n";
             else {
                 string fnc;
 
-                help += "Functions:\n";
+                help += "函数:\n";
                 tmparr = sort_array(keys(tmpmap), 1);
                 foreach(fnc in tmparr)
                     help += tmpmap[fnc]["type"] + fnc + "(" +
