@@ -7,20 +7,18 @@ void create() {
     SetProperty("light", 2);
     SetProperty("night light", 1);
     SetProperty("no castle", 1);
-    SetShort("A narrow alley");
-    SetSmell( "default", "The faint smell of rubbish assaults you.");
+    SetShort("一条狭窄的小巷");
+    SetSmell( "default", "淡淡的垃圾臭味扑面而来。");
     SetLong(
-            "You find yourself on a small dirt path which leads to and from "
-            "Centre Path.  The path is a dirt road, cluttered occasionally "
-            "with garbage from some of the less considerate citizens of Praxis. "
-            "The local Post office is to the south, and to the north you can see "
-            "a large bulding which serves as the bank of Praxis.");
-    SetItems( 
-            (["path" : "The path is a small dirt road leading from Centre Path.",
-             "bank" :"The bank of Praxis is a very well known establishment.",
-             ({"office", "post", "post office"}) : "You can send and receive "
-             "mail to other people here or on other muds there.",
-             "alley" : "The alley is a very small dirt path."]) );
+            "你发现自己在一条通往中心路的小土路上。"
+            "这条土路偶尔会被一些不太体贴的普拉克西斯市民的垃圾弄得杂乱。"
+            "当地的邮局在南边，北边你可以看到一座作为普拉克西斯银行的大型建筑。");
+    SetItems(
+            (["path" : "一条从中心路延伸出来的小土路。",
+             "bank" :"普拉克西斯银行是一家非常著名的机构。",
+             ({"office", "post", "post office"}) : "你可以在这里收发邮件，"
+             "也可以发给其他泥潭的人。",
+             "alley" : "小巷是一条非常小的土路。"]) );
     SetSkyDomain("town");
     SetExits( ([ 
                 "west" : "/domains/Praxis/alley2",

@@ -24,23 +24,21 @@ void create() {
     SetProperty("no castle", 1);
     SetProperty("light", 2);
     SetProperty("night light", 2);
-    SetShort( "the bank of praxis");
+    SetShort( "普拉克西斯银行");
     SetLong(
-            "Welcome to the Bank of Praxis!\n"
-            "The Bank of Praxis is a lovely looking building. Red carpeting "
-            "covers the worn floor, and to the north there is a polished wooden "
-            "counter. In the back of the bank there is a vault where all "
-            "the town's deposits are kept. A sign by the teller details "
-            "all commands. The exit to the bank is back south.");
+            "欢迎来到普拉克西斯银行！\n"
+            "普拉克西斯银行是一座可爱的建筑。红色地毯覆盖着磨损的地板，"
+            "北边有一个抛光的木质柜台。银行后面有一个金库，"
+            "存放着全镇的存款。出纳员旁边的牌子详细说明了所有命令。"
+            "银行的出口在南边。");
     SetItems(
-            (["bank" : "You are in its huge lobby. There is a counter in "
-             "front of you\nand and exit behind you.",
-             "citizens" : "They are wandering about aimlessly.",
-             "account" : "You're a damn loon.",
-             "sign" : "Reading it will give you a list of commands.",
-             "teller" : "The teller looks at you impatiently.",
-             "counter" : "A teller waits behind it for you to do something.",
-             "exit" : "It leads out into the alley.",
+            (["bank" : "你在它巨大的大厅里。你面前有一个柜台，身后是出口。",
+             "citizens" : "他们漫无目的地闲逛。",
+             "account" : "你是个疯子。",
+             "sign" : "阅读它会给你一份命令列表。",
+             "teller" : "出纳员不耐烦地看着你。",
+             "counter" : "一个出纳员在后面等你做些什么。",
+             "exit" : "通往小巷。",
              "vault" : (: this_object(), "look_at_vault" :) ]) );
     SetExits( 
             (["south":"/domains/Praxis/alley1"]) );
@@ -56,9 +54,8 @@ void reset() {
         mon->SetId( ({ "guard", "bank guard", "big ogre" }) );
         mon->SetRace( "ogre");
         mon->SetGender("male");
-        mon->SetShort( "Bank guard");
-        mon->SetLong( "A big, ugly ogre hired to guard the "
-                "newly open bank.\n");
+        mon->SetShort( "银行守卫");
+        mon->SetLong( "一个被雇来守卫新开银行的又大又丑的食人魔。\n");
         mon->SetLevel(14);
         mon->SetRace("human");
         mon->SetHealthPoints(500 + random(100));
@@ -67,21 +64,21 @@ void reset() {
         mon->SetSpells( ({ "parry", "Bugga" }) );
         mon->SetSkills("defense", 70);
         mon->SetSkills("blade", 90);
-        mon->set_emotes(9, 
-                ({ "Guard says: Goddamn thief!",
-                 "Guard grunts.",
-                 "Guard says: No way you're getting past me!",
-                 "Guard says: You disgust me."}), 1);
+        mon->set_emotes(9,
+                ({ "守卫说：该死的小偷！",
+                 "守卫咕哝着。",
+                 "守卫说：你别想从我这里过去！",
+                 "守卫说：你让我恶心。"}), 1);
         mon->set_emotes(3,
-                ({ "Guard munches on a rat pie.", 
-                 "Guard says: I hate rogues." }), 0);
+                ({ "守卫大口吃着老鼠派。",
+                 "守卫说：我讨厌盗贼。" }), 0);
         mon->SetWielding_limbs( ({ "right hand", "left hand" }) );
         mon->move(this_object());
         weapon = new(LIB_ITEM);
         weapon->SetKeyName("broadsword");
         weapon->SetId( ({ "broadsword", "sword" }) );
-        weapon->SetShort( "Broadsword");
-        weapon->SetLong( "A huge broadsword.");
+        weapon->SetShort( "阔剑");
+        weapon->SetLong( "一把巨大的阔剑。");
         weapon->SetClass(13);
         weapon->SetType("blade");
         weapon->SetMass(700);
@@ -91,8 +88,8 @@ void reset() {
         key = new(LIB_ITEM);
         key->SetKeyName("key");
         key->SetId( ({ "bank key", "key", "bronze key" }) );
-        key->SetShort( "Bronze key");
-        key->SetLong( "An unremarkable bronze key.");
+        key->SetShort( "铜钥匙");
+        key->SetLong( "一把不起眼的铜钥匙。");
         key->SetMass(29);
         key->SetValue(35);
         key->move(mon);
@@ -110,30 +107,28 @@ int do_drunkard() {
     if(present("guard") && !this_player()->query_invis()) {
         present("guard")->eventForce("kill "+this_player()->query_name());
         this_player()->add_follower(present("guard"));
-        write("The guard foils you before you can slip the key in!");
-        say(this_player()->query_cap_name()+" is foiled trying to break "
-                "into the vault!");
+        write("守卫在你把钥匙插进去之前就阻止了你！");
+        say(this_player()->query_cap_name()+"试图闯入金库时被阻止了！");
         return 0;
     }
     if(this_player()->query_intox()) {
-        write("You are fumble around drunkenly with the bank key.");
-        say(this_player()->query_cap_name()+" fiddles around drunkenly "
-                "with the bank key.");
+        write("你醉醺醺地摸索着银行钥匙。");
+        say(this_player()->query_cap_name()+"醉醺醺地摆弄着银行钥匙。");
         return 0;
     }
     return 1;
 }
 
 int read(string str) {
-    if(str != "sign") return notify_fail("Read what?\n");
+    if(str != "sign") return notify_fail("读什么？\n");
     message("info",
-            "You may do any of the following at Praxis Merchant's Bank:\n"
-            "<open account>\nWill open an account for you.\n\n"
-            "<close account>\nCloses your account.\n\n"
-            "<balance>\nGives you account balance information.\n\n"
-            "<deposit [#] [type]>\nDeposits # of currency of type.\n\n"
-            "<withdraw [#] [type]>\nWithdraws # of currency of type.\n\n"
-            "<exchange [#] of [type1] for [type2]>\nExchanges currencies.  There is a 10% charge.\n\n",
+            "你可以在普拉克西斯商业银行执行以下操作：\n"
+            "<open account>\n为你开设账户。\n\n"
+            "<close account>\n关闭你的账户。\n\n"
+            "<balance>\n显示你的账户余额信息。\n\n"
+            "<deposit [#] [类型]>\n存入指定数量的货币。\n\n"
+            "<withdraw [#] [类型]>\n取出指定数量的货币。\n\n"
+            "<exchange [#] of [类型1] for [类型2]>\n兑换货币。收取10%的手续费。\n\n",
             this_player()
            );
     return 1;
@@ -151,10 +146,8 @@ int Bugga(string str) {
     if(ob->query_class() == "rogue") amount = 24 + random(30);
     else amount = 20 + random(20);
     ob->do_damage(limb, amount);
-    tell_object(ob, "The guard bashes your "+limb+" with his "
-            "left fist!");
-    tell_room(this_object(), "The guard bashes "+ob->query_cap_name()+"'s "+
-            limb+" with his left fist!", ({ ob }));
+    tell_object(ob, "守卫用左拳猛击你的"+limb+"！");
+    tell_room(this_object(), "守卫用左拳猛击了"+ob->query_cap_name()+"的"+limb+"！", ({ ob }));
     return 1;
 }
 

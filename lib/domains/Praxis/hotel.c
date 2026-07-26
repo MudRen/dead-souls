@@ -23,33 +23,24 @@ void create() {
 
     room::create();
     SetProperties( ([ "indoors":1, "light":2, "no castle":1]) );
-    SetShort("the Nightmare Inn");
+    SetShort("噩梦旅馆");
     SetLong(
-            "You find yourself at the entrance of the most prestigious "
-            "inn in Nightmare. The floor is carpeted with plush red carpet, "
-            "and the walls are trimmed with golden paint. Large oaken "
-            "doors from where you entered stand behind you, and directly "
-            "in front of you the front desk of the hotel stands."
-            " Type list to see the available rooms, and <rent 'type'> to rent a certain type of room."
+            "你发现自己来到了噩梦世界最有声望的旅馆入口。"
+            "地板铺着厚厚的红色地毯，墙壁用金色颜料装饰。"
+            "你进来时经过的大型橡木门在你身后，正前方是旅馆的前台。"
+            "输入 list 查看可用房间，<rent '类型'> 租赁特定类型的房间。"
            );
-    SetItems( ([ "entrance" : "The lobby of the hotel is very "
-                "large and spacious. It looks like it is a rather "
-                "expensive hotel.",
-                "floor" : "The floor is covered with a very thick "
-                "red carpet, with golden fringes at the edges.",
-                "carpet" : "The carpet is in good shape, although "
-                "it is a bit worn in spots. There is a golden "
-                "symbol of the hotel standing in the center of it.",
+    SetItems( ([ "entrance" : "旅馆大厅非常宽敞。看起来这是一家相当昂贵的旅馆。",
+                "floor" : "地板覆盖着非常厚的红色地毯，边缘有金色流苏。",
+                "carpet" : "地毯状况良好，虽然有些地方有点磨损。"
+                "地毯中央有一个金色的旅馆标志。",
                 ({ "wall", "walls" }) :
-                "The walls have been painted white with some gold "
-                "trim on all the edges.",
+                "墙壁被漆成白色，所有边缘都有金色装饰。",
                 ({ "doors", "door" }) :
-                "The heavy oaken doors are ornately carved with "
-                "the hotel ensignia. The doors gleam in the light "
-                "from the large amount of polishing they receive.",
-                "desk" : "The front desk is also made from oak, and "
-                "stands at the back of the lobby.",
-                "hotel" : "You are in the Nightmare Inn."
+                "沉重的橡木门上精美地雕刻着旅馆徽章。"
+                "经过大量抛光后，门在光线中闪闪发亮。",
+                "desk" : "前台也是橡木制的，位于大厅后方。",
+                "hotel" : "你在噩梦旅馆里。"
                 ])
             );
     SetExits( ([
@@ -93,8 +84,7 @@ void check_out() {
         __Rooms[100+i] = ([ "occupied":0, "key id": random_key(100+i) ]);
         j = sizeof(tmp = livings() & all_inventory(query_room(100+i)));
         while(j--) {
-            message("my_action", "Check out time!\nThe receptionist "
-                    "hurries you out into the lobby.", tmp[j]);
+            message("my_action", "退房时间到了！\n接待员催促你到大厅。", tmp[j]);
             tmp[j]->eventMoveLiving("/domains/Praxis/hotel", "out");
         }
     }
