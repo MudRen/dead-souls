@@ -445,9 +445,9 @@ mixed eventEquip(object who, string* limbs){
         who->eventPrint(Wear);
     }
     else {
-        who->eventPrint("You wear " + tmp + ".");
+        who->eventPrint("你穿上了" + tmp + "。");
     }
-    environment(who)->eventPrint(who->GetName() + " wears " + tmp + ".", who);
+    environment(who)->eventPrint(who->GetName() + " 穿上了" + tmp + "。", who);
     return 1;
 }
 
@@ -491,7 +491,7 @@ mixed eventShow(object who, string component){
     }
     if( GetPoison() ){
         if( random(100) < who->GetSkillLevel("stealth") ){
-            who->eventPrint("You notice a strange substance on it.");
+            who->eventPrint("你注意到上面有一种奇怪的物质。");
         }
     }
     return 1;

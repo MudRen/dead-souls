@@ -37,7 +37,7 @@ varargs int eventWearShield(object who, mixed where) {
         who->eventPrint("盾牌的把手就是不适合你的手。");
         return 0;
     }
-    who->eventPrint("You wear "+GetShort()+".");
-    if(env) tell_room(env, who->GetName()+" wears "+GetShort()+".", ({who}));
+    who->eventPrint("你装备了"+GetShort()+"。");
+    if(env) tell_room(env, who->GetName()+" 装备了"+GetShort()+"。", ({who}));
     return 1;
 }

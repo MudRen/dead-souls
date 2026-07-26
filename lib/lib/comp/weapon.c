@@ -168,10 +168,10 @@ mixed eventEquip(object who, string* limbs){
         who->eventPrint(Wield);
     }
     else {
-        who->eventPrint("You wield " + GetShort() + ".");
+        who->eventPrint("你装备了" + GetShort() + "。");
     }
-    environment(who)->eventPrint(who->GetName() + " wields " + GetShort() +
-            ".", who);
+    environment(who)->eventPrint(who->GetName() + " 装备了" + GetShort() +
+            "。", who);
     return 1;
 }
 
@@ -200,7 +200,7 @@ mixed eventUnequip(object who){
         return tmp;
     }
     Wielded = 0;
-    if(!who->GetDead()) send_messages("unwield", "$agent_name $agent_verb $target_name.",
+    if(!who->GetDead()) send_messages("卸下", "$agent_name $agent_verb $target_name。",
             who, this_object(), environment(who));
     return 1;
 }
@@ -208,14 +208,14 @@ mixed eventUnequip(object who){
 // Some things to respond to provide friendly error messages
 mixed direct_remove_obj(){
     if( environment() != this_player() ){
-        return "#You don't have that!";
+        return "#你没有那个东西！";
     }
-    return "#Do you mean to unwield it?";
+    return "#你是想卸下它吗？";
 }
 
 mixed direct_wear_obj(){
     if( environment() != this_player() ){
-        return "#You don't have that!";
+        return "#你没有那个东西！";
     }
-    return "#Do you mean to wield it?";
+    return "#你是想装备它吗？";
 }
