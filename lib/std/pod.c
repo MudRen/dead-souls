@@ -6,9 +6,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("the incept pod");
-    SetLong("The incept pod. Some objects come here to be created "+
-            "and identified. Go down to get out.");
+    SetShort("初始舱");
+    SetLong("初始舱。一些物品在这里被创造和识别。向下走离开。");
     SetExits( ([ "down" : ROOM_START ]) );
 }
 int CanReceive(object ob){

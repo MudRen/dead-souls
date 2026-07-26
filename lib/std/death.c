@@ -12,7 +12,7 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("off the mortal coil");
+    SetShort("脱离尘世");
     SetLong( (:FunkyPic:) );
     SetObviousExits("no exit");
     set_heart_beat(10);
@@ -28,7 +28,7 @@ void init(){
 }
 
 string FunkyPic(){
-    return "YOU ARE DEAD!!!";
+    return "你已经死了！！！";
 }
 
 int regenerate(){

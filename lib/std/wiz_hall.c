@@ -8,8 +8,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Creators' Hall");
-    SetLong("A generic Wiz Hall.");
+    SetShort("创造者大厅");
+    SetLong("一个标准的巫师大厅。");
     SetProperty("no attack", 1);
     SetProperty("nopeer",1);
 }
