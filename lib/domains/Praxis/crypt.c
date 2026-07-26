@@ -23,46 +23,37 @@ void create() {
                 "light"   : 2,
                 "indoors" : 1,
                 ]));
-    SetShort("a small crypt");
-    SetLong("The altar room is carved from the ancient gray stone that Praxis "
-            "rests upon. Burning candles along the walls cause the shadows to "
-            "dance around the room in a chaotic, yet enchanting dance. A large altar "
-            "rises from the floor in the center of the room and steps carved into the "
-            "stone lead upwards. ");
+    SetShort("一个小地窖");
+    SetLong("祭坛室是从普拉克西斯所依靠的古老灰色石头中雕刻出来的。"
+            "墙壁上燃烧的蜡烛使影子在房间里以混乱而迷人的方式舞动。"
+            "一个大祭坛从房间中央的地面升起，雕刻在石头中的台阶向上延伸。");
     SetExits( ([
                 "up" : "/domains/Praxis/cleric_hall"
                 ]) );
     SetItems(([
                 "altar":(: this_object(), "exaaltar" :),
-                "scenes" : "You see Tempos wielding his mighty %^CYAN%^warhammer%^RESET%^ in a variety of battles "
-                "you recognize from your religious studies. ",
+                "scenes" : "你看到坦波斯在各种战斗中挥舞着他强大的%^CYAN%^战锤%^RESET%^，"
+                "这些战斗你从宗教学习中认出来了。",
                 ({"stones","stone"}):
-                "The cold grey stone is creased and marked by the tools that were used "
-                "to carve this room beaneath the earth. ",
+                "冰冷的灰色石头被用来雕刻这个地下房间的工具弄得皱巴巴的。",
                 ({"shadows","shadow"}):
-                "The shadows dance enchantingly across the room in time to the music "
-                "of the flickering candle flames. ",
-                "steps" :  "The steps are carved into the grey stone and are worn by the passage "
-                "of many feet over the ages. ",
+                "影子随着闪烁的烛光音乐迷人地在房间里舞动。",
+                "steps" :  "台阶雕刻在灰色石头中，因岁月中无数脚步的踩踏而磨损。",
                 ({"walls","wall"}):
-                "The walls are hewn roughly from the stone beneath Praxis and are lined "
-                "with many flickering candles. ",
+                "墙壁是从普拉克西斯地下的石头粗凿而成，排列着许多闪烁的蜡烛。",
                 ({"candle","candles"}):
-                "The candles rest in iron stands set along the wall and are made from "
-                "animal fat. The candle flames flicker to the tune of the wind, creating "
-                "the music by which the shadows cavort and dance. ",
-                "stands" : "The stands are made of %^BLACK%^%^BOLD%^black%^RESET%^ iron and are of plain construction. "
-                "Each stand holds between three to four lit candles. ",
+                "蜡烛放在沿墙设置的铁架上，由动物脂肪制成。"
+                "烛光随风摇曳，创造出影子嬉戏舞蹈的音乐。",
+                "stands" : "支架由%^BLACK%^%^BOLD%^黑色%^RESET%^铁制成，结构简单。"
+                "每个支架上放着三到四支点燃的蜡烛。",
                     ]));
 }
 
 void exaaltar() {
     string str;
 
-    str = "The altar is made of ancient gray stone and is huge.  There are scenes "
-        "of Tempos fighting mythical beasts carved all along the sides of the altar. "
-        "The top of the altar is flat and has the image of a hammer traced along "
-        "it in %^YELLOW%^gold%^RESET%^. ";
+    str = "祭坛由古老的灰色石头制成，非常巨大。祭坛两侧雕刻着坦波斯与神话野兽战斗的场景。"
+        "祭坛顶部是平的，上面有用%^YELLOW%^金色%^RESET%^描绘的锤子图案。";
     if (is_hammer) str += "The %^CYAN%^warhammer%^RESET%^ lieing upon it perfectly fits into the traces. ";
     if (is_phyl) str += "A %^YELLOW%^golden%^RESET%^ phylactery partially covers the traces.";
     write(str);
