@@ -9,22 +9,21 @@ void create() {
     SetProperty("light", 1);
     SetProperty("no castle", 1);
     SetProperty("indoors", 1);
-    SetShort( "Voting hall of the kataans");
+    SetShort( "卡塔安投票厅");
     SetLong( (: this_object(), "new_long" :));
     SetItems(
-            (["list" : "During election time, it lists all candidates."]) );
+            (["list" : "在选举期间，它列出所有候选人。"]) );
     SetExits( 
             (["west" : "/domains/Praxis/kataan_hall"]) );
 }
 
 string new_long() {
-    if(VOTING_D->election_day()) 
-        return "This is the room where Kataans can put in their bid for office. "
-            "If you wish to run for office, just type in the command "
-            "'enter' and you will be added to the list.  A list of candidates "
-            "is posted on the wall.";
-    else return "This is the voting chamber of the Hall of Kataans.  "
-        "Kataans will gather here for the next election: "+VOTING_D->query_vote_date()+".";
+    if(VOTING_D->election_day())
+        return "这是卡塔安们可以参选的房间。"
+            "如果你想参选，只需输入命令"
+            "'enter'，你就会被添加到列表中。候选人名单张贴在墙上。";
+    else return "这是卡塔安大厅的投票室。"
+        "卡塔安们将在这里聚集参加下一次选举："+VOTING_D->query_vote_date()+"。";
 }
 void init(){
     ::init();

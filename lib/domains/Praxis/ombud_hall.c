@@ -6,11 +6,11 @@ void create() {
     ::create();
     SetProperty("light", 2);
     SetProperty("indoors", 1);
-    SetShort( "Complaint Department");
+    SetShort( "投诉部");
     SetLong(
-            "You are in a dark, musty room.  This is the official "
-            "Nightmare complaints department.  Post any gripes, questions, or comments "
-            "you have that you wish for the wizards to address on the board.");
+            "你在一个黑暗、发霉的房间里。这是噩梦世界官方的"
+            "投诉部门。把你希望巫师们解决的任何不满、问题或评论"
+            "发布在布告板上。");
     SetExits( 
             ([
              "up" : "/domains/Praxis/adv_main",
@@ -24,10 +24,9 @@ void create() {
     ob->set_board_id("ombud");
     ob->set_max_posts(50);
     ob->set_edit_ok( ({ "nialson", "ninja" }) );
-    ob->SetShort("the Board of the Complainers");
-    ob->SetLong( "People of this reality come here to post their "
-            "comments and questions for the immortals who control "
-            "the fate of all reality.\n");
+    ob->SetShort("投诉者布告板");
+    ob->SetLong( "这个世界的人们来这里发布他们的评论和问题，"
+            "给控制所有现实命运的不朽者们看。\n");
     ob->move(this_object());
     SetProperty("no steal", 1);
     SetProperty("no attack", 1);

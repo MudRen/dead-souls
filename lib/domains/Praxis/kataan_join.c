@@ -12,20 +12,17 @@ void init() {
 void create() {
     ::create();
     SetProperties( (["no castle":1,"light":2,"indoors":1,"no castle":1]));
-    SetShort( "cavern of the kataans");
+    SetShort( "卡塔安洞穴");
     SetLong(
-            "You are in a dark underground cavern just north of Praxis. "
-            "Deep, intricate murals and symbols are carved into the walls of the "
-            "cave.  Down deeper in the cavern is a passage protected "
-            "by a shimmering %^BLUE%^blue%^RESET%^ light.  "
-            "<preview> will tell you about becoming a Kataan. ");
+            "你在普拉克西斯北边的一个黑暗地下洞穴里。"
+            "洞穴墙壁上雕刻着深邃复杂的壁画和符号。"
+            "洞穴深处有一条被闪烁的%^BLUE%^蓝色%^RESET%^光芒守护的通道。"
+            "<preview>将告诉你如何成为卡塔安。");
     SetItems(
-            (["mural" : "It is very old and depicts gruesome cult practices.",
-             "murals" : "They are quite ancient and are made up of "
-             "pictures depicting bizarre rituals.",
-             "light" : "You are certain that it is a field which allows "
-             "only kataans to pass.",
-             "cavern" : "The cavern almost pulses with hidden evil."]) );
+            (["mural" : "它非常古老，描绘了可怕的邪教仪式。",
+             "murals" : "它们相当古老，由描绘奇异仪式的图画组成。",
+             "light" : "你确信那是一个只允许卡塔安通过的力场。",
+             "cavern" : "洞穴几乎因隐藏的邪恶而脉动。"]) );
     SetExits( 
             (["up" : "/domains/Praxis/forest3"]) );
     AddExit("down","/domains/Praxis/kataan_hall",(:go_down:));
@@ -33,36 +30,33 @@ void create() {
 
 int preview() {
     if(this_player()->query_class() != "explorer") {
-        write("This is not for you.");
+        write("这不适合你。");
         return 1;
     }
-    say(this_player()->query_cap_name()+" seeks to learn about "
-            "kataans.", this_player());
-    write("Welcome, explorer! ");
-    write("Kataans are an ancient coven of evil, magical warriors skilled "
-            "in the use of projectiles and stealth.  They are careful to do "
-            "no acts which might be considered good.  Instead, the use the "
-            "powers given to them by their demon masters to terrorize good "
-            "beings wherever they may be.\n"
-            "To become a kataan, type <become kataan>\n");
+    say(this_player()->query_cap_name()+"想要了解卡塔安。", this_player());
+    write("欢迎，探索者！");
+    write("卡塔安是一个古老的邪恶巫术战士团体，擅长使用投射武器和潜行。"
+            "他们小心翼翼地不做任何可能被认为是善行的事情。"
+            "相反，他们利用恶魔主人赋予他们的力量来恐吓善良的存在。\n"
+            "要成为卡塔安，输入 <become kataan>\n");
     return 1;
 }
 
 int become(string str) {
     if(!str) {
-        notify_fail("Become what?\n");
+        notify_fail("成为什么？\n");
         return 0;
     }
     if(str != "kataan") {
-        notify_fail("You cannot become that here.\n");
+        notify_fail("你不能在这里成为那个。\n");
         return 0;
     }
     if(this_player()->query_class() != "explorer") {
-        write("You are much too old to start learning our ways now!");
+        write("你太老了，现在不能开始学习我们的方式！");
         return 1;
     }
-    write("The Master Kataan initiates you into the class of kataans.");
-    say(this_player()->query_cap_name()+" becomes a kataan.", this_player());
+    write("卡塔安大师将你引入卡塔安职业。");
+    say(this_player()->query_cap_name()+"成为了一名卡塔安。", this_player());
     this_player()->SetClass("kataan");
     this_player()->setenv("TITLE", "$N the pebble tosser");
     this_player()->init_skills("kataan");
@@ -72,8 +66,8 @@ int become(string str) {
 
 int go_down() {
     if(this_player()->query_class() != "kataan") {
-        write("You cannot penetrate the force field that blocks the passage.");
-        say(this_player()->query_cap_name()+" tries to get into the kataan's sanctuary, but fails.", this_player());
+        write("你无法穿透阻挡通道的力场。");
+        say(this_player()->query_cap_name()+"试图进入卡塔安圣地，但失败了。", this_player());
         return 0;
     }
     return 1;
