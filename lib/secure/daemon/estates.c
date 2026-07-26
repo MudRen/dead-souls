@@ -33,8 +33,8 @@ private void preload_estates() {
     i = sizeof(who = keys(__Estates));
     while(i--) {
         if((j = sizeof(__Estates[who[i]])) > 1)
-            desc = "an estate of "+who[i];
-        else desc = possessive_noun(who[i])+" estate";
+            desc = who[i]+"的房产";
+        else desc = who[i]+"的房产";
         while(j--) {
             ob = new(OB_ESTATE);
             ob->set_short(desc);
@@ -53,7 +53,7 @@ void add_estate(string who, string sortie, string where, string long) {
     if(!__Estates[who]) __Estates[who] = ({ ({ sortie, where, long }) });
     else __Estates[who] += ({ ({ sortie, where, long }) });
     ob = new(OB_ESTATE);
-    ob->set_short(possessive_noun(who)+" estate");
+    ob->set_short(who+"的房产");
     ob->set_long(long);
     ob->set_exit(sortie);
     where->set_no_clean(1);

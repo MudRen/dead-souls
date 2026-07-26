@@ -13,9 +13,9 @@ string __Exit;
 void create() {
     ::create();
     SetId( ({ "estate" }) );
-    SetPreventGet("You cannot get an entire estate!");
-    SetPreventPut("How could you do that with an estate?");
-    SetPreventDrop("One wonders how you got this to begin with.");
+    SetPreventGet("你无法拿走一整座房产！");
+    SetPreventPut("你怎么能把房产那样做呢？");
+    SetPreventDrop("真好奇你是怎么把这个弄到手的。");
     SetNoClean(1);
 }
 
@@ -28,7 +28,7 @@ void set_exit(string str) { __Exit = str; }
 
 protected int cmd_enter(string str) {
     if(present(str, environment(this_object())) != this_object()) return 0;
-    this_player()->move_player(__Exit, "into the estate");
+    this_player()->move_player(__Exit, "走进了房产");
     return 1;
 }
 
