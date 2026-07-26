@@ -8,8 +8,8 @@ nosave private object *old;
 void create() {
     ::create();
     SetProperty("no teleport", 1);
-    SetShort( "The freezer");
-    SetLong( "The local freezer.");
+    SetShort( "冷冻室");
+    SetLong( "本地冷冻室。");
     SetExits( 
             (["square" : "/domains/Praxis/square"]) );
     SetNoClean(1);

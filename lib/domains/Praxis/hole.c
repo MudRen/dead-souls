@@ -3,10 +3,9 @@ inherit "/lib/std/room";
 void create() {
     ::create();
     SetProperty("light", 0);
-    SetShort( "A hole in the ground");
+    SetShort( "地上的一个洞");
     SetLong(
-            "You are in a deep hole in the ground. The light is very poor "
-            "down here.");
+            "你在地上的一个深洞里。这里的光线非常微弱。");
     SetNoClean(1);
     SetExits( ([ ]) );
 }
@@ -17,7 +16,7 @@ void fixing_a_hole() {
 }
 
 void digging() {
-    AddItem("hole", "A hole up to the surface.");   AddExit( "up", "/domains/Praxis/west_road2");
+    AddItem("hole", "一个通往地面的洞。");   AddExit( "up", "/domains/Praxis/west_road2");
 
 }
 

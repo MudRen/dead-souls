@@ -10,13 +10,11 @@ create() {
     ::create();
     SetProperties( ([ "light": 0, "no teleport" : 1, "no magic" : 1
                 ]) );
-    SetShort("Pit of Spiders");
-    SetLong("You are standing deep underground in "
-            "a circular pit.  The walls surrounding you are completely "
-            "smooth with no sign of hand holds or other ways "
-            "to get out.");
-    SetItems( ([ ({ "walls", "wall" }) : "A smooth, circular wall, "
-                "about 50 cubits deep and unnaturaly smooth." ]) );
+    SetShort("蜘蛛坑");
+    SetLong("你站在地下深处的一个圆形坑中。"
+            "环绕你的墙壁完全光滑，没有任何可以攀爬或逃脱的痕迹。");
+    SetItems( ([ ({ "walls", "wall" }) : "一面光滑的圆形墙壁，"
+                "约50肘尺深，异常光滑。"]) );
 }
 
 void reset() {

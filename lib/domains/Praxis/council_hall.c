@@ -10,9 +10,8 @@ int CanReceive(object ob) {
             creatorp(previous_object()) ||
             (-1!=member_array(previous_object()->query_name(), COUNCIL)))
         return ::CanReceive(ob);
-    message("my_action", "You are not allowed in the council room. If you are "+
-            "a council member, try contacting Nialson, advocate, and law in "+
-            "that order.", previous_object());
+    message("my_action", "你不被允许进入议会厅。如果你是"
+            "议会成员，请尝试按顺序联系尼尔森、律师和法律。", previous_object());
     return 0; 
 }
 
@@ -27,9 +26,8 @@ void create() {
                 "no magic"    : 1,
                 "no teleport" : 1,
                 "no castle"   : 1]) );
-    SetShort( "The private meeting hall of the council");
-    SetLong( "Welcome to the cavern beneath the square. This is the meeting "+
-            "hall of the councils of the classes. " );
+    SetShort( "议会私人会议厅");
+    SetLong( "欢迎来到广场下方的洞穴。这是各职业议会的会议厅。" );
     SetExits( (["leave" : "/domains/Praxis/square"]) );
 
     ob = new("/lib/bboard");
@@ -39,13 +37,12 @@ void create() {
     ob->set_max_posts(30);
     ob->set_edit_ok( ({"nialson"}) );
     ob->move(this_object());
-    ob->SetShort( "the pipe dream board of class war avoidance");
-    ob->SetLong( "This is a collection of ill-conceived threats, and useful "+
-            "suggestions intended to increase the orderly flow of "+
-            "information and to decrease the level of inter-player "+
-            "tension (at least for the immortals).");
-    SetSearch("default", "Why, the remains of Archduke Ferdinand are "+
-            "concealed here! So that's what happenned to him.");
+    ob->SetShort( "避免职业战争的白日梦布告板");
+    ob->SetLong( "这是一些考虑不周的威胁和有用的建议的集合，"
+            "旨在增加信息的有序流动，降低玩家之间的紧张程度"
+            "（至少对不朽者来说是这样）。");
+    SetSearch("default", "哎呀，费迪南德大公的遗骸被藏在这里了！"
+            "原来他遭遇了这样的事情。");
 }
 
 void init() {
@@ -60,7 +57,7 @@ int leave() {
 
     if( this_player()->query_disable() &&
             sizeof(this_player()->query_attackers()) ) {
-        write("You can not exit while doing something else.");
+        write("你不能在做其他事情的时候退出。");
         return 1; }
     if (creatorp(this_player()))
         this_player()->eventMoveLiving("/domains/Praxis/adv_inner", "leave");

@@ -6,15 +6,14 @@ inherit LIB_ROOM;
 create() {
     ::create();
     SetProperties( (["no magic" : 1, "light" : 0, "no teleport" : 1]) );
-    SetShort("Pit of Spiders");
-    SetLong("You find yourself in the dreaded pit of spiders.  The ground "
-            "and walls surrounding you are completely smooth, except for the "
-            "crawling lumps of deadly spiders.  By the looks of it, your worst fears "
-            "crawling lumps of deadly spiders.  By the looks of it, your "
-            "worst fears have come true: there is no escape.");
-    SetItems( ([ "spiders" : "Greusome spiders, both dead and alive, "
-                "completely cover the ground and walls of the pit.",
-                ({ "wall", "walls", "floor" }) : "More spiders." ]) );
+    SetShort("蜘蛛坑");
+    SetLong("你发现自己身处可怕的蜘蛛坑中。"
+            "环绕你的地面和墙壁完全光滑，除了那些"
+            "爬行的致命蜘蛛块。看起来，你最大的恐惧"
+            "已经成真了：无处可逃。");
+    SetItems( ([ "spiders" : "可怕的蜘蛛，死的活的都有，"
+                "完全覆盖了坑的地面和墙壁。",
+                ({ "wall", "walls", "floor" }) : "更多的蜘蛛。"]) );
 }
 
 void reset() {

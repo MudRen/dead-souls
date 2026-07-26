@@ -16,15 +16,15 @@ void init() {
 void create() {
     ::create();
     SetProperties( ([ "light" : 2, "night light" : 1, "no castle" : 1 ]));
-    SetShort("a graffitti covered wall");
+    SetShort("一面涂鸦墙");
     SetLong(
-            "You are in among ruined buildings in a bad part of the village.  "
-            "There is graffiti all over the wall to the east.");
+            "你在村庄糟糕区域的废弃建筑群中。"
+            "东边的墙上到处都是涂鸦。");
     SetItems(
-            (["buildings" : "They are worn down by years of neglect.",
-             "graffiti" : "Some is fresh, some is old.",
-             "wall" : "You can scribble something on it.  <scribble stuff>.\n"
-             "You can also read what is on it."]) );
+            (["buildings" : "它们因多年的疏于管理而破败。",
+             "graffiti" : "有些是新的，有些是旧的。",
+             "wall" : "你可以在上面涂鸦。<scribble 内容>。\n"
+             "你也可以阅读上面的内容。"]) );
     SetExits( 
             (["south"	 : "/domains/Praxis/alley2"]) );
     call_out("fade", 900);
@@ -34,7 +34,7 @@ void create() {
 int scribble(string str) {
     if(!text_scan) text_scan = ({});
     if(bad(str)) {
-        notify_fail("The Nightmare Reality prevents you from spreading your crap.\n");
+        notify_fail("噩梦世界阻止你散布垃圾。\n");
         return 0;
     }
     text_scan += ({ str });
@@ -51,11 +51,11 @@ int read(string str) {
     int i;
 
     if(!str) {
-        notify_fail("Read what?\n");
+        notify_fail("读什么？\n");
         return 0;
     }
     if(str != "wall" && str != "graffitti") {
-        notify_fail("Read what?\n");
+        notify_fail("读什么？\n");
         return 0;
     }
     for(i=0; i<sizeof(text_scan); i++) {
@@ -86,7 +86,7 @@ void fade() {
     if(text_scan == ({})) return;
     str = text_scan[0];
     text_scan -= ({ str });
-    message("environment", "Some graffitti fades from the wall.",
+    message("environment", "墙上的一些涂鸦褪色了。",
             this_object());
     call_out("fade", 10000);
     SaveObject("/domains/Praxis/data/wall");
