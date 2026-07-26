@@ -9,10 +9,10 @@ void create() {
     ::create();
     SetKeyName("unity");
     SetId(  ({ "unity" }) );
-    SetShort( "Unity, the grantor of immortality");
+    SetShort( "尤尼提，不朽的授予者");
     SetAggressive( 0);
     SetLevel(28);
-    SetLong( "Unity grants immortality to those high mortals with mentors to sponsor them.");
+    SetLong( "尤尼提为那些有导师赞助的高级凡人授予不朽。");
     SetMorality(1000);
     SetRace( "human");
     SetMaxHealthPoints(100000);
@@ -26,11 +26,11 @@ void catch_tell(string str) {
 
     if(this_player() == (ob = this_object())) return;
     if(sscanf(str, "%squest%s", a, b) == 2 || sscanf(str, "%stask%s", a, b) == 2) {
-        this_object()->eventForce("speak in farsi You must find for me the Orc Slayer!  The evil orcs have taken it so that it cannot be used against them.  The people of Praxis must have it back.");
+        this_object()->eventForce("speak in farsi 你必须为我找到兽人杀手！邪恶的兽人把它夺走了，以免它被用来对付他们。普拉克西斯的人民必须把它拿回来。");
         return;
     }
     if(sscanf(str, "%shere%slayer%s", a, b, c) == 3) {
-        this_object()->eventForce("speak in farsi The Orc Slayer is in the treasury in the Valley of the Orcs.");
+        this_object()->eventForce("speak in farsi 兽人杀手在兽人山谷的宝库里。");
         return;
     }
     if(sscanf(str, "%s gives you %s", a, b) == 2) {
@@ -48,17 +48,17 @@ void check_quest( string *what ) {
     ob = present("sword");
     if(!tp) return;
     if(!ob) {
-        tell_object(tp, "Unity says: Nice try.  Now leave or die.");
+        tell_object(tp, "尤尼提说：不错的尝试。现在离开，否则死。");
         return;
     }
     if(!ob->id("the_one_orc_slayer")) {
-        tell_object(ob, "Unity says: This is very nice, but I do not need it.");
+        tell_object(ob, "尤尼提说：这很好，但我不需要它。");
         eventForce("give "+that+" to "+who);
         return;
     }
-    tell_room(environment(this_object()), "Unity smiles happily.", this_object());
-    tell_room(environment(this_object()), tp->query_cap_name()+" has completed the quest for the Orc Slayer.", ({ tp, this_object() }));
-    tell_object(tp, "Unity says: You have done well.  You shall some day be a high mortal!");
+    tell_room(environment(this_object()), "尤尼提开心地笑了。", this_object());
+    tell_room(environment(this_object()), tp->query_cap_name()+"完成了兽人杀手的任务。", ({ tp, this_object() }));
+    tell_object(tp, "尤尼提说：你做得很好。总有一天你会成为高级凡人！");
     ob->destruct();
     if(tp->set_quest("orcslayer")) tp->add_exp(1000);
 }

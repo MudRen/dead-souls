@@ -4,9 +4,9 @@ create() {
     ::create();
     SetKeyName("knight");
     SetId( ({ "knight" }) );
-    SetShort("A local knight");
+    SetShort("一位当地骑士");
     SetLevel(13);
-    SetLong( "She serves justice.\n");
+    SetLong( "她伸张正义。\n");
     SetGender("female");
     SetRace( "human");
     SetMorality(300);
@@ -28,7 +28,7 @@ void catch_tell(string str) {
     string a, b, c;
 
     if(sscanf(str, "%suest%s", a, b) == 2) {
-        tell_room(environment(this_object()), "The knight says: I ventured into the goblin caves on a quest for glory.\nI ended up barely escaping with my life.\nAlthough I am now quite respected, I still feel honorless over the loss of\nmy great-grandfather's magic crystal ball.\nPlease return it to me!\n", ({ this_object() }));
+        tell_room(environment(this_object()), "骑士说：我为了追求荣耀而冒险进入了哥布林洞穴。\n我差点丢了性命才逃出来。\n虽然我现在很受尊敬，但我仍然因为丢失了\n曾祖父的魔法水晶球而感到无颜面。\n请把它还给我！\n", ({ this_object() }));
         return;
     }
     if(sscanf(str, "%s gives you %s", a, b) == 2) {
@@ -45,13 +45,13 @@ void check_ball(object tp) {
 
     ob = present("honor_quest_ob", this_object());
     if(!ob) {
-        tell_object(tp, "This is very nice, but it is not what I seek.\n");
+        tell_object(tp, "这很好，但不是我要找的东西。\n");
         return;
     }
     ob->destruct();
     if(!tp->set_quest("honor")) return;
-    tell_object(tp, "The knight says: You have restored my honor!\nThe knight thanks you very much.\n");
-    tell_object(tp, "The knight pays you 10000 copper coins in reward.\n");
+    tell_object(tp, "骑士说：你恢复了我的荣誉！\n骑士非常感谢你。\n");
+    tell_object(tp, "骑士支付给你10000铜币作为奖励。\n");
     tp->AddCurrency("copper", 10000);
     tp->add_exp(500);
     tp->add_alignment(20);

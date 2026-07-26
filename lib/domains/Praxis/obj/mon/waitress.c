@@ -5,10 +5,10 @@ create() {
     ::create();
     SetKeyName("waitress");
     SetId( ({ "waitress", "restaurant waitress" }) );
-    SetShort("A restaurant waitress");
+    SetShort("一位餐厅女服务员");
     SetAggressive( 0);
     SetLevel(10);
-    SetLong("She is ready to take your order.\n");
+    SetLong("她准备好为你点单了。\n");
     SetGender("female");
     SetMorality(164);
     SetRace( "nymph");

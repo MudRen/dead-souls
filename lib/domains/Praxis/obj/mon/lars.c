@@ -7,10 +7,10 @@ create() {
     SetProperty("no bump", 1);
     SetKeyName("lars");
     SetId( ({ "lars", "barkeep" }) );
-    SetShort("Lars, the proprietor of the Lars Pub");
+    SetShort("拉斯，拉斯酒馆的老板");
     SetAggressive( 0);
     SetLevel(12);
-    SetLong("He tends bar and he listens.\n");
+    SetLong("他经营酒吧，倾听客人的故事。\n");
     SetGender("male");
     SetMorality(122);
     SetRace( "human");
