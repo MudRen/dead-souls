@@ -11,10 +11,10 @@ void create()
 {
     ::create();
     SetAmbientLight(30);
-    SetShort( "a room with a blocked exit" );
+    SetShort( "有阻挡出口的房间" );
     SetLong(@EndText
-There's not much here.  Of course, we don't talk about
-the spider in the long, cause it COULD be dead.
+这里没什么东西。当然，我们在长描述中不会提到蜘蛛，
+因为它可能已经死了。
 EndText
     );
     SetExits( ([
@@ -51,8 +51,8 @@ int pre_north(string dir)
         we accomplish two checks on one line. Simple and elegant.*/
     if(present("spider", this_object()) && living(present("spider",this_object())) )
     {
-        write("The spider blocks your exit and clicks menacingly!\n");
-        say("The spider blocks " + possessive_noun(this_player()->GetName()) + " exit and clicks menacingly!\n");
+        write("蜘蛛挡住了你的去路，发出威胁性的咔嗒声！\n");
+        say("蜘蛛挡住了" + possessive_noun(this_player()->GetName()) + "的去路，发出威胁性的咔嗒声！\n");
         return 0;
     }  
     //if we get to here, the spider is not present, so we treat as a

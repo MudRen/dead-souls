@@ -26,9 +26,8 @@ void create()
 {
     ::create();
     SetAmbientLight(30);
-    SetShort( "Lever Pull" );
-    SetLong("This is an example room for a simple add_action which changes "+
-            "a description.  There's a lever to pull."
+    SetShort( "拉杆示例" );
+    SetLong("这是一个使用简单add_action来改变描述的示例房间。这里有一个可以拉动的拉杆。"
            );
 
     SetExits( ([
@@ -73,7 +72,7 @@ mixed aa_pull(string str)
 {
     if ( str != "lever")
     {
-        write( "Pull what?\n" );
+        write( "拉什么？\n" );
         return 1;
     }
 
@@ -83,15 +82,15 @@ mixed aa_pull(string str)
 
     if( once ==1 )
     {
-        write( "The lever's already pulled." );
+        write( "拉杆已经被拉过了。" );
         return 1;
     }
 
     //  If the lever has not been pulled, this part starts.  As you'll notice, we
     //    set once = 1 to indicate that the lever has been pulled.
 
-    write("You pull the lever!\n");
-    say(this_player()->GetName() + " pulls the lever!\n");
+    write("你拉动了拉杆！\n");
+    say(this_player()->GetName() + "拉动了拉杆！\n");
     once=1;
     return 1;
 }
@@ -105,6 +104,6 @@ mixed aa_pull(string str)
 mixed lever_pulled()
 {
     if( !once )
-        return "The lever is pushed into the wall.  Perhaps you could pull it.";
-    return "The lever has already been pulled.  You're too late!";
+        return "拉杆嵌在墙里。也许你可以拉动它。";
+    return "拉杆已经被拉过了。你来晚了！";
 }

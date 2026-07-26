@@ -15,18 +15,16 @@ void create()
 {
     ::create();
     SetAmbientLight(30);
-    SetShort( "temp vars" );
+    SetShort( "临时变量示例" );
     SetLong(@EndText
-You can't really see north and there's a bell
-on the south door.  Don't ring it too many times!
+你无法看到北边的情况，南边的门上有一个铃铛。
+不要按太多次！
 -------------------------------------------------------------
-This is an example room for querying the specific value of a
-stored variable.  Remember though, variables are persistent.
-If you want to prevent a future bug report from your players
-or creators, then make sure you remove the variable when they
-leave.  Otherwise, when the come back in a week and ring the
-bell only once, it would actually be added to their previous
-rings.
+这是一个用于查询存储变量特定值的示例房间。请记住，
+变量是持久化的。如果你想避免来自玩家或创造者的
+未来错误报告，请确保在他们离开时删除该变量。
+否则，当他们一周后回来只按了一次铃时，实际上会
+累加到他们之前的按铃次数上。
 -------------------------------------------------------------
 EndText
     );
@@ -63,7 +61,7 @@ mixed aa_ring(string str)
 {
     int numrings;
     if (str!="bell" && str!="doorbell" && str!="door bell")
-        return notify_fail("Ring what?\n");
+        return notify_fail("按什么？\n");
     /* if "rung_bell" has not been set in the player, a query() for it
        will return UNDEFINED.  you CAN add 1 to an undefined to get 1.
 
@@ -73,16 +71,16 @@ mixed aa_ring(string str)
      */
     numrings=this_player()->GetProperty("rung_bell")+1;  
     this_player()->SetProperty("rung_bell",numrings);
-    write("DONG!\nYou ring a doorbell! Don't do it too many times!\n");
-    say("DONG!  A doorbell rings.\n");
+    write("叮咚！\n你按了门铃！别按太多次！\n");
+    say("叮咚！门铃响了。\n");
 
     if ( numrings>5  )
     {
         if (!present("orc",this_object())) //nested if. see NOTE 2.
         {
-            write("Now you've done it!  An orc walks in a bonks you on the head.\n");
-            say("Now " + this_player()->GetName() + " has done it!  An orc walks in a bonks " +
-              objective(this_player()) +  " on the head.\n");
+            write("这下你闯祸了！一个兽人走进来敲了你的头。\n");
+            say(this_player()->GetName() + "闯祸了！一个兽人走进来敲了" +
+              objective(this_player()) + "的头。\n");
             new(ORC)->eventMove(this_object());  //this_object IS -this- room!
         }
     }

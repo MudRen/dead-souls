@@ -9,13 +9,13 @@ void create()
 {
     ::create();
     SetAmbientLight(30);
-    SetShort( "a master file" );
+    SetShort( "主文件示例" );
     SetLong(@EndText
 |---------------------------------------------------------------|-------------|
-This is an example room for inheriting files.  This 
-file is inherited by two others.  It's also a fully
-functional room.  There's a lever to pull.
-The rooms which inherit me are to the east.
+这是一个用于演示文件继承的示例房间。这个文件被另外两个
+文件继承。它本身也是一个功能完整的房间。这里有一个可以
+拉动的拉杆。
+继承此文件的房间在东边。
 EndText
     );
 
@@ -35,7 +35,7 @@ EndText
         "east"  : EXPATH + "exroom2a"
       ]) );
     SetItems( ([
-        "lever" : "A lever for pulling.",
+        "lever" : "一个可以拉动的拉杆。",
       ]) );
 
     myvar = 0;
@@ -50,7 +50,7 @@ EndText
 int CanReceive(object ob)
 {
     if ( creatorp(ob) )
-        write( "%^BOLD%^BLUE%^Room tells you: %^BOLD%^GREEN%^You're a creator! %^BOLD%^BLUE%^(This is from the master file.)%^RESET%^\n");
+        write( "%^BOLD%^BLUE%^房间告诉你：%^BOLD%^GREEN%^你是一个创造者！%^BOLD%^BLUE%^（这是来自主文件的消息。）%^RESET%^\n");
     return 1;
 }
 
@@ -69,9 +69,9 @@ void init()
 mixed aa_pull(string str)
 {
     if (str!="lever")
-        return notify_fail("Pull what?\n");
+        return notify_fail("拉什么？\n");
     myvar ++;
-    write("You pull the lever and the value of 'myvar' is now " + myvar + "\n");
-    say(this_player()->GetName() + " pulls the lever!\n");
+    write("你拉动了拉杆，'myvar'的值现在是 " + myvar + "\n");
+    say(this_player()->GetName() + "拉动了拉杆！\n");
     return 1;
 }

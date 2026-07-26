@@ -10,16 +10,14 @@ void create()
 {
     ::create();
     SetAmbientLight(30);
-    SetShort( "two verbs for one action" );
+    SetShort( "双动词单动作示例" );
     SetLong(@EndText
-This room demonstrates how you can use two verbs to do 
-one thing. 
-There's a chain here.  You can pull it or yank it.
+这个房间演示了如何使用两个动词来执行同一个动作。
+这里有一条链子。你可以拉它或猛拉它。
 
-Note:  See how we change the description of the chain?
-It's important to remove 'quest hints' once a 
-quest has been done.  And then put them back in
-when the quest is ready to do.
+注意：看看我们如何改变链子的描述？
+在任务完成后删除"任务提示"是很重要的。
+然后在任务准备好时再把它们放回来。
 EndText
     );
 
@@ -68,16 +66,15 @@ mixed aa_chain (string str)
 {
     string averb=query_verb();
     if (str!="chain")
-        return notify_fail(capitalize(averb)+ " what?\n");
+        return notify_fail(capitalize(averb)+ "什么？\n");
     if (once)
-        return notify_fail("The chain has already been " +
-          averb + "ed.\n");
+        return notify_fail("这条链子已经被拉过了。\n");
 
     //   We're returning the averb variable that was defined and set
     //     above in a message to the player and the room.  Then, we
     //     set the 'once' variable to show that the chain has been pulled.
-    write("You " + averb + " the chain!\n");
-    say(this_player()->GetName() + " "+ averb + "s the chain!\n");
+    write("你拉动了链子！\n");
+    say(this_player()->GetName() + "拉动了链子！\n");
     once=1;    
     return 1;
 }
@@ -87,7 +84,7 @@ mixed aa_chain (string str)
 string is_pulled()
 {
     if( once )
-        return "You see a plain chain.\n";
+        return "你看到一条普通的链子。\n";
     else
-        return "Here's a chain begging to be yanked or pulled.\n";
+        return "这里有一条链子，等着被拉动。\n";
 }

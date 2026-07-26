@@ -8,23 +8,18 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort( "Entrance to Hall Of Rooms" );
+    SetShort( "示例大厅入口" );
     SetLong(
             "|-----------------------------------------------------------------------------|\n\n"+
-            "  You are in a large, empty room.  There are few things to examine -- only the\n"
-            "floor, ceiling and wall at this time.  An opening to your north leads to the \n"
-            "incredible Hall of Examples.  The line at the top of this description was put\n"
-            "in as a VERY useful tool for keeping a standard width to all descriptions\n"
-            " and messages.\n\n"
-            "  The Hall of Examples has many rooms to look through.  Each room is limited\n"
-            "to one or two different types of things.  For example, showing how to do a\n"
-            "pre-exit function.  Naturally, you will probably combine many of these\n"
-            "functions into one single room.  Room files can get long and involved, but\n"
-            "when you understand the individual parts, you have no trouble understanding\n"
-            "the whole.  Don't forget to %^BOLD%^GREEN%^'more here'%^RESET%^ in each room."
-            "  Most of the rooms have explanations written out in comments.\n\n"
-            "  As a final aside, most of the functions are simplistic.  These are \n"
-            "very basic examples."
+            "  你在一个宽敞空旷的房间里。这里没什么东西可供观察——目前只有\n"
+            "地板、天花板和墙壁。北面的开口通向令人惊叹的示例大厅。描述顶部\n"
+            "的那条线是一个非常有用的工具，用于保持所有描述和消息的标准宽度。\n\n"
+            "  示例大厅中有许多房间可供浏览。每个房间只展示一两种不同类型的功能。\n"
+            "例如，展示如何使用出口前触发函数。当然，你可能会将许多这些功能\n"
+            "组合到一个房间中。房间文件可能会变得很长很复杂，但当你理解了\n"
+            "各个部分，就很容易理解整体了。别忘了在每个房间中使用\n"
+            "%^BOLD%^GREEN%^'more here'%^RESET%^。大多数房间都有注释中的解释。\n\n"
+            "  最后要说的是，大多数功能都很简单。这些都是非常基础的示例。"
            );
 
     SetExits( ([  
@@ -52,9 +47,9 @@ void create() {
     //   and get the same description.  This is a very useful method.
 
     SetItems( ([
-                "floor" : "The floor is dirty.",
-                "ceiling" : "The ceiling is high",
-                ({ "wall", "walls" }) : "The walls are currtly not very exciting.",
+                "floor" : "地板很脏。",
+                "ceiling" : "天花板很高。",
+                ({ "wall", "walls" }) : "墙壁目前没什么特别的。",
                 ]) );
 
     // The room code also allows us to manipulate individual 'keys' of the
@@ -82,14 +77,14 @@ void create() {
 
 void test1()
 {
-    write("Now take a look at the room");
+    write("现在看看这个房间");
     SetItems( ([
-                "north wall" : "The north wall has an exit.",
-                "east wall" : "The east wall is painted blue.",
-                "south wall" : "The south wall is painted yellow.",
-                "west wall" : "The west wall is painted green.",
-                "wall" : "Which wall?  North, South, East or West?",
-                "walls" : "Which wall?  North, South, East or West?"
+                "north wall" : "北墙上有一个出口。",
+                "east wall" : "东墙被漆成了蓝色。",
+                "south wall" : "南墙被漆成了黄色。",
+                "west wall" : "西墙被漆成了绿色。",
+                "wall" : "哪面墙？北墙、南墙、东墙还是西墙？",
+                "walls" : "哪面墙？北墙、南墙、东墙还是西墙？"
                 ]) );
 
     // In this example, when overwriting the SetItems mapping, you are
@@ -100,7 +95,7 @@ void test1()
     //   or the ceiling since the whole SetItems mapping has been replaced.
 
     // Now let's add one description to the list.
-    AddItem( "statue", "There is a statue of a wizard here." );
+    AddItem( "statue", "这里有一座巫师的雕像。" );
 
     return;
 }

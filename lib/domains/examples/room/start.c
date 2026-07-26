@@ -8,8 +8,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("a blank room");
-    SetLong("A featureless area. The example rooms are north.");
+    SetShort("空白房间");
+    SetLong("一个平淡无奇的区域。示例房间在北边。");
     SetExits( ([
                 "north" : EXPATH + "entrance"
                 ]) );

@@ -10,20 +10,19 @@ void create()
 {
     ::create();
     SetAmbientLight(30);
-    SetShort( "pre/post exits and add/remove exits" );
+    SetShort( "出口前/后触发及添加/删除出口示例" );
     SetLong(@EndText
-There's a door to the north with a doorbell, and a blank
-wall to the south.
+北边有一扇带门铃的门，南边是一面空白的墙。
 -------------------------------------------------------------
-This is an example room for using pre-exits and post-exits.
-It also shows how to add & delete an exit from the room, and
-use a temporary variable on a player.
+这是一个演示出口前触发和出口后触发的示例房间。
+它还展示了如何添加和删除房间的出口，以及在玩家身上
+使用临时变量。
 
-There's a lever to pull and push, and a bell to ring.
-Pull the lever out: create an exit to the south.
-Push the lever in:  delete an exit to the south.
-Ring the bell: allows you to go north.
-When you go south, the exit to the south disappears.
+这里有一个可以拉动和推入的拉杆，还有一个可以按的铃。
+拉动拉杆：创建一个向南的出口。
+推入拉杆：删除向南的出口。
+按铃：允许你向北走。
+当你向南走后，向南的出口会消失。
 -------------------------------------------------------------
 EndText
     );
@@ -48,7 +47,7 @@ int aa_pull(string str)
 {
     if (str!="lever" && str!="lever out")
     {
-        write( "Pull what?\n" );
+        write( "拉什么？\n" );
         return 1;
     }
     /*  Now, we can find out if the lever has been already pulled
@@ -72,7 +71,7 @@ to that direction.  Got it?  Good.
 
     if ( GetExit("south") )
     {
-        write("The lever is already pulled out!\n");
+        write("拉杆已经被拉出来了！\n");
         return 1;
     }
 
@@ -81,9 +80,8 @@ to that direction.  Got it?  Good.
         who is doing the actions and allows me to tell the room who it is.
      */
 
-    write( "You pull the lever and an invisible crack appears in the south wall. "+
-      "A door slides open and there is a previously undetected exit." );
-    say(this_player()->GetName() + " pulls the lever and an exit appears to the south.\n");
+    write( "你拉动了拉杆，南墙上出现了一道隐形的裂缝。一扇门滑开了，露出了一个之前未被发现的出口。" );
+    say(this_player()->GetName() + "拉动了拉杆，南边出现了一个出口。\n");
 
     //  AddExit() functions add an exit to the room.  Here, we added an exit and
     //  set up a (: functional :) to do close up the exit when they leave.
@@ -98,7 +96,7 @@ int aa_push(string str)
 {
     if (str!="lever" && str!="lever in")
     {
-        write( "Push what?\n" );
+        write( "推什么？\n" );
         return 1;
     }
 
@@ -110,12 +108,11 @@ int aa_push(string str)
 
     if ( ! GetExit("south") )
     {
-        write( "The lever is pushed in as far as it will go.\n");
+        write( "拉杆已经被推到底了。\n");
         return 1;
     }
-    write( "You push the lever in and an unseen door slides shut in the south wall."+
-      "The wall now appears solid and unpenatrable." );
-    say(this_player()->GetName() + " pushes the lever and the south closes tight.\n");
+    write( "你推入拉杆，一扇看不见的门在南墙上滑动关闭。墙壁现在看起来坚固而不可穿透。" );
+    say(this_player()->GetName() + "推入了拉杆，南边的出口关闭了。\n");
 
     //  Now we remove the exit that was added earlier.
 
@@ -129,13 +126,13 @@ int aa_ring(string str)
 {
     if (str!="bell" && str!="doorbell" && str!="door bell")
     {
-        write( "Ring what?\n" );
+        write( "按什么？\n" );
         return 1;
     }
     //if we only want to let them ring it once, we can check for the
     //temp var here.  This version will let them ring it many times.
-    write("DONG!\nYou ring a doorbell! You are now admitted north.\n");
-    say("DONG!  A doorbell rings.\n");
+    write("叮咚！\n你按了门铃！你现在可以向北走了。\n");
+    say("叮咚！门铃响了。\n");
     this_player()->SetProperty("rung_bell", 1);
     return 1;
 }
@@ -165,7 +162,7 @@ int pre_north()
 {
     if( !this_player()->GetProperty("rung_bell") )
     {
-        write("Ring the doorbell first!\n");
+        write("请先按门铃！\n");
         return 0;  
     }
     //  Now that the pre_north() function has done what it needs to do, we 
@@ -190,8 +187,8 @@ int post_north()
 
 int post_south()
 {
-    write("You hear a noise and realize the wall has mysteriously closed.\n");
-    say("You hear a noise and realize the wall has mysteriously closed.\n");
+    write("你听到一声响动，发现墙壁已经神秘地关闭了。\n");
+    say("你听到一声响动，发现墙壁已经神秘地关闭了。\n");
     this_player()->eventMoveLiving("/domains/examples/room/exroom3", "south", this_player()->GetName()+" enters.");
     RemoveExit("south");
     SetObviousExits("n");

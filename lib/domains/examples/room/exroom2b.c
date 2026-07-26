@@ -7,9 +7,8 @@ void create()
 {
     ::create();
     SetAmbientLight(30);
-    SetShort( "a 'child' file" );
-    SetLong("This is an example room that inherits the properties "
-            "of another room.");
+    SetShort( "子文件示例" );
+    SetLong("这是一个继承了另一个房间属性的示例房间。");
 
     /*  Note:  When we set the "exits" in this room we over-write
         the "exits" we inherited from PAPAROOM.  There's a way to

@@ -7,9 +7,8 @@ void create()
 {
     ::create();
     SetAmbientLight(30);
-    SetShort( "a 'child' file" );
-    SetLong("This is an example room whose properties are inherited "
-      "from another room.\n<look more> for more information."
+    SetShort( "子文件示例" );
+    SetLong("这是一个属性继承自另一个房间的示例房间。\n<look more> 查看更多信息。"
     );
 
     //Note:  When we set the "exits" in this room we
@@ -21,24 +20,22 @@ void create()
         "east" : EXPATH + "exroom2b"
       ]));
 
-    SetItems( ([ 
+    SetItems( ([
         "more" : @EndText
 -------------------------------------------------------------------
-Take a look at the CanReceive function.
-Do you see the line ::CanReceive(ob)?
-The :: refers to 'the file I've inherited from'.
-So, we are calling (using) the function CanReceive() as it is
-written in exroom2.c 
-THEN we are doing our own thing.
+看看CanReceive函数。
+你看到 ::CanReceive(ob) 这一行了吗？
+:: 表示"我所继承的文件"。
+所以，我们调用（使用）exroom2.c中编写的CanReceive()函数，
+然后执行我们自己的操作。
 
-When an object enters this room (player or bowl or sword etc)
-it becomes the variable 'ob'.
+当一个对象进入这个房间（玩家、碗、剑等）时，
+它就成为了变量 'ob'。
 
-We pass that variable 'ob' along to the function CanReceive()
-that's in exroom2.c 
+我们将变量 'ob' 传递给exroom2.c中的CanReceive()函数。
 
-Then we check to see if ob is a player or creator. (type: man userp)
-If so, we give that object a message.
+然后我们检查ob是否是玩家或创造者。（输入：man userp）
+如果是，就给该对象发送一条消息。
 -------------------------------------------------------------------
 EndText,
       ]));
@@ -61,8 +58,8 @@ EndText,
 int CanReceive(object ob)
 {
     ::CanReceive();
-    if ( userp(ob) ) 
-        write("%^MAGENTA%^Room tells you: %^GREEN%^You're any player, creator or not! %^MAGENTA%^(This is from this room)%^RESET%^\n");
+    if ( userp(ob) )
+        write("%^MAGENTA%^房间告诉你：%^BOLD%^GREEN%^你是玩家，无论是否是创造者！%^MAGENTA%^（这是来自本房间的消息）%^RESET%^\n");
     return 1;
 }
 
