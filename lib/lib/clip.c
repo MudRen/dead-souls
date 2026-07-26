@@ -20,27 +20,27 @@ int CanReceive(object ob){
     string *namen;
     namen=ob->GetId();
     if(member_array("bullet",namen) == -1){
-        write("Only bullets fit into the magazine.");
+        write("只有子弹才能装入弹匣。");
         return 0;
     }
     if(ob->GetAmmoType() != this_object()->GetAmmoType() ){
-        write("That round is not the correct type for the magazine.");
+        write("这种弹药不适合这个弹匣。");
         return 0;
     }
     if(ob->GetMillimeter() != this_object()->GetMillimeter() ){
-        write("That round is not the correct size for the magazine.");
+        write("这种弹药的尺寸不适合这个弹匣。");
         return 0;
     }
     if(ob->GetCaliber() != this_object()->GetCaliber() ){
-        write("That round is not the correct caliber for the magazine.");
+        write("这种弹药的口径不适合这个弹匣。");
         return 0;
     }
     if(ob->GetFirearmType() != "auto"){
-        write("That round is not a semiautomatic round.");
+        write("这种弹药不是半自动弹药。");
         return 0;
     }
     if(sizeof(all_inventory()) >= MaxAmmo){
-        write("The magazine is filled to capacity.");
+        write("弹匣已经装满了。");
         return 0;
     }
     ammo++;
@@ -67,31 +67,31 @@ varargs mixed eventLoad(object who, object where){
     mixed type = where->GetFirearmType();
     if(base_name(where) != LIB_FIREARM &&
             !inherits(LIB_FIREARM,where)){
-        write("This magazine is for a firearm.");
+        write("这个弹匣是用于枪械的。");
         return 1;
     }
     if(!stringp(type) || type != "auto"){
-        write("This ammunition magazine is for use with auto firearms.");
+        write("这个弹匣用于自动枪械。");
         return 1;
     }
     if(where->GetCaliber() != GetCaliber()){
-        write("That is not the right caliber.");
+        write("口径不对。");
         return 1;
     }
     if(where->GetMaxLoaded()){
-        write("It's already got a magazine.");
+        write("它已经装有弹匣了。");
         return 1;
     }
     err = catch(success = eventMove(where) );
     if(err || !success){
-        write("There seems to be a problem loading it.");
+        write("装填时似乎出了问题。");
         return 1;
     }
     else {
-        write("You load your "+where->GetFirearmName()+".");
-        say(this_player()->GetName()+" loads an ammunition "+
-                "clip into "+possessive(this_player())+" "+    
-                where->GetFirearmName()+".");
+        write("你装填了你的 "+where->GetFirearmName()+"。");
+        say(this_player()->GetName()+" 将一个弹匣装入了 "+
+                possessive(this_player())+" "+
+                where->GetFirearmName()+"。");
         where->SetLoaded(1);
     }
     return 1; 
@@ -106,40 +106,39 @@ varargs mixed eventUnload(mixed where){
     if((base_name(previous_object()) == LIB_ROUND ||
                 inherits(LIB_ROUND, previous_object())) && intp(where)){
         if(!(inv = sizeof(all_inventory()))){
-            write("It's already fully unloaded.");
+            write("它已经完全卸空了。");
             return 1;
         }
         if(inv < where) where = inv;
         err=catch(success=all_inventory()[0..inv-1]->eventMove(this_player()));
         if(err || !success){
-            write("It seems you weren't able to unload all you wanted.");
+            write("看来你没能卸下所有想卸的弹药。");
             return 1;
         }
         else {
-            write("You unload "+cardinal(where)+" "+
-                    remove_article(previous_object()->GetShort())+" from the "+
-                    remove_article(GetShort())+".");
+            write("你从 "+remove_article(GetShort())+" 中卸下了 "+cardinal(where)+" "+
+                    remove_article(previous_object()->GetShort())+"。");
             return 1;
         }
     }
     if(!env) return 0;
     if(!type) type = env->GetFirearmType();
     if(!stringp(type)){
-        write("This ammunition magazine is not in a firearm.");
+        write("这个弹匣不在枪械中。");
         return 1;
     }
-    if(env != where){ 
-        write("You seem confused about what to unload from where.");
+    if(env != where){
+        write("你似乎搞不清楚要从哪里卸下什么。");
         return 1;
     }
     env = environment(env);
     if(!env || env != this_player()){
-        write("You aren't close enough to the firearm.");
+        write("你离枪械不够近。");
         return 1;
     }
     err = catch(success = where->eventUnload(env) );
     if(err || !success){
-        write("There seems to be a problem loading it.");
+        write("卸载时似乎出了问题。");
         return 1;
     }
     else {

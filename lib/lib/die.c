@@ -40,7 +40,7 @@ void init(){
 
 int doRoll(){
     Result = random(Denominator)+1;
-    SetLong(BaseLong + "\nThe die's result is: "+Result+".\n");
+    SetLong(BaseLong + "\n骰子的结果是: "+Result+"。\n");
     return Result;
 }
 
@@ -54,8 +54,8 @@ int eventMove(mixed dest){
 
 varargs mixed eventResults(mixed args){
     if(intp(args)){
-        say("The result of "+this_player()->GetName()+"'s roll is: "+args);
-        write("The result of your roll is: "+args);
+        say(this_player()->GetName()+" 掷骰的结果是: "+args);
+        write("你掷骰的结果是: "+args);
     }
     return args;
 }
@@ -73,22 +73,22 @@ varargs mixed eventRoll(object where){
             eventMove(environment(this_player()));
         }
     }
-    write("You roll your "+strip_article(GetShort())+extrathing+", and the result is: "+Result);
-    say(dude->GetName()+" rolls "+possessive(dude)+" "+strip_article(GetShort())+extrathing+", "
-            "and the result is: "+Result);
+    write("你掷出了你的 "+strip_article(GetShort())+extrathing+"，结果是: "+Result);
+    say(dude->GetName()+" 掷出了 "+possessive(dude)+" "+strip_article(GetShort())+extrathing+"，"
+            "结果是: "+Result);
     return Result;
 }
 
 varargs mixed eventShake(object dude, string foo){
-    write("You shake your "+strip_article(GetShort())+".");
-    say(dude->GetName()+" shakes "+possessive(dude)+" "+strip_article(GetShort())+".");
+    write("你摇了摇你的 "+strip_article(GetShort())+"。");
+    say(dude->GetName()+" 摇了摇 "+possessive(dude)+" "+strip_article(GetShort())+"。");
     doRoll();
     return 1;
 }
 
 varargs mixed eventConsult(object dude, string foo){
-    write("The die result is: \n"+Result);
-    say(dude->GetName()+" consults "+possessive(dude)+" "+strip_article(GetShort())+".");
+    write("骰子的结果是: \n"+Result);
+    say(dude->GetName()+" 查看了 "+possessive(dude)+" "+strip_article(GetShort())+"。");
     return 1;
 }
 

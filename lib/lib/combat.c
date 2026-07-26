@@ -572,7 +572,7 @@ int eventExecuteAttack(mixed target){
     tNextRound = ROUND_UNDEFINED;
 
     if(this_object()->GetPacifist()){
-        tell_object(this_object(),"As a pacifist, you choose not to fight.");
+        tell_object(this_object(),"作为一名和平主义者，你选择不战斗。");
         return 0;
     }
 
@@ -583,8 +583,7 @@ int eventExecuteAttack(mixed target){
         }
         else if(objectp(target) && (((this_object()->GetSize(1)) -
                         target->GetSize(1)) < 2) ){
-            this_object()->eventPrint("You can't fight "+
-                    target_name+" unless you are up!");
+            this_object()->eventPrint("你无法战斗，除非你站起来！");
             return 0;
         }
     }
@@ -731,7 +730,7 @@ void eventWeaponAttack(object target, object weapon, int num){
         int damage_type, damage, weapon_damage, actual_damage, encumbrance;
         encumbrance = this_object()->GetEncumbrance();
         if(encumbrance > 20){
-            tell_object(this_object(),"You struggle to fight while carrying stuff.");
+            tell_object(this_object(),"你负重太多，战斗起来很吃力。");
         }
         if(!estatep(target)) eventTrainSkill(weapon_type + " attack", pro*2, con, 1, bonus);
         damage_type = weapon->GetDamageType();
@@ -831,7 +830,7 @@ void eventMeleeAttack(object target, string limb){
         int x, encumbrance;
         encumbrance = this_object()->GetEncumbrance();
         if(encumbrance > 20){
-            tell_object(this_object(),"You struggle to fight while carrying stuff.");
+            tell_object(this_object(),"你负重太多，战斗起来很吃力。");
         }
         if(!estatep(target)) eventTrainSkill("melee attack", pro, con, 1,
                 GetCombatBonus(target->GetLevel()));
@@ -868,7 +867,7 @@ mixed eventBite(object target){
     else if(GetPenalty() > random(11)) fail = 1;
     AttacksPerHB++;
     if( !internal && environment() != environment(target) ){
-        this_object()->eventPrint(target->GetName() + " has gone away.");
+        this_object()->eventPrint(target->GetName() + " 已经离开了。");
         return 1;
     }
     if( !fail && TargetLimb ){
@@ -877,43 +876,41 @@ mixed eventBite(object target){
             x = target->eventReceiveDamage(this_object(), BITE, x, 0,
                     TargetLimb);
             if( x < 1 ){
-                target->eventPrint(possessive_noun(this_object()) + " bite "
-                        "is nothing more than a pinch.");
-                this_object()->eventPrint("Your bite is nothing more than a pinch.");
+                target->eventPrint(possessive_noun(this_object()) + " 咬"
+                        "不过像是捏了一下。");
+                this_object()->eventPrint("你的咬击不过像是捏了一下。");
                 env->eventPrint(possessive_noun(this_object()) +
-                        " bite is nothing more than a "
-                        "pinch.",
+                        " 咬击不过像是捏了一下。",
                         ({ target, this_object() }));
             }
             else {
-                target->eventPrint(GetName() + " bites you in the " +
-                        TargetLimb + "!");
-                this_object()->eventPrint("You bite " + target->GetName() + " in the " +
-                        TargetLimb + "!");
-                env->eventPrint(GetName() + " bites " +
-                        target->GetName() + " in the " +
-                        TargetLimb + "!",
+                target->eventPrint(GetName() + " 咬了你的" +
+                        TargetLimb + "！");
+                this_object()->eventPrint("你咬了 " + target->GetName() + " 的" +
+                        TargetLimb + "！");
+                env->eventPrint(GetName() + " 咬了 " +
+                        target->GetName() + " 的" +
+                        TargetLimb + "！",
                         ({ target, this_object() }));
             }
             if(!estatep(target)) eventTrainSkill("melee attack", pro, con, 1,
                     GetCombatBonus(target->GetLevel()));
         }
         else {
-            target->eventPrint("You avoid " + possessive_noun(this_object()) +
-                    " bite.");
-            this_object()->eventPrint(target->GetName() + " avoids your bite.");
-            env->eventPrint(target->GetName() + " avoids " +
+            target->eventPrint("你躲开了 " + possessive_noun(this_object()) +
+                    " 的咬击。");
+            this_object()->eventPrint(target->GetName() + " 躲开了你的咬击。");
+            env->eventPrint(target->GetName() + " 躲开了 " +
                     possessive_noun(this_object()) +
-                    " bite.",
+                    " 的咬击。",
                     ({ this_object(), target }));
             if(!estatep(target)) eventTrainSkill("melee attack", pro, con, 0,
                     GetCombatBonus(target->GetLevel()));
         }
     }
     else {
-        this_object()->eventPrint("You flounder about like a buffoon.");
-        env->eventPrint(GetName() + " flounders about like a "
-                "buffoon.", this_object());
+        this_object()->eventPrint("你像个傻瓜一样手忙脚乱。");
+        env->eventPrint(GetName() + " 像个傻瓜一样手忙脚乱。", this_object());
     }
     return 1;
 }
@@ -1060,7 +1057,7 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal,
     //if(AttacksPerHB > MAX_ATTACKS_PER_HB) return 0;
     if(Dead) return 0;
     if(encumbrance > 200){
-        if(GetInCombat()) tell_object(this_object(),"You try to dodge while weighed down.");
+        if(GetInCombat()) tell_object(this_object(),"你负重太多，试图闪避时力不从心。");
     }
     x = race::eventReceiveDamage(agent, type, x, internal, limbs);
     if( !Wimpy ) return x;
@@ -1085,10 +1082,10 @@ mixed eventTurn(object who){
         else {
             int x = GetProperty("no turn");
 
-            env->eventPrint("The power of the undead "
-                    "turns on " + who->GetName() +
-                    ".", who);
-            who->eventPrint("The power of the undead turns on you.");
+            env->eventPrint("亡灵的力量"
+                    "反噬了 " + who->GetName() +
+                    "。", who);
+            who->eventPrint("亡灵的力量反噬了你。");
             if( x > random(100) + 1 ){
                 who->eventDie(this_object());
             }
@@ -1104,8 +1101,8 @@ mixed eventTurn(object who){
     }
     defense = GetMagicResistance();
     if( who->GetSkillLevel("faith") < defense ){
-        who->eventPrint("You writhe in pain.");
-        env->eventPrint(who->GetName() + " writhes in pain.",
+        who->eventPrint("你痛苦地扭动着。");
+        env->eventPrint(who->GetName() + " 痛苦地扭动着。",
                 who);
         who->eventReceiveDamage(this_object(), MAGIC, random(defense), 1);
         if(!estatep(who)) eventTrainSkill("magic defense", defense, who->GetSkillLevel("faith"),
@@ -1134,7 +1131,7 @@ int eventWimpy(int i){
             tmp = filter(genv->GetEnters(),
                     (: !(genv->GetDoor($1)) :));
             if( !sizeof(tmp) ){
-                this_object()->eventPrint("You need to escape, but you have nowhere to go!");
+                this_object()->eventPrint("你需要逃跑，但无处可去！");
                 return 0;
             }
             cmd = "enter " + tmp[random(sizeof(tmp))];
@@ -1161,7 +1158,7 @@ protected void heart_beat(){
                 evaluate(f);
             }
             else {
-                this_object()->eventPrint("You can move again.");
+                this_object()->eventPrint("你又可以活动了。");
             }
         }
         return;

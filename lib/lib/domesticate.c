@@ -88,14 +88,14 @@ int SetCanCommand(int i){
 
 int eventBefriend(object who){
     if(!CanBefriend(who)){
-        write("You fail to befriend "+this_object()->GetName()+".");
-        say(who->GetName()+" fails to befriend "+this_object()->GetName()+
-                ". "+capitalize(nominative(who))+" looks very silly!");
+        write("你未能与 "+this_object()->GetName()+" 成为朋友。");
+        say(who->GetName()+" 未能与 "+this_object()->GetName()+
+                " 成为朋友。"+capitalize(nominative(who))+" 看起来很尴尬！");
         return 1;
     }
-    write("You befriend "+this_object()->GetName()+".");
-    say(who->GetName()+" befriends "+this_object()->GetName()+
-            ". Awwww, it's such a cute sight to see!");
+    write("你与 "+this_object()->GetName()+" 成为了朋友。");
+    say(who->GetName()+" 与 "+this_object()->GetName()+
+            " 成为了朋友。哇，真是温馨的一幕！");
     Owner = who;
     Befriended += ({ who });
     return 1;
@@ -103,12 +103,12 @@ int eventBefriend(object who){
 
 int eventAbandon(object who){
     if(!CanAbandon(who)){
-        write("You can't abandon "+this_object()->GetName()+".");
+        write("你不能抛弃 "+this_object()->GetName()+"。");
         return 1;
     }
-    write("You abandon "+this_object()->GetName()+".");
-    say(who->GetName()+" abandons "+this_object()->GetName()+
-            ". How sad!");
+    write("你抛弃了 "+this_object()->GetName()+"。");
+    say(who->GetName()+" 抛弃了 "+this_object()->GetName()+
+            "。真令人难过！");
     Owner = 0;
     return 1;
 }
@@ -117,18 +117,18 @@ varargs int eventTrainLiving(object who, string what){
     if(what) what = replace_string(what, "to ", "");
     if(!who) who = this_player();
     if(Owner != who){
-        write("You are not this mount's owner.");
+        write("你不是这个坐骑的主人。");
         return 0;
     }
     if(what && member_array(what, TrainedSkills) != -1){
-        write(this_object()->GetName()+" already possesses that skill.");
+        write(this_object()->GetName()+" 已经掌握了那个技能。");
         return 1;
     }
     if(!what || what == "") return 1;
     else {
-        tell_player(who,"You train "+this_object()->GetShort()+"."); 
-        tell_room(environment(who),who->GetName()+" trains "+
-                this_object()->GetShort()+".", ({ who,this_object() }) );
+        tell_player(who,"你训练了 "+this_object()->GetShort()+"。");
+        tell_room(environment(who),who->GetName()+" 训练了 "+
+                this_object()->GetShort()+"。", ({ who,this_object() }) );
         TrainedSkills += ({ what });
     }
     return 1;
@@ -138,7 +138,7 @@ varargs int eventUnTrainLiving(object who, string what){
     if(what) what = replace_string(what, "to ", "");
     if(!who) who = this_player();
     if(Owner != who){
-        write("You are not this mount's owner.");
+        write("你不是这个坐骑的主人。");
         return 0;
     }
     if(!what || what == ""){
@@ -147,9 +147,9 @@ varargs int eventUnTrainLiving(object who, string what){
     if(what &&  member_array(what, TrainedSkills) != -1){
         TrainedSkills -= ({ what });
     }
-    tell_player(who,"You untrain "+this_object()->GetShort()+".");
-    tell_room(environment(who),who->GetName()+" untrains "+
-            this_object()->GetShort()+".", ({ who,this_object() }) );
+    tell_player(who,"你取消训练了 "+this_object()->GetShort()+"。");
+    tell_room(environment(who),who->GetName()+" 取消训练了 "+
+            this_object()->GetShort()+"。", ({ who,this_object() }) );
     return 1;
 }
 

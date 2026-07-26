@@ -79,7 +79,7 @@ protected void create(){
 
 varargs mixed eventBuy(mixed arg1, mixed arg2, mixed arg3){
     //This function will hopefully get overridden where appropriate.
-    write(capitalize(this_object()->GetShort())+" isn't buying anything from you.");
+    write(capitalize(this_object()->GetShort())+"不会从你这里买任何东西。");
     return 1;
 }
 
@@ -210,7 +210,7 @@ mixed direct_turn_liv(){
         return 1;
     }
     else {
-        return "You cannot turn the living!";
+        return "你不能驱散活人！";
     }
 }
 
@@ -276,7 +276,7 @@ void eventCheckEnvironment(){
             if(!i){
                 breathdam = 1;
                 j=this_object()->eventReceiveDamage("Outer space",ANOXIA,200,1);
-                if(j) eventPrint("You are asphyxiating.");
+                if(j) eventPrint("你正在窒息。");
             }
         }
     }
@@ -285,7 +285,7 @@ void eventCheckEnvironment(){
             if(!i){
                 breathdam = 1;
                 j=this_object()->eventReceiveDamage("Water", ANOXIA, 100, 1);
-                if(j) eventPrint("You are drowning.");
+                if(j) eventPrint("你正在溺水。");
             }
         }
     }
@@ -293,18 +293,18 @@ void eventCheckEnvironment(){
         if(!i){
             breathdam = 1;
             j=this_object()->eventReceiveDamage("Air", ANOXIA, 100, 1);
-            if(j) eventPrint("You are asphyxiating.");
+            if(j) eventPrint("你正在窒息。");
         }
     }
     if(!breathdam){
         if(!i){
             j=this_object()->eventReceiveDamage("asphyxia", ANOXIA, 200, 1);
-            if(j) eventPrint("You cannot breathe!");
+            if(j) eventPrint("你无法呼吸！");
         }
     }
     if(i && restype == R_AIR && (i = env->GetPoisonGas()) > 0 ){
         if( this_object()->GetResistance(GAS) != "immune" ){
-            eventPrint("You choke on toxic gases.");
+            eventPrint("你被有毒气体呛到了。");
             this_object()->eventReceiveDamage("Poison gas", GAS, i, 1);
         }
     }
@@ -350,7 +350,7 @@ private void checkCollapse(){
         SetParalyzed(3, (: checkCollapse :));
         return;
     }
-    this_object()->eventPrint("You feel some strength returning.");
+    this_object()->eventPrint("你感到力量正在恢复。");
 }
 
 varargs int eventCollapse(int noparalyze){
@@ -370,7 +370,7 @@ varargs int eventCollapse(int noparalyze){
         if( position == POSITION_LYING ){
             return 1;
         }
-        send_messages("collapse", "$agent_name $agent_verb to the ground.",
+        send_messages("collapse", "$agent_name $agent_verb倒在地面上。",
                 this_object(), 0, environment());
         SetPosition(POSITION_LYING);
         if(!noparalyze) SetParalyzed(3, (: checkCollapse :));
@@ -380,7 +380,7 @@ varargs int eventCollapse(int noparalyze){
     if( position == POSITION_FLOATING ){
         return 1;
     }
-    send_messages("go", "$agent_name $agent_verb limp.",
+    send_messages("go", "$agent_name $agent_verb瘫软无力。",
             this_object(), 0, environment());
     SetPosition(POSITION_FLOATING);
     if(!noparalyze) SetParalyzed(3, (: checkCollapse :));
@@ -438,7 +438,7 @@ void eventCheckHealing(){
             if( Alcohol > 0 ){
                 Alcohol--;
                 if( !Alcohol ){
-                    message("my_action", "You are left with a pounding headache.",
+                    message("my_action", "你头痛欲裂。",
                             this_object());
                     AddHealthPoints(-(random(3) + 1));
                 }
@@ -446,31 +446,30 @@ void eventCheckHealing(){
                     string verb, adv;
 
                     switch(random(5)){
-                        case 0: verb = "burp"; adv = "rudely"; break;
-                        case 1: verb = "look"; adv = "ill"; break;
-                        case 2: verb = "hiccup"; adv = "loudly"; break;
-                        case 3: verb = "stumble"; adv = "clumsily"; break;
-                        case 4: verb = "appear"; adv = "drunk"; break;
+                        case 0: verb = "打了个嗝"; adv = "粗鲁地"; break;
+                        case 1: verb = "看起来"; adv = "很难受"; break;
+                        case 2: verb = "打了个嗝"; adv = "大声地"; break;
+                        case 3: verb = "踉跄了一下"; adv = "笨拙地"; break;
+                        case 4: verb = "看起来"; adv = "醉醺醺的"; break;
                     }
-                    message("my_action", "You " + verb + " " + adv + ".",
+                    message("my_action", "你" + adv + verb + "。",
                             this_object());
-                    message("other_action", GetName() + " " + pluralize(verb) + " " +
-                            adv + ".", environment(), ({ this_object() }));
+                    message("other_action", GetName() + adv +
+                            verb + "。", environment(), ({ this_object() }));
                 }
             }
             if( Sleeping > 0 ){
                 Sleeping--;
                 if( !Sleeping || dude->GetInCombat() ){
                     Sleeping = 0;
-                    message("my_action", "You wake up!", this_object());
-                    message("other_action", GetName() + " wakes up from " +
-                            possessive(this_object()) + " deep sleep.",
+                    message("my_action", "你醒来了！", this_object());
+                    message("other_action", GetName() + " 从沉睡中醒来。",
                             environment(this_object()), ({ this_object() }));
                 }
                 else if( random(100) < 8 ){
-                    message("my_action", "You snore.", this_object());
+                    message("my_action", "你打起了呼噜。", this_object());
                     message("other_action", this_player()->GetName() +
-                            " snores loudly.", environment(this_object()),
+                            " 大声地打着呼噜。", environment(this_object()),
                             ({ this_object() }));
                 }
             }
@@ -775,24 +774,24 @@ mixed eventReceiveThrow(object who, object what){
         x = 0;
     }
     if( x < 1 ){
-        environment()->eventPrint(GetName() + " catches " +
+        environment()->eventPrint(GetName() + " 接住了 " +
                 possessive_noun(who->GetName()) + " " +
-                what->GetKeyName() + ".",
+                what->GetKeyName() + "。",
                 ({ this_object(), who }));
-        eventPrint("You catch " + possessive_noun(who->GetName()) + " " +
-                what->GetKeyName() + ".");
-        who->eventPrint(GetName() + " catches your " + what->GetKeyName()
-                + ".");
+        eventPrint("你接住了 " + possessive_noun(who->GetName()) + " " +
+                what->GetKeyName() + "。");
+        who->eventPrint(GetName() + " 接住了你的 " + what->GetKeyName()
+                + "。");
     }
     else {
-        environment()->eventPrint(GetName() + " takes damage from " +
+        environment()->eventPrint(GetName() + " 被 " +
                 possessive_noun(who->GetName()) + " " +
-                what->GetKeyName() + ".",
+                what->GetKeyName() + " 击中受伤了。",
                 ({ this_object(), who }));
-        eventPrint("You take damage from " + possessive_noun(who->GetName()) +
-                " " + what->GetKeyName() + ".");
-        who->eventPrint(GetName() + " takes damage from your " +
-                what->GetKeyName() + ".");
+        eventPrint("你被 " + possessive_noun(who->GetName()) +
+                " 的 " + what->GetKeyName() + " 击中受伤了。");
+        who->eventPrint(GetName() + " 被你的 " +
+                what->GetKeyName() + " 击中受伤了。");
     }
     what->eventMove(this_object());
     return 1;
@@ -827,14 +826,14 @@ varargs int eventDie(mixed agent){
     }
 
     if(RACES_D->GetNonMeatRace(GetRace()))
-        death_annc = killer + " has destroyed "+ this_object()->GetName()+".";
+        death_annc = killer + " 摧毁了 "+ this_object()->GetName()+"。";
     else if(!this_object()->GetUndead())
-        death_annc = killer + " has slain "+ this_object()->GetName()+".";
-    else death_annc = killer + " has destroyed "+ this_object()->GetName()+".";
+        death_annc = killer + " 杀死了 "+ this_object()->GetName()+"。";
+    else death_annc = killer + " 摧毁了 "+ this_object()->GetName()+"。";
 
     if(killer == "asphyxia"){
-        tell_room(ROOM_ARCH, this_object()->GetName() + " asphyxiated "+
-                "in "+base_name(environment(this_object())));
+        tell_room(ROOM_ARCH, this_object()->GetName() + " 在 "+
+                base_name(environment(this_object())) + " 窒息身亡。");
     }
 
     CHAT_D->eventSendChannel("SYSTEM","death",death_annc,0);
@@ -993,7 +992,7 @@ mixed CanWear(object ob, string *limbs){
     if( !ob ) return 0;
     short = ob->GetShort();
     if( !(type = ob->GetArmorType()) )
-        return capitalize(short) + " cannot be worn!";
+        return capitalize(short) + " 不能穿戴！";
     if( type & A_WEAPON ){
         verb_pr = "wield";
         verb_pt = "wielded";
@@ -1003,9 +1002,9 @@ mixed CanWear(object ob, string *limbs){
         verb_pt = "worn";
     }
     if( !limbs || !(maxi = sizeof(limbs)) )
-        return "Where should " + short + " be "+ verb_pt + "?";
+        return short + " 应该穿戴在哪里？";
     if( ob->GetWorn() )
-        return "It is already being " + verb_pt + ".";
+        return "它已经被穿戴了。";
 
     // Verify that the the item can be worn on each limb specified by limbs.
     i = 0;
@@ -1054,24 +1053,24 @@ mixed CanWear(object ob, string *limbs){
                 validLimb = limb2;
             }
             if(validLimb) limbs[i] = validLimb;
-            else return "You cannot " + verb_pr + " that.";
+            else return "你不能" + verb_pr + "那个。";
         }
         else {
             if(!GetLimb(limb)){
-                string ret = "Try a different body part.";
+                string ret = "试试换个身体部位。";
                 string *hands = GetWieldingLimbs();
                 if(type & A_RING && sizeof(hands)){
-                    ret = "Try: wear " + ob->GetKeyName() + " on "+
+                    ret = "试试: wear " + ob->GetKeyName() + " on "+
                         hands[0];
                 }
                 return ret;
             }
             wearbit = Limbs[limb]["armors"];
-            if( !Limbs[limb] ) return "You have no " + limb + ".";
+            if( !Limbs[limb] ) return "你没有 " + limb + "。";
             if( !(wearbit & type) ){
                 if( type & A_WEAPON )
-                    return "You cannot wield with " + limb + ".";
-                else return "You cannot wear " + short + " on your " + limb + ".";
+                    return "你不能用 " + limb + " 持握武器。";
+                else return "你不能把 " + short + " 穿戴在你的 " + limb + " 上。";
             }
         }
         i++;
@@ -1079,60 +1078,60 @@ mixed CanWear(object ob, string *limbs){
     switch(type){
         case A_RING:
             if(maxi != 1)
-                return "You can only wear " + short + " on one limb.";
+                return "你只能把 " + short + " 戴在一个部位上。";
             if( !WornItems[limbs[0]] ) return 1; /* nothing there, ring ok */
             /* count # worn rings */
             i = sizeof(filter(WornItems[limbs[0]],
                         (: $1->GetArmorType() == A_RING :)));
             if(i >= GetFingers(limbs[0]))
-                return "You are already wearing too many rings there.";
+                return "你已经在那个部位戴了太多戒指了。";
             else return 1; /* ok */
         case A_GLOVE:
             if(maxi != 1)
                 if( GetFingers(limbs[0]) > ob->GetFingers() ){
-                    return capitalize(short) + " does not seem to fit well on "
-                        "your " + limbs[0] + ".";
+                    return capitalize(short) + " 似乎不太适合你的 " +
+                        limbs[0] + "。";
                 }
             bad_types = A_GLOVE | A_LONG_GLOVE | A_SOCK | A_LONG_SOCK;
             break;
         case A_LONG_GLOVE:
             if(maxi != 2)
-                return capitalize(short) + " should be worn on two limbs.";
+                return capitalize(short) + " 应该穿戴在两个部位上。";
             if( limbs[0] == Limbs[limbs[1]]["parent"] ){ /* which is hand? */
                 /* more fingers than this armor can stand */
                 if(GetFingers(limbs[1]) > ob->GetFingers())
-                    return capitalize(short) + " does not seem to fit well on "
-                        "your " + limbs[1] + ".";
+                    return capitalize(short) + " 似乎不太适合你的 " +
+                        limbs[1] + "。";
             }
             else if(limbs[1] == Limbs[limbs[0]]["parent"]){
                 /* ok, first limb is hand, check it */
                 if(GetFingers(limbs[0]) > ob->GetFingers())
-                    return capitalize(short) + " does not seem to fit well on "
-                        "your " + limbs[1] + ".";
+                    return capitalize(short) + " 似乎不太适合你的 " +
+                        limbs[1] + "。";
             }
-            else return "Your " + limbs[0] + " is not connected to your " +
-                limbs[1] + ".";
+            else return "你的 " + limbs[0] + " 和 " +
+                limbs[1] + " 不相连。";
             bad_types = A_GLOVE | A_LONG_GLOVE;
             break;
         case A_BOOT: case A_SOCK:
             if(maxi != 1)
-                capitalize(short) + " may only be worn on one limb.";
+                capitalize(short) + " 只能穿戴在一个部位上。";
             if(type == A_SOCK) bad_types = A_SOCK | A_LONG_SOCK;
             else bad_types = A_BOOT | A_LONG_BOOT;
             break;
         case A_LONG_BOOT: case A_LONG_SOCK:
             if(maxi != 2)
-                return capitalize(short) + " must be worn only on two limbs.";
+                return capitalize(short) + " 必须穿戴在两个部位上。";
             if(limbs[0] != Limbs[limbs[1]]["parent"] &&
                     limbs[1] != Limbs[limbs[0]]["parent"])
-                return "Your " + limbs[0] + " is not connected to your " +
-                    limbs[1] + ".";
+                return "你的 " + limbs[0] + " 和 " +
+                    limbs[1] + " 不相连。";
             if(type == A_LONG_SOCK) bad_types = A_LONG_SOCK | A_SOCK;
             else bad_types = A_BOOT | A_LONG_BOOT;
             break;
         case A_HELMET: case A_VEST: case A_AMULET: case A_VISOR: case A_BELT: case A_COLLAR:
             if(maxi != 1)
-                return capitalize(short) + " may only be worn on one limb.";
+                return capitalize(short) + " 只能穿戴在一个部位上。";
             bad_types = type;
             break;
         case A_PANTS: case A_SHIRT:
@@ -1173,7 +1172,7 @@ mixed CanWear(object ob, string *limbs){
                 }
                 /* again, not allowing 2 weapons or a shield and weapon */
                 if(tmp & (A_SHIELD | A_WEAPON))
-                    return "You cannot wield " + short + " there right now.";
+                    return "你现在不能在那里装备 " + short + "。";
             }
             return 1; /* ok */
         case A_ARMOR: case A_BODY_ARMOR:
@@ -1200,7 +1199,7 @@ mixed CanWear(object ob, string *limbs){
             tmp |= worn_item->GetArmorType();
         }
         if(tmp & bad_types){
-            return "You cannot " + verb_pr + " " + short + " there right now.";
+            return "你现在不能在那里" + verb_pr + " " + short + "。";
         }
     }
     return 1; /* ok */
@@ -1209,8 +1208,8 @@ mixed CanWear(object ob, string *limbs){
 mixed CanManipulate(){
     string *prehensile_limbs = this_object()->GetWieldingLimbs();
     if(!sizeof(prehensile_limbs)){
-        say(this_object()->GetName()+" looks helpless without prehensile appendages.");
-        return "You lack prehensile limbs with which to do that.";
+        say(this_object()->GetName()+" 没有灵巧的肢体，看起来很无助。");
+        return "你缺乏灵巧的肢体来完成这个操作。";
     }
     return 1;
 }
@@ -1403,8 +1402,8 @@ varargs int RemoveLimb(string limb, mixed agent, int quiet){
         object ob;
         if(!quiet){
             message("environment", possessive_noun(GetName()) + " " + limb +
-                    " is severed!", environment(), ({ this_object() }));
-            message("environment", "Your "+ limb + " is severed!", this_object());
+                    " 被切断了！", environment(), ({ this_object() }));
+            message("environment", "你的 "+ limb + " 被切断了！", this_object());
         }
         if(GetRace() == "golem"){
             ob = new(LIB_CLAY);
@@ -1549,24 +1548,24 @@ string GetLong(string nom){
     if(!(this_object()->GetNoCondition())){
         if(member_array(this_object()->GetRace(),exempt) == -1 &&
                 !this_object()->GetUndead() ){
-            str = "The "+this_object()->GetGender()+" ";
+            str = "";
             str += this_object()->GetRace();
             h = percent(GetHealthPoints(), GetMaxHealthPoints());
-            if( h < 10.0 ) str += " is mortally wounded.\n";
-            else if( h < 20.0 ) str += " is near death.\n";
-            else if( h < 30.0 ) str += " is severely injured.\n";
-            else if( h < 40.0 ) str += " is badly injured.\n";
-            else if( h < 50.0 ) str += " is hurt.\n";
-            else if( h < 60.0 ) str += " is slightly injured.\n";
-            else if( h < 70.0 ) str += " has some cuts and bruises.\n";
-            else if( h < 80.0 ) str += " is in decent shape.\n";
-            else if( h < 90.0 ) str += " is quite keen.\n";
-            else str += " is in top condition.\n";
+            if( h < 10.0 ) str += " 受了致命伤。\n";
+            else if( h < 20.0 ) str += " 奄奄一息。\n";
+            else if( h < 30.0 ) str += " 伤势严重。\n";
+            else if( h < 40.0 ) str += " 伤势较重。\n";
+            else if( h < 50.0 ) str += " 受了些伤。\n";
+            else if( h < 60.0 ) str += " 轻微受伤。\n";
+            else if( h < 70.0 ) str += " 有些擦伤和淤青。\n";
+            else if( h < 80.0 ) str += " 状态尚可。\n";
+            else if( h < 90.0 ) str += " 状态不错。\n";
+            else str += " 状态极佳。\n";
         }
     }
     if(this_object()->GetUndead()){
-        str = capitalize(nominative(this_object()))+" has been killed, and ";
-        str +=  "is one of the Walking Undead.\n";
+        str = capitalize(nominative(this_object()))+"已经被杀死了，";
+        str +=  "现在是行尸走肉中的一员。\n";
     }
 
     limbs = GetMissingLimbs();
@@ -1576,15 +1575,14 @@ string GetLong(string nom){
         if( sizeof(limbs) ){
             int i, maxi;
 
-            str += capitalize(nom) + " is missing " + add_article(limbs[0]);
+            str += capitalize(nom) + " 缺少了 " + limbs[0];
             for(i=1, maxi = sizeof(limbs); i<maxi; i++){
-                if( i < maxi-1 ) str += ", " + add_article(limbs[i]);
+                if( i < maxi-1 ) str += "、" + limbs[i];
                 else {
-                    if( maxi > 2 ) str += ",";
-                    str += " and " + add_article(limbs[i]);
+                    str += " 和 " + limbs[i];
                 }
             }
-            str += ".\n";
+            str += "。\n";
         }
     }
     return str;
@@ -1802,7 +1800,7 @@ int AddExperiencePoints(mixed x){
         if( (ExperienceDebt -= x) < 0 ) {
             ExperiencePoints -= ExperienceDebt;
             ExperienceDebt = 0;
-            write("The last of your experience debt has been paid.\n");
+            write("你的经验值债务已经还清了。\n");
         }
     } else {
         ExperiencePoints += x;
@@ -1819,7 +1817,7 @@ int AddExperienceDebt(mixed x) {
         if( (x = ExperienceDebt + x) < 0) {
             ExperienceDebt = 0;
             AddExperiencePoints(ExperienceDebt);
-            write("The last of your experience debt has been paid.\n");
+            write("你的经验值债务已经还清了。\n");
         }
     } else {
         ExperienceDebt += x;
@@ -2041,14 +2039,14 @@ string GetAffectLong(){
     ret = "";
 
     if(dude->GetSleeping() > 0){
-        ret += dude->GetName()+" is asleep.\n";
+        ret += dude->GetName()+" 睡着了。\n";
     }
 
     else if(alclevel > 10){
-        if(alclevel < 20) ret += dude->GetName()+" looks tipsy.\n";
-        else if(alclevel < 50) ret += dude->GetName()+" looks drunk.\n";
-        else if(alclevel < 70) ret += dude->GetName()+" is very drunk.\n";
-        else ret += dude->GetName()+" is completely wasted drunk.\n";
+        if(alclevel < 20) ret += dude->GetName()+" 看起来有点微醺。\n";
+        else if(alclevel < 50) ret += dude->GetName()+" 看起来醉了。\n";
+        else if(alclevel < 70) ret += dude->GetName()+" 酩酊大醉。\n";
+        else ret += dude->GetName()+" 烂醉如泥。\n";
     }
 
     return ret;

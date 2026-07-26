@@ -37,8 +37,8 @@ protected void init(){
     if( !living(this_player()) ) return;
     str = this_player()->GetKeyName();
     if( Students[str] ){
-        me->eventForce("speak You will have to start your "
-                "studies anew, "+this_player()->GetName());
+        me->eventForce("speak 你需要重新开始学习，"+
+                this_player()->GetName());
         map_delete(Students, str);
     }
 }
@@ -99,7 +99,7 @@ string Expertise(){
             tmp = last_string_element(expertises2,",");
             expertises2 = replace_string(expertises2,tmp," and"+tmp);
         }
-        expertises2 = ". In terms of spells, I can teach you "+expertises2;
+        expertises2 = "。至于法术，我可以教你 "+expertises2;
     }
 
     return expertises + expertises2;
@@ -110,16 +110,16 @@ mapping GetStudents(){ return copy(Students); }
 /**** high-level events ****/
 
 int eventHelp(object who, string unused){
-    if(who) me->eventForce("speak I am not sure of what you are "
-            "asking, " + who->GetName() + ".");
+    if(who) me->eventForce("speak 我不太确定你在问什么，" +
+            who->GetName() + "。");
     if(sizeof( GetTrainingSkills() )){
-        me->eventForce("speak My area of training expertise covers " +
-                Expertise() + ".");
-        me->eventForce("speak You can \"ask "+me->GetKeyName()+" to train "
-                "<SKILL>\" if you have training points.");
+        me->eventForce("speak 我的训练专长领域包括 " +
+                Expertise() + "。");
+        me->eventForce("speak 如果你有训练点数，可以 \"ask "+me->GetKeyName()+" to train "
+                "<技能名>\"。");
         if(sizeof(me->GetSpellBook()) && !GetNoSpells()){
-            me->eventForce("speak You can also \"ask "+me->GetKeyName()+
-                    " to teach <SPELL>.\"");
+            me->eventForce("speak 你也可以 \"ask "+me->GetKeyName()+
+                    " to teach <法术名>\"。");
         }
     }
     return 1;
@@ -140,9 +140,9 @@ int eventTrain(object who, string verb, string skill){
         }
     }
     if(!ok){
-        write("You must be fluent in one of "+me->GetName()+
-                " languages in order to understand "+possessive(me)+
-                " training.");
+        write("你必须精通 "+me->GetName()+
+                " 的一种语言才能理解"+possessive(me)+
+                "的训练。");
         return 1;
     }
     if( !sizeof(skill) || !sizeof(verb) ) return eventHelp(who, 0);
@@ -153,34 +153,34 @@ int eventTrain(object who, string verb, string skill){
         object ob = SPELLS_D->GetSpell(skill);
 
         if(!sizeof(me->GetSpellBook()) || me->GetNoSpells()){
-            me->eventForce("speak I am not able to teach spells. I only train skills.");
+            me->eventForce("speak 我不能教法术。我只训练技能。");
             me->eventHelp();
             return 0;
         }
         if(!ob){
-            me->eventForce("speak I've never heard of such a spell.");
+            me->eventForce("speak 我从没听说过那样的法术。");
             return 0;
         }
 
         if( !who->eventLearnSpell(skill) ){
-            me->eventForce("speak You are not prepared for that spell!");
+            me->eventForce("speak 你还没有准备好学习那个法术！");
             return 0;
         }
 
-        who->eventPrint(me->GetName() + " touches your forehead and gives "
-                "you knowledge of " + skill + ".");
-        environment()->eventPrint(me->GetName() + " touches " +
+        who->eventPrint(me->GetName() + " 触碰了你的额头，传授给你 " +
+                skill + " 的知识。");
+        environment()->eventPrint(me->GetName() + " 触碰了 " +
                 possessive_noun(who) +
-                " forehead and gives " +
-                objective(who) + " knowledge of " +
-                skill + ".", who);
+                " 的额头，传授给 " +
+                objective(who) + " " +
+                skill + " 的知识。", who);
         return 1;
     }
 
     if(skill) skill = lower_case(skill);
 
     if( Students[ who->GetKeyName() ] ){
-        me->eventForce("speak I am already training you!");
+        me->eventForce("speak 我已经在训练你了！");
         return 0;
     }
     if( member_array(skill, me->GetTrainingSkills()) == -1 ){
@@ -189,13 +189,13 @@ int eventTrain(object who, string verb, string skill){
     }
     if( member_array(skill,
                 this_player()->GetSkills() ) == -1 ){
-        me->eventForce("speak You do not appear to be the type "
-                "who would be skilled in " + skill + "!");
-        me->eventForce("speak I cannot train you in a skill you don't know at all. You may need to join a guild or a class that enables you to train in this skill.");
+        me->eventForce("speak 你看起来不像是擅长 " +
+                skill + " 的人！");
+        me->eventForce("speak 我不能训练你一个你完全不会的技能。你可能需要加入一个能让你学习这个技能的公会或职业。");
         return 0;
     }
     if( this_player()->GetTrainingPoints() < 1 ){
-        me->eventForce("speak You need more training points!");
+        me->eventForce("speak 你需要更多的训练点数！");
         return 0;
     }
     Students[ who->GetKeyName() ] = skill;
@@ -231,23 +231,23 @@ nosave int ContinueTraining(object who, string skill, int x){
  */
 
 int eventStart(object who, string skill){
-    who->eventPrint(me->GetName() + " begins teaching you "
-            "about the skill of " + skill + ".");
-    environment()->eventPrint(me->GetName() + " begins teaching " +
-            who->GetName() + "...", who);
+    who->eventPrint(me->GetName() + " 开始教你 " +
+            skill + " 技能。");
+    environment()->eventPrint(me->GetName() + " 开始教导 " +
+            who->GetName() + "……", who);
     return 1;
 }
 
 int eventContinue(object who, string skill, int x){
-    who->eventPrint("You listen intently as " + me->GetName()
-            + " continues " + possessive(me)
-            + " dissertation on " + skill + ".");
+    who->eventPrint("你专注地听着 " + me->GetName()
+            + " 继续讲解 " + possessive(me)
+            + " 关于 " + skill + " 的论述。");
     return 1;
 }
 
 int eventComplete(object who, string skill){
-    who->eventPrint("You feel more adept with your " + skill + ".");
-    me->eventForce("speak I can teach you no more for now, " +
-            who->GetName() + ".");
+    who->eventPrint("你对 " + skill + " 的掌握更加熟练了。");
+    me->eventForce("speak 我现在能教你的都教了，" +
+            who->GetName() + "。");
     return 1;
 }

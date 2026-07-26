@@ -73,7 +73,7 @@ protected string process_input(string args){
     }
     if(!real_verb) real_verb = verb;
     if(Paused && (member_array(real_verb, exempts) == -1)){
-        this_object()->eventPrint("You are paused.");
+        this_object()->eventPrint("你已暂停。");
         return "";
     }
     if(!archp(this_object()) && MAX_COMMANDS_PER_SECOND){
@@ -83,14 +83,14 @@ protected string process_input(string args){
             cmd_count = 1;
         }
         if(cmd_count > MAX_COMMANDS_PER_SECOND){
-            this_object()->eventPrint("You have exceeded the " +
-                    MAX_COMMANDS_PER_SECOND + " commands per second limit.");
+            this_object()->eventPrint("你已超过每秒 " +
+                    MAX_COMMANDS_PER_SECOND + " 条命令的限制。");
             return "";
         }
     }
     if(this_object()->GetSleeping() > 0){
         if(verb != "wake"){
-            this_object()->eventPrint("You are asleep.");
+            this_object()->eventPrint("你正在睡觉。");
             return "";
         }
     }
@@ -193,7 +193,7 @@ protected int cmdAll(string args){
     }
 
     if(query_custom_command(verb) && query_custom_command(verb) != "" && !creatorp(this_player()) ){
-        this_player()->eventPrint("How clever of you. Or lucky. In any case, this command is unavailable to you.");
+        this_player()->eventPrint("你真聪明，或者运气不错。总之，这个命令对你不可用。");
         return 1;
     }
     if( !(file = (query_custom_command(verb) )) || query_custom_command(verb) == ""){
@@ -215,11 +215,10 @@ protected int cmdAll(string args){
                 if( err == -1 ){
                     if( !(err = VERBS_D->GetErrorMessage(verb)) &&
                             !(err = SOUL_D->GetErrorMessage(verb)) ){
-                        err = "Such a command exists, but no default "
-                            "syntax is known.";
+                        err = "这个命令存在，但没有已知的默认语法。";
                     }
                 }
-                if( intp(err) )  /* MudOS bug */ err = "What?";
+                if( intp(err) )  /* MudOS bug */ err = "什么？";
                 SetCommandFail(err);
             }
             message("error", GetCommandFail(), this_object());
@@ -320,7 +319,7 @@ int eventForce(string cmd){
 }
 
 int eventForceQueuedCommand(string cmd){
-    tell_object(this_object(),"%^RED%^Executing queued command: %^RESET%^"+cmd);
+    tell_object(this_object(),"%^RED%^执行排队命令: %^RESET%^"+cmd);
     eventForce(cmd);
 }
 
@@ -465,7 +464,7 @@ varargs int eventRetryCommand(string lastcmd, int errtype, mixed args){
     if( !stringp(err) && err > -1 ){
         return 1;
     }
-    write("It seems you'll have to be more specific.");
+    write("看来你需要说得更具体一些。");
     return 1;
 }
 
@@ -520,10 +519,10 @@ int GetPlayerPaused(){
     return Paused;
 }
 
-string SetCommandFail(string str){ 
+string SetCommandFail(string str){
     if( !str || str == "" ){
-        if(!creatorp(this_object())) CommandFail = "Try \"help commands\" for a list of some commands.";
-        if(creatorp(this_object())) CommandFail = "Try \"help creator commands\" for a list of some creator commands.";
+        if(!creatorp(this_object())) CommandFail = "试试 \"help commands\" 查看部分命令列表。";
+        if(creatorp(this_object())) CommandFail = "试试 \"help creator commands\" 查看部分创造者命令列表。";
         return CommandFail;
     }
     else return (CommandFail = str);

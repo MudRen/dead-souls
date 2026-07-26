@@ -60,17 +60,17 @@ private int valid_edit(string author){
 int cmd_post(string str){
     string file;
 
-    if(!str) return notify_fail("You must specify a subject.\n");
+    if(!str) return notify_fail("你必须指定一个标题。\n");
     if(file_exists(file = tmpdir + "/" + this_player()->GetKeyName())){
-        message("system", "You have an abandoned post waiting.",this_player());
-        message("system", "        e)dit it, or start n)ew", this_player());
-        message("prompt", "\nCommand (default 'n'): ", this_player());
+        message("system", "你有一篇未完成的帖子等待处理。",this_player());
+        message("system", "        e) 编辑它，或 n) 开始新帖", this_player());
+        message("prompt", "\n命令 (默认 'n'): ", this_player());
         input_to("begin_post", str, file, (: continue_post :));
     }
     else {
-        write("When finished writing, enter a single period on a blank line, then ");
-        write("at the colon prompt (:) type a lower-case x and return.\n");
-        write("Like this:\n.\nx\n");
+        write("写完后，在空行输入一个句号，然后 ");
+        write("在冒号提示符 (:) 处输入小写 x 并回车。\n");
+        write("像这样:\n.\nx\n");
         begin_post("n", str, file, (: continue_post :));
     }
     return 1;
@@ -80,7 +80,7 @@ protected void begin_post(string cmd, string subj, string file, function f){
     if(cmd == "" || !cmd) cmd = "n";
     else cmd = cmd[0..0];
     if(cmd != "n" && cmd != "e"){
-        message("system", "Invalid bulletin board command.", this_player());
+        message("system", "无效的公告板命令。", this_player());
         return;
     }
     if(cmd == "n" && file_exists(file)) rm(file);
@@ -97,7 +97,7 @@ void end_post(string subj, string mail){
 
     file = tmpdir + "/" + this_player()->GetKeyName();
     if(!(msg = read_file(file))){
-        message("system", "No file read!", this_player());
+        message("system", "没有读取到文件！", this_player());
         if(file_exists(file)) rm(file);
         return;
     }
@@ -105,8 +105,8 @@ void end_post(string subj, string mail){
     if( !mail )
         BBOARD_D->add_post(query_board_id(),
                 this_player()->GetCapName(), subj, msg);
-    message("system", "Message posted!", this_player());
-    tell_room(env, this_player()->GetName()+" posts on the board.",
+    message("system", "消息已发布！", this_player());
+    tell_room(env, this_player()->GetName()+" 在公告板上发布了消息。",
             ({ this_player() }));
 }
 
@@ -118,9 +118,9 @@ int cmd_read(string str){
 
     if(str){
         if(str == "board" || sscanf(str,"board %s",junk) ){
-            write("To read the first post, type: read 1");
-            write("To read the second one: read 2");
-            write("And so on.");
+            write("要阅读第一条帖子，输入: read 1");
+            write("要阅读第二条，输入: read 2");
+            write("依此类推。");
             return 1;
         }
 
@@ -132,18 +132,18 @@ int cmd_read(string str){
                     x = i;
                     break;
                 }
-            if(x == -1) return notify_fail("No unread posts.\n");
+            if(x == -1) return notify_fail("没有未读帖子。\n");
         }
-        else if(!(x = to_int(str))) return notify_fail("Read what?\n");
+        else if(!(x = to_int(str))) return notify_fail("阅读什么？\n");
         else x--;
         if(x < 0 || x >= sizeof(posts))
-            return notify_fail("Invalid post number.\n");
-        str = "Post #%^YELLOW%^" + (x+1) + "%^RESET%^ by %^YELLOW%^" +
-            posts[x]["author"] + "%^RESET%^\nSubject: %^CYAN%^" +
+            return notify_fail("无效的帖子编号。\n");
+        str = "帖子 #%^YELLOW%^" + (x+1) + "%^RESET%^ 作者: %^YELLOW%^" +
+            posts[x]["author"] + "%^RESET%^\n标题: %^CYAN%^" +
             posts[x]["subject"] + "%^RESET%^\n\n";
         str += posts[x]["post"];
 
-        tell_room(env, this_player()->GetName()+" reads the board.",
+        tell_room(env, this_player()->GetName()+" 阅读了公告板。",
                 ({ this_player() }));
         BBOARD_D->mark_read(query_board_id(),x,this_player()->GetKeyName());
         this_player()->eventPage(explode(str, "\n"), "system");
@@ -157,23 +157,22 @@ int cmd_followup_and_respond(string str){
     string file, verb;
     int x;
 
-    if(!str) return notify_fail(capitalize(verb=query_verb())+" which
-            post?\n");
+    if(!str) return notify_fail(capitalize(verb=query_verb())+"哪篇帖子？\n");
     if((x=to_int(str)) < 1 ||
             x>BBOARD_D->query_number_posts(query_board_id()))
 
-        return notify_fail("Invalid post number.\n");
+        return notify_fail("无效的帖子编号。\n");
     x--;
     post = BBOARD_D->query_post(query_board_id(), x);
     if((verb = query_verb()) == "respond") f = (: continue_mail, post :);
     else f = (: continue_followup, post :);
     str = post["subject"];
-    if(!str) str = "Re: "+possessive_noun(post["author"])+" post";
+    if(!str) str = "Re: "+possessive_noun(post["author"])+" 的帖子";
     else if(strlen(str) <= 4 || str[0..3] != "Re: ") str = "Re: "+str;
     if(file_exists(file = tmpdir + "/" + this_player()->GetKeyName())){
-        message("system", "You have an abandoned post waiting.",this_player());
-        message("system", "        e)dit it, or start n)ew", this_player());
-        message("prompt", "\nCommand (default 'n'): ", this_player());
+        message("system", "你有一篇未完成的帖子等待处理。",this_player());
+        message("system", "        e) 编辑它，或 n) 开始新帖", this_player());
+        message("prompt", "\n命令 (默认 'n'): ", this_player());
         input_to("begin_post", str, file, f);
     }
     else begin_post("n", str, file, f);
@@ -181,12 +180,12 @@ int cmd_followup_and_respond(string str){
 }
 
 void continue_followup(mapping post, string subj, string file){
-    message("prompt", "\nInclude original text (default 'n'): ",this_player());
+    message("prompt", "\n是否包含原文 (默认 'n'): ",this_player());
     input_to("check_include_text", subj, file, post, 0);
 }
 
 void continue_mail(mapping post, string subj, string file){
-    message("prompt", "\nInclude original text (default 'n'): ",this_player());
+    message("prompt", "\n是否包含原文 (默认 'n'): ",this_player());
     input_to("check_include_text", subj, file, post, 1);
 }
 
@@ -198,7 +197,7 @@ protected void check_include_text(string ans, string subj, string file, mapping
     if(ans == "" || !ans) ans = "n";
     else ans = ans[0..0];
     if(ans == "y"){
-        msg = post["author"] + " once wrote...\n>";
+        msg = post["author"] + " 曾写道...\n>";
         msg += implode(explode(post["post"], "\n"), "\n> ")+"\n";
         write_file(file, msg);
     }
@@ -212,15 +211,15 @@ int cmd_remove(string str){
 
     if((x = to_int(str)) < 1 ||
             x > BBOARD_D->query_number_posts(query_board_id()))
-        return notify_fail("Invalid post number.\n");
+        return notify_fail("无效的帖子编号。\n");
     post = BBOARD_D->query_post(query_board_id(), x-1);
     if(!valid_edit(convert_name(post["author"]))){
-        write("You do not have permission to remove that!\n");
+        write("你没有权限删除那个！\n");
         return 1;
     }
     BBOARD_D->remove_post(query_board_id(), x-1);
-    message("system", "Post "+x+" removed.", this_player());
-    tell_room(env, this_player()->GetName()+" removes a post from the board.",
+    message("system", "帖子 "+x+" 已删除。", this_player());
+    tell_room(env, this_player()->GetName()+" 从公告板上删除了一篇帖子。",
             ({ this_player() }));
     return 1;
 }
@@ -232,10 +231,10 @@ int cmd_edit(string str){
 
     if((x = to_int(str)) < 1 ||
             x > BBOARD_D->query_number_posts(query_board_id()))
-        return notify_fail("Invalid post number.\n");
+        return notify_fail("无效的帖子编号。\n");
     post = BBOARD_D->query_post(query_board_id(), x-1);
     if(!valid_edit(convert_name(post["author"]))){
-        write("You do not have permission to edit that post!\n");
+        write("你没有权限编辑那篇帖子！\n");
         return 1;
     }
     file = tmpdir + "/" + this_player()->GetKeyName() + ".bb";
@@ -251,14 +250,14 @@ void end_edit(string subj, int num){
 
     file = tmpdir + "/" + this_player()->GetKeyName();
     if(!(msg = read_file(file))){
-        message("system", "No file read!", this_player());
+        message("system", "没有读取到文件！", this_player());
         return;
     }
     else rm(file);
     BBOARD_D->remove_post(query_board_id(), num);
     BBOARD_D->add_post(query_board_id(),
             this_player()->GetCapName(), subj, msg);
-    message("system", "Message posted!", this_player());
+    message("system", "消息已发布！", this_player());
 }
 
 string GetExternalDesc(){
@@ -269,7 +268,7 @@ string GetExternalDesc(){
     msg = item::GetExternalDesc();
     maxi = sizeof(posts = BBOARD_D->query_posts(query_board_id()));
     msg += "\n";
-    if(!maxi) msg += "There are currently no posts.\n";
+    if(!maxi) msg += "目前没有帖子。\n";
     else for(i=0; i < maxi; i++){
         int lu;
 
