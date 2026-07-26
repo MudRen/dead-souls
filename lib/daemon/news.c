@@ -28,9 +28,9 @@ void GeneralNews() {
 
             news = GetNews("general");
             player->SetNews("general", s);
-            message("news", "\n%^RED%^General news:", player);
+            message("news", "\n%^RED%^综合新闻:", player);
             player->eventPrint(news);
-            message("prompt", "Press <return> to continue: ", player);
+            message("prompt", "按回车键继续: ", player);
             if( !(player->GetClass()) && !creatorp(player) )
                 input_to((: NewbieNews :));
             else input_to((: ClassNews, "" :));
@@ -48,7 +48,7 @@ protected void NewbieNews() {
         string news;
 
         news = GetNews("newbie");
-        message("news", "\n%^RED%^Newbie news:", player);
+        message("news", "\n%^RED%^新手新闻:", player);
         message("news", news, player);
         message("prompt", "Press <return> to continue: ", player);
         input_to((: ClassNews, "" :));
@@ -103,7 +103,7 @@ void ClassNews(string cl) {
             message("news", "\n%^RED%^" + capitalize(cl) + " news:",
                     player);
             message("news", news, player);
-            message("prompt", "Press <return> to continue: ", player);
+            message("prompt", "按回车键继续: ", player);
             input_to( (: ClassNews, cl :));
             return;
         }
@@ -122,9 +122,9 @@ protected void HighMortalNews() {
 
             news = GetNews("hm");
             player->SetNews("hm", s);
-            message("news", "\n%^RED%^High mortal news:", player);
+            message("news", "\n%^RED%^高等级玩家新闻:", player);
             message("news", news, player);
-            message("prompt", "Press <return> to continue: ", player);
+            message("prompt", "按回车键继续: ", player);
             input_to( (: AvatarNews :));
             return;
         }
@@ -143,9 +143,9 @@ protected void AvatarNews() {
 
             news = GetNews("avatar");
             player->SetNews("avatar", s);
-            message("news", "\n%^RED%^Avatar news:", player);
+            message("news", "\n%^RED%^化身新闻:", player);
             message("news", news, player);
-            message("prompt", "Press <return> to continue: ", player);
+            message("prompt", "按回车键继续: ", player);
             input_to( (: CreatorNews :));
             return;
         }
@@ -164,9 +164,9 @@ protected void CreatorNews() {
 
             news = GetNews("creator");
             player->SetNews("creator", s);
-            message("news", "\n%^RED%^Creator news:", player);
+            message("news", "\n%^RED%^创造者新闻:", player);
             message("news", news, player);
-            message("prompt", "Press <return> to continue: ", player);
+            message("prompt", "按回车键继续: ", player);
             input_to( (: AdminNews :));
             return;
         }
@@ -185,9 +185,9 @@ protected void AdminNews() {
 
             news = GetNews("admin");
             player->SetNews("admin", s);
-            message("news", "\n%^RED%^Admin news:", player);
+            message("news", "\n%^RED%^管理员新闻:", player);
             message("news", news, player);
-            message("prompt", "Press <return> to continue: ", player);
+            message("prompt", "按回车键继续: ", player);
             input_to( (: EndNews :));
             return;
         }
@@ -232,8 +232,8 @@ string GetNews(string type) {
             file = DIR_NEWS "/" + type;
             break;
     }
-    if( !file_exists(file) ) return "No " + type + " news.";
-    file = read_file(file) || ("No " + type + " news.");
+    if( !file_exists(file) ) return "没有 " + type + " 新闻。";
+    file = read_file(file) || ("没有 " + type + " 新闻。");
     return file;
 }
 

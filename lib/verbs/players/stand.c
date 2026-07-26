@@ -15,30 +15,29 @@ protected void create() {
     verb::create();
     SetVerb("stand");
     SetRules("", "up");
-    SetErrorMessage("Stand up?");
+    SetErrorMessage("站起来？");
     SetSynonyms("get up");
-    SetHelp("Syntax: stand [up]\n"
-            "When sitting down or lying down, you can get up in this "
-            "most intuitive manner.\n"
-            "See also: lie, sit");
+    SetHelp("用法：stand [up]\n"
+            "当坐着或躺着时，你可以用这种方式站起来。\n"
+            "另见：lie, sit");
 }
 
 mixed can_stand_up() {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     if(RACES_D->GetLimblessRace(this_player()->GetRace()) ){
-        return "You aren't endowed with limbs with which to stand.";
+        return "你没有可以站立的肢体。";
     }
 
-    if(!environment(this_player())->CanStand(this_player())){ 
-        return "You can't stand here.";
+    if(!environment(this_player())->CanStand(this_player())){
+        return "你不能在这里站立。";
     }
 
     if( this_player()->GetPosition() != POSITION_STANDING ) {
         return 1;
     }
-    return "You are already standing up!";
+    return "你已经站着了！";
 }
 
 mixed can_stand(){

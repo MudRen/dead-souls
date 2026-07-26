@@ -1,35 +1,33 @@
-Different clients do different things. Dead Souls tries to handle
-the most common setups automatically. This may not be enough for you.
+不同的客户端有不同的行为。Dead Souls 尝试自动
+处理最常见的设置。这对你来说可能不够。
 
-Here are some common issues:
+以下是一些常见问题：
 
-1) You set the screen to something (like 100 50) but it keeps changing
-   to something else.
+1) 你将屏幕设置为某个值（如 100 50），但它一直
+   变成其他值。
 
-This is usually because your client is sending invisible resizing commands
-to the mud, and the mud is honoring those commands. To stop this, you
-lock your screen settings, and then set the screen parameters:
+这通常是因为你的客户端向游戏发送了不可见的调整大小
+命令，而游戏接受了这些命令。要阻止这种情况，你需要
+锁定屏幕设置，然后设置屏幕参数：
 %^GREEN%^
 screenlock on
 screen 100 50
 %^RESET%^
 
-2) You set your width and/or height to a very large number but it's 
-   smaller when you check it.
+2) 你将宽度和/或高度设置为非常大的数字，但检查时
+   发现它变小了。
 
-Your screen setting tries to limit itself to the size of the mud's
-maximum printable string size...a number which is fairly arbitrary and
-mostly there to avoid excessive spamming of players. This limit can
-only be changed by an administrator willing to recompile the driver
-with a changed value for the LARGEST_PRINTABLE_STRING opton.
+你的屏幕设置会尝试限制在游戏最大可打印字符串大小
+之内...这个数字相当随意，主要是为了避免过度刷屏
+玩家。这个限制只能由愿意重新编译驱动程序并更改
+LARGEST_PRINTABLE_STRING 选项值的管理员来更改。
 
 
-3) You set your width to something very large but not all text goes that wide.
+3) 你将宽度设置为非常大的值，但并非所有文本都那么宽。
 
-Some text, like this file, are written with hard returns somewhere before the
-80th column. This is usually due to a preference the author has, and is
-common among lib folks of a certain vintage. If you find instances where
-this is particularly unattractive, talk it over with your admin to see
-if they want to add it to their list of things to clean up.
+一些文本（如此文件）在第 80 列之前的某个位置写入了
+硬回车。这通常是由于作者的偏好，在特定年代的代码
+编写者中很常见。如果你发现特别不美观的情况，
+可以和管理员商量是否要将其添加到清理列表中。
 
-See also: env, terminal
+另见: env, terminal

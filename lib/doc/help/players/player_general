@@ -1,11 +1,11 @@
-Basic player commands:
+基本玩家命令：
 
-look      - get a view of your environment
-inventory - take stock of your possessions
-stat      - your health and statistics
-score     - your overall ranking and information
+look      - 查看你的环境
+inventory - 清点你的物品
+stat      - 你的健康和统计数据
+score     - 你的整体排名和信息
 
-Dealing with objects:
+物品操作：
 --------------------
 look at, look in
 get, drop, put, give
@@ -13,11 +13,10 @@ open, close
 read
 wield, unwield, wear, remove
 
-Moving around:
+移动：
 -------------
 n, s, e, w, ne, nw, se, sw, u, d
 enter, go out, climb up, climb down, jump down
 crawl, fly
 
-See also: help help
-
+另见: help help

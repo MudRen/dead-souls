@@ -4,8 +4,8 @@
 inherit LIB_BOOBYTRAP_SHADOW;
 
 varargs mixed SpringTrap(mixed arg1, mixed arg2){
-    write("You are pricked by a poison needle trap!");
-    say(this_player()->GetCapName()+" is pricked by a poison needle trap!");
+    write("你被毒针陷阱刺中了！");
+    say(this_player()->GetCapName()+"被毒针陷阱刺中了！");
     this_player()->AddPoison(90);
     return boobytrap_shadow::SpringTrap(arg1, arg2);
 }

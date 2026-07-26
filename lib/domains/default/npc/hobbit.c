@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("hobbit");
     SetAdjectives( ({"saucy", "saucy looking", "stout", "somewhat stout", "capable"}) );
     SetId( ({"lass", "adventurer"}) );
-    SetShort("a hobbit");
-    SetLong("About three feet tall, somewhat stout, and with a jolly twinkle in her eye, this saucy looking hobbit lass looks just as capable as any adventurer.");
+    SetShort("一个霍比特人");
+    SetLong("大约三英尺高， somewhat stout，眼睛里闪烁着快乐的光芒，这个看起来 saucy 的霍比特少女看起来和任何冒险者一样能干。");
     SetLevel(1);
     SetMelee(1);
     SetRace("hobbit");

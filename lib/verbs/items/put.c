@@ -19,12 +19,12 @@ protected void create() {
     SetSynonyms("place", "stick");
     SetRules("OBS in OBJ", "OBS into OBJ", "OBS on OBJ", "OBS onto OBJ", "OBS OBJ",
             "WRD WRD in OBJ", "WRD WRD into OBJ", "WRD WRD on OBJ", "WRD WRD onto OBJ");
-    SetErrorMessage("Put what where?");
-    SetHelp("Syntax: <put ITEM into CONTAINER>\n"
-            "Syntax: <put ITEM onto SURFACE>\n\n"
-            "Allows you to stick objects into other objects.\n\n"
-            "Synonyms: place, stick\n\n"
-            "See also: get, give, drop");
+    SetErrorMessage("把什么放到哪里？");
+    SetHelp("用法：put <物品> into <容器>\n"
+            "      put <物品> onto <表面>\n\n"
+            "允许你将物品放入其他物品中。\n\n"
+            "同义词：place, stick\n\n"
+            "另见：get, give, drop");
 }
 
 
@@ -65,25 +65,25 @@ mixed can_put_wrd_wrd_word_obj(mixed args...) {
     if(ob1 && ob2) return can_put_obj_word_obj(ob1, wrd, ob2);
 
     if( !num || !curr ) return 0;
-    if( (amt = to_int(num)) < 1 ) return "You cannot do that!";
+    if( (amt = to_int(num)) < 1 ) return "你不能那样做！";
     if( this_player()->GetCurrency(curr) < amt )
-        return "You don't have that much " + curr + ".";
+        return "你没有那么多" + curr + "。";
     if(newbiep(this_player())){
-        return "Newbies can't drop money.";
+        return "新手不能丢弃金钱。";
     }
     if(wrd == "on" || wrd == "onto"){
-        if(container && !inherits( LIB_SURFACE, container ) ) return "#That isn't a load-bearing surface.";
+        if(container && !inherits( LIB_SURFACE, container ) ) return "#那不是一个可承载的表面。";
     }
     if(container && container->GetClosed()){
-        return "#That's closed.";
+        return "#那是关着的。";
     }
     if(intp(check_light())) return this_player()->CanManipulate();
     else return check_light();
 }
 
 mixed do_put_obj_word_obj(object what, string wrd, object storage) {
-    if(storage && storage->GetClosed()){ 
-        write(capitalize(storage->GetShort())+" is closed.");
+    if(storage && storage->GetClosed()){
+        write(capitalize(storage->GetShort())+"是关着的。");
         return 1;
     }
     if(wrd == "in" || wrd == "into") return storage->eventPutInto(this_player(), what);
@@ -106,24 +106,24 @@ mixed do_put_obs_word_obj(mixed *res, string wrd, object storage) {
 
         ua = unique_array(res, (: $1 :));
         foreach(string *lines in ua) {
-            if(storage && storage->GetClosed()) 
-                write(capitalize(storage->GetShort())+" is closed.");
-            else write("That doesn't seem possible at the moment.");
+            if(storage && storage->GetClosed())
+                write(capitalize(storage->GetShort())+"是关着的。");
+            else write("现在似乎不可能这样做。");
             return 1;
         }
-        if(storage && storage->GetClosed()) 
-            write(capitalize(storage->GetShort())+" is closed.");
-        else write("That doesn't seem possible at the moment.");
+        if(storage && storage->GetClosed())
+            write(capitalize(storage->GetShort())+"是关着的。");
+        else write("现在似乎不可能这样做。");
         return 1;
     }
     if(!sizeof(filter(obs, (: environment($1) == this_player() :)))){
-        write("You don't seem to be in possession of that.");
+        write("你似乎没有那个东西。");
         eligible = ({});
         return 1;
     }
-    eligible=filter(obs, (: (!($1->GetWorn()) && environment($1) == this_player()) :)); 
+    eligible=filter(obs, (: (!($1->GetWorn()) && environment($1) == this_player()) :));
     if(!sizeof(eligible)){
-        write("Remove or unwield items before trying to put them somewhere.");
+        write("请先卸下或解除装备再尝试放置。");
         eligible = ({});
         return 1;
     }
@@ -168,17 +168,17 @@ mixed do_put_wrd_wrd_word_obj(mixed args...) {
     if(wort == "in") wort = "into";
 
     if(wort == "onto" && !inherits( LIB_SURFACE, ob ) ) {
-        write("That isn't a load-bearing surface.");
+        write("那不是一个可承载的表面。");
         return 1;
     }
     if(wort == "into" && inherits( LIB_SURFACE, ob ) ) {
-        write("That's a surface. Try \"put on\"");
+        write("那是一个表面。试试 \"put on\"");
         return 1;
     }
 
     if((inherits(LIB_SIT,ob) && sizeof(ob->GetSitters())) ||
             (inherits(LIB_LIE,ob) && sizeof(ob->GetLiers()))){
-        write("There appears to be someone blocking your access.");
+        write("似乎有人挡住了你的去路。");
         return 0;
     }
 
@@ -189,15 +189,15 @@ mixed do_put_wrd_wrd_word_obj(mixed args...) {
     pile->SetPile(curr, amt);
     if( !(pile->eventMove(ob)) ||
             this_player()->AddCurrency(curr, -amt) == -1 ) {
-        this_player()->eventPrint("Something prevents your action.");
+        this_player()->eventPrint("某些事情阻碍了你的行动。");
         pile->eventDestruct();
         return 1;
     }
-    this_player()->eventPrint("You put " + amt + " " + curr + 
-            " "+wort+" "+ob->GetShort()+".");
+    this_player()->eventPrint("你把" + amt + "个" + curr +
+            "放"+wort+ob->GetShort()+"里。");
 
     environment(this_player())->eventPrint(this_player()->GetName() +
-            " puts some " + curr + " "+wort+" "+ob->GetShort()+".",
+            "把一些" + curr + "放"+wort+ob->GetShort()+"里。",
             this_player());
     return 1;
 }

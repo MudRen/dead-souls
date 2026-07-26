@@ -4,28 +4,25 @@ inherit LIB_ROOM;
 
 void create() {
     ::create();
-    SetListen("default", "Raucus noise is coming from "
-            "inside the pub west.");
-    SetShort( "Centre Path outside Lars' Pub");
+    SetListen("default", "喧闹的噪音从西边的酒馆里传出来。");
+    SetShort( "拉斯酒馆外的中心路");
     SetLong(
-            "Centre Path leads through the heart of the business district "
-            "of Praxis, and down towards the famous Port of Praxis. "
-            "Rowdy customers can be seen heading west towards Lar's Pub. "
-            "The building is very old and worn. The abuse of many drunken "
-            "adventurer's has began to take its toll on the establishment. "
+            "中心路穿过普拉克西斯商业区的核心地带，通往著名的"
+            "普拉克西斯港口。可以看到喧闹的顾客们向西前往拉斯酒馆。"
+            "这座建筑非常古老且饱经风霜。许多醉酒冒险者的"
+            "折腾已经开始让这家店付出代价。"
            );
-    SetExits( 
+    SetExits(
             (["north" : "/domains/Praxis/square",
              "south" : "/domains/Praxis/s_centre2",
              "west" : "/domains/Praxis/pub"]) );
     SetProperty("light", 3);
     SetProperty("night light", 1);
     SetItems(
-            (["path" : "Centre Path leads to Monument Square south and out "
-             "of town north.",
-             "road" : "Boc La Road is the main east-west road.",
-             "pub" : "Lars Pub, now mostly obsolete, but it is the original.",
-             "square" : "The central square of Praxis."]) );
+            (["path" : "中心路向南通往纪念碑广场，向北出城。",
+             "road" : "博克拉路是主要的东西向道路。",
+             "pub" : "拉斯酒馆，现在大多已废弃，但它是最早的酒馆。",
+             "square" : "普拉克西斯的中央广场。"]) );
     SetSkyDomain("town");
     SetProperty("no castle", 1);
 }

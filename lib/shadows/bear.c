@@ -7,19 +7,19 @@ inherit LIB_ID;
 object me = this_object();
 
 varargs string GetExternalDesc(object who){
-    return "A large brown bear. Not as huge as a grizzly, but plenty big enough to knock your block off.";
+    return "一只大棕熊。虽然没有灰熊那么巨大，但也足够大到能把你撞飞。";
 }
 
 varargs string GetLong(object who){
-    return "A large brown bear. Not as huge as a grizzly, but plenty big enough to knock your block off.";
+    return "一只大棕熊。虽然没有灰熊那么巨大，但也足够大到能把你撞飞。";
 }
 
 string GetName(){
-    return "Bear";
+    return "熊";
 }
 
 string GetCapName(){
-    return "Bear";
+    return "熊";
 }
 
 string GetKeyName(){
@@ -27,7 +27,7 @@ string GetKeyName(){
 }
 
 string GetShort(){
-    return "a bear";
+    return "一只熊";
 }
 
 string GetRace(){

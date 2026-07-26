@@ -1,18 +1,17 @@
-Debugging in Dead Souls
+Dead Souls 中的调试
 
-So you've made some cool stuff but darn it, it doesn't work. There are various
-tools available in the Dead Souls lib to hunt down the source of the problem:
+你制作了一些很酷的东西，但该死的，它不工作。
+Dead Souls 代码库中有各种工具可以追踪问题的来源：
 
 
 %^GREEN%^elog%^RESET%^
 
-If the file is somewhere in your home directory, just type: elog 
+如果文件在你的主目录中，只需输入：elog
 
-This will provide you a listing of the last few lines of your personal
-error log. Warning lines tell you about code that works but should
-be fixed in some way. Lines that don't contain the word "Warning" are
-error lines: they indicate something about your code that prevents
-it from working. For example:
+这将为你提供你的个人错误日志的最后几行。
+警告行告诉你关于可以工作但应该以某种方式修复的代码。
+不包含 "Warning" 一词的行是错误行：它们表示你的代码中
+阻止其工作的一些内容。例如：
 
 > %^GREEN%^update sample_room%^RESET%^
 
@@ -31,9 +30,8 @@ Trace written to /log/catch
 
 
 
-	This output lets you know something is wrong, but
-isn't very specific as to exactly what. If you look at your error
-log, you probably will see something more detailed and helpful:
+	此输出让你知道出了问题，但没有具体说明是什么。
+如果你查看你的错误日志，可能会看到更详细和有帮助的内容：
 
 
 > %^GREEN%^elog%^RESET%^
@@ -45,21 +43,21 @@ log, you probably will see something more detailed and helpful:
 
 
 
-	Now you can see that the error is my syntax on
-line 10. I would then use ed to examine the code, and specifically lines 9
-through 11. It turns out that I forgot to put quotes around the room name, 
-so the parser tried to use it as a variable, which, of course, it couldn't.
+	现在你可以看到错误是我在第 10 行的语法。
+然后我会使用 ed 检查代码，特别是第 9 到 11 行。
+事实证明我忘记在房间名称周围放引号了，
+所以解析器尝试将其用作变量，当然这是不可能的。
 
-	If the file in question is in /secure, you'd type elog secure , or if
-it's in /cmds, elog cmds , and so on.
+	如果相关文件在 /secure 中，你需要输入 elog secure，
+如果在 /cmds 中，输入 elog cmds，以此类推。
 
-	
-dbxwhere & dbxframe
 
-	Two helpful debugging commands are dbxframe and dbxwhere. Let's
-take a look at my broken sample_room.c file. We'll start with dbxwhere,
-which lists for us the chain of events that led to the error. The
-indivudual steps are called frames.
+dbxwhere 和 dbxframe
+
+	两个有用的调试命令是 dbxframe 和 dbxwhere。
+让我们看看我那个坏掉的 sample_room.c 文件。
+我们从 dbxwhere 开始，它为我们列出了导致错误的
+事件链。各个步骤称为帧。
 
 > %^GREEN%^dbxwhere%^RESET%^
 *Error in loading object '/realms/cratylus/area/room/sample_room'
@@ -72,8 +70,8 @@ Object: /secure/cmds/creators/update at line 148
 #4: 'CATCH' at /secure/cmds/creators/update at line 148
 
 
-The output is similar to the update error we saw above, but in ennumerating the steps, dbxwhere
-lets us use dbxframe to get tighter detail on a given error frame:
+输出与我们上面看到的更新错误类似，但在列举步骤时，
+dbxwhere 让我们可以使用 dbxframe 获取给定错误帧的更详细信息：
 
 > %^GREEN%^dbxframe 4%^RESET%^
 ------
@@ -93,51 +91,51 @@ lets us use dbxframe to get tighter detail on a given error frame:
         return 0;
 
 
-    We're now looking at the error context for error frame 4. The output of the command shows
-us part of the file that was performing the evaluation when the error occurred, and even
-points out the offending line using a text arrow: =>
+    我们现在正在查看错误帧 4 的错误上下文。命令输出向我们显示
+执行评估时出现错误的部分文件，甚至使用文本箭头指出有问题的行：=>
 
-    In this particular case, the information is not that helpful. We are being told that
-the error occurred while we were using the update command, and it failed at the line
-where update does its thing. Duh, we knew that. The elog command was much more helpful.
+    在这个特定情况下，信息不是很有帮助。我们被告知错误发生在
+使用 update 命令时，它在 update 执行操作的行失败了。
+废话，我们早就知道了。elog 命令更有帮助。
 
-    Where this kind of tracing comes in handy is when you enounter a runtime error
-when you're not updating a file. For example, if I tried to enter that room, rather than
-update it, I'd get a big pukey error message and not know why. If you run into an
-unexpected error, dbxwhere will help you pinpoint it if elog doesn't provide useful information,
-and dbxframe will help detail the source of the problem.
+    这种跟踪在你遇到运行时错误而不是更新文件时特别有用。
+例如，如果我尝试进入那个房间而不是更新它，我会得到一个
+很大的错误消息但不知道为什么。如果你遇到意外错误，
+如果 elog 没有提供有用信息，dbxwhere 将帮助你定位它，
+而 dbxframe 将帮助详细说明问题的来源。
 
 %^GREEN%^tail%^RESET%^
 
 
-    This is a version of the unix tail command. It displays the last few lines of a file.
-This command is important for examining crucial log files:
+    这是 unix tail 命令的版本。它显示文件的最后几行。
+此命令对于检查关键日志文件很重要：
 
 %^GREEN%^tail /log/catch%^RESET%^
 %^GREEN%^tail /log/runtime%^RESET%^
 %^GREEN%^tail /log/player_errors%^RESET%^
 
 
-bk & restore
+bk 和 restore
 
-These commands aren't so much for debugging as they are for safe coding. Before you
-edit a file, it is a very good idea to back it up first. The bk command lets you
-quickly and conveniently back up a file before you edit it. When I typed:
+这些命令与其说是用于调试，不如说是用于安全编码。
+在编辑文件之前，先备份它是一个非常好的主意。
+bk 命令让你在编辑文件之前快速方便地备份它。
+当我输入：
 
 %^GREEN%^bk sample_room%^RESET%^
 
-A file with a unique identifying number was created in my bak/ directory. If I
-were to type it again, then sample_room.c would get copied again to bak/, with
-a new unique number added to the name.
+一个带有唯一标识号的文件在我的 bak/ 目录中创建。
+如果我再次输入，sample_room.c 将再次被复制到 bak/，
+名称中添加了一个新的唯一编号。
 
-    The number is basically the number of seconds elapsed since January 1, 1970.
-Adding this number, we can keep track of which backed up version of a file
-is most recent by looking at the name.
+    这个数字基本上是自 1970 年 1 月 1 日以来经过的秒数。
+添加这个数字，我们可以通过查看名称来跟踪哪个备份版本
+是最新的。
 
-    Suppose I edited a file called sample_npc.c. I use bk to back it up, make some changes,
-then use bk again, make some more changes, but now it won't update. I don't
-feel like debugging, I just need this file working again, so I want to restore from
-backup. The sequence of commands would look something like this:
+    假设我编辑了一个名为 sample_npc.c 的文件。我使用 bk
+备份它，做一些更改，然后再次使用 bk，再做一些更改，
+但现在它无法更新了。我不想调试，我只需要这个文件再次
+工作，所以我想从备份恢复。命令序列看起来像这样：
 
 %^GREEN%^ed sample_npc.c%^RESET%^
 %^GREEN%^bk sample_npc%^RESET%^
@@ -146,21 +144,16 @@ backup. The sequence of commands would look something like this:
 <error occurs here>
 %^GREEN%^restore sample_npc%^RESET%^
 
-    The reason identifying numbers are used is that you can also choose to
-restore the second-to-last backup version of a file, and other previous
-versions.
-    The very last backup version is effectively version 0, so it's not
-necessary to specify a number. If I wanted to restore the version I backed
-up before that one, I would type something like this:
+    使用标识号的原因是你也可以选择恢复文件的倒数第二个
+备份版本，以及其他以前的版本。
+    最后一个备份版本实际上是版本 0，所以不需要指定数字。
+如果我想恢复我备份的前一个版本，我会输入类似这样的命令：
 
 %^GREEN%^restore sample_npc 1%^RESET%^
 
-    And if I wanted the version before that one, I'd specify 2 instead of 1,
-and so on.
+    如果我想要再前一个版本，我会指定 2 而不是 1，以此类推。
 
-    Please note that this is an intentionally simple system. There are
-no menus, no version branches, or diff tracking. The reason for this is
-that it is not a versioning system. It is a backup system. It is a convenient
-tool to back out of screwups, not a development tool to test file versions.
-
-
+    请注意，这是一个故意简单的系统。没有菜单、版本分支
+或差异跟踪。原因是它不是一个版本控制系统。
+它是一个备份系统。它是一个方便的撤消错误的工具，
+而不是测试文件版本的开发工具。

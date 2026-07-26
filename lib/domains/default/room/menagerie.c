@@ -7,12 +7,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("The Menagerie");
-    SetLong("This is a magical area containing examples of the various "
-            "races available to creators for their areas. Normally these creatures "
-            "would not be found all crowded together like this, but a powerful "
-            "magic keeps them bound here so that mud staff can analyze and test them. "
-            "There are more creatures to the south, east, and west.");
+    SetShort("动物园");
+    SetLong("这是一个神奇的区域，包含了创造者们可以用于他们区域的各种种族的示例。通常这些生物不会像这样挤在一起，但强大的魔法将它们束缚在这里，以便MUD工作人员可以分析和测试它们。南边、东边和西边还有更多生物。");
     SetExits( ([ 
                 "south" : "/domains/default/room/menagerie_south",
                 "east" : "/domains/default/room/menagerie_e",

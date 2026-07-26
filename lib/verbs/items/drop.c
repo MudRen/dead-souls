@@ -18,14 +18,13 @@ protected void create() {
     SetVerb("drop");
     SetSynonyms("put down");
     SetRules("OBS", "WRD WRD");
-    SetErrorMessage("Drop what?");
-    SetHelp("Syntax: <drop ITEM>\n"
-            "        <drop all>\n"
-            "        <drop all ITEM TYPE>\n"
-            "        <drop AMOUNT CURRENCY>\n\n"
-            "Allows you to drop something you have, or to drop an amount of "
-            "some currency you have on you.\n\n"
-            "See also: get, put");
+    SetErrorMessage("丢弃什么？");
+    SetHelp("用法：drop <物品>\n"
+            "      drop all\n"
+            "      drop all <物品类型>\n"
+            "      drop <数量> <货币>\n\n"
+            "允许你丢弃你拥有的物品，或丢弃你携带的一定数量的货币。\n\n"
+            "另见：get, put");
 }
 
 mixed can_drop_obj(object ob) { return this_player()->CanManipulate(); }
@@ -44,10 +43,10 @@ mixed can_drop_wrd_wrd(mixed args...) {
     if(ob) return can_drop_obj(ob);
 
     if( !num || !curr ) return 0;
-    if( (amt = to_int(num)) < 1 ) return "You cannot do that!";
+    if( (amt = to_int(num)) < 1 ) return "你不能那样做！";
     if( this_player()->GetCurrency(curr) < amt )
-        return "You don't have that much " + curr + ".";
-    if(newbiep(this_player())) return "Newbies can't drop money.";
+        return "你没有那么多" + curr + "。";
+    if(newbiep(this_player())) return "新手不能丢弃金钱。";
     return this_player()->CanManipulate();
 }
 
@@ -60,7 +59,7 @@ mixed do_drop_obs(mixed *res) {
     mixed tmp;
 
     if( !sizeof(res) ) {
-        this_player()->eventPrint("You don't have any to drop!");
+        this_player()->eventPrint("你没有东西可以丢弃！");
         return 1;
     }
     obs = filter(res, (: objectp :));
@@ -71,17 +70,17 @@ mixed do_drop_obs(mixed *res) {
         foreach(string *list in ua) this_player()->eventPrint(list[0]);
         return 1;
     }
-    eligible=filter(obs, (: (!($1->GetWorn()) && environment($1) == this_player()) :)); 
+    eligible=filter(obs, (: (!($1->GetWorn()) && environment($1) == this_player()) :));
     if(!sizeof(eligible)){
-        write("Remove or unwield items before trying to drop them.");
+        write("请先卸下或解除装备再尝试丢弃。");
         eligible = ({});
         return 1;
     }
-    foreach(object ob in eligible) 
+    foreach(object ob in eligible)
         if( (tmp = ob->eventDrop(this_player())) != 1 ) {
             if( stringp(tmp) ) this_player()->eventPrint(tmp);
-            else this_player()->eventPrint("You cannot drop " +
-                    ob->GetShort() + ".");
+            else this_player()->eventPrint("你无法丢弃" +
+                    ob->GetShort() + "。");
         }
     return 1;
 }
@@ -103,13 +102,13 @@ mixed do_drop_wrd_wrd(mixed args...) {
     pile->SetPile(curr, amt);
     if( !(pile->eventMove(env)) ||
             this_player()->AddCurrency(curr, -amt) == -1 ) {
-        this_player()->eventPrint("Something prevents your action.");
+        this_player()->eventPrint("某些事情阻碍了你的行动。");
         pile->eventDestruct();
         return 1;
     }
-    this_player()->eventPrint("You drop " + amt + " " + curr + ".");
+    this_player()->eventPrint("你丢弃了" + amt + "个" + curr + "。");
     environment(this_player())->eventPrint(this_player()->GetName() +
-            " drops some " + curr + ".",
+            "丢弃了一些" + curr + "。",
             this_player());
     return 1;
 }

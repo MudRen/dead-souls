@@ -32,7 +32,7 @@ string SetBookTitle(string path, string title){
 
 string GetBookTitle(string path){
     if(Books[path] && Books[path]["title"]) return Books[path]["title"];
-    return "Untitled";
+    return "无标题";
 }
 
 string* ExtractChapterName(string path){
@@ -102,7 +102,7 @@ string LoadBookIndex(string Source){
     string chapter_index;
     if(!Books[Source]) return 0;
     if(Books[Source]["index"]) return Books[Source]["index"];
-    if(!Books[Source]["title"]) Books[Source]["title"] = "Untitled";
+    if(!Books[Source]["title"]) Books[Source]["title"] = "无标题";
     items = sizeof(Books[Source]["items"])+1;
     chapter_index = "\t\t"+Books[Source]["title"]+"\n\n";
     for(i=1; i<items; i++){
@@ -119,7 +119,7 @@ string LoadBookIndex(string Source){
 }
 
 string GetBookIndex(string Source){
-    if(!Books[Source] || !Books[Source]["index"]) return "No index.";
+    if(!Books[Source] || !Books[Source]["index"]) return "无目录。";
     return Books[Source]["index"];
 }
 
@@ -134,18 +134,18 @@ string ReturnRead(string file, string what){
         }
         if(ret) return ret;
     }
-    return "There is no such thing to read.";
+    return "没有可阅读的内容。";
 }
 
 string GetBookRead(string name, mixed arg){
     if(arrayp(arg) && sizeof(arg)) arg = arg[0];
     if(!sizeof(arg) || !Books[name] || !Books[name]["reads"]){
-        return "There is no such thing to read there.";
+        return "那里没有可阅读的内容。";
     }
     foreach(mixed key, mixed val in Books[name]["reads"]){
         if(member_array(arg, key) != -1) return val;
     }
-    return "There is no such thing to read there.";
+    return "那里没有可阅读的内容。";
 }
 
 int zero(){

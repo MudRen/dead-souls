@@ -8,8 +8,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Disease Lab Prep Room");
-    SetLong("This room is designed to repel the spread of diseases that are tested in the room downstairs. It is also where you can get a disease repellent collar, so you may work in the quarantine area without becoming infected. To infect the test subjects use the medical tricorder. To make all of them healthy again, type 'update', which will reset the room. The test subjects are waiting for you below.");
+    SetShort("疾病实验室准备室");
+    SetLong("这个房间的设计目的是防止在楼下房间测试的疾病传播。你还可以在这里获得防疾病项圈，这样你就可以在隔离区工作而不会被感染。要感染测试对象，请使用医疗三录仪。要让他们全部恢复健康，请输入'update'，这将重置房间。测试对象正在楼下等你。");
     SetExits( ([
                 "south" : "/domains/default/room/wiz_corr1",
                 "down" : "/domains/default/room/quarantine2.c",
@@ -30,8 +30,8 @@ int CanReceive(object ob) {
     inv = deep_inventory(ob);
     foreach(object thing in inv){
         if(inherits(LIB_GERM,thing)) {
-            write("%^YELLOW%^A parasite has been discovered on your body! It is being automatically removed.%^RESET%^");
-            if(taxonomy = thing->GetGermName()) write("%^YELLOW%^Removing: "+taxonomy+".%^RESET%^");
+            write("%^YELLOW%^在你身上发现了一个寄生虫！正在自动清除。%^RESET%^");
+            if(taxonomy = thing->GetGermName()) write("%^YELLOW%^正在清除："+taxonomy+"。%^RESET%^");
             thing->eventMove(ROOM_FURNACE);
         }
     }

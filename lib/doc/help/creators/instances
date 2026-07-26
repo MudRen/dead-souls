@@ -1,121 +1,108 @@
-What are instances?
+什么是实例？
 -------------------
 
-Instances are separate muds that run from the same Dead Souls
-installation directory, but that communicate with each other.
+实例是从同一个 Dead Souls 安装目录运行的独立游戏，
+但它们之间可以相互通信。
 
-The reason to have separate muds is to be able to test code
-on a test mud, without affecting what is happening on the
-other mud.
+拥有独立游戏的原因是能够在测试游戏上测试代码，
+而不会影响另一个游戏上发生的事情。
 
-The reason to have them communicate is that the MU in MUD
-stands for "Multi User" and it's nice to have more users 
-communicating rather than fewer.
+让它们通信的原因是 MUD 中的 MU 代表"多用户"，
+拥有更多用户交流而不是更少是很好的。
 
-What instances let you do, for example, is have a "build/dev"
-mud running on, say, port 8888, and a "player mud" running
-on port 6666. Creators can chat with people on the player
-mud while developing on the dev mud. But if they screw something
-up big-time, the folks on the player mud are somewhat isolated from
-catastrophe. Creators also can't mess with players on the other
-mud, nor give them cheat items and such...because they're
-"physically" isolated. Only communication goes back and forth.
+实例让你能够做的事情是，例如，有一个"构建/开发"
+游戏运行在比如说端口 8888 上，而一个"玩家游戏"
+运行在端口 6666 上。创建者可以在开发游戏上开发的同时
+与玩家游戏上的人聊天。但如果他们搞砸了什么大事，
+玩家游戏上的人在一定程度上与灾难隔离。
+创建者也无法在另一个游戏上捣乱玩家，
+也不能给他们作弊物品等...因为它们在"物理上"是隔离的。
+只有通信来回传递。
 
 
-Do I need to use instances?
+我需要使用实例吗？
 ---------------------------
 
-Very very very few people will have use for this. Instances
-are largely something that is useful to me, Cratylus, in my
-project. If you don't immediately understand the point of
-instances and go "YES! EXACTLY WHAT I NEED!" then you can
-just stop reading now and forget about them.
+非常非常少的人会需要这个。实例主要是对我（Cratylus）
+在我的项目中有用的东西。如果你没有立即理解实例的意义
+并说"是的！正是我需要的！"那么你现在可以停止阅读
+并忘记它们。
 
 
-What should I know in general?
+我应该了解什么？
 ------------------------------
 
-- Instances use a concept of a "global" instance and client
-instances. The global instance is the first instance: the mud
-you installed. Instances you create must be created from the
-global instance. 
+- 实例使用"全局"实例和客户端实例的概念。全局实例是
+  第一个实例：你安装的游戏。你创建的实例必须从全局
+  实例创建。
 
-- Client instances don't speak to each other, only to the global 
-instance.
+- 客户端实例之间不通信，只与全局实例通信。
 
-- Don't fiddle with ENABLE_INSTANCES in config.*. This setting
-is meant to be manipulated by the instconfig command only. You
-should leave that define alone in the global instance, and
-leave it alone also in the client instances.
+- 不要修改 config.* 中的 ENABLE_INSTANCES。此设置
+  只能由 instconfig 命令操作。你应该在全局实例中
+  保留该定义，在客户端实例中也同样保留。
 
 
-How do I get it going on Linux?
+如何在 Linux 上运行？
 -------------------------------
 
-To get a second instance of your mud running if the
-new port is 8888 and the instance name is "Foo":
+要运行游戏的第二个实例，如果新端口是 8888，
+实例名称是 "Foo"：
 
-- Get the mud running the normal way. Create an admin char, etc.
-- Once it's up, login as an administrator.
-- Uncomment the instances line in /secure/cfg/preload.cfg
-- Type: instconfig create Foo 8888
-- Copy /secure/cfg/mudos.8888.cfg into bin/
-- Go into bin/ and type: ./driver ./mudos.8888.cfg
-- Ta-daa!
+- 以正常方式启动游戏。创建管理员角色等。
+- 启动后，以管理员身份登录。
+- 取消注释 /secure/cfg/preload.cfg 中的 instances 行
+- 输入: instconfig create Foo 8888
+- 将 /secure/cfg/mudos.8888.cfg 复制到 bin/
+- 进入 bin/ 并输入: ./driver ./mudos.8888.cfg
+- 完成！
 
 
-How do I get it going on Microsoft Windows?
+如何在 Microsoft Windows 上运行？
 -------------------------------------------
 
-To get a second instance of your mud running if the
-new port is 9999 and the instance name is "Bar":
+要运行游戏的第二个实例，如果新端口是 9999，
+实例名称是 "Bar"：
 
-- Get the mud running the normal way. Create an admin char, etc.
-- Once it's up, login as an administrator.
-- Uncomment the instances line in /secure/cfg/preload.cfg
-- Type: instconfig create Bar 9999
-- Copy lib\secure\cfg\runmud_9999.bat into your mud's top-level
-  install directory (the same place you'll find runmud.bat)
-- Go into your mud's top-level install directory and double-
-  click on runmud_9999.bat
-- Ta-daa!
+- 以正常方式启动游戏。创建管理员角色等。
+- 启动后，以管理员身份登录。
+- 取消注释 /secure/cfg/preload.cfg 中的 instances 行
+- 输入: instconfig create Bar 9999
+- 将 lib\secure\cfg\runmud_9999.bat 复制到游戏的
+  顶级安装目录（与 runmud.bat 相同的位置）
+- 进入游戏的顶级安装目录并双击 runmud_9999.bat
+- 完成！
 
 
-Warnings
+警告
 --------
 
-- Instances are a somewhat advanced feature. If you're new to
-Dead Souls, you should concentrate on basics. If you're a newbie
-and have problems dealing with instances, it will be very very
-difficult for me to extract from you the information I need
-to help you, so you'll need to be very rigorous in reporting
-problems: http://www.chiark.greenend.org.uk/~sgtatham/bugs.html
+- 实例是一个比较高级的功能。如果你是 Dead Souls 新手，
+  你应该专注于基础。如果你是新手并且在处理实例时遇到问题，
+  我将很难从你那里获得帮助你所需的信息，所以你在报告问题时
+  需要非常严格：
+  http://www.chiark.greenend.org.uk/~sgtatham/bugs.html
 
-- I don't know what happens if you set up an instance with the
-same port number as the global instance. If you actually do this,
-please keep it to yourself. I'd rather not know.
+- 如果你设置一个与全局实例相同端口号的实例，
+  我不知道会发生什么。如果你真的这样做了，
+  请保密。我宁愿不知道。
 
-- The instance communication protocol is quite primitive and
-only allows for instances to communicate with the global instance.
+- 实例通信协议相当原始，只允许实例与全局实例通信。
 
-- You can't create a character with the same name on another
-instance. This is for security reasons. If you need to have a
-character with the same name on instance foo, you'll need to
-copy the user file. for example:
+- 你不能在另一个实例上创建同名角色。这是出于安全原因。
+  如果你需要在实例 foo 上有一个同名角色，你需要复制
+  用户文件。例如：
 
 cp testyguy.o testyguy.8888.o
 
-Note that whatever privileges are in effect for testyguy on the
-global instance will be in effect in the client instance, since
-all instances use the same groups.cfg file. You are very much
-copying the same player to the new instance, not making a "new"
-player.
+  注意，无论 testyguy 在全局实例上有什么特权，
+  在客户端实例中都会生效，因为所有实例使用相同的
+  groups.cfg 文件。你实际上是在将同一个玩家复制到
+  新实例，而不是创建一个"新"玩家。
 
-- If you have the slightest concern that instances pose a security
-risk, do not use them. In fact, *don't* use them, unless you grok
-the code completely. For the most part I'm including this in the
-distribution as a convenience and favor to me, because i am awesome
-and I deserve it, so don't be surprised if it doesn't suit you,
-and please understand what you're reporting if you do want to
-report a problem.
-
+- 如果你对实例存在安全风险有任何担忧，请不要使用它们。
+  事实上，*不要*使用它们，除非你完全理解代码。
+  在大多数情况下，我将其包含在发行版中是作为对我自己
+  的便利和恩惠，因为我很棒而且我值得拥有，所以如果
+  它不适合你，请不要惊讶，如果你想报告问题，
+  请理解你在报告什么。

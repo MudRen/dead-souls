@@ -126,7 +126,7 @@ protected void eventRead(mixed *packet){
 
         eventWrite(({ "error", 5, mud_name(), 0, packet[2],
                     packet[3], "unk-user",
-                    "Your mud is not allowed to send to "+mud_name()+".",
+                    "您的MUD不被允许向 "+mud_name()+" 发送消息。",
                     packet }));
 
         return;
@@ -341,7 +341,7 @@ protected void eventSocketClose(){
 protected void eventConnectionFailure(){
     Online = 0;
     tn("INTERMUD_D: CONNECTION FAILED","red");
-    error("Failed to find a useful name server.\n");
+    error("无法找到可用的名称服务器。\n");
 }
 
 int SetDestructOnClose(int x){ return 0; }

@@ -12,9 +12,9 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(25);
-    SetShort("a dark hole in the sand");
-    SetLong("You are in a very dark, sandy hole in the desert.");
-    AddItem("sand", "It is everywhere.");
+    SetShort("沙中的一个黑暗洞穴");
+    SetLong("你身处沙漠中一个非常黑暗的沙洞里。");
+    AddItem("sand", "沙子无处不在。");
     SetObviousExits("");
     SetExits( ([ "up" : "/domains/Ylsrim/room/"+ "sand_room" ]));
     // use a door to act as a hole, as that is what the hole really is

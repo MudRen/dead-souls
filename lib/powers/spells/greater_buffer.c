@@ -27,10 +27,9 @@ protected void create() {
     SetMagicCost(80, 80);
     SetDifficulty(2);
     SetMorality(10);
-    SetHelp("Syntax: <cast greater buffer>\n"
-            "	     <cast greater buffer on LIV>\n\n"
-            "A magical defense spell that allows the caster to create "
-            "a glowing shield around the LIVing object named.\n\n");
+    SetHelp("语法: <cast greater buffer>\n"
+            "       <cast greater buffer on LIV>\n\n"
+            "一个强大的魔法防御法术，能让施法者在目标生物周围创造一个发光的护盾。\n\n");
 }
 
 int eventCast(object who, int level, string race, object* targets) {
@@ -47,10 +46,10 @@ int eventCast(object who, int level, string race, object* targets) {
         if(tmp->obname == file_name(this_object())){
             if(!(functionp(tmp->hit) & FP_OWNER_DESTED)){
                 if(target == this_player()){
-                    write("You are already protected by a greater buffer!");
+                    write("你已经被强大防护护盾保护了！");
                 }
                 else {
-                    write("They are already protected by a greater buffer!");
+                    write("他们已经被强大防护护盾保护了！");
                 }
                 return 1;
             }
@@ -78,13 +77,13 @@ int eventCast(object who, int level, string race, object* targets) {
     protection->name = "greater magical buffer";
     target->AddMagicProtection(protection);
     if( target == who ) {
-        send_messages("", "A %^BOLD%^BLUE%^translucent magical shield%^RESET%^ "
-                "suddenly appears around $agent_possessive_noun body.", who, 0,
+        send_messages("", "一个%^BOLD%^BLUE%^半透明的魔法护盾%^RESET%^"
+                "突然出现在$agent_possessive_noun的周围。", who, 0,
                 environment(target));
     }
     else {
-        send_messages("", "A %^BOLD%^BLUE%^translucent magical shield%^RESET%^ "
-                "suddenly appears around $target_possessive_noun body.", who,
+        send_messages("", "一个%^BOLD%^BLUE%^半透明的魔法护盾%^RESET%^"
+                "突然出现在$target_possessive_noun的周围。", who,
                 target, environment(target));
     }
     return 1;
@@ -103,15 +102,15 @@ int hitCallback(object who, object agent, int x, class MagicProtection cl) {
         Caster->eventTrainSkill("magic defense",cl->args,0,1);
     }
 
-    send_messages("", "The %^YELLOW%^magical shield%^RESET%^ around "
-            "$agent_name wavers as $target_name strikes it.",
+    send_messages("", "$agent_name周围的%^YELLOW%^魔法护盾%^RESET%^"
+            "在$target_name的攻击下颤动。",
             who, agent, environment(who));
     return x;
 }
 
 void endCallback(object who) {
     if( who ) {
-        send_messages("", "The %^BOLD%^BLUE%^magical shield%^RESET%^ around "
-                "$agent_name shatters into nothingness.", who, 0, environment(who));
+        send_messages("", "$agent_name周围的%^BOLD%^BLUE%^魔法护盾%^RESET%^"
+                "碎裂消散了。", who, 0, environment(who));
     }
 }

@@ -12,13 +12,11 @@ protected void create() {
     leader::create();
     SetKeyName("ixtala");
     SetId("ixtala", "priest");
-    SetShort("Ix'Tala, high priestess of the Priests");
-    SetLong("Ix'Tala initiates priests into the Priests class as well as "
-            "converts the wayward to the truth of the Dalin religion.  "
-            "To learn more about becoming a priest "
-            "ask her to \"describe priests\".  If you choose to become "
-            "a priest, ask her to \"join priests\".  Of course, you can "
-            "convert by asking her to \"convert me\".");
+    SetShort("伊克斯塔拉，牧师长");
+    SetLong("伊克斯塔拉为牧师职业举行入会仪式，也引导迷途者皈依达林教的真理。"
+            "要了解更多关于成为牧师的信息，请让她 \"describe priests\"。"
+            "如果你选择成为牧师，请让她 \"join priests\"。"
+            "当然，你也可以让她 \"convert me\" 来皈依。");
     SetLevel(45);
     SetRace("klingon");
     SetClass("cleric");

@@ -15,35 +15,35 @@ protected void create() {
     verb::create();
     SetVerb("sit");
     SetRules("", "up","down", "down in OBJ", "down on OBJ", "in OBJ", "on OBJ");
-    SetErrorMessage("Sit down?");
-    SetHelp("Syntax: sit [down]\n"
-            "        sit down in <OBJ>\n\n"
-            "Allows you to sit down on the ground or in a chair-like object."
-            "\nSee also: lie, stand");
+    SetErrorMessage("坐下？");
+    SetHelp("用法：sit [down]\n"
+            "      sit down in <物品>\n\n"
+            "允许你坐在地上或椅子类物品上。\n"
+            "另见：lie, stand");
 }
 
 mixed can_sit_down() {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything!";
+        return "你什么也做不了！";
     }
     if(!environment(this_player())->CanSit(this_player())){
-        return "You can't sit here.";
+        return "你不能在这里坐下。";
     }
     if( this_player()->GetPosition() == POSITION_SITTING ) {
-        return "You are already seated!";
+        return "你已经坐着了！";
     }
     if( this_player()->GetPosition() != POSITION_STANDING ) {
-        return "You must be standing in order to sit down!";
+        return "你必须站着才能坐下！";
     }
     return 1;
 }
 
 mixed can_sit_up() {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything!";
+        return "你什么也做不了！";
     }
     if( this_player()->GetPosition() != POSITION_LYING ) {
-        return "You must be lying in order to sit up!";
+        return "你必须躺着才能坐起来！";
     }
     return 1;
 }

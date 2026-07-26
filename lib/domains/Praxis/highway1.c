@@ -6,23 +6,18 @@ void create() {
     ::create();
     SetProperty("light", 3);
     SetProperty("no castle", 1);
-    SetShort( "a dirt highway");
+    SetShort( "一条土路公路");
     SetLong(
-            "You find yourself on a large dirt highway which heads "
-            "west out of Praxis. In the distance the Daroq Mountains " 
-            "rise majestically over the flat plains of the rest of the lands. "
-            "This area is rather sparse, with just a small smattering of trees. "
-            "There appears to have been grass here a long time ago, but it has "
-            "been ruined from the many adventurers that traverse these parts. "
-            "East leads to West Boc La road and east takes you to the highway ");
+            "你发现自己在一条宽阔的土路上，向西通往普拉克西斯以外的地方。"
+            "远处，达洛克山脉雄伟地耸立在平坦的平原之上。"
+            "这片区域相当稀疏，只有零星几棵树。"
+            "很久以前这里曾经有草地，但被众多穿越此地的冒险者破坏了。"
+            "向东通往西博克拉路，向西通往公路。");
     SetItems(
-            (["highway" : "A highway linking Praxis to the western lands "
-             "of Nightmare.",
-             ({ "trees", "tree" }) : "The trees are very small. This isn't "
-             "a very good environment for them to grow in.",
-             "village" : "A tiny adventuring village. They have many "
-             "services there.",
-             "mountains" : "The Daroq Mountains are far to the west."
+            (["highway" : "连接普拉克西斯与噩梦世界西部土地的公路。",
+             ({ "trees", "tree" }) : "树木非常矮小。这里不太适合它们生长。",
+             "village" : "一个小小的冒险村庄。那里有很多服务设施。",
+             "mountains" : "达洛克山脉远在西边。"
              ]) );
     SetSkyDomain("town");
     SetExits( 

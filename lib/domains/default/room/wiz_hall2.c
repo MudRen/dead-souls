@@ -12,8 +12,8 @@ protected void create() {
     }
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Creators' Hall Upstairs");
-    SetLong("This is the upstairs annex of the Creators' Hall. East is the telnet room where you can connect to the Dead Souls test and development mud. South is the domains room, where you can conveniently visit featured domains or realms. The main hall is below.");
+    SetShort("创造者大厅楼上");
+    SetLong("这是创造者大厅的楼上附属区。东边是telnet房间，你可以连接到Dead Souls测试和开发MUD。南边是领域房间，你可以方便地访问各个特色领域或区域。主大厅在楼下。");
     SetProperty("no attack", 1);
     SetProperty("nopeer",1);
     ob = new("/lib/bboard");
@@ -21,10 +21,10 @@ protected void create() {
     ob->SetId( ({ "board", "chalkboard", "dusty board", "dusty chalkboard" }) );
     ob->set_board_id("immortal_board");
     ob->set_max_posts(30);
-    SetShort("Creators' Hall West Wing");
+    SetShort("创造者大厅西翼");
     ob->eventMove(this_object());
     SetItems( ([
-                ({"sign"}) : "A sign you can read.",
+                ({"sign"}) : "一个你可以阅读的指示牌。",
                 ]) );
     SetExits( ([
                 "south" : "/domains/default/room/domains_room",
@@ -42,12 +42,12 @@ protected void create() {
 int CanReceive(object ob) {
     if(playerp(ob) && !creatorp(ob) &&
             !member_group(ob,"TEST")) {
-        message("info","Creator staff only, sorry.", ob);
+        message("info","仅限创造者工作人员使用，抱歉。", ob);
         return 0;
     }
 
     if(ob->GetRace() == "rodent"){
-        message("info","You are repelled by rodenticide.",ob);
+        message("info","你被灭鼠剂驱赶了。",ob);
         return 0;
     }
     return 1;

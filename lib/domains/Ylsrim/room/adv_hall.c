@@ -13,14 +13,11 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("the adventurer's hall");
-    SetLong("A bulletin board sits in the middle of this circular room where "
-            "adventurers from all over gather to meet one another.  Kaliid Road "
-            "lies to the south.  Stairs lead up to the tower.");
-    SetItems( ([ "stairs" : "They spiral up into the tower which looks over "
-                "Kaliid Road.",
-                "tower" : "You can't see much in the darkness into which the "
-                "stairs disappear." ]));
+    SetShort("冒险者大厅");
+    SetLong("一块公告板立在这间圆形房间的中央，来自各地的冒险者们聚集在此互相交流。"
+            "卡利德路在南边。楼梯通向上面的高塔。");
+    SetItems( ([ "stairs" : "楼梯盘旋而上，通往俯瞰卡利德路的高塔。",
+                "tower" : "楼梯消失在黑暗中，你无法看清太多。" ]));
     SetExits( ([
                 "up" : "/domains/Ylsrim/room/"+ "tower",
                 "south" : "/domains/Ylsrim/room/"+ "kaliid4" ]) );

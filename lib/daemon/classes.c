@@ -43,7 +43,7 @@ protected void create() {
 
 private void validate() {
     if( !(master()->valid_apply(({ PRIV_ASSIST }))) )
-        error("Illegal attempt to modify class data");
+        error("非法修改职业数据");
 }
 
 int ClassMember(string my_class, string query_class) {
@@ -65,7 +65,7 @@ void AddClass(string file) {
     string class_name;
     player = 1;
     validate();
-    if( !file_exists(file) ) error("No such file: " + file);
+    if( !file_exists(file) ) error("文件不存在: " + file);
     lines = explode(read_file(file), "\n");
     lines = filter(lines, function(string str) {
             if( strlen(str) == 0 ) {
@@ -86,7 +86,7 @@ void AddClass(string file) {
             return 1;
             });
     class_name = lines[0];
-    if( Classes[class_name] ) error("Class already exists");
+    if( Classes[class_name] ) error("职业已存在");
     Classes[class_name] = cls;
     lines = lines[1..];
     cls["Multis"] = ([]);
@@ -138,7 +138,7 @@ void SetClass(string class_name, mixed* args) {
 void SetComplete(string class_name) {
     mapping cls;
     validate();
-    if( !Classes[class_name] ) error("No such class");
+    if( !Classes[class_name] ) error("无此职业");
     else cls = Classes[class_name];
     cls["Complete"] = 1;
     SaveObject(SaveFile);
@@ -165,22 +165,20 @@ int GetPlayerClass(string str){
 
 string GetHelp(string class_name) {
     mapping cls = Classes[class_name];
-    string help = "Class: " + class_name + "\n\n";
+    string help = "职业: " + class_name + "\n\n";
 
     if( !cls ) return 0;
     if( !sizeof(cls["Multis"]) ) {
-        help += capitalize(class_name) + " cannot multi-class.\n";
+        help += capitalize(class_name) + " 无法进行多职业。\n";
     }
     else {
-        help += capitalize(pluralize(class_name)) + " can multi-class with " +
-            "the following primary classes:\n";
+        help += capitalize(pluralize(class_name)) + " 可以与以下主职业进行多职业组合:\n";
         foreach(string prime, string other in cls["Multis"]) {
             help += "\t" + capitalize(class_name) + " + " + prime + " = " +
                 other +  "\n";
         }
     }
-    help += "\n" + capitalize(pluralize(class_name)) + " has the following " +
-        "primary skills:\n";
+    help += "\n" + capitalize(pluralize(class_name)) + " 拥有以下主要技能:\n";
     foreach(string skill, mapping s in cls["Skills"]) {
         if( s["SkillClass"] == 1 ) {
             help += "\t" + skill + "\n";

@@ -7,8 +7,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Test Labs Corridor West");
-    SetLong("This is the west end of main corridor of the test labs. North is the disease lab. The Creators Hall is west of here, and corridor continues east.");
+    SetShort("测试实验室走廊西侧");
+    SetLong("这是测试实验室主走廊的西端。北边是疾病实验室。创造者大厅在西边，走廊向东延伸。");
     SetExits( ([ 
                 "north" : "/domains/default/room/quarantine1",
                 "east" : "/domains/default/room/wiz_corr_east",

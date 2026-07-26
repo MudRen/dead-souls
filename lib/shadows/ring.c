@@ -12,8 +12,8 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal, mixed
         string *damtypes = TYPES_D->eventCalculateTypes("damage", type);
         evidence = "%^BOLD%^%^RED%^";
 
-        if(objectp(agent)) evidence += "You receive damage from "+agent->GetKeyName();
-        else if(stringp(agent)) evidence += "You receive damage from "+agent;
+        if(objectp(agent)) evidence += "你受到了"+agent->GetKeyName()+"的伤害";
+        else if(stringp(agent)) evidence += "你受到了"+agent+"的伤害";
         evidence +=".";
 
         if(type && sizeof(damtypes)) {
@@ -21,13 +21,13 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal, mixed
             if(sizeof(damtypes) > 1) verboid = "s are ";
             else verboid = " is ";
 
-            evidence += " Damage type"+verboid;
+            evidence += " 伤害"+verboid;
             evidence += lower_case(implode(damtypes,", "));
         }
-        else evidence += " Damage type is UNKNOWN";
+        else evidence += " 伤害类型为未知";
 
-        if(x) evidence += ", raw damage is "+x;
-        if(internal) evidence += ", internal variable is "+internal;
+        if(x) evidence += ", 原始伤害为 "+x;
+        if(internal) evidence += ", 内部变量为 "+internal;
         if(limbs) {
             if(stringp(limbs)) limb_string = limbs;
             else if(arrayp(limbs)) {
@@ -39,9 +39,9 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal, mixed
                 }
             }
         }
-        else limb_string = ", and you can't tell where you're hit. ";
-        if(limbs) { 
-            evidence += ", body part(s) affected: ";
+        else limb_string = ", 你无法判断被击中了哪里。";
+        if(limbs) {
+            evidence += ", 受影响的部位: ";
             evidence += limb_string + ".";
         }
         this_object()->eventPrint(evidence+"%^RESET%^");
@@ -56,9 +56,8 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal, mixed
 
         if(x > this_object()->GetHealthPoints() &&
                 !(this_object()->GetGodMode()) ){
-            this_object()->eventPrint("%^RED%^This could have been a fatal hit. "+
-                    "The ring's safety protocol prevents \"actual damage\" calculation "+
-                    "from proceeding.%^RESET%^");
+            this_object()->eventPrint("%^RED%^这可能是一个致命的打击。"+
+                    "戒指的安全协议阻止了\"实际伤害\"的计算。%^RESET%^");
             return 1;
         }
 
@@ -67,8 +66,8 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal, mixed
         damage = this_object()->GetHealthPoints();
         fatigue = stamina - this_object()->GetStaminaPoints();
         damdiff = hp - damage;
-        this_object()->eventPrint("%^RED%^Actual damage done: "+damdiff+"%^RESET%^");
-        this_object()->eventPrint("%^YELLOW%^Stamina sapped: "+fatigue+"%^RESET%^");
+        this_object()->eventPrint("%^RED%^实际伤害: "+damdiff+"%^RESET%^");
+        this_object()->eventPrint("%^YELLOW%^耐力消耗: "+fatigue+"%^RESET%^");
         if(protecting && ob){
             ob->AddHP(damdiff+1);
             this_object()->AddStaminaPoints(fatigue+1);
@@ -83,8 +82,8 @@ int RemoveLimb(string limb, object agent){
     object ob = GetShadowedObject();
     if(!ob) return 0;
     if(protecting){
-        this_object()->eventPrint("you have received enough damage to sever it. "+
-                "However, The ring's protection prevents that.");
+        this_object()->eventPrint("你已经受到了足以切断它的伤害。"+
+                "然而，戒指的保护阻止了这一切。");
         return 1;
     }
     else return ob->RemoveLimb(limb, agent);
@@ -94,15 +93,15 @@ int AddHP(int hp){
     object ob = GetShadowedObject();
     if(protecting && hp < 0){
         if(reporting)
-            this_object()->eventPrint(identify(previous_object())+" tried to "+
-                    "deduct "+abs(hp)+" health. The ring's protection prevents it.");
+            this_object()->eventPrint(identify(previous_object())+"试图扣除"+
+                    abs(hp)+"点生命值。戒指的保护阻止了这一行为。");
         return 1;
     }
     if(reporting){
-        string operation = "add";
-        if(hp < 0) operation = "subtract";
-        this_object()->eventPrint(identify(previous_object())+" tried to "+
-                operation+" "+abs(hp)+" health.");
+        string operation = "增加";
+        if(hp < 0) operation = "减少";
+        this_object()->eventPrint(identify(previous_object())+"试图"+
+                operation+abs(hp)+"点生命值。");
     }
     if(ob) return ob->AddHP(hp);
     else return 1;

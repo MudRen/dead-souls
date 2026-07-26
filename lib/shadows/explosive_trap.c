@@ -9,9 +9,9 @@ varargs mixed SpringTrap(mixed arg1, mixed arg2){
     mixed *stuffs = ({});
     if(!ob) ob = this_object()->GetShadowedObject();
     if(!ob || !environment(ob)) return 0;
-    tell_room(environment(ob),"\n----\nKABOOOOM!\n----\n");
-    write("You trip an exploding boobytrap!");
-    say(ob->GetCapName()+" trips an exploding boobytrap!");
+    tell_room(environment(ob),"\n----\n轰！！！\n----\n");
+    write("你触发了爆炸陷阱！");
+    say(ob->GetCapName()+"触发了爆炸陷阱！");
 
     stuffs=ob->GetLimbs();
     foreach(string limb in stuffs){

@@ -8,8 +8,8 @@ protected void create() {
     SetKeyName("slug");
     SetId( ({"gastropod"}) );
     SetAdjectives( ({"big", "thick", "slimy", "garden", "gross"}) );
-    SetShort("a slimy slug");
-    SetLong("A big, thick, slimy garden slug. Gross!");
+    SetShort("一只黏糊糊的鼻涕虫");
+    SetLong("一只又大又肥又黏的花园鼻涕虫。真恶心！");
     SetAutoStand(0);
     SetPosition(POSITION_LYING);
     SetLevel(1);

@@ -27,9 +27,8 @@ void eventReceiveTell(mixed *packet) {
     if( nopriv || (!(ob = find_player(who)) || ob->GetInvis() ||
                 (nopriv = (RESTRICTED_INTERMUD && !imud_privp(lower_case(who)))) )) {
         INTERMUD_D->eventWrite(({ "error", 5, mud_name(), 0, packet[2],
-                    packet[3], "unk-user", 
-                    capitalize(packet[5]) + " is nowhere to "
-                    "be found on " + mud_name() + ".",
+                    packet[3], "unk-user",
+                    capitalize(packet[5]) + " 在 " + mud_name() + " 中找不到。",
                     packet }));
         if(!(ob = find_player(who)) || nopriv) return;
         adverb = " %^BOLD%^MAGENTA%^unknowingly%^BOLD%^RED%^";
@@ -46,7 +45,7 @@ void eventReceiveTell(mixed *packet) {
         }
     }
     ret = "%^BOLD%^RED%^" + packet[6] + "@" + packet[2] +
-        adverb + " tells you:%^RESET%^ " + packet[7];
+        adverb + " 对你说:%^RESET%^ " + packet[7];
     if(member_array(lower_case(packet[6]),ob->GetMuffed()) == -1 &&
             member_array(lower_case(packet[2]),ob->GetMuffed()) == -1){
         if(!machine_message){
@@ -70,19 +69,19 @@ void eventSendTell(string who, string where, string msg) {
     // Quixadhal was here
     if(RESTRICTED_INTERMUD) {
         if(!imud_privp(lower_case(pl))) {
-            this_player(1)->eventPrint("You lack the power to send tells to other worlds.", MSG_CONV);
+            this_player(1)->eventPrint("您没有向其他世界发送消息的权限。", MSG_CONV);
             return;
         }
     }
     if(!PLAYER_INTERTELL_ALLOWED && !creatorp(this_player())){ 
-        this_player()->eventPrint("You lack the authority to send tells to other worlds.", MSG_CONV);
+        this_player()->eventPrint("您没有向其他世界发送消息的权限。", MSG_CONV);
         return;
     }
 
     INTERMUD_D->eventWrite(({ "tell", 5, mud_name(), pl, where, 
                 convert_name(who), plc, msg }));
-    ret = "%^BOLD%^RED%^You tell " + capitalize(who) +
-        "@" +  where + ":%^RESET%^ " + msg;
+    ret = "%^BOLD%^RED%^你对 " + capitalize(who) +
+        "@" +  where + " 说:%^RESET%^ " + msg;
     this_player(1)->eventPrint(ret, MSG_CONV);
     this_player(1)->eventTellHist(ret);
     tn("eventSendTell: "+identify( ({ "tell", 5, mud_name(), pl, where, convert_name(who), plc, msg }) ), "red");

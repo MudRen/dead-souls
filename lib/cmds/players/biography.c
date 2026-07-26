@@ -21,22 +21,22 @@ mixed cmd(string args) {
     int x, cols, birth, i;
 
     cols = ((int *)this_player()->GetScreen())[0];
-    tmp = ({ center("Biography for " + this_player()->GetShort() +
-                " on " + mud_name(), cols), "" });
+    tmp = ({ center(this_player()->GetShort() +
+                " 在 " + mud_name() + " 的传记", cols), "" });
     birth = this_player()->GetBirth();
     x = query_year(birth);
     if( x < 0 ) yrstr = (-x) + " BN";
     else yrstr = x + "";
-    tmp += ({ sprintf("%:-"+(cols/2)+"s%"+(cols/2)+"s", "Level: " +
-                this_player()->GetLevel(), "Age: " +
-                ((time() - birth)/YEAR) + " years") });
-    tmp += ({ "You are " + this_player()->GetMoralityDescription()
-            + "." });
-    tmp += ({ sprintf("You were born on the %d%s day of %s, year %s.",
-                query_date(birth), ordinal(query_date(birth)),
-                query_month(birth), yrstr) });
+    tmp += ({ sprintf("%:-"+(cols/2)+"s%"+(cols/2)+"s", "等级: " +
+                this_player()->GetLevel(), "年龄: " +
+                ((time() - birth)/YEAR) + " 年") });
+    tmp += ({ "你目前的道德状态为" + this_player()->GetMoralityDescription()
+            + "。" });
+    tmp += ({ sprintf("你出生于%s年第%s的第%d%s天。",
+                yrstr, query_month(birth),
+                query_date(birth), ordinal(query_date(birth))) });
     m = (class marriage *)this_player()->GetMarriages();
-    if( !sizeof(m) ) tmp += ({ "You have never been married." });
+    if( !sizeof(m) ) tmp += ({ "你从未结过婚。" });
     else {
         class marriage marr;
         string town;
@@ -49,14 +49,14 @@ mixed cmd(string args) {
             town = (marr->Location)->GetTown();
             if( !town || town == "wilderness" ) town = ".";
             else town = " in " + town + ".";
-            tmp += ({ "You married " + marr->Spouse + " the " +
-                    ordinal(query_date(marr->WeddingDate)) + " of " +
-                    query_month(marr->WeddingDate) + " " + yrstr + town });
+            tmp += ({ "你于" + yrstr + "年" +
+                    query_month(marr->WeddingDate) + "的第" +
+                    ordinal(query_date(marr->WeddingDate)) + "天与" + marr->Spouse + "结婚" + town });
             if( sizeof(m) > 1 ) m = m[1..];
             else m = ({});
         }
         if( i = sizeof(m) ) {
-            tmp += ({ "Past marriages:" });
+            tmp += ({ "过往婚姻:" });
             while(i--) {
                 string yrstr2;
 
@@ -70,24 +70,24 @@ mixed cmd(string args) {
                 town = (marr->Location)->GetTown();
                 if( !town || town == "wilderness" ) town = "";
                 else town = " in " + town;		
-                tmp += ({ "You married " + marr->Spouse + " " +
+                tmp += ({ "你于" + yrstr + "年" +
                         query_month(marr->WeddingDate) + " " +
-                        query_date(marr->WeddingDate) + ", " + yrstr +
-                        town + ", divorced " +
+                        query_date(marr->WeddingDate) + "日与" + marr->Spouse + "结婚" +
+                        town + "，于" + yrstr2 + "年" +
                         query_month(marr->DivorceDate) + " " +
-                        query_date(marr->DivorceDate) + ", " + yrstr2 + "."
+                        query_date(marr->DivorceDate) + "日离婚。"
                         });
             }
         }
     }
     deaths = this_player()->GetDeaths();
     if( !(x = sizeof(deaths)) )
-        tmp += ({ "You have never suffered the pain of death." });
+        tmp += ({ "你从未经历过死亡的痛苦。" });
     else {
         mapping *d1, *d2;
 
-        tmp += ({ "", "Death has cast its shadow over you on the following " +
-                consolidate(x, "occasion") + ":" });
+        tmp += ({ "", "死亡的阴影在以下" +
+                consolidate(x, "次") + "降临于你:" });
         if( x == 1 ) {
             d1 = deaths[0..0];
             d2 = ({});
@@ -106,9 +106,9 @@ mixed cmd(string args) {
     kills = STATISTICS_D->GetKills(this_player()->GetKeyName());
     npcs = sort_array(keys(kills), 1);
     if( !(x = sizeof(npcs)) )
-        tmp += ({ "You have never brought harm to another." });
+        tmp += ({ "你从未伤害过他人。" });
     else {
-        tmp += ({ "","You are responsible for the deaths of the following:" });
+        tmp += ({ "","你应对以下对象的死亡负责:" });
         if( x < 3 ) {
             col1 = npcs[0..0];
             if( x == 2 ) col2 = npcs[1..1];

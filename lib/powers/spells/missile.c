@@ -24,17 +24,16 @@ protected void create() {
     SetMorality(-1);
     SetAutoDamage(3);
     SetDamage(MAGIC|BLUNT, ({15, 6}) );
-    SetMessages(({ ({ "are", "$target_name $target_verb "
-                    "unharmed by $agent_possessive "
-                    "missile." }),
-                ({ "stings", "$agent_possessive_noun missile "
-                 "$agent_verb $target_name." }),
-                ({ "slams", "$agent_possessive_noun missile "
-                 "$agent_verb $target_name." }) }));
-    SetHelp("Syntax: <cast missile>\n"
+    SetMessages(({ ({ "are", "$target_name在$agent_possessive"
+                    "的魔法飞弹攻击下毫发无伤。" }),
+                ({ "stings", "$agent_possessive_noun的飞弹"
+                 "刺痛了$target_name。" }),
+                ({ "slams", "$agent_possessive_noun的飞弹"
+                 "猛击了$target_name。" }) }));
+    SetHelp("语法: <cast missile>\n"
             "        <cast missile on LIVING>\n\n"
-            "This spell conjures a magic missile out of "
-            "thin air and sends it hurling towards the specified enemy.  "
-            "If cast without specifying a target while in combat, the "
-            "missile is targetted at your current enemy.");
+            "这个法术凭空召唤出一枚魔法飞弹，"
+            "将其射向指定的敌人。"
+            "如果在战斗中没有指定目标，"
+            "飞弹将自动攻击你当前的敌人。");
 }

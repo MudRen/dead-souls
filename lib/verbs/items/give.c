@@ -18,16 +18,15 @@ protected void create() {
     verb::create();
     SetVerb("give");
     SetRules("LIV WRD WRD", "WRD WRD to LIV", "OBS LIV", "LIV OBS", "OBS to LIV" );
-    SetErrorMessage("Give what to whom?");
-    SetHelp("Syntax: <give LIVING ITEM>\n"
-            "        <give LIVING ITEMS>\n"
-            "        <give ITEM to LIVING>\n"
-            "        <give ITEMS to LIVING>\n"
-            "        <give LIVING AMOUNT CURRENCY>\n"
-            "        <give AMOUNT CURRENCY to LIVING>\n\n"
-            "This command allows you to give something you have to "
-            "someone else.\n\n"
-            "See also: drop, get, put");
+    SetErrorMessage("给谁什么东西？");
+    SetHelp("用法：give <生物> <物品>\n"
+            "      give <生物> <物品们>\n"
+            "      give <物品> to <生物>\n"
+            "      give <物品们> to <生物>\n"
+            "      give <生物> <数量> <货币>\n"
+            "      give <数量> <货币> to <生物>\n\n"
+            "此命令允许你将你拥有的东西交给其他人。\n\n"
+            "另见：drop, get, put");
 }
 
 mixed can_give_liv_obj(mixed args...) {
@@ -55,13 +54,13 @@ mixed can_give_wrd_wrd_to_liv(string num, string curr, object targ) {
     if(valid_currency(curr)) curr2 = curr;
 
     if(sscanf(num,"%d",amt) != 1){
-        if(valid_currency(curr)) return "Please use a number to specify the amount.";
-        else return "That isn't a valid currency.";
+        if(valid_currency(curr)) return "请用数字指定数量。";
+        else return "那不是有效的货币。";
     }
-    if( amt < 1 ) return "What sort of amount is that?";
+    if( amt < 1 ) return "这是什么数量？";
     if( amt > this_player()->GetCurrency(lower_case(curr)) )
-        return "You don't have that much " + curr + "."; 
-    if(newbiep(this_player())) return "Newbies can't give money.";
+        return "你没有那么多" + curr + "。";
+    if(newbiep(this_player())) return "新手不能赠送金钱。";
     return this_player()->CanManipulate();
 }
 
@@ -88,22 +87,20 @@ mixed do_give_obj_to_liv(mixed args...) {
     what = args[0];
 
     if(!intp(target->CanManipulate())){
-        this_player()->eventPrint(target->GetName()+" is incapable "+
-                "of holding that.");
+        this_player()->eventPrint(target->GetName()+"没有能力"+
+                "拿住那个。");
         return 1;
     }
     if( !(what->eventMove(target)) ) {
-        this_player()->eventPrint("They cannot accept that right now.");
+        this_player()->eventPrint("他们现在无法接受那个。");
         return 1;
     }
-    this_player()->eventPrint("You give " + target->GetName() + " " +
-            what->GetShort() + ".");
-    target->eventPrint(this_player()->GetName() + " gives you " +
-            what->GetShort() + ".");
+    this_player()->eventPrint("你把" + what->GetShort() + "给了" + target->GetName() + "。");
+    target->eventPrint(this_player()->GetName() + "把" +
+            what->GetShort() + "给了你。");
     environment(this_player())->eventPrint(this_player()->GetName() +
-            " gives " +
-            target->GetName() +
-            " " + what->GetShort() +".",
+            "把" + what->GetShort() + "给了" +
+            target->GetName() + "。",
             ({ this_player(), target }));
     return 1;
 }
@@ -117,22 +114,22 @@ mixed do_give_wrd_wrd_to_liv(string num, string curr, object target) {
     if(curr2) curr = curr2;
     amt = to_int(num);
     if( target->AddCurrency(curr, amt) == -1 ) {
-        this_player()->eventPrint("You just can't give that money away.");
+        this_player()->eventPrint("你就是没法把那笔钱送出去。");
         return 1;
     }
     if( this_player()->AddCurrency(curr, -amt) == -1 ) {
         target->AddCurrency(curr, -amt);
-        this_player()->eventPrint("The amount of money you have is boggled.");
+        this_player()->eventPrint("你拥有的金钱数量出了问题。");
         return 1;
     }
-    this_player()->eventPrint("You give " + target->GetName() + " " +
-            amt + " " + curr + ".");
-    target->eventPrint(this_player()->GetName() + " gives you " +
-            amt + " " + curr + ".");
+    this_player()->eventPrint("你给了" + target->GetName() + " " +
+            amt + "个" + curr + "。");
+    target->eventPrint(this_player()->GetName() + "给了你" +
+            amt + "个" + curr + "。");
     environment(this_player())->eventPrint(this_player()->GetName() +
-            " gives " + amt + " " + curr +
-            " to " + target->GetName() +
-            ".", ({ target, this_player() }));
+            "给了" + target->GetName() + " " +
+            amt + "个" + curr + "。",
+            ({ target, this_player() }));
     return 1;
 }
 
@@ -148,7 +145,7 @@ mixed do_give_obs_to_liv(mixed *items, object target) {
     object *obs, *eligible;
 
     if( sizeof(items) < 1 ) {
-        this_player()->eventPrint("You don't have any to give.");
+        this_player()->eventPrint("你没有东西可以赠送。");
         return 1;
     }
 
@@ -162,7 +159,7 @@ mixed do_give_obs_to_liv(mixed *items, object target) {
     }
     eligible=filter(obs, (: (!($1->GetWorn()) && environment($1) == this_player()) :));
     if(!sizeof(eligible)){
-        write("Remove or unwield items before trying to sell them.");
+        write("请先卸下或解除装备再尝试赠送。");
         eligible = ({});
         return 1;
     }

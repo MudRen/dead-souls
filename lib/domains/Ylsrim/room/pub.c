@@ -19,7 +19,7 @@ int readMenu(object who, string str) {
     object ob = present_file("/domains/Ylsrim/npc/lars");
 
     if( !ob ) { // lars is dead!
-        this_player()->eventPrint("The menu is bloodstained and hard to read.");
+        this_player()->eventPrint("菜单上沾满了血迹，难以辨认。");
         tmp = ({ translate("Bad wolf.", langlevel) });
     }
     else {
@@ -42,27 +42,22 @@ protected void create() {
     SetTown("Ylsrim");
     SetClimate("indoors");
     SetAmbientLight(25);
-    SetShort("Lars' Pub");
-    SetLong("Lars' Pub is one of the most famous gathering places in all "
-            "Ylsrim.  As you can see about you, however, it is not among the "
-            "more homely ones.  Tables and stools are littered all about "
-            "with a hodge-podge of writing in all different languages "
-            "covering the wall.  A menu of drinks is about the only "
-            "readable thing on the wall.  If you read Edhellen.");
+    SetShort("拉尔斯酒馆");
+    SetLong("拉尔斯酒馆是伊尔斯利姆最著名的聚会场所之一。"
+            "然而正如你所见，它并不是最舒适的那种。"
+            "桌椅散落各处，墙上满是各种语言的涂鸦。"
+            "饮品菜单大概是墙上唯一可读的东西。"
+            "如果你懂精灵语的话。");
     SetLanguage("Edhellen");
     SetInventory(([
                 "/domains/Ylsrim/npc/lars" : 1,
                 ]));
-    SetListen("Rowdy party sounds make it hard to hear anything else.");
-    SetSmell("The place smells like it is soaked in ale.");
-    AddItem(({ "tables", "stools" }), "The tables and stools begin "
-            "to migrate as the day goes on and customerizes socialize.  "
-            "Of course, nothing moves them better than a good brawl.");
-    AddItem(({ "menu", "drinks", "menu of drinks" }), "The menu is "
-            "written in Edhellen.  Can you read it?", ({ "drink" }));
-    AddItem(({ "writing", "walls" }), "Scribble in all different "
-            "languages, and in many pens and many hands covers much of "
-            "each wall.");
+    SetListen("喧闹的派对声让你很难听到其他声音。");
+    SetSmell("这个地方闻起来像是被麦酒浸泡过。");
+    AddItem(({ "tables", "stools" }), "随着白天的推移和顾客们的社交，"
+            "桌椅开始四处移动。当然，没有什么比一场好斗更能移动它们了。");
+    AddItem(({ "menu", "drinks", "menu of drinks" }), "菜单是用精灵语写的。你能读懂吗？", ({ "drink" }));
+    AddItem(({ "writing", "walls" }), "各种语言的涂鸦，用各种笔迹和手迹覆盖了大部分墙壁。");
     SetExits(([ "east" : "/domains/Ylsrim/room/"+ "s_bazaar" ]));
     // Bring in the Bar Keep
     // make the writing and the menu readable

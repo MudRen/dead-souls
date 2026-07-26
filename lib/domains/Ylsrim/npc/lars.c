@@ -13,12 +13,10 @@ protected void create() {
     barkeep::create();
     SetKeyName("lars");
     SetId("lars", "owner", "barkeep", "bartender", "keeper");
-    SetShort("Lars, the keeper of Lars' Pub");
+    SetShort("拉尔斯，拉尔斯酒馆的老板");
     SetLevel(12);
-    SetLong("Lars is the owner of Lars' Pub, and old, famous "
-            "drinking establishment in the heart of the Ylsrim Bazaar.  "
-            "He is an unassuming elf, but quite jovial.  You may ask him to "
-            "serve whatever drinks are on his menu.");
+    SetLong("拉尔斯是拉尔斯酒馆的老板，这家古老而著名的酒馆位于伊尔斯利姆集市的中心。"
+            "他是一位谦逊的精灵，但相当开朗。你可以请他供应菜单上的任何饮品。");
     SetGender("male");
     SetMorality(40);
     SetRace("elf");

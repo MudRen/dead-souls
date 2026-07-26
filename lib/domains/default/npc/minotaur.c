@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("minotaur");
     SetId(({"npc","mob","character","mobile"}));
     SetAdjectives(({"non-player", "non player"}));
-    SetShort("The Minotaur");
-    SetLong("This is the fearsome monster to whom countless virgins were sacrificed. It is transcendentally horrifying, standing eight feet tall with a body seemingly of iron muscle and the head of a raging bull. It is so fearsome as to inspire a kind of hypnotic awe, and it is easy to see it as a force of nature to be worshipped.");
+    SetShort("牛头人");
+    SetLong("这是可怕的怪物，无数处女被献祭给它。它 transcendentally horrifying，八英尺高，身体 seemingly of iron muscle，头是 raging bull。它是如此可怕，以至于激发了一种 hypnotic awe，很容易把它视为值得崇拜的自然力量。");
     SetClass("fighter");
     SetLevel(30);
     SetMelee(1);

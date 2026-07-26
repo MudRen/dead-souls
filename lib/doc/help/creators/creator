@@ -1,44 +1,35 @@
-A creator (sometimes also called a wizard or wiz) is
-a user on the mud that has access to special commands
-that allow for the manipulation of game data.
+创建者（有时也称为巫师或 wiz）是游戏中拥有特殊命令
+访问权限的用户，这些命令允许操作游戏数据。
 
-A creator can, with some restrictions, edit files,
-modify stats, create new rooms, objects, and NPC's. 
-They, like admins, are mud staff and share the
-responsibility of improving and enhancing it.
+创建者可以在一定限制下编辑文件、修改属性、创建
+新的房间、对象和 NPC。他们和管理员一样，是游戏
+工作人员，共同承担改进和增强游戏的责任。
 
-If you are a new creator, take the time to get familiar
-with how the mud works. You have your very own workroom.
-To go to it, type: home
+如果你是一个新创建者，请花时间熟悉游戏的运作方式。
+你有自己的工作间。要前往，输入：home
 
-There you can open your chest and get a standard set 
-of creator tools (sometimes also called wiztoys) and
-get a sense for how things work.
+在那里你可以打开你的箱子，获取一套标准的创建者工具
+（有时也称为巫师玩具），并了解事物的运作方式。
 
-Remember that although you have fantastic, superhuman
-powers, you must use them responsibly. You have, for
-example, the zap command, which lets you kill almost
-anything instantly. Having the command, however, is
-not permission to run through the mud zapping every
-mob you see. Talk to your admin about what is ok
-and not ok. 
+记住，虽然你拥有神奇的超人力量，但你必须负责任地
+使用它们。例如，你有 zap 命令，可以让你瞬间杀死
+几乎任何东西。然而，拥有这个命令并不意味着你可以在
+游戏中到处 zap 你看到的每个怪物。和你的管理员谈谈
+什么是可以做的，什么是不可以做的。
 
-If you are new to this kind of mud, read the Player's
-Handbook. If you dont have one on you, type:
+如果你是这类游戏的新手，请阅读《玩家手册》。
+如果你手边没有，输入：
 
 clone /domains/default/obj/handbook
 read chapter 1 in handbook
 read chapter 2 in handbook
 
-And so on. Once you've read the handbook, read over
-the Creator FAQ at http://dead-souls.net/ds-creator-faq.html
-and when you feel ready to start using your Creator
-powers, start reading the Creator's Manual.
+以此类推。读完手册后，请阅读创建者常见问题：
+http://dead-souls.net/ds-creator-faq.html
+当你准备好开始使用你的创建者能力时，请开始阅读
+《创建者手册》。
 
-Contributing to a mud can be hard work, and if you've
-never done it before, it'll be a steep learning curve.
-However, remember that this mud has tons of documentation,
-and this kind of mud is one of the easiest for newcomers.
-Just relax, take your time, and don't get stressed. 
-
-
+为游戏做贡献可能是艰苦的工作，如果你以前从未做过，
+学习曲线会很陡峭。然而，请记住这个游戏有大量的
+文档，而且这类游戏对新手来说是最容易的之一。
+放轻松，慢慢来，不要有压力。

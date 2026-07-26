@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("giant");
     SetAdjectives( ({"jolly", "green"}) );
     SetId(({"npc","mob","character","mobile"}));
-    SetShort("a green giant");
-    SetLong("This massive being is well over fifteen feet tall. He doesn't seem hostile though. Just rather amused, in fact. His skin is entirely green and his clothes are made from the leaves of what must be some gigantic palm trees.");
+    SetShort("一个绿巨人");
+    SetLong("这个巨大的生物足有十五英尺高。不过他似乎并不敌对。事实上，只是相当 amused。他的皮肤完全是绿色的，他的衣服是由某种巨大的棕榈树叶制成的。");
     SetLevel(1);
     SetMelee(1);
     SetRace("giant");

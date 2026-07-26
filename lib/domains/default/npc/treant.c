@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("treant");
     SetAdjectives( ({"great", "old", "giant", "ancient", "benevolent"}) );
     SetId( ({"protector", "tree"}) );
-    SetShort("an ancient treant");
-    SetLong("This is a great old treant, which looks much like a giant tree with a face, arms, and legs. Ancient protectors of forests, treants are widely respected for their general good will and benevolence.");
+    SetShort("一个 ancient treant");
+    SetLong("这是一个 great old treant，看起来 much like a giant tree with a face, arms, and legs。 Ancient protectors of forests, treants are widely respected for their general good will and benevolence。");
     SetLevel(1);
     SetMelee(1);
     SetRace("tree");

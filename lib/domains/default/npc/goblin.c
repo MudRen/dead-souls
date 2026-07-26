@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("goblin");
     SetAdjectives( ({"malicious", "short", "green", "clever"}) );
     SetId(({"npc","mob","character","mobile"}));
-    SetShort("a short, green goblin");
-    SetLong("This awful creature is confirmation of the worst stories you heard as a child. It seems to ooze malice from its slick, green skin. It looks much like a troll but smaller and more clever, and the eyes almost appear to radiate poison and hatred. Its very presence contaminates the air.");
+    SetShort("一个矮小的绿色哥布林");
+    SetLong("这个可怕的生物证实了你小时候听过的最糟糕的故事。它似乎从光滑的绿色皮肤中渗出恶意。它看起来很像巨魔，但更小更聪明，眼睛 almost appear to radiate poison and hatred。它的存在本身就污染了空气。");
     SetLevel(1);
     SetMelee(1);
     SetRace("goblin");

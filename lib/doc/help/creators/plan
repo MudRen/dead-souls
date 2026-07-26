@@ -1,7 +1,6 @@
-Your plan file is the extra information others see when
-they finger you, usually listing what your projects are
-and what you've been up to. To modify your plan, 
-edit the .plan file in your home directory. For example,
+你的计划文件是别人在 finger 你时看到的额外信息，
+通常列出你的项目和你最近在做什么。要修改你的计划，
+编辑你主目录中的 .plan 文件。例如，
 
 cd
 ed .plan

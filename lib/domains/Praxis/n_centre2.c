@@ -7,28 +7,23 @@ void create() {
     SetProperty("light", 3);
     SetProperty("night light", 1);
     SetProperty("no castle", 1);
-    SetShort( "The north end of Praxis");
+    SetShort( "普拉克西斯北端");
     SetLong(
-            "Centre Path turns into nothing more than a small path "
-            "through the North Forest north of here as you approach "
-            "the northernmost part of Praxis.  South the path leads into "
-            "the heart of this grand village.  A small hospital is west. "
-            "Sun alley runs east.");
-    SetExits( 
+            "当你接近普拉克西斯最北端时，中心路变成了一条穿过"
+            "北方森林的小径。向南，小径通往这座宏伟村庄的中心。"
+            "西边有一家小医院。太阳巷向东延伸。");
+    SetExits(
             (["north" : "/domains/Praxis/forest1",
              "south" : "/domains/Praxis/n_centre1",
              "east" : "/domains/Praxis/sun1",
              "west"	 : "/domains/Praxis/hospital"]) );
     SetItems(
-            (["path" : "Centre Path leads to Krasna Square south and out "
-             "of town north.",
-             "road" : "Boc La Road is the main east-west road.",
-             "church" : "It is a small church run by the local clerics.",
-             "forest" : "The North Forest.  It is not a very well-"
-             "traveled place.",
-             "village" : "The grand village of Praxis",
-             "hospital" : "It is a primson white building jutting out "
-             "from the landscape"]) );
+            (["path" : "中心路向南通往克拉斯纳广场，向北出城。",
+             "road" : "博克拉路是主要的东西向道路。",
+             "church" : "一座由当地牧师管理的小教堂。",
+             "forest" : "北方森林。人迹罕至。",
+             "village" : "宏伟的普拉克西斯村庄",
+             "hospital" : "一座白色建筑，从景观中突出"]) );
     SetSkyDomain("town");
 }
 void init(){

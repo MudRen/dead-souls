@@ -1,17 +1,16 @@
-The best way to do messaging these days is through a single simul
-efun:
+目前最好的消息传递方式是通过单个模拟 efun：
 			    send_message()
 
 varargs void send_message(mixed verb, string message, object agent,
                           mixed targets, mixed observers, mapping special);
 
-Example:
+示例：
 
 send_message("cast", "$agent_name $agent_verb $agent_possessive pole in "
                      "order to fish.", this_player(), 0,
                      environment(this_player()));
 
-replaces BOTH:
+替代了以下两种方式：
 this_player()->eventPrint("You cast your pole in order to fish.");
 environment(this_player())->eventPrint(this_player()->GetName() +
                                        " casts " +
@@ -19,57 +18,53 @@ environment(this_player())->eventPrint(this_player()->GetName() +
                                        " pole in order to fish.",
                                        this_player());
 
-AND
-the write()/say() equivalent.
+以及
+write()/say() 的等效方式。
 
-First, let's go over the arguments to send_message():
+首先，让我们介绍 send_message() 的参数：
 
 * mixed verb
-This will normally be a single verb that you want conjugated in the
-sentence for different viewers.  In the above example, "cast" needed
-to be displayed as "cast" for the caster and "casts" for observers.
-In some sentences, you made need more than one verb.  Take for
-example:
+这通常是你想在句子中为不同观看者进行变位的单个动词。
+在上面的例子中，"cast" 需要为施法者显示为 "cast"，
+为观看者显示为 "casts"。在某些句子中，你可能需要不止
+一个动词。例如：
 "You rock and roll."
 "Descartes rocks and rolls."
 
-This is done by using an array instead of a single string.  The rock
-and roll example would look like:
+这可以通过使用数组而不是单个字符串来完成。
+摇滚的例子看起来像：
 send_message(({ "rock", "roll" }), "$agent_name $agent_verb and $agent_verb.",
              this_player(), 0, environment(this_player()));
 
-For each verb mentioned in the message, there must be a corresponding
-verb in the verb array.
+对于消息中提到的每个动词，动词数组中必须有一个对应的动词。
 
-The verb should be expressed in second person singular format.
+动词应以第二人称单数格式表示。
 
 * string message
-A message containing tokens that will be replaced when the message is
-displayed.  Campusalid tokens are:
-$agent_name - replaced with the name of the agent
-$agent_nominative - replaced with the nominative pronoun for the
-                    agent (he, she, or it)
-$agent_objective - replaced with the objective pronoun for the agent
-$agent_possessive - the agent's possessive pronoun
-$agent_possessive_noun - the possessive version of the agent's name
-$agent_reflexive - the reflexive pronoun for the agent
+包含在显示消息时将被替换的标记的消息。
+有效的标记是：
+$agent_name - 替换为代理的名字
+$agent_nominative - 替换为代理的主格代词 (he, she, or it)
+$agent_objective - 替换为代理的宾格代词
+$agent_possessive - 代理的所有格代词
+$agent_possessive_noun - 名字的所有格版本
+$agent_reflexive - 代理的反身代词
 
-For each of the agent tokens, there also exist target tokens:
+对于每个代理标记，也存在目标标记：
 $target_name, $target_nominative, $target_objective,
 $target_possessive, $target_possessive_noun, $target_reflexive
 
-And finally, $agent_verb and $target_verb.
+最后是 $agent_verb 和 $target_verb。
 
-You have to associate a verb with a person so that the system knows
-how to conjugate the verb for each viewer.  Take for example:
+你必须将动词与人关联起来，以便系统知道如何为每个观看者
+变位动词。例如：
 
 "Horace is struck by Descartes' sword."
 "Descartes strikes Horace."
 
-In both instances, Descartes is the agent.  The verb in the first
-sentence is "are" and in the second sentence "strike".  But the
-subject of the sentence in the first sentence is NOT the agent.  It is
-the target.  The corresponding send_message() would look like:
+在这两种情况下，Descartes 都是代理。第一句中的动词是
+"are"，第二句中是 "strike"。但第一句的主语不是代理，
+而是目标。对应的 send_message() 看起来像：
 
 send_messages("are", "$target_name $target_verb struck by "
               "$agent_possessive_noun sword.", this_player(), enemy,
@@ -78,45 +73,42 @@ send_messages("are", "$target_name $target_verb struck by "
 send_messages("strike", "$agent_name $agent_verb $target_name.",
               this_player(), enemy, environment(this_player()));
 
-Using just this knowledge, you can now send something like:
+使用这些知识，你现在可以发送类似这样的消息：
 send_message(({ "miss", "sidestep" }), "$agent_name $agent_verb "
              "$target_name as $target_nominative $target_verb "
              "$agent_possessive_noun attack.", this_player(), enemy,
              environment(this_player()));
-This will show me:
+这会向我显示：
 "You miss Horace as he sidesteps your attack."
-And Horace:
+向 Horace 显示：
 "Descartes misses you as you sidestep Descartes' attack."
-And other people in the room:
+向房间里的其他人显示：
 "Descartes misses Horace as he sidesteps Descartes' attack."
 
-All done in a single line of code.
+全部在一行代码中完成。
 
 * object agent
-The agent is the person who is considered to be doing the action.  It
-can only be a single object.
+代理被认为是执行动作的人。它只能是一个单独的对象。
 
 * mixed targets
-You can have one or more targets.  Traditionally, you will have only
-one.  The above examples have dealt with a single target.  You could
-however have:
+你可以有一个或多个目标。通常你只有一个。上面的例子
+处理的是单个目标。但你可以有：
 send_message("get", "$agent_name $agent_verb $target_name.",
              this_player(), all_inventory(environment(this_player())),
              environment(this_player()));
-To show:
+显示：
 "You get two swords and a fish."
-And to the room:
+向房间显示：
 "Descartes gets two swords and a fish."
 
-On a completely uninteresting side-note, the message also gets sent to
-the two swords and a fish.
+在一个完全无趣的旁注中，消息也会发送给那两把剑和一条鱼。
 
 * mixed observers
-Any objects which might be observing this action.  It is most often
-the room in which the agents and object are located.
+任何可能在观察这个动作的对象。最常见的是代理和对象
+所在的房间。
 
 * mapping special
-Some library objects may wish to add their own tokens to the token
-list for parsing.  For examples, spells send ([ "$limb" : "right hand"])
+一些库对象可能希望向标记列表添加自己的标记以供解析。
+例如，法术发送 ([ "$limb" : "right hand"])
 
-You will almost never need that last argument.
+你几乎永远不需要最后一个参数。

@@ -15,8 +15,8 @@ protected void create() {
     SetMagicCost(20, 0);
     SetDifficulty(1);
     SetMorality(10);
-    SetHelp("Syntax: cast light\n"
-            "Surrounds you with radiating light to see in the dark.");
+    SetHelp("语法: cast light\n"
+            "在你周围产生放射光芒，让你在黑暗中也能看见。");
 }
 
 int eventCast(object who, int level) {
@@ -29,8 +29,8 @@ int eventCast(object who, int level) {
     mojo->SetDuration(duration);
     mojo->eventMove(who);
 
-    send_messages("", "A %^B_BLACK%^%^BOLD%^YELLOW%^magical glow%^RESET%^ "
-            "appears around $agent_possessive_noun body.", who, 0,
+    send_messages("", "一个%^B_BLACK%^%^BOLD%^YELLOW%^魔法光芒%^RESET%^"
+            "出现在$agent_possessive_noun的周围。", who, 0,
             environment(who));
     return 1;
 }

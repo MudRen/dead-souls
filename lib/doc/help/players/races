@@ -1,36 +1,34 @@
-Your race determines your genetic make-up.
+你的种族决定了你的基因组成。
 
-Some races are genetically predisposed to being stronger, sturdier,
-more intelligent, more sensitive to light, etc. than other races.
-In addition, different races are physically different from others,
-having different limbs and other types of body parts.
-In real life, you had no choice.  You were born human.  In the Dead Souls
-reality, you do get a choice.  Your choice should be based on your
-style of playing?  Do you want a magical character?  Or do you
-want to play the game by brute force?  Or perhaps deception or
-skullduggery?
+某些种族天生就比其他种族更强壮、更结实、更聪明、
+对光线更敏感等。此外，不同种族在身体上也有所不同，
+拥有不同的肢体和其他类型的身体部位。
 
-What do you prefer to explore?  Do you like dark, enclosed areas? Or do
-you like well lit castles or the open outdoors?
+在现实生活中，你没有选择。你生来就是人类。
+在 Dead Souls 的世界中，你确实有选择。你的选择
+应该基于你的游戏风格。你想要一个魔法角色吗？
+还是你想通过蛮力来玩游戏？又或者通过欺骗或诡计？
 
-Do you wish to have humanoid limbs which can be easily equipped?  Or
-are you interested in the advantages of having different limbs which
-might allow you to wield more than two weapons at a time but are not
-so easily equipped?
+你喜欢探索什么？你喜欢黑暗、封闭的区域吗？
+还是你喜欢光线充足的城堡或开阔的户外？
 
-All these questions face you now.  Whatever choice you make, so long
-as it fits the style in which you like to play, will be rewarding.
-There is neither a best pick nor a worst pick.  There is only what is
-best or worst for your style.
+你希望拥有可以轻松装备物品的人类肢体吗？
+还是你对拥有不同肢体的优势感兴趣，这可能允许你
+同时装备两件以上的武器，但不太容易装备？
 
-Towards that end, here are some clues:
-Intelligence and wisdom make the best magic users.
-Strength and constitution make the best fighters.
-Dexterity and charisma make the best roguish types.
+所有这些问题现在摆在你面前。无论你做出什么选择，
+只要它适合你喜欢的游戏风格，都会有回报。
+没有最佳选择，也没有最差选择。只有最适合或
+最不适合你风格的选择。
 
-Each race has its own help file.  For example, to find out about humans,
-type "help human".
+为此，这里有一些线索：
+智力和智慧造就最好的魔法使用者。
+力量和体质造就最好的战士。
+敏捷和魅力造就最好的流氓类型。
 
-Type 'list' to see the selection while in the setter room.
+每个种族都有自己的帮助文件。例如，要了解人类，
+输入 "help human"。
 
-Type 'pick RACE' (for example, pick human ) to choose a race.
+在设置房间中输入 'list' 查看选择列表。
+
+输入 'pick RACE'（例如，pick human）来选择种族。

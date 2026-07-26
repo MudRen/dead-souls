@@ -1,11 +1,8 @@
-Your profile is a file that contains a list of 
-instructions. When you log in, the mud will force
-you to execute those commands. To modify what those
-"startup commands" are, edit the .profile file in
-your home directory. For example:
+你的配置文件包含一个指令列表。当你登录时，游戏会
+强制你执行这些命令。要修改这些"启动命令"是什么，
+编辑你主目录中的 .profile 文件。例如：
 
 cd
 ed .profile
 
-Note that the mud cannot force you to do 
-certain things as a security measure.
+注意出于安全原因，游戏不能强迫你做某些事情。

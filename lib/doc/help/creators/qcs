@@ -1,21 +1,18 @@
-%^CYAN%^ What's the QCS? %^RESET%^
+%^CYAN%^ 什么是 QCS？ %^RESET%^
 
 
-	QCS stands for Quick Creation System. The QCS is a
-series of commands and modules that lets you create stuff
-easily and quickly. Before the QCS, if you wanted to make
-an orc, you would edit the text file by hand, or copy
-a template file and use an editor to manually change the
-lines you needed to modify. This could be a tiresome
-process, as the standard editor can be a bit awkward, and
-making dozens of objects this way could be real torture for
-beginners.
+	QCS 代表快速创建系统（Quick Creation System）。
+QCS 是一系列命令和模块，让你能够轻松快速地创建东西。
+在 QCS 之前，如果你想制作一个兽人，你需要手动编辑
+文本文件，或复制模板文件并使用编辑器手动更改需要
+修改的行。这可能是一个令人厌烦的过程，因为标准
+编辑器可能有点笨拙，以这种方式制作几十个对象对
+初学者来说可能是真正的折磨。
 
-	The QCS changes all of that. Rather than use an
-editor to meodify files, the QCS gives you commands that
-permit you to modify objects on the fly. This means that
-orc creation for example could involve just the following 
-simple steps (please note "npc" is another word for "mob"):
+	QCS 改变了这一切。QCS 不是使用编辑器来修改文件，
+而是给你提供命令，允许你即时修改对象。这意味着
+创建兽人可能只涉及以下简单步骤（请注意 "npc" 是
+"mob" 的另一个词）：
 
 %^GREEN%^ create npc new_orc %^RESET%^
 
@@ -27,27 +24,25 @@ simple steps (please note "npc" is another word for "mob"):
 
 %^GREEN%^ modify orc race orc %^RESET%^
 
-	And that's it. All your modifications automatically
-get written to new_orc.c (usually in your area directory),
-and you now have an npc you can add to a room. Adding things 
-to rooms is just as easy. Creating weapons, armor, and other
-objects is done the same way.
+	就这样。你所有的修改都会自动写入 new_orc.c
+（通常在你的区域目录中），你现在有了一个可以添加到
+房间的 NPC。向房间添加东西同样容易。创建武器、护甲
+和其他对象也是以同样的方式完成的。
 
-	For complete details and examples, read the
-QCS chapters in the Creators Manual. The QCS section starts
-in chapter 31.
+	完整详情和示例，请阅读创建者手册中的 QCS 章节。
+QCS 部分从第 31 章开始。
 
 
-This is a log of the creation of some items using the Dead Souls creation system. It has
-not been modified in any way except to highlight the command lines and adding comments.
+这是使用 Dead Souls 创建系统创建一些物品的日志。
+它除了突出显示命令行和添加注释外，未做任何修改。
 
 
 
-Dead Souls has been up for 2h 25m 38s.
+Dead Souls 已运行 2小时25分钟38秒。
 %^GREEN%^ home %^RESET%^
 /realms/testycre/workroom
 Testycre's workroom [e,d]
-You are standing in the workroom of the mighty Testycre!  
+You are standing in the workroom of the mighty Testycre!
 You may return to the Creators' Hall by going down.
 A sample room is east.
 There is a sign here you can read.
@@ -62,7 +57,7 @@ This is a room you can use as a template.
 A simple table is here.
 A fighter is standing here.
 
-//// This is the standard sample room. We're about to create a new room to the east of it.
+//// 这是标准示例房间。我们即将在其东边创建一个新房间。
 %^GREEN%^ create room east test1 %^RESET%^
 It appears you have write access to this area.
 It's a null mapping
@@ -87,13 +82,13 @@ This is a room you can use as a template.
 A simple table is here.
 A fighter is standing here.
 
-//// We go into the new room and see it is a copy of the old one. Let's change the short description to avoid confusion:
+//// 我们进入新房间，看到它是旧房间的副本。让我们更改简短描述以避免混淆：
 %^GREEN%^ modify here short Room One %^RESET%^
 Indenting file...
 "/tmp/indent.1134436526.tmp.dat" 27 lines 515 bytes
 Exit from ed.
 
-//// We don't need the fighter from the other room here, so we remove him from this new room's inventory.
+//// 我们不需要另一个房间的战士，所以我们从这个新房间的物品列表中移除他。
 %^GREEN%^ delete fighter %^RESET%^
 Indenting file...
 "/tmp/indent.1134436532.tmp.dat" 26 lines 507 bytes
@@ -107,7 +102,7 @@ A simple table is here.
 
 
 SetInventory modification complete.
-//// Let's make another room.
+//// 让我们再做一个房间。
 %^GREEN%^ create room east test2 %^RESET%^
 It appears you have write access to this area.
 It's a null mapping
@@ -142,7 +137,7 @@ Indenting file...
 "/tmp/indent.1134436608.tmp.dat" 26 lines 487 bytes
 Exit from ed.
 
-//// We don't need that table here.
+//// 我们不需要那张桌子。
 %^GREEN%^ delete table %^RESET%^
 Indenting file...
 "/tmp/indent.1134436612.tmp.dat" 25 lines 447 bytes
@@ -154,7 +149,7 @@ Room 2 [w]
 This is the second test room.
 SetInventory modification complete.
 
-//// We look at the file contents to make sure what we're doing really is being written into the room's code:
+//// 我们查看文件内容以确保我们所做的确实写入了房间代码：
 %^GREEN%^ more here %^RESET%^
 #include <lib.h>
 #include "/realms/testycre/customdefs.h"
@@ -183,7 +178,7 @@ void init(){
     ::init();
 }
 
-//// Let's make a new guy. "guy" will be the filename.
+//// 让我们创建一个新角色。"guy" 将是文件名。
 %^GREEN%^ create npc guy %^RESET%^
 I'm going to go with the appropriate area directory:
 /realms/testycre/area/npc/guy.c
@@ -194,7 +189,7 @@ Room 2 [w]
 This is the second test room.
 A generic npc is standing here.
 
-//// This is the first thing you should do, in order to avoid confusion.
+//// 这是你应该做的第一件事，以避免混淆。
 %^GREEN%^ modify npc name guy %^RESET%^
 Indenting file...
 "/tmp/indent.1134436801.tmp.dat" 15 lines 417 bytes
@@ -287,7 +282,7 @@ static void create() {
 void init(){
     ::init();
 
-//// Now a weapon for our new guy. "hammer" is the filename.
+//// 现在给我们的新角色一件武器。"hammer" 是文件名。
 %^GREEN%^ create weapon hammer %^RESET%^
 I'm going to go with the appropriate area directory:
 /realms/testycre/area/weap/hammer.c
@@ -318,7 +313,7 @@ This is the second test room.
 A generic weapon is here.
 The Dude is standing here.
 
-//// I accidentally changed the id before the name. Oops! Easy enough to fix:
+//// 我不小心在名称之前更改了 id。哎！很容易修复：
 %^GREEN%^ modify hammer name hammer %^RESET%^
 Indenting file...
 "/tmp/indent.1134437205.tmp.dat" 22 lines 474 bytes
@@ -370,7 +365,7 @@ Indenting file...
 "/tmp/indent.1134437422.tmp.dat" 23 lines 492 bytes
 Exit from ed.
 
-//// Let's see if all that stuff really did go into the file:
+//// 让我们看看这些东西是否真的进入了文件：
 %^GREEN%^ about hammer %^RESET%^
 /realms/testycre/area/weap/hammer.c
 
@@ -460,13 +455,13 @@ void init(){
     ::init();
 }
 
-//// It's a pretty heavy hammer, so let's make sure our guy can wield it.
+//// 这是一把很重的锤子，所以让我们确保我们的角色能挥舞它。
 %^GREEN%^ modify guy level 10 %^RESET%^
 Indenting file...
 "/tmp/indent.1134437557.tmp.dat" 19 lines 403 bytes
 Exit from ed.
 
-//// With this simple command we add the hammer to the permanent inventory of our guy.
+//// 通过这个简单的命令，我们将锤子添加到角色的永久物品列表中。
 %^GREEN%^ add hammer to guy %^RESET%^
 ob2: /realms/testycre/area/npc/guy.c
 ob: /realms/testycre/area/weap/hammer.c
@@ -513,7 +508,7 @@ void init(){
     ::init();
 }
 
-//// Making armor is just as easy:
+//// 制作护甲同样简单：
 %^GREEN%^ create armor helmet %^RESET%^
 I'm going to go with the appropriate area directory:
 /realms/testycre/area/armor/helmet.c
@@ -735,7 +730,7 @@ Guy is carrying:
 A heavy war hammer (wielded in left hand and right hand)
 A horned viking helmet (worn)
 
-//// Ok our dude is done. Let's clean up the room by updating it:
+//// 好了，我们的角色完成了。让我们通过更新来清理房间：
 %^GREEN%^ update %^RESET%^
 Updating environment
 /realms/testycre/area/room/test2: Ok
@@ -747,7 +742,7 @@ This is the second test room.
 /realms/testycre:
 %^GREEN%^ cd area/npc %^RESET%^
 /realms/testycre/area/npc:
-//// We need to have the guy present in order to add him to the room:
+//// 我们需要角色在场才能将他添加到房间：
 %^GREEN%^ clone guy %^RESET%^
 Guy wields a heavy war hammer.
 Guy wears a horned viking helmet.
@@ -772,7 +767,7 @@ SetInventory modification complete.
 %^GREEN%^ update %^RESET%^
 Updating environment
 /realms/testycre/area/room/test2: Ok
-//// That's it. Easy, huh? Think of how much slogging through ed this would save you when making a large area.
+//// 就这样。简单吧？想想在制作大区域时这会为你省去多少在 ed 中的苦差事。
 %^GREEN%^ l %^RESET%^
 /realms/testycre/area/room/test2
 Room 2 [w]
@@ -819,6 +814,6 @@ void init(){
 %^GREEN%^ quit %^RESET%^
 Please come back another time!
 
-Obviously you still need to code some LPC in ed for complex stuff. But knocking out rooms and NPC's and objects quickly helps you avoid getting bogged down in mechanics when what you really want to do is build.
-
-
+显然你仍然需要在 ed 中为复杂的东西编写一些 LPC 代码。
+但快速创建房间、NPC 和对象可以帮助你在真正想要建设时
+避免陷入机械工作中。

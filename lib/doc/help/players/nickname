@@ -1,9 +1,8 @@
-This command permits you to substitute names, typically
-so you can avoid typing out long or complicated names all 
-the time. For example, if you do the following:
+此命令允许你替换名称，通常是为了避免每次都输入
+冗长或复杂的名称。例如，如果你执行以下操作：
 
 %^GREEN%^nickname crat cratylus%^RESET%^
 
-You can then do stuff like:
+然后你就可以这样做：
 
 %^GREEN%^tell crat hi!%^RESET%^

@@ -13,10 +13,9 @@ protected void create() {
     SetKeyName("balrog");
     SetId("balrog");
     SetAdjectives("wicked", "ugly");
-    SetShort("a wicked balrog");
-    SetLong("Balrogs are an ugly sort that hide out among the many "
-            "crevices and canyons in the mountains.  This one is "
-            "extremely tall, and evidently not all too pleased to see you.");
+    SetShort("邪恶的炎魔");
+    SetLong("炎魔是一种丑陋的生物，藏身于山脉中众多的裂缝和峡谷中。"
+            "这只炎魔极其高大，显然对见到你并不太高兴。");
     SetLevel(8);         // level, race, and class determine NPC's power
     SetRace("balrog");   // must be some valid race from mraces command
     SetClass("fighter"); // needs a class!

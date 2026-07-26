@@ -1,74 +1,68 @@
-		 Nightmare 3.3/Foundation I Security
-		     Created by Descartes of Borg
+            Nightmare 3.3/Foundation I 安全
+                由 Descartes of Borg 创建
 
-Nightmare 3.3 has moved to a new style of security called stack
-security.  Stack security differs completely from the old EUID/UID
-method.  This document attempts to detail stack security.
+Nightmare 3.3 已经转向一种称为栈安全的新安全风格。
+栈安全与旧的 EUID/UID 方法完全不同。本文档尝试
+详细说明栈安全。
 
-Stack security relies on checking an entire call stack for security
-operations.  With the old style security, the master object would only
-check the to see if the object asking for access had access to perform
-a certain operation.  For example, say object A wanted to write to a
-file.  No matter how it got to desire to write to that file, the
-master object would allow or deny it access based solely on its
-merits.  A good way, therefore, to defeat the old security system
-would be to fake out object A and get it to write to a file using its
-priveledges for you.
+栈安全依赖于检查整个调用栈来进行安全操作。
+使用旧的安全方式，主对象只会检查请求访问的对象
+是否有权执行某个操作。例如，假设对象 A 想要写入
+一个文件。无论它是如何产生写入该文件的想法的，
+主对象只会根据其本身的权限来允许或拒绝访问。
+因此，击败旧安全系统的一个好方法是欺骗对象 A，
+让它利用其权限为你写入文件。
 
-With stack security, an object cannot be used to fake out the master
-object.  Instead, the master object traverse the entire call stack to
-be certain that it should allow access.  Take a rm command.
+使用栈安全，对象不能被用来欺骗主对象。
+相反，主对象会遍历整个调用栈以确保它应该允许访问。
+以 rm 命令为例。
 
-I issue the command rm.  The player object calls the command daemon.
-The player object then calls the rm command.  The rm command tries to
-rm the file.  So you have 3 objects here on the stack, my player
-object two times, and the rm command (the command daemon made no
-external calls, so it is not on the stack).  In order for the rm
-command to succeed, I and the rm command must all have access to rm
-the file.  As an admin, I have the access, and the rm command as well
-has that access, so the command succeeds.  If it had been a regular
-creator however, perhaps trying to rm the master object, the operation
-would have failed.  The rm command still would have had access, but
-the creator's player object would not have.
+我发出命令 rm。玩家对象调用命令守护进程。
+玩家对象然后调用 rm 命令。rm 命令尝试删除文件。
+所以这里有 3 个对象在栈上，我的玩家对象两次，
+以及 rm 命令（命令守护进程没有进行外部调用，
+所以它不在栈上）。为了让 rm 命令成功，我和
+rm 命令都必须有删除文件的权限。作为管理员，
+我有权限，rm 命令也有权限，所以命令成功了。
+然而，如果是一个普通的创建者，可能尝试删除
+主对象，操作就会失败。rm 命令仍然有权限，
+但创建者的玩家对象没有。
 
-In order to understand how this works, you must understand the
-difference between file protection and object access.  File protection
-is the level of protection a file has from operations of other
-objects.  File protections are defined in /secure/cfg/read.cfg and
-/secure/cfg/write.cfg.  File protections must ALWAYS be greater than
-or equal to the access an object cloned from that file has.  If not,
-then you have a security leak.
+为了理解这是如何工作的，你必须理解文件保护
+和对象访问之间的区别。文件保护是文件对其他
+对象操作的保护级别。文件保护在 /secure/cfg/read.cfg
+和 /secure/cfg/write.cfg 中定义。文件保护必须始终
+大于或等于从该文件克隆的对象所拥有的访问权限。
+如果不是这样，你就有了安全漏洞。
 
-File access is defined through the SimulEfun file_privs().  Upon
-creation, each object gets a privs string which is a list of privs
-separated by a :.  Player objects always have their name as part of
-their privs string.  Privs can never change once set.
+文件访问通过 SimulEfun file_privs() 定义。
+创建时，每个对象获得一个 privs 字符串，
+它是以 : 分隔的 privs 列表。玩家对象始终将其名称
+作为其 privs 字符串的一部分。Privs 一旦设置就不能更改。
 
-By making protection greater than access, what I mean is this:
-Any object which has access to a given file should on its own have
-access to any files which an object created from that file would have
-access to.  For example, /secure has access to everything.  Therefore,
-only SECURE objects should have access to it.  If you allow any priv,
-say an admin priv like descartes, to have access to /secure, you are
-by default giving SECURE access to that outside priv.  So now anything
-which can write to my home directory can become SECURE!
+通过使保护大于访问，我的意思是：
+任何有权访问给定文件的对象本身应该有权访问
+从该文件创建的对象有权访问的任何文件。
+例如，/secure 有权访问一切。因此，只有 SECURE
+对象才应该有权访问它。如果你允许任何 priv，
+比如管理员 priv 如 descartes，有权访问 /secure，
+你实际上默认给了 SECURE 对该外部 priv 的访问权。
+所以现在任何可以写入我主目录的东西都可以变成 SECURE！
 
-The final key to the stack security system is the unguarded()
-SimulEfun.
+栈安全系统的最后一个关键是 unguarded() SimulEfun。
 
 mixed unguarded(function f);
 
-Any object can make an old-style, depend on me only operation by
-making that function unguarded.  For example, I am a creator that has
-a guild object which needs to save to my home directory.  My guild
-object has write access to my home directory, but players using it
-would not.  So stack security would make it impossible for you to have
-any such object.  If, in the guild object, you have the following
-call:
+任何对象都可以通过使该函数成为 unguarded 来进行
+旧式的、仅依赖于我的操作。例如，我是一个创建者，
+有一个需要保存到我的主目录的公会对象。
+我的公会对象有权写入我的主目录，但使用它的玩家
+没有。所以栈安全会使你无法拥有任何这样的对象。
+如果在公会对象中，你有以下调用：
 
 unguarded((: save_object, "/realms/descartes/guild/save/obj" :));
 
-The object will saved based SOLELY on the permissions which the guild
-object has.  If the guild object can write to the directory, then the
-operation succeeds regardless of the rest of the stack.  If the guild
-object can't do it, then the operation fails.
+该对象将仅基于公会对象拥有的权限来保存。
+如果公会对象可以写入该目录，那么无论栈的其余部分
+如何，操作都会成功。如果公会对象不能做到，
+那么操作就会失败。

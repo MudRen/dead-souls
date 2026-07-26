@@ -23,9 +23,8 @@ protected void create() {
     SetMagicCost( 20, 10);
     SetDifficulty(1);
     SetVerb("pray");
-    SetHelp("Syntax: <pray for healing for LIV>\n\n"
-            "This minor healing spell provides some minimal "
-            "aid to the wounded.");
+    SetHelp("语法: <pray for healing for LIV>\n\n"
+            "这个初级治疗法术能为受伤者提供一些基本的治疗。");
 }
 
 int eventCast(object who, int level, mixed limbs, object* targets) {
@@ -39,8 +38,8 @@ int eventCast(object who, int level, mixed limbs, object* targets) {
     else {
         int hp = who->GetSkillLevel("healing");
         int stam = who->GetSkillLevel("faith");
-        send_messages("", "$agent_possessive_noun spell partially heals "
-                "$target_name.",who,
+        send_messages("", "$agent_possessive_noun的法术部分治愈了"
+                "$target_name。",who,
                 target, environment(target));
         health = target->GetMaxHealthPoints()-target->GetHealthPoints();
         stamina = target->GetMaxStaminaPoints()-target->GetStaminaPoints();
@@ -55,8 +54,7 @@ int eventCast(object who, int level, mixed limbs, object* targets) {
         if(magic < 0) feedback = tot - magic;
         who->AddMagicPoints(-tot);
         if(feedback){
-            write("Your spell overreached your mana reserves! You suffer "+
-                    "from a feedback overload!");
+            write("你的法术超出了法力储备！你遭受了法力反噬！");
             who->eventReceiveDamage(who, KARMA, tot, 1);
         }
     }
@@ -67,7 +65,7 @@ varargs int CanCast(object who, int level, string limb, object* targets){
     foreach(object targ in targets){
         string race = targ->GetRace();
         if(race && RACES_D->GetNonMeatRace(race)){
-            write("This prayer only works on flesh-and-blood creatures.");
+            write("这个祈祷只对血肉之躯的生物有效。");
             return 0;
         }
     }

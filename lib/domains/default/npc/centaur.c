@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("centaur");
     SetId(({"npc","mob","character","mobile"}));
     SetAdjectives(({"non-player", "non player"}));
-    SetShort("a centaur");
-    SetLong("Always a startling sight, this is a creature whose lower part is a stag, but where the head would be is the torso of a man, complete with arms and a head. This deer/man appears quite wild and looks every bit as unpredictable as legend says.");
+    SetShort("一个半人马");
+    SetLong(" always a startling sight，这是一种下半身是雄鹿，但头部位置是人的躯干，有手臂和头的生物。这个鹿/人看起来 quite wild，看起来 every bit as unpredictable as legend says。");
     SetWanderSpeed(10);
     SetLevel(1);
     SetMelee(1);

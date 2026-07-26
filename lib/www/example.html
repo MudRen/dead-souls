@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <title>Dead Souls Mudlib - Quick Creation System</title>
+  <title>Dead Souls MUD库 - 快速创建系统</title>
   <meta http-equiv="Content-Type"
  content="text/html; charset=ISO-8859-1">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -14,31 +14,21 @@
 <a name="top"></a>
 <!-- Begin: Header -->
 <div id="header">
-<p id="headertext">Dead Souls - Quick Creation System</p>
+<p id="headertext">Dead Souls - 快速创建系统</p>
 </div>
 <!-- End: Header -->
-<h1>Index</h1>
+<h1>目录</h1>
 <ul>
-  <li><a href="index.html">Back to Dead Souls Homepage</a></li>
-  <li><a href="#rooms">Room Creation</a></li>
-  <li><a href="#npc">NPC Creation</a></li>
-  <li><a href="#weapons">Weapon Creation</a></li>
-  <li><a href="#armor">Armor Creation</a></li>
-  <li><a href="#room_resets">Room Resets</a></li>
+  <li><a href="index.html">返回Dead Souls主页</a></li>
+  <li><a href="#rooms">房间创建</a></li>
+  <li><a href="#npc">NPC创建</a></li>
+  <li><a href="#weapons">武器创建</a></li>
+  <li><a href="#armor">防具创建</a></li>
+  <li><a href="#room_resets">房间重置</a></li>
 </ul>
-<h1>QCS Described</h1>
-<p>The Quick Creation System (or QCS) is a series of commands and
-modules that lets you create rooms, objects, exits, and NPCs easily and
-quickly. Before the QCS, if you wanted to make an orc, you would edit
-the text file by hand, or copy a template file and use an editor to
-manually change the lines you needed to modify. This could be a
-tiresome process, as the standard editor can be a bit awkward, and
-making dozens of objects this way could be real torture for beginners.</p>
-<p>The QCS changes all of that. Rather than use an editor to modify
-files, the QCS gives you commands that permit you to modify objects on
-the fly. This means that orc creation, for example, could involve just
-the following simple steps (please note "NPC" is another word for
-"Mob"):</p>
+<h1>QCS描述</h1>
+<p>快速创建系统（或QCS）是一系列命令和模块，可以让您轻松快速地创建房间、物品、出口和NPC。在QCS之前，如果您想制作一个兽人，您需要手动编辑文本文件，或者复制模板文件并使用编辑器手动更改需要修改的行。这可能是一个令人厌烦的过程，因为标准编辑器可能有点笨拙，以这种方式制作几十个物品对初学者来说可能是真正的折磨。</p>
+<p>QCS改变了这一切。QCS不是使用编辑器来修改文件，而是为您提供命令，允许您即时修改物品。这意味着兽人创建，例如，可能只涉及以下简单步骤（请注意"NPC"是"Mob"的另一个词）：</p>
 <div class="inputcontainer">
 <ul class="input">
   <li><span class="command">create npc new_orc</span></li>
@@ -49,127 +39,91 @@ brutish, and short.</span></li>
   <li><span class="command">modify orc race orc</span></li>
 </ul>
 </div>
-<p>And that's it. All your modifications automatically get written to
-new_orc.c (usually in your area directory), and you now have an npc you
-can add to a room. Adding things to rooms is just as easy. Creating
-weapons, armor, and other objects are done the same way. For complete
-details and examples, read the
-QCS chapters in the Creators Manual. The QCS section starts in chapter
-31.</p>
-<h1>Example Log</h1>
-<p>Below you will find an excerpt from an short building session using
-Dead Souls. This should be more or less exactly what you'll see by
-entering
-the commands hilighted in red.</p>
+<p>就是这样。您所有的修改都会自动写入new_orc.c（通常在您的区域目录中），现在您就有了一个可以添加到房间的NPC。将物品添加到房间同样简单。创建武器、防具和其他物品的方式相同。有关完整详情和示例，请阅读创造者手册中的QCS章节。QCS部分从第31章开始。</p>
+<h1>示例日志</h1>
+<p>下面您将找到使用Dead Souls的简短构建会话的摘录。这应该或多或少正是您通过输入红色高亮显示的命令将看到的内容。</p>
 <hr>
-<p>The first thing we need to do is get back to our personal work room.
-We can
-do this using the <span class="command">home</span> command.</p>
+<p>我们需要做的第一件事是回到我们的个人工作间。我们可以使用<span class="command">home</span>命令来做到这一点。</p>
 <div class="inputcontainer">
 <span class="command">home</span>
 <pre>/realms/testycre/workroom<br>Testycre's workroom [e,d]<br>You are standing in the workroom of the mighty Testycre!<br>You may return to the Creators' Hall by going down.<br>A sample room is east.<br>There is a sign here you can read.<br>There is a sheet here you can read.<br>A wooden chest is here.<br></pre>
 </div>
-<p>Next, we move east to a sample room that is created automatically
-for us.
-We'll be experimenting in here.</p>
+<p>接下来，我们向东移动到一个自动为我们创建的示例房间。我们将在里面进行实验。</p>
 <div class="inputcontainer">
 <span class="command">east<br>
 </span>
 <pre>/realms/testycre/area/room/sample_room<br>Sample Room [e, w]<br>This is a room you can use as a template.<br>A simple table is here.<br>A fighter is standing here.<br></pre>
 </div>
 <a name="rooms"></a>
-<h1>Room Creation <a class="backtotop" href="#top">(Back to Top)</a></h1>
-<p>This is the standard sample room. We're about to create a new room
-to the north of it via the <span class="command">create</span> command.</p>
+<h1>房间创建 <a class="backtotop" href="#top">(返回顶部)</a></h1>
+<p>这是标准的示例房间。我们即将通过<span class="command">create</span>命令在其北面创建一个新房间。</p>
 <div class="inputcontainer">
 <span class="command">create room north test1</span>
 <pre>It appears you have write access to this area.<br>It's a null mapping<br>Indenting file...<br>"/tmp/indent.1134436511.tmp.dat" 20 lines 330 bytes<br>Exit from ed.<br><br>You wave your hand, and a new exit appears.<br>You begin uttering a magical incantation.<br>Indenting file...<br>"/tmp/indent.1134436511.tmp.dat" 27 lines 543 bytes<br>Exit from ed.<br><br>Indenting file...<br>"/tmp/indent.1134436511.tmp.dat" 27 lines 544 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>We can now move east to our new room. Notice how it says it's a copy
-of our sample room.</p>
+<p>我们现在可以向东移动到新房间。注意它说的是我们示例房间的副本。</p>
 <div class="inputcontainer">
 <span class="command">n</span>
 <pre>/realms/testycre/area/room/test1<br>Copy of /realms/testycre/area/room/sample_room.c [s]<br>This is a room you can use as a template.<br>A simple table is here.<br>A fighter is standing here.<br></pre>
 </div>
-<p>Now we'll change the short description to avoid confusion between
-our
-original sample room and the newly created one. Note that a room's
-short
-description appears as its title or name near the top of the text when
-a
-user <span class="command">looks</span> at it.</p>
+<p>现在我们将更改简短描述，以避免我们的原始示例房间和新创建的房间之间的混淆。请注意，房间的简短描述在用户<span class="command">look</span>时会显示为其标题或名称，位于文本顶部附近。</p>
 <div class="inputcontainer">
 <span class="command">modify here short Room One</span>
 <pre>Indenting file...<br>"/tmp/indent.1134436526.tmp.dat" 27 lines 515 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>We don't need the fighter from the other room here, so we remove him
-from this new room's inventory.</p>
+<p>我们不需要来自另一个房间的战士，所以我们从这个新房间的库存中移除他。</p>
 <div class="inputcontainer">
 <span class="command">delete fighter</span>
 <pre>Indenting<br>file...<br>"/tmp/indent.1134436532.tmp.dat" 26 lines 507 bytes<br>Exit from ed.<br><br>/realms/testycre/area/room/test1: Ok<br>/realms/testycre/area/room/test1<br>Room One [w]<br>This is a room you can use as a template.<br>A simple table is here.<br><br>SetInventory modification complete.<br></pre>
 </div>
-<p>Now we'll make another room.</p>
+<p>现在我们将制作另一个房间。</p>
 <div class="inputcontainer">
 <span class="command">create room east test2</span>
 <pre>It appears you have write access to this area.<br>It's a null mapping<br>Indenting file...<br>"/tmp/indent.1134436578.tmp.dat" 20 lines 324 bytes<br>Exit from ed.<br><br>You wave your hand, and a new exit appears.<br>You begin uttering a magical incantation.<br>Indenting file...<br>"/tmp/indent.1134436578.tmp.dat" 27 lines 557 bytes<br>Exit from ed.<br><br>Indenting file...<br>"/tmp/indent.1134436578.tmp.dat" 27 lines 525 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>We'll move east into the newly created room.</p>
+<p>我们将向东移动到新创建的房间。</p>
 <div class="inputcontainer">
 <span class="command">e</span>
 <pre>/realms/testycre/area/room/test2<br>Copy of /realms/testycre/area/room/test1.c [w]<br>This is a room you can use as a template.<br>A simple table is here.<br></pre>
 </div>
-<p>Once again, we'll rename our new room.</p>
+<p>再次，我们将重命名我们的新房间。</p>
 <div class="inputcontainer">
 <span class="command">modify here short Room 2</span>
 <pre>Indenting file...<br>"/tmp/indent.1134436590.tmp.dat" 26 lines 499 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>We can now set the room's long description. This will show up as the
-body of the room when a player types <span class="command">look</span>.</p>
+<p>我们现在可以设置房间的详细描述。当玩家输入<span class="command">look</span>时，这将显示为房间的主体内容。</p>
 <div class="inputcontainer">
 <span class="command">modify here long This is the second test room.</span>
 <pre>Indenting file...<br>"/tmp/indent.1134436608.tmp.dat" 26 lines 487 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>We don't need that table here, let's delete it.</p>
+<p>我们不需要这里的桌子，让我们删除它。</p>
 <div class="inputcontainer">
 <span class="command">delete table</span>
 <pre>Indenting file...<br>"/tmp/indent.1134436612.tmp.dat" 25 lines 447 bytes<br>Exit from ed.<br><br>/realms/testycre/area/room/test2: Ok<br>/realms/testycre/area/room/test2<br>Room 2 [w]<br>This is the second test room.<br>SetInventory modification complete.<br></pre>
 </div>
-<p>For the sake of self-assurance, we can look at the room's file to
-make
-sure that our modifications are actually being saved.</p>
+<p>为了自我确认，我们可以查看房间的文件，以确保我们的修改确实被保存了。</p>
 <div class="inputcontainer">
 <span class="command">more here</span>
 <pre>#include &lt;lib.h&gt;<br>#include "/realms/testycre/customdefs.h"<br><br>inherit LIB_ROOM;<br><br>protected void create() {<br> room::create();<br> SetClimate("indoors");<br> SetAmbientLight(30);<br> SetShort("Room 2");<br> SetLong("This is the second test room.");<br> SetExits(([<br> "west" : "/realms/testycre/area/room/test1",<br> ]));<br><br> SetItems( ([<br> "template" : "That's what this is.",<br> ]) );<br><br> SetInventory(([<br> ]));<br>}<br><br>void init(){<br> ::init();<br>}<br></pre>
 </div>
 <a name="npc"></a>
-<h1>NPC Creation <a class="backtotop" href="#top">(Back to Top)</a></h1>
-<p>Now we'll create a new NPC (Mob) called "guy". The file name will
-also
-be "guy".</p>
+<h1>NPC创建 <a class="backtotop" href="#top">(返回顶部)</a></h1>
+<p>现在我们将创建一个名为"guy"的新NPC（Mob）。文件名也将是"guy"。</p>
 <div class="inputcontainer">
 <span class="command">create npc guy</span>
 <pre>I'm going to go with the appropriate area directory:<br>/realms/testycre/area/npc/guy.c<br>You wave your hand mysteriously and a generic npc materializes!<br></pre>
 </div>
-<p>We can <span class="command">look</span> at our new room and see
-the NPC
-standing there.</p>
+<p>我们可以<span class="command">look</span>我们的新房间，看到NPC站在那里。</p>
 <div class="inputcontainer">
 <span class="command">l</span>
 <pre>/realms/testycre/area/room/test2<br>Room 2 [w]<br>This is the second test room.<br>A generic npc is standing here.<br></pre>
 </div>
-<p>The first thing to do is to rename the new NPC in order to avoid
-confusion. An NPC's name is what the lib refers to the NPC as.</p>
+<p>首先要做的事情是重命名新的NPC以避免混淆。NPC的名称是库引用NPC的方式。</p>
 <div class="inputcontainer">
 <span class="command">modify npc name guy</span>
 <pre>Indenting file...<br>"/tmp/indent.1134436801.tmp.dat" 15 lines 417 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>We can now set one or more NPC aliases, called "ids". Note that in
-the
-following example, we enter three different ones, all of which point to
-the
-same NPC. A player could <span class="command">look</span> at any of
-these
-IDs and get the NPC.</p>
+<p>我们现在可以设置一个或多个NPC别名，称为"ids"。请注意，在以下示例中，我们输入了三个不同的别名，它们都指向同一个NPC。玩家可以<span class="command">look</span>这些ID中的任何一个来获取NPC。</p>
 <div class="inputcontainer">
 <span class="command">modify npc id</span>
 <pre>This setting takes multiple values. If you have no more values to<br>enter, then enter a dot on a blank line. To cancel, enter a single q on a blank<br>line.<br>You may now enter the next value. So far, it is blank.<br>If you're done entering values, enter a dot on a blank line.<br><span
@@ -196,27 +150,17 @@ Exit from ed.
 SetId modification complete.
 </pre>
 </div>
-<p>Now we'll set the NPCs short description, or name. Any condition
-such as
-"is standing here" is appended to the end of the NPC's short
-description,
-so don't end it with a period or any other punctuation.</p>
+<p>现在我们将设置NPC的简短描述或名称。任何条件如"is standing here"会被附加到NPC的简短描述末尾，所以不要以句号或其他标点符号结尾。</p>
 <div class="inputcontainer">
 <span class="command">modify guy short The Dude</span>
 <pre>Indenting file...<br>"/tmp/indent.1134436855.tmp.dat" 19 lines 437 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>We'll set the long description. This is what is shown when someone
-actually
-looks directly at the NPC.</p>
+<p>我们将设置详细描述。这是当某人实际直接查看NPC时显示的内容。</p>
 <div class="inputcontainer">
 <span class="command">modify guy long This is just some random guy</span>
 <pre>Indenting file...<br>"/tmp/indent.1134436904.tmp.dat" 19 lines 408 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>Adjectives are useful for complementing NPCs and other objects. For
-example, if our guy is 'oily' or 'hairy' as described in his long
-description, a player
-would be able to do a <span style="">look oily guy</span> and
-see the guy even if "oily" isn't in his actual name/id.</p>
+<p>形容词对于补充NPC和其他物品很有用。例如，如果我们的guy在他的详细描述中被描述为"油腻的"或"多毛的"，玩家将能够执行<span style="">look oily guy</span>来查看guy，即使"oily"不在他的实际名称/id中。</p>
 <div class="inputcontainer">
 <span class="command">modify guy adj</span>
 <pre>This setting takes multiple values. If you have no more values to<br>enter, then enter a dot on a blank line. To cancel, enter a single q on a blank<br>line.<br>You may now enter the next value. So far, it is blank.<br>If you're done entering values, enter a dot on a blank line.<br><span
@@ -243,25 +187,24 @@ Exit from ed.
 SetAdjectives modification complete.
 </pre>
 </div>
-<p>Let's look at our room and see if the Dude is appearing as expected.</p>
+<p>让我们看看我们的房间，看看Dude是否按预期出现。</p>
 <div class="inputcontainer">
 <span class="command">look</span>
 <pre>/realms/testycre/area/room/test2<br>Room 2 [w]<br>This is the second test room.<br>The Dude is standing here.<br></pre>
 </div>
-<p>We'll check out the Dude's file and see how QCS has set up the NPC
-for us.</p>
+<p>我们将查看Dude的文件，看看QCS如何为我们设置了NPC。</p>
 <div class="inputcontainer">
 <span class="command">about dude</span>
 <pre>/realms/testycre/area/npc/guy.c<br><br>#include &lt;lib.h&gt;<br><br>inherit LIB_SENTIENT;<br><br>protected void create() {<br> sentient::create();<br> SetKeyName("guy");<br> SetAdjectives( ({"just some", "random", "some"}) );<br> SetId( ({"dude", "fellow", "fella"}) );<br> SetShort("The Dude");<br> SetLong("This is just some random guy.");<br> SetLevel(1);<br> SetRace("human");<br> SetClass("explorer");<br> SetGender("male");<br>}<br><br>void init(){<br> ::init();<br></pre>
 </div>
 <a name="weapons"></a>
-<h1>Weapon Creation <a class="backtotop" href="#top">(Back to Top)</a></h1>
-<p>Now we'll create a weapon for our NPC. "hammer" is the filename.</p>
+<h1>武器创建 <a class="backtotop" href="#top">(返回顶部)</a></h1>
+<p>现在我们将为我们的NPC创建一个武器。"hammer"是文件名。</p>
 <div class="inputcontainer">
 <span class="command">create weapon hammer</span>
 <pre>I'm going to go with the appropriate area directory:<br>/realms/testycre/area/weap/hammer.c<br>You wave your hand mysteriously and a generic weapon materializes!<br></pre>
 </div>
-<p>And then set the hammer's ID(s)</p>
+<p>然后设置hammer的ID</p>
 <div class="inputcontainer">
 <span class="command">modify weapon id hammer</span>
 <pre>This setting takes multiple values. If you have no more values to<br>enter, then enter a dot on a blank line. To cancel, enter a single q on a blank<br>line.<br>You may now enter the next value. So far, we have: ({ "hammer" })<br>If you're done entering values, enter a dot on a blank line.<br><span
@@ -280,7 +223,7 @@ Exit from ed.
 SetId modification complete.
 </pre>
 </div>
-<p>And now we will set the weapon's name to "hammer".</p>
+<p>现在我们将武器的名称设置为"hammer"。</p>
 <div class="inputcontainer">
 <span class="command">modify weapon name hammer</span>
 <pre>There is no weapon here.<br><span class="command">look</span>
@@ -291,58 +234,54 @@ A generic weapon is here.
 The Dude is standing here.
 </pre>
 </div>
-<p>What's happened here is that we changed the weapon's ID before the
-name.
-Luckily, this is easy to fix.</p>
+<p>这里发生的是我们在名称之前更改了武器的ID。幸运的是，这很容易修复。</p>
 <div class="inputcontainer">
 <span class="command">modify hammer name hammer</span>
 <pre>Indenting file...<br>"/tmp/indent.1134437205.tmp.dat" 22 lines 474 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>Now we'll look at the hammer's file to see how it looks.</p>
+<p>现在我们将查看hammer的文件，看看它的外观。</p>
 <div class="inputcontainer">
 <span class="command">about hammer</span>
 <pre>/realms/testycre/area/weap/hammer.c<br><br>#include &lt;lib.h&gt;<br>#include &lt;damage_types.h&gt;<br>#include &lt;vendor_types.h&gt;<br><br>inherit LIB_ITEM;<br><br>protected void create() {<br> item::create();<br> SetKeyName("hammer");<br> SetId( ({"hammer", "warhammer"}) );<br> SetAdjectives( ({ "generic" }));<br> SetShort("a generic weapon");<br> SetLong("A weapon of indeterminate proportions.");<br> SetMass(50);<br> SetVendorType(VT_WEAPON);<br> SetClass(30);<br> SetDamageType(BLADE);<br> SetWeaponType("blade");<br><br>}<br>void init(){<br> ::init();<br>}<br></pre>
 </div>
-<p>We can now set the hammer's damage type to blunt for a nice crushing
-effect.</p>
+<p>我们现在可以将hammer的伤害类型设置为钝击，以获得良好的粉碎效果。</p>
 <div class="inputcontainer">
 <span class="command">modify hammer damagetype blunt</span>
 <pre>Indenting file...<br>"/tmp/indent.1134437392.tmp.dat" 22 lines 474 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>And now set the weapon type.</p>
+<p>现在设置武器类型。</p>
 <div class="inputcontainer">
 <span class="command">modify hammer weapontype blunt</span>
 <pre>Indenting file...<br>"/tmp/indent.1134437398.tmp.dat" 22 lines 474 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>Similarly, set the mass.</p>
+<p>同样，设置质量。</p>
 <div class="inputcontainer">
 <span class="command">modify hammer mass 700</span>
 <pre>Indenting file...<br>"/tmp/indent.1134437414.tmp.dat" 22 lines 475 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>We will now make the weapon require two hands to use.</p>
+<p>我们现在将使武器需要双手使用。</p>
 <div class="inputcontainer">
 <span class="command">modify hammer hands 2</span>
 <pre>Indenting file...<br>"/tmp/indent.1134437422.tmp.dat" 23 lines 492 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>We'll double-check our hammer's file now to see if everything was
-set.</p>
+<p>我们现在将仔细检查hammer的文件，看看是否所有内容都已设置。</p>
 <div class="inputcontainer">
 <span class="command">about hammer</span>
 <pre>/realms/testycre/area/weap/hammer.c<br><br>#include &lt;lib.h&gt;<br>#include &lt;damage_types.h&gt;<br>#include &lt;vendor_types.h&gt;<br><br>inherit LIB_ITEM;<br><br>protected void create() {<br> item::create();<br> SetKeyName("hammer");<br> SetId( ({"hammer", "warhammer"}) );<br> SetAdjectives( ({ "generic" }));<br> SetShort("a generic weapon");<br> SetLong("A weapon of indeterminate proportions.");<br> SetHands(2);<br> SetMass(700);<br> SetVendorType(VT_WEAPON);<br> SetClass(30);<br> SetDamageType(BLUNT);<br><br> SetWeaponType("blunt");<br>}<br><br>void init(){<br> ::init();<br>}<br></pre>
 </div>
-<p>Now we'll set that short description.</p>
+<p>现在我们将设置那个简短描述。</p>
 <div class="inputcontainer">
 <span class="command">modify hammer short a heavy war hammer</span>
 <pre>Indenting file...<br>"/tmp/indent.1134437450.tmp.dat" 23 lines 494 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>And our long description...</p>
+<p>以及我们的详细描述...</p>
 <div class="inputcontainer">
 <span class="command">modify hammer long This is an extremely large and
 heavy hammer designed to be wielded in both hands and used to hurt
 people very badly indeed.</span>
 <pre>Indenting file...<br>"/tmp/indent.1134437509.tmp.dat" 23 lines 579 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>Setting some adjectives.</p>
+<p>设置一些形容词。</p>
 <div class="inputcontainer">
 <span class="command">modify hammer adj</span>
 <pre>This setting takes multiple values. If you have no more values to<br>enter, then enter a dot on a blank line. To cancel, enter a single q on a blank<br>line.<br>You may now enter the next value. So far, it is blank.<br>If you're done entering values, enter a dot on a blank line.<br><span
@@ -368,18 +307,17 @@ Exit from ed.
 SetAdjectives modification complete.
 </pre>
 </div>
-<p>And finally, look at our hammer file.</p>
+<p>最后，查看我们的hammer文件。</p>
 <div class="inputcontainer">
 <span class="command">about hammer</span>
 <pre>/realms/testycre/area/weap/hammer.c<br><br>#include &lt;lib.h&gt;<br>#include &lt;damage_types.h&gt;<br>#include &lt;vendor_types.h&gt;<br><br>inherit LIB_ITEM;<br><br>protected void create() {<br> item::create();<br> SetKeyName("hammer");<br> SetAdjectives( ({"large", "heavy", "war"}) );<br> SetId( ({"hammer", "warhammer"}) );<br> SetShort("a heavy war hammer");<br> SetLong("This is an extremely large and heavy hammer designed to be wielded<br>  in both hands and used to hurt people very badly indeed.");<br> SetHands(2);<br> SetMass(700);<br> SetVendorType(VT_WEAPON);<br> SetClass(30);<br> SetDamageType(BLUNT);<br><br> SetWeaponType("blunt");<br>}<br><br>void init(){<br> ::init();<br>}<br></pre>
 </div>
-<p>It's a pretty heavy hammer, so let's make sure our guy can wield it.</p>
+<p>这是一个相当重的锤子，所以让我们确保我们的guy可以使用它。</p>
 <div class="inputcontainer">
 <span class="command">modify guy level 10</span>
 <pre>Indenting file...<br>"/tmp/indent.1134437557.tmp.dat" 19 lines 403 bytes<br>Exit from ed.<br></pre>
 </div>
-<p>With this simple command we add the hammer to the permanent
-inventory of our guy.</p>
+<p>使用这个简单的命令，我们将hammer添加到我们guy的永久库存中。</p>
 <div class="inputcontainer">
 <span class="command">add hammer to guy</span>
 <pre>ob2: /realms/testycre/area/npc/guy.c<br>ob: /realms/testycre/area/weap/hammer.c<br>Please enter a command for the NPC to perform with this item. If you<br>have no such command to enter, enter the number of these items you want to add:<br><span
@@ -393,19 +331,19 @@ Guy wields a heavy war hammer.
 SetInventory modification complete.
 </pre>
 </div>
-<p>And now we take a look at our guy.</p>
+<p>现在我们来看看我们的guy。</p>
 <div class="inputcontainer">
 <span class="command">exa guy</span>
 <pre>This is just some random guy.<br>The male human is in top condition.<br>Guy is carrying:<br>A heavy war hammer (wielded in left hand and right hand)<br></pre>
 </div>
-<p>And check the guy's file.</p>
+<p>并检查guy的文件。</p>
 <div class="inputcontainer">
 <span class="command">about guy</span>
 <pre>/realms/testycre/area/npc/guy.c<br><br>#include &lt;lib.h&gt;<br><br>inherit LIB_SENTIENT;<br><br>protected void create() {<br> sentient::create();<br> SetKeyName("guy");<br> SetAdjectives( ({"just some", "random", "some"}) );<br> SetId( ({"dude", "fellow", "fella"}) );<br> SetShort("The Dude");<br> SetLong("This is just some random guy.");<br> SetInventory(([<br> "/realms/testycre/area/weap/hammer" : "wield hammer",<br> ]));<br> SetLevel(10);<br> SetRace("human");<br> SetClass("explorer");<br> SetGender("male");<br>}<br><br>void init(){<br> ::init();<br>}<br></pre>
 </div>
 <a name="armor"></a>
-<h1>Armor Creation <a class="backtotop" href="#top">(Back to Top)</a></h1>
-<p>Making armor is just as easy.</p>
+<h1>防具创建 <a class="backtotop" href="#top">(返回顶部)</a></h1>
+<p>制作防具同样简单。</p>
 <div class="inputcontainer">
 <span class="command">create armor helmet</span>
 <pre>I'm going to go with the appropriate area directory:<br>/realms/testycre/area/armor/helmet.c<br>You wave your hand mysteriously and generic armor materializes!<br><span
@@ -644,8 +582,8 @@ A horned viking helmet (worn)
 </pre>
 </div>
 <a name="room_resets"></a>
-<h1>Adding Room Resets <a class="backtotop" href="#top">(Back to Top)</a></h1>
-<p>Ok our dude is done. Let's clean up the room by updating it.</p>
+<h1>添加房间重置 <a class="backtotop" href="#top">(返回顶部)</a></h1>
+<p>好的，我们的dude完成了。让我们通过更新来清理房间。</p>
 <div class="inputcontainer">
 <span class="command">update</span>
 <pre>Updating environment<br>/realms/testycre/area/room/test2: Ok<br><span
@@ -659,7 +597,7 @@ This is the second test room.
 /realms/testycre/area/npc:
 </pre>
 </div>
-<p>We need to have the guy present in order to add him to the room:</p>
+<p>我们需要让guy在场才能将他添加到房间：</p>
 <div class="inputcontainer">
 <span class="command">clone guy</span>
 <pre>Guy wields a heavy war hammer.<br>Guy wears a horned viking helmet.<br>You clone The Dude (/realms/testycre/area/npc/guy.c).<br><span
@@ -683,8 +621,7 @@ Updating environment
 /realms/testycre/area/room/test2: Ok
 </pre>
 </div>
-<p>That's it. Easy, huh? Think of how much slogging through ed this
-would save you when making a large area.
+<p>就是这样。简单吧？想想在制作大型区域时，这会为您节省多少在ed中艰苦工作的时间。
 </p>
 <div class="inputcontainer"><span class="command">look</span>
 <pre>/realms/testycre/area/room/test2<br>Room 2 [w]<br>This is the second test room.<br>The Dude is standing here.<br><br><span
@@ -729,11 +666,8 @@ Please come back another time!
 </pre>
 </div>
 <hr>
-<h1>The End <a class="backtotop" href="#top">(Back to Top)</a></h1>
-<p>Obviously you still need to code some LPC in ed for complex stuff.
-But knocking out rooms and NPC's and objects quickly helps you avoid
-getting bogged down in mechanics when what you really want to do is
-build.</p>
-<a href="index.html">Return to Dead Souls Homepage</a>
+<h1>结束 <a class="backtotop" href="#top">(返回顶部)</a></h1>
+<p>显然，对于复杂的东西，您仍然需要在ed中编写一些LPC代码。但是快速创建房间、NPC和物品可以帮助您避免在真正想要构建时陷入机制的泥潭。</p>
+<a href="index.html">返回Dead Souls主页</a>
 </body>
 </html>

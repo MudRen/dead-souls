@@ -7,10 +7,8 @@ protected void create() {
     SetKeyName("orc");
     SetId(({"orc"}));
     SetAdjectives(({"dirty"}));
-    SetShort("a dirty orc");
-    SetLong("This orc is typical of its breed: nasty, brutish, and short. It appears "
-            "to be a juvenile or adolescent, making it somewhat less "
-            "dangerous but more hostile. ");
+    SetShort("一个肮脏的兽人");
+    SetLong("这个兽人是其种族的典型代表：肮脏、野蛮、矮小。它似乎是幼年或青少年，这使得它 somewhat less dangerous but more hostile。");
     SetLevel(1);
     SetRace("orc");
     SetGender("male");

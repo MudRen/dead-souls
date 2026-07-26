@@ -17,12 +17,12 @@ protected void create() {
     SetRules("","in WRD","in WRD STR","STR");
 }
 
-mixed can_speak() { return "Speak what? In what language?"; }
+mixed can_speak() { return "说什么？用什么语言？"; }
 
 mixed can_speak_in_wrd(string str) {
     mixed ret = this_player()->CanSpeak(0, TALK_LOCAL, "foo", str);
     if(intp(ret)) {
-        write("You are now speaking in "+capitalize(lower_case(str))+".");
+        write("你现在使用"+capitalize(lower_case(str))+"语交谈。");
         return 1;
     }
     else return ret;
@@ -41,7 +41,7 @@ mixed can_speak_str(string str) {
 
 mixed can_speak_in_wrd_str(string lang, string str) {
     if( !lang || !str ) return 0;
-    if( !environment(this_player()) ) return "You are nowhere right now.";
+    if( !environment(this_player()) ) return "你现在不在任何地方。";
     if(this_player()->GetPolyglot()) return 100;
     return this_player()->CanSpeak(0, TALK_LOCAL, str, lang);
 }
@@ -68,16 +68,13 @@ mixed do_speak_in_wrd_str(string lang, string str) {
 }
 
 string GetHelp(string str) {
-    return ("Syntax: speak <MESSAGE>\n"
-            "        speak in <LANGUAGE> [MESSAGE]\n\n"
-            "Sends the message you specify to all people in the same room "
-            "as you.  If you are an avatar, you have the ability to customize "
-            "the way these messages come out through the \"message\" "
-            "command.  If you fail to specify a language, your default "
-            "language will be used.\n"
-            "To switch your default language to something other than your "
-            "native language:\n"
+    return ("用法：speak <消息>\n"
+            "      speak in <语言> [消息]\n\n"
+            "向与你同房间的所有人发送指定的消息。如果你是化身，你可以通过 "
+            "\"message\" 命令自定义消息的显示方式。如果你没有指定语言，"
+            "将使用你的默认语言。\n"
+            "要将默认语言切换为母语以外的语言：\n"
             "speak in FOO\n"
-            "See also: message, say, shout, speak, tell");
+            "另见：message, say, shout, speak, tell");
 }
 

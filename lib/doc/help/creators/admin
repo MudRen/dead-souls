@@ -1,43 +1,39 @@
-                   Dead Souls Administration
+                   Dead Souls 管理
 
-    Being a successful MUD admin is heavily dependent
-on how well you can get stuff done. It also depends on
-your ability to manage people, resolve conflict, articulate
-direction, enforce guidelines, and inspire loyalty.
-    But those other things I can't help you with. What
-I can help you with is having the tools you need to get
-stuff done.
+    成为一个成功的游戏管理员在很大程度上取决于
+你完成事情的能力。它还取决于你管理人、解决冲突、
+明确方向、执行指导方针和激发忠诚的能力。
+    但那些其他方面我帮不了你。我能帮你的是
+拥有你需要的工具来完成事情。
 
-    Your most valuable tools will be the Dead Souls FAQs:
+    你最有价值的工具将是 Dead Souls 常见问题：
 
 http://dead-souls.net/ds-admin-faq.html
 
 http://dead-souls.net/ds-creator-faq.html
 
-    Almost everything else will flow from your 
-familiarity and understanding of the information there.
+    几乎所有其他内容都将来自你对那里信息的
+熟悉和理解。
 
-    Navigate to the /secure/cmds/admins directory. This
-is where your commands are. Know them. Understand them.
-In particular, pay close attention to the command:
+    导航到 /secure/cmds/admins 目录。这是你的
+命令所在的地方。了解它们。理解它们。
+特别要注意以下命令：
 
 admintool
 
-    It is a valuable tool for new admins to get important
-stuff done before they are 100% familiar with everything
-they need.
+    对于新管理员来说，这是一个有价值的工具，
+可以在他们 100% 熟悉所有需要的事情之前完成
+重要的事情。
 
-    Finally, the intermud Dead Souls community is a
-vital resource. They are (thus far) friendly and helpful,
-and if the Player's Handbook, Creator's Manual, and
-the (upcoming) Admin's Guide don't have the answer, use
-the <ds> channel to ask for help.
+    最后，跨网游 Dead Souls 社区是一个重要的资源。
+他们（到目前为止）友好且乐于助人，如果《玩家手册》、
+《创建者手册》和（即将到来的）《管理员指南》中没有答案，
+请使用 <ds> 频道寻求帮助。
 
-    As to the qualities of leadership, determination,
-humility, responsibility, fairness, and selflessness you'll
-need to make a successful mud, you are on your own.
+    至于领导力、决心、谦逊、责任感、公平和无私
+等你需要让游戏成功的品质，你只能靠自己了。
 
-    Good luck.
+    祝你好运。
 
 - Cratylus @ Dead Souls
-05 May 2006
+2006年5月5日

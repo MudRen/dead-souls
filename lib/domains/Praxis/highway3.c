@@ -11,28 +11,21 @@ void create() {
     ::create();
     SetProperty("light", 3);
     SetProperty("no castle", 1);
-    SetShort( "the western highway in the shadows of the Daroq Mountains");
+    SetShort( "达洛克山脉阴影下的西部公路");
     SetLong(
-            "The Daroq Mountains tower above you to the west, blocking "
-            "out the sky so much that an eerie twilight covers the land.  "
-            "There is a small overgrown path to the south heading towards "
-            "some rather ominous-looking peaks in the distance.  "
-            "The Great Western Highway, which provides a route of travel "
-            "east, ends just west of here in a mountain pass.  There is only "
-            "a small break in the forest that surrounds you to the north.");
+            "达洛克山脉在你西边高耸入云，遮蔽了天空，让大地上笼罩着"
+            "一种诡异的暮色。南边有一条杂草丛生的小径，通往远处"
+            "几座看起来相当不祥的山峰。"
+            "提供东行路线的西部大公路在这里西边的一个山口处终止。"
+            "北边环绕你的森林只有一个小小的缺口。");
     SetItems(
-            (["peaks" : "The peaks you see are the twin peaks of the "
-             "Destiny Mountains.",
-             "path" : "The path is very overgrown and seems to go in "
-             "the direction of the peaks in\nthe distance.",
-             "mountains" : "A huge mountain range that seperates the "
-             "barren Qajip Desert from the fertile lands of the east.",
-             "mountain" : "Kateihl Mountain, a known stronghold of goblins.",
-             "highway" : "The Great Western Highway ends here at a "
-             "mountain pass.",
-             ({"pass", "break"}) : "It is just large enough for you to get "
-             "through.",
-             "forest" : "A very dark, uninviting forest."]) );
+            (["peaks" : "你看到的山峰是命运山脉的双子峰。",
+             "path" : "小径杂草丛生，似乎通往远处山峰的方向。",
+             "mountains" : "一条巨大的山脉，将贫瘠的加吉普沙漠与东方的沃土分隔开来。",
+             "mountain" : "卡泰希尔山，已知的哥布林据点。",
+             "highway" : "西部大公路在这里的山口处终止。",
+             ({"pass", "break"}) : "刚好够你通过。",
+             "forest" : "一片非常黑暗、令人望而却步的森林。"]) );
     SetSkyDomain("town");
     SetExits( 
             (["west" : "/domains/Praxis/pass1",

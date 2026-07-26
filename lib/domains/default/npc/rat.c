@@ -15,8 +15,8 @@ protected void create() {
     SetKeyName("rat");
     SetAdjectives( ({"mangy", "little", "dirty"}) );
     SetId( ({"rat"}) );
-    SetShort("a rat");
-    SetLong("A scruffy little dirty rat.");
+    SetShort("一只老鼠");
+    SetLong("一只邋遢的小脏老鼠。");
     SetLevel(3);
     SetMaxHealthPoints(50);
     SetRace("rodent");
@@ -26,10 +26,10 @@ protected void create() {
     SetEncounter( (: CheckRat :) );
     SetMessage("come","$N scurries in.");
     SetMessage("leave","$N scurries $D.");
-    SetAction(5, ({ 
-                "The rat squeaks.", "You hear a rat scuttling about.", 
-                "A scruffy little rat brushes against your leg.",
-                "You hear tiny munching sounds."}));
+    SetAction(5, ({
+                "老鼠吱吱叫。", "你听到老鼠在四处乱窜。",
+                "一只邋遢的小老鼠蹭到了你的腿。",
+                "你听到微小的咀嚼声。"}));
 }
 void init(){
     ::init();

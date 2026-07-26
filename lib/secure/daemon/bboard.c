@@ -41,7 +41,7 @@ private void save_board() {
         i = strlen(__CurrentID);
         while(i--)
             if((__CurrentID[i] < 'a' || __CurrentID[i] > 'z') && __CurrentID[i] != '_')
-                error("Illegal bulletin board id.");
+                error("非法的公告板ID。");
     }
     SaveObject(save_file(DIR_BOARDS+"/"+__CurrentID));
 }
@@ -87,7 +87,7 @@ void add_post(string id, string who, string subj, string msg) {
     }
     //tc("3");
     if(!stringp(who)) return;
-    if(!subj || subj == "") subj = "[No Subject]";
+    if(!subj || subj == "") subj = "[无主题]";
     if(!msg || msg == "") return;
     __Posts += ({ ([ "author" : who, "subject" : subj, "time" : time(),
                 "post" : msg, "read" : ({ convert_name(who) }) ]) });
@@ -183,7 +183,6 @@ varargs string list_new_posts(string id, int location){
     id = replace_string(id, "_", " ");
     if(location) id += " ( "+Location+" ) ";
     mag = "";
-    mag += capitalize(id) + " has "+(count ? count : "no") + " new message"+
-        (count == 1 ? "" : "s")+ " posted.";
+    mag += capitalize(id) + " 有 "+(count ? count : "无") + " 条新消息发布。";
     return mag;
 }

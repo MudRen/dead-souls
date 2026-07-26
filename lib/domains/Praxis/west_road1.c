@@ -7,18 +7,16 @@ void create() {
     SetProperty("light", 2);
     SetProperty("night light", 1);
     SetProperty("no castle", 1);
-    SetShort( "the southern end of West Road");
-    SetLong( 
-            "West Road is the main residential road that runs through Praxis. "
-            "One or two more houses lie on either side of the road, until "
-            "it comes to a dead end south of here at Boc La Road. The small "
-            "huts lining the road are rather run down and unattractive. You "
-            "can hear noises coming from inside of them, as the inhabitants "
-            "carry on with their lives.");
+    SetShort( "西大道南端");
+    SetLong(
+            "西大道是贯穿普拉克西斯的主要住宅道路。道路两旁零星分布着"
+            "一两栋房屋，直到南边在博克拉路到达尽头。路边排列的小屋"
+            "相当破旧且不起眼。你可以听到里面传出的声音，居民们"
+            "继续着他们的生活。");
     SetItems(
-            (["road" : "West Road, which marks the westernmost end of Praxis.",
-             "huts" : "They are small peasant huts.",
-             "hut" : "It has a thatch roofing, and is not really extravagant."
+            (["road" : "西大道，标志着普拉克西斯的最西端。",
+             "huts" : "它们是小小的农舍。",
+             "hut" : "茅草屋顶，并不奢华。"
              ]) );
     SetSkyDomain("town");
     SetExits( 

@@ -8,11 +8,10 @@ protected void create() {
     verb::create();
     SetVerb("channels");
     SetRules("", "STR");
-    SetHelp("Syntax: channels [on | off]\n\n"
-            "With no argument this command will display the status "
-            "of the lines to which you have access.  With the argument on|off "
-            "it will turn all of the lines on or off.\n"
-            "See also: chan, mute, gag, earmuff, env");
+    SetHelp("用法：channels [on | off]\n\n"
+            "不带参数时，此命令将显示你可以访问的频道状态。"
+            "使用 on|off 参数将开启或关闭所有频道。\n"
+            "另见：chan, mute, gag, earmuff, env");
     SetSynonyms(({"chans","lines"}));
 }
 
@@ -69,35 +68,35 @@ int cmd(string str) {
         else local += ({ chan });
     }
     if(sizeof(remote)){
-        ret += "REMOTE CHANNELS\n---------------\n";
+        ret += "远程频道\n--------\n";
         if(sizeof(imc2)){
             imc2 = sort_array(imc2, 1);
             ret += "\nIMC2\n----\n";
-            foreach(string chan in imc2){ 
+            foreach(string chan in imc2){
                 ret += chan + "\t" + (this_player()->GetBlocked(chan) ?
-                        "(%^RED%^BLOCKED%^RESET%^)" : "") + "\n";
+                        "(%^RED%^已屏蔽%^RESET%^)" : "") + "\n";
             }
         }
         if(sizeof(i3)){
             i3 = sort_array(i3, 1);
             ret += "\nIntermud-3\n----------\n";
-            foreach(string chan in i3){ 
+            foreach(string chan in i3){
                 ret += chan + "\t" + (this_player()->GetBlocked(chan) ?
-                        "(%^RED%^BLOCKED%^RESET%^)" : "") + "\n";
+                        "(%^RED%^已屏蔽%^RESET%^)" : "") + "\n";
             }
         }
     }
     if(sizeof(local)){
         local = sort_array(local, 1);
-        ret += "\n\nLOCAL CHANNELS\n---------------\n";
+        ret += "\n\n本地频道\n--------\n";
         foreach(string chan in local){
             ret += chan + "\t" + (this_player()->GetBlocked(chan) ?
-                    "(%^RED%^BLOCKED%^RESET%^)" : "") + "\n";
+                    "(%^RED%^已屏蔽%^RESET%^)" : "") + "\n";
         }
     }
 
     if(!sizeof(ret)){
-        ret = "No channels found.";
+        ret = "没有找到频道。";
     }
     write(ret);
     return 1;

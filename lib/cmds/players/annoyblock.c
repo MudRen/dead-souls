@@ -4,38 +4,38 @@ inherit LIB_DAEMON;
 
 varargs int cmd(string str){
     if(!str){
-        write("Annoyblock is "+ (this_player()->GetAnnoyblock() ? "on." : "off."));
+        write("骚扰屏蔽当前"+ (this_player()->GetAnnoyblock() ? "开启。" : "关闭。"));
         return 1;
     }
     if(str == "on"){
         if(this_player()->GetAnnoyblock()){
-            write("Your annoyblock is already on.\n");
+            write("你的骚扰屏蔽已经处于开启状态。\n");
             return 1;
         }
         this_player()->SetAnnoyblock(1);
         if(this_player()->GetAnnoyblock()){
-            write("Annoyblock is now on.");
+            write("骚扰屏蔽已开启。");
         }
         else {
-            write("Fail. Annoyblock is not on.");
+            write("失败，骚扰屏蔽未能开启。");
         }
         return 1;
     }
     if(str == "off"){
         if(!(this_player()->GetAnnoyblock())){
-            write("Your annoyblock is already off.\n");
+            write("你的骚扰屏蔽已经处于关闭状态。\n");
             return 1;
         }
         this_player()->SetAnnoyblock(0);
         if(!(this_player()->GetAnnoyblock())){
-            write("Annoyblock is now off.");
+            write("骚扰屏蔽已关闭。");
         }
         else {
-            write("Fail. Annoyblock is still on.");
+            write("失败，骚扰屏蔽仍然开启。");
         }
         return 1;
     }
-    write("Try: help annoyblock");
+    write("试试: help annoyblock");
     return 1;
 }
 

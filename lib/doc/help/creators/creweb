@@ -1,27 +1,23 @@
-Creweb is  a set of CGI scripts written in LPC that
-together with the mud web server allow creators to
-view and edit their files from the internet, using
-their browser.
+CreWeb 是一套用 LPC 编写的 CGI 脚本，与游戏 Web
+服务器一起，允许创建者从互联网上使用浏览器查看
+和编辑他们的文件。
 
-A creator simply visits the mud home page and clicks on
-the CreWeb link, then uses their mud name and mud
-password to login.
+创建者只需访问游戏主页并点击 CreWeb 链接，然后
+使用他们的游戏名称和游戏密码登录。
 
-The interface is primitive, just plain old black-on
-white and HTML form controls. Perhaps a better way to
-look at is is "clean and uncluttered".
+界面很简陋，只是普通的白底黑字和 HTML 表单控件。
+也许更恰当的说法是"干净整洁"。
 
-Creators can upload files, and edit files. However,
-they cannot navigate beyond their home directory. This
-is for security reasons, and probably will not change.
+创建者可以上传文件和编辑文件。但是，他们无法
+导航到主目录之外。这是出于安全原因，可能不会改变。
 
-To enable CreWeb on your mud:
+要在你的游戏上启用 CreWeb：
 
-1) Choose a port for your web server. In this example
-   we'll use port 8001
+1) 为你的 Web 服务器选择一个端口。在此示例中
+   我们使用端口 8001
 
 
-2) Issue the following commands:
+2) 发出以下命令：
 
 mudconfig http port 8001
 mudconfig http disable
@@ -31,47 +27,42 @@ mudconfig creweb enable
 mudconfig http enable
 
 
-3) Use your favorite browser to go to port 8001 on your
-   mud computer. For example:
+3) 使用你喜欢的浏览器访问游戏计算机上的端口 8001。
+   例如：
 
 http://your.mud.address:8001
 
 
-4) Click on the CreWeb link, log in, and have fun!
+4) 点击 CreWeb 链接，登录，然后尽情使用！
 
 
-Important things to keep in mind about CreWeb:
+关于 CreWeb 的重要注意事项：
 ---------------------------------------------
 
-* This is an experimental system. It probably contains
-bugs or problems. 
+* 这是一个实验性系统。它可能包含错误或问题。
 
-* It requires cookies and javascript enabled.
+* 它需要启用 cookies 和 javascript。
 
-* It was built with security as a priority but it is
-still a web-facing file modification system, meaning it 
-is not and never can be 100% safe.
+* 它以安全为优先构建，但它仍然是一个面向 Web 的
+  文件修改系统，这意味着它不是也永远不可能是 100% 安全的。
 
-* If you decide not to use it, just use the following
-command to disable it: mudconfig creweb disable
+* 如果你决定不使用它，只需使用以下命令禁用它：
+  mudconfig creweb disable
 
-* It is intentionally limited to home directories
-only. You are strongly advised not to try to change
-CreWeb to circumvent this.
+* 它故意只限于主目录。强烈建议你不要尝试更改
+  CreWeb 来规避此限制。
 
-* If you need to use CreWeb to edit files outside your
-home directory, simply copy them into your home directory
-while logged into the mud, edit, then copy them back.
+* 如果你需要使用 CreWeb 编辑主目录之外的文件，
+  只需在登录游戏时将它们复制到你的主目录，
+  编辑完成后再复制回去。
 
-* Users of Microsoft Internet Explorer may have occasional
-difficulty when editing files. This is due to IE's default
-cache behavior. Change your preferences to reload pages:
-Tools->General->Settings->Every visit to the page
-  Then logout of creweb and restart IE.
+* Microsoft Internet Explorer 用户在编辑文件时可能会
+  遇到困难。这是由于 IE 的默认缓存行为造成的。
+  将你的首选项更改为重新加载页面：
+  工具->常规->设置->每次访问页面时
+  然后退出 creweb 并重新启动 IE。
 
-* Despite my best efforts, users of IE still sometimes have 
-problems. If you keep getting weird stuff like not being
-able to write to a file, or being unable to display the
-page, try using Firefox instead. And complain to MS. :(
-
-
+* 尽管我尽了最大努力，IE 用户有时仍然会遇到问题。
+  如果你一直遇到奇怪的问题，如无法写入文件，
+  或无法显示页面，请尝试使用 Firefox。
+  并向微软投诉。:(

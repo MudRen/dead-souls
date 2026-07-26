@@ -13,17 +13,15 @@ protected void create() {
     SetTown("Ylsrim");
     SetClimate("arid");
     SetAmbientLight(30);
-    SetShort("The south end of the Ylsrim Bazaar");
-    SetLong("Along the south end of the Ylsrim Bazaar stands a restaurant "
-            "and a pub.  The central area of the Bazaar is just north of "
-            "here.");
+    SetShort("伊尔斯利姆集市南端");
+    SetLong("沿着伊尔斯利姆集市的南端，矗立着一家餐厅和一家酒馆。"
+            "集市的中心区域就在北边。");
     SetSkyDomain("town");
     SetInventory(([
                 "/domains/Ylsrim/npc/traveler" : 1,
                 ]));
-    AddItem("pub", "You can buy yourself an ale from one of Ylsrim's most "
-            "respected residents.", ({ "lars" }));
-    AddItem("restaurant", "This restaurant is known for its stew.",
+    AddItem("pub", "你可以从伊尔斯利姆最受尊敬的居民之一那里买一杯麦酒。", ({ "lars" }));
+    AddItem("restaurant", "这家餐厅以炖菜闻名。",
             ({ "toral" }));
     SetExits( ([ "north" : "/domains/Ylsrim/room/"+ "bazaar" ]) );
     SetEnters( ([ 

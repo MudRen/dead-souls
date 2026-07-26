@@ -132,8 +132,8 @@ string query_temp_site_info() {
 
     if(!valid_access(previous_object())) return "";
     for(i=0,info="";i<sizeof(site=keys(__TmpBanish));i++)
-        info+= site[i]+" will expire at "+ctime(__TmpBanish[site[i]])+".\n";
-    if(!info) info = "No sites are on temporary registration.";
+        info+= site[i]+" 将在 "+ctime(__TmpBanish[site[i]])+" 过期。\n";
+    if(!info) info = "没有临时注册的站点。";
     return info;
 }
 

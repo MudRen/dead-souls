@@ -1,21 +1,18 @@
-                      Dead Souls Quick Creation System
- 
-One of the biggest obstacles to creating a large area is the tedious nature
-of coding every last detail by hand, using the ed editor.
+                      Dead Souls 快速创建系统
 
-    This new creation system helps relieve the tedium by providing
-a way to quickly create working stuff, which you can then conveniently modify
-without having to continually muck about in ed.
+创建一个大区域的最大障碍之一是使用 ed 编辑器
+手动编写每个细节的乏味性质。
 
-    There are still things you need to do with ed, such as searches, complex
-exits, and the like, but the bulk of your building will go much more 
-quickly using the new system. 
+    这个新的创建系统通过提供一种快速创建可工作内容的
+方式来帮助减轻乏味感，然后你可以方便地修改它们，
+而无需不断地在 ed 中摸索。
 
-    A thorough builder's manual on using the new system is in the works.
+    仍然有一些事情你需要用 ed 来做，如搜索、
+复杂的出口等，但使用新系统，你的大部分建设工作
+会快得多。
 
-In the meantime, take a look below at the commands in actual use, with a
-few added comments:
+    关于使用新系统的详细构建者手册正在编写中。
+
+与此同时，请查看下面实际使用的命令，并附带一些注释：
 
 http://dead-souls.net/example.html
-
-

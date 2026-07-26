@@ -7,18 +7,18 @@ protected void create() {
     SetKeyName("winged horse");
     SetId( ({"horse", "steed", "equine", "pegasus"}) );
     SetAdjectives( ({"flying", "winged", "white"}) );
-    SetShort("a winged horse");
-    SetLong("This beautiful white steed is a pegasus, a horse endowed with great feathered wings and can fly.");
+    SetShort("一匹飞马");
+    SetLong("这匹美丽的白色骏马是一匹飞马，一匹拥有巨大羽翼并能飞翔的马。");
     SetLevel(5);
     SetMount(1);
     SetRace("pegasus");
     SetStat("strength", 50);
     SetGender("male");
     SetMelee(1);
-    SetAction(5, ({ 
-                "The winged horse snorts.", "You hear the winged horse flap its wings a bit.", 
-                "The winged horse flips its tail in the air.",
-                "The winged horse looks around."}));
+    SetAction(5, ({
+                "飞马打了个响鼻。", "你听到飞马拍打了一下翅膀。",
+                "飞马在空中甩了甩尾巴。",
+                "飞马环顾四周。"}));
 }
 void init(){
     ::init();

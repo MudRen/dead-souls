@@ -24,20 +24,18 @@ protected void create() {
     SetMorality(-20);
     SetAutoDamage(0);
     SetDamage(MAGIC|HEAT, ({ 60, 45 }) );
-    SetMessages(({ 
-                ({ "are", "$target_name $target_verb "
-                 "charred by $agent_possessive_noun "
-                 "fireball." }),
-                ({ "", "$agent_possessive_noun "
-                 "%^RED%^fireball%^RESET%^ "
-                 "lights $target_name on fire!" }),
-                ({ "are", "$target_name $target_verb burned to "
-                 "a crisp by $agent_possessive_noun "
-                 "%^BOLD%^RED%^fireball%^RESET%^." }) }));
-    SetHelp("Syntax: <cast fireball>\n"
+    SetMessages(({
+                ({ "are", "$target_name被$agent_possessive_noun的"
+                 "火球烧焦了。" }),
+                ({ "", "$agent_possessive_noun的"
+                 "%^RED%^火球%^RESET%^"
+                 "点燃了$target_name！" }),
+                ({ "are", "$target_name被$agent_possessive_noun的"
+                 "%^BOLD%^RED%^火球%^RESET%^烧成了灰烬。" }) }));
+    SetHelp("语法: <cast fireball>\n"
             "        <cast fireball on LIVING>\n\n"
-            "This spell creates a conjures a tremendous fireball out of "
-            "thin air and sends it hurling towards an unsuspecting enemy.  "
-            "If cast without specifying a target while in combat, the "
-            "fireball is targetted at your current enemy.");
+            "这个法术凭空召唤出一个巨大的火球，"
+            "将其投向毫无防备的敌人。"
+            "如果在战斗中没有指定目标，"
+            "火球将自动攻击你当前的敌人。");
 }

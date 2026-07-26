@@ -66,9 +66,8 @@ mixed eventStartVoting() {
     mapVoting["mode"] = VOTE_MODE_CANDIDATES;
     mapVoting["daycount"] = VOTE_DAY_COUNT;
     call_out( (: eventNextDay :), DAY );
-    message("shout", "%^YELLOW%^Election announcement:%^RESET%^ " +
-            "Class elections have now begun! Go to the voting booth " +
-            "and nominate candidates.", users() );
+    message("shout", "%^YELLOW%^选举公告:%^RESET%^ " +
+            "职业选举已经开始！请前往投票站提名候选人。", users() );
     eventSave();
     return VOTE_SUCCESS;
 }
@@ -100,9 +99,9 @@ mixed eventAddCandidate( string sClass, string sWho ) {
 
     mapVoting["candidates"][sClass] += ({ sWho });
     mapVoting["votes"][sClass][sWho] = 0;
-    message("shout", "%^YELLOW%^Election announcement:%^RESET%^ " + 
-            ob->GetName() + " has been nominated for the leader of the " +
-            pluralize(capitalize(sClass)) + ".", users() );
+    message("shout", "%^YELLOW%^选举公告:%^RESET%^ " +
+            ob->GetName() + " 被提名为 " +
+            pluralize(capitalize(sClass)) + " 的领袖候选人。", users() );
     eventSave();
     return VOTE_SUCCESS;
 }
@@ -119,9 +118,8 @@ mixed eventRemoveCandidate( string sClass, string sWho ) {
 
     mapVoting["candidates"][sClass] -= ({ sWho });
     map_delete( mapVoting["votes"][sClass], sWho );
-    message("shout", "%^YELLOW%^Election announcement:%^RESET%^ " + 
-            find_player(sWho)->GetName() + " has withdrawn from the " +
-            "elections!", users() );
+    message("shout", "%^YELLOW%^选举公告:%^RESET%^ " +
+            find_player(sWho)->GetName() + " 已退出选举！", users() );
     eventSave();
     return VOTE_SUCCESS;
 }
@@ -164,8 +162,8 @@ mixed eventNextDay() {
             mapVoting["mode"] = VOTE_MODE_VOTING;
             mapVoting["daycount"] = VOTE_DAY_COUNT;
             call_out( (: eventNextDay :), DAY );
-            message("shout", "%^YELLOW%^Election announcement:%^RESET%^ " +
-                    "Nominations are closed, go vote for the candidates!!", users() );
+            message("shout", "%^YELLOW%^选举公告:%^RESET%^ " +
+                    "提名已截止，请为候选人投票！", users() );
             eventSave();
             return VOTE_SUCCESS;
         }
@@ -232,11 +230,11 @@ string GetCouncilMember( string sClass ) {
 }
 
 string GetCurrentCouncil(){
-    string ret = "Current council:\n";
+    string ret = "当前议会:\n";
     foreach( string sClass in CLASSES_D->GetClasses() ){
         string councillor;
         if(mapCouncil[sClass]) councillor = mapCouncil[sClass];
-        else councillor = "NONE";
+        else councillor = "无";
         ret += capitalize(sClass)+": "+capitalize(councillor)+"\n";
     }
     return ret;

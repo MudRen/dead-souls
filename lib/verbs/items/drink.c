@@ -17,14 +17,12 @@ protected void create() {
     verb::create();
     SetVerb("drink");
     SetRules("OBJ", "from OBJ");
-    SetErrorMessage("Drink what?");
-    SetHelp("Syntax: <drink LIQUID>\n"
-            "        <drink from THING>\n\n"
-            "Allows you to drink a liquid substance.   Often these "
-            "substances come in the form of caffeine, alcohol, and just "
-            "regular drinks.  Different types of drinks have different "
-            "effects on you which you will learn through experimentation.\n\n"
-            "See also: bait, cast, eat, fish");
+    SetErrorMessage("喝什么？");
+    SetHelp("用法：drink <液体>\n"
+            "      drink from <容器>\n\n"
+            "允许你饮用液体物质。这些物质通常以咖啡因、酒精和普通饮料的形式出现。"
+            "不同类型的饮料对你有不同的效果，你将通过实验来了解。\n\n"
+            "另见：bait, cast, eat, fish");
     SetSynonyms("quaff");
 }
 

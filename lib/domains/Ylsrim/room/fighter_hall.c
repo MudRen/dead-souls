@@ -15,11 +15,10 @@ protected void create() {
     SetTown("Ylsrim");
     SetClimate("indoors");
     SetAmbientLight(27);
-    SetShort("the Hall of Fighters");
-    SetLong("The Great Hall of Fighters was constructed many ages ago to "
-            "act as a meeting place for all the fighters who come through "
-            "Ylsrim.  In addition, it serves as a place to recruit new "
-            "fighters into the fold.  A magnificent oak door stands north.");
+    SetShort("战士大厅");
+    SetLong("战士大厅建于许多世代之前，作为所有经过伊尔斯利姆的战士的聚会场所。"
+            "此外，它也是招募新战士加入行列的地方。"
+            "一扇华丽的橡木门矗立在北边。");
     SetExits( ([
                 //"north" : ({ "/domains/Ylsrim/room/"+ "fighter", (: CheckFighter :) }),
                 "north" : "/domains/Ylsrim/room/fighter",
@@ -27,8 +26,8 @@ protected void create() {
                 ]) );
     SetInventory(([ "/domains/Ylsrim/npc/roshd" : 1 ]));
     SetItems( ([
-                ({ "meeting","room","hall","fighter hall" }) : 
-                "New adventurers may become fighters here.",
+                ({ "meeting","room","hall","fighter hall" }) :
+                "新冒险者可以在这里成为战士。",
                 ]) );
     SetDoor( "north", "/domains/Ylsrim/etc/fighter_door");
     //SetListen("default","Sounds of old veterans recalling battles of "
@@ -40,7 +39,7 @@ int CheckFighter(string dir) {
     if( this_player()->ClassMember("fighter") ||
             creatorp(this_player()) ) return 1;
     if( ob = present("fighter", this_object()) ) {
-        ob->eventForce("speak I cannot allow you to enter the halls of the great warriors of Ylsrim");
+        ob->eventForce("speak 我不能让你进入伊尔斯利姆伟大战士的大厅");
         return 0;
     }
     else return 1;

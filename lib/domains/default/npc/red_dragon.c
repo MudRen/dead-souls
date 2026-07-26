@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("dragon");
     SetAdjectives( ({"huge", "red", "dangerous"}) );
     SetId(({"npc","mob","character","mobile"}));
-    SetShort("a red dragon");
-    SetLong("Ancient villain of legend and fable, the red dragon is among the most vicious, cruel, and dangerous beasts around. This one is easily fifteen feet tall and could probably crush you without even noticing.");
+    SetShort("一条红龙");
+    SetLong("传说和寓言中的 ancient villain，红龙是周围最 vicious、cruel、dangerous 的野兽之一。这条 easily fifteen feet tall， could probably crush you without even noticing。");
     SetClass("fighter");
     SetLevel(15);
     SetMelee(1);

@@ -5,24 +5,18 @@ inherit LIB_ROOM;
 void create() {
     ::create();
     SetProperties( (["light": 3, "no castle" : 1 ]));
-    SetShort( "the great western highway");
+    SetShort( "西部大公路");
     SetLong(
-            "The Great Western Highway, extending both east and west, allows "
-            "travel between the mountains and the many other villages of "
-            "this land. The further west you travel, more dry and arid the air "
-            "becomes. The highway has become very dusty, and starting to "
-            "blend in with the rest of the earth, making the path almost "
-            "indistinguishable. Looking beyond the Daraq mountains you "
-            "can see the beginnings of the Qajip Desert.");
+            "西部大公路向东西两个方向延伸，连接着山区与这片土地上"
+            "众多的其他村庄。越往西走，空气变得越干燥。公路已经"
+            "变得非常尘土飞扬，开始与大地融为一体，几乎难以辨认。"
+            "望向达洛克山脉的另一边，你可以看到加吉普沙漠的起始之处。");
     SetItems(
-            (["highway" : "A well-traveled dirt road between the "
-             "mountains in the west and the populated towns of the east.",
-             "lands" : "You are in a forested valley with the Daroq "
-             "Mountains in the west.",
-             "mountains" : "The Daroq Mountains, home of vile goblins.",
-             "mountain" : "Trendahl Mountain.",
-             "daroq mountains" : "Evil goblins live in the "
-             "tunnels that thread the mountains."]) );
+            (["highway" : "一条连接西部山区与东部人口稠密城镇的繁忙土路。",
+             "lands" : "你身处一片森林覆盖的山谷中，西边是达洛克山脉。",
+             "mountains" : "达洛克山脉，邪恶哥布林的家园。",
+             "mountain" : "特伦达尔山。",
+             "daroq mountains" : "邪恶的哥布林生活在山脉中蜿蜒的隧道里。"]) );
     SetSkyDomain("town");
     SetExits( ([ 
                 "west" : "/domains/Praxis/highway3",

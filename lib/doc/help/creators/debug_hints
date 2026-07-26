@@ -1,14 +1,14 @@
-There is another LPC debugging technique that provides a good supplement
-to the debug(x,y) macro provided by debug.h.
+有另一种 LPC 调试技术，可以很好地补充 debug.h
+提供的 debug(x,y) 宏。
 
-Suppose that your object won't load and the logfile isn't specifying where
-the error is.  You can use the #if 0 preprocessor directive to selectively
-temporarily remove suspect pieces of your code.  Note that using #if 0 is much
-cleaner than commenting the code out using /* and */.  One reason its cleaner
-is that it is possible to nest #if directives but not comments.  Another
-reason is that you can add the code back simply by changing #if 0 to #if 1.
+假设你的对象无法加载，而日志文件没有指定错误位置。
+你可以使用 #if 0 预处理指令来选择性地临时移除
+可疑的代码片段。注意使用 #if 0 比使用 /* 和 */ 注释
+代码要干净得多。一个原因是 #if 指令可以嵌套而注释
+不行。另一个原因是你可以通过将 #if 0 更改为 #if 1
+来简单地将代码添加回来。
 
-Suppose you had the following function that was giving you problems:
+假设你有以下给你带来问题的函数：
 
 void xyz()
 {
@@ -16,8 +16,8 @@ void xyz()
         statement_2();   /* statement 2 does blah blah */
 }
 
-Suppose you suspected that statement_2() was causing the error.  You could
-temporarily remove that line by changed xyz to read:
+假设你怀疑 statement_2() 导致了错误。你可以通过
+将 xyz 更改为以下内容来临时移除该行：
 
 void xyz()
 {
@@ -28,21 +28,21 @@ void xyz()
         statement_3();   /* statement 3 does blah blah */
 }
 
-Suppose that you had used comments instead of #if 0 to remove statement_2().
+假设你使用了注释而不是 #if 0 来移除 statement_2()。
 
-Suppose you tried it like this:
+假设你像这样尝试：
 
 /*
         statement_2();   /* statement 2 does blah blah */
 */
 
-This method would cause a compile error because of the nested comments.
+这种方法会导致编译错误，因为嵌套注释。
 
-Therefore, it would have to look something like this:
+因此，它必须看起来像这样：
 
 /*      statement_2(); */  /* statement 2 does blah blah */
 
-But this method is bad because its a royal pain to insert and remove comments
-within a line using the ed line editor (IMHO).
+但这种方法很糟糕，因为使用 ed 行编辑器在一行内
+插入和删除注释是非常痛苦的（在我看来）。
 
 --Truilkan@TMI

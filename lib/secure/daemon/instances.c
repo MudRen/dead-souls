@@ -73,9 +73,9 @@ mixed InstCreate(string name, string addy, int port){
     string newglobal, newconf, pfile = base_name(this_player());
     if(base_name(prev) != CMD_INSTCONFIG) return 0;
     if(ENABLE_INSTANCES){
-        return "Only the global instance can create instances.";
+        return "只有全局实例才能创建实例。";
     }
-    if(InstData[name]) return name + " already exists.";
+    if(InstData[name]) return name + " 已存在。";
     foreach(mixed key, mixed val in InstData){
         if(val && val["port"] == port){
             return key + " is already on port "+port;

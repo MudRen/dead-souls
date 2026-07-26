@@ -1,39 +1,27 @@
-		The dead_souls intermud channel
+		dead_souls 跨网游频道
 
-	There is an internet communication protocol that
-allows muds to send and receive information from each other. This
-is called the Intermud network, of which there are several
-versions and subnets.
+	有一种互联网通信协议允许游戏之间发送和接收信息。
+这被称为跨网游网络，其中有几个版本和子网。
 
-	By default, your mud is connected to the Intermud3
-network, or I3 (see intermud.org for specs). On this
-network there are numerous channels available: some are
-friendly, some are hostile, some are invitation-only, and
-some are open to all.
+	默认情况下，你的游戏连接到 Intermud3 网络或 I3
+（参见 interm.org 获取规范）。在这个网络上有许多
+可用的频道：有些是友好的，有些是有敌意的，
+有些是仅限邀请的，有些是对所有人开放的。
 
-	Unless your admins have disabled intermud, or you
-are tightly firewalled, or channels have been restricted, 
-you probably are listening to a channel called "dead_souls". 
-This channel exists to allow creators on Dead Souls muds
-on the internet to talk, ask questions, share ideas, etc.
+	除非你的管理员禁用了跨网游，或者你被严格的防火墙
+保护，或者频道被限制了，你可能正在收听一个叫做
+"dead_souls" 的频道。这个频道的存在是为了让互联网上
+Dead Souls 游戏的创建者能够交谈、提问、分享想法等。
 
-	Random chat is not exactly discouraged, but code
-questions and discussions always have priority on this
-channel. It can be used socially, but its primary purpose
-is as a support system for the Dead Souls community.
-Accordingly, muds that spam the channel, or subject it
-to malicious data or metadata, are likely to be permanently
-banned from it, regardless of whether it was the fault of
-just one jerk. Messages of an offensive nature also
-qualify as bannable material, and this is at the discretion
-of the owner of the channel, which is the Dead Souls mud.
+	随机聊天并不被禁止，但代码问题和讨论在这个频道上
+始终具有优先权。它可以用于社交，但其主要目的是作为
+Dead Souls 社区的支持系统。因此，刷屏频道或向其发送
+恶意数据或元数据的游戏可能会被永久封禁，无论这是否
+只是一个人的错误。具有攻击性的消息也属于可封禁的材料，
+这由频道所有者（即 Dead Souls 游戏）自行决定。
 
-	If you need to perform channel testing, please avoid
-using the dead_souls channel ( also known as <ds> ) for
-this. A special testing channel has been set up for that
-purpose. It is called ds_test, and you can add it to
-yourself by typing:
+	如果你需要进行频道测试，请避免使用 dead_souls 频道
+（也称为 <ds>）。为此设置了一个特殊的测试频道。
+它叫做 ds_test，你可以通过输入以下命令添加它：
 
 %^GREEN%^call me->AddChannel("ds_test")%^RESET%^
-
-

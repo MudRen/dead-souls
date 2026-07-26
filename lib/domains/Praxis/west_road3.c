@@ -10,20 +10,17 @@ void init() {
 void create() {
     ::create();
     SetProperty("light", 2);
-    SetShort( "the north end of West Road");
+    SetShort( "西大道北端");
     SetLong(
-            "West Road comes to an abrupt end as it is engulfed by the forest "
-            "to the north. A huge ancient willow tree provides shelter to "
-            "this entire section of the road. At its massive roots you can "
-            "see a whole leading down into the depths of the earth. Boc La Road "
-            "lies far south of here.");
+            "西大道突然到了尽头，被北边的森林吞没。一棵巨大的"
+            "古柳树为这一整段道路提供了遮蔽。在它巨大的根部，"
+            "你可以看到一个通向地底深处的洞。博克拉路在南边很远的地方。");
     SetItems(
-            (["tree" : "It must be older than Praxis itself.",
-             "hole" : "You might even be able to enter the tree.",
-             "road" : "This end of the road is shaded by the huge "
-             "tree of mysterious origins.",
-             "foo" : "You're daft.",
-             "bar" : "Had to check that too, eh?"]) );
+            (["tree" : "它一定比普拉克西斯本身还要古老。",
+             "hole" : "你也许能进入树洞。",
+             "road" : "道路的这一端被那棵神秘巨树的阴影笼罩。",
+             "foo" : "你太傻了。",
+             "bar" : "连这个也要检查，是吧？"]) );
     SetSkyDomain("town");
     SetExits( 
             (["south" : "/domains/Praxis/west_road2"]) );
@@ -31,11 +28,11 @@ void create() {
 
 int enter(string str) {
     if(!str) {
-        notify_fail("Enter what?\n");
+        notify_fail("进入什么？\n");
         return 0;
     }
     if(str != "hole" && str != "tree") {
-        notify_fail("You can't do that here.\n");
+        notify_fail("你在这里不能那样做。\n");
         return 0;
     }
     this_player()->eventMoveLiving("/domains/Praxis/mage_join", "into the tree");

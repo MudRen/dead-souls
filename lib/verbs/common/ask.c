@@ -13,15 +13,14 @@ protected void create() {
     verb::create();
     SetVerb("ask");
     SetRules("LIV STR", "STR", "LIV to STR", "LIV for STR", "LIV about STR");
-    SetErrorMessage("Ask what?  Or ask whom to do what?");
-    SetHelp("Syntax: ask <LIVING> <SOMETHING>\n"
-            "        ask <SOMETHING>\n"
-            "        ask <LIVING> about <SOMETHING>\n"
-            "        ask <LIVING> to <DO SOMETHING>\n"
-            "        ask <LIVING> for <SOMETHING>\n\n"
-            "Some npcs and perhaps some inanimate objects will respond "
-            "when you query the target with a specific question.\n"
-            "See also: reply, say, shout, speak, tell, whisper, yell");
+    SetErrorMessage("问什么？或者让谁做什么？");
+    SetHelp("用法：ask <生物> <某事>\n"
+            "      ask <某事>\n"
+            "      ask <生物> about <某事>\n"
+            "      ask <生物> to <做某事>\n"
+            "      ask <生物> for <某物>\n\n"
+            "当你用特定问题询问目标时，一些NPC和某些无生命的物品会做出回应。\n"
+            "另见：reply, say, shout, speak, tell, whisper, yell");
 }
 
 mixed can_ask_liv_to_str(string str) { return 1; }
@@ -48,21 +47,21 @@ mixed can_ask_str(string str) {
 mixed do_ask_liv_to_str(object ob, string str) {
     string lang = this_player()->GetDefaultLanguage();
     //string pre = "In " + lang + ", ";
-    string pre = "In ";
+    string pre = "";
     int lvl;
     string msg = translate(str, lvl=(this_player()->GetLanguageLevel(lang)));
-    if(lvl < 50) pre += "execrable "+lang+", ";
-    else if(lvl < 60) pre += "very poor "+lang+", ";
-    else if(lvl < 75) pre += "broken "+lang+", ";
-    else if(lvl < 99) pre += "imperfect "+lang+", ";
-    else pre += lang + ", ";
+    if(lvl < 50) pre += "用糟糕的"+lang+"，";
+    else if(lvl < 60) pre += "用很差的"+lang+"，";
+    else if(lvl < 75) pre += "用生硬的"+lang+"，";
+    else if(lvl < 99) pre += "用不太流利的"+lang+"，";
+    else pre += "用"+lang+"，";
     msg = translate(msg, ob->GetLanguageLevel(lang));
-    message("my_action", pre + "you ask "+ob->GetName()+" to "+str+".",
+    message("my_action", pre + "你请求"+ob->GetName()+"去做"+str+"。",
             this_player() );
-    message("other_action", pre + this_player()->GetName()+" asks "
-            "you to "+msg+".", ob);
-    message("other_action", pre + this_player()->GetName()+" asks "+
-            ob->GetName()+" to do something.",
+    message("other_action", pre + this_player()->GetName()+"请求"
+            "你去做"+msg+"。", ob);
+    message("other_action", pre + this_player()->GetName()+"请求"+
+            ob->GetName()+"做某事。",
             environment(ob), ({ ob, this_player() }) );
     ob->eventAsk(this_player(), str);
     return 1;
@@ -70,33 +69,33 @@ mixed do_ask_liv_to_str(object ob, string str) {
 
 mixed do_ask_liv_for_str(object ob, string str) {
     string lang = this_player()->GetDefaultLanguage();
-    string pre = "In " + lang + ", ";
+    string pre = "用" + lang + "，";
     string msg = translate(str, this_player()->GetLanguageLevel(lang));
     msg = translate(msg, ob->GetLanguageLevel(lang));
-    message("my_action", pre + "you ask "+ob->GetName()+" for "+str+".",
+    message("my_action", pre + "你向"+ob->GetName()+"索要"+str+"。",
             this_player() );
-    message("other_action", pre + this_player()->GetName()+" asks "+
-            ob->GetName()+" for something.",
+    message("other_action", pre + this_player()->GetName()+"向"+
+            ob->GetName()+"索要某物。",
             environment(ob), ({ ob, this_player() }) );
     if( !(ob->eventRequest(this_player(), str)) )
-        message("other_action", pre + this_player()->GetName()+" asks "
-                "you for "+msg+".", ob);
+        message("other_action", pre + this_player()->GetName()+"向"
+                "你索要"+msg+"。", ob);
     return 1;
 }
 
 mixed do_ask_liv_about_str(object ob, string str) {
     string lang = this_player()->GetDefaultLanguage();
-    string pre = "In " + lang + ", ";
+    string pre = "用" + lang + "，";
     string msg = translate(str, this_player()->GetLanguageLevel(lang));
     msg = translate(msg, ob->GetLanguageLevel(lang));
-    message("my_action", pre + "you ask "+ob->GetName()+" about "+str+".",
+    message("my_action", pre + "你向"+ob->GetName()+"询问关于"+str+"的事。",
             this_player() );
-    message("other_action", pre + this_player()->GetName()+" asks "+
-            ob->GetName()+" about something.",
+    message("other_action", pre + this_player()->GetName()+"向"+
+            ob->GetName()+"询问某事。",
             environment(ob), ({ ob, this_player() }) );
     if( !(ob->eventConsult(this_player(), str)) )
-        message("other_action", pre + this_player()->GetName()+" asks "
-                "you about "+msg+".", ob);
+        message("other_action", pre + this_player()->GetName()+"向"
+                "你询问关于"+msg+"的事。", ob);
     return 1;
 }
 

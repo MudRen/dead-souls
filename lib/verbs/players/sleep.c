@@ -6,28 +6,26 @@ protected void create() {
     verb::create();
     SetVerb("sleep");
     SetRules("");
-    SetErrorMessage("Sleep?");
+    SetErrorMessage("睡觉？");
     SetSynonyms("go to sleep");
-    SetHelp("Syntax: sleep\n"
-            "If lying down, you fall asleep. If not, you collapse "
-            "asleep. Being attacked will usually wake you up, "
-            "otherwise you will awaken after a few minutes, stronger "
-            "and more refreshed.");
+    SetHelp("用法：sleep\n"
+            "如果躺着，你会入睡。如果不是躺着，你会倒下睡着。"
+            "被攻击通常会唤醒你，否则你将在几分钟后醒来，"
+            "变得更加精力充沛。");
 }
 
 mixed can_sleep() {
     if( !creatorp(this_player()) && this_player()->GetCaffeine() > 10 ) {
-        return "You are too wired to sleep right now.";
+        return "你现在太兴奋了，睡不着。";
     }
-    if(this_player()->GetRace()=="elf") return "Elves don't sleep.";
+    if(this_player()->GetRace()=="elf") return "精灵不需要睡觉。";
 
     return 1;
 }
 
 mixed do_sleep() {
-    tell_player(this_player(),"You fall asleep.");
-    tell_room(environment(this_player()), this_player()->GetName()+ 
-            " closes "+possessive(this_player())+" eyes and appears to "+
-            "lose consciousness.", ({this_player()}) );
+    tell_player(this_player(),"你睡着了。");
+    tell_room(environment(this_player()), this_player()->GetName()+
+            "闭上"+possessive(this_player())+"眼睛，似乎失去了意识。", ({this_player()}) );
     return this_player()->SetSleeping(random(10)+5);
 }

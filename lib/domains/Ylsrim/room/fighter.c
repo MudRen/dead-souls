@@ -13,11 +13,9 @@ protected void create() {
     SetTown("Ylsrim");
     SetClimate("indoors");
     SetAmbientLight(40);
-    SetShort("the interior chamber of the Hall of Fighters");
-    SetLong("Fighters gather here to drink, boast, and train. They also "
-            "leave helpful weapons and items here for each other, because "
-            "they know this is a sanctuary from the loss of objects when "
-            "the world renews itself.");
+    SetShort("战士大厅内部");
+    SetLong("战士们聚集在这里饮酒、吹嘘和训练。他们还会在这里为彼此留下有用的武器和物品，"
+            "因为他们知道这里是世界重置时物品不会丢失的庇护所。");
     SetExits( ([
                 "south" : "/domains/Ylsrim/room/"+ "fighter_hall",
                 ]) );

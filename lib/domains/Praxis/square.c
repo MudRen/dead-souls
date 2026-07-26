@@ -17,14 +17,13 @@ void create() {
     SetProperty("no magic", 1);
     SetProperty("no attack", 1);
     SetProperty("no castle", 1);
-    SetListen("default", "The sounds of a busy adventuring town are all about.");
-    SetShort( "Monument Square");
-    SetLong( "You are in Monument Square, once known as Krasna Square. "
-            "The two main roads of Praxis intersect here, where all of "
-            "Nightmare's people gather in joy and sorrow.  The road running "
-            "north and south is called Centre Path, while Boc La Road is the "
-            "name of the road running east and west."
-            "\n%^RED%^There is a sign here you can read.%^RESET%^");
+    SetListen("default", "繁忙冒险城镇的喧嚣声不绝于耳。");
+    SetShort( "纪念碑广场");
+    SetLong( "你正站在纪念碑广场，这里曾被称为克拉斯纳广场。"
+            "普拉克西斯的两条主路在此交汇，噩梦世界的人们在此"
+            "聚集，共享喜悦与悲伤。南北走向的道路叫做中心路，"
+            "而博克拉路则是东西走向道路的名称。"
+            "\n%^RED%^这里有一块告示牌，你可以阅读。%^RESET%^");
     SetExits( 
             (["north" : "/domains/Praxis/n_centre1",
              "south" : "/domains/Praxis/s_centre1",
@@ -33,11 +32,10 @@ void create() {
 
     //new("/domains/Praxis/obj/misc/watchtower")->move(this_object());
     SetItems(
-            (["road" : "Boc La Road leads east toward the adventurer's "
-             "hall and the Praxis Monastary.",
-             "path" : "Centre Road leads south toward the bank and post office.",
-             "sign" : "A sign you can read.",
-             "square" : "Krasna Square is the central point of Praxis."]) );
+            (["road" : "博克拉路向东通往冒险者大厅和普拉克西斯修道院。",
+             "path" : "中心路向南通往银行和邮局。",
+             "sign" : "一块可以阅读的告示牌。",
+             "square" : "克拉斯纳广场是普拉克西斯的中心。"]) );
     SetInventory(([
                 "/domains/Praxis/obj/misc/stargate" : 1,
                 ]));

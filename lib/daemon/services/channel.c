@@ -26,11 +26,10 @@ void eventReceiveChannelWhoReply(mixed* packet) {
     if( !(ob = find_player(packet[5])) ) return;
     packet[6] = CHAT_D->GetLocalChannel(packet[6]);
     if( !sizeof(packet[7]) ) {
-        ob->eventPrint("No one is listening to " + packet[6] + " at " +
-                packet[2] + ".", MSG_SYSTEM);
+        ob->eventPrint("没有人在 " + packet[2] + " 收听 " + packet[6] + "。", MSG_SYSTEM);
         return;
     }
-    ob->eventPrint("Listening to " + packet[6] + " at " + packet[2] + ":" +
+    ob->eventPrint("在 " + packet[2] + " 收听 " + packet[6] + " 的有:" +
             implode(packet[7], "   "), MSG_SYSTEM);
 }
 
@@ -49,7 +48,7 @@ void eventReceiveChannelWhoRequest(mixed* packet) {
     ret = truncate(ret,2);
     tn("eventReceiveChannelWhoRequest: "+identify(packet),"green");
 
-    tell_room(ROOM_ARCH,"The Arch Room loudspeaker announces: \"%^BOLD%^CYAN%^"+capitalize(packet[3])+" at "+packet[2]+" has requested a list of users listening to channel "+packet[6]+". Replying with: %^BOLD%^GREEN%^"+ret+".%^RESET%^\"");
+    tell_room(ROOM_ARCH,"档案室扬声器播报: \"%^BOLD%^CYAN%^"+capitalize(packet[3])+" 在 "+packet[2]+" 请求了收听频道 "+packet[6]+" 的用户列表。回复如下: %^BOLD%^GREEN%^"+ret+".%^RESET%^\"");
 }
 
 void eventReceiveChannelUserRequest(mixed* packet) {
@@ -61,8 +60,7 @@ void eventReceiveChannelUserRequest(mixed* packet) {
     tn("eventReceiveChannelUserRequest: "+identify(packet),"green");
     if( !(ob = find_player(packet[6])) ) {
         INTERMUD_D->eventWrite( ({ "error", 5, mud_name(), 0, packet[2], 0,
-                    "unk-user", packet[6] + " is not a valid "
-                    "player.", packet }) );
+                    "unk-user", packet[6] + " 不是有效的玩家。", packet }) );
         return;
     }
     visname = ob->GetCapName();
@@ -133,7 +131,7 @@ varargs void eventSendChannel(string who, string ch, string msg, int emote,
                 where = trim(where);
                 if(!alphap(last(where,1))) where = truncate(where,1);
                 if(member_array(lower_case(where), INTERMUD_D->GetLCMuds()) == -1) {
-                    write("No such mud.");
+                    write("无此MUD。");
                     return;
                 }
                 target = SERVICES_D->GetRemoteDisplayName(targpl, where);

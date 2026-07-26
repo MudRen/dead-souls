@@ -18,7 +18,7 @@ protected void create() {
     SetRules("","in WRD STR","STR");
 }
 
-mixed can_yell() { return "Yell what?"; }
+mixed can_yell() { return "喊叫什么？"; }
 
 mixed can_yell_str(string str) {
     string lang;
@@ -52,9 +52,8 @@ mixed do_yell_in_wrd_str(string lang, string str) {
 }
 
 string GetHelp(string str) {
-    return ("Syntax: yell <MESSAGE>\n"
-            "        yell in <LANGUAGE> <MESSAGE>\n\n"
-            "Sends a message to the area around you. If you fail to "
-            "specify a language, your native language is used.\n"
-            "See also: reply, say, shout, speak, tell, whisper");
+    return ("用法：yell <消息>\n"
+            "      yell in <语言> <消息>\n\n"
+            "向你周围区域发送消息。如果你没有指定语言，将使用你的母语。\n"
+            "另见：reply, say, shout, speak, tell, whisper");
 }

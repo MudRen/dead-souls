@@ -157,23 +157,20 @@ string GetHelp(string str) {
 
     Error = 0;
     if( !str || str == "" || str == "help" ) {
-        return ("Syntax: help\n"
+        return ("用法: help\n"
                 "        help index\n"
-                "        help <TOPIC>\n"
-                "        help <INDEX> <TOPIC>\n\n"
-                "The special topic, \"help index\", puts you into "
-                "a menu driven index of categories for which help exists.\n\n"
-                "For players, \"help commands\" will provide an index of "
-                "available player commands.\n "
-                "For creators, \"help creator commands\" provides an "
-                "index of available creator commands.\n\n "
-                "Try \"help commands\" "
-                "and \"help creator commands\" first. \n\n"
+                "        help <主题>\n"
+                "        help <索引> <主题>\n\n"
+                "特殊主题 \"help index\" 可以进入帮助分类的菜单索引。\n\n"
+                "玩家可以使用 \"help commands\" 查看可用的玩家命令索引。\n "
+                "创造者可以使用 \"help creator commands\" 查看可用的创造者命令索引。\n\n "
+                "请先尝试 \"help commands\" "
+                "和 \"help creator commands\"。 \n\n"
                 " ");
     }
     if(member_array(str, CHAT_D->GetChannels()) != -1 &&
             str != "newbie" && member_array(str, CLASSES_D->GetClasses()) == -1){
-        return "See: help channels";
+        return "请参阅: help channels";
     }
     if( sscanf(str, "adverbs %s", topic) || str == "adverbs" ) {
         return SOUL_D->GetHelp(str);
@@ -189,8 +186,7 @@ string GetHelp(string str) {
         if(!choice) choice = tmp[0];
         tmp -= ({ choice });
 
-        if(sizeof(tmp)) SeeAlso = "\nThere also exists help for \"" + str + "\" under the following "
-            "indices:\n" + implode(tmp, ", ");
+        if(sizeof(tmp)) SeeAlso = "\n以下索引中也存在关于 \"" + str + "\" 的帮助:\n" + implode(tmp, ", ");
         ret = GetHelpByIndex(choice, str);
         if(ret) ret += SeeAlso;
         SeeAlso = "";
@@ -212,10 +208,10 @@ string GetHelp(string str) {
     }
 
     if(this_player() && adminp(this_player())){
-        Error = "Help for the topic \"" + str + "\" could not be found.";
+        Error = "未找到关于 \"" + str + "\" 的帮助。";
     }
     else {
-        Error = "The search for help on the topic \"" + str + "\" yields you no results.";
+        Error = "搜索主题 \"" + str + "\" 没有找到结果。";
     }
     return 0;
 }
@@ -227,7 +223,7 @@ string GetHelpByIndex(string index, string topic) {
     string help, file, tmpstr;
 
     if( this_player() && !CanAccess(this_player(), index) ) {
-        Error = "You do not have access to that information.";
+        Error = "您无权访问该信息。";
         return 0;
     }
     switch(index) {
@@ -280,11 +276,11 @@ string GetHelpByIndex(string index, string topic) {
                     break;
             }
             if( !file_exists(file + ".c") ) {
-                Error = "No such " + index[0..<2] + " exists.";
+                Error = "不存在此" + index[0..<2] + "。";
                 return 0;
             }
             if( catch(help = file->GetHelp(topic)) ) {
-                Error = "An error occurred in attempting to access help.";
+                Error = "访问帮助时发生错误。";
                 return 0;
             }
             if( !help ) {
@@ -305,8 +301,8 @@ string GetHelpByIndex(string index, string topic) {
                         SeeAlso = "";
                         return 0;
                     }
-                    Error = "Unable to locate any syntax information on " +
-                        topic + ".";
+                    Error = "无法找到关于 " +
+                        topic + " 的任何语法信息。";
                     return 0;
                 }
                 help = "Syntax: " + topic + " " + syn[0] + "\n";
@@ -316,10 +312,10 @@ string GetHelpByIndex(string index, string topic) {
                         help += "        " + topic + " " + line + "\n";
                     help += "\n";
                 }
-                help += "No detailed documentation exists for this command.";
+                help += "此命令没有详细文档。";
             }
-            help = "Index: %^GREEN%^" + index + "%^RESET%^\n" +
-                "Topic: %^GREEN%^" + topic + "%^RESET%^\n\n" + help;
+            help = "索引: %^GREEN%^" + index + "%^RESET%^\n" +
+                "主题: %^GREEN%^" + topic + "%^RESET%^\n\n" + help;
             return help;
 
         case "player documents": case "creator documents":
@@ -350,21 +346,21 @@ string GetHelpByIndex(string index, string topic) {
                     break;
             }
             if( !file_exists(file) ) {
-                Error = "No such " + index[0..<2] + " is available.";
+                Error = "不存在此" + index[0..<2] + "。";
                 return 0;
             }
             if( !(help = read_file(file)) ) {
-                Error = "The document " + topic + " was empty.";
+                Error = "文档 " + topic + " 为空。";
                 return 0;
             }
-            help = "Index: %^GREEN%^" + index + "%^RESET%^\n" +
-                "Topic: %^GREEN%^" + topic + "%^RESET%^\n\n" + help;
+            help = "索引: %^GREEN%^" + index + "%^RESET%^\n" +
+                "主题: %^GREEN%^" + topic + "%^RESET%^\n\n" + help;
             return help;
 
         case "feelings":
             help = SOUL_D->GetHelp(topic);
             if( !help ) {
-                Error = "No such " + index[0..<2] + " is available.";
+                Error = "不存在此" + index[0..<2] + "。";
                 return 0;
             }
             help = "Index: %^GREEN%^" + index + "%^RESET%^\n" +
@@ -374,31 +370,31 @@ string GetHelpByIndex(string index, string topic) {
         case "library objects":
             topic = GetTopic(index, topic);
             if( !file_exists(topic+".c") ){
-                Error = "No such topic found.";
+                Error = "未找到该主题。";
                 return 0;
             }
             if(  catch(help = topic->GetHelp(topic)) ) {
-                Error = "An error occurred in attempting to access help.";
+                Error = "访问帮助时发生错误。";
                 return 0;
             }
             if( !help ) {
-                help = "No synopsis available for this object.\n\n";
+                help = "此对象无可用摘要。\n\n";
             }
             else {
-                help = "Synopsis:\n" + help + "\n\n";
+                help = "摘要:\n" + help + "\n\n";
             }
             tmparr = stat(topic + ".c");
-            tmpstr = "Object: " + topic + "\n"
-                "Last Modified: " + ctime(tmparr[1]) + "\n";
+            tmpstr = "对象: " + topic + "\n"
+                "最后修改: " + ctime(tmparr[1]) + "\n";
             if( tmparr[2] ) {
-                tmpstr += "Last Loaded: " + ctime(tmparr[2]) + "\n\n";
+                tmpstr += "最后加载: " + ctime(tmparr[2]) + "\n\n";
             }
             tmparr = inherit_list(ob = find_object(topic));
             if( !sizeof(tmparr) ) {
-                tmpstr += "No inherited objects\n\n";
+                tmpstr += "无继承对象\n\n";
             }
             else {
-                tmpstr += "Inherits:\n" + format_page(tmparr, 4) + "\n";
+                tmpstr += "继承:\n" + format_page(tmparr, 4) + "\n";
             }
             tmparr = functions(ob, 1);
             tmpmap = ([]);
@@ -419,12 +415,12 @@ string GetHelpByIndex(string index, string topic) {
             }
             help = tmpstr + help;
             if( !sizeof(tmparr) ) {
-                help += "No functions\n\n";
+                help += "无函数\n\n";
             }
             else {
                 string fnc;
 
-                help += "Functions:\n";
+                help += "函数:\n";
                 tmparr = sort_array(keys(tmpmap), 1);
                 foreach(fnc in tmparr) {
                     help += tmpmap[fnc]["type"] + fnc + "(" +
@@ -474,8 +470,8 @@ string GetHelpByIndex(string index, string topic) {
                     help += tmpmap[fnc]["type"] + fnc + "(" +
                     implode(tmpmap[fnc]["args"], ", ") + ")\n";
             }
-            help = "Index: %^GREEN%^" + index + "%^RESET%^\n" +
-                "Topic: %^GREEN%^" + topic + "%^RESET%^\n\n" + help;
+            help = "索引: %^GREEN%^" + index + "%^RESET%^\n" +
+                "主题: %^GREEN%^" + topic + "%^RESET%^\n\n" + help;
             return help;
 
         case "religons": case "religion":
@@ -485,7 +481,7 @@ string GetHelpByIndex(string index, string topic) {
                     "Topic: %^GREEN%^" + topic + "%^RESET%^\n\n" + help;
                 return help;
             }
-            Error = "No such religion exists.";
+            Error = "不存在此宗教。";
             return 0;
 
         case "races":
@@ -498,17 +494,17 @@ string GetHelpByIndex(string index, string topic) {
                 help = read_file(DIR_RACE_HELP + "/" + topic);
                 return help;
             }
-            Error = "There is no such race.";
+            Error = "不存在此种族。";
             return 0;
 
         case "spells": case "prayers":
             ob = SPELLS_D->GetSpell(topic);
             if( !ob ) {
-                Error = "No such spell exists.";
+                Error = "不存在此法术。";
                 return 0;
             }
             if( !(help = ob->GetHelp(topic)) ) {
-                Error = "No help is available for that spell.";
+                Error = "该法术没有帮助信息。";
                 return 0;
             }
             help = "Index: %^GREEN%^" + index + "%^RESET%^\n" +
@@ -523,11 +519,11 @@ string GetHelpByIndex(string index, string topic) {
                     help += read_file(DIR_CLASS_HELP + "/" + topic);
                 return help;
             }
-            Error = "No such class exists.";
+            Error = "不存在此职业。";
             return 0;
 
         default:
-            Error = "No help exists for the index " + index + ".";
+            Error = "索引 " + index + " 没有帮助信息。";
             return 0;
     }
 }

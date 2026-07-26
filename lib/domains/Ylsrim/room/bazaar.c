@@ -26,44 +26,38 @@ protected void create() {
     SetAmbientLight(30);
     // the obvious exits tell people how to leave the room
     // set the sounds people hear
-    SetListen("Vendors are begging you to come look at their goods.");
+    SetListen("商贩们正在恳求你来看看他们的商品。");
     // set the short description... should not be capitalized
-    SetShort("the central bazaar of Ylsrim");
+    SetShort("伊尔斯利姆中心集市");
     // this is the description people see at day
-    SetDayLong("Shops and vendors selling all types of goods fill "
-            "the central bazaar of Ylsrim.  Local villagers and "
-            "exotic travellers are passing about you in search of a "
-            "bargain, or even in some cases, in search of trouble.  "
-            "Kaliid Road crosses Ylsrim from the west to the east just "
-            "north of you, with an armory and a weapon shop straddling "
-            "both sides of the bazaar.  The bazaar stretches on south."
-            "\n%^RED%^There is a sign here you can read.%^RESET%^");
+    SetDayLong("出售各种商品的店铺和商贩挤满了伊尔斯利姆的中心集市。"
+            "当地村民和异域旅行者在你身边穿梭，寻找便宜货，"
+            "甚至有些时候是在找麻烦。"
+            "卡利德路从你北边由西向东穿过伊尔斯利姆，"
+            "防具店和武器店分列集市两侧。集市向南延伸。"
+            "\n%^RED%^这里有一块告示牌，你可以阅读。%^RESET%^");
     SetSkyDomain("town");
     // this is the description people see at night
-    SetNightLong("Though most areas of Ylsrim are peaceful right now, "
-            "the central bazaar is still filled with people doing "
-            "business, even though most of the shops are closed.  "
-            "Kaliid Road is just north of here, and a closed armory "
-            "and weapons shop sit on both sides of the bazaar.  "
-            "The bazaar stretches south."
-            "\n%^RED%^There is a sign here you can read.%^RESET%^");
+    SetNightLong("虽然伊尔斯利姆的大部分区域此刻都很安静，"
+            "中心集市上仍然挤满了做生意的人，尽管大多数店铺已经关门。"
+            "卡利德路就在北边，已经打烊的防具店和武器店分列集市两侧。"
+            "集市向南延伸。"
+            "\n%^RED%^这里有一块告示牌，你可以阅读。%^RESET%^");
     // set up dummy items... the first few are simple
     AddItem(({ "villager", "traveller" }),
-            "Both villagers and travellers are out looking for good "
-            "deals.");
-    AddItem(({ "sign"}), "A sign. To read it, 'read sign'.");
-    AddItem(({ "road" }), "It leads through Ylsrim from the Great Desert "
-            "in the west towards more fertile land east.", ({ "kaliid" }));
+            "村民们和旅行者们都在外面寻找好买卖。");
+    AddItem(({ "sign"}), "一块告示牌。要阅读它，请输入 'read sign'。");
+    AddItem(({ "road" }), "这条路从西边的大沙漠穿过伊尔斯利姆，通往东边更肥沃的土地。", ({ "kaliid" }));
     // people need to enter the armory, so we need to do something special
     // first create an armory dummy item
     SetRead("sign", (: ReadSign :) );
     ob = new(LIB_DUMMY, ({ "armory", "shop" }),
             function(string str) {
             if( query_night() ) {
-            return "It is closed.";
+            return "已经关门了。";
             }
             else {
-            return "It is open.";
+            return "正在营业。";
             }
             }, ({ "armor" }));
     // set it so when people 'enter armory', they move to the armory
@@ -74,10 +68,10 @@ protected void create() {
     ob = new(LIB_DUMMY, ({ "weaponry", "shop" }),
             function(string str) {
             if( query_night() ) {
-            return "It is closed.";
+            return "已经关门了。";
             }
             else {
-            return "It is open.";
+            return "正在营业。";
             }
             }, ({ "weapon" }));
     ob->SetEnter("/domains/Ylsrim/room/"+ "weaponry");

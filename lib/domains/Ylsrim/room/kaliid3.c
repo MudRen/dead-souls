@@ -13,17 +13,14 @@ protected void create() {
     SetTown("Ylsrim");
     SetClimate("arid");
     SetAmbientLight(30);
-    SetShort("Kaliid Road by the Church");
-    SetLong("Kaliid Road moves east and west through the desert town of "
-            "Ylsrim.  The road itself gets sandier as it gets swallowed by "
-            "the desert in the distance east.  On the northern end of the "
-            "road a door belonging to the local church.  Next to the door "
-            "sits a huge button.");
+    SetShort("卡利德路教堂旁");
+    SetLong("卡利德路从东向西穿过沙漠小镇伊尔斯利姆。"
+            "路面越往东越沙化，逐渐被远处的沙漠吞没。"
+            "在路的北端，有一扇属于当地教堂的门。"
+            "门旁边有一个巨大的按钮。");
     SetSkyDomain("town");
-    AddItem("church", "It is a rather pathetic wooden building where the "
-            "local priests initiate people into their religion.");
-    AddItem("desert", "The town does all it can to keep from being swallowed "
-            "by it.");
+    AddItem("church", "这是一座相当简陋的木制建筑，当地牧师在这里为人们举行入教仪式。");
+    AddItem("desert", "小镇竭尽全力防止被沙漠吞没。");
     AddItem(new("/domains/Ylsrim/etc/church_button"));
     SetExits( ([ 
                 "north" : "/domains/Ylsrim/room/"+ "church",

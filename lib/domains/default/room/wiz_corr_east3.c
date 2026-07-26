@@ -10,7 +10,7 @@ int PreExit(mixed args...){
     foreach(object living in livings){
         if(base_name(living) == "/domains/default/vehicle/strider" &&
                 previous_object(2) != living ){
-            write("The strider is in your way.");
+            write("行者挡住了你的路。");
             return 0;
         }
     }
@@ -22,8 +22,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Test Labs Corridor East");
-    SetLong("This is the main corridor of the test labs. East is the mounted combat arena. The corridor runs west from here.");
+    SetShort("测试实验室走廊东端");
+    SetLong("这是测试实验室的主走廊。东边是骑战斗竞技场。走廊从这里向西延伸。");
     SetExits( ([
                 "west" : "/domains/default/room/wiz_corr_east2",
                 ]) );

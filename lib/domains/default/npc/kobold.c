@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("kobold");
     SetAdjectives( ({"lizard", "short", "humanoid"}) );
     SetId( ({"lizard", "lizard man", "creature"}) );
-    SetShort("a short lizard man");
-    SetLong("This three foot tall lizard creature is a kobold. Its features are like those of a reptile, but it has arms and legs like a humanoid.");
+    SetShort("一个矮小的蜥蜴人");
+    SetLong("这个三英尺高的蜥蜴生物是狗头人。它的特征像爬行动物，但有着 humanoid 一样的手臂和腿。");
     SetLevel(1);
     SetMelee(1);
     SetRace("kobold");

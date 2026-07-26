@@ -7,8 +7,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Menagerie Corridor");
-    SetLong("This short corridor leads down to the menagerie. This corridor has been specially created to repel NPC's, so that the creatures  below do not escape. The main test lab corridor is north.");
+    SetShort("动物园走廊");
+    SetLong("这条短走廊通向下方的动物园。这条走廊是专门设计来驱赶NPC的，以防止下面的生物逃跑。主测试实验室走廊在北边。");
     SetExits( ([
                 "north" : "/domains/default/room/wiz_corr_east",
                 "down" : "/domains/default/room/menagerie.c",
@@ -24,7 +24,7 @@ int CanReceive(object ob) {
     //	return 0;
     //   }
     if(living(ob) && !interactive(ob)){
-        message("info","NPC's not allowed, sorry.", ob);
+        message("info","不允许NPC进入，抱歉。", ob);
         return 0;
     }
     return room::CanReceive(ob);

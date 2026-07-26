@@ -7,40 +7,32 @@ void create() {
     SetProperty("light", 3);
     SetProperty("night light", 1);
     SetProperty("no castle", 1);
-    SetShort( "Praxis Commercial District");    
-    // SetLong(      "Centre Path leads south into the bustling Port of Praxis where it "      "dead ends at Pier 1.  Business life hurries all about you to get "      "things done before the end of the short Praxis day.  In the realty "      ( high mortals make transactions for real estate with "      "the mighty Atmos.  In the great Hall of Fighters northwest fighters "      "gather both night and day.  Praxis centre is northeast from here."    );
-    SetLong("Centre Path leads south into the bustling Port of Praxis where it "
-            "dead ends at Pier 1.  Business life hurries all about you to get "
-            "things done before the end of teh short Praxis day.  In the realty "
-            "high mortals make transactions for real estate with "
-            "the mighty Atmos.  In the great Hall of Fighters northwest fighters "
-            "gather both night and day.  Praxis centre is northeast from here.");
-    //set_night long",      "Even in the heart of night people are moving about the business "      "district trying to conduct monetary affairs with those types who "      "shy away from daylight.  The shadiest of characters arrive in Praxis "      "at Pier 1 of the Port of Praxis south under cloak of night.  Fighters "      ( especially the nocturnal ones gather in the Hall of "      "Fighters northwest.  Praxis centre is northeast.");
+    SetShort( "普拉克西斯商业区");
+    SetLong("中心路向南通往繁忙的普拉克西斯港口，尽头是1号码头。"
+            "商业生活在你周围匆忙进行，人们赶着在短暂的白昼结束前"
+            "完成事务。在房地产交易所，高级凡人与强大的阿特摩斯"
+            "进行房地产交易。在西北方的战士大厅里，战士们日夜"
+            "聚集。普拉克西斯中心在东北方。");
 
-    SetItems( 
-            ([({"path", "centre path"}) : "It is the main road winding "
-             "north and south through Praxis.",
-             ({"pier", "port", "port of praxis"}) : "Everything that "
-             "comes into Praxis from overseas comes through here.",
-             ({"hall", "hall of fighters"}) : "The fighters of this "
-             "reality often come from all over to gather there.",
-             "realty" : "High mortals by stuff to build castles with there.", 
-             "fighters" : "They are roaming aimlessly about the Hall of "
-             "Fighters.",
-             "people" : "They are going about their business in the area.",
-             "high mortals" : "The mightiest of mortals who often "
-             "comprise class leaders."])  );
-    SetExits( ([ 
+    SetItems(
+            ([({"path", "centre path"}) : "贯穿普拉克西斯南北的主要道路。",
+             ({"pier", "port", "port of praxis"}) : "所有从海外进入"
+             "普拉克西斯的货物都经过这里。",
+             ({"hall", "hall of fighters"}) : "这个世界的战士们"
+             "经常从各处聚集到这里。",
+             "realty" : "高级凡人在这里购买建造城堡的材料。",
+             "fighters" : "他们在战士大厅附近漫无目的地游荡。",
+             "people" : "他们在这片区域忙着自己的事情。",
+             "high mortals" : "最强大的凡人，通常是各职业的领袖。"])  );
+    SetExits( ([
                 "south" : "/domains/Praxis/pier1",
                 "northwest" : "/domains/Praxis/fighter_join",
                 "northeast" : "/domains/Praxis/s_centre3",
                 ]) );
-    SetListen("default", "You hear many people going about their "
-            "business.");
-    SetListen("fighters", "They are being really loud and rude.");
-    SetSmell("money", "Damn, you sure are greedy.");
-    SetSmell("fish", "You smell that they have been lying all over "
-            "the pier south.");
+    SetListen("default", "你听到许多人忙碌的声音。");
+    SetListen("fighters", "他们真的很吵闹且粗鲁。");
+    SetSmell("money", "天哪，你真是太贪婪了。");
+    SetSmell("fish", "你闻到南边码头上到处都是鱼腥味。");
 }
 void init(){
     ::init();

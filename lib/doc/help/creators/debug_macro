@@ -1,44 +1,39 @@
-The debug.h include file provides a very simple yet suprisingly powerful
-debugging mechanism.  The benefits provided by debug.h include:
+debug.h 包含文件提供了一个非常简单但功能强大的调试机制。
+debug.h 提供的好处包括：
 
-1) conditional compilation - meaning that debug(x,y) expands to an empty
-statement (;) if DEBUG_MACRO is not #defined.  This lets you leave in debug
-statements in case something goes wrong at a later time (in which case
-you simply #define DEBUG_MACRO once again).
+1) 条件编译 - 意味着如果 DEBUG_MACRO 未被 #defined，
+   debug(x,y) 将扩展为空语句（;）。这让你可以保留调试
+   语句，以防以后出现问题（在这种情况下你只需再次
+   #define DEBUG_MACRO）。
 
-2) Lets one define sets of debug statements that are turned on or off as
-a group.  In the normal course of debugging a program, one adds several write
-(or tell) statements in an attempt to track down an current error.  After
-fixing these errors, the debug statements get deleted and its on to
-tracking down the next error in the program (adding a new set of debug
-statements).  The problem is that sometimes the original error comes back
-(under a different set of circumstances) and gee wouldn't it be nice if that original set of debug statements was still there.  The debug.h
-include file provides a convenient way to do this.  Returning to the
-concept of turning sets of statements on or off as a group.  It is
-also possible turn sets of sets on or off as a group.
+2) 允许定义一组调试语句，可以作为一个组开启或关闭。
+   在调试程序的正常过程中，人们会添加几个 write（或 tell）
+   语句来追踪当前的错误。修复这些错误后，调试语句被删除，
+   然后继续追踪程序中的下一个错误（添加一组新的调试语句）。
+   问题是有时原来的错误会回来（在不同的情况下），
+   如果原来的调试语句还在就好了。debug.h 包含文件提供了一种
+   方便的方法来做到这一点。回到将语句集作为组开启或关闭的
+   概念。也可以将集合作为组开启或关闭。
 
-debug(x,y) is defined to be something like:
+debug(x,y) 定义为类似于：
 
 if (x & _debug_level) write(y);
 
-Note the use of the bitwise/and operator.  This operator is what gives
-the debug macro its flexibility.  The write statement gets executed only
-when one of the bits set in the integer _debug_level is also set in the
-variable x (the first argument to debug(x,y)).  As an example of how this
-might be used: in the early stages of debugging a program you might
-set_debug_level(1) and use debug macros of the form debug(1,y).  After
-a period of debugging you might feel that the debug(1,y) statements have
-served their purpose.  At that point, you can change the set_debug_level
-call to be set_debug_level(2).  Now, the debug(1,y) statements will no
-longer cause anything to be printed.  However, debug(2,y) statements would
-be printed.  Suppose that an old error crops up because of a new set of
-inputs that you didn't encounter before.  If the debug(1,y) statements
-would again be helpful in debugging this old error, you could
-call set_debug_level(3) instead of set_debug_level(2).  This would cause
-BOTH debug(1,y) and debug(2,y) statements to issue writes.  This is because
-the binary representaton of three (3) contains a one (1) AND a two (2).
+注意按位与运算符的使用。这个运算符赋予了调试宏灵活性。
+只有当 _debug_level 中设置的位之一也在变量 x
+（debug(x,y) 的第一个参数）中设置时，write 语句才会执行。
+举个使用的例子：在调试程序的早期阶段，你可能设置
+set_debug_level(1) 并使用 debug(1,y) 形式的调试宏。
+经过一段时间的调试后，你可能觉得 debug(1,y) 语句已经
+完成了它们的目的。那时，你可以将 set_debug_level 调用
+更改为 set_debug_level(2)。现在，debug(1,y) 语句将不再
+打印任何内容。但是，debug(2,y) 语句会被打印。
+假设由于你以前没有遇到过的新输入，一个旧错误又出现了。
+如果 debug(1,y) 语句对调试这个旧错误有帮助，
+你可以调用 set_debug_level(3) 而不是 set_debug_level(2)。
+这将导致 debug(1,y) 和 debug(2,y) 语句都发出 write。
+这是因为三（3）的二进制表示包含一（1）和二（2）。
 
-See /obj/debug.c and /usr/include/debug.h for a concrete example of how
-this works.
+参见 /obj/debug.c 和 /usr/include/debug.h 了解具体示例。
 
 --Truilkan@TMI

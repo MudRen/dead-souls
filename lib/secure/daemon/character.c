@@ -47,7 +47,7 @@ mixed eventConnect(string who) {
             if(member_group(who, PRIV_SECURE) || member_group(who,PRIV_ASSIST))
                 return 1;
             else if( archp(find_player(ind)) ) return 1;
-            else return "You have a linked character currently logged in.\n";
+            else return "您有一个关联角色已登录。\n";
         }
     }
     if( LINK_WAIT_PERIOD > uptime() ) min_wait = uptime();
@@ -61,9 +61,9 @@ mixed eventConnect(string who) {
         if( x < 60 ) tmp = consolidate(x, "a second");
         else tmp = consolidate(x/60, "a minute");
         if( !(member_group(who, PRIV_SECURE) || member_group(who,PRIV_ASSIST)))
-            return "\nYour character " + capitalize(c->LastOnWith) +
-                " recently logged in at " + ctime(c->LastOnDate) + ".\n" +
-                "You must wait another " + tmp + ".\n";
+            return "\n您的角色 " + capitalize(c->LastOnWith) +
+                " 最近在 " + ctime(c->LastOnDate) + " 登录。\n" +
+                "您必须再等待 " + tmp + "。\n";
     }
     c->LastOnDate = time();
     c->LastOnWith = who;
@@ -75,10 +75,10 @@ mixed eventLink(string primary, string secondary, string email) {
     class char_link ch;
 
     if( !(master()->valid_apply(({ PRIV_LAW }))) )
-        return "Permission denied.";
+        return "权限被拒绝。";
     if( !user_exists(primary = convert_name(primary)) )
-        return "No such user: primary";
-    if( !email ) return "Email is required for linking.";
+        return "无此用户: 主角色";
+    if( !email ) return "关联需要电子邮件。";
     secondary = convert_name(secondary);
     if( Links[primary] ) {
         ch = Links[primary];
@@ -96,7 +96,7 @@ mixed eventLink(string primary, string secondary, string email) {
             }
             Links[primary] = ch;
             map_delete(Links, secondary);
-            if( !SaveObject(SaveFile) ) return "Error in saving.";
+            if( !SaveObject(SaveFile) ) return "保存出错。";
             return 1;
         }
     }
@@ -141,10 +141,10 @@ mixed eventUnlink(string primary, string who) {
     class char_link ch;
 
     if( !(master()->valid_apply(({ PRIV_ASSIST }))) )
-        return "Permission denied.";
+        return "权限被拒绝。";
     primary = convert_name(primary);
     who = convert_name(who);
-    if( !(ch = Links[primary]) ) return "No such primary character.";
+    if( !(ch = Links[primary]) ) return "无此主角色。";
     if( who == primary ) {
         if( sizeof(ch->Secondaries) < 2) {
             map_delete(Links, primary);
@@ -159,7 +159,7 @@ mixed eventUnlink(string primary, string who) {
         return 1;
     }
     if( member_array(who, ch->Secondaries) == -1 )
-        return "Invalid secondary character for " + primary + ".";
+        return primary + " 的无效副角色。";
     ch->Secondaries -= ({ who });
     Links[primary] = ch;
     SaveObject(SaveFile);

@@ -5,12 +5,8 @@ protected void create(){
     npc::create();
     SetKeyName("money tree");
     SetId(({"tree","money tree","arborus argentum"}));
-    SetShort("a money tree");
-    SetLong("This robust, 4-foot tall tree is the fabled arborus argentum, or money "+
-            "tree. Its leaves are fresh, new dollar bills, and its seed-bearing "+
-            "pods are full to bursting with coins of all kinds. It would be no "+
-            "trouble at all to get <amount> <currency> from tree...looks like "+
-            "you've hit the jackpot!");
+    SetShort("一棵摇钱树");
+    SetLong("这棵健壮的、4英尺高的树就是传说中的摇钱树。它的叶子是崭新的钞票，它的种荚里装满了各种各样的硬币，几乎要爆开了。从树上获取<数量><货币>一点都不麻烦...看来你中大奖了！");
     SetPacifist(1);
     SetCanBite(0);
     SetLevel(99);
@@ -29,28 +25,27 @@ int make_money(string str){
     int d1;
     string s1,s2;
     if(!creatorp(this_player()) && !member_group(this_player(),"TEST")) {
-        write("Your hands seem to slide off the tree...as if somehow "
-                "it knows this money shouldn't fall into your greedy hands.");
+        write("你的手似乎从树上滑了下来...好像它 somehow 知道这些钱不应该落入你贪婪的手中。");
         return 1;
     }
-    if(!str){ write("Get what?\n"); return 1; }
+    if(!str){ write("获取什么？\n"); return 1; }
     if(sscanf(str,"%d %s from %s",d1,s1,s2) > 0){
         if(s1 !="electrum" && s1 != "platinum" &&
                 s1 !="gold" && s1 !="cents" &&
                 s1 !="dollars" && s1 !="copper" &&
                 s1 !="silver"){
-            write("That kind of money doesn't grow on trees!\n");
+            write("那种钱可不是从树上长出来的！\n");
             return 1;
         }
         if(s2=="tree" || s2=="the tree" ||
                 s2=="the money tree" || s2=="arborus argentum"){
             if(d1 > 1000000){
-                write("That is too much money to get from the tree at once.\n");
+                write("一次从树上获取那么多钱太多了。\n");
                 return 1;
             }
             this_player()->AddCurrency(s1, d1);
-            write("You get "+d1+" "+s1+" from the money tree.");
-            say(this_player()->GetCapName()+" gets money from the money tree.");
+            write("你从摇钱树上获得了"+d1+" "+s1+"。");
+            say(this_player()->GetCapName()+"从摇钱树上获取了钱。");
             return 1;
         }
         return 0;

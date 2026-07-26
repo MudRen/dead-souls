@@ -5,12 +5,11 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("the Arena");
-    SetLong("You are in a large room with blank cement walls. This room was built so Creators may test their armor, weapons and NPC's in combat. A large steel door is here, which can be used to prevent wimpy creatures from escaping.");
+    SetShort("竞技场");
+    SetLong("你在一个有着空白水泥墙的大房间里。这个房间的建造目的是让创造者们可以测试他们的盔甲、武器和NPC的战斗能力。这里有一扇大钢门，可以用来防止弱小的生物逃跑。");
     SetItems( ([
-                ({"wall","walls"}) : "The walls are smooth and cement.",
-                ({"floor","ceiling"}) : "The floor and ceiling are, like the walls, made "+
-                "of smooth cement." ]) );
+                ({"wall","walls"}) : "墙壁是光滑的水泥墙。",
+                ({"floor","ceiling"}) : "地板和天花板与墙壁一样，都是由光滑的水泥制成的。" ]) );
     SetInventory(([
                 "/domains/default/npc/fighter" : 1,
                 "/domains/default/obj/locker" : 1,
@@ -35,7 +34,7 @@ int CanReceive(object sneak) {
     foreach(object ob in living_stack){
         if(playerp(ob) && !creatorp(ob) &&
                 !member_group(ob,"TEST")) {
-            message("info","Creator staff only, sorry.", ob);
+            message("info","仅限创造者工作人员使用，抱歉。", ob);
             return 0;
         }
     }

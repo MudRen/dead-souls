@@ -9,12 +9,11 @@ void create(){
     SetAdjectives(({"stocky","built","strong","strongly built"}));
     SetGender("male");
     SetRace("human");
-    SetShort("Segata Sanshiro");
-    SetLong("Stocky and strongly built, this legendary master of "
-            "martial arts helps train fighters to become the very best "
-            "they can be, so that they may fulfill their duty. Segata "
-            "Sanshiro specializes in melee (unarmed) combat. For armed "
-            "combat training, guildmaster Roshd is still the trainer.");
+    SetShort("�的場三四郎");
+    SetLong("这位传奇武术大师体格健壮，帮助训练战士们成为最优秀的自己，"
+            "以便他们能够履行自己的职责。"
+            "的場三四郎专精于近战（徒手）搏斗。"
+            "武器战斗训练请找公会长罗什德。");
     SetClass("fighter");
     SetLevel(40);
     AddTrainingSkills( ({ "melee attack", "melee defense" }) );

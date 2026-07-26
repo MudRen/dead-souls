@@ -13,8 +13,8 @@ protected void create() {
     vendor::create();
     SetKeyName("max");
     SetId("max", "vendor", "shop keeper", "keeper", "shopkeeper");
-    SetShort("Max, the local armorer");
-    SetLong("He buys and sells goods for armors.");
+    SetShort("马克斯，当地防具商");
+    SetLong("他买卖各种防具。");
     SetLevel(15);
     SetRace( "elf");
     SetGender("male");

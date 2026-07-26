@@ -1,26 +1,21 @@
-                      Dead Souls Magical Wooden Staff
+                      Dead Souls 魔法木杖
 
-   The Dead Souls Quick Creation System is a big, complicated mess
-for a number of reasons, mostly having to do with the necessity of
-interpreting potentially unusual code.
+   Dead Souls 快速创建系统是一个庞大而复杂的东西，
+原因有很多，主要是因为需要解释可能不寻常的代码。
 
-   Among the compromises made to get the system working is that it is
-bound to a specific object that must be carried. The original plan
-had called for a daemon, but the modular design and need for global
-variables meant either a mind-numbingly complex workaround, or individuating
-the daemon functions. 
+   为了使系统工作而做出的妥协之一是它绑定到一个
+必须携带的特定对象。最初的计划是使用一个守护进程，
+但模块化设计和对全局变量的需求意味着要么需要一个
+极其复杂的变通方法，要么将守护进程功能个体化。
 
-   Making the QCS work through a special object simplifies the 
-interaction between modules, and limits the memory overhead to the
-few characters that have a need to use it.
+   通过特殊对象使 QCS 工作简化了模块之间的交互，
+并将内存开销限制在少数需要使用它的角色身上。
 
-   Thus, in order to use QCS, you must be carrying the creator's staff,
-which is /secure/obj/staff.c
+   因此，要使用 QCS，你必须携带创建者之杖，
+即 /secure/obj/staff.c
 
-   It doesn't have to be a staff. If you prefer it to be a hat, or a
-gold watch, or whatever, feel free to make it so. Just remember that
-the creation object must inherit the modules that the staff inherits, and
-it must answer to the id "tanstaafl", and it must be somewhere in
-/secure. See /secure/obj/glasses.c for an example.
-
-
+   它不必是一根杖。如果你更喜欢它是一顶帽子、
+一块金表或任何其他东西，请随意更改。只需记住
+创建对象必须继承杖继承的模块，它必须响应 id
+"tanstaafl"，并且它必须在 /secure 中的某个地方。
+参见 /secure/obj/glasses.c 作为示例。

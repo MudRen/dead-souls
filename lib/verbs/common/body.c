@@ -20,16 +20,16 @@ protected void create() {
 }
 
 nosave string *DamageDegree = ({
-        "is in critical condition!",
-        "is battered beyond recognition.",
-        "is severely wounded",
-        "is terribly damaged.",
-        "is in bad shape.",
-        "is hurting.",
-        "has a few bruises.",
-        "is in decent shape.",
-        "is in very good shape.",
-        "is in excellent shape.",
+        "处于濒危状态！",
+        "伤痕累累，面目全非。",
+        "伤势严重",
+        "受到严重损伤。",
+        "状态很差。",
+        "正在疼痛。",
+        "有几处淤伤。",
+        "状态尚可。",
+        "状态良好。",
+        "状态极佳。",
         });
 
 int livings_are_remote() { return 1; }
@@ -40,13 +40,13 @@ mixed can_body() {
 
 mixed can_body_liv() {
     if( !creatorp(this_player()) )
-        return "Try: help body";
+        return "试试：help body";
     return 1;
 }
 
 mixed do_body() {
-    message("other_action", this_player()->GetName()+" checks "+
-            reflexive(this_player())+" for injuries.",
+    message("other_action", this_player()->GetName()+"检查"+
+            reflexive(this_player())+"的伤势。",
             environment(this_player()), this_player() );
     eventCheckBody(this_player());
     return 1;
@@ -75,9 +75,9 @@ varargs void eventCheckBody(object ob, object receiver) {
         else mp[damage] += ({ limbs[i] });
     }
     i = sizeof(key = sort_array(keys(mp), 1));
-    name = (ob == receiver ? "Your" : capitalize(possessive(ob)));
-    ret = possessive_noun(ob->GetCapName()) + " bodily damage "
-        "report:\n\n";
+    name = (ob == receiver ? "你的" : capitalize(possessive(ob)));
+    ret = possessive_noun(ob->GetCapName()) + "身体伤害"
+        "报告：\n\n";
     foreach(damage in key) {
         string str;
         string color;
@@ -91,9 +91,9 @@ varargs void eventCheckBody(object ob, object receiver) {
                 default: color = "";
             }
             if( damage > 97 )
-                str = name +" "+ limbs[i] + " is in perfect condition.";
+                str = name +" "+ limbs[i] + "状态完好。";
             else if( damage < 4 )
-                str = name+" "+ limbs[i] +" is about to fall off!";
+                str = name+" "+ limbs[i] +"快要掉了！";
             else {
                 x = damage / 10;
                 if(x>9) x = 9;
@@ -107,13 +107,13 @@ varargs void eventCheckBody(object ob, object receiver) {
     }
     if( i = sizeof(limbs = ob->GetMissingLimbs()) ) {
         ret += "\n"+(ob == receiver ?
-                "You are missing " : ob->GetName()+" is missing ");
+                "你失去了" : ob->GetName()+"失去了");
         switch(i) {
             case 0: break;
-            case 1: ret += "a "+limbs[0]+"."; break;
-            case 2: ret += "a "+limbs[0]+" and a "+limbs[1]+"."; break;
-            default:  ret += "a "+implode(limbs[0..(i-2)], ", ")+" and "
-                      "a "+limbs[i-1]+".";
+            case 1: ret += limbs[0]+"。"; break;
+            case 2: ret += limbs[0]+"和"+limbs[1]+"。"; break;
+            default:  ret += implode(limbs[0..(i-2)], "、")+"和"
+                      +limbs[i-1]+"。";
         }
     }
     receiver->eventPage(explode(ret, "\n"), "info");
@@ -122,12 +122,10 @@ varargs void eventCheckBody(object ob, object receiver) {
 
 string GetHelp(string str) {
     if( creatorp(this_player()) )
-        return "Syntax: body [LIVING]\n\n"
-            "This command will display the current limb damage "
-            "statistics of the living object named.";
+        return "用法：body [生物]\n\n"
+            "此命令将显示指定生物的当前肢体伤害统计数据。";
     else
-        return "Syntax: body\n\n"
-            "This command will display your current limb damage "
-            "statistics.  The limbs will be displayed in order "
-            "of the most damaged to the least.";
+        return "用法：body\n\n"
+            "此命令将显示你当前的肢体伤害统计数据。"
+            "肢体将按伤害程度从高到低显示。";
 }

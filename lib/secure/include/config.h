@@ -36,7 +36,7 @@
 #define AUTOSAVE_TIME            200
 #define MORTAL_POSITIONS         ({ "player", "high mortal", "ambassador" })
 #define DEFAULT_GRAVITY          1.0
-#define DEFAULT_ITEM_MESSAGE     "You do not see that here."
+#define DEFAULT_ITEM_MESSAGE     "你在这里看不到那个东西。"
 #define RESET_INTERMUD           0
 #define ENGLISH_ONLY             0
 #define HUMANS_ONLY              0

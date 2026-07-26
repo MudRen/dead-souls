@@ -6,8 +6,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("LPC University Reception");
-    SetLong("You are in the small, spare reception area of the Virtual Campus admissions office. A door leads north to the main administration building corridor.");
+    SetShort("LPC大学接待处");
+    SetLong("你身处虚拟校区招生办公室狭小而简朴的接待区。一扇门通往北面的行政楼主走廊。");
     SetExits( ([
                 "north" : "/domains/campus/room/corridor",
                 ]) );

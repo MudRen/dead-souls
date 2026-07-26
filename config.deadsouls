@@ -1,19 +1,19 @@
 ###############################################################################
-#              Customizable runtime config file for MudOS                     #
-# NOTE: All paths specified here are relative to the mudlib directory except  #
-#       for mudlib directory, and binary directory.                           #
-# Lines beginning with a # or a newline are ignored.                          #
+#              MudOS 可自定义运行时配置文件                                    #
+# 注意：此处指定的所有路径都是相对于mudlib目录的，                            #
+#       mudlib目录和二进制目录除外。                                           #
+# 以#开头的行或空行将被忽略。                                                  #
 ###############################################################################
-# name of this mud
+# 此mud的名称
 name : DeadSouls-FluffOS2019
 
-# port number to accept users on
+# 接受用户的端口号
 # port number : 6666
 external_port_1 : websocket 5555
 websocket http dir: ./www
 external_port_2 : telnet 6666
 
-# pathname of mudlib
+# mudlib的路径名
 mudlib directory : ./lib
 
 # fd6 stuff is what allows portbind to work properly. If
@@ -23,39 +23,39 @@ mudlib directory : ./lib
 #fd6 port : 23
 #fd6 kind : telnet
 
-# debug.log and author/domain stats are stored here
+# debug.log和作者/域统计信息存储在这里
 log directory : /log
 
-# the directories which are searched by #include <...>
-# for multiple dirs, separate each path with a ':'
+# #include <...>搜索的目录
+# 对于多个目录，用':'分隔每个路径
 include directories : /secure/include:/include
 
-# Directory to save binaries in.  (if BINARIES is defined)
+# 保存二进制文件的目录（如果定义了BINARIES）
 save binaries directory : /secure/save/binaries
 
-# the file which defines the master object
+# 定义主对象的文件
 master file : /secure/daemon/master
 
-# the file where all global simulated efuns are defined.
+# 定义所有全局模拟efun的文件
 simulated efun file : /secure/sefun/sefun
 
 # file to swap out objects; not used if time to swap is 0
 # swap file : /secure/tmp/swap
 
-# alternate debug.log file name (assumed to be in specified 'log directory')
+# 替代debug.log文件名（假定在指定的'log directory'中）
 debug log file : runtime
 
-# This is an include file which is automatically #include'd in all objects
+# 这是一个自动在所有对象中#include的包含文件
 global include file : <global.h>
 
-# if an object is left alone for a certain time, then the
-# function clean_up will be called. This function can do anything,
-# like destructing the object. If the function isn't defined by the
-# object, then nothing will happen.
-# This time should be substantially longer than the swapping time.
+# 如果一个对象被单独放置一定时间，那么
+# 函数clean_up将被调用。这个函数可以做任何事情，
+# 比如销毁对象。如果对象没有定义这个函数，
+# 那么什么都不会发生。
+# 这个时间应该比交换时间长得多。
 time to clean up : 2100000000
 
-# How many seconds until an object is reset again.
+# 对象在多少秒后被重置。
 time to reset : 2100000000
 
 # Maximum number of bits in a bit field. They are stored in printable
@@ -65,11 +65,10 @@ time to reset : 2100000000
 # Max number of local variables in a function.
 # maximum local variables : 35
 
-# Maximum amount of "eval cost" per thread - execution is halted when
-# it is exceeded.
+# 每个线程的最大"eval cost" - 超过时执行将被停止。
 maximum evaluation cost : 30000000
 
-# This is the maximum array size allowed for one single array.
+# 这是单个数组允许的最大数组大小。
 maximum array size : 64000
 
 # This is the maximum allowed size of a variable of type 'buffer'.
@@ -106,16 +105,16 @@ maximum array size : 64000
 # object table size : 1501
 
 # default no-matching-action message
-default fail message : What?
+default fail message : 什么？
 
 # default message when error() occurs (optional)
-default error message : Something *REALLY* bad just happened.
+default error message : 发生了严重的错误。
 
 ###############################################################################
-#          The following aren't currently used or implemented (yet)           #
+#          以下内容当前未使用或未实现（尚未）                                   #
 ###############################################################################
 
-# maximum number of users in the game (unused currently)
+# 游戏中的最大用户数（当前未使用）
 maximum users : 40
 
 # Define the maximum stack size of the stack machine. This stack will also

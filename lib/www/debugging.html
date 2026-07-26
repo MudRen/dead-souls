@@ -3,42 +3,37 @@
 <head>
   <meta content="text/html; charset=ISO-8859-1"
  http-equiv="content-type">
-  <title>Dead Souls debugging</title>
+  <title>Dead Souls 调试</title>
   <link rel="icon" href="./favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
 </head>
 <body>
 <big style="font-family: courier new,courier,monospace;"><big><big><span
- style="font-weight: bold;">Debugging
-in Dead Souls</span></big></big></big><br
+ style="font-weight: bold;">Dead Souls 中的调试</span></big></big></big><br
  style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">So you've
-made some cool stuff but darn it, it doesn't work. There are
-various</span><br style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">tools
-available in the Dead Souls lib to hunt down the source of the
-problem:</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">所以你做了一些很酷的东西，但是该死的，它不工作。Dead Souls库中有各种</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">工具可用于追踪问题的根源：</span><br style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
-<a style="font-family: courier new,courier,monospace;" href="#1">1 elog</a><br
+<a style="font-family: courier new,courier,monospace;" href="#1">1 elog（错误日志）</a><br
  style="font-family: courier new,courier,monospace;">
 <a style="font-family: courier new,courier,monospace;" href="#2">2
-dbxframe and dbxwhere</a><br
+dbxframe 和 dbxwhere</a><br
  style="font-family: courier new,courier,monospace;">
 <a style="font-family: courier new,courier,monospace;" href="#3">3
-tell_player() and debug()</a><br
+tell_player() 和 debug()</a><br
  style="font-family: courier new,courier,monospace;">
-<a style="font-family: courier new,courier,monospace;" href="#4">4 tail</a><br
+<a style="font-family: courier new,courier,monospace;" href="#4">4 tail（尾部查看）</a><br
  style="font-family: courier new,courier,monospace;">
 <a style="font-family: courier new,courier,monospace;" href="#5">5 bk
-and restore</a><br style="font-family: courier new,courier,monospace;">
+和 restore（备份和恢复）</a><br style="font-family: courier new,courier,monospace;">
 <br>
 <br style="font-family: courier new,courier,monospace;">
 <big style="font-family: courier new,courier,monospace;"><big
- style="font-weight: bold; text-decoration: underline;"><big><a name="1"></a>elog</big></big></big><br
+ style="font-weight: bold; text-decoration: underline;"><big><a name="1"></a>elog（错误日志）</big></big></big><br
  style="font-family: courier new,courier,monospace;">
-<pre style="font-family: courier new,courier,monospace;"><big>If the file is somewhere in your home directory, just type: <span
- style="font-weight: bold;">elog</span> <br><br>This will provide you a listing of the last few lines of your personal<br>error log. Warning lines tell you about code that works but should<br>be fixed in some way. Lines that don't contain the word "Warning" are<br>error lines: they indicate something about your code that prevents<br>it from working. For example:<br><br></big></pre>
+<pre style="font-family: courier new,courier,monospace;"><big>如果文件在您的主目录中的某个地方，只需输入：<span
+ style="font-weight: bold;">elog</span> <br><br>这将为您提供个人错误日志最后几行的列表。警告行告诉您关于可以工作但应该以某种方式修复的代码。不包含"Warning"一词的行是错误行：它们表示您的代码中阻止其工作的某些内容。例如：<br><br></big></pre>
 <hr
  style="width: 100%; height: 2px; font-family: courier new,courier,monospace;"><span
  style="font-family: courier new,courier,monospace;">&gt; </span><span
@@ -46,11 +41,11 @@ and restore</a><br style="font-family: courier new,courier,monospace;">
 sample_room</span><br
  style="font-family: courier new,courier,monospace;">
 <pre style="font-family: courier new,courier,monospace;"><big><span
- style="font-style: italic;"></span><span style="font-style: italic;">---<br>*Error in loading object '/realms/cratylus/area/room/sample_room'<br>Object: /secure/cmds/creators/update at line 148<br><br>'&lt;function&gt;' at /secure/save/creators/c/cratylus (&lt;function&gt;) at /:0<br>'cmdAll' at /secure/save/creators/c/cratylus (/lib/command.c) at line 84<br>'cmd' at /secure/cmds/creators/update at line 109<br>'eventUpdate' at /secure/cmds/creators/update at line 148<br>'CATCH' at /secure/cmds/creators/update at line 148<br>Trace written to /log/catch<br>/realms/cratylus/area/room/sample_room: Error in update<br>*Error in loading object '/realms/cratylus/area/room/sample_room'<br></span></big></pre>
+ style="font-style: italic;"></span><span style="font-style: italic;">---<br>*加载对象'/realms/cratylus/area/room/sample_room'时出错<br>对象：/secure/cmds/creators/update 在第148行<br><br>'&lt;function&gt;' 位于 /secure/save/creators/c/cratylus (&lt;function&gt;) 在 /:0<br>'cmdAll' 位于 /secure/save/creators/c/cratylus (/lib/command.c) 在第84行<br>'cmd' 位于 /secure/cmds/creators/update 在第109行<br>'eventUpdate' 位于 /secure/cmds/creators/update 在第148行<br>'CATCH' 位于 /secure/cmds/creators/update 在第148行<br>跟踪已写入 /log/catch<br>/realms/cratylus/area/room/sample_room：更新时出错<br>*加载对象'/realms/cratylus/area/room/sample_room'时出错<br></span></big></pre>
 <hr
  style="width: 100%; height: 2px; font-family: courier new,courier,monospace;">
 <pre style="font-family: courier new,courier,monospace;"><big><span
- style="font-style: italic;"><br></span><br>	This output lets you know something is wrong, but<br>isn't very specific as to exactly what. If you look at your error<br>log, you probably will see something more detailed and helpful:<br><br><br></big></pre>
+ style="font-style: italic;"><br></span><br>	此输出让您知道出了问题，但<br>对于具体是什么问题并不非常具体。如果您查看错误日志，<br>您可能会看到更详细和更有帮助的内容：<br><br><br></big></pre>
 <hr
  style="width: 100%; height: 2px; font-family: courier new,courier,monospace;"><span
  style="font-family: courier new,courier,monospace;">&gt; </span><span
@@ -59,32 +54,29 @@ sample_room</span><br
 <pre style="font-family: courier new,courier,monospace;"><big><span
  style="font-style: italic;">/log/errors/cratylus:</span><br
  style="font-style: italic;"><br style="font-style: italic;"><span
- style="font-style: italic;"></span><span style="font-style: italic;">/realms/cratylus/area/room/sample_room.c line 10: Undefined variable 'Sample'<br>/realms/cratylus/area/room/sample_room.c line 10: parse error<br></span></big></pre>
+ style="font-style: italic;"></span><span style="font-style: italic;">/realms/cratylus/area/room/sample_room.c 第10行：未定义变量'Sample'<br>/realms/cratylus/area/room/sample_room.c 第10行：解析错误<br></span></big></pre>
 <hr
  style="width: 100%; height: 2px; font-family: courier new,courier,monospace;">
 <pre style="font-family: courier new,courier,monospace;"><big><span
- style="font-style: italic;"><br></span><br>	Now you can see that the error is my syntax on<br>line 10. I would then use ed to examine the code, and specifically lines 9<br>through 11. It turns out that I forgot to put quotes around the room name, <br>so the parser tried to use it as a variable, which, of course, it couldn't.<br><br>	If the file in question is in /secure, you'd type <span
- style="font-weight: bold;">elog secure</span> , or if<br>it's in /cmds, <span
- style="font-weight: bold;">elog cmds</span> , and so on.<br><span
+ style="font-style: italic;"><br></span><br>	现在您可以看到错误是我在第10行的语法。然后我会使用ed来检查代码，特别是第9行<br>到第11行。事实证明，我忘记在房间名称周围加引号，<br>所以解析器尝试将其用作变量，当然，它无法做到。<br><br>	如果相关文件在/secure中，您会输入<span
+ style="font-weight: bold;">elog secure</span>，或者如果<br>它在/cmds中，<span
+ style="font-weight: bold;">elog cmds</span>，依此类推。<br><span
  style="font-weight: bold;"><br>	</span></big><br><big><big
  style="font-weight: bold; text-decoration: underline;"><big><a name="2"></a></big></big></big><big><big
  style="font-weight: bold; text-decoration: underline;"><big>dbxwhere</big></big></big><big><big
- style="font-weight: bold; text-decoration: underline;"><big> &amp; dbxframe</big></big><span
+ style="font-weight: bold; text-decoration: underline;"><big> 和 dbxframe</big></big><span
  style="font-weight: bold;"><br></span></big><big><span
  style="font-weight: bold;"></span></big><big><span
- style="font-weight: bold;"><br>	</span>Two<span
- style="font-weight: bold;"> </span>helpful debugging commands are dbxframe and dbxwhere. Let's<br>take a look at my broken sample_room.c file. We'll start with dbxwhere,<br>which lists for us the chain of events that led to the error. The<br>individual steps are called frames.<br><br>&gt; <span
- style="font-weight: bold;">dbxwhere</span><br>*Error in loading object '/realms/cratylus/area/room/sample_room'<br>Object: /secure/cmds/creators/update at line 148<br><br>#0: '&lt;function&gt;' at /secure/save/creators/c/cratylus (&lt;function&gt;) at /:0<br>#1: 'cmdAll' at /secure/save/creators/c/cratylus (/lib/command.c) at line 84<br>#2: 'cmd' at /secure/cmds/creators/update at line 109<br>#3: 'eventUpdate' at /secure/cmds/creators/update at line 148<br>#4: 'CATCH' at /secure/cmds/creators/update at line 148<br></big></pre>
+ style="font-weight: bold;"><br>	</span>两个<span
+ style="font-weight: bold;"> </span>有用的调试命令是dbxframe和dbxwhere。让我们<br>看看我损坏的sample_room.c文件。我们将从dbxwhere开始，<br>它为我们列出导致错误的事件链。各个步骤称为帧。<br><br>&gt; <span
+ style="font-weight: bold;">dbxwhere</span><br>*加载对象'/realms/cratylus/area/room/sample_room'时出错<br>对象：/secure/cmds/creators/update 在第148行<br><br>#0: '&lt;function&gt;' 位于 /secure/save/creators/c/cratylus (&lt;function&gt;) 在 /:0<br>#1: 'cmdAll' 位于 /secure/save/creators/c/cratylus (/lib/command.c) 在第84行<br>#2: 'cmd' 位于 /secure/cmds/creators/update 在第109行<br>#3: 'eventUpdate' 位于 /secure/cmds/creators/update 在第148行<br>#4: 'CATCH' 位于 /secure/cmds/creators/update 在第148行<br></big></pre>
 <br style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">The output is
-similar to the update error we saw above, but in
-enumerating the steps, </span><span
+<span style="font-family: courier new,courier,monospace;">输出与我们上面看到的更新错误类似，但在列举步骤时，</span><span
  style="font-weight: bold; font-family: courier new,courier,monospace;">dbxwhere</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">lets us use </span><span
+<span style="font-family: courier new,courier,monospace;">让我们使用</span><span
  style="font-weight: bold; font-family: courier new,courier,monospace;">dbxframe</span><span
- style="font-family: courier new,courier,monospace;"> to get
-tighter detail on a given error frame:</span><br
+ style="font-family: courier new,courier,monospace;">来获取给定错误帧的更详细信息：</span><br
  style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
 <span style="font-family: courier new,courier,monospace;">&gt; </span><span
@@ -134,30 +126,21 @@ return 0;</span><br style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
 <span style="font-family: courier new,courier,monospace;">&nbsp;&nbsp;&nbsp;
-We're now looking at the error context for error
-frame 4. The output of the command shows</span><br
+我们现在正在查看错误帧4的错误上下文。命令的输出显示</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">us part of
-the file that was performing the evaluation when the error
-occurred, and even</span><br
+<span style="font-family: courier new,courier,monospace;">了发生错误时正在执行评估的文件的一部分，甚至</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">points out
-the offending line using a text arrow: =&gt;</span><br
+<span style="font-family: courier new,courier,monospace;">使用文本箭头指出了有问题的行：=&gt;</span><br
  style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
 <span style="font-family: courier new,courier,monospace;">&nbsp;&nbsp;&nbsp;
-In this particular case, the information is not that
-helpful. We are being told that</span><br
+在这个特定情况下，信息不是那么有帮助。我们被告知</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">the error
-occurred while we were using the update command, and it
-failed at the line</span><br
+<span style="font-family: courier new,courier,monospace;">错误发生在我们使用update命令时，它在update执行其操作的行失败了。</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">where update
-does its thing. Duh, we knew that. The </span><span
+<span style="font-family: courier new,courier,monospace;">呃，我们知道了。<span
  style="font-weight: bold; font-family: courier new,courier,monospace;">elog</span><span
- style="font-family: courier new,courier,monospace;"> command was much
-more helpful.</span><br
+ style="font-family: courier new,courier,monospace;">命令更有帮助。</span></span><br
  style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
 <span style="font-family: courier new,courier,monospace;">&nbsp;&nbsp;&nbsp;
@@ -192,7 +175,7 @@ the source of the problem.<br>
  style="font-weight: bold; text-decoration: underline;"><big><a name="3"></a></big></big></big><span
  style="font-family: courier new,courier,monospace;"><big><big><big><span
  style="font-weight: bold; text-decoration: underline;">tell_player(),
-debug()</span></big></big></big><br>
+debug()（调试）</span></big></big></big><br>
 <br>
 &nbsp;&nbsp;&nbsp; Sometimes it's hard to fix code if you don't know
 what it's doing. In<br>
@@ -212,36 +195,32 @@ is: "+identify(args)+"%^RESET%^");</span></span><br
  style="color: rgb(0, 0, 153); font-family: courier new,courier,monospace;">
 <span style="font-family: courier new,courier,monospace;"><span
  style="color: rgb(0, 0, 153);"></span><br>
-&nbsp;&nbsp;&nbsp; You could also use:<br>
+&nbsp;&nbsp;&nbsp; 您也可以使用：<br>
 <br>
 <span style="color: rgb(0, 0, 153);">debug("args is: ", args);<br>
 <br>
-<span style="color: rgb(0, 0, 0);">or:</span><br>
+<span style="color: rgb(0, 0, 0);">或者：</span><br>
 <br>
 </span><span style="color: rgb(0, 0, 153);">debug("args is: ", args,
 "blue");</span></span><br
  style="font-family: courier new,courier,monospace;">
 <span style="font-family: courier new,courier,monospace;"><span
  style="color: rgb(0, 0, 153);"></span><br>
-&nbsp;&nbsp;&nbsp; ...which has the advantage of being shorter to type
-and you'll get<br>
-the message more promptly. To be able to receive debug messages,<br>
-you need to enable your debugging mode by typing:<br>
+&nbsp;&nbsp;&nbsp; ...这样做的好处是输入更短，您会更及时地收到消息。要能够接收调试消息，<br>
+您需要通过输入以下内容来启用调试模式：<br>
 <br style="font-weight: bold;">
 <span style="font-weight: bold;">debug on</span><br>
 <br>
-&nbsp;&nbsp;&nbsp; debug() is available in 2.0r20 and above.<br>
+&nbsp;&nbsp;&nbsp; debug()在2.0r20及更高版本中可用。<br>
 </span><br style="font-family: courier new,courier,monospace;">
 <pre
  style="font-weight: bold; text-decoration: underline; font-family: courier new,courier,monospace;"><big><big
- style="font-weight: bold; text-decoration: underline;"><big><a name="4"></a></big></big></big><big><big><big>tail</big></big></big></pre>
+ style="font-weight: bold; text-decoration: underline;"><big><a name="4"></a></big></big></big><big><big><big>tail（尾部查看）</big></big></big></pre>
 <br style="font-family: courier new,courier,monospace;">
 <span style="font-family: courier new,courier,monospace;">&nbsp;&nbsp;&nbsp;
-This is a version of the unix tail command. It
-displays the last few lines of a file. </span><br
+这是unix tail命令的一个版本。它显示文件的最后几行。</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">This command
-is important for examining crucial log files:</span><br
+<span style="font-family: courier new,courier,monospace;">此命令对于检查关键日志文件非常重要：</span><br
  style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
 <span
@@ -279,41 +258,26 @@ typed:</span><br style="font-family: courier new,courier,monospace;">
 sample_room</span><br
  style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">A file with a
-unique identifying number was created in my bak/
-directory. If I</span><br
+<span style="font-family: courier new,courier,monospace;">一个带有唯一标识号的文件被创建在我的bak/目录中。如果我</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">were to type
-it again, then sample_room.c would get copied again to
-bak/, with</span><br style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">a new unique
-number added to the name.</span><br
+<span style="font-family: courier new,courier,monospace;">再次输入它，那么sample_room.c将再次被复制到bak/，并带有</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">添加到名称的新唯一编号。</span><br
  style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
 <span style="font-family: courier new,courier,monospace;">&nbsp;&nbsp;&nbsp;
-The number is basically the number of seconds
-elapsed since January 1, 1970.</span><br
+这个数字基本上是自1970年1月1日以来经过的秒数。</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">Adding this
-number, we can keep track of which backed up version of a
-file</span><br style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">is most
-recent by looking at the name.</span><br
+<span style="font-family: courier new,courier,monospace;">添加这个数字，我们可以通过查看名称来跟踪文件的哪个备份版本</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">是最新的。</span><br
  style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
 <span style="font-family: courier new,courier,monospace;">&nbsp;&nbsp;&nbsp;
-Suppose I edited a file called sample_npc.c. I use
-bk to back it up, make some changes,</span><br
+假设我编辑了一个名为sample_npc.c的文件。我使用bk备份它，进行一些更改，</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">then use bk
-again, make some more changes, but now it won't update. I
-don't</span><br style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">feel like
-debugging, I just need this file working again, so I want to
-restore from</span><br
+<span style="font-family: courier new,courier,monospace;">然后再次使用bk，进行更多更改，但现在它无法更新。我不想</span><br style="font-family: courier new,courier,monospace;">
+<span style="font-family: courier new,courier,monospace;">调试，我只需要这个文件再次工作，所以我想从备份恢复。</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">backup. The
-sequence of commands would look something like this:</span><br
+<span style="font-family: courier new,courier,monospace;">命令序列看起来像这样：</span><br
  style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
 <span
@@ -341,23 +305,13 @@ occurs here&gt;</span><br
 sample_npc</span><br style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
 <span style="font-family: courier new,courier,monospace;">&nbsp;&nbsp;&nbsp;
-The reason identifying numbers are used is that you
-can also choose to</span><br
+使用标识号的原因是您还可以选择</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">restore the
-second-to-last backup version of a file, and other previous</span><br
+<span style="font-family: courier new,courier,monospace;">恢复文件的倒数第二个备份版本，以及其他以前的版本。</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">versions.</span><br
+<span style="font-family: courier new,courier,monospace;">最后一个备份版本实际上是版本0，所以不需要</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">&nbsp;&nbsp;&nbsp;
-The very last backup version is effectively version
-0, so it's not</span><br
- style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">necessary to
-specify a number. If I wanted to restore the version I
-backed</span><br style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">up before
-that one, I would type something like this:</span><br
+<span style="font-family: courier new,courier,monospace;">指定数字。如果我想恢复在那之前备份的版本，我会输入类似这样的内容：</span><br
  style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
 <span
@@ -373,29 +327,22 @@ specify 2 instead of 1, </span><br
  style="font-family: courier new,courier,monospace;">
 <br style="font-family: courier new,courier,monospace;">
 <span style="font-family: courier new,courier,monospace;">&nbsp;&nbsp;&nbsp;
-Please note that this is an intentionally simple
-system. There are</span><br
+请注意，这是一个有意设计的简单系统。没有</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">no menus, no
-version branches, or diff tracking. The reason for this is</span><br
+<span style="font-family: courier new,courier,monospace;">菜单，没有版本分支，也没有差异跟踪。这样做的原因是</span><br
  style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">that it is
-not a </span><span
- style="font-style: italic; font-family: courier new,courier,monospace;">versioning</span><span
+<span style="font-family: courier new,courier,monospace;">它不是一个</span><span
+ style="font-style: italic; font-family: courier new,courier,monospace;">版本控制</span><span
  style="font-family: courier new,courier,monospace;">
-system. It is a </span><span
- style="font-style: italic; font-family: courier new,courier,monospace;">backup</span><span
+系统。它是一个</span><span
+ style="font-style: italic; font-family: courier new,courier,monospace;">备份</span><span
  style="font-family: courier new,courier,monospace;">
-system. It is a convenient</span><br
- style="font-family: courier new,courier,monospace;">
-<span style="font-family: courier new,courier,monospace;">tool to back
-out of screwups, not a development tool to test file
-versions.</span><br style="font-family: courier new,courier,monospace;">
+系统。它是一个方便的工具，用于从错误中恢复，而不是用于测试文件版本的开发工具。</span><br style="font-family: courier new,courier,monospace;">
 <big style="font-family: courier new,courier,monospace;"><small
  style="font-weight: bold;"><br>
 <br>
 </small></big><a style="font-family: courier new,courier,monospace;"
- href="index.html">Dead Souls Homepage</a><br
+ href="index.html">Dead Souls 主页</a><br
  style="font-family: courier new,courier,monospace;">
 <big style="font-family: courier new,courier,monospace;"><small
  style="font-weight: bold;"><br>

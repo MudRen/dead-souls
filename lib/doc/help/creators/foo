@@ -1,21 +1,54 @@
-foo /foo/ 1. /interj./ Term of disgust. 2. Used very generally as a sample name for absolutely anything, esp. programs and files (esp. scratch files). 3. First on the standard list of metasyntactic variables used in syntax examples. See also bar, baz, qux, quux, corge, grault, garply, waldo, fred, plugh, xyzzy, thud.
+foo /foo/ 1. /感叹词/ 厌恶的表达。2. 非常普遍地用作任何事物的
+示例名称，特别是程序和文件（特别是临时文件）。3. 语法示例中
+使用的元语法变量标准列表中的第一个。另见 bar, baz, qux, quux,
+corge, grault, garply, waldo, fred, plugh, xyzzy, thud。
 
-The etymology of hackish `foo' is obscure. When used in connection with `bar' it is generally traced to the WWII-era Army slang acronym FUBAR (`Fucked Up Beyond All Repair'), later bowdlerized to foobar. (See also FUBAR.)
+黑客用语 'foo' 的词源是模糊的。当与 'bar' 一起使用时，
+通常追溯到二战时期的军队俚语缩写 FUBAR（'Fucked Up Beyond
+All Repair'），后来被委婉化为 foobar。（另见 FUBAR。）
 
-However, the use of the word `foo' itself has more complicated antecedents, including a long history in comic strips and cartoons. The old "Smokey Stover" comic strips by Bill Holman often included the word `FOO', in particular on license plates of cars; allegedly, `FOO' and `BAR' also occurred in Walt Kelly's "Pogo" strips. In the 1938 cartoon "The Daffy Doc", a very early version of Daffy Duck holds up a sign saying "SILENCE IS FOO!"; oddly, this seems to refer to some approving or positive affirmative use of foo. It has been suggested that this might be related to the Chinese word `fu' (sometimes transliterated `foo'), which can mean "happiness" when spoken with the proper tone (the lion-dog guardians flanking the steps of many Chinese restaurants are properly called "fu dogs").
+然而，'foo' 这个词本身的使用有更复杂的前身，包括在连环画
+和动画片中的悠久历史。Bill Holman 的旧 "Smokey Stover" 连环画
+经常包含 'FOO' 这个词，特别是在汽车的车牌上；据称 Walt Kelly
+的 "Pogo" 连环画中也出现过 'FOO' 和 'BAR'。在 1938 年的动画片
+"The Daffy Doc" 中，一个非常早期版本的达菲鸭举着一个写着
+"SILENCE IS FOO!" 的牌子；奇怪的是，这似乎指的是 foo 的某种
+肯定或积极的用法。有人认为这可能与中文词 'fu'（有时音译为
+'foo'）有关，在正确的声调下它可以表示"幸福"（许多中国餐馆
+台阶两侧的狮子狗守护者正式称为"福狗"）。
 
-Paul Dickson's excellent book "Words" (Dell, 1982, ISBN 0-440-52260-7) traces "Foo" to an unspecified British naval magazine in 1946, quoting as follows: "Mr. Foo is a mysterious Second World War product, gifted with bitter omniscience and sarcasm."
+Paul Dickson 的优秀著作 "Words"（Dell, 1982, ISBN 0-440-52260-7）
+将 "Foo" 追溯到 1946 年一本未指明的英国海军杂志，引用如下：
+"Foo 先生是二战的神秘产物，拥有苦涩的无所不知和讽刺。"
 
-Other sources confirm that `FOO' was a semi-legendary subject of WWII British-army graffiti more-or-less equivalent to the American Kilroy. Where British troops went, the graffito "FOO was here" or something similar showed up. Several slang dictionaries aver that FOO probably came from Forward Observation Officer. In this connection, the later American military slang `foo fighters' is interesting; at least as far back as the 1950s, radar operators used it for the kind of mysterious or spurious trace that would later be called a UFO (the older term resurfaced in popular American usage in 1995 via the name of one of the better grunge-rock bands).
+其他消息来源证实 'FOO' 是二战英军涂鸦的半传奇主题，
+大致相当于美国的 Kilroy。英军所到之处，都会出现
+"FOO was here" 或类似的涂鸦。几本俚语词典断言 FOO
+可能来自 Forward Observation Officer（前沿观察官）。
+在这方面，后来的美国军事俚语 'foo fighters' 很有趣；
+至少可以追溯到 1950 年代，雷达操作员用它来指代后来
+被称为 UFO 的那种神秘或虚假的轨迹（这个较旧的术语
+在 1995 年通过一个较好的垃圾摇滚乐队的名字重新出现在
+美国流行用语中）。
 
-Earlier versions of this entry suggested the possibility that hacker usage actually sprang from "FOO, Lampoons and Parody", the title of a comic book first issued in September 1958, a joint project of Charles and Robert Crumb. Though Robert Crumb (then in his mid-teens) later became one of the most important and influential artists in underground comics, this venture was hardly a success; indeed, the brothers later burned most of the existing copies in disgust. The title FOO was featured in large letters on the front cover. However, very few copies of this comic actually circulated, and students of Crumb's `oeuvre' have established that this title was a reference to the earlier Smokey Stover comics.
+本条目的早期版本暗示黑客用法实际上可能源自 1958 年 9 月
+首次发行的漫画书 "FOO, Lampoons and Parody"，这是 Charles
+和 Robert Crumb 的合作项目。虽然 Robert Crumb（当时十几岁）
+后来成为地下漫画中最重要和最有影响力的艺术家之一，但这次
+尝试几乎不算成功；事实上，兄弟俩后来出于厌恶烧毁了大部分
+现存副本。标题 FOO 以大字母出现在封面上。然而，这本漫画
+实际上流通的副本很少，Crumb 作品的研究者已经确定这个标题
+是对早期 Smokey Stover 漫画的引用。
 
-An old-time member reports that in the 1959 "Dictionary of the TMRC Language", compiled at TMRC, there was an entry that went something like this:
+一位老成员报告说，在 1959 年 TMRC 编写的 "Dictionary of the
+TMRC Language" 中，有一个条目大致如下：
 
-     FOO: The first syllable of the sacred chant phrase "FOO MANE
-     PADME HUM."  Our first obligation is to keep the foo counters
-     turning.
+     FOO: 神圣咒语短语 "FOO MANE PADME HUM" 的第一个音节。
+     我们的首要义务是让 foo 计数器保持转动。
 
-For more about the legendary foo counters, see TMRC. Almost the entire staff of what later became the MIT AI Lab was involved with TMRC, and probably picked the word up there.
+关于传奇的 foo 计数器的更多信息，参见 TMRC。后来成为
+MIT AI Lab 的几乎整个员工都参与了 TMRC，可能就是在那里
+学到了这个词。
 
-Very probably, hackish `foo' had no single origin and derives through all these channels from Yiddish `feh' and/or English `fooey'. 
+很可能，黑客用语 'foo' 没有单一的来源，而是通过所有这些
+渠道源自意第绪语的 'feh' 和/或英语的 'fooey'。

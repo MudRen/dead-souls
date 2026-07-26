@@ -14,11 +14,10 @@ protected void create() {
     SetMagicCost(50, 50);
     SetStaminaCost(10, 10);
     SetDifficulty(0);
-    SetHelp("Syntax: <cast whip>\n\n"
-            "This spell conjures a whip made of magical energy and "
-            "moves it to a wielding limb. If unwielded, it will vanish. "
-            "The power of the whip as a weapon depends on your spellcasting "
-            "abilities.");
+    SetHelp("语法: <cast whip>\n\n"
+            "这个法术召唤一条由魔法能量构成的鞭子，"
+            "并将其移动到可用的肢体上。如果解除武器，它将消失。"
+            "鞭子作为武器的威力取决于你的施法能力。");
 }
 
 varargs int eventCast(object who, int level, string limb, object* targs){
@@ -27,15 +26,13 @@ varargs int eventCast(object who, int level, string limb, object* targs){
     object *whips = filter(all_inventory(this_player()),
             (: base_name($1) == "/obj/whip" :) );
     if(sizeof(whips)){
-        write("You already have an energy whip.");
+        write("你已经有一条能量鞭了。");
         return 1;
     }
     whip = new("/obj/whip");
-    write("You make a powerful motion with your hand and conjure "+
-            "an energy whip!");
-    say(this_player()->GetName()+" makes a powerful motion with "+
-            possessive(this_player())+" hand and conjures "+
-            "an energy whip!");
+    write("你用力挥动手臂，召唤出一条能量鞭！");
+    say(this_player()->GetName()+"用力挥动"+
+            possessive(this_player())+"手臂，召唤出一条能量鞭！");
     whip->eventMove(this_player());
     limbs = filter(limbs, (: !(this_player()->GetWielded($1)) :) );
     if(sizeof(limbs)){

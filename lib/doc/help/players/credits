@@ -1,37 +1,35 @@
-I'd like to thank the following people for their help, witting or
-otherwise, in making the new release of Dead Souls possible:
+我要感谢以下人员在新版 Dead Souls 的开发中给予的帮助：
 
-Sine qua non: Descartes, the legion of MudOS developers, and
-              all those coders who toiled at Nightmare, and Lars Pensj�.
-              Marius for his kind permission to bundle MudOS.
+不可或缺的人：Descartes、MudOS 开发团队、所有在 Nightmare
+              辛勤工作的程序员，以及 Lars Pensjo。
+              感谢 Marius 慷慨允许捆绑 MudOS。
 
-Direct conributors: Haderach and his clever code and inspiration, Duuk
-              and his willingness to let me poke through his lib and
-	      filch code. Great thanks to Marajin for his direct and
-	      substantial contribution to the Windows port.
-                  Much gratitude to Saquivor, for whom a town street is
-              now named, for getting the Windows socket code working.
-                  Thanks also to the following for code donation,
-              support, and/or contribution: Tim@TimMUD, Manchi, 
-              Brodbane, Ashon, Shadyman, Jonez, Cecil, Daelas.
+直接贡献者：Haderach 及其巧妙的代码和灵感，Duuk 及其
+              允许我查阅他的代码库并借鉴代码的慷慨。
+              非常感谢 Marajin 对 Windows 移植的直接和
+              重大贡献。
+              非常感谢 Saquivor（现在有一条城镇街道以他的
+              名字命名），他让 Windows socket 代码得以运行。
+              也感谢以下人员的代码捐赠、支持和/或贡献：
+              Tim@TimMUD、Manchi、Brodbane、Ashon、Shadyman、
+              Jonez、Cecil、Daelas。
 
-Appreciation of: Jayren, Kaylus, Arianrhod, Nosmo, Pyro, Abby, Balmung, 
-              Aten, Metiscus, Garfield, Javelin, Alensin, Daelas, Root,
-              Kristus, Zeus, Dastuun, Detah, and Nulvect for their
-              thoughtful comments and suggestions.
-                 Thanks to Frostmud.com for letting me test on their box.
+感谢以下人员的深思熟虑的评论和建议：
+Jayren、Kaylus、Arianrhod、Nosmo、Pyro、Abby、Balmung、
+Aten、Metiscus、Garfield、Javelin、Alensin、Daelas、Root、
+Kristus、Zeus、Dastuun、Detah 和 Nulvect。
+感谢 Frostmud.com 让我在他们的服务器上测试。
 
-Much gratitude to playtesters: Karri, Aten, Tacitus, Kaatil, Atomic.
+非常感谢测试人员：Karri、Aten、Tacitus、Kaatil、Atomic。
 
-Also: Xyzzy He Is Cool
+还有：Xyzzy He Is Cool
 
-The following people/organizations provided me with free products/services
-they normally charge for that allowed me to complete this project:
+以下人员/组织为我提供了他们通常收费的免费产品/服务，
+使我能够完成这个项目：
 - Wolfpaw http://wolfpaw.net/
 - Sun Microsystems http://www.sun.com
-Note: This does not indicate an official corporate sponsorship of
-any kind. It is simply charity that is well appreciated.
+注意：这并不表示任何形式的官方企业赞助。
+这仅仅是值得感激的善举。
 
 Cratylus @ Dead Souls
-July 2006
-
+2006年7月

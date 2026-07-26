@@ -38,8 +38,8 @@ protected void eventDestroyParty(string party){
         }
     }
     if(member_array(party, CHAT_D->GetLocalChannels()) != -1){
-        CHAT_D->eventSendChannel("System", party, "The party " + party +
-                " has been disbanded.");
+        CHAT_D->eventSendChannel("System", party, "队伍 " + party +
+                " 已经解散。");
         CHAT_D->RemoveLocalChannel(party);
     }
     map_delete(Parties, party);
@@ -75,11 +75,11 @@ mixed CanChangeLeader(object who, object targ) {
     class party p;
     string pname;
 
-    if( !(p = Parties[pname]) ) return "No such party exists.";
+    if( !(p = Parties[pname]) ) return "不存在此队伍。";
     if( p->Leader != who )
-        return "You must be the party leader in order to change leaders.";
+        return "您必须是队长才能更换队长。";
     if( member_array(targ, p->Members) == -1 )
-        return targ->GetName() + " is not in the party.";
+        return targ->GetName() + " 不在队伍中。";
     SaveObject(SaveFile);
     return 1;
 }
@@ -87,10 +87,10 @@ mixed CanChangeLeader(object who, object targ) {
 mixed CanCreateParty(object who, string name) {
     string *tmpnames = ( CHAT_D->GetChannels() || ({}) );
     tmpnames += ({ "party", "lemon" });
-    if( Parties[name] ) return "A party by that name already exists.";
+    if( Parties[name] ) return "已存在同名的队伍。";
     if( member_array(name, tmpnames) != -1 )
-        return "You cannot use the name " + name + " for your party.";
-    if( who->GetParty() ) return "You are already in a party!";
+        return "您不能使用 " + name + " 作为队伍名称。";
+    if( who->GetParty() ) return "您已经在队伍中了！";
     eventSave();
     return 1;
 }
@@ -99,23 +99,23 @@ mixed CanInviteMember(object who, object member) {
     string pname;
 
     pname = who->GetParty();
-    if( !Parties[pname] ) return "There is no such party!";
+    if( !Parties[pname] ) return "不存在此队伍！";
     if( ((class party)Parties[pname])->Leader != who )
-        return "Only the party leader may add members!";
+        return "只有队长才能邀请成员！";
     if( member->GetParty() )
-        return member->GetName() + " is already in a party.";
+        return member->GetName() + " 已经在队伍中了。";
     if( environment(member) != environment(who) )
-        return member->GetName() + " must be somewhere near you.";
+        return member->GetName() + " 必须在您附近。";
     return 1;
 }
 
 mixed CanJoinParty(object who, string pname) {
-    if( !Parties[pname] ) return "There is no such party.";
+    if( !Parties[pname] ) return "不存在此队伍。";
     if( member_array(who, ((class party)Parties[pname])->Invited) == -1 )
-        return "You have not been invited to join that party.";
-    if( who->GetParty() ) return "You are already in a party.";
+        return "您没有被邀请加入该队伍。";
+    if( who->GetParty() ) return "您已经在队伍中了。";
     if( environment(who) != environment(((class party)Parties[pname])->Leader) )
-        return "You are nowhere the leader of the party.";
+        return "您不在队长附近。";
     return 1;
 }
 
@@ -124,9 +124,9 @@ mixed CanLeaveParty(object who) {
     string pname;
 
     pname = who->GetParty();
-    if( !pname || !(p = Parties[pname]) ) return "There is no such party.";
+    if( !pname || !(p = Parties[pname]) ) return "不存在此队伍。";
     if( member_array(who, p->Members) == -1 )
-        return "You are not in that party.";
+        return "您不在该队伍中。";
     return 1;
 }
 
@@ -135,8 +135,8 @@ mixed CanRemoveMember(object who, object targ) {
     string pname;
 
     pname = who->GetParty();
-    if( !(p = Parties[pname]) ) return "There is no such party.";
-    if( p->Leader != who ) return "Only the party leader may remove people.";
+    if( !(p = Parties[pname]) ) return "不存在此队伍。";
+    if( p->Leader != who ) return "只有队长才能移除成员。";
     return 1;
 }
 
@@ -145,9 +145,9 @@ mixed CanRemoveParty(object who) {
     string pname;
 
     pname = who->GetParty();
-    if( !(p = Parties[pname]) ) return "There is no such party!";
+    if( !(p = Parties[pname]) ) return "不存在此队伍！";
     if( p->Leader != who )
-        return "Only the party leader may disband the party.";
+        return "只有队长才能解散队伍。";
     return 1;
 }
 
@@ -158,8 +158,7 @@ mixed eventChangeLeader(object who, object targ) {
     pname = who->GetParty();
     p = Parties[pname];
     p->Leader = targ;
-    CHAT_D->eventSendChannel("System", pname, targ->GetName() + " is now "
-            "the leader.");
+    CHAT_D->eventSendChannel("System", pname, targ->GetName() + " 现在是队长了。");
     SaveObject(SaveFile);
     return 1;
 }
@@ -168,13 +167,13 @@ mixed eventCreateParty(object who, string name) {
     class party this_party;
 
     if( who->SetParty(name) != name )
-        return "There was some bizarre problem sticking you in a party.";
+        return "将您加入队伍时出现异常问题。";
     this_party = new(class party);
     this_party->Leader = who;
     this_party->Members = ({ who });
     this_party->Invited = ({});
     Parties[name] = this_party;
-    who->eventPrint("Party " + name + " successfully created.", MSG_SYSTEM);
+    who->eventPrint("队伍 " + name + " 创建成功。", MSG_SYSTEM);
     SaveObject(SaveFile);
     return 1;
 }
@@ -187,11 +186,10 @@ mixed eventInviteMember(object who, object targ) {
     this_party = Parties[name];
     this_party->Invited += ({ targ });
     CHAT_D->eventSendChannel("System", name, targ->GetName() +
-            " has been invited to join the party.");
+            " 被邀请加入队伍。");
     call_out((: RemoveInvitiation :), 60, name, targ);
-    targ->eventPrint("You have been invited to join the party \"" + name +
-            "\".\nType \"party join " + name + "\" in 60 "
-            "seconds to join.", MSG_SYSTEM);
+    targ->eventPrint("您被邀请加入队伍 \"" + name +
+            "\"。\n请在60秒内输入 \"party join " + name + "\" 加入队伍。", MSG_SYSTEM);
     SaveObject(SaveFile);
     return 1;
 }
@@ -203,11 +201,11 @@ mixed eventJoinParty(object who, string name) {
     if( (tmp = CanJoinParty(who, name)) != 1 ) return tmp;
     this_party = Parties[name];
     if( who->SetParty(name) != name )
-        return "Bogus error in joining party.";
+        return "加入队伍时出现错误。";
     this_party->Invited -= ({ who });
     this_party->Members += ({ who });
     CHAT_D->eventSendChannel("System", name, who->GetName() +
-            " has joined the party.");
+            " 加入了队伍。");
     SaveObject(SaveFile);
     return 1;
 }
@@ -231,8 +229,7 @@ mixed eventRemoveMember(object who, object targ) {
             if( !ob ) return eventRemoveParty(who);
             else {
                 p->Leader = ob;
-                ob->eventPrint("You are now the leader of the party " + name +
-                        ".", MSG_SYSTEM);
+                ob->eventPrint("您现在是队伍 " + name + " 的队长了。", MSG_SYSTEM);
             }
         }
     }
@@ -240,10 +237,9 @@ mixed eventRemoveMember(object who, object targ) {
     if( Parties[name] ) {
         p->Members -= ({ targ });
         CHAT_D->eventSendChannel("System", name, targ->GetName() +
-                " is no longer in the party.");
+                " 已离开队伍。");
     }
-    targ->eventPrint("You are no longer a member of the party " + name +
-            ".", MSG_SYSTEM);
+    targ->eventPrint("您不再是队伍 " + name + " 的成员了。", MSG_SYSTEM);
     SaveObject(SaveFile);
     return 1;
 }

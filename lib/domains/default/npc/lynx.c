@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("lynx");
     SetId(({"npc","mob","quadruped","mobile"}));
     SetAdjectives(({"non-player", "endothermic","carnivorous"}));
-    SetShort("a lynx");
-    SetLong("An endothermic quadruped, carnivorous by nature, it's roughly as big as a medium-sized dog. It has huge ears it uses to hunt in the dark with.");
+    SetShort("一只猞猁");
+    SetLong("一种恒温四足动物，天生食肉，大约和中型狗一样大。它有巨大的耳朵，用来在黑暗中捕猎。");
     SetWanderSpeed(10);
     SetLevel(1);
     SetMelee(1);

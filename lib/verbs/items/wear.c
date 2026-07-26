@@ -15,16 +15,12 @@ protected void create() {
     verb::create();
     SetVerb("wear");
     SetRules("OBS", "OBJ on STR");
-    SetErrorMessage("Wear what?  When in doubt, specify a limb to "
-            "wear it on.");
-    SetHelp("Syntax: <wear ARMOR>\n"
-            "        <wear ARMOR on LIMB>\n\n"
-            "Allows you to take an article of clothing and wear it.  Some "
-            "bits of clothing may be worn in a variety of places, and thus "
-            "require you to specify where it is they should be worn.  For "
-            "example, a shield could be worn with either the right hand or "
-            "left hand.  So you would type, \"wear shield on right hand\".\n\n"
-            "See also: wield");
+    SetErrorMessage("穿戴什么？如有疑问，请指定要穿戴的肢体。");
+    SetHelp("用法：wear <护甲>\n"
+            "      wear <护甲> on <肢体>\n\n"
+            "允许你穿上一件衣服。有些衣服可以穿戴在不同的位置，因此需要你指定穿戴的位置。"
+            "例如，盾牌可以戴在右手或左手上。所以你可以输入 \"wear shield on right hand\"。\n\n"
+            "另见：wield");
 }
 
 mixed can_wear_obj() {

@@ -1,30 +1,28 @@
-Syntax: alias <short version> <long version>
-        alias <short version> <long version> $*
+语法: alias <短版本> <长版本>
+        alias <短版本> <长版本> $*
 
-This command lets you substitute a short command for a long one.
-For example, rather than type out "get all from corpse" you
-can create this alias:
+此命令允许你用一个短命令替代一个长命令。
+例如，与其输入 "get all from corpse"，你可以
+创建这个别名：
 
 %^GREEN%^alias gc get all from corpse%^RESET%^
 
-And all you need do is type "gc" to get the same effect.
-You can also use a wildcard, like this:
+然后你只需输入 "gc" 就能达到同样的效果。
+你还可以使用通配符，像这样：
 
 %^GREEN%^alias gc get all from $* corpse%^RESET%^
 
-So that typing: %^GREEN%^gc first%^RESET%^
-Expands out to: %^GREEN%^get all from first corpse%^RESET%^
+这样输入: %^GREEN%^gc first%^RESET%^
+会扩展为: %^GREEN%^get all from first corpse%^RESET%^
 
-The wildcard is also helpful for channel aliases:
+通配符对频道别名也很有用：
 
 %^GREEN%^alias ige intergossipemote $*%^RESET%^
 
-To see your aliases, type: %^GREEN%^alias%^RESET%^
+要查看你的别名，输入: %^GREEN%^alias%^RESET%^
 
-To see a specific alias, like gc: %^GREEN%^alias gc%^RESET%^
+要查看特定别名，如 gc: %^GREEN%^alias gc%^RESET%^
 
-To remove an alias, type unalias plus the alias, like so:
+要删除别名，输入 unalias 加上别名，像这样：
 
 %^GREEN%^unalias gc%^RESET%^
-
-

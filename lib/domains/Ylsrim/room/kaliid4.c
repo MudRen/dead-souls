@@ -13,8 +13,10 @@ protected void create() {
     SetTown("Ylsrim");
     SetClimate("arid");
     SetAmbientLight(30);
-    SetShort("Kaliid Road north of the bazaar");
-    SetLong("Kaliid Road stretches as far as you can see east and west across Ylsrim. South, Kaliid opens up into the central bazaar where vendors sell goods day and night.  on the opposite side of the road is the entrance to the local adventurers' hall.");
+    SetShort("卡利德路集市北侧");
+    SetLong("卡利德路向东西方向延伸，横跨伊尔斯利姆，一望无际。"
+            "南边，卡利德路通向中心集市，商贩们日夜在那里出售商品。"
+            "路对面是当地冒险者大厅的入口。");
     SetSkyDomain("town");
     SetExits( ([ 
                 "east" : "/domains/Ylsrim/room/kaliid3",
@@ -22,16 +24,13 @@ protected void create() {
                 "west" : "/domains/Ylsrim/room/kaliid5",
                 "north" : "/domains/Ylsrim/room/adv_hall",
                 ]) );
-    AddItem("hall", "A small building which serves as the focal point for "
-            "the adventuring activities for which Ylsrim's support "
-            "is widely known.", ({ "adventurer", "adventurers" }));
-    AddItem("bazaar",  "The central bazaar is the main marketplace of "
-            "Ylsrim.  Though many of the shops close at night, vendors "
-            "wander the bazaar at all times pawning their goods.",
+    AddItem("hall", "一座小型建筑，是伊尔斯利姆著名的冒险活动的核心场所。", ({ "adventurer", "adventurers" }));
+    AddItem("bazaar",  "中心集市是伊尔斯利姆的主要市场。虽然许多店铺夜间关门，"
+            "但商贩们全天都在集市上游荡兜售商品。",
             ({ "central" }));
-    AddItem("vendor", "There are many vendors wandering about the bazaar.");
-    AddItem("town", "A new town, north of here.");
-    AddItem("road", "The main street for Ylsrim.", ({ "kaliid" }));
+    AddItem("vendor", "集市上有许多商贩在四处游荡。");
+    AddItem("town", "一个新城镇，在这里北边。");
+    AddItem("road", "伊尔斯利姆的主要街道。", ({ "kaliid" }));
 }
 
 void init(){

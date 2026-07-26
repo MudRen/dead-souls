@@ -1,50 +1,44 @@
-[ Addemote General Help ]
- 
-Note: All examples are from the 'emoter' perspective.
-  Basic emote:  $N smile $A.
-    - $N is the name of the emoter.  $N *must* be used in both
-      (emote) and (environment) fields to preserve functionality.
-      This means do not enter 'You smile $A.'.
- 
-    - $A field means the user can specify any adverb from the soul's
-      pool of adverbs.  (This also applies to any specific adverbs
-      (assigned to the emote). If the user does not specify an adverb,
-      and no default adverb is set, this field is ignored.
- 
-  Targeted Emote: $N smile $A at $T
-    - $T field displays the name of the target (player).  If no
-      target is found, A 'no target' emote will be used in place
-      of targeted.
- 
-  Locations: $N pokes $A $T $X
-    - $X acts the same as $A, only it searches through a list
-      of locations assigned to the emote in question.  If no
-      location is specified by user, and a default setting exists,
-      it will be used automatically.  Otherwise, $X is simply ignored.
-      Note that all locations are prepended with an assigned
-      preposition (if used).  (example: locations set to 'nose, head,
-      ear', preposition set to 'on the'.
- 
-  Extra Field: $N scratch $*
-    - If the $* field is used, all lefteover arguments will be
-      put here.
- 
-[ List of valid fields ]
- 
-    $N  - Name of the 'emoter'
-    $T  - Name of target
-    $NP - emoter possessive (his)
-    $TP - target possessive
-    $NO - emoter objective (him)
-    $TO - target objective
-    $NR - emoter reflexive (himself)
-    $TR - target reflexive
-    $NA - possessive form (name's)
-    $TA - target possessive name
-    $A  - display adverb (ignored if
-          none is specified by user)
-    $X  - display defined location
-          (prepended with preposition if used)
-    $*  - display any extra arguments passed by user
- 
- 
+[ 添加表情通用帮助 ]
+
+注意：所有示例都是从"表情使用者"的角度来看的。
+  基本表情:  $N smile $A.
+    - $N 是表情使用者的名字。$N *必须*在 (emote) 和
+      (environment) 字段中都使用，以保持功能。
+      这意味着不要输入 'You smile $A.'。
+
+    - $A 字段意味着用户可以从表情的副词库中指定
+      任何副词。（这也适用于分配给该表情的任何
+      特定副词。）如果用户没有指定副词，且没有设置
+      默认副词，此字段将被忽略。
+
+  针对目标的表情: $N smile $A at $T
+    - $T 字段显示目标（玩家）的名字。如果没有找到
+      目标，将使用"无目标"表情替代针对目标的表情。
+
+  位置: $N pokes $A $T $X
+    - $X 与 $A 的作用相同，只是它搜索分配给该表情的
+      位置列表。如果用户没有指定位置，且存在默认设置，
+      它将自动使用。否则，$X 将被忽略。
+      注意所有位置前都添加了分配的介词（如果使用）。
+      （例如：位置设置为 'nose, head, ear'，介词设置为
+      'on the'。
+
+  额外字段: $N scratch $*
+    - 如果使用 $* 字段，所有剩余的参数将放在这里。
+
+[ 有效字段列表 ]
+
+    $N  - 表情使用者的名字
+    $T  - 目标的名字
+    $NP - 表情使用者的所有格 (his)
+    $TP - 目标的所有格
+    $NO - 表情使用者的宾格 (him)
+    $TO - 目标的宾格
+    $NR - 表情使用者的反身代词 (himself)
+    $TR - 目标的反身代词
+    $NA - 所有格形式 (name's)
+    $TA - 目标的所有格名字
+    $A  - 显示副词（如果用户未指定则忽略）
+    $X  - 显示定义的位置
+          （如果使用介词则添加介词前缀）
+    $*  - 显示用户传递的任何额外参数

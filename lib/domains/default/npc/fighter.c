@@ -5,10 +5,8 @@ protected void create(){
     npc::create();
     SetKeyName("fighter");
     SetId( ({"human","npc","warrior","fighter"}) );
-    SetShort("a fighter");
-    SetLong("This is a large human warrior. His pectoral muscles "+
-            "are clearly visible even through his armor. His face is covered in "+
-            "bold blue tattoos.");
+    SetShort("一名战士");
+    SetLong("这是一个魁梧的人类战士。即使隔着盔甲，他的胸肌也清晰可见。他的脸上布满了大胆的蓝色纹身。");
     SetClass("fighter");
     SetLevel(10);
     SetCustomXP(350);

@@ -10,15 +10,15 @@ void heart_beat(){
     object env = room_environment(GetShadowedObject());
     if(!env) return;
     count--;
-    this_object()->eventPrint("You hunger for brains.");
+    this_object()->eventPrint("你渴望大脑。");
     if(!(count % 10) && env){
-        tell_room(env,this_object()->GetName()+" shudders and groans.",
+        tell_room(env,this_object()->GetName()+"颤抖着发出呻吟。",
                 ({ this_object() }) );
         GetShadowedObject()->eventReceiveDamage("decay",OTHER,random(50),1);
     }
     if(count < 0){
         mixed *inv = all_inventory(GetShadowedObject());
-        tell_room(env,this_object()->GetName()+" falls apart!",
+        tell_room(env,this_object()->GetName()+"崩溃了！",
                 ({ this_object() }) );
         if(sizeof(inv)) inv->eventMove(env);
         foreach(mixed element in this_object()->GetLimbs()){

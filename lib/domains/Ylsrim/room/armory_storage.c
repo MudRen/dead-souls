@@ -13,8 +13,8 @@ protected void create() {
     SetTown("Ylsrim");
     SetProperties( ([ "login" : "/domains/Ylsrim/room/"+ "armory" ]) );
     SetClimate("indoors");
-    SetShort("armory storage");
-    SetLong("Armory storage.");
+    SetShort("防具店储藏室");
+    SetLong("防具店储藏室。");
     SetObviousExits("west");
     SetExits( ([ "west" : "/domains/Ylsrim/room/"+ "armory" ]) );
 }

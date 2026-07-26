@@ -16,18 +16,16 @@ protected void create() {
     SetRules("OBS OBJ", "WRD from OBJ", "WRD out of OBJ", "WRD WRD from OBJ", "WRD WRD out of OBJ",
             "OBS", "OBS out of OBJ", "OBS from OBJ");
     SetSynonyms("take");
-    SetErrorMessage("Get what?  Or perhaps get something from somewhere?");
-    SetHelp("Syntax: <get ITEM>\n"
-            "        <get ITEM from OBJECT>\n"
-            "        <get ITEM out of OBJECT>\n"
-            "        <get AMOUNT CURRENCY from pile>\n"
-            "        <get AMOUNT CURRENCY out of pile>\n\n"
-            "This allows you to get items in the same room as you, or "
-            "contained inside other items so that you are carrying them.  "
-            "In addition, you can specify partial amounts of currency to "
-            "pick up from a pile lying around.\n\n"
-            "Synonyms: take\n\n"
-            "See also: drop, give, put");
+    SetErrorMessage("拿什么？或者从哪里拿什么东西？");
+    SetHelp("用法：get <物品>\n"
+            "      get <物品> from <容器>\n"
+            "      get <物品> out of <容器>\n"
+            "      get <数量> <货币> from <钱堆>\n"
+            "      get <数量> <货币> out of <钱堆>\n\n"
+            "允许你拿取与你同房间的物品，或从其他容器中取出物品使其归你携带。"
+            "此外，你还可以从地上的钱堆中拾取部分数量的货币。\n\n"
+            "同义词：take\n\n"
+            "另见：drop, give, put");
 }
 
 mixed eventCheckLight(object who) {
@@ -35,12 +33,12 @@ mixed eventCheckLight(object who) {
 
     if( (light = who->GetEffectiveVision()) < 2 ) {
         if( 100 + (10*light) < random(100) )
-            return "You fumble around in the darkness.";
+            return "你在黑暗中摸索。";
         else return this_player()->CanManipulate();
     }
     else if( light > 5 ) {
         if( 100 - (10*light) < random(100) )
-            return "You fumble around in the blinding light.";
+            return "你在刺眼的光线中摸索。";
         else return this_player()->CanManipulate();
     }
     else return this_player()->CanManipulate();
@@ -58,7 +56,7 @@ varargs mixed can_get_obj_out_of_obj(mixed args...) {
         return ret;
     else {
         if(ob->GetClosed()){
-            return "The "+remove_article(ob->GetShort())+" is closed.";
+            return remove_article(ob->GetShort())+"是关着的。";
         }
     }
     return ret;
@@ -84,7 +82,7 @@ mixed can_get_wrd_wrd_out_of_obj(mixed args...) {
         else if(args[3]) ob = to_object(args[3]);
 
     if(ob && ob->GetClosed()){
-        return "The "+remove_article(ob->GetShort())+" is closed." ;
+        return remove_article(ob->GetShort())+"是关着的。" ;
     }
     return ret;
 }
@@ -99,7 +97,7 @@ mixed can_get_wrd_out_of_obj(mixed args...) {
     if(args[3]) ob = to_object(args[3]);
 
     if(ob && ob->GetClosed()){
-        return "The "+remove_article(ob->GetShort())+" is closed." ;
+        return remove_article(ob->GetShort())+"是关着的。" ;
     }
     return ret;
 }
@@ -113,11 +111,11 @@ mixed do_get_obj(object ob) {
 }
 
 mixed do_get_obj_out_of_obj(object ob, object storage) {
-    if(!ob) return "No object";
+    if(!ob) return "没有该物品";
     if(!(environment(ob) == storage)){
         ob = present(ob->GetKeyName(), storage);
         if(!ob){
-            write("That's not in there.");
+            write("那里面没有这个东西。");
             return "";
         }
     }
@@ -135,7 +133,7 @@ mixed do_get_obj_obj(object ob, object storage) {
 mixed do_get_obs(mixed *targs) {
     object *obs;
     if( !sizeof(targs) ) {
-        this_player()->eventPrint("There is no such thing to be taken.");
+        this_player()->eventPrint("没有这样的东西可以拿取。");
         return 1;
     }
     obs = filter(targs, (: objectp :));
@@ -158,7 +156,7 @@ mixed do_get_obs(mixed *targs) {
 mixed do_get_obs_out_of_obj(mixed *targs, object storage) {
     object *obs;
     if( !sizeof(targs) ) {
-        this_player()->eventPrint("There is no such thing to be taken.");
+        this_player()->eventPrint("没有这样的东西可以拿取。");
         return 1;
     }
     obs = filter(targs, (: objectp :));

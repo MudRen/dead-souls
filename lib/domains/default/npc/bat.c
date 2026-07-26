@@ -8,8 +8,8 @@ protected void create() {
     SetKeyName("bat");
     SetId(({"npc","mob","character","mobile"}));
     SetAdjectives(({"non-player", "non player"}));
-    SetShort("a little bat");
-    SetLong("An ordinary bat. It's no bigger than a mouse.");
+    SetShort("一只小蝙蝠");
+    SetLong("一只普通的蝙蝠。它不比老鼠大多少。");
     SetWimpy(80);
     SetPermitLoad(1);
     SetPosition(POSITION_FLYING);

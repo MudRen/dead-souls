@@ -1,45 +1,39 @@
-chapter 1 "Introduction"
+chapter 1 "简介"
 
-    If you are unfamiliar with LPC based muds in general or Dead Souls
-mudlib in particular, you will find this handbook valuable in 
-orienting you around what you can do and how you can do it.
+    如果你不熟悉基于 LPC 的游戏或 Dead Souls 游戏库，
+你会发现这本手册对于了解你能做什么以及如何做非常有价值。
 
-    Keep in mind that this handbook describes the features of a mud
-running an unmodifed version of the lib. The mud you are on may
-differ somewhat, though probably not extremely so.
+    请记住，这本手册描述的是运行未修改版本代码库的游戏的
+功能。你所在的游戏可能有所不同，但可能不会差异太大。
 
-    To advance a page in a chapter, just hit "return".
+    要翻到下一章，只需按回车键。
 
-   Let's start with just navigating this book. Once you are done
-reading this chapter, you can read the next chapter by typing:
+   让我们从浏览这本书开始。读完本章后，你可以通过
+输入以下命令来阅读下一章：
 
 %^GREEN%^read chapter 2 in handbook%^RESET%^
 
-    Make sure you wait until you are done reading this chapter,
-though. The reason you should wait is that you are now in "reading
-mode", which means that anything you type and send to the mud
-is actually a command to the editing system that is displaying this
-text.
+    请确保你等到读完本章后再这样做。原因是
+你现在处于"阅读模式"，这意味着你输入并发送给
+游戏的任何内容实际上是显示此文本的编辑系统的命令。
 
-    To leave reading mode (or more accurately, pager, or ed mode)
-you can hit "return" a bunch of times to complete the chapter, thus
-automatically exiting the pager. Another way is to enter the
-letter "q" (without the quotes) and then "return". That will also
-make you stop reading.
+    要退出阅读模式（或更准确地说是翻页器或编辑模式），
+你可以多次按回车键以完成本章，从而自动退出翻页器。
+另一种方法是输入字母 "q"（不带引号），然后按回车键。
+这也会让你停止阅读。
 
-    When you are not in reading mode, you can find out the chapter
-titles by typing:
+    当你不在阅读模式时，你可以通过输入以下命令
+查看章节目录：
 
 %^GREEN%^read index in handbook%^RESET%^
 
-   You really should read the whole thing, but in case you don't, the
-chapter titles will help as a reference to find the information you
-need. 
+   你真的应该阅读整本书，但如果你不读，章节目录
+将作为参考帮助你找到需要的信息。
 
-    Something to watch out for is that if you or your environment 
-contain another handbook, the mud may not know which one you are
-trying to read. If you get a message like "Which of the two handbooks
-would you like to read?", you can try one or more of the following:
+    需要注意的是，如果你或你的环境中包含另一本手册，
+游戏可能不知道你想读哪一本。如果你收到类似
+"Which of the two handbooks would you like to read?"
+的消息，你可以尝试以下一个或多个命令：
 
 %^GREEN%^read index in first handbook%^RESET%^
 
@@ -49,24 +43,25 @@ would you like to read?", you can try one or more of the following:
 
 
 \n
-chapter 2 "Command Syntax: Doing Stuff"
+chapter 2 "命令语法：操作事物"
 
 
-Section 1: Manipulating Objects 
+Section 1: 操作对象
 ----------
 
-    You've already noticed that Dead Souls, like most modern LP muds,
-uses natural-like command syntax, like:
+    你已经注意到，Dead Souls 和大多数现代 LP 游戏一样，
+使用类似自然语言的命令语法，例如：
 
 %^GREEN%^read first handbook%^RESET%^
 
-rather than:
+而不是：
 
 %^GREEN%^read handbook 1%^RESET%^
 
-    This is because Dead Souls uses a natural language parser. It isn't
-perfect, of course. If you try to "put all apples from box in my bag after
-opening them" you won't see much success, but this will work:
+    这是因为 Dead Souls 使用自然语言解析器。当然，
+它并不完美。如果你尝试 "put all apples from box in my bag
+after opening them"，你不会看到太大成功，但以下命令
+可以工作：
 
 %^GREEN%^open box%^RESET%^
 
@@ -76,96 +71,90 @@ opening them" you won't see much success, but this will work:
 
 %^GREEN%^put apples in bag%^RESET%^
 
-    The parser will understand "the first box" or "my second bag",
-assuming those objects exist in your inventory or in your environment.
+    解析器会理解 "the first box" 或 "my second bag"，
+前提是这些对象存在于你的背包或环境中。
 
-    If you want to know what is in the box, the command is:
+    如果你想知道盒子里有什么，命令是：
 
 %^GREEN%^look in box%^RESET%^
 
-    The command "look at box" or "examine box" will usually *not* show
-you the contents of that box. This is because normally, boxes are
-opaque, and in the real world, just looking at a box is rarely enough
-to see what it contains as well.
-    An exception to this rule are transparent containers (a glass
-trophy case, perhaps) whose interior is always visible from the
-outside.
+    "look at box" 或 "examine box" 命令通常*不会*
+显示盒子的内容。这是因为通常盒子是不透明的，
+在现实世界中，仅仅看一个盒子很少能看到里面的东西。
+这个规则的一个例外是透明容器（例如玻璃展示柜），
+其内部始终可以从外面看到。
 
-    Sometimes looking at an object reveals its contents because of
-the nature of the object. A table, for example, can have things on it,
-and typing:
+    有时查看物体会显示其内容，因为物体的性质。
+例如，桌子可以放东西在上面，输入：
 
 %^GREEN%^look at table %^RESET%^
 
-    ...will usually let you know what is on it. It is also possible to
-see what other players are carrying by just looking at them, 
-unless what they have is inside a container.
-    You'll want to remember that while you can "put apple in bag",
-if you want to put that apple on a surface like a table, you'll
-need to:
+    ...通常会告诉你上面有什么。也可以通过查看
+其他玩家来了解他们携带了什么，除非他们的东西
+放在容器里。
+    你需要记住，虽然你可以 "put apple in bag"，
+但如果你想把苹果放在像桌子这样的表面上，你需要：
 
 %^GREEN%^put apple on table%^RESET%^
 
-    You can give things to people, and they will automatically
-accept them. However, you may not "take" or "get" things from living
-beings. It's theirs, and it's up to them if they want to share.
-    You can try to "steal sword from fighter" if you dare, but unless
-you have trained a lot, this is unlikely to succeed. We'll talk
-more about training and skills in a later chapter.
-    Naturally you may also drop things you no longer need, though
-it's nicer to your fellow mudders (and the mud's memory) to put
-them in recycling bins so the bits can be reused.
-   Some other common object manipulation commands are:
+    你可以把东西给别人，他们会自动接受。
+但是，你不能从活着的生物那里"拿"或"获取"东西。
+那是他们的，由他们决定是否愿意分享。
+    如果你敢的话，你可以尝试 "steal sword from fighter"，
+但除非你训练了很多，否则这不太可能成功。
+我们将在后面的章节中更多地讨论训练和技能。
+    当然，你也可以丢弃不再需要的东西，但对你的
+游戏伙伴（和游戏内存）来说，把它们放进回收站
+会更好，这样位可以被重用。
+   一些其他常见的对象操作命令是：
 
    close, donate, attack, eat, drink, listen, smell, search,
    shoot, touch, turn.
 
-   There are many others you may find useful, but these will be
-the ones you use most often to handle simple objects.
+   还有许多你可能会发现有用的命令，但这些是你
+最常用来处理简单对象的命令。
 
-* A note about articles:
+* 关于冠词的说明：
 
-   Dead Souls understands both definite and indefinite articles.
-This means that you can refer to a specific apple, like so:
+   Dead Souls 理解定冠词和不定冠词。这意味着你可以
+引用一个特定的苹果，像这样：
 
 %^GREEN%^get the apple%^RESET%^
 
-   But you can also be unspecific. If there are a dozen
-apples in a crate and you don't care which one you pick up:
+   但你也可以不指定。如果箱子里有一打苹果，
+而你不在乎拿哪一个：
 
 %^GREEN%^get an apple from the crate%^RESET%^
 
 
-Section 2: Navigation
+Section 2: 导航
 ---------
 
-    Moving around here is probably much like any other mud. You
-can expect to move mostly in cardinal directions (like north and
-northwest), but you may sometimes need to go up, down, or out.
-    Strictly speaking, the way to do this is:
+    在这里移动可能和任何其他游戏差不多。你可以
+期望主要在基本方向上移动（如 north 和 northwest），
+但有时你可能需要 up、down 或 out。
+    严格来说，方法是：
 
 %^GREEN%^go south%^RESET%^
 
 %^GREEN%^go out%^RESET%^
 
-    ...and so on, but this can get tedious after a while. Instead
-of having to type in "go" plus the entire direction, the mud allows
-you to enter shortcuts like "sw" for "go southwest" or "u" for
-"go up".
+    ...等等，但这很快就会变得繁琐。游戏允许你
+输入快捷方式，如 "sw" 代表 "go southwest"，
+"u" 代表 "go up"。
 
-    When you enter a room, very often you will see letters in
-brackets above the room description, like this: [n, u, out]
-    These are the "obvious exits" of that room, and help you
-quickly find your way around without having to go through each
-description. But remember! Just because a room has obvious exits
-doesn't mean those are the only exits. Sometimes a room must
-be searched to discover an exit, or there may be an exit available
-that just doesn't happen to be very obvious.
-    If a room is dark, obvious exits may not be visible at all.
+    当你进入一个房间时，你经常会看到房间描述上方
+方括号中的字母，像这样：[n, u, out]
+    这些是该房间的"明显出口"，帮助你快速找到
+方向，而无需查看每个描述。但记住！一个房间有
+明显出口并不意味着那些是唯一的出口。有时房间
+需要搜索才能发现出口，或者可能有一个出口
+恰好不太明显。
+    如果房间很暗，明显出口可能完全不可见。
 
-    Aside from those ordinary means of travel, there are situations
-that require more specific locomotion than just "go". These are
-examples of the use of some other commands to get around:
+    除了那些普通的移动方式外，还有一些情况需要
+比"去"更具体的移动。以下是一些使用其他命令
+来移动的例子：
 
 %^GREEN%^jump onto road%^RESET%^
 
@@ -173,7 +162,7 @@ examples of the use of some other commands to get around:
 
 %^GREEN%^climb ladder%^RESET%^
 
-%^GREEN%^crawl east%^RESET%^   (if you are lying down and can't get up)
+%^GREEN%^crawl east%^RESET%^（如果你躺着起不来）
 
 %^GREEN%^fly up%^RESET%^
 
@@ -182,77 +171,74 @@ examples of the use of some other commands to get around:
 %^GREEN%^evade hunter%^RESET%^
 
 
-Section 3: Armor
+Section 3: 护甲
 -------
 
-    Now that you can manipulate objects and move around, you'll want
-to be able to defend yourself, should the need arise. The special
-object categories of "weapons" and "armor" should help.
+    现在你可以操作对象和移动了，你会想要在需要时
+能够保护自己。特殊的"武器"和"护甲"对象类别
+应该会有所帮助。
 
-    Armor is an item that can be worn. That means that a pair of
-blue jeans is considered armor, and a suit of chainmail is considered
-armor as well. Basically, if you can wear it, it's "armor", because
-whether it's a lot or a little, it protects you.
-    Assuming you are humanoid, you have the following limbs:
+    护甲是可以穿戴的物品。这意味着一条蓝色牛仔裤
+被认为是护甲，一套锁子甲也被认为是护甲。
+基本上，如果你能穿戴它，它就是"护甲"，
+因为无论保护多少，它都在保护你。
+    假设你是人形生物，你有以下肢体：
 
-    head, neck, torso, right arm, right hand, left arm,
-    left hand, right leg, right foot, left leg, left foot.
+    头、颈、躯干、右臂、右手、左臂、
+    左手、右腿、右脚、左腿、左脚。
 
-    Properly coded armor must be worn on the corect limbs. Usually
-a command like:
+    正确编码的护甲必须穿戴在正确的肢体上。
+通常像这样的命令：
 
 %^GREEN%^wear chainmail%^RESET%^
 
-or
+或
 
 %^GREEN%^wear all%^RESET%^
 
-    ...will cause you to automatically wear armor where it makes 
-most sense. However, it is possible to find armor that,
-for example, can be worn either on your neck or your torso, like
-an amulet. If this is so, you'll need to specify where you want it.
-    There are various types of armor, like cloak, pants, glove,
-etc. Many of them overlap. You can wear a shirt on your torso as
-well as a cloak and combat armor, but you may not wear two of
-the same type. If you have a robe and a cape that are both cloaks,
-you'll have to decide which one is going on.
-    You will find that shoes and gloves are often for one of your
-hands but not the other. Sometimes you will find shoes, or gloves
-that don't care which appendage they occupy, but usually these
-are simply incorrectly coded.
+    ...会让你自动在最合理的位置穿戴护甲。
+但是，有可能找到可以穿戴在不同位置的护甲，
+例如可以戴在脖子上或躯干上的护符。如果是这样，
+你需要指定你想戴在哪里。
+    有各种类型的护甲，如斗篷、裤子、手套等。
+它们很多是重叠的。你可以在躯干上穿衬衫，
+再加上斗篷和战斗护甲，但你不能穿戴两个相同类型的。
+如果你有一件长袍和一件披肩都是斗篷类型，
+你需要决定穿哪一件。
+    你会发现鞋子和手套通常只适合你的一只手或脚，
+而不是另一只。有时你会找到不分左右的鞋子或手套，
+但通常这些只是编码错误。
 
-    If you are of some exotic or non-humanoid race, you may have
-additional limbs to consider, and humanoid armor may not work for you.
+    如果你是某些异国情调或非人形种族，你可能有
+额外的肢体需要考虑，人形护甲可能对你不适用。
 
 
-Section 4: Weapons
+Section 4: 武器
 ---------
 
-   You may be surprised to learn that almost any manipulable object
-can be wielded as a weapon, or thrown as a missile. You can wield
-a can of Spam and try to kill an orc with it...and you may even succeed,
-if you are strong and tough enough. Don't count on it, though,
-and instead go for items that are made specifically with personal
-security in mind.
+   你可能会惊讶地发现，几乎任何可操作的对象都可以
+被当作武器使用，或被投掷为远程武器。你可以挥舞一罐
+午餐肉并试图用它杀死一个兽人...如果你足够强壮和
+坚韧，你甚至可能成功。不过不要指望它，
+还是去找专门为个人安全设计的物品吧。
 
-    There are four main types of weapons:
+    武器有四种主要类型：
 
-    knife: knives, daggers
-    blade: like swords, and spears
-    blunt: like clubs, staves, and shillelaghs
-    projectile: things designed to be thrown, like darts or grenades
+    匕首类：刀、匕首
+    刃器类：如剑、矛
+    钝器类：如棍棒、法杖、橡木棍
+    投射类：设计用来投掷的东西，如飞镖或手榴弹
 
-    Unless it is a special device or magical item, weapons
-must be wielded in order to be of use in combat. Some weapons,
-like staves or pikes, may require the use of both hands. If this
-is the case, wearing a shield may not be possible at the same time.
-    Like armor, weapons differ in quality and effectiveness. A
-"well-crafted sword" is probably a better choice than a "small
-rusty knife", but then again, you never know. Maybe rusty knives
-are exactly what some monster is most vulnerable to.
+    除非是特殊装置或魔法物品，武器必须被装备才能
+在战斗中使用。某些武器，如长矛或长戟，可能需要
+双手使用。如果是这样，可能无法同时穿戴盾牌。
+    和护甲一样，武器在质量和效果上有所不同。
+一把"精心打造的剑"可能比一把"小生锈刀"
+是更好的选择，但话说回来，你永远不知道。
+也许生锈的刀正是某些怪物最容易受到伤害的。
 
-    Note also that, like armor, weapons wear down with use.
-Examples of commands that involve weapons or fighting:
+    还要注意，和护甲一样，武器会随着使用而磨损。
+涉及武器或战斗的命令示例：
 
 %^GREEN%^wield sword%^RESET%^
 
@@ -266,18 +252,18 @@ Examples of commands that involve weapons or fighting:
 
 %^GREEN%^throw dart at beggar%^RESET%^
 
-%^GREEN%^kill all%^RESET%^  (this makes an enemy of everyone in the room)
+%^GREEN%^kill all%^RESET%^（这会让房间里的所有人都成为敌人）
 
-%^GREEN%^ignore first orc%^RESET%^ (lets you concentrate on the other orcs)
+%^GREEN%^ignore first orc%^RESET%^（让你专注于其他兽人）
 
-%^GREEN%^ignore all%^RESET%^ (don't fight anyone in the room, even if they are attacking you)
+%^GREEN%^ignore all%^RESET%^（不和房间里的任何人战斗，即使他们在攻击你）
 
-%^GREEN%^target boss orc%^RESET%^ (this makes you ignore attacks from anyone else)
+%^GREEN%^target boss orc%^RESET%^（让你忽略其他所有人的攻击）
 
-%^GREEN%^wimpy 30%^RESET%^ (this makes you run away if your health points drop below 30%)
+%^GREEN%^wimpy 30%^RESET%^（当你的生命值降到 30% 以下时自动逃跑）
 
 
-Section 5: Miscellaneous Things to to with Things
+Section 5: 其他物品操作
 ---------
 
 %^GREEN%^turn on flashlight%^RESET%^
@@ -294,7 +280,7 @@ Section 5: Miscellaneous Things to to with Things
 
 %^GREEN%^move bed%^RESET%^
 
-%^GREEN%^search %^RESET%^ (by default searches the room)
+%^GREEN%^search %^RESET%^（默认搜索房间）
 
 %^GREEN%^search rocks%^RESET%^
 
@@ -320,256 +306,238 @@ Section 5: Miscellaneous Things to to with Things
 
 %^GREEN%^buy sword from otik%^RESET%^
 
-%^GREEN%^buy 8 from otik%^RESET%^ (get Otik to sell you item number 8)
+%^GREEN%^buy 8 from otik%^RESET%^（让 Otik 卖给你第 8 件物品）
 
-chapter 3 "Your Health and Abilities"
+chapter 3 "你的健康和能力"
 
-    In the previous chapter you learned the basics of getting 
-around and taking care of yourself. It's important also to care
-*for* yourself, and this chapter describes the various aspects of
-your body's state and what abilities you may have.
+    在上一章中，你学习了基本的移动和照顾自己的方法。
+照顾好自己也很重要，本章描述了你身体状态的各个方面
+以及你可能拥有的能力。
 
 
-    The command that tells you almost everything you need to
-know is "stat". This diplays a whole lot of stuff, perhaps some of
-it completely unfamiliar. Let's start at the top, using my output
-as an example.
+    能告诉你几乎所有你需要知道的事情的命令是 "stat"。
+它会显示很多内容，其中一些可能完全不熟悉。
+让我们从顶部开始，以我的输出为例。
 
-First line:
+第一行：
 ----------
 %^CYAN%^Cratylus aka Cratylus the unaccomplished, level 10 male human Explorer%^RESET%^
 
-    Here you see my short name, my name with title, my level, my
-gender, my race, and my class. Let's go over each.
+    这里你看到我的短名称、带头衔的名称、我的等级、
+性别、种族和职业。让我们逐一介绍。
 
-* short name: What a person would use to address you. "look at cratylus",
-for example.
+* 短名称：别人用来称呼你的名字。例如 "look at cratylus"。
 
-* name with title: This displays my title. Creators can have whatever title
-they want. Players can only have the titles they earn. As a player, a
-title is usually earned when you are promoted a level or complete a
-quest, though it is not always so on every mud.
+* 带头衔的名称：这显示我的头衔。创建者可以有任何
+他们想要的头衔。玩家只能获得他们赢得的头衔。
+作为玩家，头衔通常在你升级或完成任务时获得，
+尽管在每个游戏中情况不总是如此。
 
-* level: This is a measure of your overall experience, expertise, and
-all-around game status. Being promoted a level means your skills,
-health, and vital statistics increase. This often means you can handle
-tougher monsters, for example, or tackle more challenging quests, learn
-new spells, and so on.
+* 等级：这是衡量你整体经验、专业知识和游戏状态的
+标准。升级意味着你的技能、健康和重要统计数据增加。
+这通常意味着你可以处理更强的怪物，或挑战更具挑战性的
+任务，学习新法术等。
 
-* gender: This has no effect on your status. It is a cosmetic feature
-of your body that is only useful to you in the social context of your
-fellow mud players.
+* 性别：这对你的状态没有影响。它只是你身体的一个
+外观特征，只在你与其他游戏伙伴的社交环境中有用。
 
-* race: In Dead Souls, race has nothing to do with your local genetic
-makeup on planet Earth. In the mud, "race" refers to what one typically
-would call "species" in real-life. An example of a race other than human
-might be "orc" or "feline". Not all races are available for players. Once
-you have chosen a race to play, it is in theory possible to change it, but
-there is a nonzero chance you'll hose up your player file and lose your
-character forever. Besides, it's up to your local admins whether race
-changing is permitted on your mud. Different races have different
-abilities. Elves see better in darkness, for example. Orcs are stronger
-than some other humanoids, but dumber, too (which does affect gameplay).
+* 种族：在 Dead Souls 中，种族与你在地球上的本地
+基因组成无关。在游戏中，"种族"指的是现实生活中
+通常所说的"物种"。除了人类之外的种族示例可能是
+"兽人"或"猫人"。并非所有种族都对玩家可用。
+一旦你选择了一个种族，理论上可以更改，但有非零的
+机会会损坏你的玩家文件并永远失去你的角色。
+此外，是否允许更改种族取决于你所在游戏的管理员。
+不同种族有不同的能力。例如，精灵在黑暗中看得更好。
+兽人比某些其他人形生物更强壮，但也更笨
+（这确实会影响游戏玩法）。
 
-* class: This can be considered an occupational specialty. In the real
-world you have plumbers, doctors, soldiers, etc. In the mud world, 
-we can have explorers, fighters, mages, and the like. Each class brings
-its own unique advantages and disadvantages to your gameplay. A fighter
-can really kick more butt in melee combat than a mage, but a mage 
-gets to cast powerful spells. Explorers are a middle of the road class
-that gives you a bit of everything without specializing in anything.
+* 职业：这可以被视为职业专业。在现实世界中你有
+水管工、医生、士兵等。在游戏世界中，我们可以有
+探险者、战士、法师等。每个职业为你的游戏玩法带来
+自己独特的优势和劣势。战士在近战中确实比法师
+更能打，但法师可以施放强大的法术。探险者是一个
+中间路线的职业，让你什么都有一点但什么都不专精。
 
 
 
-Next line:
+下一行：
 ----------
 
 %^CYAN%^Alive / Awake%^RESET%^
 
-    It is indeed possible for your virtual body to cease life functions.
-When this happens your spirit speeds off to the land of the dead,
-where you drift until you decide to "regenerate" and regain your
-physical form. Except for some special magical items, anything you
-were carrying when you died is with that dead body, so it's a good
-idea to rush your new body back to the scene of the fatality and get
-your stuff back before someone else grabs it. Death is not only
-inconvenient, it also incurs major penalties on your statistics, so it
-should be avoided.
-    It is also possible to sleep. If you are drunk and asleep, your 
-injuries will heal more quickly. It's magic, don't worry about the
-logic behind it.
-    If you are attacked while sleeping, you will wake up. You can
-force yourself awake, too, but it's a bit tedious.
+    你的虚拟身体确实有可能停止生命功能。
+当这种情况发生时，你的灵魂会飞速前往亡者之地，
+在那里漂浮直到你决定"重生"并恢复你的物理形态。
+除了一些特殊的魔法物品外，你死亡时携带的任何东西
+都在那个死尸身上，所以最好赶紧你的新身体回到
+死亡现场，在别人拿走之前取回你的东西。
+死亡不仅不方便，还会对你的统计数据造成重大惩罚，
+所以应该避免。
+    也可以睡觉。如果你喝醉了睡觉，你的伤会好得更快。
+这是魔法，不用担心背后的逻辑。
+    如果你在睡觉时被攻击，你会醒来。你也可以强迫
+自己醒来，但有点麻烦。
 
 
-Next line:
+下一行：
 ---------
 
 %^CYAN%^Health: 350/350   Magic: 560/560   Stamina: 400/400   Carry: 1184/1300%^RESET%^
 
-    In each case, the number on the left of the slash indicates the
-current level, and the number on the right indicates what the maximum is.
+    在每种情况下，斜杠左边的数字表示当前水平，
+右边的数字表示最大值。
 
-health: When I am 100% healthy, I have a total of 350 hp. If my hp ever
-reach 0 or less (!), I die. Poison and illness can cause hp's to
-gradually decrease, and although with time my hp's will normally
-return to 350 as I heal, poison and illness can slow down that healing
-or even cause me to die. Injury in combat is the most common source
-of hp loss, though spells, falls, and other adverse events can cause
-you injury or death.
+生命值：当我 100% 健康时，我总共有 350 点生命值。
+如果我的生命值降到 0 或更低（!），我就会死亡。
+中毒和疾病会导致生命值逐渐下降，虽然随着时间
+推移我的生命值通常会在治愈过程中恢复到 350，
+但中毒和疾病会减慢治愈速度甚至导致我死亡。
+战斗中的伤害是生命值损失的最常见来源，
+但法术、坠落和其他不利事件也可能导致你受伤或死亡。
 
-magic: I cast magic missile! Spell casting takes a toll on your magical
-abilities, and mp measure how much magic you've got left in you at
-any given point. Like hp, mp gradually grow back to your max if you
-avoid spellcasting for a while.
+魔法值：我施放魔法飞弹！施法会对你的魔法能力
+造成损害，魔法值衡量你在任何给定时间点剩余的
+魔法量。和生命值一样，如果你避免施法一段时间，
+魔法值会逐渐恢复到最大值。
 
-stamina: Fighting is tough work, and swinging around swords while
-getting bashed with hammers really takes a lot out of a guy. Therefore
-keep an eye on this stat while you're fighting, because if it gets too
-low you will collapse and be unable to do anything for a while.
+体力：战斗是艰苦的工作，挥舞剑的同时被锤子击打
+确实会消耗大量体力。因此，在战斗时要注意这个
+属性，因为如果它太低，你会倒下并暂时无法做任何事情。
 
-carry: Objects have mass, and your body is of limited size and strength.
-My carry capacity is 0 when I carry nothing, and 1300 when I can 
-carry no more. Creators are allowed to exceed their bodies' carry
-capacity, but players cannot.
+负重：物体有质量，你的身体大小和力量有限。
+当我什么都不携带时，我的负重是 0，当我无法再
+携带更多时是 1300。创建者被允许超过身体的
+负重能力，但玩家不能。
 
 
-Next line:
+下一行：
 ---------
 
 %^CYAN%^Food: 0    Drink: 0    Alcohol: 0    Caffeine: 0    Poison: 0 %^RESET%^
 
-    These are pretty self-explanatory. Alcohol is good for healing,
-bad for fighting. Food and drink also help speed healing. Poison
-has the opposite effect. Caffeine can speed up your combat slightly,
-but tends to prevent full rest. 
-    You will not die from lack of food or lack of drink, but you
-will do better with a body not starved for nutrients. 
-    Your maximum load for any of these is not fixed, and varies
-depending on many factors, such as level, endurance, etc. 
+    这些都是相当不言自明的。酒精对治愈有好处，
+对战斗有害。食物和饮料也有助于加速治愈。
+毒药则有相反的效果。咖啡因可以略微加速你的战斗，
+但往往会影响充分休息。
+    你不会因为缺乏食物或饮料而死亡，但身体
+不缺乏营养会让你表现更好。
+    你对其中任何一项的最大负荷不是固定的，
+取决于许多因素，如等级、耐力等。
 
 
-Next line:
+下一行：
 ---------
 
 %^CYAN%^Training Points: 0    Quest Points: 0    Experience Points: 50 %^RESET%^
 
-    Training points can be cashed in with special NPC's called
-trainers, who can help you improve some skills. A trainer that
-specializes in fighting might be able to raise your "blade attack"
-skill, for example. you earn training points when you are
-promoted a level.
+    训练点数可以在叫做训练师的特殊 NPC 处兑换，
+他们可以帮助你提高某些技能。专精战斗的训练师
+可能能够提高你的"刃器攻击"技能。你在升级时
+获得训练点数。
 
-    Quest points are awarded when you complete a quest. In
-the default version of Dead Souls, you cannot advance past a
-certain player level unless you earn some qp's. Read the sign
-in the adventurers guild for more details on this.
+    任务点数在你完成任务时获得。在默认版本的
+Dead Souls 中，除非你获得一些任务点数，否则
+你无法超过某个玩家等级。阅读冒险者公会中的
+告示以了解更多详情。
 
-    Experience points can be awarded for various reasons: completing
-a quest, solving a puzzle, winning a contest. Most often you
-will receive xp after killing an NPC. The amount of xp awarded
-will depend on the level of the NPC. Like qp, xp are needed to
-qualify for level advancement.
+    经验点数可以因各种原因获得：完成任务、
+解开谜题、赢得比赛。最常见的是在杀死 NPC 后
+获得经验。获得的经验值取决于 NPC 的等级。
+和任务点数一样，经验点数也是升级所必需的。
 
 
 
-Limb section:
+
+肢体部分：
 ------------
 
-    Remember how wearing armor requires the right body parts?
-Well here they are, and this is their health. You can issue the
-"body" command for a quicker self-check.
-    Let's look at what the numbers mean with an example:
+    还记得穿戴护甲需要正确的身体部位吗？
+它们就在这里，这是它们的健康状况。
+你可以发出 "body" 命令来进行更快的自我检查。
+    让我们用一个例子来看数字的含义：
 
 %^CYAN%^left leg        (2) 160/160%^RESET%^
 
-   Obviously the first item identifies the limb in question.
+   第一项显然标识了相关的肢体。
 
-   The (2) is a kind of "importance score", indicating how critical
-a body part is. If this number is (1), like the head, it means that
-losing that limb causes immediate death.
+   (2) 是一种"重要性分数"，表示身体部位的关键程度。
+如果这个数字是 (1)，比如头部，意味着失去该肢体
+会导致立即死亡。
 
-   The number on the right side of the slash indicates the hit point
-damage you may receive on that limb before it is severed. The number
-on the left is how many of those hits you have left.
-   It doesn't mean my leg has 160 of my hitpoints. If that were true,
-my hit points would add up to a heck of a lot more than 350.
-    This means that if I've lost, say, 200hp fighting a troll, and
-159hp of those hits were on my left leg, getting hit there again means I
-lose my left leg.
-    I would then collapse and have to crawl away to seek medical attention.
-Wearing armor on your limbs is a great way to minimize the danger of
-this happening.
+   斜杠右边的数字表示该肢体在被切断之前可以承受
+的命中点伤害。左边的数字是你还剩余多少。
+   这并不意味着我的腿有我的 160 点生命值。
+如果是这样，我的生命值加起来会远远超过 350。
+    这意味着如果我在与巨魔战斗中失去了 200 点生命值，
+其中 159 点是左腿受到的攻击，那么左腿再次被击中
+就意味着我失去了左腿。
+    然后我会倒下，必须爬走寻求医疗救助。
+在肢体上穿戴护甲是最大限度减少这种情况发生的好方法。
 
 
-Skills section:
+技能部分：
 --------------
 
-    Let's review skills by examining one of mine:
+    让我们通过查看我的一个技能来了解技能：
 
 %^CYAN%^blade attack  (1) 00% - 20/24%^RESET%^
 
-    This measures how likely I am to hit an opponent when I
-use a blade, and how good a hit it was. The number (1) means
-that this is a skill critical to my class. If an explorer can't 
-swing a sword, he oughta think about another line
-of work. 
-    The 00% means I have thus far earned no blade  attack
-experience toward achieving the next level of this skill.
-    The 20 is my current proficiency level.
-    The 24 is the maximum level I can reach at my current
-player level and with my current stats.
+    这衡量了当我使用刃器时击中对手的可能性以及
+击中的好坏程度。数字 (1) 意味着这是我的职业的
+关键技能。如果一个探险者不能挥舞剑，他应该考虑
+换一行工作。
+    00% 意味着到目前为止我还没有获得任何刃器攻击
+经验来达到该技能的下一个等级。
+    20 是我当前的熟练等级。
+    24 是我在当前玩家等级和属性下可以达到的最高等级。
 
-    What's all this mean? Well, if I practice a lot of blade
-attacking, that 00% will gradually climb up to 99, and one more
-point causes me to go from a level 20 slicer of things to a
-level 21 slicer of things. This increases my likelihood of
-hitting my target in the future.
+    这一切都意味着什么？好吧，如果我经常练习刃器攻击，
+00% 会逐渐上升到 99，再增加一点就会让我从 20 级
+切东西的人变成 21 级切东西的人。这增加了我未来
+击中目标的可能性。
 
-    Meaning, in short, practice a skill, and you'll get
-better at it.
+    简而言之，练习一项技能，你就会变得更擅长它。
 
-    Of course, if my blade attack level reaches 24, I can advance
-my blade attack skills no further until my player level rises.
+    当然，如果我的刃器攻击等级达到 24，在我的玩家
+等级提升之前，我无法再进一步提高刃器攻击技能。
 
 
-Stats section:
+属性部分：
 -------------
 
-    Remember these from Dungeons & Dragons? No? Well these vital
-statistics measure your general giftedness in that feature of your
-body. Let's look at one of mine:
+    还记得龙与地下城中的这些吗？不记得？好吧，这些
+重要统计数据衡量你在该身体特征上的天赋程度。
+让我们看看我的一个：
 
 %^CYAN%^coordination (2) 42/42%^RESET%^
 
-    Coordination is one of those important stats for fighting and
-such. The more coordinated you are, the more likely you are to hit your 
-target. The (2) indicates that this stat is important to my class,
-but not critical. This influences its effect on my skills.
-    42/42 means that my coordination is not currently impaired. If
-someone cast a "stumble" spell on me, for example, this might look more
-like 30/42, and if I were drunk, it would look very shabby indeed.
+    协调性是战斗等活动中重要的属性之一。
+你协调性越好，就越有可能击中目标。(2) 表示
+这个属性对我的职业很重要，但不是关键的。
+这影响了它对我技能的效果。
+    42/42 意味着我的协调性目前没有受到损害。
+如果有人对我施放了"绊倒"法术，这可能会看起来
+更像 30/42，如果我喝醉了，那看起来就会非常糟糕。
 
-Last section:
+最后部分：
 ------------
 
-"Cratylus has amassed a net worth of 11 gold." means that when you
-add up the money in my bank accounts and the money I'm carrying,
-converted to gold, I have 11 gold to my name. It looks bad, but gold
-is actually quite valuable in the default Dead Souls economy.
+"Cratylus has amassed a net worth of 11 gold." 意味着
+当你把我银行账户里的钱和我携带的钱加起来，换算成金币，
+我总共有 11 个金币。看起来不多，但在默认的 Dead Souls
+经济中，金币实际上相当值钱。
 
-"Money on hand: 79 dollars, 34 silver" means that this is the amount of
-money I'm carrying. Don't forget that the amount of money you are carrying
-affects your overall carry capacity. Gold is an especially heavy
-currency.
+"Money on hand: 79 dollars, 34 silver" 意味着这是我
+携带的金额。别忘了你携带的金额会影响你的整体
+负重能力。金币是一种特别重的货币。
 
 
-Final notes:
+最后说明：
 -----------
 
-    "stat" is a great command to get thorough information about
-yourself. It is, however, quite a screenful. Briefer reports can be
-viewed with the following commands:
+    "stat" 是获取关于自己详细信息的好命令。
+然而，它内容很多。更简短的报告可以用以下命令查看：
 
 %^GREEN%^body%^RESET%^
 %^GREEN%^skills%^RESET%^
@@ -577,262 +545,246 @@ viewed with the following commands:
 %^GREEN%^score%^RESET%^
 %^GREEN%^status%^RESET%^
 
-chapter 4 "Quests"
+chapter 4 "任务"
 
-    Some muds don't have quests, and the fun people have is
-through role-playing and social activities with other players.
+    有些游戏没有任务，人们的乐趣来自于与其他玩家的
+角色扮演和社交活动。
 
-    Other muds prefer to concentrate on killing lots and lots
-of monsters, a lot, over and over.
+    其他游戏则专注于大量杀怪，反复地。
 
-    Quests give you a chance to problems-solve by performing some
-series of actions that satisfies a pre-determined requirement.
+    任务给你一个通过执行一系列动作来满足预定要求的
+解决问题的机会。
 
-    For example, Dead Souls' sample town contains a quest called
-Orcslayer. Leo the archwizard lives in the basement of the old 
-abandoned church, and he has lost a powerful magic sword called
-"Orcslayer". If you return it to him, he will reward you with
-experience points, quest points, and a new title you can use. To
-complete the quest, you need to defeat the warrior orcs, penetrate
-deep into their lair, defeat the orc shaman, and take Orcslayer from
-his corpse, then go to the church basement and give the sword to Leo.
+    例如，Dead Souls 的示例小镇包含一个叫做"屠兽人"
+的任务。大法师 Leo 住在废弃教堂的地下室里，他丢失了
+一把叫做"屠兽人"的强大魔法剑。如果你把它还给他，
+他会奖励你经验点数、任务点数和一个新的可以使用的头衔。
+要完成任务，你需要击败战士兽人，深入它们的巢穴，
+击败兽人萨满，从他的尸体上拿走屠兽人，然后去教堂
+地下室把剑给 Leo。
 
-    In this case, if you're a level 1 newbie, the orcs will massacre you
-before you get anywhere near the shaman. So either team up with
-friends to tackle the orcs together, or raise your level to the
-point where you're tough enough to take them on.
+    在这种情况下，如果你是 1 级新手，兽人会在你
+接近萨满之前就把你屠杀。所以要么和朋友组队一起
+对付兽人，要么把等级提升到足以对付它们的程度。
 
-    To raise your level, wander around in the newbie mansion, which
-is south of the village church.
+    要提升等级，在新手大宅里转悠，它在村教堂的南边。
 
-    There's lots of loot there you can sell at Otik's shop, and with the 
-cash you can then get some proper weaponry and armor.
+    那里有很多战利品你可以在 Otik 的商店出售，
+用现金你可以买到合适的武器和护甲。
 
-    Silver is heavy, so don't try to carry all your money around
-all the time. Request an account from Zoe the banker and keep your
-money there until you really need it.
+    银币很重，所以不要试图一直随身携带所有的钱。
+向银行家 Zoe 申请一个账户，把钱存在那里直到
+你真正需要。
 
-    There is a quest in the newbie mansion, and solving it by
-finding the secret room will give you experience and quest points too.
-(hint, there might be more than one secret room)
+    新手大宅里有一个任务，通过找到密室来解决它
+会给你经验和任务点数。（提示，可能不止一个密室）
 
-    Once you have enough experience and/or points, go to
-Dirk in the adventurers hall and "%^GREEN%^ask dirk to advance%^RESET%^".
+    一旦你有足够的经验和/或点数，去冒险者大厅找
+Dirk，输入 "%^GREEN%^ask dirk to advance%^RESET%^"。
 
-    Make sure you learn some spells from Herkimer, because if you
-go up against a bunch of orcs in their lair, you'll want spells to
-shield you from attacks, and spells to recover your strength after
-combat. As a non-mage, your spell abilities will be limited at
-lower levels, but as you gain levels you'll get better. Also, spells
-will rarely work after you first learn them. Keep casting them, 
-even if you screw them up, so that your magic skills increase.
+    确保你向 Herkimer 学习一些法术，因为如果你
+去兽人巢穴对付一群兽人，你会需要法术来保护你
+免受攻击，以及在战斗后恢复体力的法术。
+作为非法师，你在低等级时的法术能力有限，
+但随着等级提升你会变得更好。另外，法术在你
+刚学会后很少能成功。继续施放它们，即使你搞砸了，
+这样你的魔法技能就会提高。
 
-    Also, save your money. Drinking and sleeping help you heal,
-but not fast enough. By the time those natural processes finish
-and you're ready for combat again, the orcs may have gotten reinforcements.
-So if you can afford it, buy healing slips and use them at Clepius' 
-healer's guild. His treatment is expensive, but you will heal much
-more quickly.
+    另外，省钱。喝酒和睡觉帮助你治愈，但不够快。
+等到那些自然过程完成，你准备好再次战斗时，
+兽人可能已经得到了增援。所以如果你负担得起，
+买治疗符并在 Clepius 的治疗师公会使用。
+他的治疗很贵，但你会治愈得更快。
 
-   In the tragic event of the loss of a limb, Clepius can also magically 
-regenerate a new limb...but obviously at some great cost.
+   在失去肢体的悲惨情况下， Clepius 也可以神奇地
+再生新的肢体...但显然代价很大。
 
-    There. I've just spoiled the Orcslayer quest for you. Normally,
-all you'd know about a quest is a cryptic clue, like the one in the
-scroll in the adventurers guild. Instead I've just spoiled the quest
-for you by telling you all about it. They're more fun when you have to
-figure them out on your own, like puzzles.
+    好了。我刚刚为你剧透了屠兽人任务。通常，
+你对任务的了解只是一条神秘的线索，就像冒险者公会
+卷轴里的那条。相反，我刚刚通过告诉你全部内容
+为你剧透了任务。当你必须自己解决它们时会更有趣，
+就像解谜一样。
 
-    Normally, spoiling quests like this is a bannable offense on 
-a mud, so if you solve a quest, keep it to yourself unless you know
-the admins on your mud don't mind.
-chapter 5 "Communication"
+    通常，像这样剧透任务在游戏中是可被封禁的行为，
+所以如果你解决了一个任务，除非你知道你所在游戏的
+管理员不介意，否则请保密。
+chapter 5 "交流"
 
-    There are many ways to communicate with other players. If
-you're in the same room as your intended listener, you can just 
-use the "say" command, like this:
+    与其他玩家交流有很多方式。如果你和想要交流的
+人在同一个房间，你可以直接使用 "say" 命令，像这样：
 
 %^GREEN%^say hi, crat%^RESET%^
 
-    If the message is secret, you can "whisper":
+    如果消息是秘密的，你可以"耳语"：
 
 %^GREEN%^whisper to cratylus are you idle?%^RESET%^
 
-    If you want to say something that everyone in the mud can
-hear, use the "shout" command (at the cost of a lot of stamina):
+    如果你想说一些所有人都能听到的话，使用 "shout"
+命令（但会消耗大量体力）：
 
 %^GREEN%^shout hey crat, wheredya go?%^RESET%^
 
-    Or, if it's an important secret and the target is not in the 
-same room as you, you can use the magical "tell" command:
+    或者，如果是一个重要的秘密，而且目标不在你所在的
+房间，你可以使用神奇的 "tell" 命令：
 
 %^GREEN%^tell cratylus are you mad at me or something?%^RESET%^
 
 
-    There are also special communication lines on the mud that are
-class or role-specific. For example, if you type:
+    游戏中还有一些特殊的通信线路，按职业或角色分类。
+例如，如果你输入：
 
 %^GREEN%^newbie does anyone know what's up with cratylus?%^RESET%^
 
-    All people who are tuned into the newbie line will get
-your message. To see what lines are available to you, type:
+    所有收听新手线路的人都会收到你的消息。
+要查看你可以使用哪些线路，输入：
 
 %^GREEN%^lines%^RESET%^
 
-To see who is listening to the newbie channel:
+要查看谁在收听新手频道：
 
 %^GREEN%^list newbie%^RESET%^
 
-To see who is listening to some other channel on some other mud:
+要查看谁在其他游戏的其他频道上收听：
 
 %^GREEN%^list otherchannel@othermud%^RESET%^
 
 
-    To enable or disable a line, just type the name of it with no message.
+    要启用或禁用某个线路，只需输入线路名称即可。
 
-    To see a brief history of the past few messages on a line (in
-this case, the newbie line), type:
+    要查看某个线路上最近几条消息的简要历史
+（以新手线路为例），输入：
 
 %^GREEN%^hist newbie%^RESET%^
 
 
-    Spamming lines is rude and probably dangerous to your character, so 
-be sure you comply with your mud's rules on lines. 
+    刷屏是粗鲁的，对你的角色可能有危险，
+所以请确保遵守你所在游戏的线路规则。
 
 
-    Your mud may be on the intermud network. To find out, type the
-command:
+    你的游戏可能在跨网游网络上。要查看，输入命令：
 
 %^GREEN%^mudlist%^RESET%^
 
-    If a list of muds comes up, you know your mud is probably
-on the intermud3 communication network. Dead Souls by default restricts
-players from access to intermud channels, but you can "tell" to
-players on other muds, if you want. If you think your friend Xyzzy
-is online on a mud on intermud3, you can issue this command:
+    如果出现游戏列表，说明你的游戏可能在跨网游3
+通信网络上。Dead Souls 默认限制玩家使用跨网游频道，
+但如果你想，你可以"告诉"其他游戏上的玩家。
+如果你认为你的朋友 Xyzzy 在跨网游3的某个游戏上在线，
+你可以发出这个命令：
 
 %^GREEN%^locate xyzzy%^RESET%^
 
-    If he's logged into a mud on i3, you will get something like:
+    如果他在 i3 的某个游戏上登录了，你会得到类似的信息：
 
 Xyzzy was just located on Frontiers. (idle 00:03:17) [status: inactive]
 
-    You can then tell to him:
+    然后你可以告诉他：
 
 %^GREEN%^tell xyzzy@frontiers dude, what's the deal with crat lately?%^RESET%^
 
 
-    Sometimes a player or NPC does not understand your character's
-native tongue. For example, if you are en elf, your native tongue is
-not English, it is Edhellen. If someone talks to you in English, you
-might see something like this:
+    有时玩家或 NPC 不理解你角色的母语。例如，
+如果你是一个精灵，你的母语不是英语，而是 Edhellen。
+如果有人用英语和你说话，你可能会看到这样的内容：
 
 Xyzzy says in English, "leka mifahmam, potong-hwa."
 
-    Since your character doesn't speak English, what you see is gibberish.
-If you find a language teacher, your proficiency in the language they
-teach you will allow you to understand more of the words you hear.
+    由于你的角色不会说英语，你看到的是乱码。
+如果你找到一位语言老师，你对该语言的熟练程度
+将使你能理解更多听到的单词。
 
-    Suppose that your elf character is now 100% fluent in English.
-If you greet a human player named Xyzzy by typing:
+    假设你的精灵角色现在 100% 精通英语。
+如果你想问候一个叫 Xyzzy 的人类玩家，输入：
 
 %^GREEN%^say hello there, xyzzy%^RESET%^
 
-    Xyzzy will probably see something like:
+    Xyzzy 可能会看到类似的内容：
 
 Noobie says in Edhellen, "pericolo temak, forshtor."
 
-    Instead, if you want to speak to a human, you'll have to type:
+    相反，如果你想和人类说话，你需要输入：
 
 %^GREEN%^speak in english hello there, xyzzy%^RESET%^
 
 
-    To find out what languages you speak, type:
+    要查看你会说哪些语言，输入：
 
 %^GREEN%^language%^RESET%^
 
 
-chapter 6 "Note to New Creators"
+chapter 6 "新创建者须知"
 
-    You should probably hang on to this book for reference. If
-you lose it, pick up a copy at the adventurers hall.
+    你可能应该保留这本书以供参考。如果你丢失了，
+可以在冒险者大厅拿一本副本。
 
-    However, you need to start reading the Creators Manual. If
-you don't have one on you, get the one in the chest in your workroom.
+    然而，你需要开始阅读创建者手册。如果你手边没有，
+去你工作间的箱子里拿一本。
 
-    If you're new to coding, start with chapter 31. It'll
-get you started with the Quick Creation System, or QCS.
+    如果你是编程新手，从第 31 章开始。它将带你
+入门快速创建系统（QCS）。
 
 Cratylus @ Frontiers
-04 Jan 2006
-chapter 7 "Hints and tips"
+2006年1月4日
+chapter 7 "提示和技巧"
 
-* The "wimpy" command helps you avoid death due to inattention or
-  network lag. If you "wimpy 20", you will automatically try to escape
-  combat if your health goes below 20% of your maximum.
+* "wimpy" 命令可以帮助你避免因疏忽或网络延迟而死亡。
+  如果你 "wimpy 20"，当你的生命值降到最大值的 20% 以下时，
+  你会自动尝试逃离战斗。
 
-* "target" and "ignore" are extremely useful when fighting more than
-  one enemy. You should always target the toughest npc first, and
-  always ignore any npc who can't get up because their foot or leg
-  is severed.
-    But if they collapse due to exhaustion, it's a good idea to keep
-  beating on them, otherwise they may get back up and get healthy sooner
-  than you expect.
+* "target" 和 "ignore" 在对付多个敌人时非常有用。
+  你应该始终首先瞄准最强大的 NPC，并始终忽略任何
+  因脚或腿被切断而无法起身的 NPC。
+    但如果他们因筋疲力尽而倒下，继续攻击他们是
+  个好主意，否则他们可能会比你预期的更快恢复健康。
 
-* By default, different races speak different languages. If someone
-  says something to you and you see no words in the same language as
-  the rest of the mud, it means they are speaking a language you do
-  not understand. 
-    For example, if you are an elf, and you ask Radagast to teach
-  magic attack, you might get something like this:
+* 默认情况下，不同种族说不同的语言。如果有人
+  对你说了什么，而你看到的词语和游戏其他部分的
+  语言不同，那意味着他们在说一种你不理解的语言。
+    例如，如果你是一个精灵，你让 Radagast 教你
+  魔法攻击，你可能会得到这样的内容：
 
 Radagast exclaims in English, "embleer con boltehe oota goota nehi auch"
 
-      Even though in the real world you may speak English fluently, in
-  the mud world, you do not speak English fluently. As an elf, your
-  native tongue is Edhellen, and you may find human speech incomprehensible.
+      即使在现实世界中你可能精通英语，在游戏世界中
+  你并不精通英语。作为一个精灵，你的母语是 Edhellen，
+  你可能会觉得人类的语言难以理解。
 
-      If you find a trainer to teach you English, your skills in that
-  language will need time to improve. As you get better at a language, 
-  you will see fewer gibberish words.
-      
-      If you are a "newbie", this does not apply to you. A newbie in the
-  default Dead Souls distribution is a player at level 4 or below. This
-  definition may be changed by your admin.
-      Newbies need all the help they can get just to survive, so they 
-  are magically granted understanding of all languages, until they outgrow
-  their naivete.
+      如果你找到一个训练师教你英语，你在该语言上的
+  技能需要时间来提高。随着你语言能力的提高，你会
+  看到更少的乱码词。
 
-      If you are a student of languages in the Real World, you may 
-  recognize many of the "gibberish" words used by Dead Souls to represent
-  a foreign tongue. Your understanding of these words is not useful in
-  the context of the game, however, because they are not intended to
-  convey meaning other than "non-comprehensible words".
+      如果你是一个"新手"，这不适用于你。
+  默认 Dead Souls 发行版中的新手是 4 级或以下的玩家。
+  这个定义可能被你的管理员更改。
+      新手需要所有能得到的帮助来生存，所以他们被
+  魔法赋予了理解所有语言的能力，直到他们不再天真。
+
+      如果你是现实世界中的语言学生，你可能会认出
+  Dead Souls 用来表示外语的许多"乱码"词。
+  然而，你对这些词的理解在游戏中没有用，因为它们
+  除了"不可理解的词"之外并不打算传达任何含义。
 
 
-* Your ability to see is affected by various things:
+* 你的视觉能力受到各种因素的影响：
 
-  - A room's ambient light level
-  - Time of day
-  - Local light sources (flashlights, torches, etc)
-  - Your race's light sensitivity
-  - Magical effects
-  - Exposure to an excessive-light event
+  - 房间的环境光级别
+  - 一天中的时间
+  - 本地光源（手电筒、火把等）
+  - 你的种族的光敏感度
+  - 魔法效果
+  - 暴露在过度光照事件中
 
-      It's important to remember that a room may be too dark for
-you to see everything in it. You might be able to see the description
-of a room with no problem, but it may be necessary for you to
-light a torch in order to see the treasure chest there.
+      重要的是要记住，房间可能太暗，你无法看到
+  里面的所有东西。你可能可以看到房间描述没有问题，
+  但可能需要点燃火把才能看到那里的宝箱。
 
-      In the same way that darkness can impair vision, brightness
-can do the same. For elves, an outdoor area in bright sunlight that
-contains additional light sources can be just as hostile to
-vision as a dark cave with no torch would be for a human.
-      Regardless of race, a sufficiently adverse event, such as 
-a bright flash or special spell, can render you temporarily blind.
+      就像黑暗会损害视力一样，强光也会。
+  对于精灵来说，明亮阳光下的户外区域如果包含
+  额外的光源，对视力的损害可能就像没有火把的
+  黑暗洞穴对人类一样。
+      无论种族如何，足够不利的事件，如强光闪烁
+  或特殊法术，都可能使你暂时失明。
 
-      As with languages, newbies have some exemption to light-level
-limitations. 
+      和语言一样，新手对光照级别的限制有一些豁免。
 
-* Mages can wield knives but are pretty much helpless with any other
-kind of edged weapon.
+* 法师可以使用匕首，但对任何其他类型的刃器
+  几乎无能为力。

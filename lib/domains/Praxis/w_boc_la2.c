@@ -7,37 +7,30 @@ void create() {
     SetProperty("light", 3);
     SetProperty("night light", 1);
     SetProperty("no castle", 1);
-    SetShort("West Boc La");
-    SetDayLong( "Western Praxis is a more rural district of town.  "
-            "The southern area opens up into farmlands while the northern "
-            "side is lined with small huts and houses. The road continues "
-            "to run in an east-west direction.");
-    SetNightLong("Street lamps line the streets of rural West "
-            "Praxis lighting the small huts and houses to the north and "
-            "the farmlands to the south. To the east and west the road "
-            "continues.");
+    SetShort("西博克拉路");
+    SetDayLong( "普拉克西斯西区是一个更加乡村化的区域。"
+            "南边是开阔的农田，北边排列着小屋和房屋。道路继续"
+            "沿东西方向延伸。");
+    SetNightLong("路灯照亮了西普拉克西斯乡村街道，北边的小屋"
+            "和房屋以及南边的农田都被灯光映照。道路向东西"
+            "两个方向继续延伸。");
 
-    SetSmell("default", "Wisps of a magical smelling smoke are rising "
-            "from a house on the north side of West Boc La.");
-    SetSmell("smoke", "It smells unlike any substance you have ever "
-            "encountered.");
-    SetSmell("house", "It smells of the magic smoke coming from it.");
-    SetExits( 
+    SetSmell("default", "一缕缕带有魔法气息的烟雾从西博克拉路"
+            "北边的一所房屋升起。");
+    SetSmell("smoke", "闻起来不像你曾经遇到过的任何物质。");
+    SetSmell("house", "闻起来像是从里面飘出的魔法烟雾。");
+    SetExits(
             (["east" : "/domains/Praxis/w_boc_la1",
              "west" : "/domains/Praxis/w_boc_la3",
              "south" : "/domains/Praxis/farm",
              "north" : "/domains/Praxis/sage_room"]) );
     SetItems(
-            (["road" : "Boc La Road runs east and west through Praxis.",
-             "roads" : "West Road and Boc La Road.",
-             "highway" : "A very heavily travelled highway to the "
-             "western lands of Nightmare. Beware of the Daroq Mountains.",
-             "mountains" : "The Daroq Mountains.  Vile creatures are "
-             "rumoured to live in and about them.",
-             "house" : "This tiny little house has wisps of white "
-             "smoke coming out of the door and windows.",
-             "smoke" : "Lacey wisps of white smoke are coming out "
-             "of the house to the north."]) );
+            (["road" : "博克拉路贯穿普拉克西斯东西方向。",
+             "roads" : "西大道和博克拉路。",
+             "highway" : "通往噩梦世界西部土地的繁忙公路。当心达洛克山脉。",
+             "mountains" : "达洛克山脉。据传有邪恶生物栖息其中。",
+             "house" : "这所小房子的门窗冒出缕缕白烟。",
+             "smoke" : "缕缕白烟从北边的房子里飘出来。"]) );
     SetSkyDomain("town");
 }
 void init(){

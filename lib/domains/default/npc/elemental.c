@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("elemental");
     SetId( ({"transcendental", "manifestation"}) );
     SetAdjectives( ({"boredom"}) );
-    SetShort("a boredom elemental");
-    SetLong("Normally elementals are summoned creatures composed of one of the four elements: earth, water, wind, or fire. This bizarre manifestation appears to be none of those, and in fact seems to have coalesced unbidden out of a sheer, transcendent boredom. It is, perhaps, more of a boredom transcendental.");
+    SetShort("一个无聊元素");
+    SetLong("通常元素是由 earth、water、wind 或 fire 四种元素之一组成的 summoned creatures。这个 bizarre manifestation appears to be none of those， and in fact seems to have coalesced unbidden out of a sheer, transcendent boredom。 It is, perhaps, more of a boredom transcendental。");
     SetLevel(1);
     SetMelee(1);
     SetRace("elemental");

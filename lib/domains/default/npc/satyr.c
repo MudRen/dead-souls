@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("satyr");
     SetAdjectives( ({"wild", "ferocious", "looking", "male", "humanoid", "creature"}) );
     SetId( ({"male", "humanoid", "creature"}) );
-    SetShort("a satyr");
-    SetLong("This is a wild and ferocious looking humanoid male with the upper body of a human, but the lower body is goatish, woolly, and his legs are those of a hooved animal. Horns grow from beneath the wild mane of hair on his head. However human his face might be, his expression and demeanor make it clear this is not a domesticated person, but an untamed forest creature.");
+    SetShort("一个 satyr");
+    SetLong("这是一个 wild and ferocious looking humanoid male，上半身是 human，但下半身是 goatish, woolly，他的腿是 hooved animal 的。 Horns grow from beneath the wild mane of hair on his head。 However human his face might be， his expression and demeanor make it clear this is not a domesticated person， but an untamed forest creature。");
     SetLevel(1);
     SetMelee(1);
     SetRace("satyr");

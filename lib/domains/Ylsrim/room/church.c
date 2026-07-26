@@ -15,7 +15,7 @@ int CheckPriest(string dir) {
         return 1;
     }
     if( ob = present("cleric", this_object()) ) {
-        ob->eventForce("speak I cannot allow you in this sacred rooms.");
+        ob->eventForce("speak 我不能让你进入这些神圣的房间。");
         return 0;
     }
     else {
@@ -29,12 +29,10 @@ protected void create() {
     SetTown("Ylsrim");
     SetClimate("indoors");
     SetAmbientLight(27);
-    SetShort("Ylsrim Church");
-    SetLong("Dim candles create more than enough light to fill this "
-            "very humble church of the Dalin religion.  Dalites come "
-            "here to pray, and others come to convert to Dalin.");
-    AddItem("candle", "They do not appear to make much light, but the "
-            "church is very bright.", ({ "dim" }));
+    SetShort("伊尔斯利姆教堂");
+    SetLong("昏暗的蜡烛发出足够的光芒，照亮了这座简朴的达林教教堂。"
+            "达林教徒来这里祈祷，其他人则来皈依达林教。");
+    AddItem("candle", "蜡烛看起来发出的光并不多，但教堂非常明亮。", ({ "dim" }));
     AddItem(new("/domains/Ylsrim/etc/church_button"));
     SetExits(([ 
                 "south" : "/domains/Ylsrim/room/"+ "kaliid3"]));

@@ -1,84 +1,73 @@
-By default, Dead Souls uses body characteristics of different races
-(e.g. ogres, deer, fish, human) to calculate all sorts of things...
-combat effectiveness, learning proficiency, etc. Some of these
-characteristics are "stats", like strength or intelligence.
+默认情况下，Dead Souls 使用不同种族的身体特征
+（如食人魔、鹿、鱼、人类）来计算各种事物...
+战斗效率、学习能力等。其中一些特征是"属性"，
+如力量或智力。
 
-For example, orcs can be formidable warriors because their
-starting strength stats tend to be very high. In addition, 
-strength is high in importance to the orc body...its "stat class",
-or how important it is, is 1, which is the highest level of
-importance. This means that orc players increase the strength
-stat by one point every time they are promoted one player level.
+例如，兽人可以成为可怕的战士，因为他们的
+初始力量属性往往非常高。此外，力量对兽人身体
+的重要性很高...它的"属性等级"（即重要程度）是 1，
+这是最高级别的重要性。这意味着兽人玩家每次
+提升一个玩家等级时，力量属性就会增加一点。
 
-Therefore an orc player who started with a strength stat of 40
-would have a strength stat of 50 upon reaching level 11.
+因此，一个初始力量属性为 40 的兽人玩家
+在达到 11 级时将拥有 50 点力量属性。
 
-Humans, however, have a low starting strength and the human
-stat class for strength is 3, meaning that human players get a
-strength point added every 3 level promotions. A human with
-a starting strength stat of 15 would, upon reaching level 11,
-have reached a strength stat of 18.
+然而，人类的初始力量较低，人类力量的
+属性等级是 3，这意味着人类玩家每提升 3 个等级
+才能获得一点力量。一个初始力量属性为 15 的人类
+在达到 11 级时，力量属性只能达到 18。
 
-This can seem a little unfair to a person that wants to play
-a human warrior...and in a way it *is* somewhat unfair, since it's
-entirely possible for there to be freakishly strong humans or
-humans who devote themselves to becoming very very strong.
+这对想玩人类战士的人来说似乎有点不公平...
+在某种程度上，这*确实*有点不公平，因为完全
+有可能存在异常强壮的人类或致力于变得非常强壮
+的人类。
 
-One way to make up for this is to use "customization points".
-They allow you to add a small number of stat points to the
-stats you feel are most important. But you only get 15 customization
-points ever, and they go quick. And even if you use all of them
-to jack up a stat...if that stat has a low stat class you'll
-always be lagging behind.
+一种弥补方法是使用"自定义点数"。
+它们允许你将少量属性点添加到你认为最重要的
+属性上。但你总共只能获得 15 个自定义点数，
+而且很快就会用完。即使你把所有点数都用来
+提升某个属性...如果该属性的属性等级很低，
+你将永远落后。
 
-For example, if our human warrior jacks up her strength from
-15 to 30 by using up all her customization points in that stat,
-she'll still be struggling somewhat against physically stronger
-races of her same player level.
+例如，如果我们的人类战士公主通过将所有
+自定义点数用在力量上，将力量从 15 提升到 30，
+她在面对同等级的体格更强壮的种族时仍然会有些吃力。
 
-Similarly, orcs tend to have low starting intelligence and
-a dismal intelligence stat class. This makes playing an orc
-mage a torturous experience, such that it would be quite
-rare to ever see a player choose that race and class combination.
-But orc mages do exist in some settings, and making it practically
-impossible seems a bit unfair.
+同样，兽人往往初始智力较低且智力属性等级很差。
+这使得玩兽人法师成为一种痛苦的体验，以至于
+很少有玩家会选择这个种族和职业的组合。
+但在某些设定中确实存在兽人法师，让它变得
+几乎不可能似乎有点不公平。
 
-Stat deviation is a way of helping make it possible to have
-these unusual class and race combinations without torturing
-players unnecessarily for them. Stat deviation is an alteration
-of a player's stat class which allows them to gain stat points
-more quickly than her racial defaults normally would allow. This
-alteration comes at the cost of a percentage of experience points 
-gained while so deviated.
+属性偏离是一种帮助实现这些不常见的职业和种族
+组合的方式，同时不会不必要地折磨玩家。属性偏离
+是对玩家属性等级的修改，允许他们比种族默认值
+更快地获得属性点。这种修改的代价是获得经验
+百分比的降低。
 
-For example, our human warrior princess could choose to deviate
-her stat class from the default of 3 to a more favorable 2, 
-allowing her to gain a strength point every other level, rather than
-every third level.
+例如，我们的人类战士公主可以选择将她的属性等级
+从默认的 3 偏离到更有利的 2，允许她每隔一个等级
+就获得一点力量，而不是每三个等级。
 
-Each deviation point comes at a 22% cost of XP gained, meaning that
-once she deviates by one point, killing a monster that would normally
-earn her 1000 XP now earns her 780 XP. If she wants to max out on 
-the strength stat class and use 2 deviations on it, it'll cost her
-44% of the XP she gains from then on, meaning a 1000 XP monster 
-for her is now just worth 560 XP.
+每个偏离点的代价是获得经验的 22%，这意味着一旦
+她偏离一点，杀死一个原本可以获得 1000 经验的怪物
+现在只能获得 780 经验。如果她想把力量属性等级
+用 2 个偏离点加满，将花费她 44% 的经验，
+意味着一个 1000 经验的怪物对她来说只值 560 经验。
 
-Clearly deviations are severely expensive, and will tend to slow
-down a player's overall advancement, but they do offer the possibility
-of playing the kind of race with the kind of class you prefer, facing
-opponents with a more class appropriate set of attributes. Rather
-than it being, for example, practically impossible to reach level
-20 as an orc mage, and being nearly useless as an orc mage even at
-that level, deviating right would actually *allow* you to reasonably
-hope you could get to that level one day, and that at that level you
-would actually be able to stand up to nearly-level-appropriate opponents.
+显然偏离代价高昂，会减慢玩家的整体提升速度，
+但它们确实提供了以你喜欢的种族和职业组合来玩的
+可能性，面对拥有更符合职业属性的对手。与其例如
+作为兽人法师几乎不可能达到 20 级，即使达到那个
+等级作为兽人法师也几乎毫无用处，正确地偏离
+实际上*能*让你合理地希望有一天能达到那个等级，
+并且在那个等级你实际上能够对抗接近等级的对手。
 
-Since deviation is something that involves your character's devotion
-to improving herself and doing things in a way that is different from
-others of her race, it makes sense that there is a cost (XP) but
-also that it cannot be revoked. Once you deviate, you're a deviant
-forever, so think long and hard before using the "deviate" command.
-You may not miss the XP now, but you might miss them later, when you're
-a mighty player and that 22% is now thousands of XP.
+由于偏离涉及你的角色对自我提升的奉献以及以不同于
+同种族其他人的方式做事，所以有代价（经验）是合理的，
+而且它不能被撤销。一旦你偏离，你永远都是偏离者，
+所以在使用 "deviate" 命令之前要深思熟虑。
+你现在可能不会想念那些经验，但以后当你成为一个
+强大的玩家，那 22% 变成了数千经验时，你可能会后悔。
 
-See also: deviate, customize, stat, score
+另见: deviate, customize, stat, score

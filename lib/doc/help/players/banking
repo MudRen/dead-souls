@@ -1,35 +1,30 @@
- 
- 
-                      Dead Souls Bankers/Tellers
- 
-As with most other non-player characters (NPCs), bank tellers respond
-to certain requests players make using the "ask" and "request"
-commands.  Dead Souls bank tellers respond to at least the following
-requests:
- 
+                      Dead Souls 银行/出纳员
+
+与其他非玩家角色（NPC）一样，银行出纳员会对玩家使用
+"ask" 和 "request" 命令发出的特定请求做出回应。
+Dead Souls 银行出纳员至少会回应以下请求：
+
 request account from TELLER
 request balance from TELLER
 ask TELLER to deposit AMOUNT CURRENCY
 ask TELLER to withdraw AMOUNT CURRENCY
 ask TELLER to exchange AMOUNT CURRENCY for CURRENCY
- 
-examples:
- 
+
+示例：
+
 ask teller to deposit 100 gold
 ask teller to withdraw 10 platinum
 ask teller to exchange 10 electrum for silver
- 
-notes:
- 
-- All banks require a minimum balance to open an account.
-  To use any of the bank's services, you must first open an
-  account with the bank (request account...).
- 
-- Banks may have more than one location.  You can bank at any
-  location once you have opened an account with the named bank.
- 
-- Some banks charge for certain transactions.  The charges vary
-  from bank to bank, but may be influenced by whether or not you
-  are a local resident in the town the bank resides in.
- 
- 
+
+注意事项：
+
+- 所有银行都需要最低余额才能开户。
+  要使用银行的任何服务，你必须先在银行开户
+  （request account...）。
+
+- 银行可能有多个地点。一旦你在某个银行开户，
+  就可以在该银行的任何地点办理业务。
+
+- 某些银行会对某些交易收取费用。费用因银行
+  而异，但可能会受到你是否是银行所在城镇的
+  本地居民的影响。

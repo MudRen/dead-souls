@@ -15,9 +15,8 @@ protected void create() {
     SetMagicCost(150, 100);
     SetDifficulty(1);
     SetMorality(10);
-    SetHelp("Syntax: <cast meditate>\n"
-            "A spell that allows the caster to "
-            "restore their stamina more quickly.\n\n");
+    SetHelp("语法: <cast meditate>\n"
+            "一个能让施法者更快恢复耐力的法术。\n\n");
 }
 
 int eventCast(object who, int level) {
@@ -34,8 +33,8 @@ int eventCast(object who, int level) {
     mojo->AddDuration(who->GetSkillLevel("conjuring") + who->GetSpellLevel("meditate"));
     mojo->eventMove(who);
 
-    send_messages("", "A %^BOLD%^MAGENTA%^dark magical field%^RESET%^ "
-            "briefly appears around $agent_possessive_noun body.", who, 0,
+    send_messages("", "一个%^BOLD%^MAGENTA%^暗黑魔法力场%^RESET%^"
+            "短暂地出现在$agent_possessive_noun的周围。", who, 0,
             environment(who));
     return 1;
 }

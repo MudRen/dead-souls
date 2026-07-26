@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("gecko");
     SetAdjectives( ({"gecko", "green", "small"}) );
     SetId( ({"lizard"}) );
-    SetShort("a gecko");
-    SetLong("This is a small lizard, about four inches in length. It has green skin, and unusually large eyes.");
+    SetShort("一只壁虎");
+    SetLong("这是一只小蜥蜴，大约四英寸长。它有绿色的皮肤和 unusually 大的眼睛。");
     SetWimpy(80);
     SetLevel(1);
     SetMelee(1);

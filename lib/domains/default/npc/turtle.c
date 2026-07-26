@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("mock turtle");
     SetAdjectives( ({"peculiar", "mock"}) );
     SetId( ({"turtle", "tortoise"}) );
-    SetShort("a mock turtle");
-    SetLong("This peculiar creature has the head of a calf but the body of a turtle.");
+    SetShort("一只假海龟");
+    SetLong("这种奇特的生物有着小牛的头但却是海龟的身体。");
     SetLevel(1);
     SetMelee(1);
     SetRace("tortoise");

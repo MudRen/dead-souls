@@ -8,8 +8,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Builders' Lounge");
-    SetLong("This is the comfortable lounge where builders can congregate to chat about their work and leave messages for each other on the board. The Adventurers' Guild is north.");
+    SetShort("建造者休息室");
+    SetLong("这是一个舒适的休息室，建造者们可以在这里聚集讨论他们的工作，并在留言板上互相留言。冒险者公会在北边。");
     SetProperty("no attack", 1);
     SetProperty("nopeer",1);
     ob = new("/lib/bboard");
@@ -17,10 +17,10 @@ protected void create() {
     ob->SetId( ({ "board", "chalkboard", "dusty board", "dusty chalkboard" }) );
     ob->set_board_id("builder_board");
     ob->set_max_posts(30);
-    ob->SetShort("a dusty chalkboard");
+    ob->SetShort("一个布满灰尘的黑板");
     ob->eventMove(this_object());
     SetItems( ([
-                ({"sign"}) : "A sign you can read.",
+                ({"sign"}) : "一个你可以阅读的指示牌。",
                 ]) );
     SetExits( ([ 
                 "north" : "/domains/town/room/adv_guild",
@@ -36,7 +36,7 @@ int CanReceive(object sneak) {
     foreach(object ob in living_stack){
         if(playerp(ob) && !builderp(ob) && !present("testchar badge",ob) &&
                 !member_group(ob,"TEST")) {
-            message("info","Staff only, sorry.", ob);
+            message("info","仅限工作人员使用，抱歉。", ob);
             return 0;
         }
     }

@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("elephant");
     SetAdjectives( ({"docile", "pink", "friendly", "large", "very large"}) );
     SetId(({"npc","mob","character","mobile"}));
-    SetShort("a pink elephant");
-    SetLong("This is a very large creature, yet it seems quite docile and even friendly. It's unclear whether the pink color is natural or painted on, but it's quite becoming.");
+    SetShort("一头粉色大象");
+    SetLong("这是一个非常大的生物，但它看起来相当温顺，甚至很友好。不清楚粉色是天然的还是涂上去的，但相当好看。");
     SetLevel(1);
     SetMelee(1);
     SetRace("elephant");

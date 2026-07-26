@@ -28,7 +28,7 @@ mixed can_mail_str(string str) {
         mixed tmp;
 
         tmp = environment(this_player())->CanMail(this_player(), str);
-        if( !tmp ) return "Does this place look like a post office?";
+        if( !tmp ) return "这里看起来像邮局吗？";
         else return tmp;
     }
     return 1;
@@ -42,29 +42,25 @@ mixed do_mail_str(string str) {
     if( !creatorp(this_player()) )
         return environment(this_player())->eventMail(this_player(), str);
     if( !(ob = new(OBJ_POST)) ) {
-        this_player()->eventPrint("Failed to load postal object!");
+        this_player()->eventPrint("加载邮件对象失败！");
         return 1;
     }
     if( !(ob->eventMove(this_player())) ) {
-        this_player()->eventPrint("You can't seem to carry the postal "
-                "object.");
+        this_player()->eventPrint("你似乎无法携带邮件对象。");
         return 1;
     }
-    this_player()->eventPrint("%^RED%^Remember!%^RESET%^ To end a post, enter a single period on an otherwise blank line, and then hit return.");
+    this_player()->eventPrint("%^RED%^注意！%^RESET%^要结束邮件，请在空行上输入一个句号，然后按回车。");
     ob->start_post(str);
     return 1;
 }
 
 string GetHelp(string str) {
-    return ("Syntax: mail\n"
-            "        mail <PLAYER>\n"
-            "        mail <GROUP>\n"
-            "        mail <PLAYER@MUD>\n\n"
-            "Allows you to send mail to another player on this game. "
-            "Without arguments, you are simply set to read your "
-            "mail.  With arguments, you are creating mail to be sent.  "
-            "You may only read mail in your home town.  The mailer will "
-            "properly route any mail you send to the proper home town "
-            "for the player or players you intend it to go to.\n"
-            "See also: mudlist");
+    return ("用法：mail\n"
+            "      mail <玩家>\n"
+            "      mail <群组>\n"
+            "      mail <玩家@MUD>\n\n"
+            "允许你向本游戏的其他玩家发送邮件。不带参数时，你将阅读邮件。"
+            "带参数时，你将创建要发送的邮件。你只能在家乡阅读邮件。"
+            "邮件系统会将你发送的邮件正确路由到目标玩家的家乡。\n"
+            "另见：mudlist");
 }

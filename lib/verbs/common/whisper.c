@@ -16,27 +16,25 @@ protected void create() {
     SetVerb("whisper");
     SetRules("to LIV", "in WRD", "in WRD to LIV", "to LIV STR",
             "to LIV in WRD STR", "in WRD to LIV STR");
-    SetErrorMessage("Whisper to whom what?");
-    SetHelp("Syntax: whisper to <LIVING> <MESSAGE>\n"
-            "        whisper to <LIVING> in <LANGUAGE> <MESSAGE>\n"
-            "        whisper in <LANGUAGE> to <LIVING> <MESSAGE>\n\n"
-            "Privately sends a message to the targetted person in the "
-            "language you specify with a small chance of being overheard.  "
-            "If you fail to specify a language, your native language is "
-            "used.\n"
-            "See also: say, shout, speak, tell, yell");
+    SetErrorMessage("对谁耳语什么？");
+    SetHelp("用法：whisper to <生物> <消息>\n"
+            "      whisper to <生物> in <语言> <消息>\n"
+            "      whisper in <语言> to <生物> <消息>\n\n"
+            "向目标人物私下发送消息，使用你指定的语言，有小概率被其他人听到。"
+            "如果你没有指定语言，将使用你的母语。\n"
+            "另见：say, shout, speak, tell, yell");
 }
 
 mixed can_whisper_to_liv(object target) {
-    return "What is it you are trying to whisper?";
+    return "你想耳语什么？";
 }
 
 mixed can_whisper_in_wrd(string lang) {
-    return "Whisper to whom in " + lang + "?";
+    return "用" + lang + "对谁耳语？";
 }
 
 mixed can_whisper_in_wrd_to_liv(string wrd, object ob) {
-    return "What do you mean to whisper?";
+    return "你想耳语什么？";
 }
 
 mixed can_whisper_to_liv_str(object targ, string str) {

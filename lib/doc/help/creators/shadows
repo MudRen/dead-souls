@@ -1,83 +1,71 @@
-Shadows are means to simulate the addition
-of functions to an already existing object.
+影子是一种模拟向已存在对象添加函数的方式。
 
-For example, one way to "enchant" a player might
-be to make it so that any object that tries to 
-do damage to her fails. This would mean that
-somehow you have to override eventReceiveDamage in
-that player (there are other ways, but let's pretend 
-this is a good idea).
+例如，"附魔"玩家的一种方式可能是让任何试图
+对她造成伤害的对象都失败。这意味着你必须以
+某种方式覆盖该玩家的 eventReceiveDamage
+（还有其他方式，但让我们假装这是个好主意）。
 
-A shadow would do it. You could code an with
-the following code:
+影子可以做到这一点。你可以编写一个带有以下代码的对象：
 
 varargs int eventReceiveDamage() {
 return 0;
 }
 
-And then use the shadow() efun to attach it to
-the player. Now when something tries to call the
-eventReceiveDamage function on the player, the
-shadow intercepts that call, and nothing happens at all.
+然后使用 shadow() efun 将其附加到玩家身上。
+现在当某些东西试图调用玩家的 eventReceiveDamage
+函数时，影子会拦截该调用，什么都不会发生。
 
-Neat, huh?
+很酷，对吧？
 
-There are, however, problems with shadows, which 
-we'll go over here:
+然而，影子存在问题，我们将在这里讨论：
 
-1) SECURITY
+1) 安全性
 -----------
-The main problem with shadows is security. If anybody on
-a mud can create shadows, then your mud basically 
-has no security at all, because a creator can enshadow
-an admin (or some other privileged object) in such
-a way as to elevate their own privilege.
+影子的主要问题是安全性。如果游戏中的任何人都可以
+创建影子，那么你的游戏基本上没有任何安全性，
+因为创建者可以影子化管理员（或其他特权对象），
+从而提升自己的权限。
 
-This would be bad.
+这将是很糟糕的。
 
-The way this is handled in Dead Souls is that the mud
-won't allow an object to be shadowed unless the shadowing
-object's code lives in /shadows. This means that it takes
-an admin to put the code there so that at least there is
-someone who *should* know what they're doing who is
-responsible for putting this code into play.
+在 Dead Souls 中的处理方式是，除非影子对象的代码
+位于 /shadows 中，否则游戏不允许对象被影子化。
+这意味着需要管理员将代码放在那里，这样至少有
+一个*应该*知道自己在做什么的人负责将此代码投入
+使用。
 
-This "only stuff in the /shadows directory" behavior
-is defined in the valid_shadow() master apply.
+这种"只在 /shadows 目录中的东西"的行为在
+valid_shadow() master apply 中定义。
 
-2) MANAGEMENT
--------------
-The other headache when it comes to shadows is managing
-them. The MudOS shadow() efun is simple enough to use,
-but suppose an object has more than one shadow and you
-only want to remove one. This is problematic because
-remove_shadow() doesn't distinguish between shadows...it'll
-remove *all* shadows from an object. While this may sometimes
-be desirable, it may not always be the right thing.
+2) 管理
+-----------
+影子的另一个头痛问题是管理它们。MudOS 的 shadow()
+efun 使用起来足够简单，但如果一个对象有多个影子
+而你只想移除一个，这就成问题了，因为 remove_shadow()
+不区分影子...它会从对象上移除*所有*影子。
+虽然这有时可能是可取的，但并不总是正确的事情。
 
-Starting in Dead Souls 2.5a8, a system for basic management
-of multiple shadows is included. The system relies on the
-following rules on a mud to work properly:
+从 Dead Souls 2.5a8 开始，包含了一个基本的多影子
+管理系统。该系统依赖于游戏中的以下规则才能正常工作：
 
-*) All shadows must inherit LIB_SHADOW.
-*) Any shadow must be attached to an object via the eventShadow() lfun. 
-*) Any shadow must be removed via the eventUnshadow() lfun.
+* 所有影子必须继承 LIB_SHADOW。
+* 任何影子必须通过 eventShadow() lfun 附加到对象上。
+* 任何影子必须通过 eventUnshadow() lfun 移除。
 
-This is because tangible items (cans of spam, swords, players, etc)
-now all inherit LIB_SHADOW_HOOK. What this means is that any shadow
-that is to be attached to an item will first identify itself to
-the item, and that item will maintain a list of objects that are
-shadowing it. This allows you to query that item for its shadows,
-and to then remove individual shadows. For example:
+这是因为有形物品（午餐肉罐头、剑、玩家等）
+现在都继承了 LIB_SHADOW_HOOK。这意味着任何要附加到
+物品上的影子都会先向该物品表明自己的身份，
+该物品将维护一个正在影子化它的对象列表。
+这允许你查询该物品的影子，然后移除单个影子。
+例如：
 
 find_player("xyzzy")->GetShadows()
 find_player("xyzzy")->eventUnshadow(find_object("/shadows/clan#9"))
 
-So that only that specific shadow is removed from Xyzzy.
+这样只有那个特定的影子从 Xyzzy 身上被移除。
 
-Note that this system does not prevent people from using
-shadow() and remove_shadow() independently, so for things to
-work properly, your mud needs to have it be a standard that
-shadows are removed and attached according to the rules above.
+注意这个系统并不阻止人们独立使用 shadow() 和
+remove_shadow()，所以为了让事情正常工作，你的游戏
+需要将影子的移除和附加按照上述规则作为标准。
 
-For more information on shadows in general, please see: /doc/guide/chapter07
+关于影子的一般信息，请参见：/doc/guide/chapter07

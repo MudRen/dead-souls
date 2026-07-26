@@ -1,105 +1,100 @@
 
-    There are many ways to communicate with other players. If
-you're in the same room as your intended listener, you can just 
-use the "say" command, like this:
+    与其他玩家交流有很多方式。如果你和想要交流的
+人在同一个房间，你可以直接使用 "say" 命令，像这样：
 
 %^GREEN%^say hi, crat%^RESET%^
 
-    If the message is secret, you can "whisper":
+    如果消息是秘密的，你可以"耳语"：
 
 %^GREEN%^whisper to cratylus are you idle?%^RESET%^
 
-    If you want to say something that everyone in the mud can
-hear, use the "shout" command (at the cost of a lot of stamina):
+    如果你想说一些所有人都能听到的话，使用 "shout"
+命令（但会消耗大量体力）：
 
 %^GREEN%^shout hey crat, wheredya go?%^RESET%^
 
-    Or, if it's an important secret and the target is not in the 
-same room as you, you can use the magical "tell" command:
+    或者，如果是一个重要的秘密，而且目标不在你所在的
+房间，你可以使用神奇的 "tell" 命令：
 
 %^GREEN%^tell cratylus are you mad at me or something?%^RESET%^
 
 
-    There are also special communication lines on the mud that are
-class or role-specific. For example, if you type:
+    游戏中还有一些特殊的通信线路，按职业或角色分类。
+例如，如果你输入：
 
 %^GREEN%^newbie does anyone know what's up with cratylus?%^RESET%^
 
-    All people who are tuned into the newbie line will get
-your message. To see what lines are available to you, type:
+    所有收听新手线路的人都会收到你的消息。
+要查看你可以使用哪些线路，输入：
 
 %^GREEN%^lines%^RESET%^
 
-To see who is listening to the newbie channel:
+要查看谁在收听新手频道：
 
 %^GREEN%^list newbie%^RESET%^
 
-To see who is listening to some other channel on some other mud:
+要查看谁在其他游戏的其他频道上收听：
 
 %^GREEN%^list otherchannel@othermud%^RESET%^
 
 
-    To enable or disable a line, just type the name of it with no message.
+    要启用或禁用某个线路，只需输入线路名称即可。
 
-    To see a brief history of the past few messages on a line (in
-this case, the newbie line), type:
+    要查看某个线路上最近几条消息的简要历史
+（以新手线路为例），输入：
 
 %^GREEN%^hist newbie%^RESET%^
 
 
-    Spamming lines is rude and probably dangerous to your character, so 
-be sure you comply with your mud's rules on lines. 
+    刷屏是粗鲁的，对你的角色可能有危险，
+所以请确保遵守你所在游戏的线路规则。
 
 
-    Your mud may be on the intermud network. To find out, type the
-command:
+    你的游戏可能在跨网游网络上。要查看，输入命令：
 
 %^GREEN%^mudlist%^RESET%^
 
-    If a list of muds comes up, you know your mud is probably
-on the intermud3 communication network. Dead Souls by default restricts
-players from access to intermud channels, but you can "tell" to
-players on other muds, if you want. If you think your friend Xyzzy
-is online on a mud on intermud3, you can issue this command:
+    如果出现游戏列表，说明你的游戏可能在跨网游3
+通信网络上。Dead Souls 默认限制玩家使用跨网游频道，
+但如果你想，你可以"告诉"其他游戏上的玩家。
+如果你认为你的朋友 Xyzzy 在跨网游3的某个游戏上在线，
+你可以发出这个命令：
 
 %^GREEN%^locate xyzzy%^RESET%^
 
-    If he's logged into a mud on i3, you will get something like:
+    如果他在 i3 的某个游戏上登录了，你会得到类似的信息：
 
 Xyzzy was just located on Frontiers. (idle 00:03:17) [status: inactive]
 
-    You can then tell to him:
+    然后你可以告诉他：
 
 %^GREEN%^tell xyzzy@frontiers dude, what's the deal with crat lately?%^RESET%^
 
 
-    Sometimes a player or NPC does not understand your character's
-native tongue. For example, if you are en elf, your native tongue is
-not English, it is Edhellen. If someone talks to you in English, you
-might see something like this:
+    有时玩家或 NPC 不理解你角色的母语。例如，
+如果你是一个精灵，你的母语不是英语，而是 Edhellen。
+如果有人用英语和你说话，你可能会看到这样的内容：
 
 Xyzzy says in English, "leka mifahmam, potong-hwa."
 
-    Since your character doesn't speak English, what you see is gibberish.
-If you find a language teacher, your proficiency in the language they
-teach you will allow you to understand more of the words you hear.
+    由于你的角色不会说英语，你看到的是乱码。
+如果你找到一位语言老师，你对该语言的熟练程度
+将使你能理解更多听到的单词。
 
-    Suppose that your elf character is now 100% fluent in English.
-If you greet a human player named Xyzzy by typing:
+    假设你的精灵角色现在 100% 精通英语。
+如果你想问候一个叫 Xyzzy 的人类玩家，输入：
 
 %^GREEN%^say hello there, xyzzy%^RESET%^
 
-    Xyzzy will probably see something like:
+    Xyzzy 可能会看到类似的内容：
 
 Noobie says in Edhellen, "pericolo temak, forshtor."
 
-    Instead, if you want to speak to a human, you'll have to type:
+    相反，如果你想和人类说话，你需要输入：
 
 %^GREEN%^speak in english hello there, xyzzy%^RESET%^
 
 
-    To find out what languages you speak, type:
+    要查看你会说哪些语言，输入：
 
 %^GREEN%^language%^RESET%^
-
-

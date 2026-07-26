@@ -31,7 +31,7 @@ private void validate() {
     if(!this_player()) return 0;
     if( !(master()->valid_apply(({ "ASSIST" }))) &&
             !member_group(this_player(), "EMOTES") )
-        error("Illegal attempt to access SOUL_D: "+get_stack()+" "+identify(previous_object(-1)));
+        error("非法访问 SOUL_D: "+get_stack()+" "+identify(previous_object(-1)));
 }
 
 varargs int AddAdverbs(string* advs...) {
@@ -158,20 +158,11 @@ string GetHelp(string arg) {
     string str;
 
     if( arg == "soul" ) {
-        str = "Your \"soul\" is a system of expressions you can use "
-            "to express how you are feeling.  Though it does not really "
-            "cause anything to happen, other people, including NPC's, may "
-            "react to your emotions, especially when they are violent or "
-            "negative.\n\n"
-            "Some soul commands allow you to express an adverb to give some "
-            "sort of emphasis to the expression.  Some commands are limited "
-            "to a certain set of adverbs, while most commands will allow you "
-            "to choose from the list of system wide adverbs given below.  "
-            "You may always use your racial adverb in any expression "
-            "allowing an adverb.  A racial adverb is simply a way of "
-            "emoting unique to your race, like \"smile gnomishly\".\n\n"
-            "For a list of soul commands, try <help feelings>.\n\n"
-            "The list of system adverbs are:\n";
+        str = "您的 \"灵魂\" 是一套表达系统，可以用来表达您的感受。虽然它不会真正导致任何事情发生，但其他人（包括NPC）可能会对您的情绪做出反应，尤其是当它们是暴力或消极的时候。\n\n"
+            "一些灵魂命令允许您使用副词来强调表达。某些命令只限于特定的副词集合，而大多数命令允许您从下面列出的系统全局副词中选择。"
+            "您始终可以在任何允许副词的表达中使用您的种族副词。种族副词是您种族独特的情感表达方式，比如 \"smile gnomishly\"。\n\n"
+            "要查看灵魂命令列表，请尝试 <help feelings>。\n\n"
+            "系统副词列表:\n";
         str += format_page(sort_array(Adverbs, 1), 5);
         return str;
     }
@@ -181,7 +172,7 @@ string GetHelp(string arg) {
     }
     rls = keys(e->Rules);
     if( !sizeof(rls) ) {
-        return "This emote is not yet valid.";
+        return "此情感表达尚未生效。";
     }
     else {
         int w = member_array("", rls);
@@ -255,13 +246,12 @@ string GetHelp(string arg) {
         }
     }
     str += "\n";
-    str += capitalize(arg) + " is a soul command and affects nothing.\n";
-    str += "System adverbs are listed in <help soul>.\n";
-    str += "SINGLE_LIVING: You can target a single living thing\n"
-        "ONE_OR_MORE_LIVINGS: You can target multiple people using \"all\"\n"
-        "PHRASE: Any random phrase\n"
-        "ADVERB: Any adverb from the list of supported adverbs, or your "
-        "racial adverb.";
+    str += capitalize(arg) + " 是一个灵魂命令，不会产生实际效果。\n";
+    str += "系统副词列表请参阅 <help soul>。\n";
+    str += "SINGLE_LIVING: 您可以指定单个生物\n"
+        "ONE_OR_MORE_LIVINGS: 您可以使用 \"all\" 指定多个目标\n"
+        "PHRASE: 任意短语\n"
+        "ADVERB: 从支持的副词列表中选择任意副词，或您的种族副词。";
     return str;
 }
 
@@ -387,7 +377,7 @@ varargs mixed do_verb_rule(string verb, string rle, mixed args...) {
             break;
 
         default:
-            this_player()->eventPrint("Unknown soul syntax.");
+            this_player()->eventPrint("未知的灵魂语法。");
             return 1;
     }
     if( arrayp(args) ) {
@@ -404,8 +394,7 @@ varargs mixed do_verb_rule(string verb, string rle, mixed args...) {
             string* matches = regexp(pool, "^" + adv);
 
             if( !sizeof(matches) ) {
-                this_player()->eventPrint("You cannot " + verb + " " + adv +
-                        "!");
+                this_player()->eventPrint("您不能以 " + adv + " 方式 " + verb + "！");
                 return 1;
             }
             adv = matches[0];

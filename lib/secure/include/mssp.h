@@ -25,12 +25,12 @@ string mssp_reply(){
             (: (environment($1) && !($1->GetInvis())) :)), 
             (: $1->GetCapName():)), "\t"),
             "HOSTNAME"         : ip,
-            "DESCRIPTION"      : "A fun mud!",
+            "DESCRIPTION"      : "一个有趣的MUD！",
             "CREATED"          : itoa(local_time()[5]),
             "ICON"             : "http://"+ip+":"+PORT_HTTP+"/favicon.ico",
             "IP"               : ip,
-            "LANGUAGE"         : "English",
-            "LOCATION"         : "United States",
+            "LANGUAGE"         : "Chinese",
+            "LOCATION"         : "China",
             "MINIMUM AGE"      : "13",
             "WEBSITE"          : "http://"+ip+":"+PORT_HTTP,
             "FAMILY"           : "LPMud",
@@ -84,16 +84,16 @@ string mssp_reply(){
             ]);
 
     notes = ([
-            "FAMILY-NOTES"           : "descendant of Nightmare",
-            "HELPFILES-NOTES"        : "each command, and hundreds of other docs",
-            "MOBILES-NOTES"          : "npc's can be cloned, so there can be thousands",
-            "OBJECTS-NOTES"          : "objects can be cloned, so there can be thousands",
-            "ROOMS-NOTES"            : "areas have generated rooms, could be millions",
-            "RESETS-NOTES"           : "doesn't apply, LPMud",
-            "MUDPROGS-NOTES"         : "doesn't apply, LPMud",
-            "MUDTRIGS-NOTES"         : "doesn't apply, LPMud",
-            "RACES-NOTES"            : "not all are playable",
-            "SKILLS-NOTES"           : "many, but not like Diku",
+            "FAMILY-NOTES"           : "Nightmare的后裔",
+            "HELPFILES-NOTES"        : "每个命令，以及数百个其他文档",
+            "MOBILES-NOTES"          : "NPC可以被克隆，所以可以有数千个",
+            "OBJECTS-NOTES"          : "物品可以被克隆，所以可以有数千个",
+            "ROOMS-NOTES"            : "区域有生成的房间，可能有数百万个",
+            "RESETS-NOTES"           : "不适用，LPMud",
+            "MUDPROGS-NOTES"         : "不适用，LPMud",
+            "MUDTRIGS-NOTES"         : "不适用，LPMud",
+            "RACES-NOTES"            : "并非所有都可玩",
+            "SKILLS-NOTES"           : "很多，但不像Diku那样",
             ]);
 
     ret = "MSSP-REPLY-START\r\n";

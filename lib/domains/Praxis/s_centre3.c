@@ -7,27 +7,23 @@ void create() {
     SetProperty("light", 3);
     SetProperty("night light", 1);
     SetProperty("no castle", 1);
-    SetShort("Southern Praxis");
-    SetDayLong( "Southern Praxis is the business district of this "
-            "small adventuring community.  Through it runs Centre Path, "
-            "bringing people from the centre of town through here and "
-            "to the southwest the area really begins to rumble with "
-            "horse and foot traffic.");
-    SetNightLong( "The business district of Praxis nearly slumbers "
-            "save for a few nocturnal races of adventurer.  Centre Path "
-            "winds down from the north out to the Port of Praxis southwest. "
-            " An unnamed road heads east.");
-    SetExits( 
+    SetShort("普拉克西斯南部");
+    SetDayLong( "普拉克西斯南部是这个小型冒险社区的商业区。"
+            "中心路从中穿过，将人们从镇中心带到这里，"
+            "向西南方向，马匹和行人的交通开始繁忙起来。");
+    SetNightLong( "普拉克西斯的商业区几乎陷入沉睡，"
+            "只有少数夜间活动的冒险者。中心路从北方蜿蜒而下，"
+            "向西南通往普拉克西斯港口。一条无名路向东延伸。");
+    SetExits(
             (["north" : "/domains/Praxis/s_centre2",
              "southwest" : "/domains/Praxis/s_centre4",
              "east" : "/domains/Praxis/unnamed1"]) );
-    SetItems( 
-            ([({"path", "centre path"}) : "The main road leading north and "
-             "south through Praxis.",
-             ({"port", "port of praxis"}) : "You cannot see that from here.", 
-             ({"road", "unnamed road"}) : "It leads out of town."]) );
+    SetItems(
+            ([({"path", "centre path"}) : "贯穿普拉克西斯南北的主要道路。",
+             ({"port", "port of praxis"}) : "从这里看不到。",
+             ({"road", "unnamed road"}) : "通往城外。"]) );
     SetSkyDomain("town");
-    SetListen("road", "An eerie silence fills the air that way.");
+    SetListen("road", "那个方向弥漫着一种诡异的寂静。");
 }
 void init(){
     ::init();

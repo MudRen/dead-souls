@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("dodo");
     SetId(({"npc","mob","character","mobile"}));
     SetAdjectives(({"non-player", "non player"}));
-    SetShort("a fat little dodo bird");
-    SetLong("This foolish little creature's only crime was being born trusting and delicious.");
+    SetShort("一只胖嘟嘟的渡渡鸟");
+    SetLong("这个愚蠢的小生物唯一的罪过就是生来就信任他人且味道鲜美。");
     SetWanderSpeed(10);
     SetLevel(1);
     SetMelee(1);

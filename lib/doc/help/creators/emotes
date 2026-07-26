@@ -1,70 +1,74 @@
-Emote Name: A name for the emote (Example, "slap")
+表情名称：表情的名称（例如 "slap"）
 
-Error Message: An error for emotes that don't match the parse rules (Example, "Slap who?")
+错误消息：不符合解析规则的表情的错误消息（例如 "Slap who?"）
 
-Parse Rule: A rule for the parser to see who to slap (Example, "LVS STR" to allow the user to "slap shadyman hard") 
+解析规则：解析器用来确定谁被击打的规则（例如 "LVS STR" 允许用户 "slap shadyman hard"）
 
-Verbs: Verbs this applies to (usually just the emote name)
+动词：适用的动词（通常只是表情名称）
 
-Message: What gets displayed when the emote happens. (Example, "$agent_name $agent_verb $target_name.")
+消息：表情发生时显示的内容。（例如 "$agent_name $agent_verb $target_name."）
 
-Adverbs: One of 4 choices:
-	1) Any special adverbs that apply to this emote that don't exist already, in a comma delimited list
-	2) '-', to allow only preselected adverbs to be used
-	3) 'none', to allow no adverbs to be used
-	4) '*', to allow any word to be used
-
-
-		Shadyman smiles sweetly at Kira
-Emote Name:	smile
-Error Msg:	none	
-Parse Rule:	at LVS,LVS
-Verbs:	smile
-Message:	$agent_name $agent_verb $adverb at $target_name.
-Adverbs:	*
-
-Once you have that one rule done, you can add more by using "addemote -add"
-You can also edit rules for an emote by using "addemote -edit"
-You can remove a rule by using "removeemote [emotename] [rulename]" (see "addemote -edit" for rules in the emote, ie: "at LIV STR")
-Removing an entire emote is done by "removeemote"
+副词：以下 4 种选择之一：
+	1) 适用于此表情的任何特殊副词，以逗号分隔的列表
+	2) '-'，仅允许预先选定的副词
+	3) 'none'，不允许使用副词
+	4) '*'，允许使用任何单词
 
 
-				<COMMANDS LIST>
- 
-Command			You See			Target Sees	Room Sees
+			Shadyman smiles sweetly at Kira
+表情名称:	smile
+错误消息:	none
+解析规则:	at LVS,LVS
+动词:	smile
+消息:	$agent_name $agent_verb $adverb at $target_name.
+副词:	*
+
+完成第一个规则后，你可以使用 "addemote -add" 添加更多规则
+你还可以使用 "addemote -edit" 编辑表情的规则
+你可以使用 "removeemote [emotename] [rulename]" 删除规则
+（参见 "addemote -edit" 了解表情中的规则，即 "at LIV STR"）
+使用 "removeemote" 删除整个表情
+
+
+					<命令列表>
+
+命令			你看到的		目标看到的	房间看到的
 -------			-------			-----------	---------
 $agent_verb		smile			Smile		Smile
 $agent_name		you			Shadyman	Shadyman
-$agent_nominative	you			he/she		he/she	
-$agent_objective	you			him/her/them	him/her/them		
-$agent_possessive_noun	your			Shadyman's	Shadyman's	
+$agent_nominative	you			he/she		he/she
+$agent_objective	you			him/her/them	him/her/them
+$agent_possessive_noun	your			Shadyman's	Shadyman's
 $agent_possessive	your			his/hers	his/hers
-$agent_reflexive	yourself		himself/herself	himself/herself			
+$agent_reflexive	yourself		himself/herself	himself/herself
 $target_verb		smiles			smiles		smiles
 $target_name		Kira			you		Kira
 $target_nominative	he/she/they		you		he/she/they
 $target_objective	him/her/them		you		him/her/them
 $target_possessive_noun	Kira's			your		Kira's
 $target_possessive	his/hers/theirs		your		his/hers/theirs
-$target_reflexive	him-/her-/themselves	yourself	him-/her-/themselves	
+$target_reflexive	him-/her-/themselves	yourself	him-/her-/themselves
 $adverb			happily			happily		happily
 
 
-				<SAMPLE EMOTE CREATION>
+					<示例表情创建>
 
-Let's add the emote Snicker. Just simply, an emote that says "You snicker" when you type "snicker".
-Since it will have no arguments, you don't need to add a parser rule or adverbs.
+让我们添加表情 Snicker。简单来说，当你输入 "snicker" 时
+会显示 "You snicker" 的表情。
+由于它没有参数，你不需要添加解析规则或副词。
 
 > addemote snicker
 Enter error message: Snicker at whom?
-Enter a parser rule for snicker: 
+Enter a parser rule for snicker:
 Enter the verbs: snicker
 Enter message: $agent_name $agent_verb.
-Enter adverbs: 
+Enter adverbs:
 Emote 'snicker' added.
 
-Now let's add a rule to 'snicker' to make it more useful. Let's add "snicker at [someone]", with a living person as a target.
-Since there will still be no adverbs, we'll leave the adverbs blank, but we will be using the parser rule, because we want to snicker AT someone.
+现在让我们向 'snicker' 添加一个规则以使其更有用。
+让我们添加 "snicker at [someone]"，以一个活着的人为目标。
+由于仍然没有副词，我们将副词留空，但我们会使用解析规则，
+因为我们想对着某人窃笑。
 
 > addemote -add
 Enter emote name: snicker
@@ -72,11 +76,14 @@ Enter error message: Snicker at whom?
 Enter a parser rule for snicker: at LIV
 Enter the verbs: snicker
 Enter message: $agent_name $agent_verb at $target_name.
-Enter adverbs: 
+Enter adverbs:
 Emote 'snicker' added.
 
-Now let's add the ability to use adverbs with our 'snicker' emotion, like 'snicker at shadyman loudly' and 'snicker loudly at shadyman'. Note we'll be adding two rules at once.
-If you want your users to use their own (non-approved) adverbs or strings of text, you should put '*' in the adverbs section. Otherwise, put '-' to use only pre-approved adverbs.
+现在让我们为 'snicker' 表情添加使用副词的能力，如
+'snicker at shadyman loudly' 和 'snicker loudly at shadyman'。
+注意我们将一次添加两个规则。
+如果你想让你的用户使用自己的（未经批准的）副词或文本字符串，
+你应该在副词部分放 '*'。否则，放 '-' 以仅使用预先批准的副词。
 
 > addemote -add
 Enter emote name: snicker
@@ -87,9 +94,10 @@ Enter message: $agent_name $agent_verb at $target_name $adverb.
 Enter adverbs: *
 Emote 'snicker' added.
 
-Go ahead and experiment with various types of parsing rules, using LIV, STR, LVS, and prepositions such as 'with', 'as', 'like', etc.
+继续尝试各种类型的解析规则，使用 LIV、STR、LVS
+以及介词如 'with'、'as'、'like' 等。
 
-				<SAMPLE EMOTE IN "addemote -edit" MODE>
+					<addemote -edit 模式下的示例表情>
 Emote: boggle
 Error Message: Boggle!
 Rules:
@@ -117,6 +125,6 @@ Rules:
 [8] "": $agent_name $agent_verb.
   Adverbs:
 
-Revisions:
+修订：
 ----------
-Document Created: [Shadyman, Mar 16, 2006]
+文档创建: [Shadyman, 2006年3月16日]

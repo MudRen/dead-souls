@@ -8,8 +8,8 @@ protected void create() {
     SetKeyName("moth");
     SetId(({"npc","mob","character","mobile"}));
     SetAdjectives(({"non-player", "non player"}));
-    SetShort("a tiny moth");
-    SetLong("An ordinary flying insect which has a particular taste for old clothes.");
+    SetShort("一只小飞蛾");
+    SetLong("一种普通的飞虫，对旧衣服有特别的嗜好。");
     SetWimpy(80);
     SetPosition(POSITION_FLYING);
     SetLevel(1);

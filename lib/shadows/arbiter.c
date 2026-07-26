@@ -42,28 +42,28 @@ int CheckSuit(){
 varargs string GetExternalDesc(object who){
     object ob = GetShadowedObject();
     if(!clonep()) return "";
-    if(CheckDisguised()) return "A arbiter of the Extant Authority military forces.";
+    if(CheckDisguised()) return "现存权威军事力量的仲裁者。";
     else return ob->GetExternalDesc(who);
 }
 
 varargs string GetLong(object who){
     object ob = GetShadowedObject();
     if(!clonep()) return "";
-    if(CheckDisguised()) return "An arbiter of the Extant Authority military forces.";
+    if(CheckDisguised()) return "现存权威军事力量的仲裁者。";
     else return ob->GetLong(who);
 }
 
 string GetName(){
     object ob = GetShadowedObject();
     if(!clonep()) return "";
-    if(CheckDisguised() || !ob) return "Arbiter";
+    if(CheckDisguised() || !ob) return "仲裁者";
     else return ob->GetName();
 }
 
 string GetCapName(){
     object ob = GetShadowedObject();
     if(!clonep()) return "";
-    if(CheckDisguised()) return "Arbiter";
+    if(CheckDisguised()) return "仲裁者";
     else return ob->GetCapName();
 }
 
@@ -77,7 +77,7 @@ string GetKeyName(){
 string GetShort(){
     object ob = GetShadowedObject();
     if(!clonep()) return "";
-    if(CheckDisguised()) return "a arbiter";
+    if(CheckDisguised()) return "一名仲裁者";
     else return ob->GetShort();
 }
 
@@ -251,18 +251,18 @@ void eventDescribeEnvironment(int verbose) {
     string grid, climate,filename,foo,tmp;
     int x,y,z,hud = 1;
     object *livings;
-    string extra = "%^CYAN%^Heads-up display info:%^RESET%^\n";
+    string extra = "%^CYAN%^抬头显示器信息:%^RESET%^\n";
     mapping invisibles = ([]);
     int medium, terrain;
 
-    extra += "Power remaining: "+to_int(percent(suit->GetRemainingCharge(),
+    extra += "剩余能量: "+to_int(percent(suit->GetRemainingCharge(),
                 suit->GetMaxCharge()))+"%\n";
 
     if(!ob) return 0;
     if(!CheckSuit() || !suit->GetActive()) return ob->eventDescribeEnvironment(verbose);
 
     if( !(env = room_environment(ob)) ) {
-        message("room_description", "No environment.", this_object());
+        message("room_description", "没有环境。", this_object());
         return;
     }
 
@@ -275,55 +275,55 @@ void eventDescribeEnvironment(int verbose) {
 
     if(grid){
         hud = 1;
-        extra += "Global coordinates: "+grid+"\n";
+        extra += "全局坐标: "+grid+"\n";
     }
 
     foo = last_string_element(filename,"/");
     if(sscanf(foo,"%d,%d,%d", x,y,z) == 3 ||
             sscanf(foo,"%d,%d", x,y) == 2){
         hud = 1;
-        extra += "Local coordinates: "+x+","+y+","+z+"\n";
+        extra += "本地坐标: "+x+","+y+","+z+"\n";
     }
     if(climate){
         hud = 1;
-        extra += "Climate: "+climate+"\n";
+        extra += "气候: "+climate+"\n";
     }
     if(terrain){
         hud = 1;
-        extra += "Terrain: ";
-        if(terrain & T_OUTDOORS) extra += " outdoors ";
-        if(terrain & T_INDOORS) extra += " indoors ";
-        if(terrain & T_ROAD) extra += " road ";
-        if(terrain & T_UNDERWATER) extra += " underwater ";
-        if(terrain & T_SURFACE) extra += "surface ";
-        if(terrain & T_MIDAIR) extra += " midair ";
-        if(terrain & T_SWAMP) extra += " swamp ";
-        if(terrain & T_WOODS) extra += " woods ";
-        if(terrain & T_JUNGLE) extra += " jungle ";
-        if(terrain & T_ROUGH) extra += " rough ";
-        if(terrain & T_UNDERGROUND) extra += " underground ";
-        if(terrain & T_SPACE) extra += " space ";
-        if(terrain & T_MAGMA) extra += " magma ";
-        if(terrain & T_PLASMA) extra += " plasma ";
-        if(terrain & T_PLANAR) extra += " planar ";
-        if(terrain & T_SNOW) extra += " snow ";
-        if(terrain & T_SAND) extra += " sand ";
-        if(terrain & T_ICE) extra += " ice ";
-        if(terrain & T_BIOLOGICAL) extra += " biological ";
-        if(terrain & T_SEAFLOOR) extra += " seafloor ";
+        extra += "地形: ";
+        if(terrain & T_OUTDOORS) extra += " 室外 ";
+        if(terrain & T_INDOORS) extra += " 室内 ";
+        if(terrain & T_ROAD) extra += " 道路 ";
+        if(terrain & T_UNDERWATER) extra += " 水下 ";
+        if(terrain & T_SURFACE) extra += " 水面 ";
+        if(terrain & T_MIDAIR) extra += " 半空 ";
+        if(terrain & T_SWAMP) extra += " 沼泽 ";
+        if(terrain & T_WOODS) extra += " 森林 ";
+        if(terrain & T_JUNGLE) extra += " 丛林 ";
+        if(terrain & T_ROUGH) extra += " 崎岖 ";
+        if(terrain & T_UNDERGROUND) extra += " 地下 ";
+        if(terrain & T_SPACE) extra += " 太空 ";
+        if(terrain & T_MAGMA) extra += " 岩浆 ";
+        if(terrain & T_PLASMA) extra += " 等离子 ";
+        if(terrain & T_PLANAR) extra += " 位面 ";
+        if(terrain & T_SNOW) extra += " 雪地 ";
+        if(terrain & T_SAND) extra += " 沙漠 ";
+        if(terrain & T_ICE) extra += " 冰面 ";
+        if(terrain & T_BIOLOGICAL) extra += " 生物 ";
+        if(terrain & T_SEAFLOOR) extra += " 海底 ";
         extra += "\n";
     }
 
     if(medium){
         hud = 1;
-        extra += "Medium: ";
+        extra += "介质: ";
         switch(medium){
-            case MEDIUM_LAND : extra += "land\n"; break;
-            case MEDIUM_AIR : extra += "air\n"; break;
-            case MEDIUM_SPACE : extra += "space\n"; break;
-            case MEDIUM_WATER : extra += "water\n"; break;
-            case MEDIUM_SURFACE : extra += "surface\n"; break;
-            default: extra += "unknown\n";
+            case MEDIUM_LAND : extra += "陆地\n"; break;
+            case MEDIUM_AIR : extra += "空气\n"; break;
+            case MEDIUM_SPACE : extra += "太空\n"; break;
+            case MEDIUM_WATER : extra += "水\n"; break;
+            case MEDIUM_SURFACE : extra += "水面\n"; break;
+            default: extra += "未知\n";
         }
     }
 
@@ -335,7 +335,7 @@ void eventDescribeEnvironment(int verbose) {
         }
         foreach(mixed key, mixed val in invisibles){
             if(!key) continue;
-            extra += "Invisible "+pluralize(key)+": "+val+"\n";
+            extra += "隐形的"+pluralize(key)+": "+val+"\n";
         }
     }
 
@@ -353,19 +353,19 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal, mixed
 
     if(reporting){
         string *damtypes = TYPES_D->eventCalculateTypes("damage", type);
-        evidence = "The powered suit's Heads-Up-Display issues an alert:\n";
+        evidence = "动力装甲的抬头显示器发出警报:\n";
         evidence += "%^BOLD%^%^RED%^";
-        if(objectp(agent)) evidence += "Damage received!";
+        if(objectp(agent)) evidence += "受到伤害！";
         if(type && sizeof(damtypes)) {
             string verboid;
-            if(sizeof(damtypes) > 1) verboid = "s are ";
-            else verboid = " is ";
+            if(sizeof(damtypes) > 1) verboid = "类型为 ";
+            else verboid = "类型为 ";
 
-            evidence += " Damage type"+verboid;
+            evidence += " 伤害"+verboid;
             evidence += lower_case(implode(damtypes,", "));
         }
 
-        else evidence += " Damage type is UNKNOWN";
+        else evidence += " 伤害类型为未知";
     }
 
     if(limbs) {
@@ -379,14 +379,14 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal, mixed
             }
         }
     }
-    else limb_string = ". Location indeterminate. ";
+    else limb_string = "。位置无法确定。";
     if(limbs) {
-        evidence += ". Location: ";
-        evidence += limb_string + ".";
+        evidence += "。位置: ";
+        evidence += limb_string + "。";
     }
     this_object()->eventPrint(evidence+"%^RESET%^");
 
-    this_object()->eventPrint("%^YELLOW%^Power level drained: "+x+" units.%^RESET%^");
+    this_object()->eventPrint("%^YELLOW%^能量消耗: "+x+"单位。%^RESET%^");
     suit->eventDecrementCharge(x);
     return 1;
 }

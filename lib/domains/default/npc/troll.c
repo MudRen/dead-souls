@@ -24,10 +24,8 @@ protected void create() {
     SetKeyName("troll");
     SetId(({"troll"}));
     SetAdjectives(({"dirty"}));
-    SetShort("a mean-looking troll");
-    SetLong("This is the dreaded creature of legend: a slimy, "
-            "green, putrid-looking fiend with long, razor-"
-            "sharp claws and fangs.");
+    SetShort("一个长相凶恶的巨魔");
+    SetLong("这是传说中可怕的生物：一个黏糊糊的、绿色的、看起来腐烂的恶魔，有着长长的、 razor-sharp 的爪子和獠牙。");
     SetLevel(3);
     SetRace("troll");
     SetClass("fighter");

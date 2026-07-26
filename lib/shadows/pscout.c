@@ -42,28 +42,28 @@ int CheckSuit(){
 varargs string GetExternalDesc(object who){
     object ob = GetShadowedObject();
     if(!clonep()) return "";
-    if(CheckDisguised()) return "A Poleepkwa scout.";
+    if(CheckDisguised()) return "波力普克瓦侦察兵。";
     else return ob->GetExternalDesc(who);
 }
 
 varargs string GetLong(object who){
     object ob = GetShadowedObject();
     if(!clonep()) return "";
-    if(CheckDisguised()) return "A Poleepkwa scout.";
+    if(CheckDisguised()) return "波力普克瓦侦察兵。";
     else return ob->GetLong(who);
 }
 
 string GetName(){
     object ob = GetShadowedObject();
     if(!clonep()) return "";
-    if(CheckDisguised()) return "Scout";
+    if(CheckDisguised()) return "侦察兵";
     else return ob->GetName();
 }
 
 string GetCapName(){
     object ob = GetShadowedObject();
     if(!clonep()) return "";
-    if(CheckDisguised()) return "Scout";
+    if(CheckDisguised()) return "侦察兵";
     else return ob->GetCapName();
 }
 
@@ -77,7 +77,7 @@ string GetKeyName(){
 string GetShort(){
     object ob = GetShadowedObject();
     if(!clonep()) return "";
-    if(CheckDisguised()) return "a scout";
+    if(CheckDisguised()) return "一名侦察兵";
     else return ob->GetShort();
 }
 
@@ -213,19 +213,19 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal, mixed
 
     if(reporting){
         string *damtypes = TYPES_D->eventCalculateTypes("damage", type);
-        evidence = "The powered suit's Heads-Up-Display issues an alert:\n";
+        evidence = "动力装甲的抬头显示器发出警报:\n";
         evidence += "%^BOLD%^%^RED%^";
-        if(objectp(agent)) evidence += "Damage received!";
+        if(objectp(agent)) evidence += "受到伤害！";
         if(type && sizeof(damtypes)) {
             string verboid;
-            if(sizeof(damtypes) > 1) verboid = "s are ";
-            else verboid = " is ";
+            if(sizeof(damtypes) > 1) verboid = "类型为 ";
+            else verboid = "类型为 ";
 
-            evidence += " Damage type"+verboid;
+            evidence += " 伤害"+verboid;
             evidence += lower_case(implode(damtypes,", "));
         }
 
-        else evidence += " Damage type is UNKNOWN";
+        else evidence += " 伤害类型为未知";
     }
 
     if(limbs) {
@@ -239,14 +239,14 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal, mixed
             }
         }
     }
-    else limb_string = ". Location indeterminate. ";
+    else limb_string = "。位置无法确定。";
     if(limbs) {
-        evidence += ". Location: ";
-        evidence += limb_string + ".";
+        evidence += "。位置: ";
+        evidence += limb_string + "。";
     }
     this_object()->eventPrint(evidence+"%^RESET%^");
 
-    this_object()->eventPrint("%^YELLOW%^Juice drained: "+x+" units.%^RESET%^");
+    this_object()->eventPrint("%^YELLOW%^能量消耗: "+x+"单位。%^RESET%^");
     suit->eventDecrementCharge(x);
     return 1;
 }
@@ -258,8 +258,8 @@ int AddLead(string ammo,int number){
 void eventDescribeEnvironment(int verbose) {
     object ob = GetShadowedObject();
     object env;
-    string extra = "%^CYAN%^Suit info:%^RESET%^\n";
-    extra += "Juice left: "+to_int(percent(suit->GetRemainingCharge(),
+    string extra = "%^CYAN%^装甲信息:%^RESET%^\n";
+    extra += "剩余能量: "+to_int(percent(suit->GetRemainingCharge(),
                 suit->GetMaxCharge()))+"%\n";
     if(!ob) return;
     if(!CheckSuit()){

@@ -22,17 +22,8 @@ void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("the telnet room");
-    SetLong("From this room, you can attempt "+
-            "to connect to Dead Souls Dev. This is useful if you "+
-            "need to ask questions but the intermud connection is down. "+
-            "Note that being in charmode interferes with input. "+
-            "\n\tIf the connection "+
-            "fails, email cratylus@comcast.net to ask for help. "+
-            "Once you connect to Dead Souls Dev, type \"dcon\" to "+
-            "return to your own mud. \n\n"+
-            "To connect type \"connect\" \n"+
-            "The Creators' Hall annex is west of here.");
+    SetShort("telnet房间");
+    SetLong("从这个房间，你可以尝试连接到Dead Souls Dev。如果你需要提问但跨MUD连接中断时，这很有用。注意，处于字符模式会干扰输入。\n\t如果连接失败，请发送邮件到cratylus@comcast.net寻求帮助。一旦连接到Dead Souls Dev，输入\"dcon\"返回你自己的MUD。\n\n输入\"connect\"进行连接\n创造者大厅附属区在西边。");
     SetExits( ([ 
                 "west" : "/domains/default/room/wiz_hall2",
                 ]) );

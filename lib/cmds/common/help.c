@@ -85,8 +85,8 @@ varargs void HelpMenu(string index) {
                     }, indices), scr[0]/(y+2), 4);
     }
     else if( !HELP_D->CanAccess(this_player(), index) ) {
-        message("help", "Invalid index choice.", this_player());
-        message("prompt", "Hit <return>: ", this_player());
+        message("help", "无效的索引选择。", this_player());
+        message("prompt", "按<回车>: ", this_player());
         input_to(function(string str) { HelpMenu(0); });
         return;
     }
@@ -108,18 +108,17 @@ varargs void HelpMenu(string index) {
     }
     f = function(string ind) {
         if( !ind )
-            message("prompt", "\n\nEnter a index or 'q' to quit help: ",
+            message("prompt", "\n\n输入索引或 'q' 退出帮助: ",
                     this_player());
         else
-            message("prompt", "\n\nEnter a topic, 'q' to quit help, or "
-                    "<return> for main menu: ", this_player());
+            message("prompt", "\n\n输入主题、'q' 退出帮助，或按<回车>返回主菜单: ", this_player());
         input_to(function(string str, string ind) {
                 string ret;
                 int ind_num;
                 int *scr;
 
                 if( str == "q" ) {
-                message("system", "Exiting help.", this_player());
+                message("system", "退出帮助。", this_player());
                 return;
                 }
                 if( !str || str == "" ) {
@@ -139,8 +138,8 @@ varargs void HelpMenu(string index) {
                 else str = tmp2[ind_num - 1];
                 }
                 if( !ind && !HELP_D->GetTopics(str) ) {
-                    message("help", "Invalid index choice.", this_player());
-                    message("prompt", "Hit <return>: ", this_player());
+                    message("help", "无效的索引选择。", this_player());
+                    message("prompt", "按<回车>: ", this_player());
                     input_to(function(string str) { HelpMenu(); });
                     return;
                 }
@@ -150,14 +149,14 @@ varargs void HelpMenu(string index) {
                 }
                 if( !(ret = HELP_D->GetHelpByIndex(ind, str)) ) {
                     message("help", HELP_D->GetLastError(), this_player());
-                    message("prompt", "\nHit <return>: ", this_player());
+                    message("prompt", "\n按<回车>: ", this_player());
                     input_to(function(string str) { HelpMenu(); });
                     return;
                 }
                 ret = center(mud_name()+" System Help", scr[0])+wrap(ret, scr[0]);
                 this_player()->eventPage(explode(ret, "\n"), "help",
                         function(string ind) {
-                        message("prompt", "\n\nHit <return>: ",
+                        message("prompt", "\n\n按<回车>: ",
                             this_player());
                         input_to(function(string str, string ind) {
                             HelpMenu(ind); }, ind);

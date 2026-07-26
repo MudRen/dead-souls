@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("deer");
     SetId(({"npc","mob","character","mobile"}));
     SetAdjectives(({"non-player", "non player"}));
-    SetShort("a deer");
-    SetLong("A Typical creature of its kind: nervous, shify, yet beautiful and graceful. This gentle herbivore just wants to eat plants and reproduce.");
+    SetShort("一头鹿");
+    SetLong("一个典型的同类生物：紧张、狡猾， yet beautiful and graceful。这只温顺的食草动物只想吃植物和繁殖。");
     SetWanderSpeed(4);
     SetLevel(1);
     SetMelee(1);

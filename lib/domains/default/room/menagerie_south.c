@@ -7,8 +7,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Menagerie Annex");
-    SetLong("This area was added to the menagerie to allow a little leg room for creatures that like to wander.");
+    SetShort("动物园附属区");
+    SetLong("这个区域是后来添加到动物园的，为喜欢四处游荡的生物提供一些活动空间。");
     SetInventory(([
                 "/domains/default/npc/chimera" : 1,
                 "/domains/default/npc/ogre" : 1,

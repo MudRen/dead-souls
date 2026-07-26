@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("balrog");
     SetId(({"npc","mob","character","mobile"}));
     SetAdjectives(({"non-player", "non player"}));
-    SetShort("a fierce balrog");
-    SetLong("This is the terrifying demon of your worst Nightmare!");
+    SetShort="一只 fierce 炎魔");
+    SetLong("这是你 worst Nightmare 中的 terrifying demon！");
     SetWanderSpeed(5);
     SetClass("fighter");
     SetMelee(1);

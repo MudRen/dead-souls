@@ -7,36 +7,29 @@ void create() {
     SetProperty("light", 3);
     SetProperty("night light", 1);
     SetProperty("no castle", 1);
-    SetShort( "West Boc La in Praxis");
-    SetDayLong("The local pub on the southwest corner of the square "
-            "east of here gets little business at the height of "
-            "the day.  As twilight fall into dusk, however, you "
-            "will notice more people making their way into the pub "
-            "to cap off a day of adventure.  The road you are on, "
-            "West Boc La, leads into the western districts of "
-            "Praxis and east to the centre of town.");
-    SetNightLong("The street lamps provide you with barely enough "
-            "light to see, but can you can just see Krasna Square east and "
-            "Lars' Pub to the south.  You can also make out a chapel to "
-            "the north, but you see no entrance.");
+    SetShort( "普拉克西斯西博克拉路");
+    SetDayLong("正午时分，广场西南角的当地酒吧生意清淡。"
+            "然而，当黄昏降临，你会发现越来越多的人涌入酒吧，"
+            "为一天的冒险画上句号。你所在的西博克拉路通往"
+            "普拉克西斯的西区，向东通往镇中心。");
+    SetNightLong("路灯为你提供勉强够用的光线，但你刚好能看到"
+            "东边的克拉斯纳广场和南边的拉斯酒馆。你还能辨认出"
+            "北边的一座小教堂，但看不到入口。");
 
-    SetListen("default", "Cheers of local adventurers "
-            "resonate from inside the pub.");
-    SetExits( 
+    SetListen("default", "当地冒险者的欢呼声从酒吧里传出来。");
+    SetExits(
             (["east" : "/domains/Praxis/square",
              "west" : "/domains/Praxis/w_boc_la2",
              "south" : "/domains/Praxis/pub"]) );
-    SetItems( 
-            (["church" : "It looks like the entrance might be on the "
-             "road leading north from Monument Square.",
-             ({"lamps", "lamp", "street lamp"}) : "All of the street "
-             "lamps along the road provide minimal light at night.",
-             ({"pub", "lars pub", "lars' pub"}) : "Local adventurers "
-             "wind down their day in Lars' Pub.",
-             ({"road", "west boc la", "boc la"}) : "It goes beyond the "
-             "western districts of Praxis into the mountains.",
-             "square" : "At the centre of Praxis, it is where "
-             "Boc La and Centre Path meet."]) );
+    SetItems(
+            (["church" : "看起来入口可能在从纪念碑广场向北的路上。",
+             ({"lamps", "lamp", "street lamp"}) : "沿路的所有路灯"
+             "在夜间提供微弱的光线。",
+             ({"pub", "lars pub", "lars' pub"}) : "当地冒险者"
+             "在拉斯酒馆里放松一天的疲劳。",
+             ({"road", "west boc la", "boc la"}) : "通往普拉克西斯"
+             "西区以外的山区。",
+             "square" : "位于普拉克西斯中心，是博克拉路和中心路的交汇处。"]) );
     SetSkyDomain("town");
 }
 void init(){

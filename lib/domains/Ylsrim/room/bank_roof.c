@@ -13,16 +13,12 @@ protected void create() {
     SetTown("Ylsrim");
     SetClimate("arid");
     SetAmbientLight(30);
-    SetShort("The roof of the Bank of Ylsrim");
-    SetDayLong("From your perfect vantage point atop the hot adobe of "
-            "the Bank of Ylsrim you can see nearly the entire desert "
-            "town.  On the south side of the bank, the wall is rough "
-            "enough to get a foothold down into Kaliid Road.  The wall "
-            "on the other sides of the building are simply too smooth to "
-            "climb down. You might be able to jump into the road, as well."); 
-    SetNightLong("The lights of Ylsrim look beautiful from this vantage "
-            "on the bank roof.");
-    AddItem("adobe", "The walls and roof are made of this substance.");
+    SetShort("伊尔斯利姆银行屋顶");
+    SetDayLong("站在伊尔斯利姆银行滚烫的土坯屋顶上，你几乎可以看到整个沙漠小镇的全貌。"
+            "银行南侧的墙壁足够粗糙，可以攀爬下去到卡利德路。"
+            "建筑其他几面的墙壁实在太光滑了，无法攀爬下去。你也许还可以跳到路上去。");
+    SetNightLong("从银行屋顶这个制高点望去，伊尔斯利姆的灯光看起来很美。");
+    AddItem("adobe", "墙壁和屋顶都是用这种材料建造的。");
     // this is the wall that can be climbed down
     AddItem(new("/domains/Ylsrim/etc/roof_wall"));
     // this is the road that people can jump into

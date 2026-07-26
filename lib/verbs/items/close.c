@@ -16,16 +16,16 @@ protected void create() {
     SetVerb("close");
     SetRules("OBJ");
     SetSynonyms("shut");
-    SetErrorMessage("Close what?");
-    SetHelp("Syntax: <close OBJECT>\n\n"
-            "Closes a door or chest or some other such object.\n\n"
-            "Synonyms: shut\n\n"
-            "See also: lock, open, pick, unlock");
+    SetErrorMessage("关闭什么？");
+    SetHelp("用法：close <物品>\n\n"
+            "关闭门、箱子或其他类似的物品。\n\n"
+            "同义词：shut\n\n"
+            "另见：lock, open, pick, unlock");
 }
 
 mixed can_close_obj(string verb) {
     if( this_player()->GetParalyzed() ) {
-        return "You are unable to do anything.";
+        return "你什么也做不了。";
     }
     return this_player()->CanManipulate();
 }

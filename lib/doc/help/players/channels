@@ -1,64 +1,58 @@
-    Channels are an out-of-character (OOC) means for users
-to communicate with each other. You may hear the terms 
-"channel" and "line" used interchangeably.
+    频道是一种脱离角色（OOC）的用户间交流方式。
+你可能会听到"频道"和"线路"这两个术语交替使用。
 
-    There are two main types of channels: local and intermud.
-The default Dead Souls distribution uses these channels as
-local:
+    频道主要有两种类型：本地频道和跨网游频道。
+默认的 Dead Souls 发行版使用以下本地频道：
 
-cre - only creators hear this
-gossip - general offtopic stuff
-newbie - everyone can hear this unless they turn it off
-thief - channel for the thief class
-fighter - channel for the fighter class
-error - system errors
-death - death announcements
-mage - channel for the mage class
-priest - channel for the priest class
-explorer - channel for the explorer class
-admin - only admins hear this
-muds - announcements of muds connecting or disconnecting from i3
-intermud - announcmenets of things like remote fingers and who
+cre - 只有创建者能听到
+gossip - 一般闲聊
+newbie - 除非关闭，否则所有人都能听到
+thief - 盗贼职业频道
+fighter - 战士职业频道
+error - 系统错误
+death - 死亡公告
+mage - 法师职业频道
+priest - 牧师职业频道
+explorer - 探险者职业频道
+admin - 只有管理员能听到
+muds - 游戏连接或断开 i3 的公告
+intermud - 远程查看和在线查询等公告
 
-The following are intermud channels:
+以下是跨网游频道：
 
-ds - Dead Souls mud code talk
-ds_test - testing testing 1, 2, 3, etc
-intergossip - general offtopic stuff
-dchat - friendly offtopic stuff
-lpuni - LPUniversity discussion
-intercre - general technical chatter
+ds - Dead Souls 游戏代码讨论
+ds_test - 测试频道
+intergossip - 一般闲聊
+dchat - 友好闲聊
+lpuni - LPUniversity 讨论
+intercre - 一般技术讨论
 
 
-By default, players do not have access to intermud channels.
-Mud admins are asked to maintain some level of adherence to
-the channel topics from their users. Muds that violate the
-router admin's interpretation of "on-topic" will be asked 
-politely, if possible, to conform to the channel standards.
+默认情况下，玩家无法使用跨网游频道。
+建议游戏管理员让用户在一定程度上遵守频道主题。
+违反频道主题的游戏可能会被礼貌地要求遵守频道标准。
 
-Continued violations subject the offending mud to potential
-banning.
+持续违规可能导致违规游戏被封禁。
 
-Hate speech is not tolerated, and flaming is frowned
-upon, though each mud is expected to police itself and
-enforce these standards on their own.
+不容忍仇恨言论，不鼓励争吵，但每个游戏应
+自行管理和执行这些标准。
 
-If you don't like these rules, use a router other than the default.
+如果你不喜欢这些规则，请使用非默认的路由器。
 
-For local channels of course, none of this applies. Whatever
-local rules are in place, that's what must be obeyed.
+对于本地频道，当然不适用以上规则。无论本地
+有什么规则，都必须遵守。
 
-Some tips:
+一些提示：
 ---------
-To turn on/off a channel, type its name by itself, like this: 
+要开启/关闭频道，直接输入频道名称，像这样：
 newbie
 
-To know who is listening to a channel: 
+要查看谁在收听某个频道：
 list newbie
 list german@dead souls demo
 
-To see a brief history of channel messages: 
+要查看频道消息的简要历史：
 hist newbie
 
-See also:
+另见：
 mute, gag, earmuff, unmuff, lines, hist, chancolors

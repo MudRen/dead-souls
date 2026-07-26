@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("gnome");
     SetAdjectives( ({"cute", "cuddly", "endearing"}) );
     SetId(({"npc","mob","character","mobile"}));
-    SetShort("a cute little gnome");
-    SetLong("This cuddly creature is rather like a dwarf, only much smaller and better-disposed. His long white beard, infectious laughter and twinkling eyes remind you of someone you knew and loved long ago. His cone-shaped hat and old-fashioned, awkward manner of dress make him all the more endearing. You just want to hug him and put him in your garden.");
+    SetShort("一个可爱的小矮人");
+    SetLong("这个可爱的生物很像矮人，只是更小更好相处。他长长的白胡子、富有感染力的笑声和闪闪发光的眼睛让你想起了很久以前认识并爱过的一个人。他的圆锥形帽子和老式、 awkward 的穿着方式让他更加可爱。你只想拥抱他，把他放在你的花园里。");
     SetLevel(1);
     SetMelee(1);
     SetRace("gnome");

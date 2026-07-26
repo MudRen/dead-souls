@@ -1,21 +1,21 @@
-Common Creator commands:
+常用创建者命令：
 
-File commands:
+文件命令：
 -------------
-cp     - copy a file
-mv     - move or rename a file
-cd     - change your working directory
-ls     - list the contents of your directory
-ed     - edit a file (WARNING: if you get stuck, type a 
-         single period on a blank line, then Q, then enter)
-rm     - delete a file
-more   - page through the contents of a file
-cat    - display the entire contents of a file
-update - load a file into memory
+cp     - 复制文件
+mv     - 移动或重命名文件
+cd     - 更改工作目录
+ls     - 列出目录内容
+ed     - 编辑文件（警告：如果你卡住了，在空行上输入一个
+         句点，然后输入 Q，然后回车）
+rm     - 删除文件
+more   - 分页查看文件内容
+cat    - 显示文件的全部内容
+update - 将文件加载到内存中
 
-Creation commands (used on objects, not files):
+创建命令（用于对象，不是文件）：
 -------------
 create, modify, reload, delete, add, copy
 
-For more information on a command, type: help <commandname>
-See also: help help
+要获取某个命令的更多信息，输入：help <commandname>
+另见: help help

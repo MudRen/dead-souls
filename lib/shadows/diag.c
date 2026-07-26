@@ -6,36 +6,36 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal, mixed
     object ob = GetShadowedObject();
     string evidence, limb_string;
     evidence = "";
-    if(objectp(agent)) evidence += "You receive damage from "+agent->GetKeyName();
-    else if(stringp(agent)) evidence += "You receive damage from "+agent;
+    if(objectp(agent)) evidence += "你受到了"+agent->GetKeyName()+"的伤害";
+    else if(stringp(agent)) evidence += "你受到了"+agent+"的伤害";
     if(type) {
         switch(type){
-            case BLUNT : evidence += ", damage type is BLUNT";break; 
-            case BLADE : evidence += ", damage type is BLADE";break;
-            case KNIFE : evidence += ", damage type is KNIFE";break;
-            case WATER : evidence += ", damage type is WATER";break;
-            case SHOCK : evidence += ", damage type is SHOCK";break;
-            case COLD : evidence += ", damage type is COLD";break;
-            case HEAT : evidence += ", damage type is HEAT";break;
-            case GAS : evidence += ", damage type is GAS";break;
-            case ACID : evidence += ", damage type is ACID";break;
-            case MAGIC : evidence += ", damage type is MAGIC";break;
-            case POISON : evidence += ", damage type is POISON";break;
-            case DISEASE : evidence += ", damage type is DISEASE";break;
-            case TRAUMA : evidence += ", damage type is TRAUMA";break;
-            case PIERCE : evidence += ", damage type is PIERCE";break;
-            case PSIONIC : evidence += ", damage type is PSIONIC";break;
-            case ANOXIA : evidence += ", damage type is ANOXIA";break;
-            case DEATHRAY : evidence += ", damage type is DEATHRAY";break;
-            case EMOTIONAL : evidence += ", damage type is EMOTIONAL";break;
-            case SONIC : evidence += ", damage type is SONIC";break;
-            case BITE : evidence += ", damage type is BITE";break;
-            case OTHER : evidence += ", damage type is OTHER";break;
-            default : evidence += ", damage type is UNKNOWN";break;
+            case BLUNT : evidence += ", 伤害类型为钝击";break;
+            case BLADE : evidence += ", 伤害类型为利刃";break;
+            case KNIFE : evidence += ", 伤害类型为刀伤";break;
+            case WATER : evidence += ", 伤害类型为水伤";break;
+            case SHOCK : evidence += ", 伤害类型为电击";break;
+            case COLD : evidence += ", 伤害类型为冰冻";break;
+            case HEAT : evidence += ", 伤害类型为灼热";break;
+            case GAS : evidence += ", 伤害类型为毒气";break;
+            case ACID : evidence += ", 伤害类型为酸蚀";break;
+            case MAGIC : evidence += ", 伤害类型为魔法";break;
+            case POISON : evidence += ", 伤害类型为毒素";break;
+            case DISEASE : evidence += ", 伤害类型为疾病";break;
+            case TRAUMA : evidence += ", 伤害类型为创伤";break;
+            case PIERCE : evidence += ", 伤害类型为穿刺";break;
+            case PSIONIC : evidence += ", 伤害类型为念力";break;
+            case ANOXIA : evidence += ", 伤害类型为缺氧";break;
+            case DEATHRAY : evidence += ", 伤害类型为死光";break;
+            case EMOTIONAL : evidence += ", 伤害类型为情感";break;
+            case SONIC : evidence += ", 伤害类型为音波";break;
+            case BITE : evidence += ", 伤害类型为咬伤";break;
+            case OTHER : evidence += ", 伤害类型为其他";break;
+            default : evidence += ", 伤害类型为未知";break;
         }
     }
-    if(x) evidence += ", raw damage is "+x;
-    if(internal) evidence += ", internal variable is "+internal;
+    if(x) evidence += ", 原始伤害为 "+x;
+    if(internal) evidence += ", 内部变量为 "+internal;
     if(limbs) {
         if(stringp(limbs)) limb_string = limbs;
         else if(arrayp(limbs)) {
@@ -47,9 +47,9 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal, mixed
             }
         }
     }
-    else limb_string = ", and I can't tell where I'm hit. ";
-    if(limbs) { 
-        evidence += ", body part(s) affected: ";
+    else limb_string = ", 我无法判断被击中了哪里。";
+    if(limbs) {
+        evidence += ", 受影响的部位: ";
         evidence += limb_string + ".";
     }
     this_object()->eventForce("say "+evidence);
@@ -65,15 +65,15 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal, mixed
 
     damage = this_object()->GetHealthPoints();
     damdiff = hp - damage;
-    this_object()->eventForce("say actual damage done: "+damdiff);
+    this_object()->eventForce("say 实际造成的伤害: "+damdiff);
 }
 
 int RemoveLimb(string limb, object agent){
     object ob = GetShadowedObject();
     if(!ob) return;
     if(ob->GetKeyName() == "dummy"){
-        this_object()->eventForce("say My "+limb+" has received enough damage to sever it. "
-                "However, since I am a training dummy, I'll be keeping it.");
+        this_object()->eventForce("say 我的"+limb+"已经受到了足以切断它的伤害。"
+                "不过，由于我是训练假人，我会保留它的。");
         return 1;
     }
     return ob->RemoveLimb(limb, agent);

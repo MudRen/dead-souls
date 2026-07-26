@@ -1,8 +1,8 @@
-Displays who is listening to a given channel. To know who
-is listening to ds on your mud, type:
+显示谁在收听某个频道。要查看谁在你的游戏上
+收听 ds 频道，输入：
 
 list ds
 
-To know who is listening to ds on another mud:
+要查看谁在另一个游戏上收听 ds：
 
 list ds@dead souls

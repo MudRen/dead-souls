@@ -16,7 +16,7 @@ void eventReceiveError(mixed *packet) {
     if( packet[5] ) {
         tn("exceptio probat regulam");
         target = convert_name(packet[5]);
-        if( !(ob = find_player(target)) ) write("Can't find "+packet[5]);;
+        if( !(ob = find_player(target)) ) write("找不到 "+packet[5]);;
     }
     mud = packet[2];
     error_code = packet[6];
@@ -31,8 +31,7 @@ void eventReceiveError(mixed *packet) {
             return;
         case "unk-user":
             if( !ob ) return;
-            message("system", (msg ? msg : "Unknown user reported from " + mud +
-                        "."), ob);
+            message("system", (msg ? msg : "来自 " + mud + " 报告了未知用户。"), ob);
             return;
     }
 }

@@ -49,7 +49,7 @@ string ewrite(string str){
 private void validate() {
     if( !(master()->valid_apply(({ PRIV_ASSIST }))) ){
         write(identify(previous_object(-1)));
-        error("Illegal attempt to modify economy data");
+        error("非法修改经济数据");
     }
 }
 

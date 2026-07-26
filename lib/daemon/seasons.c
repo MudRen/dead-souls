@@ -151,7 +151,7 @@ protected void eventDawn() {
                 inherits(LIB_ROOM,environment($1)) &&
                 !(environment($1)->GetProperty("no time")) :));
     message("environment",
-            "%^YELLOW%^The sun appears just over the horizon.%^RESET%^",
+            "%^YELLOW%^太阳刚刚从地平线上升起。%^RESET%^",
             obs );
     i = sizeof(DawnCalls);
     while(i--) catch(evaluate(DawnCalls[i]));
@@ -167,8 +167,7 @@ protected void eventMorning() {
                 environment($1)->GetClimateExposed() &&
                 inherits(LIB_ROOM,environment($1)) &&
                 !(environment($1)->GetProperty("no time")) :));
-    message("environment", "%^BOLD%^YELLOW%^The sun now shines completely "
-            "on a new day.%^RESET%^", obs);
+    message("environment", "%^BOLD%^YELLOW%^阳光普照，新的一天开始了。%^RESET%^", obs);
     i = sizeof(MorningCalls);
     while(i--) catch(evaluate(MorningCalls[i]));
 }
@@ -191,8 +190,7 @@ protected void eventTwilight() {
                 environment($1)->GetClimateExposed() &&
                 inherits(LIB_ROOM,environment($1)) &&
                 !(environment($1)->GetProperty("no time")) :));
-    message("environment", "%^CYAN%^The sun begins to fall away into "
-            "twilight.%^RESET%^", obs);
+    message("environment", "%^CYAN%^太阳西沉，暮色渐浓。%^RESET%^", obs);
     i = sizeof(TwilightCalls);
     while(i--) catch(evaluate(TwilightCalls[i]));
 }
@@ -209,7 +207,7 @@ protected void eventNight() {
                 inherits(LIB_ROOM,environment($1)) &&
                 !(environment($1)->GetProperty("no time")) :));
     message("environment",
-            "%^BOLD%^BLUE%^Night darkens all that is real.%^RESET%^", obs);
+            "%^BOLD%^BLUE%^夜幕笼罩了万物。%^RESET%^", obs);
     i = sizeof(NightCalls);
     while(i--){
         mixed f = NightCalls[i];
@@ -230,8 +228,8 @@ protected void eventMidnight() {
         y = CurrentYear;
         eventConfigure();
         if( y != CurrentYear )
-            message("shout", "Happy New Year!!!\nIt is now the year " +
-                    GetYearString(CurrentYear) + "!!!!!", users());
+            message("shout", "新年快乐！！！\n现在是 " +
+                    GetYearString(CurrentYear) + " 年！！！！！", users());
         return;
     }
     pending = call_out( (: eventDawn :), Dawn);
@@ -469,21 +467,21 @@ string GetLong(string arg) {
     int i;
 
     if( !(env = environment(this_player())) )
-        return "You are in serious trouble.";
+        return "您遇到了严重的问题。";
     switch(arg) {
         case "sun":
             switch(GetTimeOfDay()) {
                 case "dawn":
-                    return "The sun is hanging low in the eastern sky.";
+                    return "太阳低悬在东方的天空。";
                 case "day":
-                    return "The sun is shining brightly in the daytime sky.";
+                    return "太阳在白昼的天空中灿烂照耀。";
                 case "twilight":
-                    return "The sun is sinking into the western sky.";
+                    return "太阳正沉入西方的天空。";
                 case "night":
-                    return "There is no sun to be seen.";
+                    return "看不到太阳。";
             }
         case "moon": case "moons":
-            if( GetTimeOfDay() != "night" ) return "During the day?";
+            if( GetTimeOfDay() != "night" ) return "白天看什么月亮？";
             else {
                 string *moons;
                 int x = 0;
@@ -497,10 +495,10 @@ string GetLong(string arg) {
                         tmp += (((class moon)Moons[moons[i]])->Name) +
                             " is " + GetPhaseName(y) + ".\n";
                     else tmp = "\n" +
-                        "You gaze up at the sky, and see the moons...\n"+
+                        "您仰望天空，看到了月亮...\n"+
                             (((class moon)Moons[moons[i]])->Name) +
-                            " is " +
-                            GetPhaseName(y) + ".\n";
+                            " 处于 " +
+                            GetPhaseName(y) + " 相。\n";
                     x = 1;
                 }
                 if( !x ) return 0;
@@ -510,7 +508,7 @@ string GetLong(string arg) {
             if( GetTimeOfDay() == "night" ) {
                 tmp =  GetLong("moon");
                 if( !tmp ) {
-                    return "The sky is filled only with the glitter of stars.";
+                    return "天空中只有星光闪烁。";
                 }
                 else {
                     return tmp;
@@ -544,24 +542,24 @@ string GetLong(string arg) {
 
                             sky = obs[i]->GetName();
                             if( maxi == 1 ) {
-                                sky += " is flying in the sky.";
+                                sky += " 在天空中飞翔。";
                             }
                             else {
                                 for(i=1; i<maxi; i++) {
                                     if( i == maxi-1 ) {
                                         if( maxi == 2 ) {
-                                            sky += " and ";
+                                            sky += " 和 ";
                                         }
                                         else {
-                                            sky += ", and ";
+                                            sky += "、和 ";
                                         }
                                     }
                                     else {
-                                        sky += ", ";
+                                        sky += "、";
                                     }
                                     sky += obs[i]->GetName();
                                 }
-                                sky += " are flying in the sky.";
+                                sky += " 在天空中飞翔。";
                             }
                             tmp = sky + "\n" + tmp;
                         }
@@ -583,10 +581,10 @@ int eventShow(object who, string args) {
     if( !who || !sizeof(args) ) return 0;
     if( !str = GetLong(args) ) return 0;
     if( !environment(who)->GetClimateExposed() ) {
-        who->eventPrint("You can't see that from here!");
+        who->eventPrint("您在这里看不到那个！");
         return 1;
     }
     who->eventPrint(str);
-    environment(who)->eventPrint(who->GetName() + " gazes toward the sky.", who);
+    environment(who)->eventPrint(who->GetName() + " 仰望天空。", who);
     return 1;
 }

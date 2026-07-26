@@ -12,23 +12,21 @@ void create() {
     SetProperty("light", 3);
     SetProperty("night light", 1);
     SetProperty("no castle", 1);
-    SetShort( "the southern end of East Road");
+    SetShort( "东大道南端");
     SetLong(
-            "Starting your journey down East Road, you can see that this is "
-            "a less travelled street. Boc La Road is south from here, running "
-            "straight through Praxis. Every now and then you can see a street "
-            "lamp or two, in its ancient and rusted stage. The walls of the supply "
-            "store border the western side of the road, and the Praxis Library, "
-            "one of the biggest libraries in this realm, is to the east.");
+            "踏上东大道的旅程，你可以看到这是一条不太繁忙的街道。"
+            "博克拉路在南边，笔直穿过普拉克西斯。偶尔可以看到"
+            "一两盏路灯，已经古老生锈。杂货店的围墙紧邻道路"
+            "西侧，而普拉克西斯图书馆，这个领域最大的图书馆之一，"
+            "在东边。");
     SetItems(
-            (["road" : "East Road, which marks the far east end of Praxis.",
-             "roads" : "East Road and Boc La Road.",
-             "side" : "It's the supply shop.",
-             "shop" : "The local adventurer's supply shop sits on Boc La "
-             "and East Road.",
-             "walls" : "They are nothing special.",
-             "wall" : "You are fairly certain that you cannot climb them.",
-             "library" : "It is open for your reading pleasure."]) );
+            (["road" : "东大道，标志着普拉克西斯的最东端。",
+             "roads" : "东大道和博克拉路。",
+             "side" : "那是杂货店。",
+             "shop" : "当地冒险者杂货店坐落在博克拉路和东大道的交汇处。",
+             "walls" : "没什么特别的。",
+             "wall" : "你相当确定自己爬不上去。",
+             "library" : "开放供你阅读。"]) );
     SetSkyDomain("town");
     SetExits( 
             (["north" : "/domains/Praxis/east_road2",
@@ -39,24 +37,21 @@ void create() {
 
 int climb(string str) {
     if(!str) {
-        notify_fail("Climb what?\n");
+        notify_fail("爬什么？\n");
         return 0;
     }
     if(str != "wall" && str != "walls") {
-        notify_fail("That's not here for climbing.\n");
+        notify_fail("这里没有可以攀爬的东西。\n");
         return 0;
     }
     if(this_player()->query_stats("dexterity") < random(30)) {
-        write("Ack! You slip and hurt yourself in trying!");
-        say(this_player()->query_cap_name()+" slips and hurts "+
-                this_player()->query_objective()+"self in trying "
-                "to climb the walls.");
+        write("哎呀！你在攀爬时滑倒受伤了！");
+        say(this_player()->query_cap_name()+"在攀爬围墙时滑倒受伤了。");
         this_player()->add_hp(-(random(7)));
     }
     else {
-        write("You can't quite manage the climb.");
-        say(this_player()->query_cap_name()+" tries to climb the shop "
-                "walls and fails.");
+        write("你没法成功攀爬上去。");
+        say(this_player()->query_cap_name()+"试图攀爬商店围墙但失败了。");
     }
     return 1;
 }

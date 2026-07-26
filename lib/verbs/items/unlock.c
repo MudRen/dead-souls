@@ -14,19 +14,17 @@ protected void create() {
     verb::create();
     SetVerb("unlock");
     SetRules("OBJ with OBJ", "OBJ with STR");
-    SetErrorMessage("Unlock what with what?");
-    SetHelp("Syntax: <unlock OBJ with OBJ>\n\n"
-            "The first object is something you wish to unlock, like a "
-            "door or a chest.  The second is the key you wish to use to "
-            "unlock it with.  If your key is the right key, then "
-            "unlock allows you to unlock it.\n\n"
-            "See also: close, lock, open, pick");
+    SetErrorMessage("用什么解锁什么？");
+    SetHelp("用法：unlock <物品> with <钥匙>\n\n"
+            "第一个物品是你想要解锁的东西，比如门或箱子。第二个是你想要用来解锁的钥匙。"
+            "如果你的钥匙是对的，那么 unlock 命令就会把它解锁。\n\n"
+            "另见：close, lock, open, pick");
 }
 
 varargs mixed can_unlock_obj_with_obj(object foo, object bar,
         mixed words...) {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     return this_player()->CanManipulate();
 }

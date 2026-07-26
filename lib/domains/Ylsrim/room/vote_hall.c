@@ -19,9 +19,9 @@ protected void create() {
     SetClimate("indoors");
     SetProperties( ([ "no kill" : 1, "no attack" : 1, "no steal" : 1,
                 "no magic" : 1, "light" : 3, "no bump" : 1, "no teleport" : 1 ]) );
-    SetShort("voting hall");
-    SetLong("You are in the voting hall of Ylsrim. This is where people come to nominate candidates for class leader and to cast their vote.  There is a list posted on the wall here.");
-    SetItems( ([ "list" : "This is the list of candidates." ]) );
+    SetShort("投票大厅");
+    SetLong("你在伊尔斯利姆的投票大厅里。人们来这里提名职业领袖候选人并投票。墙上张贴着一份名单。");
+    SetItems( ([ "list" : "这是候选人名单。" ]) );
     SetRead( "list", (: ReadList :) );
     SetObviousExits("down");
     SetExits( ([ "down" : "/domains/Ylsrim/room/bazaar" ]) );
@@ -31,12 +31,11 @@ mixed ReadList() {
     string msg;
 
     if( VOTING_D->GetStatus() == VOTE_NOT_RUNNING ) {
-        this_player()->eventPrint("Since the elections are not "
-                "currently running, the list is blank.");
+        this_player()->eventPrint("由于选举目前没有进行，名单是空的。");
         return 1;
     }
 
-    msg = "\tCandidates for Dead Souls Offices\n\n";
+    msg = "\t亡魂职位候选人\n\n";
 
     foreach( string sClass in CLASSES_D->GetClasses() ) {
         msg += capitalize( sClass ) + " : ";
@@ -59,7 +58,7 @@ mixed eventNominate( object who, string str ) {
     int iErr;
 
     if( creatorp( who ) ) {
-        who->eventPrint("Creators cannot vote!");
+        who->eventPrint("创造者不能投票！");
         return 1;
     }
 
@@ -67,28 +66,24 @@ mixed eventNominate( object who, string str ) {
 
     switch( iErr ) {
         case VOTE_NOT_RUNNING :
-            this_player()->eventPrint("The elections are not running now!");
+            this_player()->eventPrint("选举目前没有进行！");
             break;
 
         case VOTE_MODE_VOTING :
-            this_player()->eventPrint("The time for nominating "
-                    "candidates is past, cast your vote instead.");
+            this_player()->eventPrint("提名候选人的时期已过，请改为投票。");
             break;
 
         case VOTE_ERROR :
-            this_player()->eventPrint("There was an error, you cannot "
-                    "nominate someone at this time.");
+            this_player()->eventPrint("出现错误，你现在无法提名某人。");
             break;
 
         case VOTE_NOT_CLASS_MEMBER :
-            this_player()->eventPrint( capitalize(str) + " is not a member
-                    of "
-                    "the " + pluralize( who->GetClass() ) + ".");
+            this_player()->eventPrint( capitalize(str) + " 不是"
+                    + pluralize( who->GetClass() ) + "的成员。");
             break;
 
         case VOTE_ALREADY_RUNNING :
-            this_player()->eventPrint( capitalize(str) + " is already
-                    running." );
+            this_player()->eventPrint( capitalize(str) + " 已经在参选了。" );
             break;
     }
     return 1;
@@ -103,32 +98,29 @@ mixed eventVote( object who, string str ) {
 
     switch( iErr ) {
         case VOTE_NOT_RUNNING :
-            this_player()->eventPrint("The elections are not running
-                    now!");
+            this_player()->eventPrint("选举目前没有进行！");
             break;
 
         case VOTE_MODE_CANDIDATES :
-            this_player()->eventPrint("Voting has not yet started, "
-                    "nominate a candidate instead.");
+            this_player()->eventPrint("投票尚未开始，请改为提名候选人。");
             break;
 
         case VOTE_NOT_PRIMARY :
-            this_player()->eventPrint("Only your primary character can
-                    vote.");
+            this_player()->eventPrint("只有你的主要角色才能投票。");
             break;
 
         case VOTE_NOT_CLASS_MEMBER :
-            this_player()->eventPrint( str + " is not a candidate for "
-                    "the " + pluralize(who->GetClass()) + ".");
+            this_player()->eventPrint( str + " 不是"
+                    + pluralize(who->GetClass()) + "的候选人。");
             break;
 
         case VOTE_ALREADY_VOTED :
-            this_player()->eventPrint("You have already cast your vote!");
+            this_player()->eventPrint("你已经投过票了！");
             break;
 
         case VOTE_SUCCESS :
-            this_player()->eventPrint("You cast your vote!");
-            break;        
+            this_player()->eventPrint("你投出了你的一票！");
+            break;
     }
 
     return 1;
@@ -142,17 +134,15 @@ mixed eventWithdraw( object who ) {
 
     switch( iErr ) {
         case VOTE_NOT_RUNNING :
-            this_player()->eventPrint("The elections are not running
-                    now!");
+            this_player()->eventPrint("选举目前没有进行！");
             break;
 
         case VOTE_MODE_VOTING :
-            this_player()->eventPrint("The elections have begun, it is "
-                    "too late to withdraw.");
+            this_player()->eventPrint("选举已经开始，现在退出太晚了。");
             break;
 
         case VOTE_NOT_CANDIDATE :
-            this_player()->eventPrint("You are not a candidate.");
+            this_player()->eventPrint("你不是候选人。");
             break;
     }
 

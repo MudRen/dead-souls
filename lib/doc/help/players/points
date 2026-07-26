@@ -1,47 +1,40 @@
-                   * Dead Souls Training Points *
-                 Written by Blitz@Dead Souls 960904
- 
-What are training points?
- 
-    Training Points are awarded for achieving a new level. They
-    are not meant to be a means of advancing in the game, training
-    points are to be considered an extra bonus.
- 
-How can I see my points?
- 
-    Your training points are listed under the "score" command.
- 
-How are points earned?
- 
-    As stated above, Training points are earned when you gain
-    a new and "unique" level. A unique level is defined as a
-    a level you have never before attained with your character.
- 
-How does death affect points?
- 
-    If you happen to lose a level (or levels) upon dying you
-    will be penalized 4 points per level. This does not apply
-    to newbies simply because they do not lose levels from
-    dying.
- 
-    For example, player Bob raises to level 6 and earns four
-    training points. Player Bob dies a horrible death and
-    finds himself at level 5 once again. Because Bob lost
-    a level he received -4 points. When our example reaches
-    level 6 again, he will "technically" earn 4 points to
-    compensate for the recently lost points. As you can see,
-    a player can only truly earn points for each "unique"
-    level gained.
- 
-How do I use my training points?
- 
-    Throughout Dead Souls there are a number of NPCs who specialize
-    in training various skills. Trainers accept the following
-    commands; "ask <NPC> to help" will list the skills that the
-    NPC is capable of training. "ask <NPC> to train <SKILL>"
-    will start the process of training in the named skill.
- 
-    Please note that creators (including arches) cannot answer
-    questions regarding non-technical game play. To find a
-    trainer, you must search for yourself or ask other players.
- 
+                   * Dead Souls 训练点数 *
+                 由 Blitz@Dead Souls 编写 960904
+
+什么是训练点数？
+
+    训练点数在达到新等级时获得。它们不是游戏
+    进阶的手段，训练点数应被视为额外的奖励。
+
+如何查看我的点数？
+
+    你的训练点数列在 "score" 命令下。
+
+如何获得点数？
+
+    如上所述，训练点数在你获得新的"独特"等级时
+    获得。独特等级的定义是你之前从未达到过的等级。
+
+死亡如何影响点数？
+
+    如果你在死亡时失去一个（或多个）等级，你将
+    被扣除每个等级 4 点。这对新手不适用，因为
+    他们不会因死亡而失去等级。
+
+    例如，玩家 Bob 升到 6 级并获得四个训练点数。
+    玩家 Bob 不幸死亡，发现自己又回到了 5 级。
+    因为 Bob 失去了一个等级，他被扣除了 4 点。
+    当我们的例子再次达到 6 级时，他将"技术上"
+    获得 4 点以补偿最近失去的点数。如你所见，
+    玩家只能为每个"独特"获得的等级真正获得点数。
+
+如何使用训练点数？
+
+    在 Dead Souls 世界中有许多专门训练各种技能的 NPC。
+    训练师接受以下命令；"ask <NPC> to help" 将列出
+    NPC 能够训练的技能。"ask <NPC> to train <SKILL>"
+    将开始在指定技能上的训练过程。
+
+    请注意，创建者（包括管理员）无法回答关于非技术
+    游戏玩法的问题。要找到训练师，你必须自己搜索
+    或询问其他玩家。

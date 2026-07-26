@@ -21,20 +21,17 @@ void init() {
 void create() {
     ::create();
     SetProperties( (["light" :2 , "indoors" :1 , "castle" : 1 ]) );
-    SetShort( "the hospital of Praxis");
+    SetShort( "普拉克西斯医院");
     SetLong(
-            "You are in the hospital of Praxis. It basically consists "
-            "of one large single room, with several crude beds placed in rows. "
-            "The hospital doesn't look to be to clean, you might want to think "
-            "twice before engaging their services. A list of all the services "
-            "that can be performed is posted on the far wall. The exit back to the "
-            "main road is east.");
+            "你正身处普拉克西斯医院。它基本上就是一个大房间，"
+            "几排简陋的床铺整齐排列。医院看起来不太干净，"
+            "在接受服务之前你可能要三思。远处的墙上张贴着"
+            "所有可提供服务的清单。通往主路的出口在东边。");
     SetItems(
-            (["list" : "You can read all the services by typing <read list>.",
-             "hospital" : "The clerics here specialize in regenerating "
-             "lost limbs.",
-             "clerics" : "They are mending the wounds of patients.",
-             "cleric" : "He is mending a patient's wounds."]));
+            (["list" : "你可以输入 <read list> 查看所有服务项目。",
+             "hospital" : "这里的牧师擅长再生失去的肢体。",
+             "clerics" : "他们正在为伤员治疗伤口。",
+             "cleric" : "他正在为一位病人治疗伤口。"]));
     SetExits( 
             (["east" : "/domains/Praxis/n_centre2"]) );
     blood = ([ "who": ([]), "hp":200, "mp":200 ]);
@@ -46,52 +43,50 @@ int new_body(string str) {
     int i;
 
     if( this_player()->query_level() != 1) {
-        notify_fail("The clerics only perform this service for the inexperienced.\n");
+        notify_fail("牧师只为新手提供这项服务。\n");
         return 0;
     }
     inv = all_inventory(this_player());
     for(i=0; i<sizeof(inv); i++) {
         inv[i]->unequip();
     }
-    write("A cleric comes over to you and mutters a small prayer.");
-    write("You again have all the limbs you were born with!");
-    say("A cleric mutters a small prayer for the novice "+this_player()->query_cap_name()+".", this_player());
+    write("一位牧师走到你面前，低声念了一段祈祷词。");
+    write("你又恢复了出生时的所有肢体！");
+    say("一位牧师为新手"+this_player()->query_cap_name()+"低声祈祷。", this_player());
     this_player()->new_body();
     return 1;
 }
 
 int read(string str) {
     if(!str) {
-        notify_fail("Read what?\n");
+        notify_fail("读什么？\n");
         return 0;
     }
     if(str != "list") {
-        notify_fail("That is not here for reading.\n");
+        notify_fail("这里没有那个可以阅读。\n");
         return 0;
     }
-    message("info", "Welcome to the Cleric's Hospital of Praxis!",this_player());
+    message("info", "欢迎来到普拉克西斯牧师医院！",this_player());
     message("Ninfo",
-            "The clerics perform the following services:\n"
+            "牧师提供以下服务：\n"
             "------------------------------------------------------------------\n"
-            "<renew body>: This is a charity service the clerics perform for\n"
-            "	novice adventurers who have lost limbs while adventuring.\n"
-            "	All limbs are replaced.\n"
-            "<regenerate [limb]>: This service is for the experienced adventurer\n"
-            "	who has lost limbs.  The limb is replaced and acts like new.\n"
-            "	Tithe schedule for regeneration:\n"
-            "            from "+currency_value(320, "gold")+" gold for minor limbs (non-clerics)\n"
-            "            to "+currency_value(800, "gold")+" gold for major limbs (non-clerics)\n"
-            "            "+currency_value(240, "gold")+" to "+currency_value(600, "gold")+" gold for clerics\n"
-            "<clean poison>: Helps remove some of the poison from your body.\n"
-            "\ttithe: "+currency_value(50, "gold")+" gold\n"
-            "<donate # (hp or mp) of blood>: Donates some of your blood in\n"
-            "\texchange for gold.\n"
-            "<transfuse # (hp or mp)>: Transfuse some blood int hp or mp into your body\n"
-            "\ttithe: amount times "+currency_value(3, "gold")+" gold.\n"
-            "Currently: "+blood["hp"]+" hp blood and "+blood["mp"]+" mp blood free.\n"
+            "<renew 身体>: 这是牧师为冒险中失去肢体的新手冒险者\n"
+            "	提供的慈善服务。所有肢体都会被替换。\n"
+            "<regenerate [肢体]>: 这项服务面向失去肢体的有经验冒险者。\n"
+            "	肢体将被替换并恢复如新。\n"
+            "	再生费用表：\n"
+            "            次要肢体（非牧师）从 "+currency_value(320, "gold")+" 金币起\n"
+            "            主要肢体（非牧师）最高 "+currency_value(800, "gold")+" 金币\n"
+            "            牧师 "+currency_value(240, "gold")+" 至 "+currency_value(600, "gold")+" 金币\n"
+            "<clean 毒素>: 帮助清除体内的部分毒素。\n"
+            "\t费用： "+currency_value(50, "gold")+" 金币\n"
+            "<donate # (hp 或 mp) 血液>: 捐献你的一些血液以换取金币。\n"
+            "<transfuse # (hp 或 mp)>: 为你的身体注入一些血液以恢复生命值或魔法值\n"
+            "\t费用：数量乘以 "+currency_value(3, "gold")+" 金币。\n"
+            "当前库存： "+blood["hp"]+" 生命值血液和 "+blood["mp"]+" 魔法值血液可供使用。\n"
             "------------------------------------------------------------------\n"
-            "Half off all regenerations with the severed limb!\n"
-            "Your tithe is used only toward good causes.\n", this_player());
+            "携带断肢可享受半价再生优惠！\n"
+            "您的捐款只用于公益事业。\n", this_player());
     return 1;
 }
 
@@ -102,17 +97,17 @@ int clean_poison(string str) {
     if(str != "poison") return 0;
     tp = this_player();
     if(tp->query_poisoning()<1) {
-        notify_fail("A cleric whispers to you: But you are not poisoned!\n");
+        notify_fail("牧师轻声对你说：但你并没有中毒啊！\n");
         return 0;
     }
     if(tp->query_money("gold") < currency_value(50, "gold")) {
-        notify_fail("You do not have enough gold for the tithe.\n");
+        notify_fail("你没有足够的金币支付费用。\n");
         return 0;
     }
     tp->AddCurrency("gold", -currency_value(50, "gold"));
     tp->add_poisoning(-10);
-    write("A cleric casts a spell of healing upon you.");
-    say("A cleric casts a spell of healing on "+tp->query_cap_name()+".", tp);
+    write("牧师对你施放了一个治疗术。");
+    say("牧师对"+tp->query_cap_name()+"施放了一个治疗术。", tp);
     return 1;
 }
 
@@ -133,25 +128,25 @@ int regenerate(string limb) {
        versions of the mudlib
      */
     if(!missing) {
-        notify_fail("You aren't missing any limbs!\n");
+        notify_fail("你并没有缺少任何肢体！\n");
         return 0;
     }
     if(member_array(limb, missing) == -1) {
-        notify_fail("You are not missing that limb!\n");
+        notify_fail("你并没有缺少那个肢体！\n");
         return 0;
     }
     if(member_array(limb, there) != -1) {
-        notify_fail("You already have that one back!\n");
+        notify_fail("你已经恢复了那个肢体！\n");
         return 0;
     }
     limb_info= RACES_D->query_limb_info(limb,tp->query_race());
     if(!limb_info) {
-        notify_fail("That limb cannot be replaced!\n");
+        notify_fail("那个肢体无法被替换！\n");
         return 0;
     }
     if(limb_info["attach"] != "0") {
         if(member_array(limb_info["attach"], there) == -1) {
-            notify_fail("You would need a "+limb_info["attach"]+" for that!\n");
+            notify_fail("你需要一个"+limb_info["attach"]+"才能做到！\n");
             return 0;
         }
     }
@@ -163,16 +158,15 @@ int regenerate(string limb) {
     else money = (this_player()->query_class() == "cleric" ? 
             currency_value(600, "gold") : currency_value(800, "gold"));
     if(tp->query_money("gold") < COST) {
-        notify_fail("The cleric tells you:  You do not have enough gold.\n");
+        notify_fail("牧师告诉你：你没有足够的金币。\n");
         return 0;
     }
     tp->AddLimb(limb, limb_info["ref"], tp->query_max_hp()/limb_info["max"], 0, 0);
     if(member_array(limb, RACES_D->query_wielding_limbs(tp->query_race())) != -1) 
         tp->add_wielding_limb(limb);
     this_player()->AddCurrency("gold", -COST);
-    say(sprintf("%s asks the clerics for some help with %s missing %s.",
-                this_player()->query_cap_name(), possessive(this_player()), limb));
-    write("The clerics restore your "+limb+"!");
+    say(sprintf("%s向牧师们寻求帮助，治疗缺失的%s。", this_player()->query_cap_name(), limb));
+    write("牧师们恢复了你的"+limb+"！");
     return 1;
 }
 
@@ -181,24 +175,24 @@ int donate(string str) {
     int amount, tmp;
 
     if(!str) {
-        notify_fail("Donate what?\n");
+        notify_fail("捐献什么？\n");
         return 0;
     }
     if(sscanf(str, "%d %s of blood", amount, what) !=2) {
-        notify_fail("Correct syntax: <donate [#] [hp | mp] of blood>\n");
+        notify_fail("正确语法：<donate [#] [hp | mp] of blood>\n");
         return 0;
     }
     if(what != "mp" && what != "hp") {
-        notify_fail("Donate what?\n");
+        notify_fail("捐献什么？\n");
         return 0;
     }
     if(blood[this_player()->query_name()]+amount > MAX_DONATION) {
-        write("You will have to wait before giving that much blood.");
+        write("你需要等一段时间才能再捐献那么多血液。");
         return 1;
     }
     tmp = call_other(this_player(), "query_"+what);
     if(tmp < amount + 5) {
-        notify_fail("You must have at least 5 more than you plan to give!\n");
+        notify_fail("你必须至少比计划捐献的多出5点！\n");
         return 0;
     }
     call_other(this_player(), "add_"+what, -amount);

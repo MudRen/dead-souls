@@ -16,12 +16,11 @@ protected void create() {
     verb::create();
     SetVerb("eat");
     SetSynonyms("swallow");
-    SetErrorMessage("Eat what?");
+    SetErrorMessage("吃什么？");
     SetRules("OBJ");
-    SetHelp("Syntax: <eat FOOD>\n\n"
-            "Allows you to munch on some food.  Keeping yourself well fed "
-            "helps you heal faster from wounds and have greater stamina.\n\n"
-            "See also: bait, cast, drink, fish");
+    SetHelp("用法：eat <食物>\n\n"
+            "允许你吃一些食物。保持饱食状态有助于你更快地恢复伤口并拥有更大的耐力。\n\n"
+            "另见：bait, cast, drink, fish");
 }
 
 
@@ -32,9 +31,9 @@ void eventEat(object who, object what) {
     return what->eventEat(who);
 }
 
-mixed can_eat_obj() { 
+mixed can_eat_obj() {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     return this_player()->CanManipulate();
 }

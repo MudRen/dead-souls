@@ -14,25 +14,23 @@ protected void create() {
     verb::create();
     SetVerb("open");
     SetRules("OBJ", "OBJ with OBJ");
-    SetErrorMessage("Open what? Or open what with what?");
-    SetHelp("Syntax: <open OBJECT>\n"
-            "        <open OBJECT with ITEM>\n\n"
-            "Opens a door or chest or some other such object.  Some things "
-            "may be opened by force using items capable of forcing things "
-            "to open.\n\n"
-            "See also: close, lock, pick, unlock");
+    SetErrorMessage("打开什么？或者用什么打开什么？");
+    SetHelp("用法：open <物品>\n"
+            "      open <物品> with <工具>\n\n"
+            "打开门、箱子或其他类似的物品。有些东西可以使用能强行打开的工具来打开。\n\n"
+            "另见：close, lock, pick, unlock");
 }
 
 mixed can_open_obj(string verb, string id) {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     return this_player()->CanManipulate();
 }
 
 mixed can_open_obj_with_obj(string verb, string id1, string id2) {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     return this_player()->CanManipulate();
 }

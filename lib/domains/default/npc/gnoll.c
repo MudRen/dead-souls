@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("gnoll");
     SetAdjectives( ({"filthy", "horrendous"}) );
     SetId( ({"dogman", "dog-man", "dog man"}) );
-    SetShort("a large, filthy dogman");
-    SetLong("This appears to be a horrendous cross between a humanoid and a hyena. Its matted fur is streaked with blood and feces, and its slavering jaws seem never to stop dripping saliva.");
+    SetShort("一个肮脏的大型狗头人");
+    SetLong("这似乎是 humanoid 和 hyena 之间的可怕杂交。它的 matted fur 上沾满了 blood and feces，它的 slavering jaws 似乎 never to stop dripping saliva。");
     SetLevel(1);
     SetMelee(1);
     SetRace("gnoll");

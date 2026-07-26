@@ -71,7 +71,7 @@ varargs string GetFinger(string who, int html) {
     if( !user_exists(who) || (!LoadPlayer(DIR_PLAYERS "/" +
                     who[0..0] + "/" + who) && !(creator = LoadPlayer(DIR_CRES "/" +
                             who[0..0] + "/" + who))) ){
-        return capitalize(who) + " is unknown to " + mud_name() + ".";
+        return capitalize(who) + " 在 " + mud_name() + " 中未知。";
     }
     if( !strsrch(player_save_file(who), DIR_CRES) ) creator = 1;
     ret = "%^STRONG%^" + replace_string(GetTitle(), "$N", CapName) +
@@ -89,12 +89,11 @@ varargs string GetFinger(string who, int html) {
         }
     }
     else {
-        ret += "No home page.%^BR%^\n";
+        ret += "无主页。%^BR%^\n";
     }
     if( creator ) {
-        ret += CapName + " is a " + Gender + " Creator of %^I%^" + mud_name() +
-            "%^/I%^.%^BR%^\n";
-        ret += "Immortality Date: " + ctime(CreatorBirth) + "%^BR%^\n";
+        ret += CapName + " 是 " + mud_name() + " 的一位" + Gender + "创造者。%^BR%^\n";
+        ret += "不朽日期: " + ctime(CreatorBirth) + "%^BR%^\n";
     }
     else {
         string yrstr;
@@ -111,29 +110,29 @@ varargs string GetFinger(string who, int html) {
         else {
             yrstr = "" + yr;
         }
-        ret += sprintf("Birthday: the %d%s day of %s, %s",
+        ret += sprintf("生日: %s 年 %s 第 %d%s 天",
                 query_date(Btime), ordinal(query_date(Btime)),
                 query_month(Btime), yrstr) + "%^BR%^\n";
     }
-    if(!this_player() || !archp(this_player())) Email = "Unlisted";
+    if(!this_player() || !archp(this_player())) Email = "未公开";
     if( !Email ) Email = "#CHANGE";
     ret += "%^TABLE%^TR%^TD%^" +
         sprintf("In real life: %:-30s %%^/TD%%^TD%%^Email: %s", RealName ,
                 (Email[0]!='#' || (this_player(1) && archp(this_player(1))))
-                ? (Email[0] == '#' ? Email[1..] : Email) : "Unlisted") +
+                ? (Email[0] == '#' ? Email[1..] : Email) : "未公开") +
         "%^/TD%^/TR%^\n";
     ret += "%^TR%^TD%^" +
         sprintf("Religion: %:-34s %%^/TD%%^TD%%^Spouse: %s",
-                (!creator && Religion[1]) ? Religion[1] : "Agnostic",
-                !sizeof(Marriages) ? "Single" :
+                (!creator && Religion[1]) ? Religion[1] : "无信仰",
+                !sizeof(Marriages) ? "未婚" :
                 (((class marriage)Marriages[0])->DivorceDate ?
-                 "Divorced" : ((class marriage)Marriages[0])->Spouse)) +
+                 "已离婚" : ((class marriage)Marriages[0])->Spouse)) +
         "%^/TD%^/TR%^/TABLE%^\n";
     if( (ob = find_player(who)) && (!ob->GetInvis()) ) {
-        if( !interactive(ob) ) ret += "Currently net-dead";
-        else ret += "On since " + ctime(LoginTime);
+        if( !interactive(ob) ) ret += "当前离线";
+        else ret += "自 " + ctime(LoginTime) + " 起在线";
     }
-    else ret += "Last on " + ctime(LoginTime);
+    else ret += "最后在线 " + ctime(LoginTime);
     if( this_player(1) && creatorp(this_player(1)) && (!AUTO_WIZ ||
                 master()->valid_apply(({ "SECURE", "ASSIST" }))) ){
         ret += " from " + HostSite + "%^BR%^\n";
@@ -141,14 +140,14 @@ varargs string GetFinger(string who, int html) {
     else ret += "%^BR%^\n";
     mail_stat = FOLDERS_D->mail_status(who);
     if( mail_stat["unread"] )
-        ret += CapName + " has " + consolidate(mail_stat["unread"],
-                "an unread letter") + ".%^BR%^\n";
+        ret += CapName + " 有 " + consolidate(mail_stat["unread"],
+                "一封未读信件") + "。%^BR%^\n";
     if( unguarded( (: file_size, user_path(who) + ".project" :) ) > 0 )
-        ret += "Project: %^PRE%^" +
+        ret += "项目: %^PRE%^" +
             unguarded( (: read_file, user_path(who) + ".project" :) ) +
             "%^/PRE%^\n";
     if( unguarded( (: file_size, user_path(who) + ".plan" :) ) > 0 )
-        ret += "Plan:%^PRE%^\n" +
+        ret += "计划:%^PRE%^\n" +
             unguarded( (: read_file, user_path(who) + ".plan" :) ) + "%^/PRE%^\n";
     return ret;
 }

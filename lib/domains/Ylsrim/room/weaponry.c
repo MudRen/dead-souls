@@ -16,11 +16,10 @@ protected void create() {
     SetTown("Ylsrim");
     SetClimate("indoors");
     SetAmbientLight(28);
-    SetShort("the Ylsrim weaponry");
+    SetShort("伊尔斯利姆武器店");
     SetLong((: CheckOpen :));
     SetItems( ([ ({ "case", "cases" }) : (: CheckItem :),
-                "bazaar" : "People from all about are wandering around, looking "
-                "for a bargain." ]) );
+                "bazaar" : "来自各地的人们四处游荡，寻找便宜货。" ]) );
     SetObviousExits("east");
     SetExits( ([ "east" : "/domains/Ylsrim/room/"+ "bazaar" ]) );
     SetInventory( ([ "/domains/Ylsrim"+ "/npc/shiela" : 1 ]) );
@@ -32,26 +31,22 @@ string CheckOpen(string str) {
     ob = present("vendor");
     if( query_night() ) {
         if( ob ) ob->eventDestruct();
-        return ("The cases of the weaponry are empty, as the weaponry "
-                "has closed for the night.  The bazaar is "
-                "east.");
+        return ("武器店的展柜已经空了，因为武器店已经打烊了。"
+                "集市在东边。");
     }
     if( !ob )
-        return ("Fresh blood is splattered across broken cases which once "
-                "housed display weapons sold in this weaponry.  The weapons are "
-                "gone, and the vendor clearly murdered.  All you can do is "
-                "shake your head and exit to the east.");
-    return ("Sealed cases contain display weapons, exemplifying what the "
-            "local vendor has to offer.  She buys and sells all sorts of "
-            "weapons from adventurers who come here to sell of their "
-            "discovered goods, or equip to continue adventuring.  An exit "
-            "is east.");
+        return ("新鲜的鲜血溅满了曾经陈列着武器的破碎展柜。"
+                "武器已经不见了，店主显然被谋杀了。"
+                "你只能摇摇头，从东边离开。");
+    return ("密封的展柜里陈列着武器，展示了当地店主的商品。"
+            "她从前来出售战利品或购买装备继续冒险的冒险者手中"
+            "买卖各种武器。出口在东边。");
 }
 
 string CheckItem(object ob) {
-    if( query_night() ) return "They are empty.";
-    else if ( present("vendor") ) return "They are filled with weapons.";
-    else return "They are broken and covered in blood.";
+    if( query_night() ) return "展柜是空的。";
+    else if ( present("vendor") ) return "展柜里摆满了武器。";
+    else return "展柜已经破碎，沾满了鲜血。";
 }
 
 void init(){

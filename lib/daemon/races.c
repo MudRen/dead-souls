@@ -63,7 +63,7 @@ protected void create() {
 
 private void validate() {
     if( !(master()->valid_apply(({ PRIV_ASSIST }))) )
-        error("Illegal attempt to modify race data");
+        error("非法修改种族数据");
 }
 
 int CanFly(string str){
@@ -225,7 +225,7 @@ void AddRace(string file, int player) {
 
     validate();
 
-    if( !file_exists(file) ) error("No such file: " + file);
+    if( !file_exists(file) ) error("文件不存在: " + file);
     race = last_string_element(file,"/");
 
     res["Fingers"] = ([]);
@@ -277,7 +277,7 @@ void AddRace(string file, int player) {
 
             case "RACE":
             race = replace_string(line, "RACE ", "");
-            if( Races[race] ) error(race+": Race already exists");
+            if( Races[race] ) error(race+": 种族已存在");
             break;
 
             case "SENSITIVITY":
@@ -510,7 +510,7 @@ void SetComplete(string race) {
 
     validate();
 
-    if( !Races[race] ) error("No such race");
+    if( !Races[race] ) error("无此种族");
     else res = Races[race];
     res["Complete"] = 1;
     SaveObject(SaveFile);
@@ -521,11 +521,11 @@ void SetLightSensitivity(string race, int* sensitivity) {
 
     validate();
 
-    if( !Races[race] ) error("No such race");
+    if( !Races[race] ) error("无此种族");
     else res = Races[race];
-    if( sensitivity[0] < 1 ) error("Invalid sensitivity value");
-    if( sensitivity[1] > 99 ) error("Invalid sensitivity value");
-    if( sensitivity[0] > sensitivity[1] ) error("Invalid sensitivity value");
+    if( sensitivity[0] < 1 ) error("无效的感光值");
+    if( sensitivity[1] > 99 ) error("无效的感光值");
+    if( sensitivity[0] > sensitivity[1] ) error("无效的感光值");
     res["Sensitivity"] = sensitivity;
     SaveObject(SaveFile);
 }
@@ -579,7 +579,7 @@ varargs string* GetRaces(int player_only) {
 string GetHelp(string race) {
     mapping res = Races[race];
     string* limbs;
-    string help = "Race: " + race + "\n\n";
+    string help = "种族: " + race + "\n\n";
     string tmp, h_file;
     int x;
 
@@ -588,38 +588,38 @@ string GetHelp(string race) {
     if(file_exists(h_file)) return read_file(h_file);
     limbs = map(res["Limbs"], (: $1[0] :));
     limbs = distinct_array(limbs);
-    help += "Limbs:\n";
-    help += capitalize(item_list(map(limbs, (: add_article :)))) + ".\n";
-    help += "\nFingered limbs:\n";
+    help += "肢体:\n";
+    help += capitalize(item_list(map(limbs, (: add_article :)))) + "。\n";
+    help += "\n有手指的肢体:\n";
     foreach(string finger, int count in res["Fingers"])
         help += "\t" + finger + " (" + count + ")\n";
     limbs = regexp(limbs, ".* wing");
     if( sizeof(limbs) ) {
-        help += "\nFlying\n";
+        help += "\n可飞行\n";
     }
 
     else {
-        help += "\nNon-flying\n";
+        help += "\n不可飞行\n";
     }
 
     x = res["Sensitivity"][0];
-    if( x < 11 ) tmp = "excellent";
-    else if( x < 16 ) tmp = "above average";
-    else if( x < 21 ) tmp = "good";
-    else if( x < 26 ) tmp = "average";
-    else if( x < 31 ) tmp = "below average";
-    else if( x < 36 ) tmp = "very poor";
-    else tmp = "extremely poor";
-    help += "\nNight vision: " + tmp + "\n";
+    if( x < 11 ) tmp = "极好";
+    else if( x < 16 ) tmp = "优秀";
+    else if( x < 21 ) tmp = "良好";
+    else if( x < 26 ) tmp = "一般";
+    else if( x < 31 ) tmp = "较差";
+    else if( x < 36 ) tmp = "很差";
+    else tmp = "极差";
+    help += "\n夜视能力: " + tmp + "\n";
     x = res["Sensitivity"][1];
-    if( x < 61 ) tmp = "extremely poor";
-    else if( x < 66 ) tmp = "very poor";
-    else if( x < 71 ) tmp = "below average";
-    else if( x < 76 ) tmp = "average";
-    else if( x < 81 ) tmp = "good";
-    else if( x < 86 ) tmp = "above average";
-    else tmp = "excellent";
-    help += "Day vision: " + tmp + "\n\n";
+    if( x < 61 ) tmp = "极差";
+    else if( x < 66 ) tmp = "很差";
+    else if( x < 71 ) tmp = "较差";
+    else if( x < 76 ) tmp = "一般";
+    else if( x < 81 ) tmp = "良好";
+    else if( x < 86 ) tmp = "优秀";
+    else tmp = "极好";
+    help += "日视能力: " + tmp + "\n\n";
     return help;
 }
 

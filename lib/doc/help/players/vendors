@@ -1,35 +1,32 @@
-			  Dead Souls Vendors
+                  Dead Souls 商人
 
-As with other non-player characters, vendors respond to certain
-requests people make using the "ask" command.  Dead Souls vendors
-respond to at least the following requests:
+与其他非玩家角色一样，商人会对人们使用 "ask" 命令
+发出的某些请求做出回应。Dead Souls 商人至少会回应
+以下请求：
 
-%^GREEN%^ask VENDOR to appraise ITEM %^RESET%^   
+%^GREEN%^ask VENDOR to appraise ITEM %^RESET%^
 %^GREEN%^ask VENDOR to browse%^RESET%^
-%^GREEN%^ask VENDOR to buy ITEM %^RESET%^ (identical to sell ITEM to VENDOR)
+%^GREEN%^ask VENDOR to buy ITEM %^RESET%^（等同于 sell ITEM to VENDOR）
 %^GREEN%^ask VENDOR to price ITEM%^RESET%^
-%^GREEN%^ask VENDOR to sell ITEM %^RESET%^ (identical to buy ITEM from VENDOR)
+%^GREEN%^ask VENDOR to sell ITEM %^RESET%^（等同于 buy ITEM from VENDOR）
 %^GREEN%^ask VENDOR to show ITEM%^RESET%^
 
-Appraise allows you to get an offer from the vendor for an item you
-might wish to sell.
+估价（Appraise）允许你从商人那里获得你可能想出售
+物品的报价。
 
-Browse allows you to browse through what the vendor has to sell.  You
-may also specify specific types of things to browse, for example:
+浏览（Browse）允许你浏览商人出售的商品。你也可以
+指定特定类型的商品来浏览，例如：
 	%^GREEN%^ask VENDOR to browse helms%^RESET%^
 	%^GREEN%^ask vendor to browse torches%^RESET%^
 
-Buy requests that the vendor buy from you the item you specify.  This is
-identical to the sell command, so see "help sell".
+购买（Buy）请求商人购买你指定的物品。这与 sell
+命令相同，参见 "help sell"。
 
-Price allows you to get the price of an item that the vendor has to
-sell.
+价格（Price）允许你获取商人出售物品的价格。
 
-Sell requests that the vendor sell you the specified item.  This is
-identical to the "buy" command, so see "help buy".
+出售（Sell）请求商人卖给你指定的物品。这与 "buy"
+命令相同，参见 "help buy"。
 
-Show allows you to look at an item which the vendor has for sale.
+展示（Show）允许你查看商人出售的物品。
 
-See also: ask, buy, sell
-
-
+另见: ask, buy, sell
