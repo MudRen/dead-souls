@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("drone");
     SetAdjectives( ({"small","metal"}) );
     SetId( ({"drone","bot","robot"}) );
-    SetShort("a small drone");
-    SetLong("A small metal orb.");
+    SetShort("一个小型无人机");
+    SetLong("一个小型金属球体。");
     SetLevel(1);
     SetInvis(1);
     SetMaxHealthPoints(50000);

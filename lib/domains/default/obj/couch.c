@@ -9,16 +9,14 @@ protected void create() {
     SetKeyName("beat up couch");
     SetId( ({ "couch","sofa","recliner" }) );
     SetAdjectives( ({ "beat up","beat-up","old" }) );
-    SetShort("a beat-up old couch");
-    SetLong("This is a beat-up, worn and dirty couch, the kind "
-            "one might expect in a university dorm room.");
+    SetShort("一个破旧的旧沙发");
+    SetLong("这是一个破旧、磨损且肮脏的沙发， the kind one might expect in a university dorm room。");
     SetMass(3000);
     SetBaseCost("silver",15);
     SetMaxSitters(2);
     SetMaxLiers(1);
 
     SetSmell( ([
-                "default" : "It smells dirty and gross. There's a "
-                "faint whiff of dog urine."
+                "default" : "闻起来又脏又恶心。有一股淡淡的狗尿味。"
                 ]) );
 }

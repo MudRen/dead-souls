@@ -8,11 +8,8 @@ protected void create(){
     armor::create();
     SetKeyName("visitor pass");
     SetId(({"testchar badge","badge","pass","visitor's pass"}));
-    SetShort("a test character Visitor's Pass");
-    SetLong("This clip-on plastic badge grants the wearer access to "+
-            "some areas typically restricted to creator staff only. Abuse of this "+
-            "pass is grounds for disciplinary action. A small scribble "+
-            "at the bottom of the pass reads: click heels");
+    SetShort("一个测试角色访客通行证");
+    SetLong("这个 clip-on plastic badge grants the wearer access to some areas typically restricted to creator staff only。滥用此 pass is grounds for disciplinary action。 A small scribble at the bottom of the pass reads: click heels");
     SetProperties(([
                 "no steal" : 1,
                 ]));
@@ -30,14 +27,12 @@ void init(){
 int nplh(string str){
     if(str=="heels"){
         if(present(this_object()->GetKeyName(),this_player() ) ){
-            write("There's no place like home!\n"+
-                    "You are transported by an awesome whirlwind somewhere "+
-                    "else...\n");
+            write("没有哪里比得上家！\n"+
+                    "你被一阵 awesome whirlwind 传送到了别处...\n");
             this_player()->eventMoveLiving(ROOM_START);
             return 1;
         }
-        write("You click your heels together...but feel "+
-                "as though you're missing something.\n");
+        write("你 clicking your heels together... but feel as though you're missing something。\n");
         return 1;
     }
 }

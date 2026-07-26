@@ -7,11 +7,10 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(40);
-    SetShort("a creator's workroom");
-    SetLong("You are standing in the workroom of a creator."+
-            " The start room is down from here.");
-    SetItems( ([ 
-                "workroom" : "It looks very nice.",
+    SetShort("创造者的工作室");
+    SetLong("你站在一个创造者的工作室里。起始房间在下面。");
+    SetItems( ([
+                "workroom" : "看起来非常不错。",
                 ]) );
     SetInventory(([
                 ]));

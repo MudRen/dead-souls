@@ -26,15 +26,8 @@ protected void create() {
     SetKeyName("object");
     SetId( ({ "example", "sample" }) );
     SetAdjectives( ({ "example","sample","pass by reference" }) );
-    SetShort("a pass by reference example object");
-    SetLong("This object allows you to test passing by reference. "
-            "When you: \n\n call example->StartPass(1)\n\n\tYou can see that "
-            "not only has the local variable been changed, but the "
-            "global variable too, even though there has been no assignment "
-            "operation to change globalvar to localvar's new value.\n"
-            "\tThis pass by reference is accomplished by using the \"ref\" "
-            "keyword. If you need to pass an integer or a string by reference, "
-            "study how it is done here to understand the process.");
+    SetShort("一个 pass by reference 示例对象");
+    SetLong("这个对象 allows you to test passing by reference。当你：\n\n call example->StartPass(1)\n\n\tYou can see that not only has the local variable been changed， but the global variable too， even though there has been no assignment operation to change globalvar to localvar's new value。\n\tThis pass by reference is accomplished by using the \"ref\" keyword。如果你需要 pass an integer or a string by reference， study how it is done here to understand the process。");
     SetNoCondition(1);
     SetMass(50);
     SetBaseCost(1);

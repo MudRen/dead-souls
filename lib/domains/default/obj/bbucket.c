@@ -8,9 +8,8 @@ void create() {
     SetKeyName("bin");
     SetId(({"bin","can","dustbin","trash","rubbish"}));
     SetAdjectives(({"metal","small","blue","recycling","trash","garbage","dust"}));
-    SetShort("a recycling bin");
-    SetLong("This is a blue trash can, marked with "+
-            "the letters \"/dev/null\".");
+    SetShort("一个回收 bin");
+    SetLong("这是一个蓝色垃圾桶， marked with the letters \"/dev/null\"。");
     SetMass(200);
     SetBaseCost("silver",50);
     SetMaxCarry(999999);
@@ -26,11 +25,11 @@ int tidy_up(){
 }
 
 int eventReceiveObject(object ob){
-    write("You make a deposit into the the recycling bin.\n");
+    write("你将物品放入回收 bin。\n");
     call_out((: tidy_up :),1);
     return 1;
 }
-mixed CanGet(object ob) { return "The bucket does not budge.";}
+mixed CanGet(object ob) { return "这个桶纹丝不动。";}
 
 void init(){
     ::init();

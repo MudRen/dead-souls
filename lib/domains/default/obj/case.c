@@ -7,8 +7,8 @@ void create() {
     SetKeyName("case");
     SetId( ({ "case" }) );
     SetAdjectives( ({ "mounted","wall","glass", "display" }) );
-    SetShort("a glass display case");
-    SetLong("This is a glass case designed to contain and display firearms.");
+    SetShort("一个玻璃展示柜");
+    SetLong("这是一个 designed to contain and display firearms 的玻璃柜。");
     SetInventory(([
                 "/domains/default/weap/m16rifle" : 1,
                 "/domains/default/weap/9mil" : 1,
@@ -28,10 +28,10 @@ void init(){
 
 int CanReceive(object ob) {
     if(!inherits(LIB_FIREARM,ob)) {
-        write("This is a case for firearms only.");
+        write("这是一个仅用于 firearms 的柜子。");
         return 0;
     }
     else return 1;
 }
 
-mixed CanGet(object ob) { return "The case does not budge.";}
+mixed CanGet(object ob) { return "这个柜子纹丝不动。";}

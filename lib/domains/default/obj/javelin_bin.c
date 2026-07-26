@@ -7,8 +7,8 @@ void create() {
     SetKeyName("bin");
     SetAdjectives( ({"tall", "metal", "javelin","spear"}) );
     SetId( ({"javelin bin"}) );
-    SetShort("a tall metal bin");
-    SetLong("This tall container is meant to hold javelins.");
+    SetShort="a tall metal bin";
+    SetLong("这个 tall container is meant to hold javelins。");
     SetInventory(([
                 "/domains/town/weap/javelin" : ({ 1200, 10 }),
                 ]));
@@ -24,11 +24,11 @@ void init(){
     ::init();
 }
 
-mixed CanGet(object ob) { return "The bin does not budge.";}
+mixed CanGet(object ob) { return "这个箱子纹丝不动。";}
 
 int CanReceive(object ob) {
     if(!answers_to("javelin",ob)) {
-        write("This is a bin for javelins only.");
+        write("这是一个仅用于标枪的箱子。");
         return 0;
     }
     else return 1;

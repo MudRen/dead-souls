@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("foochy");
     SetAdjectives( ({"overpampered", "ridiculous", "little", "toy", "toylike"}) );
     SetId(({"npc","mob","character","mobile","poodle"}));
-    SetShort("Foochy the pink poodle");
-    SetLong("A rather ridiculous, obviously overpampered little toylike dog.");
+    SetShort("粉色贵宾犬 Foochy");
+    SetLong("一只相当 ridiculous, obviously overpampered little toylike dog。");
     SetLevel(1);
     SetMelee(1);
     SetRace("dog");

@@ -43,13 +43,12 @@ varargs mixed EvaluateRadiantLight(object ob, int report){
 }
 
 string DefaultReading(){
-    write("This small device is a portable light meter. It tells "+
-            "you what the available light is.");
-    write("The ambient light here is: "+environment(this_player())->GetAmbientLight());
-    write("Total radiant light here is: "+EvaluateRadiantLight());
-    write("Your vision range is: "+this_player()->GetEffectiveVision(environment(this_player()),1));
-    write("\nYour effective vision is "+translate_vision());
-    write("\nFull radiance details:\n"+EvaluateRadiantLight(this_player(),1));
+    write("这个小设备是一个便携式光线计。它告诉你 available light is what。");
+    write("这里的环境光线是："+environment(this_player())->GetAmbientLight());
+    write("这里的总辐射光线是："+EvaluateRadiantLight());
+    write("你的视觉范围是："+this_player()->GetEffectiveVision(environment(this_player()),1));
+    write("\n你的有效视觉是"+translate_vision());
+    write("\n完整辐射细节：\n"+EvaluateRadiantLight(this_player(),1));
     return "";
 }
 
@@ -62,7 +61,7 @@ void create(){
     SetKeyName("light meter");
     SetAdjectives( ({"light"}) );
     SetId( ({"meter", "lightmeter"}) );
-    SetShort("a light meter");
+    SetShort("一个光线计");
     SetLong( (: DefaultReading :) );
     SetProperties(([
                 "no steal" : 1,

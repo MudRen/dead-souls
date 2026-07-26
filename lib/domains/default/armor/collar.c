@@ -9,14 +9,13 @@ protected void create(){
     SetKeyName("collar");
     SetId(({"repellent_collar","bane"}));
     SetAdjectives( ({"repellent","odd","plastic","white"}) );
-    SetShort("a plastic collar");
-    SetLong("This is a simple collar made of a soft white plastic. It "+
-            "seems to be coated with a fine, clear resin. There is something "+
-            "written on the collar.");
+    SetShort("一个塑料项圈");
+    SetLong="a plastic collar";
+    SetLong("这是一个 simple collar made of a soft white plastic。它 seems to be coated with a fine, clear resin。 There is something written on the collar。");
     SetProperties(([
                 "no steal" : 1,
                 ]));
-    SetRead("Disease and parasite repellent collar, test character use only.");
+    SetRead("疾病和寄生虫 repellent 项圈，仅限测试角色使用。");
     SetMass(10);
     SetBaseCost("silver", 10);
     SetDamagePoints(100);

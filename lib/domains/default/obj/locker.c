@@ -7,9 +7,8 @@ void create() {
     SetKeyName("locker");
     SetId(({"locker","object"}));
     SetAdjectives(({"metal","tall","large"}));
-    SetShort("a tall metal locker");
-    SetLong("This large object is designed to hold "+
-            "armor and related accessories.");
+    SetShort("一个高大的金属储物柜");
+    SetLong("这个大型物件 designed to hold armor and related accessories。");
     SetInventory(([
                 "/domains/default/armor/pcannon" : 1,
                 "/domains/default/armor/scoutsuit" : 1,
@@ -20,7 +19,7 @@ void create() {
     SetMaxCarry(10000);
     SetCanClose(1);
     SetClosed(0);
-    SetPreventGet("The locker does not budge.");
+    SetPreventGet("这个储物柜纹丝不动。");
 }
 void init(){
     ::init();

@@ -6,12 +6,12 @@ protected void create() {
     door::create();
 
     SetSide("east", (["id" : ({ "steel door", "steel door leading east", "door", "east door" }),
-                "short" : "a steel door leading east",
-                "long" : "This is an imposing, large steel door leading east into the arena.",
+                "short" : "一扇向东的钢门",
+                "long" : "这是一扇 imposing, large steel door leading east into the arena。",
                 "lockable" : 0 ]) );
     SetSide("west", (["id" : ({ "steel door", "steel door leading west", "west door", "door" }),
-                "short" : "a steel door leading west",
-                "long" : "This is an imposing, large steel door leading west, out of the arena.",
+                "short" : "一扇向西的钢门",
+                "long" : "这是一扇 imposing, large steel door leading west, out of the arena。",
                 "lockable" : 0 ]) );
 
     SetClosed(0);

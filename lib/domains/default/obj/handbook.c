@@ -7,8 +7,8 @@ void create(){
     SetKeyName("player's handbook");
     SetId( ({"book", "handbook", "players handbook"}) );
     SetAdjectives( ({"player", "players"}) );
-    SetShort("a Player's Handbook");
-    SetLong("This is a handbook for players. To read it, you must read the chapters in it. For example, 'read chapter 1 in handbook', or 'read index in handbook'");
+    SetShort("玩家手册");
+    SetLong("这是玩家手册。要阅读它，你必须阅读其中的章节。例如，'read chapter 1 in handbook'，或 'read index in handbook'");
     SetProperties(([
                 "no steal" : 1,
                 ]));
@@ -17,7 +17,7 @@ void create(){
     SetVendorType(VT_TREASURE);
     SetTitle("The Player's Handbook");
     SetSource("/doc/hbook");
-    SetDefaultRead("Try \"read chapter 1 in handbook\" or "
+    SetDefaultRead("试试 \"read chapter 1 in handbook\" 或 "
             "\"read index in handbook\"");
 
 }

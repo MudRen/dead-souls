@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("kwyjibo");
     SetId(({"npc","mob","character","mobile"}));
     SetAdjectives(({"bald","overweight","dumb","stupid","North American","American"}));
-    SetShort("a kwijibo");
-    SetLong("A bald, overweight, North American ape of below average intelligence.");
+    SetShort="一只大猩猩");
+    SetLong("一只 bald, overweight, North American ape of below average intelligence。");
     SetWanderSpeed(20);
     SetClass("fighter");
     SetLevel(10);

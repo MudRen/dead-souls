@@ -9,9 +9,8 @@ void create() {
     SetKeyName("rack");
     SetId(({"rack"}));
     SetAdjectives(({"knife","metal","fancy","steel","stainless","stainless-steel"}));
-    SetShort("a weapons rack");
-    SetLong("This is a bladed weapons rack here for your combat "+
-            "testing convenience.");
+    SetShort("一个武器架");
+    SetLong("这是一个刃 weapons rack here for your combat testing convenience。");
     SetNoCondition(1);
     SetMass(274);
     SetBaseCost("silver",50);
@@ -20,12 +19,12 @@ void create() {
                 "/domains/default/weap/sharpsword" : ({ 1800, 5 }),
                 ]));
     SetCanClose(0);
-    SetPreventGet("The rack does not budge.");
+    SetPreventGet("这个架子纹丝不动。");
 }
 
 int CanReceive(object ob) {
     if(ob->GetDamageType() != BLADE) {
-        write("This is a rack for sword-like weapons only.");
+        write("这是一个仅用于剑类武器的架子。");
         return 0;
     }
     else return 1;

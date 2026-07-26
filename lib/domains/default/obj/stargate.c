@@ -11,7 +11,7 @@ void create()
     ::create();
     SetOrigin("stargate lab", "/domains/default/room/stargate_lab");
     SetRead(([ ({ "screen" }) : (: ReadScreen :) ]) );
-    SetItems(([ ({ "screen" }) : "a computer screen which shows the status of the gate network" ]) );
+    SetItems(([ ({ "screen" }) : "一个显示星门网络状态的计算机屏幕" ]) );
 }
 
 void init()
@@ -21,7 +21,7 @@ void init()
 
 int ReadScreen()
 {
-    write("stargate network status\n");
+    write("星门网络状态\n");
     write("-----------------------\n");
     write("\n");
 

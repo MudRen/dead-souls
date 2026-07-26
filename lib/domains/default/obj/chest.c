@@ -6,8 +6,8 @@ void create() {
     ::create();
     SetKeyName("chest");
     SetId(({"chest","wooden chest"}));
-    SetShort("a wooden chest");
-    SetLong("This is a sturdy wooden chest used to store valuable items.");
+    SetShort("一个木箱");
+    SetLong("这是一个坚固的木箱，用于存放贵重物品。");
     SetInventory(([
                 "/domains/default/obj/meter" : 1,
                 "/secure/obj/staff" : 1,
@@ -28,11 +28,11 @@ void create() {
     SetMass(2000);
     SetBaseCost(50);
     SetMaxCarry(10000);
-    SetPreventPut("You cannot put this in there!");
+    SetPreventPut("你不能把这个放进去！");
     SetCanClose(1);
     SetClosed(1);
 }
-mixed CanGet(object ob) { return "The chest does not budge.";}
+mixed CanGet(object ob) { return "这个箱子纹丝不动。";}
 void init(){
     ::init();
 }

@@ -7,9 +7,8 @@ protected void create() {
     SetKeyName("chair");
     SetId("chair");
     SetAdjectives( ({ "swivel", "small", "black" }) );
-    SetShort("a swivel chair");
-    SetLong("This is a small swivel chair, with tasteful and understated "+
-            "black covers.");
+    SetShort("一个转椅");
+    SetLong("这是一个小型转椅， with tasteful and understated black covers。");
     SetMass(1500);
     SetDollarCost(15);
     SetMaxSitters(1);
@@ -29,15 +28,14 @@ int swivel(string str){
             if( member_array(this_player(),this_object()->GetSitters()) != -1) hit = 7;
         }
         if( hit == 7) {
-            write("You swivel around in your swivel chair! Whee!");
-            say(this_player()->GetName()+" swivels around in "+possessive(this_player())+" "+
-                    "swivel chair, yelling \"WHEEEE!!!\"");
+            write("你在转椅上转来转去！ Whee！");
+            say(this_player()->GetName()+"在"+possessive(this_player())+"转椅上转来转去，大喊 \"WHEEEE！！！\"");
             return 1;
         }
-        else { write("You are not sitting in a swivel chair."); }
+        else { write("你没有坐在转椅上。"); }
     }
     if(hit == 42) return 1;
     else return 0;
 }
 
-mixed CanGet(object ob) { return "The chair does not budge.";}
+mixed CanGet(object ob) { return "这个椅子纹丝不动。";}

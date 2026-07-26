@@ -6,8 +6,8 @@ protected void create() {
     sentient::create();
     SetKeyName("Rik");
     SetId(({"rik"}));
-    SetShort("Rik");
-    SetLong("Rik is a foreign exchange student from the Netherlands.");
+    SetShort("里克");
+    SetLong("里克是一名来自荷兰的交换生。");
     SetMelee(1);
     SetLevel(5);
     SetRace("human");

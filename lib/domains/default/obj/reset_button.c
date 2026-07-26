@@ -20,7 +20,7 @@ protected void create() {
     SetKeyName("button");
     SetId(({"button","button on the wall"}));
     SetAdjectives("reset");
-    SetShort("a button");
-    SetLong("It is a button that you could probably press.");
+    SetShort("一个按钮");
+    SetLong("这是一个你 probably press 的按钮。");
     SetPress((: eventResetRoom :));
 }

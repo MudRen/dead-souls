@@ -7,8 +7,8 @@ protected void create() {
     npc::create();
     SetKeyName("Edmund");
     SetId(({"edmund"}));
-    SetShort("Edmund");
-    SetLong("Edmund is a foreign exchange student from the United Kingdom.");
+    SetShort("埃德蒙");
+    SetLong("埃德蒙是一名来自英国的交换生。");
     SetLevel(5);
     SetRace("human");
     SetGender("male");

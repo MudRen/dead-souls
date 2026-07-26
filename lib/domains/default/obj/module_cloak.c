@@ -17,14 +17,13 @@ void create(){
     SetKeyName("data module");
     SetId( ({"module", "cartridge"}) );
     SetAdjectives( ({"data","yautja","stealth"}) );
-    SetShort("a Yautja data module");
-    SetLong("This is a small cartridge that contains programming intended "
-            "for a Yautja wrist computer. It appears to have writing on it.");
+    SetShort("一个 Yautja 数据模块");
+    SetLong("这是一个 small cartridge that contains programming intended for a Yautja wrist computer。它 appears to have writing on it。");
     SetNoCondition(1);
     SetMass(1);
     SetReads( ([
-                "default" : "Stealth module: provides cloaking and decloaking.",
-                "writing": "Stealth module: provides cloaking and decloaking.",
+                "default" : "隐身模块：提供隐身和显形功能。",
+                "writing": "隐身模块：提供隐身和显形功能。",
                 ]) );
     SetLanguage("Yautja");
     SetBaseCost("silver",10);
@@ -37,11 +36,11 @@ varargs int eventDecloak(mixed arg){
     string *hist = environment(this_object())->GetHist();
     if(!arg) arg = this_player();
     if(!environment() || !(environment()->GetWorn())){
-        write("You are not wearing the wrist computer.");
+        write("你没有 wearing the wrist computer。");
         return 1;
     }
     if(!power){
-        write("The computer is not active.");
+        write("计算机未激活。");
         return 1;
     }
     //write("%^GREEN%^last command:%^RESET%^ "+arg->GetCurrentCommand());
@@ -53,13 +52,12 @@ varargs int eventDecloak(mixed arg){
         }
     }
     if(!(this_player()->GetInvis())){
-        write("Your wrist computer chirps, and nothing happens.");
-        say(this_player()->GetName()+"'s wrist computer chirps.");
+        write("你的腕式电脑 chirps， and nothing happens。");
+        say(this_player()->GetName()+"的腕式电脑 chirps。");
         return 1;
     }
-    write("Your wrist computer chirps, and you become visible.");
-    say(this_player()->GetName()+"'s wrist computer chirps, and "+
-            capitalize(this_player()->GetKeyName())+" fades into view.");
+    write("你的腕式电脑 chirps， and you become visible。");
+    say(this_player()->GetName()+"的腕式电脑 chirps， and "+capitalize(this_player()->GetKeyName())+" fades into view。");
     this_player()->SetInvis(0);
     return 1;
 }
@@ -70,11 +68,11 @@ varargs int eventCloak(mixed arg){
     string *hist = environment(this_object())->GetHist();
     if(!arg) arg = this_player();
     if(!environment() || !(environment()->GetWorn())){
-        write("You are not wearing the wrist computer.");
+        write("你没有 wearing the wrist computer。");
         return 1;
     }
     if(!power){
-        write("The computer is not active.");
+        write("计算机未激活。");
         return 1;
     }
     //write("%^YELLOW%^last command:%^RESET%^ "+arg->GetCurrentCommand());
@@ -86,13 +84,12 @@ varargs int eventCloak(mixed arg){
         }
     }
     if(this_player()->GetInvis()){
-        write("Your wrist computer chirps, and nothing happens.");
-        say(this_player()->GetName()+"'s wrist computer chirps.");
+        write("你的腕式电脑 chirps， and nothing happens。");
+        say(this_player()->GetName()+"的腕式电脑 chirps。");
         return 1;
     }
-    write("Your wrist computer chirps, and you become transparent.");
-    say(this_player()->GetName()+"'s wrist computer chirps, and "+nominative(this_player())+
-            " fades from view.");
+    write("你的腕式电脑 chirps， and you become transparent。");
+    say(this_player()->GetName()+"的腕式电脑 chirps， and "+nominative(this_player())+" fades from view。");
     this_player()->SetInvis(1);
     return 1;
 }
@@ -101,7 +98,7 @@ varargs mixed eventInstall(object what, object where, int auto){
     f1 = (: eventCloak(this_player()) :);
     f2 = (: eventDecloak(this_player()) :);
     if(!where){
-        write("Install it where?");
+        write("安装到哪里？");
         return 1;
     }
     SendMap = ([
@@ -146,9 +143,8 @@ int eventPowerOff(){
         if(living(whom)){
             if(whom->GetInvis() && !creatorp(whom)){
                 whom->SetInvis(0);
-                tell_object(whom, "Your wrist computer makes a croaking noise, and you become visible.");
-                tell_room(environment(whom),whom->GetName()+"'s wrist computer makes a croaking noise, and "+
-                        capitalize(whom->GetKeyName())+" fades into view.", whom);
+                tell_object(whom, "你的腕式电脑发出 croaking noise， and you become visible。");
+                tell_room(environment(whom),whom->GetName()+"的腕式电脑发出 croaking noise， and "+capitalize(whom->GetKeyName())+" fades into view。", whom);
             }
         }
     }

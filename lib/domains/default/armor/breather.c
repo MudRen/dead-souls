@@ -8,10 +8,7 @@ int charge = 1000;
 int maxcharge = 1000;
 
 string LongD(){
-    string ret = "This remarkably small device fits over the "+
-        "wearer's mouth, and provides a long supply of oxygenated "+
-        "air. Its current charge level is "+
-        to_int(percent(charge,maxcharge))+" percent.";
+    string ret = "这个 remarkably small device fits over the wearer's mouth， and provides a long supply of oxygenated air。 Its current charge level is "+to_int(percent(charge,maxcharge))+" percent。";
     return ret;
 }
 
@@ -20,7 +17,7 @@ protected void create(){
     SetKeyName("breathing mask");
     SetId(({"mask","breather","a99","apparatus","device"}));
     SetAdjectives(({"a99","breathing"}));
-    SetShort("an A99 breathing device");
+    SetShort("一个A99呼吸装置");
     SetLong( (: LongD :) );
     SetMass(50);
     SetBaseCost("silver",1000);
@@ -74,16 +71,16 @@ int eventDecrementCharge(){
 
     perc = to_int(percent(charge, maxcharge));
     if(perc < 10){
-        tell_object(env,"The "+remove_article(GetShort())+" beeps loudly!");
+        tell_object(env,remove_article(GetShort())+"大声 beep！");
         if(room){
             name = env->GetName();
-            tell_room(room, name+"'s breathing device beeps.", ({ env }));
+            tell_room(room, name+"的呼吸装置 beep。", ({ env }));
         }
         return charge;
     }
 
     if(perc < 20){
-        tell_object(env,"The "+remove_article(GetShort())+" beeps softly.");
+        tell_object(env,remove_article(GetShort())+"轻轻 beep。");
         return charge;
     }
 

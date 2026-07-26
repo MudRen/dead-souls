@@ -7,9 +7,8 @@ void create() {
     SetKeyName("ammunition box");
     SetId(({"can","box"}));
     SetAdjectives(({"metal","ammo","ammunition","large"}));
-    SetShort("an ammo box");
-    SetLong("This is a large metal box containing various kinds "+
-            "of ammunition. ");
+    SetShort("一个弹药箱");
+    SetLong("这是一个 large metal box containing various kinds of ammunition。");
     SetMass(200);
     SetDollarCost(50);
     SetMaxCarry(500);
@@ -20,7 +19,7 @@ void create() {
                 "/domains/default/obj/223clip": ({ 60, 2 }),
                 "/domains/default/weap/grenade": 3,
                 ]) );
-    SetPreventGet("The metal ammunition box does not budge.");
+    SetPreventGet("这个金属弹药箱纹丝不动。");
 }
 
 void init(){

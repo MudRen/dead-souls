@@ -112,9 +112,8 @@ protected void create() {
     SetKeyName("killbot");
     SetId( ({"drone","bot", "robot","turret"}) );
     SetAdjectives(({"kill","non-player", "non player"}));
-    SetShort("a killbot");
-    SetLong("This is a hovering orb with a machine gun hanging "+
-            "underneath it and a single red glowing eye scanning the area.");
+    SetShort("一个杀手机器人");
+    SetLong("这是一个 hovering orb with a machine gun hanging underneath it and a single red glowing eye scanning the area。");
     SetPosition(POSITION_FLYING);
     SetLevel(1);
     SetPacifist(1);

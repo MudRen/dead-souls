@@ -5,14 +5,14 @@ inherit LIB_ARMOR;
 object ringshadow;
 
 string LongRet(mixed whom){
-    string ret = "A green ring, glowing with unearthly power.";
+    string ret = "一枚绿色戒指， glowing with unearthly power。";
     if(!whom || !objectp(whom) || !living(whom)) whom = this_player();
     if(creatorp(whom) ||
             member_group(whom,"TEST")){
-        ret += "\nTo enable damage protection, type: protection on";
-        ret += "\nTo enable damage reporting, type: reporting on";
-        ret += "\nTo make a creature report its damage: enablereport <name>";
-        ret += "\nTo make it stop reporting its damage: disablereport <name>\n";
+        ret += "\n要启用伤害保护，输入：protection on";
+        ret += "\n要启用伤害报告，输入：reporting on";
+        ret += "\n要让一个生物报告其伤害：enablereport <名称>";
+        ret += "\n要让它停止报告其伤害：disablereport <名称>\n";
     }
     return ret;
 }
@@ -22,7 +22,7 @@ protected void create(){
     SetKeyName("jade ring");
     SetId(({"ring","ward","jade"}));
     SetAdjectives( ({"jade","green","power","powerful"}) );
-    SetShort("a jade ring");
+    SetShort("一枚翡翠戒指");
     SetLong( (: LongRet :) );
     SetMass(1);
     SetBaseCost("silver",5000);
@@ -39,7 +39,7 @@ void init(){
 
 mixed CanEquip(object who, string* limbs){
     if(who && !creatorp(who) && !member_group(who,"TEST")){
-        return "Somehow it just won't go on. Strange, isn't it?";
+        return " somehow it just won't go on。 Strange, isn't it?";
         return 0;
     }
     else return armor::CanEquip(who, limbs);
@@ -92,28 +92,28 @@ int SetNPCReporting(string name){
     object *sombras = ({});
     object ob;
     if(!CheckRing() || !ringshadow){
-        write("The ring must be worn by you in order to access its power.");
+        write("戒指 must be worn by you in order to access its power。");
         return 1;
     }
     if(CheckRing() == -1){
-        write("The ring's power can only be harnessed by special people. That means, \"not you\".");
+        write("戒指's power can only be harnessed by special people。 That means, \"not you\"。");
         return 1;
     }
     if(!(ob = present(name,environment(this_player())))){
-        write("No such creature is here.");
+        write("这里没有这种生物。");
         return 1;
     }
     sombras = keys(ob->GetShadows());
     if(sizeof(sombras)){
         foreach(object element in sombras){
             if(base_name(element) == "/shadows/diag"){
-                write("That creature is already reporting its damage status.");
+                write("那个生物 already reporting its damage status。");
                 return 1;
             }
         }
     }
     new("/shadows/diag")->eventShadow(ob);
-    write("Damage reporting enabled for "+name+".");
+    write("伤害报告已启用 for "+name+"。");
     return 1;
 }
 
@@ -142,8 +142,8 @@ int UnsetNPCReporting(string name){
             }
         }
     }
-    if(!stat) write("That creature does not have reporting enabled.");
-    else write("Damage reporting disabled for "+name+".");
+    if(!stat) write("那个生物没有启用报告。");
+    else write("伤害报告已禁用 for "+name+"。");
     return 1;
 }
 
@@ -158,7 +158,7 @@ int SetProtection(string str){
         return 1;
     }
     if(str == "on") booly=1;
-    write("You set the ring's protection to: "+(booly ? "on" : "off")+".");
+    write("你将戒指的保护设置为："+(booly ? "开启" : "关闭")+"。");
     if(ringshadow) ringshadow->JadeProtection(booly);
     return 1;
 }
@@ -174,7 +174,7 @@ int SetReporting(string str){
         return 1;
     }
     if(str == "on") booly=1;
-    write("You set the ring's reporting to: "+(booly ? "on" : "off")+".");
+    write("你将戒指的报告设置为："+(booly ? "开启" : "关闭")+"。");
     if(ringshadow) ringshadow->JadeReporting(booly);
     return 1;
 }

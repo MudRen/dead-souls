@@ -8,9 +8,8 @@ protected void create() {
     SetKeyName("torch");
     SetId( ({ "torch", "old torch", "wooden torch" }) );
     SetAdjectives( ({ "old", "wooden" }) );
-    SetShort("an old wooden torch");
-    SetLong("An old wooden torch with a bit of cloth wrapped around "
-            "one end and dipped into a flamable substance.");
+    SetShort("一个旧木火把");
+    SetLong("一个旧木火把，一端 wrapped around a bit of cloth and dipped into a flamable substance。");
     SetRadiantLight(7);
     SetFuelRequired(1);
     SetMaxFuel(1000);

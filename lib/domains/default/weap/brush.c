@@ -8,10 +8,8 @@ protected void create(){
     SetKeyName("brush");
     SetId( ({ "brush"  }) );
     SetAdjectives( ({ "bath","shower","wood","wooden" }) );
-    SetShort("a shower brush");
-    SetLong("This is a long wooden brush with soft bristles "+
-            "at the end, designed to assist in reaching "+
-            "tough-to-scrub areas while bathing.");
+    SetShort("一个淋浴刷");
+    SetLong("这是一个长柄木刷，末端有 soft bristles， designed to assist in reaching tough-to-scrub areas while bathing。");
     SetVendorType(VT_WEAPON);
     SetClass(10);
     SetMass(100);

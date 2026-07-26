@@ -7,8 +7,8 @@ void create(){
     SetKeyName("hand grenade spoon");
     SetId(({"lever","spoon"}));
     SetAdjectives(({"grenade","hand grenade","metal","small"}));
-    SetShort("a small metal lever");
-    SetLong("This is the fuse lever, or spoon, for a hand grenade.");
+    SetShort="一个小金属 lever");
+    SetLong("这是手榴弹的 fuse lever， or spoon。");
     SetMass(1);
     SetDollarCost(0);
     SetVendorType(VT_TREASURE);

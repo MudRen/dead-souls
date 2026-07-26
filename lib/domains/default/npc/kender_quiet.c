@@ -30,8 +30,8 @@ protected void create() {
     SetKeyName("kender");
     SetId(({"npc","mob","character","mobile"}));
     SetAdjectives(({"non-player", "non player"}));
-    SetShort("a kender");
-    SetLong("Slight of build and rather attractive, kenders are another race related to hobbits, with all of the playfulness and a little extra disregard for other people's privacy. Kenders are infamous for their extraordinary skill in relieving others of their property, and it is said they are taught to steal before being taught to read. Others dispute this, arguing kenders don't read at all.");
+    SetShort("一个肯德人");
+    SetLong("身材 slender and rather attractive，肯德人是与 hobbits 相关的另一个种族，具有所有的 playfulness and a little extra disregard for other people's privacy。肯德人以他们 extraordinary skill in relieving others of their property 而 infamous， and it is said they are taught to steal before being taught to read。 Others dispute this, arguing kenders don't read at all。");
     SetClass("thief");
     SetLevel(5);
     SetMelee(1);
