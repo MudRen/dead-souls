@@ -6,8 +6,8 @@ protected void create() {
     meal::create();
     SetKeyName("bread");
     SetAdjectives( ({ "black","orc","orcish"}) );
-    SetShort("a loaf of black bread");
-    SetLong("A loaf of bread baked in a simple, inexpensive manner.");
+    SetShort("一条黑面包");
+    SetLong("一条用简单廉价方式烘焙的面包。");
     SetNoCondition(1);
     SetMass(50);
     SetStrength(10);

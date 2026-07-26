@@ -8,9 +8,8 @@ void create(){
     SetKeyName("grog stein");
     SetId( ({"stein", "mug"}) );
     SetAdjectives( ({"grog","fancy"}) );
-    SetShort("a stein");
-    SetLong("A large mug for holding lots of grog. It is quite "+
-            "fancy and no doubt worth a great deal of money.");
+    SetShort("一个啤酒杯");
+    SetLong("一个可以装很多酒的大杯子，非常精美，无疑价值不菲。");
     SetMass(30);
     SetBaseCost("silver",300);
     SetVendorType(VT_TREASURE);

@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("armored glove");
     SetAdjectives( ({"armored", "orc", "orcish", "protective"}) );
     SetId(({"glove","right glove"}));
-    SetShort("an armored glove");
-    SetLong("An armored glove of orcish design. It is designed to cover the right hand and arm, and looks extremely durable and protective.");
+    SetShort("一只装甲手套");
+    SetLong("这是一只兽人设计的装甲手套，设计用来覆盖右手和右臂，看起来极其耐用且防护性强。");
     SetMass(60);
     SetBaseCost("silver", 300);
     SetProtection(BLUNT,15);

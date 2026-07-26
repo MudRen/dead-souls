@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("sharp dagger");
     SetId( ({ "dagger"}));
     SetAdjectives( ({ "sharp","fine","wicked","wicked-looking"}));
-    SetShort("a wicked-looking dagger");
-    SetLong("A sharp, wicked dagger.");
+    SetShort("一把邪恶的匕首");
+    SetLong("一把锋利而邪恶的匕首。");
     SetMass(150);
     SetBaseCost("silver",50);
     SetVendorType(VT_WEAPON);

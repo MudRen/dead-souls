@@ -6,13 +6,13 @@ protected void create() {
     door::create();
 
     SetSide("north", ([ "id" : ({"door leading north", "door", "north door"}),
-                "short" : "a door leading north",
-                "long" : "This is the south side of a door leading north.",
+                "short" : "一扇通往北边的门",
+                "long" : "这是一扇通往北边的门的南侧。",
                 "lockable" : 1 ]) );
 
     SetSide("south", ([ "id" : ({"door leading south", "door", "south door"}),
-                "short" : "a door leading south",
-                "long" : "This is the north side of a door leading south.",
+                "short" : "一扇通往南边的门",
+                "long" : "这是一扇通往南边的门的北侧。",
                 "lockable" : 1 ]) );
 
     SetClosed(1);

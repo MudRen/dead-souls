@@ -23,8 +23,8 @@ protected void create() {
     SetAdjectives( ({"ratlike","unusual","large","very","dangerous",
                 "dangerous looking","rat like"}) );
     SetId( ({"rat","rous","beast"}) );
-    SetShort("a rodent of unusual size");
-    SetLong("A very large, very dangerous-looking ratlike beast.");
+    SetShort("一只巨型啮齿动物");
+    SetLong("一只非常巨大、看起来极其危险的鼠形野兽。");
     SetRace("rodent");
     SetGender("male");
     SetClass("fighter");

@@ -7,8 +7,8 @@ void create() {
     SetKeyName("crate");
     SetId( ({ "crate" }) );
     SetAdjectives( ({ "large", "wooden","wood" }) );
-    SetShort("a large crate");
-    SetLong("It is a wood crate used to hold things.");
+    SetShort("一个大木箱");
+    SetLong("这是一个用来存放东西的大木箱。");
     SetMass(374);
     SetMaxCarry(700);
     SetInventory( ([

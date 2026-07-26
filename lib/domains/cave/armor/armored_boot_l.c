@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("armored boot");
     SetAdjectives( ({"armored", "orc", "orcish", "protective"}) );
     SetId(({"boot","left boot"}));
-    SetShort("an armored boot");
-    SetLong("An armored boot of orcish design. It is designed to cover the left foot and leg, and looks extremely durable and protective.");
+    SetShort("一只装甲靴");
+    SetLong("这是一只兽人设计的装甲靴，设计用来覆盖左脚和左腿，看起来极其耐用且防护性强。");
     SetMass(60);
     SetBaseCost("silver", 300);
     SetProtection(BLUNT,15);

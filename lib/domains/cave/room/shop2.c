@@ -5,8 +5,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Gorm's storage room");
-    SetLong("This is a small, bare room where Gorm keeps his goods. The main store is above.");
+    SetShort("戈姆的储藏室");
+    SetLong("这是一个简陋的小房间，戈姆在这里存放货物。主店在上面。");
     SetInventory(([
                 "/domains/cave/obj/skin" : 5,
                 "/domains/cave/obj/match" : 5,

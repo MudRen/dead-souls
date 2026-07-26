@@ -9,9 +9,8 @@ protected void create() {
     SetKeyName("loincloth");
     SetId(({"cloth"}));
     SetAdjectives(({"loin","filthy"}));
-    SetShort("a filthy loincloth");
-    SetLong("This is a very large cloth used by someone really gross as "+
-            "a form of clothing and storage.");
+    SetShort("一条肮脏的缠腰布");
+    SetLong("这是一块非常大的布，被某个邋遢的家伙用作衣物和储物工具。");
     SetMass(100);
     SetCanClose(0);
     SetClosed(0);

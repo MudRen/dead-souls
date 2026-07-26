@@ -16,13 +16,11 @@ protected void create() {
     SetKeyName("orc cook");
     SetAdjectives( ({ "orc" }) );
     SetId( ({ "rybak","cook" }) );
-    SetShort("the orc cook");
+    SetShort("兽人厨师");
     SetRace("orc");
     SetClass("fighter");
     SetLevel(15);
-    SetLong("Bizarrely large, fit, and alert, this orc cook would "+
-            "seem more in place in a uniform than serving food in a "+
-            "commissary. You can: ask cook for menu");
+    SetLong("这个兽人厨师异常高大、健壮且警觉，穿制服比在食堂卖饭更合适他。你可以：ask cook for menu");
     SetMelee(1);
     SetInventory(([
                 "/domains/cave/armor/foodsmock" : "wear smock",

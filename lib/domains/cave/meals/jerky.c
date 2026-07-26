@@ -8,9 +8,8 @@ protected void create() {
     SetAdjectives(({"unpalatable","dried","flattened","flat",
                 "smoked","salted"}));
     SetId(({"meat","strip","strip of jerky","strips of jerky"}));
-    SetShort("a strip of jerky");
-    SetLong("A dried, flattened, smoked, and salted strip of "+
-            "meat that looks about as durable as tree bark and less palatable.");
+    SetShort("一条肉干");
+    SetLong("一条经过干燥、压平、熏制和腌制的肉条，看起来跟树皮一样硬，更难以下咽。");
     SetNoCondition(1);
     SetMass(15);
     SetStrength(1);

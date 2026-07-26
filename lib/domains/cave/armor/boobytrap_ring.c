@@ -29,15 +29,13 @@ protected void create(){
     SetKeyName("silver_ring");
     SetId(({"ring","silver ring"}));
     SetAdjectives( ({"beautiful"}) );
-    SetShort("a beautiful silver ring");
-    SetLong("This is a simple but beautiful ring made of "+
-            "silver, suitable for wearing on one's finger. The ring bears an inscription.");
+    SetShort("一枚美丽的银戒指");
+    SetLong("这是一枚简单而美丽的银戒指，适合戴在手指上。戒指上刻有铭文。");
     SetMass(1);
     SetBaseCost("silver",500);
     SetArmorType(A_RING);
     SetItems(([
-                ({"script","words","inscription","writing"}) : "Words engraved on the ring in a highly "+
-                "stylized script."
+                ({"script","words","inscription","writing"}) : "戒指上刻有高度风格化的文字。"
                 ]) );
     SetRead(({"script","words","inscription","writing"}), "\"bad wolf\""  );
     boobytrap_me();

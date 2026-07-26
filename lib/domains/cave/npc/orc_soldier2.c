@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("orc");
     SetId(({"orc","soldier"}));
     SetAdjectives(({"orc","armored","professional","soldier"}));
-    SetShort("an orc soldier");
-    SetLong("This is a large orc soldier.");
+    SetShort("一个兽人士兵");
+    SetLong("这是一个高大的兽人士兵。");
     SetInventory(([
                 "/domains/cave/weap/longsword" : "wield sword",
                 "/domains/cave/armor/chainmail" : "wear chainmail",

@@ -12,14 +12,12 @@ protected void create() {
     AddSave( ({ "presses", "vanish_count" }) );
     SetKeyName("omni");
     SetId(({"omni","Omni","device"}));
-    SetShort("an omni");
-    SetLong("This is a small, round metal device, copper in color, "+
-            "and similar in appearance to a pocket watch. There is a blinking red light "+
-            "next to the tiny metal button at its top.");
+    SetShort("一个万能器");
+    SetLong("这是一个小型圆形金属装置，铜色，外观类似怀表。顶部的小金属按钮旁边有一个闪烁的红灯。");
     SetMass(10);
     SetDollarCost(300);
-    AddItem("button", "A button on the omni.");
-    AddItem(({"light","red light"}) , "A blinking red light.");
+    AddItem("button", "万能器上的一个按钮。");
+    AddItem(({"light","red light"}) , "一个闪烁的红灯。");
 }
 
 void init() {
@@ -75,10 +73,9 @@ void heart_beat(){
     }
     if(vanish_count == 5){
         tell_object(environment(),"The omni begins to glow a dull red.");
-        this_object()->SetLong("This is a small, round metal device, copper in color, "+
-                "and similar in appearance to a pocket watch. There is a blinking red light "+
-                "next to the tiny metal button at its top. It is glowing a dull red.");
-        this_object()->SetShort("an omni (glowing)");
+        this_object()->SetLong("这是一个小型圆形金属装置，铜色，外观类似怀表。"+
+                "顶部的小金属按钮旁边有一个闪烁的红灯。它正在发出暗红色的光芒。");
+        this_object()->SetShort("一个万能器（发光中）");
     }
 }
 

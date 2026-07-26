@@ -7,9 +7,8 @@ protected void create() {
     SetKeyName("orc");
     SetId(({"orc"}));
     SetAdjectives(({"armored","professional"}));
-    SetShort("an armored orc");
-    SetLong("This is an adult orc. He seems to have a professional "
-            "bearing, and a sense of purpose.");
+    SetShort("一个武装兽人");
+    SetLong("这是一个成年兽人，举止专业，目标明确。");
     SetInventory(([
                 "/domains/cave/weap/sword" : "wield sword",
                 "/domains/cave/armor/leather_armor" : "wear leather armor",

@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("herring");
     SetId( ({ "fish" }) );
     SetAdjectives( ({ "pickled","red","saltwater","salt water","bloated"}) );
-    SetShort("a red herring");
-    SetLong("A saltwater fish, turned red and bloated by orcish pickling.");
+    SetShort("一条红鲱鱼");
+    SetLong("一条经过兽人腌制后变得通红肿胀的咸水鱼。");
     SetMealType(MEAL_FOOD);
     SetMass(10); 
     SetStrength(2); 

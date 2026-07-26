@@ -10,13 +10,10 @@ protected void create(){
     SetId(({"pj","pjs", "peejays"}));
     SetAdjectives(({"small","tiny","pair of","set of",
                 "bloodstained", "blood stained", "stained"}));
-    SetShort("tiny, bloodstained pajamas");
-    SetLong("This is a set of very small pajamas, stained with old, "
-            "crusted blood.");
+    SetShort("小小的、血迹斑斑的睡衣");
+    SetLong("这是一套非常小的睡衣，上面沾满了干涸的血迹。");
     SetItems( ([
-                ({"blood","crusted blood", "old, crusted blood"}) : "It seems "+
-                "that whoever was wearing these pajamas suffered some terrible "+
-                "injuries.",
+                ({"blood","crusted blood", "old, crusted blood"}) : "看起来穿这些睡衣的人曾遭受过可怕的伤害。",
                 ]) );
     SetMass(2);
     SetBaseCost("silver",1);

@@ -7,8 +7,8 @@ void create(){
     SetKeyName("lamp");
     SetId( ({"thing","item","thang","dingus"}) );
     SetAdjectives( ({"generic","sample","template"}) );
-    SetShort("a tall lamp");
-    SetLong("This is a tall lamp embedded into the floor, designed to provide light.");
+    SetShort("一盏高灯");
+    SetLong("这是一盏嵌入地面的高灯，用来提供照明。");
     SetPreventGet("The lamp is embedded into the floor.");
     SetMass(20);
     SetBaseCost("silver",10);

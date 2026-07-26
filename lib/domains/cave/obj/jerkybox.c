@@ -7,8 +7,8 @@ void create() {
     SetKeyName("box");
     SetId( ({ "box" }) );
     SetAdjectives( ({ "wooden","wood" }) );
-    SetShort("a wooden box");
-    SetLong("It is a wooden box used to hold things.");
+    SetShort("一个木箱");
+    SetLong("这是一个用来存放东西的木箱。");
     SetMass(274);
     SetMaxCarry(500);
     SetInventory( ([

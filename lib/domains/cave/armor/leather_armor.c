@@ -15,8 +15,8 @@ protected void create() {
     SetKeyName("leather armor");
     SetId( ({ "armor", "leather armor" }) );
     SetAdjectives( ({ "leather" }) );
-    SetShort("a suit of leather armor");
-    SetLong("An ordinary suit of leather armor. It is worn on one's arms, torso and legs.");
+    SetShort("一套皮甲");
+    SetLong("一套普通的皮甲，穿戴在手臂、躯干和腿部。");
     SetVendorType(VT_ARMOR);
     SetMass(750);
     SetValue(150);

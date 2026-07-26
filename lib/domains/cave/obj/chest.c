@@ -7,8 +7,8 @@ void create() {
     SetKeyName("chest");
     SetAdjectives(({"wooden","heavy"}));
     SetId(({"chest"}));
-    SetShort("a wooden chest");
-    SetLong("This is a heavy wooden chest used to store items.");
+    SetShort("一个木箱");
+    SetLong("这是一个沉重的木箱，用来存放物品。");
     SetInventory(([
                 "/domains/cave/obj/letter2" : 1,
                 "/domains/cave/armor/pajamas" : 1,

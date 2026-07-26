@@ -25,8 +25,8 @@ void create(){
     SetKeyName("waste");
     SetId( ({"pile","debris","crap","crud"}) );
     SetAdjectives( ({"waste","biological","disgusting","pile of","smelly"}) );
-    SetShort("a pile of waste");
-    SetLong("This is a smelly, disgusting pile of biological waste.");
+    SetShort("一堆废物");
+    SetLong("这是一堆又臭又恶心的生物废物。");
     SetMass(2000);
     SetDollarCost(0);
     SetSearch( (: SearchCrap :) );

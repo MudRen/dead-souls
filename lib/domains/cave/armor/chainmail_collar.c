@@ -8,9 +8,8 @@ protected void create(){
     SetKeyName("collar");
     SetId(({"neck guard","guard"}));
     SetAdjectives( ({"neck","collar","chainmail"}) );
-    SetShort("a chainmail collar");
-    SetLong("This is a simple collar made of chainmail "+
-            "to protect the neck from weapons.");
+    SetShort("一个锁子甲护颈");
+    SetLong("这是一个简单的锁子甲护颈，用来保护颈部免受武器伤害。");
     SetMass(50);
     SetArmorType(A_COLLAR);
     SetProtection(BLUNT,4);

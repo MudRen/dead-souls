@@ -7,8 +7,8 @@ void create() {
     SetKeyName("wooden table");
     SetId( ({ "table" }) );
     SetAdjectives( ({ "wood","wooden", "simple", "medium-sized" "medium sized" }) );
-    SetShort("a wooden table");
-    SetLong("It is a simple, medium-sized table made of wood.");
+    SetShort("一张木桌");
+    SetLong("这是一张简单的中等大小木桌。");
     SetInventory(([
                 "/domains/cave/obj/cup" : 1,
                 "/domains/cave/obj/letter" : 1,

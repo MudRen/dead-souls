@@ -22,9 +22,8 @@ protected void create() {
     SetKeyName("orc");
     SetId(({"orc"}));
     SetAdjectives(({"adult","male"}));
-    SetShort("a male orc");
-    SetLong("This is an adult orc, a creature somewhat larger "+
-            "and stronger than a typical human.");
+    SetShort("一个男性兽人");
+    SetLong("这是一个成年兽人，比普通人更高大强壮。");
     SetInventory(([
                 "/domains/cave/armor/leather_armor" : "wear leather armor",
                 "/domains/cave/armor/orc_boot_l" : "wear left boot",

@@ -33,10 +33,10 @@ void create(){
     SetKeyName("letter");
     SetId(({"letter","sheet","paper","sheet of paper","kletter"}));
     SetAdjectives(({"small"}));
-    SetShort("a letter");
-    SetLong("This is a sheet of paper with a message printed on it. ");
+    SetShort("一封信");
+    SetLong("这是一张上面写着消息的纸。");
     SetMass(1);
-    AddItem("message","A message written on paper.");
+    AddItem("message","写在纸上的一条消息。");
     SetRead("default", (: ReadFun :) );
     SetRead(({"message"}), (: ReadFun :) );
     SetLanguage("Tangetto");

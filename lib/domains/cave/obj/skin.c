@@ -8,8 +8,8 @@ void create(){
     SetKeyName("skin");
     SetId( ({"skin","vessel","bladder","pouch"}) );
     SetAdjectives( ({"skin","bladder","water","animal"}) );
-    SetShort("a water skin");
-    SetLong("A pouch made of animal bladder for containing fluids.");
+    SetShort("一个水袋");
+    SetLong("一个用动物膀胱制成的袋子，用来盛放液体。");
     SetMass(20);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

@@ -16,9 +16,8 @@ protected void create() {
     SetKeyName("orc");
     SetId(({"orc","female"}));
     SetAdjectives(({"adult","female"}));
-    SetShort("a female orc");
-    SetLong("This is an adult orc, a creature somewhat larger "+
-            "and stronger than a typical human.");
+    SetShort("一个女性兽人");
+    SetLong("这是一个成年兽人，比普通人更高大强壮。");
     SetInventory(([
                 "/domains/cave/armor/orc_dress" : "wear dress",
                 ]));

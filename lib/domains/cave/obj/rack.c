@@ -9,8 +9,8 @@ void create() {
     SetKeyName("rack");
     SetId(({"rack"}));
     SetAdjectives(({"knife","metal","fancy","steel","stainless","stainless-steel"}));
-    SetShort("a mug rack");
-    SetLong("This is a rack with pegs for cups and mugs.");
+    SetShort("一个杯子架");
+    SetLong("这是一个带挂钩的架子，用来挂杯子。");
     SetMass(274);
     SetBaseCost("silver",50);
     SetMaxCarry(100);

@@ -8,9 +8,8 @@ protected void create() {
     SetKeyName("cot");
     SetId( ({ "cot","bed" }) );
     SetAdjectives( ({ "simple"}) );
-    SetShort("a simple cot");
-    SetLong("This is a simple cot designed for "
-            "sleepers that do not require a comfortable bed.");
+    SetShort("一张简易床");
+    SetLong("这是一张简易床，适合那些不需要舒适床铺的人。");
     SetMass(500);
     SetBaseCost("silver",15);
     SetMaxSitters(2);

@@ -10,8 +10,8 @@ protected void create() {
     SetId(({"axe","battleaxe"}));
     SetAdjectives( ({ "huge","large","heavy","montrously","battle",
                 "two handed" }) ); 
-    SetShort("a huge battle axe");
-    SetLong("A monstrously large and heavy battle axe.");
+    SetShort("一把巨大的战斧");
+    SetLong("一把巨大而沉重的战斧。");
     SetMass(1000);
     SetHands(2);
     SetBaseCost("silver",2500);

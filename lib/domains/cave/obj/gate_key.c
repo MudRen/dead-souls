@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("key");
     SetId( ({ "key", "cavetroll key" }) );
     SetAdjectives( ({ "metal" }) );
-    SetShort("a metal key");
-    SetLong("It is a key made of metal.");
+    SetShort("一把金属钥匙");
+    SetLong("这是一把金属钥匙。");
     SetMass(10);
     SetBaseCost("silver",1);
     SetDisableChance(100);

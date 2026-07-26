@@ -17,9 +17,8 @@ protected void create() {
     SetKeyName("orc");
     SetId(({"orc","commander","kurogane"}));
     SetAdjectives(({"armored","professional","orc","commander"}));
-    SetShort("an orc commander");
-    SetLong("This is a very large adult orc. He seems to have a professional "
-            "bearing, and a sense of purpose.");
+    SetShort("一个兽人指挥官");
+    SetLong("这是一个非常高大的成年兽人，举止专业，目标明确。");
     SetInventory(([
                 "/domains/cave/weap/battleaxe" : "wield axe",
                 "/domains/cave/armor/chainmail" : "wear chainmail",

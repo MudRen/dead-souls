@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("leather pants");
     SetId(({"pants"}));
     SetAdjectives(({"strong","leather","black","tough"}));
-    SetShort("leather pants");
-    SetLong("These are trousers made of strong, tough leather. ");
+    SetShort("皮裤");
+    SetLong("这是一条用坚韧皮革制成的裤子。");
     SetMass(150);
     SetBaseCost("silver",110);
     SetDamagePoints(10);

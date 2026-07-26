@@ -8,9 +8,8 @@ void create(){
     SetKeyName("lister bag");
     SetId( ({"lister","bag","tripod"}) );
     SetAdjectives( ({"large","canvas","wood","suspended"}) );
-    SetShort("a lister bag");
-    SetLong("A large canvas bag suspended on a tripod containing "+
-            "drinking water.");
+    SetShort("一个水袋");
+    SetLong("一个挂在三脚架上的大型帆布水袋，里面装着饮用水。");
     SetMass(2000);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

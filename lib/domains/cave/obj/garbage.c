@@ -33,8 +33,8 @@ void create(){
     SetKeyName("garbage");
     SetId( ({"pile","debris","crap","crud"}) );
     SetAdjectives( ({"disgusting","pile of","smelly"}) );
-    SetShort("a pile of garbage");
-    SetLong("This is a smelly, disgusting pile of garbage.");
+    SetShort("一堆垃圾");
+    SetLong("这是一堆又臭又恶心的垃圾。");
     SetMass(2000);
     SetDollarCost(0);
     SetSearch( (: SearchCrap :) );

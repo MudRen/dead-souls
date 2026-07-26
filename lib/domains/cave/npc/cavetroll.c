@@ -9,12 +9,8 @@ protected void create() {
     SetKeyName("troll");
     SetId(({"cavetroll"}));
     SetAdjectives(({"dirty","cave"}));
-    SetShort("a cave troll");
-    SetLong("Unlike its more civilized brethren, the cavetroll is a "+
-            "huge and monstrously powerful creature with an even more "+
-            "vicious temperament. Its rocklike skin makes it difficult to "+
-            "injure, and its gargantuan muscles make it difficult to "+
-            "survive in combat against it.");
+    SetShort("一只洞穴巨魔");
+    SetLong("与那些更文明的同类不同，洞穴巨魔是一种巨大而力量恐怖的生物，性情更加凶残。它岩石般的皮肤使它难以受伤，而它庞大的肌肉使与之战斗的人难以生还。");
     SetInventory(([
                 "/domains/cave/armor/loincloth" : "wear loincloth",
                 ]));

@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("gold necklace");
     SetId(({"necklace"}));
     SetAdjectives( ({"gold","beautiful"}) );
-    SetShort("a gold necklace");
-    SetLong("This is a simple and beautiful gold necklace."); 
+    SetShort("一条金项链");
+    SetLong("这是一条简单而美丽的金项链。");
     SetMass(1);
     SetDollarCost(400);
     SetArmorType(A_COLLAR);

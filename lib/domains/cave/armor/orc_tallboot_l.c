@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("leather boot");
     SetAdjectives( ({"leather", "simple", "orc", "orcish", "protective","leg","left","full leg"}) );
     SetId(({"boot","left boot"}));
-    SetShort("a leather boot");
-    SetLong("A thick leather full-leg boot of orcish design. Simple, but quite protective. It is designed for the left foot and leg.");
+    SetShort("一只皮靴");
+    SetLong("一只兽人设计的厚皮长靴，简单但防护性不错。设计用于左脚和左腿。");
     SetMass(120);
     SetBaseCost("silver", 200);
     SetProtection(BLUNT,5);

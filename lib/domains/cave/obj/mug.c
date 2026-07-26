@@ -8,8 +8,8 @@ void create(){
     SetKeyName("mug");
     SetId( ({"mug", "mug made of clay"}) );
     SetAdjectives( ({"simple","clay"}) );
-    SetShort("a clay mug");
-    SetLong("A simple mug made of clay, for containing fluids.");
+    SetShort("一个陶杯");
+    SetLong("一个简单的陶制杯子，用来盛放液体。");
     SetMass(5);
     SetBaseCost("silver",1);
     SetVendorType(VT_TREASURE);

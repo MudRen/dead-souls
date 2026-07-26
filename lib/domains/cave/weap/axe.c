@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("sharp axe");
     SetId( ({ "axe"}));
     SetAdjectives( ({ "sharp","small","hand"}));
-    SetShort("a hand axe");
-    SetLong("A small, sharp hand axe, suitable for close combat.");
+    SetShort("一把手斧");
+    SetLong("一把小型锋利的手斧，适合近战。");
     SetMass(150);
     SetBaseCost("silver",50);
     SetVendorType(VT_WEAPON);

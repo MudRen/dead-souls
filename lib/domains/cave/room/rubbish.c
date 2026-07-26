@@ -6,12 +6,12 @@ inherit "/domains/cave/etc/cave_room";
 void create() {
     ::create();
     SetAmbientLight(0);
-    SetShort("underground garbage dump");
-    SetLong("This underground area is full of foul piles of putrefying garbage and biological waste. A passageway leads west away from here.");
+    SetShort("地下垃圾场");
+    SetLong("这个地下区域到处都是腐烂发臭的垃圾和生物废物。一条通道从这里通向西边。");
     SetItems(([
-                ({ "passage", "passageway", "This provides access to areas below the ground." }) : "This provides access to areas below the ground.",
-                ({ "ground", "rock", "rocks", "earth", "dirt", "stone", "stones" }) : "Rough and dirty, as one would expect from a simple underground area.",
-                ({ "wall", "walls", "rough walls", "rough and bare walls", "bare walls", "bare and rough walls" }) : "Carved roughly into the earth, this passageway has walls that expose underground rock. Clearly this area was architected with utility and expediency in mind.",
+                ({ "passage", "passageway", "This provides access to areas below the ground." }) : "这条通道通往地下区域。",
+                ({ "ground", "rock", "rocks", "earth", "dirt", "stone", "stones" }) : "粗糙而肮脏，正如一个简单地下区域所应有的样子。",
+                ({ "wall", "walls", "rough walls", "rough and bare walls", "bare walls", "bare and rough walls" }) : "粗糙地凿入地下，通道的墙壁露出了地下的岩石。显然这个区域的建造注重实用和效率。",
                 ]));
     SetInventory(([
                 "/domains/cave/obj/garbage" : 13,

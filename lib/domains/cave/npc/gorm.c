@@ -18,9 +18,8 @@ protected void create() {
     SetKeyName("orc");
     SetId(({"gorm","orc","shopkeep","keeper","vendor"}));
     SetAdjectives(({"adult","male","shop"}));
-    SetShort("an orc shopkeep");
-    SetLong("This is the manager of the local Post Exchange. You "
-            "can sell things to him or buy things from him.");
+    SetShort("一个兽人店主");
+    SetLong("这是当地军营商店的经理。你可以向他出售物品或从他那里购买物品。");
     SetInventory(([
                 ]));
     SetLevel(2);

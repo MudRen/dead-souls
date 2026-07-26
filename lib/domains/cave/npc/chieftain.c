@@ -15,10 +15,8 @@ protected void create() {
     SetKeyName("orc");
     SetId(({"orc","chieftain","chiklis"}));
     SetAdjectives(({"orc","armored","professional","chieftain"}));
-    SetShort("an orc chieftain");
-    SetLong("This is a large orc, covered in ornate tattoos and "+
-            "markings of power and prestige. His powerful frame is "+
-            "clearly accustomed to physically establishing authority.");
+    SetShort("一个兽人酋长");
+    SetLong("这是一个高大的兽人，身上布满了象征权力和威望的华丽纹身和标记。他强壮的体格显然习惯于用武力确立权威。");
     SetInventory(([
                 "/domains/cave/weap/longsword" : "wield sword",
                 "/domains/cave/armor/platemail" : "wear platemail",

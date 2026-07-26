@@ -6,8 +6,8 @@ inherit "/domains/cave/etc/cave_room";
 void create() {
     ::create();
     SetAmbientLight(30);
-    SetShort("a blank room");
-    SetLong("A featureless area.");
+    SetShort("空白房间");
+    SetLong("一个没有任何特征的区域。");
 }
 void init(){
     ::init();
