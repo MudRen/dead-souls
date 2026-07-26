@@ -11,15 +11,15 @@ protected void create() {
     verb::create();
     SetVerb("zap");
     SetRules("LVS");
-    SetErrorMessage("zap what?");
-    SetHelp("Syntax: zap <CREATURE>\n\n"
-            "Deal massive damage to a living thing.\n"
-            "See also: dest, resurrect");
+    SetErrorMessage("电击什么？");
+    SetHelp("用法：zap <生物>\n\n"
+            "对一个生物造成巨大伤害。\n"
+            "另见：dest, resurrect");
 }
 
-mixed can_zap_liv(string str) { 
+mixed can_zap_liv(string str) {
     if(!creatorp(this_player()))
-        return "This command is only available to creators.";
+        return "此命令仅对创造者可用。";
     else return 1;
 }
 
@@ -28,7 +28,7 @@ mixed do_zap_liv(object ob){
     int mhp;
 
     if(!living(ob)) {
-        write("You can only zap living things.");
+        write("你只能电击活物。");
         return 1;
 
     }
@@ -36,11 +36,11 @@ mixed do_zap_liv(object ob){
     mhp = ob->GetMaxHealthPoints();
     if(!mhp) mhp = 99999;
     mhp *= 5;
-    write("You zap "+name+".");
-    say(this_player()->GetName()+" raises a hand and %^RED%^ZAPS%^RESET%^"+
-            " "+name+"!",({ob}));
-    tell_object(ob,this_player()->GetName()+" raises a hand and "+
-            "%^RED%^ZAPS%^RESET%^ you!");
+    write("你电击了"+name+"。");
+    say(this_player()->GetName()+"举起手，%^RED%^电击%^RESET%^了"+
+            name+"！",({ob}));
+    tell_object(ob,this_player()->GetName()+"举起手，"+
+            "%^RED%^电击%^RESET%^了你！");
     ob->eventReceiveDamage(this_player(),DEATHRAY,mhp,0,({ob->GetTorso()}));
     return 1;
 }

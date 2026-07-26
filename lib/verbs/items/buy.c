@@ -15,19 +15,17 @@ protected void create() {
     SetVerb("buy");
     SetSynonyms("purchase");
     SetRules("STR from LIV");
-    SetErrorMessage("Buy what from whom?");
-    SetHelp("Syntax: <buy ITEM from VENDOR>\n\n"
-            "When in the presence of vendors, you may buy and sell goods "
-            "which match the type of goods the vendor in question trades in.  "
-            "The \"buy\" command naturally allows you to buy the items "
-            "the vendor has for sale.\n\n"
-            "Synonyms: purchase\n\n"
-            "See also: ask, sell, vendors");
+    SetErrorMessage("向谁买什么？");
+    SetHelp("用法：buy <物品> from <商人>\n\n"
+            "在商人面前，你可以买卖与该商人经营类型匹配的商品。"
+            "\"buy\" 命令允许你购买商人出售的物品。\n\n"
+            "同义词：purchase\n\n"
+            "另见：ask, sell, vendors");
 }
 
 mixed can_buy_str_from_liv(string str) {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     return this_player()->CanManipulate();
 }

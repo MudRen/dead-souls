@@ -10,13 +10,11 @@ protected void create(){
     verb::create();
     SetVerb("swim");
     SetRules("", "STR", "into STR");
-    SetErrorMessage("Swim in which direction?");
-    SetHelp("Syntax: swim <DIRECTION>\n"
-            "        swim into <PLACE>\n\n"
-            "Moves you towards the direction you specify, or into the place "
-            "you specify.  The command \"swim into\" is synonymous with the "
-            "\"enter\" command.\n"  
-            "See also: fly, climb, enter, go, jump");
+    SetErrorMessage("往哪个方向游？");
+    SetHelp("用法：swim <方向>\n"
+            "      swim into <地点>\n\n"
+            "让你朝指定方向游泳，或游进指定地点。\"swim into\" 命令与 \"enter\" 命令同义。\n"
+            "另见：fly, climb, enter, go, jump");
 }
 
 int StaminaCost(){
@@ -33,25 +31,25 @@ int StaminaCost(){
 mixed can_swim(){
     object env = environment(this_player());
     if( !env ){
-        return "You are nowhere to begin with!";
+        return "你根本不在任何地方！";
     }
-    if(this_player()->GetPosition() == POSITION_SWIMMING) 
-        return "You are already swimming.";
+    if(this_player()->GetPosition() == POSITION_SWIMMING)
+        return "你已经在游泳了。";
     if(!RACES_D->CanSwim(this_player()->GetRace())){
-        return capitalize(pluralize(this_player()->GetRace()))+" cannot swim.";
+        return capitalize(pluralize(this_player()->GetRace()))+"不会游泳。";
     }
     if(env->CanSwim(this_player())) return this_player()->CanSwim();
-    return "You can't swim here.";
+    return "你不能在这里游泳。";
 }
 
 mixed can_swim_str(string str){
     object env = environment(this_player());
     int envpos = env->GetPosition();
     if( !env ){
-        return "You are nowhere.";
+        return "你不在任何地方。";
     }
     if( this_player()->GetStaminaPoints() < 15 ){
-        return "You are too tired to swim anywhere right now.";
+        return "你现在太累了，哪也游不了。";
     }
     if(env->CanSwim(this_player(), str)){
         if(envpos == POSITION_SWIMMING) return 1;
@@ -59,7 +57,7 @@ mixed can_swim_str(string str){
     }
     if(this_player()->GetPosition() != POSITION_SWIMMING &&
             envpos != POSITION_SWIMMING){
-        return "You are not swimming.";
+        return "你没有在游泳。";
     }
     return 0;
 }
@@ -68,17 +66,17 @@ mixed can_swim_into_str(string str){
     object env = environment(this_player());
     int envpos = env->GetPosition();
     if( !env ){
-        return "You are nowhere.";
+        return "你不在任何地方。";
     }
     if( this_player()->GetStaminaPoints() < 3 )
-        return "You are too tired right now.";
+        return "你现在太累了。";
     if(environment(this_player())->CanEnter(this_player(), str)){
         if(envpos == POSITION_SWIMMING) return 1;
         return this_player()->CanSwim();
     }
     if(this_player()->GetPosition() != POSITION_SWIMMING &&
             envpos != POSITION_SWIMMING){
-        return "You are not swimming.";
+        return "你没有在游泳。";
     }
     return 0;
 }

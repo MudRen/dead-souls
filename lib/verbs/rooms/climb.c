@@ -17,27 +17,26 @@ mixed do_climb_word_obj(string word, object ob);
 protected void create(){
     verb::create();
     SetVerb("climb");
-    SetErrorMessage("Climb up or down what?");
+    SetErrorMessage("爬上或爬下什么？");
     SetRules("up OBJ", "down OBJ", "out of OBJ", "out OBJ", "into OBJ",
             "in OBJ", "through OBJ", "OBJ", "out", "down");
-    SetHelp("Syntax: climb <OBJECT>\n"
-            "        climb up <OBJECT>\n"
-            "        climb down <OBJECT>\n"
-            "        climb out of <OBJECT>\n"
-            "        climb into <OBJECT>\n"
-            "        climb through <OBJECT>\n"
-            "        climb out\n\n"
-            "Allows you to use another object to climb down or out of an "
-            "area.\n"
-            "See also: enter, go, jump");
+    SetHelp("用法：climb <物品>\n"
+            "      climb up <物品>\n"
+            "      climb down <物品>\n"
+            "      climb out of <物品>\n"
+            "      climb into <物品>\n"
+            "      climb through <物品>\n"
+            "      climb out\n\n"
+            "允许你使用其他物品爬下或爬出一个区域。\n"
+            "另见：enter, go, jump");
 }
 
-mixed can_climb_obj(){ 
+mixed can_climb_obj(){
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything!";
+        return "你什么也做不了！";
     }
     if(!stringp(hobbled(this_player()))){
-        return "Your injuries prevent that movement.";
+        return "你的伤势阻碍了那个动作。";
     }
     return this_player()->CanManipulate();
 }

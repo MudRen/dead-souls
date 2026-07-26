@@ -14,21 +14,19 @@ protected void create() {
     verb::create();
     SetVerb("remove");
     SetRules("OBS", "OBS from OBJ", "OBS out of OBJ");
-    SetErrorMessage("Remove what?");
-    SetHelp("Syntax: <remove ARMOR>\n"
-            "        <remove all [of ARMOR]>\n"
-            "        <remove ITEM from CONTAINER>\n\n"
-            "This verb allows you to remove a piece of armor which you are "
-            "currently wearing.\n\n"
-            "The second syntax is simply a synonym for the \"get\" "
-            "command.\n\n"
-            "See also: get, wear, wield, unwield");
+    SetErrorMessage("卸下什么？");
+    SetHelp("用法：remove <护甲>\n"
+            "      remove all [of <护甲>]\n"
+            "      remove <物品> from <容器>\n\n"
+            "此动词允许你卸下你当前穿着的护甲。\n\n"
+            "第二种用法只是 \"get\" 命令的同义词。\n\n"
+            "另见：get, wear, wield, unwield");
     SetSynonyms("take off", "unwear");
 }
 
 mixed can_remove_obj() {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     if(intp(check_light())) return this_player()->CanManipulate();
     else return 1;

@@ -15,12 +15,12 @@ protected void create() {
     SetVerb("pray");
     SetRules("for STR", "for STR against STR", "for STR against STR for LIV",
             "for STR for OBJ");
-    SetErrorMessage("Pray for what?");
-    SetHelp("Syntax: pray for <PRAYER>\n"
-            "        pray for <PRAYER> against <SOMETHING>\n"
-            "        pray for <PRAYER> against <SOMETHING> for <SOMEONE>\n\n"
-            "Allows you to say a prayer to whatever deity you believe in.\n"
-            "See also: prayers");
+    SetErrorMessage("祈祷什么？");
+    SetHelp("用法：pray for <祈祷>\n"
+            "      pray for <祈祷> against <某物>\n"
+            "      pray for <祈祷> against <某物> for <某人>\n\n"
+            "允许你向你信仰的神明祈祷。\n"
+            "另见：prayers");
 }
 
 mixed parse_spell(string spell){
@@ -50,7 +50,7 @@ mixed can_pray_for_str(string spell) {
     if( tmp ) {
         string verb = tmp->GetVerb();
         if( verb != "pray" ) {
-            return "That is not something you pray for.";
+            return "那不是你祈祷的东西。";
         }
     }
     return this_player()->CanCast(tmp);

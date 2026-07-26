@@ -11,24 +11,20 @@ protected void create() {
     verb::create();
     SetVerb("describe");
     SetRules("LIV","STR");
-    SetErrorMessage("Describe syntax: describe <message>");
-    SetHelp("Syntax: describe <MESSAGE>\n\n"
-            "Provides a player with a description. You must include "
-            "an instance of $N at least once in your description to "
-            "denote your name. Example: If I typed 'describe $N is "
-            "nondescript.', my description would be 'Rush is "
-            "nondescript.'");
+    SetErrorMessage("用法：describe <消息>");
+    SetHelp("用法：describe <消息>\n\n"
+            "为玩家提供描述。你必须在描述中至少包含一个 $N 来表示你的名字。"
+            "例如：如果我输入 'describe $N is nondescript.'，我的描述将是 'Rush is nondescript.'");
 }
 
 mixed can_describe_str(string str) {
     if(strsrch(str, "$N") == -1)
-        return("Your description must include a minimum of one '$N' "
-                + "to specify your name.");
+        return("你的描述必须至少包含一个 '$N' 来指定你的名字。");
     return 1;
 }
 
 mixed do_describe_str(string str) {
     this_player()->SetLong(str);
-    write("Ok.");
+    write("好的。");
     return 1;
 }

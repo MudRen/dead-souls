@@ -14,30 +14,27 @@ protected void create(){
     verb::create();
     SetVerb("go");
     SetRules("STR", "into STR");
-    SetErrorMessage("Go in which direction?");
-    SetHelp("Syntax: go <DIRECTION>\n"
-            "        go into <PLACE>\n\n"
-            "Moves you towards the direction you specify, or into the place "
-            "you specify.  The command \"go into\" is synonymous with the "
-            "\"enter\" command.  Note that most directions are pre-aliased "
-            "for you to the proper \"go\" commands.  For example, "
-            "\"go south\" has been pre-aliased to \"s\".\n"
-            "See also: climb, enter, jump, fly, swim");
+    SetErrorMessage("往哪个方向走？");
+    SetHelp("用法：go <方向>\n"
+            "      go into <地点>\n\n"
+            "让你朝指定方向移动，或进入指定地点。\"go into\" 命令与 \"enter\" 命令同义。"
+            "注意，大多数方向已经为你预设了别名。例如，\"go south\" 已被预设为 \"s\"。\n"
+            "另见：climb, enter, jump, fly, swim");
 }
 
 mixed can_go_str(string str){
-    if( !environment(this_player()) ) return "You are nowhere.";
+    if( !environment(this_player()) ) return "你不在任何地方。";
     if( this_player()->GetStaminaPoints() <3 )
-        return "You are too tired to go anywhere right now.";
-    if(!stringp(hobbled(this_player()))) return "Your injuries prevent easy movement. Perhaps you should try crawling.";
+        return "你现在太累了，哪也去不了。";
+    if(!stringp(hobbled(this_player()))) return "你的伤势阻碍了你的行动。也许你应该试试爬行。";
     return environment(this_player())->CanGo(this_player(), str);
 }
 
 mixed can_go_into_str(string str){
-    if( !environment(this_player()) ) return "You are nowhere.";
+    if( !environment(this_player()) ) return "你不在任何地方。";
     if( this_player()->GetStaminaPoints() <3 )
-        return "You are too tired right now.";
-    if(!stringp(hobbled(this_player()))) return "Your injuries prevent easy movement. Perhaps you should try crawling.";
+        return "你现在太累了。";
+    if(!stringp(hobbled(this_player()))) return "你的伤势阻碍了你的行动。也许你应该试试爬行。";
     return environment(this_player())->CanEnter(this_player(), str);
 }
 

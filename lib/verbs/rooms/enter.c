@@ -14,20 +14,18 @@ protected void create(){
     verb::create();
     SetVerb("enter");
     SetRules("into OBJ", "OBJ");
-    SetErrorMessage("Enter what?");
-    SetHelp("Syntax: enter <PLACE>\n"
-            "        enter into <PLACE>\n\n"
-            "Moves you into the place you specify.  Whereas the \"go\" "
-            "command is designed for motion towards something, the "
-            "\"enter\" command is designed for motion into something.\n"
-            "See also: go");
+    SetErrorMessage("进入什么？");
+    SetHelp("用法：enter <地点>\n"
+            "      enter into <地点>\n\n"
+            "让你进入指定的地点。\"go\" 命令用于朝某物移动，而 \"enter\" 命令用于进入某物内部。\n"
+            "另见：go");
 }
 
 mixed can_enter_obj(){
     if( this_player()->GetParalyzed() ){
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
-    if(!stringp(hobbled(this_player()))) return "Your injuries prevent easy movement. Perhaps you should try crawling.";
+    if(!stringp(hobbled(this_player()))) return "你的伤势阻碍了你的行动。也许你应该试试爬行。";
     return 1;
 }
 

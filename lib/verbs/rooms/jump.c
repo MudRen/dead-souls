@@ -27,30 +27,28 @@ protected void create() {
     SetRules("in OBJ", "into OBJ", "off OBJ", "off of OBJ", "from OBJ",
             "through OBJ", "across OBJ", "over OBJ", "onto OBJ", "on OBJ"); 
     SetSynonyms("leap");
-    SetErrorMessage("Jump from, into, over, on, or through something?");
-    SetHelp("Syntax: jump into <PLACE>\n"
-            "        jump off <PLACE>\n"
-            "        jump through <THING>\n"
-            "        jump over <THING>\n"
-            "        jump on <THING>\n\n"
-            "These six different syntaxes actually represent three very "
-            "different types of motion.  They are thus often used in very "
-            "different circumstances.  All of them do, however, allow you "
-            "to jump.\n"
-            "Synonyms: leap\n"
-            "See also: enter, go");
+    SetErrorMessage("从哪里跳、跳进哪里、跳过什么、跳到什么上或跳穿什么？");
+    SetHelp("用法：jump into <地点>\n"
+            "      jump off <地点>\n"
+            "      jump through <物品>\n"
+            "      jump over <物品>\n"
+            "      jump on <物品>\n\n"
+            "这六种不同的语法实际上代表三种非常不同的运动类型。因此它们通常用于不同的情况。"
+            "但它们都允许你跳跃。\n"
+            "同义词：leap\n"
+            "另见：enter, go");
 }
 
 mixed can_jump_word_obj(){
     if(!stringp(hobbled(this_player()))){
-        return "Your injuries prevent that movement.";
+        return "你的伤势阻碍了那个动作。";
     }
     return 1;
 }
 
 mixed can_jump_word_word_obj(){
     if(!stringp(hobbled(this_player()))){
-        return "Your injuries prevent that movement.";
+        return "你的伤势阻碍了那个动作。";
     }
     return 1;
 }

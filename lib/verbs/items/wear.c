@@ -25,7 +25,7 @@ protected void create() {
 
 mixed can_wear_obj() {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     return this_player()->CanManipulate();
 }
@@ -47,7 +47,7 @@ mixed do_wear_obs(object* armors) {
     object* obs;
 
     if( !sizeof(armors) ) {
-        this_player()->eventPrint("There is no such thing to be worn.");
+        this_player()->eventPrint("没有这样的东西可以穿戴。");
         return 1;
     }
     obs = filter(armors, (: objectp :));

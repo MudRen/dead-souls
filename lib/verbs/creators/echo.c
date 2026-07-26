@@ -22,7 +22,7 @@ int livings_are_remote() { return 1; }
 
 mixed can_echo() {
     if( !creatorp(this_player()) ) return 0;
-    else return "Echo what? Echo to whom what? Echo to all what?";
+    else return "回显什么？对谁回显什么？对所有人回显什么？";
 }
 
 mixed can_echo_to_liv_str(object ob, string str) {
@@ -65,16 +65,14 @@ void eventEcho(object *targs, string str) {
                     " echoes: " + str, MSG_CONV);
         else ob->eventPrint(str, MSG_CONV);
     }
-    this_player()->eventPrint("You echo: " + str, MSG_CONV);
+    this_player()->eventPrint("你回显：" + str, MSG_CONV);
 }
 
 string GetHelp(string str) {
-    return ("Syntax: echo <MESSAGE>\n"
-            "        echo to <LIVING> <MESSAGE>\n"
-            "        echo to all <MESSAGE>\n\n"
-            "Sends a message without prefixing around to everyone in the "
-            "room if you fail to specify to whom you are echoing.  You "
-            "may echo to everyone in the game as well.  Abuse of this "
-            "command is a severe violation of MUD ethics.\n"
-            "See also: say, tell");
+    return ("用法：echo <消息>\n"
+            "      echo to <生物> <消息>\n"
+            "      echo to all <消息>\n\n"
+            "如果你没有指定回显对象，将向房间内的所有人发送不带前缀的消息。"
+            "你也可以向游戏中的所有人回显。滥用此命令严重违反 MUD 道德。\n"
+            "另见：say, tell");
 }

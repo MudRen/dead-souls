@@ -12,17 +12,15 @@ protected void create() {
     verb::create();
     SetVerb("resurrect");
     SetRules("OBJ", "here");
-    SetErrorMessage("resurrect what?");
-    SetHelp("Syntax: resurrect <OBJ>\n\n"
-            "Bring back to life something that died. When used on the corpse\n"
-            "of a player, it brings them back from death without skill or\n"
-            "experience penalties.\n"
-            "See also: zap, dest");
+    SetErrorMessage("复活什么？");
+    SetHelp("用法：resurrect <物品>\n\n"
+            "复活已死亡的生物。当用于玩家的尸体时，可以将他们从死亡中带回，且不会有技能或经验惩罚。\n"
+            "另见：zap, dest");
 }
 
-mixed can_resurrect_obj(string str) { 
-    if(!creatorp(this_player())) 
-        return "This command is only available to creators.";
+mixed can_resurrect_obj(string str) {
+    if(!creatorp(this_player()))
+        return "此命令仅对创造者可用。";
     else return 1;
 }
 
@@ -33,33 +31,33 @@ mixed do_resurrect_obj(object ob) {
     if(interactive(ob)) playerob = ob;
     if( ob->isPlayer() ) playerob = ob->GetPlayerob();
     if( ob->isPlayer() && !playerob ){
-        write("You cannot resurrect a player that isn't logged on.");
+        write("你无法复活不在线的玩家。");
         return 1;
     }
     if((playerob && !playerob->GetGhost()) || living(ob)) {
-        write("You can't resurrect the living.");
+        write("你无法复活活着的生物。");
         return 1;
     }
 
     if(base_name(ob) != LIB_CORPSE){
-        write("You can only resurrect flesh-based creatures.");
+        write("你只能复活血肉之躯的生物。");
         return 1;
     }
 
     if(environment(ob) != environment(this_player())) {
-        write(capitalize(ob->GetKeyName())+" isn't here.");
+        write(capitalize(ob->GetKeyName())+"不在这里。");
         return 1;
     }
 
-    tell_player(this_player(),"You wave your hand, and with a flash "+
-            "of light, "+ob->GetCapName()+" comes back to life!");
-    tell_player(ob,capitalize(this_player()->GetKeyName())+" waves "+
+    tell_player(this_player(),"你挥了挥手，伴随着一道闪光，"+
+            ob->GetCapName()+"复活了！");
+    tell_player(ob,capitalize(this_player()->GetKeyName())+"挥了"+
             possessive(this_player())+
-            " hand, and with a flash of light, you come back from the dead!");
-    tell_room(environment(this_player()),this_player()->GetCapName()+" waves "+
+            "手，伴随着一道闪光，你从死亡中复活了！");
+    tell_room(environment(this_player()),this_player()->GetCapName()+"挥了"+
             possessive(this_player())+
-            " hand, and with a flash of light, "+ob->GetCapName()+
-            " comes back to life!",
+            "手，伴随着一道闪光，"+ob->GetCapName()+
+            "复活了！",
             ({ob, this_player()}) );
     if(playerob){
         object *inv;

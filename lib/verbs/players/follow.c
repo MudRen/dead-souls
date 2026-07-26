@@ -11,16 +11,12 @@ protected void create() {
     ::create();
     SetVerb("follow");
     SetRules("", "LIV");
-    SetErrorMessage("Whom would you like to follow?");
-    SetHelp("Syntax: follow [LIVING]\n\n"
-            "If a living object is specified, this command allows "
-            "you to begin trailing the living being as it moves "
-            "through Dead Souls.\n"
-            "Otherwise, your following status is reported.\n"
-            "If the living being is interested in having you "
-            "follow them, they can issue the \"lead\" command "
-            "in order to avoid accidentally evading you.\n"
-            "See also: evade, lead, tracking, stealth\n");
+    SetErrorMessage("你想跟随谁？");
+    SetHelp("用法：follow [生物]\n\n"
+            "如果指定了生物，此命令允许你开始尾随该生物在 Dead Souls 中移动。\n"
+            "否则，将报告你的跟随状态。\n"
+            "如果该生物愿意让你跟随，他们可以使用 \"lead\" 命令来避免意外躲避你。\n"
+            "另见：evade, lead, tracking, stealth\n");
 }
 
 mixed can_follow() { return 1; }
@@ -34,36 +30,36 @@ mixed do_follow() {
 
     // Format follow string.
     if(this_player()->CanLead() && leader = this_player()->GetLeader()) {
-        tmp = "You are ";
-        if(leader->GetFollowed(this_player())) tmp += "following";
-        else tmp += "trailing";
-        tmp += " " + leader->GetName() + ".\n";
+        tmp = "你正在";
+        if(leader->GetFollowed(this_player())) tmp += "跟随";
+        else tmp += "尾随";
+        tmp += leader->GetName() + "。\n";
     }
-    else tmp = "You are trailing no one." + "\n";
+    else tmp = "你没有尾随任何人。" + "\n";
 
     // Get the followers.
     followers = this_player()->GetFollowers();
     if(!followers) followers = ({});
 
     // Format lead string.
-    tmp += "You are leading ";
+    tmp += "你正在带领";
     obs = map(
             filter(followers, (:this_player()->GetFollowed($1):)),
             (:$1->GetName():));
     size = sizeof(obs);
     if(size) tmp += conjunction(obs);
-    else tmp += "no one";
-    tmp += ".\n";
+    else tmp += "无人";
+    tmp += "。\n";
 
     // Format evasion string.
-    tmp += "You are evading ";
+    tmp += "你正在躲避";
     obs = map(
             filter(followers, (:!this_player()->GetFollowed($1):)),
             (:$1->GetName():));
     size = sizeof(obs);
     if(size) tmp += conjunction(obs);
-    else tmp += "no one";
-    tmp += ".\n";
+    else tmp += "无人";
+    tmp += "。\n";
 
     this_player()->eventPrint(tmp);
     return 1;
@@ -76,13 +72,13 @@ mixed do_follow_liv(object ob) {
 
     if(leader = this_player()->GetLeader()) {
         leader->RemoveFollower(this_player());
-        this_player()->eventPrint("You stop trailing " + leader->GetName() + ".");
+        this_player()->eventPrint("你停止尾随" + leader->GetName() + "。");
         return 1;
     }
 
     if(member_array(this_player(), ob->AddFollower(this_player())) == -1)
-        this_player()->eventPrint("You are not empowered to follow " + ob->GetName() + ".");
-    else this_player()->eventPrint("You are now trailing " + ob->GetName() + ".");
+        this_player()->eventPrint("你没有被授权跟随" + ob->GetName() + "。");
+    else this_player()->eventPrint("你现在正在尾随" + ob->GetName() + "。");
 
     return 1;
 }

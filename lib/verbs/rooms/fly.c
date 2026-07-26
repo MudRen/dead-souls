@@ -18,13 +18,11 @@ protected void create(){
     verb::create();
     SetVerb("fly");
     SetRules("", "STR", "into STR");
-    SetErrorMessage("Fly in which direction?");
-    SetHelp("Syntax: fly [DIRECTION]\n"
-            "        fly into <PLACE>\n\n"
-            "Moves you towards the direction you specify, or into the place "
-            "you specify.  The command \"fly into\" is synonymous with the "
-            "\"enter\" command.\n"  
-            "See also: climb, enter, go, jump, swim");
+    SetErrorMessage("往哪个方向飞？");
+    SetHelp("用法：fly [方向]\n"
+            "      fly into <地点>\n\n"
+            "让你朝指定方向飞行，或飞进指定地点。\"fly into\" 命令与 \"enter\" 命令同义。\n"
+            "另见：climb, enter, go, jump, swim");
 }
 
 int StaminaCost(){
@@ -41,22 +39,22 @@ int StaminaCost(){
 mixed can_fly(){
     object env = environment(this_player());
     if( !env ){
-        return "You are nowhere to begin with!";
+        return "你根本不在任何地方！";
     }
-    if(this_player()->GetPosition() == POSITION_FLYING) 
-        return "You are already flying.";
+    if(this_player()->GetPosition() == POSITION_FLYING)
+        return "你已经在飞了。";
     if(env->CanFly(this_player())) return this_player()->CanFly();
-    return "You can't fly here.";
+    return "你不能在这里飞。";
 }
 
 mixed can_fly_str(string str){
     object env = environment(this_player());
     int envpos = env->GetPosition();
     if( !env ){
-        return "You are nowhere.";
+        return "你不在任何地方。";
     }
     if( this_player()->GetStaminaPoints() < 15 ){
-        return "You are too tired to fly anywhere right now.";
+        return "你现在太累了，哪也飞不了。";
     }
     if(env->CanFly(this_player(), str)){
         if(envpos == POSITION_FLYING) return 1;
@@ -64,7 +62,7 @@ mixed can_fly_str(string str){
     }
     if(this_player()->GetPosition() != POSITION_FLYING &&
             envpos != POSITION_FLYING){
-        return "You are not flying.";
+        return "你没有在飞。";
     }
     return 0;
 }
@@ -73,17 +71,17 @@ mixed can_fly_into_str(string str){
     object env = environment(this_player());
     int envpos = env->GetPosition();
     if( !env ){
-        return "You are nowhere.";
+        return "你不在任何地方。";
     }
     if( this_player()->GetStaminaPoints() < 3 )
-        return "You are too tired right now.";
+        return "你现在太累了。";
     if(environment(this_player())->CanEnter(this_player(), str)){
         if(envpos == POSITION_FLYING) return 1;
         return this_player()->CanFly();
     }
     if(this_player()->GetPosition() != POSITION_FLYING &&
             envpos != POSITION_FLYING){
-        return "You are not flying.";
+        return "你没有在飞。";
     }
     else return 0;
 }

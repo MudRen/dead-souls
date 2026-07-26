@@ -15,15 +15,14 @@ protected void create() {
     SetVerb("cast");
     SetRules("STR", "STR on OBJ", "STR on STR", "STR on STR of OBJ",
             "STR against STR");
-    SetErrorMessage("Cast what spell? On whom?");
-    SetHelp("Syntax: cast <SPELL>\n"
-            "        cast <SPELL> on <LIMB>\n"
-            "        cast <SPELL> against <STRING>\n"
-            "        cast <SPELL> on <TARGET>\n"
-            "        cast <SPELL> on <LIMB> of <TARGET>\n\n"
-            "Allows you to cast any spell using whatever syntax the "
-            "spell in question requires.  To heal someone, for example, "
-            "\"cast heal on descartes\".");
+    SetErrorMessage("施放什么法术？对谁施放？");
+    SetHelp("用法：cast <法术>\n"
+            "      cast <法术> on <肢体>\n"
+            "      cast <法术> against <字符串>\n"
+            "      cast <法术> on <目标>\n"
+            "      cast <法术> on <肢体> of <目标>\n\n"
+            "允许你使用法术所需的任何语法来施放法术。例如，要治疗某人，"
+            "可以输入 \"cast heal on descartes\"。");
 }
 
 mixed can_cast_str(string spell) {
@@ -33,7 +32,7 @@ mixed can_cast_str(string spell) {
         string verb = tmp->GetVerb();
 
         if( verb != "cast" ) {
-            return "That is not a spell you cast.";
+            return "那不是你施放的法术。";
         }
     }
     if(intp(this_player()->CanManipulate())) return this_player()->CanCast(tmp);

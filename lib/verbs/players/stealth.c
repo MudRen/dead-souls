@@ -12,9 +12,8 @@ protected void create() {
     verb::create();
     SetVerb("stealth");
     SetRules("","WRD");
-    SetHelp("Syntax: stealth [on | off]\n\n"
-            "A way to enable or disable sneakiness, if stealth is a "
-            "skill available to you.");
+    SetHelp("用法：stealth [on | off]\n\n"
+            "如果潜行是你可用的技能，此命令可以开启或关闭潜行状态。");
 }
 
 mixed can_stealth() {
@@ -35,21 +34,21 @@ mixed do_stealth_wrd(string args) {
 
     int skill = this_agent()->GetSkillLevel("stealth");
     if( skill < 20 ) {
-        caster->eventPrint("You are not devious enough.");
+        caster->eventPrint("你还不够狡猾。");
         return 1;
     }
 
 
-    if( args == "on" ) {  
+    if( args == "on" ) {
         if( caster->GetStaminaPoints() < 50 ) {
-            caster->eventPrint("You are too tired to move silently.",env);
-            env->eventPrint(caster->GetName() + " looks tired.",caster);
+            caster->eventPrint("你太累了，无法安静地移动。",env);
+            env->eventPrint(caster->GetName() + "看起来很疲惫。",caster);
             return 0;
         }
 
 
         if( caster->GetInCombat() ) {
-            caster->eventPrint("You are too busy fighting at the moment.",env);
+            caster->eventPrint("你现在正忙着战斗呢。",env);
             return 0;
         }
     }	    
@@ -63,38 +62,38 @@ int eventStealth(object caster, string args, int skill) {
     if( !(caster) ) return 0;
 
     if( !environment(caster) ) {
-        caster->eventPrint("You are nowhere.");
+        caster->eventPrint("你不在任何地方。");
         return 0;
     }
 
     if(args == "") {
         if(caster->GetProperty("stealthy")) {
-            caster->eventPrint("You are currently moving silently.");
+            caster->eventPrint("你目前正在安静地移动。");
         }
-        else caster->eventPrint("You are moving as noisily as ever.");
+        else caster->eventPrint("你像往常一样吵闹地移动。");
         return 1;
     }
 
     if(args == "on") {
         if(caster->GetProperty("stealthy")) {
-            caster->eventPrint("You are already moving quietly!");
+            caster->eventPrint("你已经在安静地移动了！");
             return 0;
         }
         caster->SetProperty("stealthy",1);
-        caster->eventPrint("%^RED%^You begin to sneak around.");
+        caster->eventPrint("%^RED%^你开始潜行。");
         caster->AdStaminaPoints(-30 - random(40));
         caster->AddSkillPoints("stealth",skill*skill/8);
         return 1;
-    }    
+    }
 
     if(args == "off") {
         if(caster->GetProperty("stealthy")) {
             caster->SetProperty("stealthy",0);
-            caster->eventPrint("%^BOLD%^%^CYAN%^You stop your sneaky ways.",
+            caster->eventPrint("%^BOLD%^%^CYAN%^你停止了潜行。",
                     environment(caster));
             return 1;
         }
-        else caster->eventPrint("You are not currently sneaking around!");
+        else caster->eventPrint("你目前没有在潜行！");
         return 0;
     }  		     
 

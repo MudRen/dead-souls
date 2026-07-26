@@ -24,7 +24,7 @@ mixed do_stop_str(string str){
 }
 
 string GetHelp(){
-    return ("Syntax: stop [ fishing | fighting ]\n\n"
-            "Puts an end to the specified activity.\n"
-            "See also: fish, attack");
+    return ("用法：stop [ fishing | fighting ]\n\n"
+            "终止指定的活动。\n"
+            "另见：fish, attack");
 }

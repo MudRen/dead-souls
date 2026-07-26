@@ -14,9 +14,9 @@ protected void create(){
     verb::create();
     SetVerb("vote");
     SetRules("for STR");
-    SetErrorMessage("For whom would you like to vote?");
-    SetHelp("Syntax: vote for <STR>\n\n"
-            "Casts your vote for a candidate if in a voting place.");
+    SetErrorMessage("你想投票给谁？");
+    SetHelp("用法：vote for <名字>\n\n"
+            "如果在投票处，可以为你支持的候选人投票。");
 }
 
 mixed can_vote_for_str(){
@@ -24,7 +24,7 @@ mixed can_vote_for_str(){
     mixed  err;
     if( !(env = environment(this_player())) ) return 0;
     err = env->CanVote( this_player() );
-    if( !err ) return "This doesn't seem the proper place for it.";
+    if( !err ) return "这里似乎不是合适的地方。";
     else return err;
 }
 

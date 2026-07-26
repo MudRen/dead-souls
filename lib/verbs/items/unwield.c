@@ -14,17 +14,16 @@ protected void create() {
     verb::create();
     SetVerb("unwield");
     SetRules("OBS");
-    SetErrorMessage("Unwield what?");
-    SetHelp("Syntax: <unwield ARMOR>\n"
-            "        <unwield all [of WEAPON]>\n\n"
-            "This verb allows you to unwield a weapon which you are "
-            "currently wielding.\n\n"
-            "See also: get, remove, wear, wield");
+    SetErrorMessage("卸下什么武器？");
+    SetHelp("用法：unwield <武器>\n"
+            "      unwield all [of <武器>]\n\n"
+            "此动词允许你卸下你当前装备的武器。\n\n"
+            "另见：get, remove, wear, wield");
 }
 
 mixed can_unwield_obj(string verb) {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     return 1;
 }
@@ -37,7 +36,7 @@ mixed do_unwield_obs(mixed* targs) {
     object* obs;
 
     if( !sizeof(targs) ) {
-        this_player()->eventPrint("There is no such thing to be unwielded.");
+        this_player()->eventPrint("没有这样的东西可以卸下。");
         return 1;
     }
     obs = filter(targs, (: objectp :));
