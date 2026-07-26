@@ -8,13 +8,13 @@ int openDoor(object who) {
     object door1 = load_object("/domains/town/doors/welldoor1");
     object door2 = load_object("/domains/town/doors/welldoor2");
     if(!door1->GetClosed()){
-        write("The lever is already in the pulled position.");
+        write("拉杆已经在拉起的位置了。");
     }
     else {
-        write("You pull the lever, and the west door opens.");
-        say(this_player()->GetName()+" pulls the lever, and the west door opens.");
-        tell_room("/domains/town/room/well2","The east door opens, and the west door closes.");
-        tell_room("/domains/town/room/well3","The east door closes.");
+        write("你拉下拉杆，西边的门打开了。");
+        say(this_player()->GetName()+"拉下拉杆，西边的门打开了。");
+        tell_room("/domains/town/room/well2","东边的门打开了，西边的门关闭了。");
+        tell_room("/domains/town/room/well3","东边的门关闭了。");
         door1->SetClosed(0);
         door2->SetClosed(1);
     }
@@ -25,13 +25,13 @@ int closeDoor(object who){
     object door1 = load_object("/domains/town/doors/welldoor1");
     object door2 = load_object("/domains/town/doors/welldoor2");
     if(door1->GetClosed()){
-        write("The lever is already in the pushed position.");
+        write("拉杆已经在按下的位置了。");
     }
     else {
-        write("You push the lever, and the west door closes.");
-        say(this_player()->GetName()+" pushes the lever, and the west door closes.");
-        tell_room("/domains/town/room/well2","The east door closes, and the west door opens.");
-        tell_room("/domains/town/room/well3","The east door opens.");
+        write("你按下拉杆，西边的门关闭了。");
+        say(this_player()->GetName()+"按下拉杆，西边的门关闭了。");
+        tell_room("/domains/town/room/well2","东边的门关闭了，西边的门打开了。");
+        tell_room("/domains/town/room/well3","东边的门打开了。");
         door1->SetClosed(1);
         door2->SetClosed(0);
     }

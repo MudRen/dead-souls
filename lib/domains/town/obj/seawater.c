@@ -57,10 +57,10 @@ mixed CanEnter(object who, string what) {
 
 int eventEnter(object who) {
     if( !who ) return 0;
-    who->eventPrint("You enter the sea.");
+    who->eventPrint("你进入了大海。");
     who->eventMoveLiving("/domains/town/virtual/surface/5,0",
-            "$N enters the sea.",
-            "$N arrives.");
+            "$N进入了大海。",
+            "$N来了。");
     return 1;
 }
 

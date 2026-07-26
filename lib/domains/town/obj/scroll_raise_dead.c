@@ -24,12 +24,12 @@ varargs mixed eventRead(object reader, mixed str){
     if(ob->isCorpse()) corpse = 1;
 
     if(living(ob)) {
-        write("You can't raise the living.");
+        write("你不能复活活着的人。");
         return 1;
     }
 
     if(base_name(ob) != LIB_CORPSE){
-        write("You can only animate corpses made of meat.");
+        write("你只能复活肉体制成的尸体。");
         return 1;
     }
 
@@ -38,11 +38,10 @@ varargs mixed eventRead(object reader, mixed str){
         return 1;
     }
 
-    tell_player(this_player(),"You read the scroll, and with a roar "+
-            "like thunder, "+ob->GetCapName()+" reanimates!");
-    tell_room(environment(this_player()),this_player()->GetCapName()+" reads "+
-            possessive(this_player())+ " scroll at "+ob->GetCapName()+" and "+
-            nominative(ob)+" reanimates as you hear a thunderous roar!",
+    tell_player(this_player(),"你念诵卷轴，随着雷鸣般的咆哮，"+ob->GetCapName()+"复活了！");
+    tell_room(environment(this_player()),this_player()->GetCapName()+"对着"+ob->GetCapName()+"念诵了"
+            +possessive(this_player())+"卷轴，伴随着雷鸣般的咆哮，"
+            +nominative(ob)+"复活了！",
             ({ob, this_player()}) );
 
     basefile = ob->GetBaseFile();
@@ -51,8 +50,8 @@ varargs mixed eventRead(object reader, mixed str){
     }
     if(!npc){
         npc = new(LIB_SENTIENT);
-        npc->SetShort("a zombie "+ob->GetRace());
-        npc->SetLong("A zombie "+ob->GetRace());
+        npc->SetShort(ob->GetRace()+"僵尸");
+        npc->SetLong(ob->GetRace()+"僵尸");
     }
 
     npc->SetRace(ob->GetRace());
@@ -109,20 +108,17 @@ varargs mixed eventRead(object reader, mixed str){
     npc->eventQuell();
     npc->SetUndeadType("zombie");
     ob->eventMove(ROOM_FURNACE);
-    tell_room(environment(this_player()),"The scroll disintegrates into dust.");
+    tell_room(environment(this_player()),"卷轴化为灰烬。");
     zombie->eventShadow(npc);
     this_object()->eventMove(ROOM_FURNACE);
     return 1;
 }
 
 void create(){
-    string message = "This terrible scroll will reanimate a creature's "+
-        "corpse. The resulting zombie will have little of the personality "+
-        "of its original being...just the physical attributes, which will "+
-        "slowly decay and inevitably fall apart. The zombie will obey any "+
-        "commands spoken in a language that it understood in life. If "+
-        "you are certain you must enter the dark world of necromancy, then "+
-        "you can: read scroll at person";
+    string message = "这张可怕的卷轴可以复活一个生物的尸体。"+
+        "复活的僵尸几乎没有原来生物的个性……只有身体属性，而且会"+
+        "慢慢腐烂并最终崩解。僵尸会服从任何用它生前理解的语言说出的命令。"+
+        "如果你确定要踏入死灵术的黑暗世界，那么你可以：read scroll at person";
     ::create();
     SetKeyName("scroll");
     SetId(({"scroll of raise dead","scroll of necromancy"}));

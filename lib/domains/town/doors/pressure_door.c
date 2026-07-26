@@ -7,12 +7,12 @@ protected void create() {
 
     SetSide("east", ([ "id" : ({"pressure door leading east", "door", "pressure door", "east door"}),
                 "short" : "a pressure door leading east",
-                "long" : "This is the west side of a pressure door leading east. It is huge and heavy and designed to withstand and deflect great water pressure.",
+                "long" : "这是通往东方的气压门的西侧。它巨大而沉重，设计用来承受和抵御巨大的水压。",
                 "lockable" : 1 ]) );
 
     SetSide("west", ([ "id" : ({"pressure door leading west", "door", "pressure door", "west door"}),
                 "short" : "a pressure door leading west",
-                "long" : "This is the east side of a pressure door leading west. It is huge and heavy and designed to withstand and deflect great water pressure.",
+                "long" : "这是通往西方的气压门的东侧。它巨大而沉重，设计用来承受和抵御巨大的水压。",
                 "lockable" : 1 ]) );
 
     SetClosed(1);
@@ -28,7 +28,7 @@ varargs mixed CanOpen(object ob, string id){
         return 1;
     }
     else {
-        write("You lack sufficient physical strength!");
+        write("你的体力不够！");
         return 0;
     }
 }
@@ -40,7 +40,7 @@ varargs mixed CanClose(object who, string id){
         return 1;
     }
     else {
-        write("You lack sufficient physical strength!");
+        write("你的体力不够！");
         return 0;
     }
 }

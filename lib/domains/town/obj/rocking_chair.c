@@ -13,7 +13,7 @@ protected void create() {
     SetMass(100);
     SetDollarCost(15);
     SetMaxSitters(1);
-    SetPreventGet("The chair does not budge.");
+    SetPreventGet("椅子纹丝不动。");
 }
 
 void init(){
@@ -22,13 +22,13 @@ void init(){
 
 varargs mixed eventRock(object who){
     if(member_array(who, GetSitters()) != -1){
-        write("You rock back and forth in your chair.");
-        say(this_player()->GetCapName()+" rocks back and forth "+
-                "on "+possessive(who)+" rocking chair.");
+        write("你在椅子上前后摇晃。");
+        say(this_player()->GetCapName()+"在"
+                +possessive(who)+"摇椅上前后摇晃。");
         return 1;
     }
     else {
-        write("You're not sitting in it!");
+        write("你没有坐在上面！");
         return 1;
     }
 }

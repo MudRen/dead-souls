@@ -13,8 +13,8 @@ int eventEnter(object who){
     int ret;
 
     if(GetClosed()){
-        write("You bump into the wardrobe's closed door.");
-        say(this_player()->GetName()+" bumps into the wardrobe.");
+        write("你撞到了衣柜关着的门。");
+        say(this_player()->GetName()+"撞到了衣柜。");
         return 0;
     }
 
@@ -22,7 +22,7 @@ int eventEnter(object who){
             "$N enters the wardrobe.", "$N arrives from the bedroom west.");
 
     if(!ret){
-        write("You fail to enter it.");
+        write("你没能进去。");
         return 0;
     }
     return 1;
@@ -55,7 +55,7 @@ void create() {
     SetCanClose(1);
     SetClosed(1);
     AddMoney("silver",100);
-    SetPreventGet("The wardrobe does not budge.");
+    SetPreventGet("衣柜纹丝不动。");
 }
 
 void init(){

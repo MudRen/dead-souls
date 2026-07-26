@@ -21,10 +21,10 @@ void create() {
                 ]));
     SetCanClose(0);
 }
-mixed CanGet(object ob) { return "The rack does not budge.";}
+mixed CanGet(object ob) { return "架子纹丝不动。";}
 int CanReceive(object ob) {
     if(!ob->GetFancy()) {
-        write("This is a rack for fine, expensive kitchen knives only.");
+        write("这个架子只能放精美的、昂贵的厨刀。");
         return 0;
     }
     else return 1;

@@ -26,13 +26,13 @@ protected void create() {
 
 }
 int read_sign(){
-    write("HOW TO CONDUCT BUSINESS HERE\n");
-    write("list : Get a list of all the items Otik has for sale");
-    write("appraise <item> : Ask Otik to tell you how much he would pay you for your item");
-    write("price <item> : Ask Otik the price of his item");
-    write("show <item> : Ask Otik for a closer look at his item\n");
-    write("\nbuy <item> from otik\nsell <item> to otik\n");
-    write("Cash only!");
+    write("如何在这里交易\n");
+    write("list : 获取奥蒂克出售的所有物品列表");
+    write("appraise <物品> : 询问奥蒂克愿意为你的物品付多少钱");
+    write("price <物品> : 询问奥蒂克他的物品的价格");
+    write("show <物品> : 让奥蒂克给你看看他的物品\n");
+    write("\nbuy <物品> from otik\nsell <物品> to otik\n");
+    write("只收现金！");
     return 1;
 }
 void init(){

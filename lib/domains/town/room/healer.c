@@ -3,21 +3,20 @@ inherit LIB_SHOP;
 inherit LIB_AMBIANCE;
 
 int ReadList(){
-    write("AVAILABLE PROCEDURES:\n"
-            "\thealing, cost 200:\t\tfacilitate rapid recovery from wounds\n"
-            "\tregeneration, cost 1200:\tgrow back severed limbs\n"
-            "\texcision, cost 700:\t\tremove bullets\n"
-            "\tpoison antidote, cost 200:\tmitigate the effects of poisoning\n"
-            "\tclaritin, cost 10:\t\talleviate cold symptoms\n"
+    write("可用治疗项目：\n"
+            "\t治疗，费用200：\t\t促进伤口快速恢复\n"
+            "\t再生，费用1200：\t\t重新长出断肢\n"
+            "\t手术，费用700：\t\t取出子弹\n"
+            "\t解毒剂，费用200：\t\t减轻中毒效果\n"
+            "\t抗过敏药，费用10：\t\t缓解感冒症状\n"
             "\n"
-            "Example: If you are badly hurt and need healing:\n\n"
+            "示例：如果你受了重伤需要治疗：\n\n"
             "\"buy healing slip from james\"\n"
             "\n"
-            "If you've been poisoned: \n\n"
+            "如果你中毒了：\n\n"
             "\"buy antidote from james\"\n"
             "\n"
-            "Once you have your slip, go west to see the doctor and "
-            "give the slip to him.\n"
+            "拿到单子后，往西走找医生，把单子给他。\n"
 
          );
     return 1;

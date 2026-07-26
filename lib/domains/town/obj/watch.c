@@ -61,7 +61,7 @@ int eventReadWatch(){
 
     if(minute_string == "thirteen") minute_string = "one";
 
-    write("According to the watch, it is "+hour_string+" "+minute_string+".");
+    write("怀表显示，现在是"+hour_string+" "+minute_string+"。");
 
     return 1;
 }

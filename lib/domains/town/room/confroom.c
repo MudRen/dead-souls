@@ -37,7 +37,7 @@ protected void create() {
 }
 
 int AutoDeactivate(){
-    message("info","%^RED%^The privacy field shuts off.%^RESET%^", this_object());
+    message("info","%^RED%^隐私力场关闭了。%^RESET%^", this_object());
     timer = 0;
     privacy = 0;
     return 1;
@@ -58,23 +58,23 @@ int report_time(){
     int secs = time() - timer;
 
     if(!timer){
-        write("Privacy field is not active.");
+        write("隐私力场未激活。");
         return 0;
     }
 
-    write("Elapsed seconds: "+secs);
-    write("Elapsed minutes: "+(secs/60));
+    write("经过秒数："+secs);
+    write("经过分钟："+(secs/60));
     return secs;
 }
 
 int CanReceive(object ob) {
     if(privacy){
         if(!interactive(ob)) { 
-            message("info","\n\nPRIVACY WARNING: "+ob->GetName()+" has entered the room.\n\n",this_object() );
+            message("info","\n\n隐私警告："+ob->GetName()+"进入了房间。\n\n",this_object() );
         }
         else if(!archp(ob)){
-            message("info","You bounce off the conference room privacy shield.", ob);
-            message("info",ob->GetName()+" bounced off the privacy shield.",this_object());
+            message("info","你被会议室的隐私护盾弹开了。", ob);
+            message("info",ob->GetName()+"被隐私护盾弹开了。",this_object());
             if(!environment(ob)) ob->eventMoveLiving(ROOM_START);
             return 0;
         }
@@ -85,8 +85,8 @@ int CanReceive(object ob) {
 
 int set_privacy(int i){
     if(environment(this_player()) != this_object() && !archp(this_player())) {
-        write("You lack the adequate privileges to do that.");
-        say(this_player()->GetName()+" is trying to mess around with the privacy shield system.");
+        write("你没有足够的权限执行此操作。");
+        say(this_player()->GetName()+"正在试图干扰隐私护盾系统。");
         return 1;
     }
     privacy=i;
@@ -95,22 +95,22 @@ int set_privacy(int i){
 
 int privacy(string str){
     if(environment(this_player()) != this_object() && !archp(this_player())) {
-        write("You lack the adequate privileges to do that.");
-        say(this_player()->GetName()+" is trying to muck around with the privacy shield system.");
+        write("你没有足够的权限执行此操作。");
+        say(this_player()->GetName()+"正在试图干扰隐私护盾系统。");
         return 1;
     }
 
     if(str=="on" || str == "1"){
         this_object()->set_privacy(1);
-        write("You enable the privacy shield.\n");
-        say(this_player()->GetName()+" enables a privacy force field around the room.");
+        write("你启用了隐私护盾。\n");
+        say(this_player()->GetName()+"在房间周围启用了隐私力场。");
         timer = time();
         return 1;
     }
     if(str=="off" || str == "0"){
         this_object()->set_privacy(0);
-        write("You disable the privacy shield.\n");
-        say(this_player()->GetName()+" disables a privacy force field around the room.");
+        write("你禁用了隐私护盾。\n");
+        say(this_player()->GetName()+"禁用了房间周围的隐私力场。");
         timer = 0;
         return 1;
     }

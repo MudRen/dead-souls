@@ -8,24 +8,20 @@ string SearchCrap(){
     livings = get_livings(environment(this_object()));
     foreach(object living in livings){
         if(living->GetRace() == "troll" && !interactive(living)) {
-            write("The troll distracts you!");
+            write("巨魔分散了你的注意力！");
             return " ";
         }
     }
     if(!polefound){
-        result="Rummaging through the rocks, you "+
-            "discover a fishing pole hidden underneath.";
-        say(this_player()->GetName()+" searches the pile of rocks "+
-                "and seems to have found something of value.");
+        result="在石头堆里翻找，你发现了一根藏在下面的鱼竿。";
+        say(this_player()->GetName()+"在石头堆里翻找，似乎发现了什么有价值的东西。");
         new("/domains/town/obj/pole")->eventMove(environment(this_player()));
         polefound=1;
         return result; 
     }
 
-    result="You rummage through the rocks "+
-        "and find nothing.";
-    say(this_player()->GetName()+" searches the pile of rocks "+
-            "with no results.");
+    result="你在石头堆里翻找，什么也没发现。";
+    say(this_player()->GetName()+"在石头堆里翻找，没有结果。");
     return result; 
 }
 
@@ -44,9 +40,9 @@ void create(){
     SetSearch( (: SearchCrap :) );
     polefound=0;
     SetItems( ([
-                ({"rock","rocks"}) : "A pile of rocks.",
+                ({"rock","rocks"}) : "一堆石头。",
                 ]) );
 
 }
 
-mixed CanGet(object ob) { return "The pile of rocks isn't at all portable.";}
+mixed CanGet(object ob) { return "这堆石头根本搬不动。";}

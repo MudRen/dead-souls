@@ -22,17 +22,17 @@ varargs mixed eventRead(object reader, mixed str){
     if( ob->isPlayer() ) playerob = ob->GetPlayerob();
 
     if( ob->isPlayer() && !playerob ){
-        write("You cannot resurrect a player that isn't logged on.");
+        write("你不能复活一个不在线的玩家。");
         return 1;
 
     }
     if((playerob && !playerob->GetGhost()) || living(ob)) {
-        write("You can't resurrect the living.");
+        write("你不能复活活着的人。");
         return 1;
     }
 
     if(base_name(ob) != LIB_CORPSE){
-        write("You can only resurrect flesh-based creatures.");
+        write("你只能复活肉体制成的生物。");
         return 1;
     }
 
@@ -41,14 +41,12 @@ varargs mixed eventRead(object reader, mixed str){
         return 1;
     }
 
-    tell_player(this_player(),"You read the scroll, and with a flash "+
-            "of light, "+ob->GetCapName()+" comes back to life!");
-    tell_player(ob,capitalize(this_player()->GetKeyName())+" reads "+
-            possessive(this_player())+ " scroll at you, and "+
-            "you come back from the dead!");
-    tell_room(environment(this_player()),this_player()->GetCapName()+" reads "+
-            possessive(this_player())+ " scroll at "+ob->GetCapName()+" and "+
-            nominative(ob)+" comes back to life!",
+    tell_player(this_player(),"你念诵卷轴，随着一道闪光，"+ob->GetCapName()+"复活了！");
+    tell_player(ob,capitalize(this_player()->GetKeyName())+"对着你念诵了"
+            +possessive(this_player())+"卷轴，你从死亡中回来了！");
+    tell_room(environment(this_player()),this_player()->GetCapName()+"对着"+ob->GetCapName()+"念诵了"
+            +possessive(this_player())+"卷轴，"
+            +nominative(ob)+"复活了！",
             ({ob, this_player()}) );
     if(playerob){
         object *inv;
@@ -114,15 +112,14 @@ varargs mixed eventRead(object reader, mixed str){
         npc->eventMove(environment(this_player()));
         ob->eventMove(ROOM_FURNACE);
     }
-    tell_room(environment(this_player()),"The scroll disintegrates into dust.");
+    tell_room(environment(this_player()),"卷轴化为灰烬。");
     this_object()->eventMove(ROOM_FURNACE);
     return 1;
 }
 
 void create(){
-    string message="To bring someone back to life, the way they were before "+ 
-        "death took them, and with no penalties to their experience or "+
-        "abilities, then go to their corpse, and: read scroll at person";
+    string message="要让某人复活，恢复到死亡前的状态，且不会损失经验或能力，"+
+        "那么去找到他们的尸体，然后：read scroll at person";
     ::create();
     SetKeyName("scroll");
     SetId(({"scroll of resurrection"}));

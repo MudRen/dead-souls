@@ -5,8 +5,7 @@ inherit LIB_STORAGE;
 nosave int maxlevel = 5;
 
 string ReadSign(){
-    string ret = "Only players of level "+cardinal(maxlevel)+" and below "+
-        "may take from this bin with impunity.";
+    string ret = "只有"+cardinal(maxlevel)+"级及以下的玩家才能从这个箱子里免费取东西。";
     return ret;
 }
 
@@ -18,13 +17,13 @@ void create() {
     SetShort("一个大箱子");
     SetLong("这是一个非常大的箱子，用于存放捐赠给慈善机构的物品。贫困的人可以从里面取东西。");
     SetItems( ([
-                ({ "sign" }) : "A sign on the bin you can read.",
+                ({ "sign" }) : "箱子上的一块告示牌，你可以阅读。",
                 ]) );
     SetReads( ([
-                "default" : "Try 'read label on bin'",
+                "default" : "试试'read label on bin'",
                 ({"sign"}) : (: ReadSign :),
                 ]) );
-    SetPreventGet("It's bolted down you filthy scum.");
+    SetPreventGet("它被固定住了。");
     SetMass(5000);
     SetBaseCost("silver",500);
     SetMaxCarry(15000);
@@ -71,11 +70,10 @@ varargs int eventCalculateBonus(object ob, int take){
             object wenv = environment(who);
             if(env && wenv && env == wenv){
                 if(!take){
-                    write("You experience a pleasant sense of kinship "+
-                            " with the rest of the world.");
+                    write("你体验到一种与世界其他部分融为一体的愉悦感。");
                 }
                 else {
-                    write("You feel cheap and petty.");
+                    write("你感到自己很吝啬和小气。");
                 }
             }
         }

@@ -7,26 +7,26 @@ inherit LIB_CONSULT;
 string answer = "";
 
 string *answers = ({
-        "Signs point to yes.",
-        "Yes.",
-        "Most likely.",
-        "Without a doubt.",
-        "Yes - definitely.",
-        "As I see it, yes.",
-        "You may rely on it.",
-        "Outlook good.",
-        "It is certain.",
-        "It is decidedly so.",
-        "Reply hazy, try again.",
-        "Better not tell you now.",
-        "Ask again later.",
-        "Concentrate and ask again.",
-        "Cannot predict now.",
-        "My sources say no.",
-        "Very doubtful.",
-        "Outlook not so good.",
-        "My reply is no.",
-        "Don't count on it.",
+        "迹象指向是的。",
+        "是的。",
+        "很有可能。",
+        "毫无疑问。",
+        "是的——绝对是。",
+        "据我看来，是的。",
+        "你可以信赖它。",
+        "前景看好。",
+        "这是确定的。",
+        "确实是这样。",
+        "回答模糊，请再试一次。",
+        "现在最好不要告诉你。",
+        "稍后再问。",
+        "集中精神再问一次。",
+        "现在无法预测。",
+        "我的消息来源说不。",
+        "非常可疑。",
+        "前景不太好。",
+        "我的回答是不。",
+        "别指望它。",
 });
 
 void create(){
@@ -48,16 +48,16 @@ void init(){
 }
 
 varargs mixed eventShake(object dude, string foo){
-    write("You shake your magic 8 ball.");
-    say(dude->GetName()+" shakes "+possessive(dude)+" magic 8 ball.");
+    write("你摇了摇你的魔法8号球。");
+    say(dude->GetName()+"摇了摇"+possessive(dude)+"魔法8号球。");
     answer = answers[random(sizeof(answers))];
     return 1;
 }
 
 varargs mixed eventConsult(object dude, string foo){
-    write("The magic 8 ball answers: \n"+answer);
+    write("魔法8号球回答：\n"+answer);
     if(!dude) dude = this_player();
-    say(dude->GetName()+" consults "+possessive(dude)+" magic 8 ball.");
+    say(dude->GetName()+"查看了"+possessive(dude)+"魔法8号球。");
     return 1;
 }
 

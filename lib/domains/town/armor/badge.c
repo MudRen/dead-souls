@@ -28,19 +28,17 @@ void init(){
 int nplh(string str){
     if(str=="heels"){
         if(present(this_object()->GetKeyName(),this_player() ) ){
-            write("There's no place like home!\n"+
-                    "You are transported by an awesome whirlwind somewhere "+
-                    "else...\n");
+            write("哪里都比不上家！\n"+
+                    "你被一股强大的旋风传送到了别处……\n");
             this_player()->eventMoveLiving(ROOM_START);
             return 1;
         }
-        write("You click your heels together...but feel "+
-                "as though you're missing something.\n");
+        write("你把脚跟碰在一起……但感觉好像少了点什么。\n");
         return 1;
     }
 }
 
 string GetAffectLong(object ob) {
     if(!ob || !living(ob)) return 0;
-    return ob->GetName() + " is an authorized Test Character.";
+    return ob->GetName() + " 是一个授权的测试角色。";
 }

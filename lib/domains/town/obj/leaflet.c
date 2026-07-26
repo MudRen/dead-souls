@@ -4,12 +4,12 @@ inherit LIB_ITEM;
 inherit LIB_READ;
 
 int TestFunc(object ob,string str){
-    if(ob) ob->eventPrint("if you are seeing this, you may be ob.");
-    this_player()->eventPrint("wtf");
+    if(ob) ob->eventPrint("如果你看到这条消息，你可能是ob。");
+    this_player()->eventPrint("什么情况");
     if(str && str !="") write(str);
-    if(!str) write("Null string found.");
-    if(str =="") write("Empty string found.");
-    write("WTF");
+    if(!str) write("空值字符串。");
+    if(str =="") write("空字符串。");
+    write("什么情况");
     return 1;
 }
 

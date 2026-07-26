@@ -7,12 +7,12 @@ protected void create() {
 
     SetSide("west", ([ "id" : ({"door leading west", "door", "west door"}),
                 "short" : "a door leading west",
-                "long" : "This is the east side of a door leading west.",
+                "long" : "这是通往西方的门的东侧。",
                 "lockable" : 1 ]) );
 
     SetSide("east", ([ "id" : ({"door leading east", "door", "east door"}),
                 "short" : "a door leading east",
-                "long" : "This is the west side of a door leading east.",
+                "long" : "这是通往东方的门的西侧。",
                 "lockable" : 1 ]) );
 
     SetClosed(0);
@@ -27,20 +27,20 @@ void init(){
 
 varargs int eventOpen(object who, object tool) {
     if(!this_object()->GetClosed()){
-        write("It's already open.");
+        write("它已经是开着的了。");
     }
     else {
-        write("This door has no handle or other visible means to open it.");
+        write("这扇门没有把手或其他可见的打开方式。");
     }
     return 1;
 }
 
 varargs int eventClose(object who) {
     if(this_object()->GetClosed()){
-        write("It's already open.");
+        write("它已经是开着的了。");
     }
     else {
-        write("This door has no handle or other visible means to close it.");
+        write("这扇门没有把手或其他可见的关闭方式。");
     }
     return 1;
 }

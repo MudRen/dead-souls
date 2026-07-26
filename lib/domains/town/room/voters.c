@@ -13,7 +13,7 @@ protected void create() {
     SetAmbientLight(30);
     SetShort("选民登记处");
     SetLong("这间小办公室是人们履行投票公民义务的地方。你也可以在这里 'nominate 候选人'。这里有一份候选人名单。市政厅的主厅在西南方。");
-    SetItems( ([ "list" : "This is the list of candidates." ]) );
+    SetItems( ([ "list" : "这是候选人名单。" ]) );
     SetExits( ([ 
                 "southwest" : "/domains/town/room/thall",
                 ]) );
@@ -32,13 +32,13 @@ protected void create() {
 mixed ReadList() {
     string msg, admin;
 
-    admin = "\nSpecial commands available to admins:\n";
-    admin += "tally\t\t\tReports the vote tally.\n";
-    admin += "nextday\t\t\tAdvances voting schedule one day.\n";
-    admin += "startvote\t\tGet the ball rolling.\n";
-    admin += "endvote\t\t\tPrevent additional voting.\n";
-    admin += "votestatus\t\tReports status of the vote.\n";
-    admin += "votemode\t\tReports operating mode of voting daemon.\n\n";
+    admin = "\n管理员可用的特殊命令：\n";
+    admin += "tally\t\t\t报告投票统计。\n";
+    admin += "nextday\t\t\t将投票日程推进一天。\n";
+    admin += "startvote\t\t开始投票。\n";
+    admin += "endvote\t\t\t结束投票。\n";
+    admin += "votestatus\t\t报告投票状态。\n";
+    admin += "votemode\t\t报告投票守护进程的运行模式。\n\n";
 
     if(archp(this_player())) this_player()->eventPrint( admin );
 
@@ -48,7 +48,7 @@ mixed ReadList() {
     }
 
     msg = VOTING_D->GetCurrentCouncil();
-    msg += "\n\tCandidates for Dead Souls Offices\n\n";
+    msg += "\n\t亡灵之魂职位候选人\n\n";
 
     foreach( string sClass in CLASSES_D->GetClasses() ) {
         msg += capitalize( sClass ) + " : ";
@@ -71,7 +71,7 @@ mixed eventNominate( object who, string str ) {
     int iErr;
 
     if( creatorp( who ) ) {
-        who->eventPrint("Creators cannot vote!");
+        who->eventPrint("创造者不能投票！");
         return 1;
     }
 
@@ -79,26 +79,24 @@ mixed eventNominate( object who, string str ) {
 
     switch( iErr ) {
         case VOTE_NOT_RUNNING :
-            this_player()->eventPrint("The elections are not running now!");
+            this_player()->eventPrint("选举现在没有进行！");
             break;
 
         case VOTE_MODE_VOTING :
-            this_player()->eventPrint("The time for nominating "
-                    "candidates is past, cast your vote instead.");
+            this_player()->eventPrint("提名候选人的时间已经过了，请改为投票。");
             break;
 
         case VOTE_ERROR :
-            this_player()->eventPrint("There was an error, you cannot "
-                    "nominate someone at this time.");
+            this_player()->eventPrint("出现错误，你现在无法提名某人。");
             break;
 
         case VOTE_NOT_CLASS_MEMBER :
-            this_player()->eventPrint( capitalize(str) + " is not a member of "
-                    "the " + pluralize( who->GetClass() ) + ".");
+            this_player()->eventPrint( capitalize(str) + "不是"
+                    + pluralize( who->GetClass() ) + "的成员。");
             break;
 
         case VOTE_ALREADY_RUNNING :
-            this_player()->eventPrint( capitalize(str) + " is already running." );
+            this_player()->eventPrint( capitalize(str) + "已经在参选了。" );
             break;
     }
     return 1;
@@ -113,30 +111,28 @@ mixed eventVote( object who, string str ) {
 
     switch( iErr ) {
         case VOTE_NOT_RUNNING :
-            this_player()->eventPrint("The elections are not running now!");
+            this_player()->eventPrint("选举现在没有进行！");
             break;
 
         case VOTE_MODE_CANDIDATES :
-            this_player()->eventPrint("Voting has not yet started. We are "
-                    "still nominating candidates. Please nominate a candidate "
-                    "instead.");
+            this_player()->eventPrint("投票还没有开始。我们仍在提名候选人。请改为提名候选人。");
             break;
 
         case VOTE_NOT_PRIMARY :
-            this_player()->eventPrint("Only your primary character can vote.");
+            this_player()->eventPrint("只有你的主角色可以投票。");
             break;
 
         case VOTE_NOT_CLASS_MEMBER :
-            this_player()->eventPrint( str + " is not a candidate for "
-                    "the " + pluralize(who->GetClass()) + ".");
+            this_player()->eventPrint( str + "不是"
+                    + pluralize(who->GetClass()) + "的候选人。");
             break;
 
         case VOTE_ALREADY_VOTED :
-            this_player()->eventPrint("You have already cast your vote!");
+            this_player()->eventPrint("你已经投过票了！");
             break;
 
         case VOTE_SUCCESS :
-            this_player()->eventPrint("You cast your vote!");
+            this_player()->eventPrint("你投出了你的一票！");
             break;        
     }
 
@@ -151,16 +147,15 @@ mixed eventWithdraw( object who ) {
 
     switch( iErr ) {
         case VOTE_NOT_RUNNING :
-            this_player()->eventPrint("The elections are not running now!");
+            this_player()->eventPrint("选举现在没有进行！");
             break;
 
         case VOTE_MODE_VOTING :
-            this_player()->eventPrint("The elections have begun, it is "
-                    "too late to withdraw.");
+            this_player()->eventPrint("选举已经开始，现在退出太晚了。");
             break;
 
         case VOTE_NOT_CANDIDATE :
-            this_player()->eventPrint("You are not a candidate.");
+            this_player()->eventPrint("你不是候选人。");
             break;
     }
 
@@ -168,26 +163,26 @@ mixed eventWithdraw( object who ) {
 }
 
 mixed tally(){
-    write("Voting daemon says: \"Votes tallied.\"");
+    write("投票守护进程说：\"投票已统计。\"");
     return VOTING_D->eventTallyVotes();
 }
 mixed nextday(){
-    write("Voting daemon says: \"Voting schedule advanced one day.\"");
+    write("投票守护进程说：\"投票日程推进了一天。\"");
     return VOTING_D->eventNextDay();
 }
 mixed startvote(){
     return VOTING_D->eventStartVoting();
 }
 mixed endvote(){
-    write("Voting daemon says: \"Polls closed.\"");
+    write("投票守护进程说：\"投票已结束。\"");
     return VOTING_D->eventEndVoting();
 }
 mixed votestatus(){
-    write("Voting daemon says: \"Status bitwise operator.\"");
+    write("投票守护进程说：\"状态位运算符。\"");
     return VOTING_D->GetStatus();
 }
 mixed votemode(){
-    write("Voting daemon says: \"Mode bitwise result.\"");
+    write("投票守护进程说：\"模式位运算结果。\"");
     return VOTING_D->GetMode();
 }
 

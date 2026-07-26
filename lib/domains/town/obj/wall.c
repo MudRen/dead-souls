@@ -35,7 +35,7 @@ void init(){
 }
 
 int GetPainting(string str){
-    write("It appears firmly attached to the wall.");
+    write("它似乎牢牢地固定在墙上。");
     return 1;
 }
 
@@ -59,15 +59,15 @@ int PushThePainting(){
 
 string ShowDali(){
     string ret;
-    ret = "A beautiful reproduction:\n";
+    ret = "一幅美丽的复制品：\n";
     ret += read_file("/domains/town/txt/pot.txt");
     return ret;
 }
 
 int OpenSesame(){
-    write("You uncover a secret passageway!");
-    say(this_player()->GetName()+" uncovers a secret passageway!");
-    AddItem(({"secret passageway","passageway"}) , "A secret passageway you can enter.");
+    write("你发现了一条秘密通道！");
+    say(this_player()->GetName()+"发现了一条秘密通道！");
+    AddItem(({"secret passageway","passageway"}) , "一条你可以进入的秘密通道。");
     hidden = 0;
     environment()->OpenPassage();
     return 1;

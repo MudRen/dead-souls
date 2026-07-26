@@ -7,16 +7,16 @@ inherit LIB_CLIMB; // This makes it climbable
 
 int LadderClimb(){
     if(base_name(environment()) == "/domains/town/room/mansion_ext"){
-        write("You climb up the ladder and into the mansion through the second-story window.");
+        write("你爬上梯子，通过二楼的窗户进入了大宅。");
         eventClimb(this_player(),CLIMB_UP,"/domains/town/room/mansion_uhall1");
         return 1;
     }
     if(base_name(environment()) == "/domains/amigara/room/passage1"){
-        write("You climb up the ladder to the higher level of the cave.");
+        write("你爬上梯子到达了洞穴的更高层。");
         eventClimb(this_player(),CLIMB_UP,"/domains/amigara/room/cave");
         return 1;
     }
-    write("This ladder doesn't seem usable here.");
+    write("这把梯子在这里似乎无法使用。");
     return 0;
 }
 

@@ -29,9 +29,9 @@ int eventCatch(object who, object pole) {
     return 1;
 }
 void BiteMe(object who) {
-    who->eventPrint("The shark bites you before it dies!");
-    environment(who)->eventPrint("The shark bites " + who->GetName() +
-            " before it dies!", who);
+    who->eventPrint("鲨鱼在死前咬了你一口！");
+    environment(who)->eventPrint("鲨鱼在死前咬了" + who->GetName() +
+            "一口！", who);
     who->eventReceiveDamage(this_object(), BITE, random(30), 0,
             who->GetRandomLimb("right hand"));
 }

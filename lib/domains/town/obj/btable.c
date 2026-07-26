@@ -22,10 +22,10 @@ void YouWin();
 void YouLose();
 
 int read(string args) {
-    write("The small letters read...");
-    write(" %^CYAN%^Dealer stands pat at 17.");     write(" %^CYAN%^Ties go to the house.");
-    write("deal <amount> : Starts the game, wagering <amount>");     write(" hit : Requests a new card");
-    write(" stand pat : Ends the game");
+    write("小字写着……");
+    write(" %^CYAN%^庄家17点停牌。");     write(" %^CYAN%^平局归庄家。");
+    write("deal <金额> : 开始游戏，下注<金额>");     write(" hit : 要求发一张牌");
+    write(" stand pat : 结束游戏");
     return 1;
 }
 
@@ -33,13 +33,12 @@ protected void create() {
     ::create();
     SetShort("一张21点赌桌");
     SetLong("这里放着一张小型机械21点赌桌，表面覆盖着绿色毛毡。");
-    SetPreventGet("You cannot get that!");
+    SetPreventGet("你拿不了这个！");
     SetMass(0);
     SetId( ({"table", "blackjack table"}) );
     SetKeyName("table");
     SetItems( ([
-                ({"writing","letters"}): "Some writing on the table. Try \"read "+
-                "writing on table\"",
+                ({"writing","letters"}): "桌子上的一些文字。试试\"read writing on table\"",
                 ]) );
     SetRead( ([
                 ({"writing","letters"}) : (: read :),
@@ -60,11 +59,11 @@ int eventHit() {
     int x;
     done = 0;
     if (gameon == 0) {
-        write("A game has not started yet, type \"deal\" to start one.");
+        write("游戏还没开始，输入\"deal\"开始一局。");
         return 1;
     }
     if(gameon == 1 && this_player()->GetName() != oldplayername) {
-        write("You are not playing right now.");
+        write("你现在没有在玩。");
         return 1;
     }
     x = random(13);
@@ -88,7 +87,7 @@ int eventHit() {
                  break;
         case 0 : suit = "Clubs";
     }
-    write("%^BLUE%^You get a " + card + " of " + suit);
+    write("%^BLUE%^你得到一张" + suit + card);
     if (x == 0) {
         StupidAce();
         cardscore = aceval;
@@ -108,7 +107,7 @@ int eventHit() {
         if(aceval == 11) {
             aceval = 1;
             score -= 11;
-            write("%^CYAN%^Your score is " + score);
+            write("%^CYAN%^你的分数是 " + score);
         }
         else {
             YouLose();
@@ -124,20 +123,20 @@ int eventStand(string str) {
 
     if(str != "pat") return 0;
     if (gameon == 0) {
-        write("A game has not started yet, type \"deal\" to start one");
+        write("游戏还没开始，输入\"deal\"开始一局");
         return 1;
     }
     if(gameon == 1 && this_player()->GetName() != oldplayername) {
-        write("You are not playing right now.");
+        write("你现在没有在玩。");
         return 1;
     }
-    write("%^CYAN%^Your final score is " + score);
+    write("%^CYAN%^你的最终分数是 " + score);
 
     if (dscore < 22) {
-        write("%^BOLD%^The dealer's score is " + dscore);
+        write("%^BOLD%^庄家的分数是 " + dscore);
     }
     else {
-        write("%^BOLD%^The dealer busts");
+        write("%^BOLD%^庄家爆牌了");
     }
     if (score > dscore && score < 21) {
         YouWin();
@@ -167,48 +166,45 @@ int eventDeal(string args) {
     if(oldplayer) plidle=query_idle(oldplayer);
 
     if (!args) {
-        write("%^YELLOW%^Please try that again, including the amount of money you want to wager.");
+        write("%^YELLOW%^请重试，包括你想下注的金额。");
         return 1;
     }
     sscanf(args, "%d", bet);
     if(!intp(bet) || bet <= 0){
-        write("You must wager an amount.\n");
+        write("你必须下注一个金额。\n");
         return 1;
     }
     if (this_player()->GetCurrency("silver") < bet) {
-        write("You don't have that many silver!");
+        write("你没有那么多银币！");
         return 1;
     }
     if (gameon == 1 && present(oldplayername,here) && plidle < 120 ) {
-        write("%^RED%^"+oldplayername+" is playing right now. There is room for only one player.");
+        write("%^RED%^"+oldplayername+"正在玩。只有一个玩家的位置。");
         return 1;
     }
     if (gameon == 1 && present(oldplayername,here) && plidle > 120 ) {
-        write("%^RED%^"+oldplayername+" was playing, but "+nominative(oldplayer)+" has gone idle "+
-                "and the dealer deals "+objective(oldplayer)+" out.",oldplayer);
-        say(oldplayername+" has been dealt out of the blackjack table for idleness.",oldplayer);
-        tell_object(oldplayer,"You've been dealt out of the blackjack table for idleness.");
+        write("%^RED%^"+oldplayername+"之前在玩，但"+nominative(oldplayer)+"已经闲置了，庄家把"+objective(oldplayer)+"踢出了游戏。",oldplayer);
+        say(oldplayername+"因为闲置被踢出了21点游戏。",oldplayer);
+        tell_object(oldplayer,"你因为闲置被踢出了21点游戏。");
         cleanup();
     }
     if (gameon == 1 && !present(oldplayername,here) ) {
-        write("%^RED%^"+oldplayername+" was playing, but "+nominative(oldplayer)+" has left, and the dealer deals "+
-                objective(oldplayer)+" out.");
-        say(oldplayername+" has been dealt out of the blackjack table because "+nominative(oldplayer)+" left.",oldplayer);
-        tell_object(oldplayer,"You suddenly remember you left a blackjack game in the middle of it, "+
-                "and you've probably been dealt out.");
+        write("%^RED%^"+oldplayername+"之前在玩，但"+nominative(oldplayer)+"已经离开了，庄家把"+objective(oldplayer)+"踢出了游戏。");
+        say(oldplayername+"因为离开被踢出了21点游戏。",oldplayer);
+        tell_object(oldplayer,"你突然想起你中途离开了一个21点游戏，你可能已经被踢出了。");
         cleanup();
     }
 
     oldplayername = playername;
     oldplayer = player;
     gameon = 1;
-    write("%^RED%^You ask the dealer to count you into the next game.");
-    say("%^YELLOW%^" + this_player()->GetName() + " starts playing blackjack.");
+    write("%^RED%^你请庄家让你加入下一局。");
+    say("%^YELLOW%^" + this_player()->GetName() + "开始玩21点。");
     this_player()->AddCurrency("silver", -bet);
     eventDealerHit();
     eventHit();
     eventHit();
-    write("%^CYAN%^Your current score is  " + score);
+    write("%^CYAN%^你当前的分数是  " + score);
     return 1;
 }
 void eventDealerHit() {
@@ -226,15 +222,15 @@ void eventDealerHit() {
     }
 }
 void YouLose() {
-    write("Your score is " + score);
-    write("%^RED%^You lose");
-    say("%^YELLOW%^" + this_player()->GetName() + " loses.");
+    write("你的分数是 " + score);
+    write("%^RED%^你输了");
+    say("%^YELLOW%^" + this_player()->GetName() + "输了。");
     cleanup();
 }
 void YouWin() {
-    write("Your score is " + score);
-    write("%^GREEN%^You win!");
-    say("%^YELLOW%^" + this_player()->GetName() + " wins!");
+    write("你的分数是 " + score);
+    write("%^GREEN%^你赢了！");
+    say("%^YELLOW%^" + this_player()->GetName() + "赢了！");
     this_player()->AddCurrency("silver", 2 * bet);
     cleanup();
 }
@@ -247,6 +243,6 @@ void StupidAce() {
         aceval = 11;
     }
     temp = aceval + score;
-    write("%^CYAN%^Your current score is " + temp);
+    write("%^CYAN%^你当前的分数是 " + temp);
 }
 

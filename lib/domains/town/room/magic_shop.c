@@ -24,16 +24,15 @@ protected void create() {
                 ]) );
 }
 int read_sign(){
-    write("HOW TO CONDUCT BUSINESS HERE\n");
-    write("list : Get a list of all the items Oana has for sale");
-    write("appraise <item> : Ask Oana to tell you how much she would pay you for your item");
-    write("price <item> : Ask Oana the price of her item");
-    write("show <item> : Ask Oana for a closer look at her item\n");
-    write("\nbuy <item> from oana\nsell <item> to oana\n");
-    write("Prices shown are in silver coins.");
-    write("\n\nWe're still under construction, so there's");
-    write("not much to buy. But if you want, you can go ");
-    write("south to the mage's guild and join up!");
+    write("如何在这里交易\n");
+    write("list : 获取奥安娜出售的所有物品列表");
+    write("appraise <物品> : 询问奥安娜愿意为你的物品付多少钱");
+    write("price <物品> : 询问奥安娜她的物品的价格");
+    write("show <物品> : 让奥安娜给你看看她的物品\n");
+    write("\nbuy <物品> from oana\nsell <物品> to oana\n");
+    write("价格以银币显示。");
+    write("\n\n我们还在建设中，所以没有太多东西可买。");
+    write("但如果你愿意，可以往南走到法师公会加入！");
 
     return 1;
 }

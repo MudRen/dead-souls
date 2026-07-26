@@ -35,7 +35,7 @@ int CanReceive(object ob){
     }
     if(living(ob) && !interactive(ob) &&
             (!ob->GetRiders() || !sizeof(ob->GetRiders()))){
-        ob->eventPrint("You find yourself unable to leave the forest.");
+        ob->eventPrint("你发现自己无法离开森林。");
         return 0;
     }
     return ::CanReceive();

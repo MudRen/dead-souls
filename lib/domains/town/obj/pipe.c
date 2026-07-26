@@ -15,11 +15,11 @@ void create(){
     SetRadiantLight(1);
     SetMaxFuel(300);
     SetItems( ([
-                "inscription" : "An inscription on the pipe you can read.",
+                "inscription" : "烟斗上的一段铭文，你可以阅读。",
                 ]) );
     SetRead( ([
-                "default" : "Try: read inscription on pipe",
-                "inscription" : "Kalinash's Pipe of Insight",
+                "default" : "试试：read inscription on pipe",
+                "inscription" : "卡利纳什的洞察之烟斗",
                 ]) );
     SetLanguage("common");
     SetFuelAmount(50);
@@ -38,12 +38,12 @@ varargs mixed eventLight(object who, object tool){
 
 mixed eventSmoke(object who, object what){
     if(!GetLit()){
-        write("It is not lit!");
+        write("它没有点燃！");
         return 1;
     }
-    write("You smoke your "+remove_article(GetShort())+".");
-    say(who->GetName()+" smokes from "+possessive(who)+" "
-            +remove_article(GetShort())+".");
+    write("你抽了一口"+remove_article(GetShort())+"。");
+    say(who->GetName()+"抽了一口"+possessive(who)
+            +remove_article(GetShort())+"。");
     if((((time() - GetLastPuff()) > 10) && random(100) < 25) ||
             creatorp(this_player())){
         object bonus = new(LIB_BONUS);
@@ -60,8 +60,7 @@ mixed eventSmoke(object who, object what){
                     ]) );
         bonus->SetBonusDuration(300);
         if(bonus->eventMove(who)){
-            write("You feel you have a slightly better understanding"+ 
-                    " of the world.");
+            write("你感觉自己对这个世界有了更深的理解。");
         }
     }    
     lastpuff = time();

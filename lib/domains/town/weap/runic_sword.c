@@ -5,9 +5,9 @@
 inherit LIB_ITEM;
 
 int CheckOrc(){
-    string ret = "The runes' meaning is undecipherable to you.";
+    string ret = "这些符文的含义对你来说无法解读。";
     if(this_player()->GetRace() == "orc"){
-        write("You get an uneasy feeling.");
+        write("你感到一种不安的感觉。");
     }
     return write(ret);
 }
@@ -29,7 +29,7 @@ protected void create() {
                 ({"rune","runes"}) : (: CheckOrc :),
                 ]) );
     SetRead( ([
-                ({"rune","runes"}) : "You do not understand them."
+                ({"rune","runes"}) : "你看不懂这些符文。"
                 ]) );
 }
 

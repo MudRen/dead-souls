@@ -18,7 +18,7 @@ void create(){
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);
     SetInvis(0);
-    SetPreventGet("It's planted firmly in the bedrock.");
+    SetPreventGet("它牢牢地嵌在基岩里。");
     SetNoCondition(1);
     set_heart_beat(1);
     SetUnique(1);
@@ -30,7 +30,7 @@ void init(){
 
 varargs mixed CanTurn(object who, object what){
     if(turned){
-        return "#The wheel turns no further.";
+        return "#轮子转不动了。";
     }
     else return 1;
 }
@@ -41,23 +41,23 @@ int eventTurn(object who){
     if(!who) who = this_player();
     if(!turned){
         if(pipe){
-            write("You turn the wheel.");
-            say(who->GetName()+" turns the wheel.");
+            write("你转动了轮子。");
+            say(who->GetName()+"转动了轮子。");
             if(!pipe->GetFlowing()){
-                tell_room(env,"Water starts pouring from the pipe.");
+                tell_room(env,"水开始从管道中流出。");
             }
             pipe->openpipe(1);
             turned = 1;
             Turner = who;
         }
         else {
-            write("The wheel turns loosely to no apparent effect.");
-            say(who->GetName()+" turns the wheel to no apparent effect.");
+            write("轮子松动地转了转，没有明显效果。");
+            say(who->GetName()+"转动了轮子，没有明显效果。");
         }
     }
     else {
-        write("Nothing happens.");
-        say(who->GetName()+" tries to turn the wheel. Nothing happens.");
+        write("什么也没发生。");
+        say(who->GetName()+"试图转动轮子。什么也没发生。");
     }
     return 1;
 }

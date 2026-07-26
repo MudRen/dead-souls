@@ -7,12 +7,12 @@ protected void create() {
 
     SetSide("down", ([ "id" : ({"grate leading down", "grate", "down grate"}),
                 "short" : "a grate leading down",
-                "long" : "This is the up side of a grate leading down. It looks very heavy.",
+                "long" : "这是一个通往下方的格栅的上侧。看起来非常沉重。",
                 "lockable" : 0 ]) );
 
     SetSide("up", ([ "id" : ({"grate leading up", "grate", "up grate"}),
                 "short" : "a grate leading up",
-                "long" : "This is the down side of a grate leading up. It looks very heavy.",
+                "long" : "这是一个通往上方的格栅的下侧。看起来非常沉重。",
                 "lockable" : 0 ]) );
 
     SetPerforated(1);
@@ -27,7 +27,7 @@ varargs mixed CanOpen(object ob, string id){
         return 1;
     }
     else {
-        write("You lack sufficient physical strength!");
+        write("你的体力不够！");
         return 0;
     }
 }

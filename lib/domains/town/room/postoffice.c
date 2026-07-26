@@ -30,29 +30,29 @@ void init(){
 }
 int instr(string str){
     if(str=="instructions"||str=="sign"){
-        write("To mail someone, type mail <person's name here>.\n"+
-                "Enter a subject line.\n"+
-                "Enter your message.\n"+
-                "Once you've finished, enter a period (.) on a blank line.\n"+
-                "Hit x, then s to send it. You're done!\n");
+        write("要给别人寄信，输入 mail <收信人名字>。\n"+
+                "输入主题行。\n"+
+                "输入你的消息。\n"+
+                "完成后，在空行输入一个句号（.）。\n"+
+                "按x，然后按s发送。完成！\n");
         return 1;
     }
 }
 mixed CanMail(object who, string args) {
     if( !interactive(who) ) return 0;
     if( GetTown() != who->GetTown() )
-        return "Any mail you might have will be at your home post office.";
+        return "你的信件会在你家乡的邮局。";
     return 1;
 }
 mixed eventMail(object who, string args) {
     object ob;
 
     if( !(ob = new(OBJ_POST)) ) {
-        who->eventPrint("Failed to load postal object!");
+        who->eventPrint("加载邮政对象失败！");
         return 1;
     }
     if( !(ob->eventMove(who)) ) {
-        who->eventPrint("You can't seem to carry the postal object.");
+        who->eventPrint("你似乎无法携带邮政对象。");
         return 1;
     }
     ob->start_post(args);

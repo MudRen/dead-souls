@@ -21,7 +21,7 @@ void init(){
     ::init();
 }
 
-mixed CanGet(object ob) { return "This is a clock tower. It's not gettable.";}
+mixed CanGet(object ob) { return "这是一座钟楼，拿不动的。";}
 
 int eventReadClock(){
     int hour, minutes;
@@ -57,7 +57,7 @@ int eventReadClock(){
 
     if(minute_string == "thirteen") minute_string = "one";
 
-    write("According to the clock, it is "+hour_string+" "+minute_string+".");
+    write("时钟显示，现在是"+hour_string+" "+minute_string+"。");
 
     return 1;
 }

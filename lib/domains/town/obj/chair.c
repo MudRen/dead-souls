@@ -13,7 +13,7 @@ protected void create() {
     SetMass(150);
     SetDollarCost(15);
     SetMaxSitters(1);
-    SetPreventGet("The chair does not budge.");
+    SetPreventGet("椅子纹丝不动。");
 }
 
 void init(){
@@ -22,14 +22,14 @@ void init(){
 
 varargs mixed eventSwivel(object who){
     if(member_array(who, GetSitters()) != -1){
-        write("You swivel around in your swivel chair! Whee!");
-        say(this_player()->GetName()+" swivels around in "
-                +possessive(this_player())+" "+
-                "swivel chair, yelling \"WHEEEE!!!\"");
+        write("你在转椅上转来转去！太好玩了！");
+        say(this_player()->GetName()+"在"
+                +possessive(this_player())+
+                "转椅上转来转去，大喊\"太好玩了！！！\"");
         return 1;
     }
     else {
-        write("You're not sitting in it!");
+        write("你没有坐在上面！");
         return 1;
     }
 }

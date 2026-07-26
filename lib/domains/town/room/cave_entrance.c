@@ -58,7 +58,7 @@ varargs mixed eventHearTalk(object who, object target, int cls, string verb,
         decoded = 1;
     room::eventHearTalk(who,target,cls,verb,msg,lang);
     if(decoded){
-        eventPrint("With a great roar, the stone door rumbles open!");
+        eventPrint("伴随着一声巨响，石门隆隆打开了！");
         door->SetClosed(0);
     }
     return 1;
@@ -70,10 +70,7 @@ int CheckQuest(object ob){
     if(!ob->GetQuest("Cave Finding Quest")){
         ob->AddQuest("Cave Explorer I","Cave Finding Quest");
         write("%^BOLD%^%^RED%^\n\nCONGRATULATIONS!\n%^RESET%^");
-        write("%^BOLD%^%^RED%^You have solved the quest of the "+
-                "Lost Cave. You have "+
-                "earned 3 quest points, and 2500 experience "+
-                "points. Nice job!\n\n%^RESET%^");
+        write("%^BOLD%^%^RED%^你完成了迷失洞穴的任务。你获得了3个任务点数和2500经验值。干得好！\n\n%^RESET%^");
         say(this_player()->GetName()+" solves newbie quest 2.");
         ob->AddQuestPoints(3);
         ob->AddExperiencePoints(2500);
