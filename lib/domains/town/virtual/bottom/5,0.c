@@ -13,8 +13,8 @@ protected void create() {
     SetTerrainType(T_SEAFLOOR);
     SetMedium(MEDIUM_WATER);
 
-    SetShort("the sea floor");
-    SetLong("This is the bottom of a vast sea.");
+    SetShort("海底");
+    SetLong("这是一片广阔海洋的底部。");
     SetExits(([
                 "north" :"/domains/town/virtual/bottom/5,1", 
                 "south" : "/domains/town/virtual/bottom/5,-1", 

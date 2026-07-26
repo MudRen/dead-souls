@@ -46,15 +46,15 @@ void create() {
     SetAmbientLight(30);
     SetDayLight(30);
     SetNightLight(30);
-    SetShort("a glowing pool");
-    SetLong("This is a strange, glowing pool in the middle of the forest.");
+    SetShort("发光的水池");
+    SetLong("这是森林中一个奇特的、发光的水池。");
     SetClimate("temperate");
     SetTown("wilderness");
     SetTerrainType(T_SURFACE);
     SetMedium(MEDIUM_SURFACE);
     SetNoSink(1);
     SetItems( ([
-                ({ "forest" }) : "It surrounds the pool.",
+                ({ "forest" }) : "它环绕着水池。",
                 ]) );
     SetExits( ([
                 "south" : "/domains/town/virtual/forest/-13,12",

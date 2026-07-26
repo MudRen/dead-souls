@@ -33,7 +33,7 @@ varargs protected void create(int x, int y) {
     YPosition = y;
     SetAmbientLight(0);
     SetLongAndItems(x, y);
-    SetShort("The sea floor");
+    SetShort("海底");
     if( x >= max_east ) e = "bottom/" + (max_west) + "," + y;
     else e = "bottom/" + (x+1) + "," + y;
     if( x <= max_west ) w = "bottom/" + (max_east) + "," + y;
@@ -49,7 +49,7 @@ varargs protected void create(int x, int y) {
     sw = "bottom/" + LimitTravel(x - 1, max_east, 1, max_west) + "," + LimitTravel(y-1, max_north, 1, max_south);
     se = "bottom/" + LimitTravel(x + 1, max_east) + "," + LimitTravel(y-1, max_north, 1, max_south);
 
-    SetGoMessage("You can't travel in that direction.");
+    SetGoMessage("你无法朝那个方向前进。");
     if( n ) AddExit("north", __DIR__ + n);
     if( s ) AddExit("south", __DIR__ + s);
     if( e ) AddExit("east", __DIR__ + e);
@@ -67,9 +67,9 @@ varargs void SetLongAndItems(int x, int y, int z) {
     ::SetLongAndItems(x, y);
 
     inv = ([]);
-    str = "This is the bottom of a vast sea.";
+    str = "这是一片广阔海洋的底部。";
 
-    SetItems( ([ ({"sea","ocean"}) : "It is vast.",
+    SetItems( ([ ({"sea","ocean"}) : "浩瀚无际。",
                 ]) );
     SetLong(str);
     SetInventory(inv);

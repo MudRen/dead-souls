@@ -38,7 +38,7 @@ varargs protected void create(int x, int y, int z) {
     ZPosition = z;
     SetClimate("temperate");
     SetLongAndItems(x, y, z);
-    SetShort("The sky");
+    SetShort("天空");
     if( x >= max_east ) e = "sky/" + (max_west) + "," + y + "," + z;
     else e = "sky/" + (x+1) + "," + y + "," + z;
     if( x <= max_west ) w = "sky/" + (max_east) + "," + y + "," + z;
@@ -57,7 +57,7 @@ varargs protected void create(int x, int y, int z) {
     sw = "sky/" + LimitTravel(x - 1, max_east, 1, max_west) + "," + LimitTravel(y-1, max_north, 1, max_south)+ "," + z;
     se = "sky/" + LimitTravel(x + 1, max_east) + "," + LimitTravel(y-1, max_north, 1, max_south)+ "," + z;
 
-    SetGoMessage("You can't travel in that direction.");
+    SetGoMessage("你无法朝那个方向前进。");
 
     if( n ) AddExit("north", __DIR__ + n);
     if( s ) AddExit("south", __DIR__ + s);
@@ -111,11 +111,11 @@ varargs void SetLongAndItems(int x, int y, int z) {
     ::SetLongAndItems(x, y, z);
 
     inv = ([]);
-    if(overland || dexit) str = "You are in the air above a small island in a vast sea that stretches from horizon to horizon.";
-    else str = "You are in the air above a vast sea that stretches from horizon to horizon.";
-    if(query_night()) str += " The stars of the night sky glitter overhead.";
+    if(overland || dexit) str = "你在一片小岛上空，下方是一片从地平线延伸到地平线的广阔海洋。";
+    else str = "你在一片广阔海洋的上空，海洋从地平线延伸到地平线。";
+    if(query_night()) str += " 夜空中的星星在头顶闪烁。";
 
-    SetItems( ([ ({ "sea", "ocean" })  : "A seemingly endless body of water.",
+    SetItems( ([ ({ "sea", "ocean" })  : "一片似乎无尽的水域。",
                 ]) );
 
     SetLong(str);

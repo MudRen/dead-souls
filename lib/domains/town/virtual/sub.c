@@ -36,7 +36,7 @@ varargs protected void create(int x, int y, int z) {
     SetDayLight(( (30 - z < 0) ? 0 : 30 - z));
     SetNightLight(( (10 - z < 0) ? 0 : 10 - z));
     SetLongAndItems(x, y, z);
-    SetShort("Underwater");
+    SetShort("水下");
     if( x >= max_east ) e = "sun/" + (max_west) + "," + y + "," + z;
     else e = "sub/" + (x+1) + "," + y + "," + z;
     if( x <= max_west ) w = "sub/" + (max_east) + "," + y + "," + z;
@@ -55,7 +55,7 @@ varargs protected void create(int x, int y, int z) {
     sw = "sub/" + LimitTravel(x - 1, max_east, 1, max_west) + "," + LimitTravel(y-1, max_north, 1, max_south)+ "," + z;
     se = "sub/" + LimitTravel(x + 1, max_east) + "," + LimitTravel(y-1, max_north, 1, max_south)+ "," + z;
 
-    SetGoMessage("You can't travel in that direction.");
+    SetGoMessage("你无法朝那个方向前进。");
 
     if( n ) AddExit("north", __DIR__ + n);
     if( s ) AddExit("south", __DIR__ + s);
@@ -85,9 +85,9 @@ varargs void SetLongAndItems(int x, int y, int z) {
     ::SetLongAndItems(x, y, z);
 
     inv = ([]);
-    str = "This is the dark space below the surface of a great sea.";
+    str = "这是一片广阔海洋表面下的黑暗空间。";
 
-    SetItems( ([ ({ "sea", "ocean" })  : "A seemingly endless body of water.",
+    SetItems( ([ ({ "sea", "ocean" })  : "一片似乎无尽的水域。",
                 ]) );
 
     SetLong(str);

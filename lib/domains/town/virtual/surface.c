@@ -34,7 +34,7 @@ varargs protected void create(int x, int y) {
     YPosition = y;
     SetClimate("temperate");
     SetLongAndItems(x, y);
-    SetShort("a great sea");
+    SetShort("广阔的大海");
     if( x >= max_east ) e = "surface/" + (max_west) + "," + y;
     else e = "surface/" + (x+1) + "," + y;
     if( x <= max_west ) w = "surface/" + (max_east) + "," + y;
@@ -54,7 +54,7 @@ varargs protected void create(int x, int y) {
     SetSinkRoom(__DIR__+sink);
     SetFlyRoom(__DIR__+fly);
 
-    SetGoMessage("You can't travel in that direction.");
+    SetGoMessage("你无法朝那个方向前进。");
     if( n ) AddExit("north", __DIR__ + n);
     if( s ) AddExit("south", __DIR__ + s);
     if( e ) AddExit("east", __DIR__ + e);
@@ -80,11 +80,11 @@ varargs void SetLongAndItems(int x, int y, int z) {
     ::SetLongAndItems(x, y);
 
     inv = ([]);
-    str = "This is the surface of a vast sea.";
-    if(query_night()) str += " The stars of the night sky glitter overhead.";
-    else str+= " The sun seems oddly dim in the sky.";
+    str = "这是一片广阔海洋的表面。";
+    if(query_night()) str += " 夜空中的星星在头顶闪烁。";
+    else str+= " 太阳在天空中显得异常暗淡。";
 
-    SetItems( ([ ({"sea","ocean"}) : "It is vast.",
+    SetItems( ([ ({"sea","ocean"}) : "浩瀚无际。",
                 ]) );
     SetLong(str);
     SetDayLight(30);

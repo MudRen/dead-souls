@@ -17,8 +17,8 @@ protected void create() {
     SetTerrainType(T_SPACE);
     SetMedium(MEDIUM_SPACE);
 
-    SetShort("Outer Space");
-    SetLong("Outer space. A big, place. There is a medium sized planet below.");
+    SetShort("外太空");
+    SetLong("外太空。一个广阔的空间。下方有一颗中等大小的行星。");
     SetExits(([
                 "+x" : "/domains/town/virtual/space/1,2,1", 
                 "-x-y-z" : "/domains/town/virtual/space/2100000000,2100000000,0", 

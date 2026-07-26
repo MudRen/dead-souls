@@ -37,7 +37,7 @@ varargs protected void create(int x, int y, int z) {
     YPosition = y;
     ZPosition = z;
     SetLongAndItems(x, y, z);
-    SetShort("Outer Space");
+    SetShort("外太空");
     if( x >= max_east ) e = "space/" + (max_west) + "," + y + "," + z;
     else e = "space/" + (x+1) + "," + y + "," + z;
     if( x <= max_west ) w = "space/" + (max_east) + "," + y + "," + z;
@@ -78,7 +78,7 @@ varargs protected void create(int x, int y, int z) {
     sed = "space/" + LimitTravel(x + 1, max_east) + "," + LimitTravel(y-1, max_north, 1, max_south)+ "," + LimitTravel(z -1, max_up, 1, max_down);
 
 
-    SetGoMessage("You can't travel in that direction.");
+    SetGoMessage("你无法朝那个方向前进。");
 
     if( n ) AddExit("+x", __DIR__ + n);
     if( s ) AddExit("-x", __DIR__ + s);
@@ -116,9 +116,9 @@ varargs void SetLongAndItems(int x, int y, int z) {
     ::SetLongAndItems(x, y, z);
 
     inv = ([]);
-    str = "Outer space. A big, place.";
+    str = "外太空。一个广阔的空间。";
 
-    SetItems( ([ ({ "star","stars" })  : "Oddly steady in their shine, they stand silent witness.",
+    SetItems( ([ ({ "star","stars" })  : "光芒异常稳定，它们静静地见证着一切。",
                 ]) );
 
     SetLong(str);
