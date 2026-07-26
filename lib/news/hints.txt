@@ -1,36 +1,36 @@
-CREATOR TIPS
+创造者提示
 
-* For details on the Quick Creation System:
+* 关于快速创建系统的详细信息：
 http://dead-souls.net/example.html
 
-* If you get stuck in the editor type a single dot on
-a blank line, then enter, then Q, then enter, like this:
+* 如果你在编辑器中卡住了，在空行输入一个点，
+然后按回车，然后输入 Q，再按回车，像这样：
 
 .
 Q
 
 
-* PRIVACY: You can enable and disable a privacy field around
-your workroom with the command: privacy
-This will prevent unwanted visitors from entering,
-except for arches.
+* 隐私：你可以使用 privacy 命令在你的工作室周围
+启用和禁用隐私区域。
+这将防止不速之客进入，
+大天使除外。
 
 
-* Admins: there is a new command: admintool
-It is a menu-driven system that will make your
-life easier and simplify tasks like locking
-the mud, changing the mud's name, creating new
-currency, the works.
+* 管理员：有一个新命令：admintool
+这是一个菜单驱动的系统，将使你的
+生活更轻松，并简化诸如锁定
+泥潭、更改泥潭名称、创建新
+货币等任务。
 
 
-* Edit .plan in your homedir to let others 
-know what you're working on. You can see other 
-people's plans when you finger them.
+* 在你的主目录中编辑 .plan 文件，
+让其他人知道你正在做什么。
+你可以在 finger 其他人时看到他们的计划。
 
 
-* You can test how functions work without having to 
-code a command or object. The "eval" command will let 
-you evaluate functions. For example:
+* 你可以在不编写命令或对象的情况下
+测试函数如何工作。"eval" 命令可以让你
+评估函数。例如：
 ------------------------
 eval return this_player()->GetName()
 eval return find_player("cratylus")
@@ -38,67 +38,67 @@ eval return present("sword",find_player("testylus"))->GetClass()
 ------------------------
 
 
-* The "boards" command will tell you which chat boards 
-have posts you have not read.
+* "boards" 命令将告诉你哪些聊天板
+有你未读的帖子。
 
 
-* Navigate and manipulate your files and directories 
-with the standard unix commands: ls, cd, cp, mv, more, 
-ed, grep. Be careful: just like in unix, if you delete 
-a mud file, it is gone for good.
+* 使用标准 unix 命令来导航和操作你的文件和目录：
+ls、cd、cp、mv、more、ed、grep。
+要小心：就像在 unix 中一样，如果你删除了
+一个泥潭文件，它将永远消失。
 
 
-* To toggle chat channels on and off, just type the 
-channel name. If you're listening to intergossip, for 
-example, you can turn it off by just typing: intergossip
+* 要开启和关闭聊天频道，只需输入
+频道名称。例如，如果你正在收听 intergossip，
+你可以通过输入 intergossip 来关闭它。
 
 
-* Use test characters. If you test stuff on yourself and
-screw up your character file, you will be sad. 
+* 使用测试角色。如果你在自己身上测试东西
+并搞砸了你的角色文件，你会很难过。
 
 
-* To create good code, you should look at what people 
-have already done. Look in /domains/town and 
-/domains/default and you'll find some examples. Copy some 
-to your home directory and use them as templates for 
-your own creations.
+* 要创建好的代码，你应该看看别人
+已经做了什么。查看 /domains/town 和
+/domains/default，你会找到一些示例。复制一些
+到你的主目录，并将它们用作
+你自己创作的模板。
 
 
-* Remember that once you finish editing a file, you 
-have to use the "update" command to load it into memory. 
-If you change a file you've already updated, you have 
-to update it again for the changes to take effect. 
+* 记住，一旦你完成编辑文件，你
+必须使用 "update" 命令将其加载到内存中。
+如果你更改了已经更新的文件，你必须
+再次更新它才能使更改生效。
 
 
-* If you get errors when you try to update a file, use 
-the "elog" command to get clues as to what is wrong. 
-Most of the time it is something simple, like using "=" 
-where you meant to use "==" or forgetting a semicolon. 
-The LPC programming language does not forgive typoes any 
-more than any other programming language.
+* 如果你在尝试更新文件时遇到错误，
+使用 "elog" 命令获取关于问题的线索。
+大多数时候是一些简单的问题，比如在应该使用
+"==" 的地方使用了 "="，或者忘记了分号。
+LPC 编程语言不会比任何其他编程语言
+更宽容拼写错误。
 
 
-* Before changing a file, make a backup copy, for 
-example: cp file.c file.bak This way, if your changes 
-really cause a problem, you can easily restore things 
-to the way they used to be.
+* 在更改文件之前，制作一个备份副本，
+例如：cp file.c file.bak
+这样，如果你的更改真的导致了问题，
+你可以轻松地将事情恢复到原来的状态。
 
 
-* The admins and elders are here to help and answer 
-questions. But remember: if your request is basically 
-"fix my workroom!" or "fix my code!", your request will 
-probably wind up at the bottom of the priority list. We 
-want you to learn to solve coding problems, and fixing 
-your code for you isn't the best way to make that happen. 
-However, we're happy to look over your code and make suggestions.
+* 管理员和长老在这里是为了帮助和回答
+问题。但请记住：如果你的请求基本上是
+"修复我的工作室！"或"修复我的代码！"，
+你的请求可能会排在优先级列表的末尾。
+我们希望你学会解决编码问题，
+而为你修复代码并不是实现这一目标的最佳方式。
+不过，我们很乐意查看你的代码并提出建议。
 
 
-* Permissions and privileges: For security reasons,  all creators
-do not have read/write access to everything. You can read and 
-write any file in your home directory. You only have write 
-permissions within your home directory and the /tmp 
-directory. You can read everything outside the /realms and 
-/secure directories. You can't read anything 
-in other creators' home dirs. Your read access to some items 
-in the /secure directory is limited.
-  If you're full admin, of course, you have full access to everything.
+* 权限和特权：出于安全原因，所有创造者
+并不对所有内容都拥有读/写访问权限。你可以
+读写你主目录中的任何文件。你只在
+主目录和 /tmp 目录中拥有写权限。
+你可以读取 /realms 和 /secure 目录
+之外的所有内容。你不能读取
+其他创造者主目录中的任何内容。
+你对 /secure 目录中某些项目的读取访问权限是受限的。
+  如果你是完全管理员，当然，你对所有内容都有完全访问权限。

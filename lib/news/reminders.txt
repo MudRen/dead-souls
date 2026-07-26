@@ -1,70 +1,70 @@
-CREATOR CHEAT SHEET
+创造者速查手册
 
-make a new room named test1.c south of here:
+在此处南面创建一个名为 test1.c 的新房间：
 create room south test1
 
-make a new weapon named hammer_5.c:
+创建一个名为 hammer_5.c 的新武器：
 create weapon hammer_5.c
 
-make the new weapon respond to the name "hammer":
+让新武器响应名称 "hammer"：
 modify weapon keyname hammer
 
-change the hammer's short description to "The Silver Hammer of Thor":
+将锤子的简短描述更改为 "The Silver Hammer of Thor"：
 modify hammer short The Silver Hammer of Thor
 
-Edit a file:
-ed <file>
+编辑文件：
+ed <文件名>
 
-Load a file:
-update <file>
+加载文件：
+update <文件名>
 
-Copy a file:
-cp <filename1> <filename2>
+复制文件：
+cp <文件名1> <文件名2>
 
-Rename a file:
-mv <filename1> <filename2>
+重命名文件：
+mv <文件名1> <文件名2>
 
-Delete a file:
-rm <file>
+删除文件：
+rm <文件名>
 
-Make an object appear in your inventory:
-clone <file>
-example: clone /domains/campus/obj/key.c
+让一个对象出现在你的背包中：
+clone <文件名>
+示例：clone /domains/campus/obj/key.c
 
-Look at the contents of a file:
-more <file>
-example: more /domains/campus/obj/key.c
+查看文件内容：
+more <文件名>
+示例：more /domains/campus/obj/key.c
 
-Destroy an object:
-dest <object>
-example: dest key
-NOTE: Desting players or other creators is extremely rude.
+销毁一个对象：
+dest <对象>
+示例：dest key
+注意：销毁玩家或其他创造者是非常无礼的行为。
 
-Look in your current directory (your current folder):
+查看当前目录（当前文件夹）：
 ls
 
-Find out what directory you're in:
+查看当前所在目录：
 pwd
 
-Change to a different directory:
-cd <directory>
-example: cd /domains/town/room
+切换到不同的目录：
+cd <目录>
+示例：cd /domains/town/room
 
-Go to your workroom:
+前往你的工作室：
 home
 
-Go to the Creators' Hall
+前往创造者大厅
 wiz
 
-Go to another person or place
-goto <person>
-goto <filename>
-examples:
+前往另一个人或地点
+goto <人物>
+goto <文件名>
+示例：
 goto cratylus
 goto /domains/town/room/basement
 
-Get details about other people's location and activity:
+获取其他人的位置和活动详情：
 people
 
-Bring another person to your location:
-trans <person>
+将另一个人传送到你的位置：
+trans <人物>

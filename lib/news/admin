@@ -1,41 +1,40 @@
-			      Admin news
-			     /news/admin
+				      管理员新闻
+				     /news/admin
 
-ADMIN: 
+管理员提示：
 
-* To change your mud's name, use the command: mudconfig.
-  For example: mudconfig mudname My Cool New Mud
+* 要更改你的泥潭名称，请使用命令：mudconfig。
+  例如：mudconfig mudname My Cool New Mud
 
-* To make someone else an assistant admin also use admintool.
-  Select groups, and modify the assist group.
+* 要让其他人成为助理管理员，也请使用 admintool。
+  选择组，然后修改 assist 组。
 
-* DO NOT try to modify mudos.cfg or groups.cfg unless you know
-  what you're doing. IF you do try, be sure to back up the originals.
+* 不要尝试修改 mudos.cfg 或 groups.cfg，除非你
+  知道自己在做什么。如果你确实要尝试，请务必备份原文件。
 
-* To know what players can do, type:
+* 要了解玩家可以做什么，请输入：
 
 read handbook
 
-* To know what creators can do, type:
+* 要了解创造者可以做什么，请输入：
 
 read manual
 
-* And you really, really have to read chapters 31 through 38 of the
-  manual. They are not long chapters, and you will be very happy
-  you did.
+* 而且你真的、真的需要阅读手册的第31章到第38章。
+  它们并不长，你会很高兴自己读了它们。
 
-* You now have an intermud channel available by default. If you
-  see something like:
+* 你现在默认拥有一个跨泥潭频道。如果你看到
+  类似以下的内容：
 
 Cratylus@Dead Souls %^CYAN%^<dchat>%^RESET%^ Hi there!
 
-  Don't be surprised. "dchat" is an intermud communication channel
-  between Dead Souls muds. To chat, type: 
+  不要惊讶。"dchat" 是 Dead Souls 泥潭之间的
+  跨泥潭通讯频道。要聊天，请输入：
 
 dchat blah blah
 
-  It's new, so don't expect an answer right away.
+  这是新功能，所以不要期望立即得到回复。
 
-* To read this information again, type: news admin
+* 要再次阅读此信息，请输入：news admin
 
-* For common questions: http://dead-souls.net/ds-admin-faq.html
+* 常见问题请访问：http://dead-souls.net/ds-admin-faq.html
