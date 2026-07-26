@@ -7,7 +7,7 @@ protected void create() {
     SetKeyName("apple");
     SetId(({"fruit"}));
     SetAdjectives( ({ "fresh","tasty","tasy-looking","red"}) );
-    SetShort("an apple");
+    SetShort("一个苹果");
     SetLong("This is a fresh, red, tasty-looking apple. ");
     SetMass(5);
     SetStrength(35);

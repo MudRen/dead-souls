@@ -5,14 +5,11 @@ protected void create() {
     room::create();
     SetAmbientLight(25);
     SetClimate("outdoors");
-    SetShort("University Square");
-    SetLong("You are at University Square, a cobblestone-paved crossroads with a large tree in the middle. To the east is the Virtual Campus administrative building entrance. There is a trash can here for keeping the area tidy. North is a path that seems to lead to a small town. The science building is south.");
+    SetShort("大学广场");
+    SetLong("你在大学广场，一个鹅卵石铺就的十字路口，中间有一棵大树。东边是虚拟校区行政楼入口。这里有一个垃圾桶，保持区域整洁。北边有一条小路，似乎通往一个小镇。科学楼在南边。");
     SetItems(([
-                ({"building","administrative building"}) : "This large building houses the offices "+
-                "of Virtual Campus staff, and is where most business is done. It also contains "+
-                "a snack bar, a small store, and student lounge.",
-                "clinic" : "This small clinic is where students in need of medical "+
-                "attention go."
+                ({"building","administrative building"}) : "这座大楼是虚拟校区工作人员的办公场所，大部分事务都在此办理。大楼内还设有快餐吧、小商店和学生休息室。",
+                "clinic" : "这家小诊所是需要医疗护理的学生去的地方。"
                 ]) );
     //SetSkyDomain("town");
     SetExits( ([

@@ -6,12 +6,12 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("Medical Research Lab");
-    SetLong("Medical experiments occur here.");
+    SetShort("医学研究实验室");
+    SetLong("医学实验在此进行。");
     SetClimate("indoors");
     SetProperty("nopeer",1);
-    SetItems( ([ 
-                ({ "door","sliding door" }) : "A strange, metallic sliding door.",
+    SetItems( ([
+                ({ "door","sliding door" }) : "一扇奇怪的金属滑动门。",
                 ]) );
     SetExits( ([
                 "north" : "/domains/campus/room/science5.c",

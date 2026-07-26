@@ -7,8 +7,8 @@ void create(){
     SetKeyName("pull-pin");
     SetId(({"pin","ring"}));
     SetAdjectives(({"pull","grenade","fuse"}));
-    SetShort("a grenade pin");
-    SetLong("This is the pull pin from a hand grenade fuse.");
+    SetShort("手榴弹拉环");
+    SetLong("这是手榴弹引信上的拉环。");
     SetMass(1);
     SetDollarCost(0);
     SetVendorType(VT_TREASURE);

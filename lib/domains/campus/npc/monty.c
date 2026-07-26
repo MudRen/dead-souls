@@ -36,11 +36,8 @@ protected void create() {
     smart = 1;
     SetKeyName("test subject");
     SetId(({"subject"}));
-    SetShort("Test Subject");
-    SetLong("This is a file meant to be inherited by Charles "
-            "and Charly, to ensure their AI code remains in sync. If "
-            "you've examined an NPC and got this description, someone "
-            "has cloned the wrong file.");
+    SetShort("测试对象");
+    SetLong("这是一个供查尔斯和查理继承的文件，以确保他们的AI代码保持同步。如果你检查一个NPC得到了这个描述，说明有人克隆了错误的文件。");
     SetLevel(5);
     SetRace("human");
     SetGender("male");

@@ -7,8 +7,8 @@ void create(){
     SetKeyName(".45 round");
     SetId(({"round","bullet"}));
     SetAdjectives(({".45","caliber","acp","pistol","semiautomatic"}));
-    SetShort("a .45 caliber pistol round");
-    SetLong("This is a .45 caliber bullet for a semiautomatic pistol. It has not been fired.");
+    SetShort(".45口径手枪子弹");
+    SetLong("这是一颗用于半自动手枪的.45口径子弹。它还没有被击发。");
     SetCaliber(45);
     SetFirearmType("auto");
     SetAmmoType("acp");

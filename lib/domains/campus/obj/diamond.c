@@ -7,8 +7,8 @@ void create(){
     SetKeyName("diamond");
     SetAdjectives( ({"fabled", "beautiful", "princess", "princess daphne"}) );
     SetId( ({"gem", "gemstone"}) );
-    SetShort("a beautiful diamond");
-    SetLong("This is the fabled Princess Daphne diamond. It is a beautiful gem.");
+    SetShort("美丽的钻石");
+    SetLong("这就是传说中的达芙妮公主钻石。它是一颗美丽的宝石。");
     SetMass(200);
     SetBaseCost("dollars", 50000);
     SetVendorType(VT_TREASURE);

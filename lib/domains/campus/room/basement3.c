@@ -6,9 +6,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("Secret Lab");
-    SetLong("This tidy workspace between campus levels seems to "+
-            "be some kind of secret laboratory.");
+    SetShort("秘密实验室");
+    SetLong("这个位于校园各层之间的整洁工作空间似乎是某种秘密实验室。");
     SetClimate("indoors");
     SetItems( ([ 
                 ]) );

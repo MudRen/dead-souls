@@ -13,7 +13,7 @@ void create() {
     SetKeyName("box");
     SetId( ({ "box" }) );
     SetAdjectives( ({ "small", "plastic","green", "a" }) );
-    SetShort("a small plastic box");
+    SetShort("小塑料盒");
     SetLong("It is a simple plastic box used to hold things. It is green, and it has a cute Virtual Campus "+
             "logo on it.");
     SetMass(274);

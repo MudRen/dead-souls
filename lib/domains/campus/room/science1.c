@@ -6,8 +6,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("Science Building Hallway");
-    SetLong("This is the LPC University Science Building, where exciting new systems and abstract research happens. South of here is the probability laboratory. The hallway continues west. The building's exit is north, leading to University Square.");
+    SetShort("科学楼走廊");
+    SetLong("这是LPC大学科学楼，令人兴奋的新系统和抽象研究在此进行。南边是概率实验室。走廊向西延伸。大楼出口在北边，通往大学广场。");
     SetExits( ([ 
                 "north" : "/domains/campus/room/usquare",
                 "south" : "/domains/campus/room/wiz_lab",

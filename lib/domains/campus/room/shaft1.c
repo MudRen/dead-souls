@@ -7,8 +7,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(10);
-    SetShort("Elevator shaft");
-    SetLong("Elevator shaft, first floor");
+    SetShort("电梯井");
+    SetLong("电梯井，一楼");
     SetClimate("indoors");
     SetItems( ([ 
                 ]) );

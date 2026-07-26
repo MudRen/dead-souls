@@ -18,8 +18,8 @@ void create(){
     SetKeyName("note");
     SetId(({"paper","slip"}));
     SetAdjectives(({"small"}));
-    SetShort("a note");
-    SetLong("A note with writing on it. Try: read note \n");
+    SetShort("一张纸条");
+    SetLong("一张写着字的纸条。试试：read note \n");
     SetMass(0);
     SetDollarCost(0);
     SetVendorType(VT_TREASURE);

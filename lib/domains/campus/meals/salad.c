@@ -6,7 +6,7 @@ protected void create() {
     meal::create();
     SetKeyName("dish");
     SetId(({"salad","dish of salad","dish"}));
-    SetShort("a little dish with a salad in it");
+    SetShort("一碟沙拉");
     SetLong("This expensive little dish consists of some wilted lettuce "+
             "and 2 orange-colored tomato slices. It is, however, not as bad "+
             "for your heart as the hamburger in the snack bar.");

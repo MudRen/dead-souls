@@ -70,8 +70,8 @@ protected void create() {
     SetKeyName("kleiner");
     SetId(({"npc","mob","character","scientist","genius"}));
     SetAdjectives(({"old", "white haired","beloved"}));
-    SetShort("Dr. Kleiner");
-    SetLong("An old, white-haired scientist, Dr. Isaac Kleiner is a beloved campus personality with his affable, kind nature and genius for exotechnology.");
+    SetShort("克莱纳博士");
+    SetLong("艾萨克·克莱纳博士是一位白发苍苍的老科学家，以其和蔼可亲的性格和外向技术方面的天赋而深受校园喜爱。");
     SetPacifist(1);
     SetLevel(10);
     SetWimpy(95);

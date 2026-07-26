@@ -39,8 +39,8 @@ void create() {
     sentient::create();
     SetKeyName("Tim");
     SetId(({"tim"}));
-    SetShort("Tim");
-    SetLong("Tim is a student in the Virtual Campus.");
+    SetShort("蒂姆");
+    SetLong("蒂姆是虚拟校区的学生。");
     SetLevel(5);
     SetRace("human");
     SetGender("male");

@@ -7,8 +7,8 @@ void create() {
     SetKeyName("locker");
     SetId(({"locker"}));
     SetAdjectives(({"metal","tall","school"}));
-    SetShort("a tall metal locker");
-    SetLong("This is a large metal locker.");
+    SetShort("高大的金属储物柜");
+    SetLong("这是一个大型金属储物柜。");
     SetMass(3000);
     SetDollarCost(50);
     SetMaxCarry(500);

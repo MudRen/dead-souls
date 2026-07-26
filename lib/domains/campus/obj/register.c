@@ -7,8 +7,8 @@ void create() {
     SetKeyName("register");
     SetId(({"register","machine"}));
     SetAdjectives(({"cash","metal"}));
-    SetShort("a cash register");
-    SetLong("This is a metal machine used for cash transactions.");
+    SetShort("收银机");
+    SetLong("这是一台用于现金交易的金属机器。");
     SetMass(200);
     SetBaseCost("silver",50);
     SetMaxCarry(10);

@@ -7,10 +7,8 @@ protected void create() {
     sentient::create();
     SetKeyName("Dr. Seth Brundle");
     SetId(({"seth","brundle","Dr. Brundle","Seth","Brundle","seth brundle", "Seth Brundle"}));
-    SetShort("Dr. Seth Brundle");
-    SetLong("Dr. Brundle is a tall, lanky scientist with an olive complexion "+
-            "and dark, piercing eyes. He seems extremely upset, and hard at work. He looks "+
-            "rumpled, wired, and really nervous.");
+    SetShort("塞斯·布伦德尔博士");
+    SetLong("布伦德尔博士是一位身材高大、瘦削的科学家，肤色橄榄色，有着深邃的黑眼睛。他似乎非常不安，正在努力工作。他看起来衣衫不整、精神紧张、非常焦虑。");
     SetInventory(([
                 "/domains/campus/obj/omni" : 1,
                 "/domains/campus/obj/labkey" : 1,

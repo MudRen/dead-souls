@@ -13,14 +13,9 @@ protected void create() {
     SetKeyName("yulia");
     SetId( ({ "vendor","secretary","assistant","manager" }) );
     SetAdjectives( ({ "executive","medical","guild" }) );
-    SetShort("Yulia, the clinic assistant");
+    SetShort("尤莉亚，诊所助理");
     SetLevel(12);
-    SetLong("Yulia is typical of office assistants: she is a bit "+
-            "arrogant, officious, and brusque; but she appears "+
-            "to be a competent enough secretary. "+
-            "She is the person you will buy a treatment slip "+
-            "from. Read the list on the wall for the slips "+
-            "available.");
+    SetLong("尤莉亚是典型的办公室助理：她有点傲慢、爱管闲事、态度粗鲁；但她看起来是一个足够称职的秘书。她是你购买治疗单的人。阅读墙上的列表了解可用的治疗单。");
     SetGender("female");
     SetMorality(40);
     SetRace("human");

@@ -9,10 +9,8 @@ protected void create() {
     item::create();
     SetKeyName("omni");
     SetId(({"omni","Omni","device"}));
-    SetShort("an omni");
-    SetLong("This is a small, round metal device, copper in color, "+
-            "and similar in appearance to a pocket watch. There is a blinking red light "+
-            "next to the tiny metal button at its top.");
+    SetShort("万能遥控器");
+    SetLong("这是一个小型圆形金属装置，铜色，外观类似于怀表。顶部小金属按钮旁边有一个闪烁的红灯。");
     SetMass(10);
     SetDollarCost(300);
     AddItem("button", "A button on the omni.");
@@ -70,7 +68,7 @@ void heart_beat(){
         this_object()->SetLong("This is a small, round metal device, copper in color, "+
                 "and similar in appearance to a pocket watch. There is a blinking red light "+
                 "next to the tiny metal button at its top. It is glowing a dull red.");
-        this_object()->SetShort("an omni (glowing)");
+        this_object()->SetShort("万能遥控器（发光中）");
     }
 }
 

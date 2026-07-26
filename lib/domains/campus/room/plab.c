@@ -5,20 +5,13 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Probability Lab Three");
-    SetLong("This is a clean, antiseptic lab with "
-            "gleaming white walls. On the east wall are "
-            "three doors: "
-            "one %^RED%^red%^RESET%^, "
-            "one %^GREEN%^green%^RESET%^, "
-            "one %^BLUE%^blue%^RESET%^. "
-            "\n"
-            "%^GREEN%^There is a large sign on the wall you can read.%^RESET%^");
+    SetShort("概率实验室三");
+    SetLong("这是一间干净、无菌的实验室，墙壁洁白发亮。东墙上有三扇门：一扇%^RED%^红色%^RESET%^的，一扇%^GREEN%^绿色%^RESET%^的，一扇%^BLUE%^蓝色%^RESET%^的。\n%^GREEN%^墙上有一块大告示牌，你可以阅读。%^RESET%^");
     SetItems( ([
-                ({ "wall","walls","north wall"}) : "Shiny, white laboratory walls.",
-                "red room" : "There's no red room here.",
-                "green room" : "There's no green room here.",
-                "blue room" : "There's no blue room here.",
+                ({ "wall","walls","north wall"}) : "闪亮的白色实验室墙壁。",
+                "red room" : "这里没有红房间。",
+                "green room" : "这里没有绿房间。",
+                "blue room" : "这里没有蓝房间。",
                 ]) );
     SetObviousExits("west");
     SetInventory(([

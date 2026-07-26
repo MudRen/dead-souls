@@ -8,7 +8,7 @@ protected void create(){
     SetKeyName("staff");
     SetId( ({ "staff", "stick", "pole"  }) );
     SetAdjectives( ({ "wood","wooden" }) );
-    SetShort("a wooden staff");
+    SetShort("木杖");
     SetLong("This staff is old, weathered, "+
             "and lumpy. However, it feels quite sturdy "+
             "and solid.");

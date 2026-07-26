@@ -13,9 +13,8 @@ void create() {
     SetKeyName("ammunition box");
     SetId(({"can","box"}));
     SetAdjectives(({"metal","ammo","ammunition","large"}));
-    SetShort("an ammo box");
-    SetLong("This is a large metal box containing various kinds "+
-            "of ammunition. ");
+    SetShort("弹药箱");
+    SetLong("这是一个大型金属箱，装有各种弹药。");
     SetMass(200);
     SetDollarCost(50);
     SetMaxCarry(5000);

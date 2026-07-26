@@ -13,8 +13,8 @@ void create(){
     SetKeyName("building map");
     SetId(({"map","map of the administrative building","small map of the administrative building"}));
     SetAdjectives(({"small"}));
-    SetShort("a small map of the administrative building");
-    SetLong("A map of the administrative building. Try: read map \n");
+    SetShort("行政楼小地图");
+    SetLong("行政楼的地图。试试：read map \n");
     SetMass(0);
     SetDollarCost(0);
     SetVendorType(VT_TREASURE);

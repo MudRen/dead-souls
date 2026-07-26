@@ -6,8 +6,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("hallway bend");
-    SetLong("This is a bend in the hallway. The main Science Building hallway is north of here. A smaller hallway runs west from here.");
+    SetShort("走廊拐角");
+    SetLong("这是走廊的拐角处。科学楼主走廊在北边。一条较小的走廊从这里向西延伸。");
     SetClimate("indoors");
     SetExits( ([
                 "west" : "/domains/campus/room/science5",

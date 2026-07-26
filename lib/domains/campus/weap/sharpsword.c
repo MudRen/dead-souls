@@ -15,7 +15,7 @@ protected void create() {
     SetKeyName("sharp sword");
     SetId( ({ "sword", "short sword", "shortsword"}));
     SetAdjectives( ({ "short","sharp","fine"}));
-    SetShort("a sharp sword");
+    SetShort("锋利的剑");
     SetLong("A fine, sharp, short sword.");
     SetMass(150);
     SetDollarCost(50);

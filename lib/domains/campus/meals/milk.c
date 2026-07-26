@@ -35,7 +35,7 @@ protected void create()  {
     SetKeyName("milk");
     SetId("milk");
     SetAdjectives(({"milk1","milk2"}));
-    SetShort("a carton of milk");
+    SetShort("一盒牛奶");
     SetMass(10);
     SetBaseCost("silver", 1);
     SetMealType(MEAL_DRINK);

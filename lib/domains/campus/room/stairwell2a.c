@@ -6,8 +6,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("Science Building Stairwell, First floor");
-    SetLong("This is the first floor stairwell of the University Science Building.");
+    SetShort("科学楼楼梯间，一楼");
+    SetLong("这是大学科学楼一楼的楼梯间。");
     SetClimate("indoors");
     SetItems( ([ 
                 ]) );

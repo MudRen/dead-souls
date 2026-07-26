@@ -7,7 +7,7 @@ protected void create() {
     SetKeyName("bad apple");
     SetId(({"fruit","apple"}));
     SetAdjectives( ({ "foul","yucky","rotten-looking","browned","rotten"}) );
-    SetShort("a rotten apple");
+    SetShort("一个烂苹果");
     SetLong("This is a foul, browned, rotten-looking apple. ");
     SetMass(5);
     SetStrength(-5);

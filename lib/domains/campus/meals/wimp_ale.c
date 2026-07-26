@@ -12,7 +12,7 @@ protected void create() {
     meal::create();
     SetKeyName("ale");
     SetId( ({ "bottle", "ale", "praxis ale" }) );
-    SetShort("a bottle of ale");
+    SetShort("一瓶麦酒");
     SetLong("A nice bottle of Lars' famous Praxis Ale.");
     SetMass(60);
     SetMealType(MEAL_DRINK | MEAL_ALCOHOL);

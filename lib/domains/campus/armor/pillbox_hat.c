@@ -7,7 +7,7 @@ protected void create(){
     SetKeyName("pillbox hat");
     SetId(({"hat"}));
     SetAdjectives(({"pillbox"}));
-    SetShort("a light blue pillbox hat");
+    SetShort("浅蓝色药盒帽");
     SetLong("A cute little pillbox hat, light blue in "+
             "color. The inside appears to be lined with leopard "+
             "skin. Looks uncomfortable.");

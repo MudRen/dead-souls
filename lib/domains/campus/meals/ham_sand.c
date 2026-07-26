@@ -13,7 +13,7 @@ protected void create() {
     meal::create();
     SetKeyName("sandwich");
     SetId(({"sandwich","ham sandwich"}));
-    SetShort("a ham sandwich");
+    SetShort("一个火腿三明治");
     SetLong("This is a rather plain ham sandwich on white bread.");
     SetMass(10);
     SetStrength(25);

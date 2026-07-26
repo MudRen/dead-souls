@@ -7,7 +7,7 @@ protected void create(){
     SetKeyName("pink dress");
     SetId(({"dress","outfit","costume"}));
     SetAdjectives(({"pink","cotton","lovely","light"}));
-    SetShort("a lovely pink dress");
+    SetShort("可爱的粉色连衣裙");
     SetLong("This is a lovely little pink dress of simple, "+
             "efficient design, yet obviously comfortable and practical. The hem is at "+
             "the knees, and the fabric feels soft and light yet strong, like some sort of cotton.");

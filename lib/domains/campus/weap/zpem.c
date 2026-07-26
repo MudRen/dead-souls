@@ -15,7 +15,7 @@ protected void create() {
     SetKeyName("manipulator");
     SetId(({"gun","zpem"}));
     SetAdjectives(({"zero","point","energy","bulky","boxy","futuristic"}));
-    SetShort("a zero-point energy manipulator");
+    SetShort("零点能量操纵器");
     SetLong("A large, bulky device appearing to be a kind of boxy, "
             "futuristic gun.");
     set_heart_beat(1);

@@ -10,20 +10,16 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(40);
-    SetShort("Foyer");
-    SetLong("This is the west end of the main hallway "+
-            "in the Virtual Campus administrative building. The hallway "+
-            "continues to the east of here. West is the building exit, to "+
-            "the world outside.\n%^GREEN%^There is a large sign on the wall "+
-            "you can read.%^RESET%^");
+    SetShort("门厅");
+    SetLong("这里是虚拟校区行政楼主走廊的西端。走廊向东延伸。西边是大楼出口，通往外面的世界。\n%^GREEN%^墙上有一块大告示牌，你可以阅读。%^RESET%^");
     SetExits( ([
                 "west" : "/domains/campus/room/usquare",
                 "east" : "/domains/campus/room/corridor3"
                 ]) );
-    SetItems( (["corridor" : "This is a carpeted corridor, leading west.",
-                "floor" : "The carpet is purple, and somewhat institutional.",
-                "sign":"A large sign on the wall. To read it, 'read sign'.",
-                "carpet" : "The carpet is purple, and somewhat institutional."]) );
+    SetItems( (["corridor" : "这是一条铺着地毯的走廊，向西延伸。",
+                "floor" : "地毯是紫色的，颇有几分机构风格。",
+                "sign":"墙上的一块大告示牌。输入 'read sign' 来阅读。",
+                "carpet" : "地毯是紫色的，颇有几分机构风格。"]) );
     SetRead("sign", (: readSign :) );
     SetProperty("no attack", 1);
 }

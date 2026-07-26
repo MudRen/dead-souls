@@ -8,7 +8,7 @@ protected void create(){
     SetKeyName("overalls");
     SetId(({"overalls","pants", "trousers"}));
     SetAdjectives(({"worn","abused","pair of","set of"}));
-    SetShort("a pair of overalls");
+    SetShort("一条工装裤");
     SetLong("This is a set of worn and abused overall trousers with large pockets "
             "for carrying stuff.");
     SetMass(50);

@@ -14,7 +14,7 @@ protected void create() {
     SetKeyName("tree");
     SetId(({"oak"}));
     SetAdjectives(({"large"}));
-    SetShort("a large tree");
+    SetShort("一棵大树");
     SetLong("This is a very large tree. It has been around since long "+
             "before the Virtual Campus, and looks like it will be around long "+
             "after, as well.");

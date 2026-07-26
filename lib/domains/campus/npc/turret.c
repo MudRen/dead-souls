@@ -102,10 +102,8 @@ protected void create() {
     SetKeyName("gun turret");
     SetId( ({"bot", "robot","turret"}) );
     SetAdjectives(({"non-player", "non player"}));
-    SetShort("a gun turret");
-    SetLong("This is a four foot tall metal turret on tripod legs "+
-            "designed to automatically acquire and engage any moving "
-            "targets with its massive 20 millimeter guns.");
+    SetShort("炮塔");
+    SetLong("这是一个四英尺高的金属炮塔，安装在三脚架上，设计用于自动捕获和攻击任何移动目标，配备大型20毫米火炮。");
     SetPosition(POSITION_STANDING);
     SetLevel(1);
     SetPacifist(1);

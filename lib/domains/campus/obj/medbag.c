@@ -13,9 +13,8 @@ void create() {
     SetKeyName("bag");
     SetId( ({ "medical bag" }) );
     SetAdjectives( ({ "small", "cloth", "a" }) );
-    SetShort("a small cloth bag");
-    SetLong("It is a simple cloth bag used to hold things. Printed on it is: "
-            "\"Property of A.S. Clepius\"");
+    SetShort("小布袋");
+    SetLong("这是一个简单的布袋，用来装东西。上面印着：\"A.S. Clepius的财产\"");
     SetMass(274);
     SetDollarCost(1);
     SetMaxCarry(100);

@@ -8,7 +8,7 @@ protected void create(){
     SetKeyName("workboot");
     SetAdjectives( ({"strong", "brown", "leather", "left", "work", "heavy"}) );
     SetId( ({"boot"}) );
-    SetShort("a brown leather workboot");
+    SetShort("棕色皮工作靴");
     SetLong("A heavy, brown leather workboot with strong ankle and sole support. It is designed for wear on the left foot.");
     SetMass(40);
     SetBaseCost("silver",25);

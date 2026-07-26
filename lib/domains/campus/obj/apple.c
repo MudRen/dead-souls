@@ -7,8 +7,8 @@ void create(){
     SetKeyName("rotten apple");
     SetId( ({"apple","fruit"}) );
     SetAdjectives( ({"rotten","foul-smelling","dried-up","browned","brown"}) );
-    SetShort("a rotten apple");
-    SetLong("This is browned, foul-smelling, dried-up apple.");
+    SetShort("腐烂的苹果");
+    SetLong("这是一个变 brown、恶臭、干瘪的苹果。");
     SetMass(5);
     SetDollarCost(0);
     SetVendorType(VT_TREASURE);

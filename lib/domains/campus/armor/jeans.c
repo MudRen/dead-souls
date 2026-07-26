@@ -7,7 +7,7 @@ protected void create(){
     SetKeyName("blue jeans");
     SetId(({"jeans","pants","blue jeans","bluejeans","denim"}));
     SetAdjectives(({"blue","denim","comfortable","broken in","broken-in"}));
-    SetShort("a pair of blue jeans");
+    SetShort("一条蓝色牛仔裤");
     SetLong("A comfortable pair of denim blue jeans.");
     SetMass(5);
     SetDollarCost(1);

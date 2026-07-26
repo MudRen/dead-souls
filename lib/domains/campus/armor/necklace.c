@@ -9,7 +9,7 @@ protected void create(){
     SetKeyName("gold necklace");
     SetId(({"necklace"}));
     SetAdjectives( ({"gold","beautiful"}) );
-    SetShort("a gold necklace");
+    SetShort("金项链");
     SetLong("This is a simple and beautiful gold necklace."); 
     SetMass(1);
     SetDollarCost(5000);

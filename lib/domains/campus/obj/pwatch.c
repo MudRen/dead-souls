@@ -10,11 +10,8 @@ protected void create(){
     armor::create();
     SetKeyName("pocket watch");
     SetId(({"watch","pocketwatch","pocket watch","timepiece"}));
-    SetShort("a gold pocket watch");
-    SetLong("This is a beautifully decorated and intricately carved "+
-            "pocket watch made of gold. It glows with an almost surreal, deep golden "+
-            "luster. It is quietly ticking the seconds, and it looks like you can get the "+
-            "accurate time by checking the watch.");
+    SetShort("金怀表");
+    SetLong("这是一块装饰精美、雕刻精致的金怀表。它散发着近乎超现实的深金色光泽。它静静地滴答作响，看起来你可以通过查看手表来获取准确时间。");
     SetMass(10);
     SetDollarCost(1);
     SetProtection(BLUNT,1);

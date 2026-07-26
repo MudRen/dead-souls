@@ -12,7 +12,7 @@ protected void create() {
     meal::create();
     SetKeyName("gatorade");
     SetId(({"gatorade","drink","sports drink","bottle"}));
-    SetShort("a bottle of gatorade");
+    SetShort("一瓶佳得乐");
     SetLong("This is a bottle of lemon-lime Gatorade. ");
     SetMass(60);
     SetBaseCost("silver", 2);

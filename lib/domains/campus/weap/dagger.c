@@ -15,7 +15,7 @@ protected void create() {
     SetKeyName("sharp dagger");
     SetId( ({ "dagger"}));
     SetAdjectives( ({ "sharp","fine"}));
-    SetShort("a sharp dagger");
+    SetShort("锋利的匕首");
     SetLong("A dagger.");
     SetMass(150);
     SetDollarCost(50);

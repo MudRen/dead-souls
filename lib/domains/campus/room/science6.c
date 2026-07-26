@@ -21,11 +21,11 @@ int PreExit(mixed args...){
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("Secondary Science Hallway West");
-    SetLong("This is the secondary hallway in the LPC University Science Building. The hallway runs east from here. To the north is a sliding door. To the west is an elevator door.");
+    SetShort("科学楼副走廊，西段");
+    SetLong("这是LPC大学科学楼的副走廊。走廊从这里向东延伸。北边是一扇滑动门。西边是一扇电梯门。");
     SetClimate("indoors");
     SetItems( ([
-                ({ "door","sliding door" }) : "A strange, metallic sliding door.",
+                ({ "door","sliding door" }) : "一扇奇怪的金属滑动门。",
                 ]) );
     SetExits( ([
                 "south" : "/domains/campus/room/stairwell2a",

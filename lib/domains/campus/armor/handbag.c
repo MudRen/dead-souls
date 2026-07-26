@@ -10,7 +10,7 @@ protected void create() {
     SetKeyName("backpack");
     SetId(({"bookbag","bag","pack"}));
     SetAdjectives(({"leather","soft","brown"}));
-    SetShort("a soft, brown leather backpack");
+    SetShort("柔软的棕色皮背包");
     SetLong("This is a medium-sized backpack made of soft brown leather. "+
             "It seems suitable for carrying books around, for the busy college student. "+
             "It features wide, comfortable straps for convenient wear.");

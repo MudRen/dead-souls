@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("trashcan");
     SetId(({"can","container"}));
     SetAdjectives("trash");
-    SetShort("a trashcan");
-    SetLong("A container for discarding waste.");
+    SetShort("垃圾桶");
+    SetLong("一个丢弃废物的容器。");
     SetMass(1500);
     SetDollarCost(15);
     SetMaxCarry(900);

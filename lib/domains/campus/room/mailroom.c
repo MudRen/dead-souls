@@ -10,19 +10,15 @@ protected void create(){
     SetTown("campus");
     SetClimate("indoors");
     SetAmbientLight(40);
-    SetShort("the campus mail room");
-    SetLong("This is a small office containing rows of mailboxes and "+
-            "various other postal implements. There is a sign on the wall behind the "+
-            "counter, outlining instructions for how to mail other users.");
-    SetItems( ([ 
-                ({"box","boxes","mailboxes","mailbox"}) : "Rows of mailboxes for "+
-                "the denizens of LPC University.",
-                "sign" : "This is a sign on the wall describing how to mail messages.",
-                ({"wall","walls"}) : "Gray-painted institutional walls of the kind you'd "+
-                "expect in a post office.",
-                "implements" : "Ink, paper, etc.",
-                "instructions" : "Try reading them.",
-                "counter" : "A counter folks use to lean on while writing messages." ]) );
+    SetShort("校园邮件室");
+    SetLong("这是一间小办公室，里面有一排排信箱和各种其他邮政用具。柜台后面的墙上有一块告示牌，概述了如何给其他用户寄信的说明。");
+    SetItems( ([
+                ({"box","boxes","mailboxes","mailbox"}) : "为LPC大学居民准备的一排排信箱。",
+                "sign" : "墙上的一块告示牌，描述如何寄送邮件。",
+                ({"wall","walls"}) : "灰色油漆的机构墙壁，就像你在邮局看到的那种。",
+                "implements" : "墨水、纸张等。",
+                "instructions" : "试试阅读它们。",
+                "counter" : "人们写信时用来倚靠的柜台。" ]) );
     SetExits( ([ 
                 ]) );
     SetProperty("no attack", 1);

@@ -7,35 +7,18 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(10);
-    SetShort("sewer");
-    SetLong("You are in the stinking underground tunnels of "+
-            "a sewer system. The air here is quite foul, "+
-            "and periodic blasts of steam from wall-mounted vents make it "+
-            "very hot and very humid. There is a foot-high stream of dark liquid "+
-            "covering the bottom of this tunnel, running east to west along "+
-            "the tunnel's length.");
-    SetItems( ([ ({"tunnel","tunnels"}) : "You are in a sewer tunnel."+
-                "It's foul, dark, and hot.",
-                ({"sewer","sewer system"}) : "Though evidently in good repair "+
-                "and of modern construction, this is still a sewer tunnel, "+
-                "and it's hostile to human comfort.",
-                ({"steam","vent","vents","wall-mounted vents"}): "Apparently "+
-                "there is industrial machinery nearby that exhausts hot steam "+
-                "through vents in the walls.",
-                "air" : "It is rank with the reek of decomposing waste.",
-                ({"wall","walls"}) : "The walls of the sewer tunnel are made "+
-                "of concrete and appear well-built and sturdy.", 
-                ({"stream","liquid","stream of liquid","dark liquid"}) : "Whatever "+
-                "this stuff is, water is not its main component. It's some kind "+
-                "of foul-smelling liquid waste, flowing along the bottom "+
-                "of the tunnel.",
-                ({"sewage","waste","garbage"}) : "It appears that the fluid on the "+
-                "bottom of this tunnel is the result of garbage and waste "+
-                "processing. In liquid form, this garbage flows "+
-                "west from here.",
+    SetShort("下水道");
+    SetLong("你在下水道系统恶臭的地下隧道里。这里的空气相当污浊，墙壁通风口周期性地喷出蒸汽，使这里非常闷热潮湿。一英尺高的深色液体覆盖着隧道底部，沿着隧道从东向西流淌。");
+    SetItems( ([ ({"tunnel","tunnels"}) : "你在下水道隧道里。这里污浊、黑暗、炎热。",
+                ({"sewer","sewer system"}) : "虽然明显维护良好且是现代建筑，但这仍然是下水道隧道，对人类的舒适度很不友好。",
+                ({"steam","vent","vents","wall-mounted vents"}): "显然附近有工业机械通过墙壁上的通风口排出热蒸汽。",
+                "air" : "空气中弥漫着腐烂废物的恶臭。",
+                ({"wall","walls"}) : "下水道隧道的墙壁由混凝土建造，看起来坚固耐用。",
+                ({"stream","liquid","stream of liquid","dark liquid"}) : "不管这是什么东西，水不是它的主要成分。它是某种恶臭的液体废物，沿着隧道底部流动。",
+                ({"sewage","waste","garbage"}) : "看来隧道底部的液体是垃圾和废物处理的结果。液态的垃圾从这里向西流动。",
                 ]) );
-    SetSmell( ([ "default" : "The stench of sewage and waste hangs here."]) );
-    SetListen("default","You hear faint echoes of dripping water.");
+    SetSmell( ([ "default" : "污水和废物的恶臭弥漫在这里。"]) );
+    SetListen("default","你听到滴水的微弱回声。");
     SetExits( ([ "west" : "/domains/campus/room/sewer.c",
                 "east" : "/domains/campus/room/sewer2.c"
                 ]) );

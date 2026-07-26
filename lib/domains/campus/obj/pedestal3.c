@@ -10,10 +10,8 @@ void create(){
     SetKeyName("button pedestal");
     SetId( ({"pedestal","altar"}) );
     SetAdjectives( ({"cylindrical","round","waist-high"}) );
-    SetShort("a pedestal with a red button on it");
-    SetLong("This is a cylindrical pedestal, about waist-high, "
-            "of mysterious composition. A button is "
-            "on it.");
+    SetShort("带红色按钮的基座");
+    SetLong("这是一个圆柱形基座，大约齐腰高，由神秘材料制成。上面有一个按钮。");
     SetItems( ([
                 ({"button","red button"})  : "A red button."
                 ]) );

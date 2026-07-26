@@ -8,7 +8,7 @@ protected void create(){
     SetKeyName("baseball cap");
     SetAdjectives( ({"red", "old", "greasy", "dirty", "baseball", "cat"}) );
     SetId( ({"cap", "hat", "cover"}) );
-    SetShort("a red baseball cap");
+    SetShort("红色棒球帽");
     SetLong("A greasy, old, dirty baseball cap that was once mostly red, with "
             "the word 'CAT' on the front.");
     SetMass(5);

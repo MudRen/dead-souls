@@ -13,8 +13,8 @@ inherit LIB_ROOM;
 
 void create() {
     room::create();
-    SetShort("the void");
-    SetLong("The void.  Go down to get out.");
+    SetShort("虚空");
+    SetLong("虚空。向下离开。");
     SetExits( ([ "down" : "/domains/campus/room/start" ]) );
 }
 void init(){

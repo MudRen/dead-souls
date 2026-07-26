@@ -16,7 +16,7 @@ protected void create() {
     SetKeyName("white glove");
     SetId( ({ "glove" }) );
     SetAdjectives( ({ "right", "white" ,"simple","elegant"}) );
-    SetShort("a white glove");
+    SetShort("白手套");
     SetLong("A simple, yet elegant white glove with five fingers for the right hand.");
     SetDamagePoints(75);
     SetVendorType(VT_ARMOR);

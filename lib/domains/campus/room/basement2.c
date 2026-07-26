@@ -14,24 +14,16 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(5);
-    SetShort("the basement");
-    SetLong("You are in the basement of the LPC University administrative building. It "+
-            "is very dark here, and rather damp. The fluorescent lighting seems to have "+
-            "completely failed. The east side "+
-            "of the basement seems somewhat better lit. The west wall seems heavily "+
-            "smudged...it's even grungier than the rest of this place.");
+    SetShort("地下室");
+    SetLong("你在LPC大学行政楼的地下室里。这里非常黑暗，相当潮湿。荧光灯似乎已经完全损坏。地下室东侧似乎光线稍好一些。西墙看起来有很多污渍……比这里的其他地方更脏。");
     SetItems(([
-                "basement" : "This is a dark, creepy basement.",
-                "building" : "You are in the basement of the LPC University administrative building.",
-                ({"wall","west wall"}) : "The wall seems to have a lot of smudged handprints "+
-                "on it.",
-                ({"dark","darkness"})  : "There's a lot of it, all around.",
-                ({"light","lighting","fluorescent lighting"}) : "The lighting here has failed "+
-                "completely.",
-                ({"prints","print","handprint","handprints"}) : "Smudgy handprints, as if someone "+
-                "had been against the wall here.",
-                "air" : "It feels heavy, making it hard to breathe. It's hard to imagine "+
-                "who or what would enjoy spending time down here."]));
+                "basement" : "这是一个黑暗、令人毛骨悚然的地下室。",
+                "building" : "你在LPC大学行政楼的地下室里。",
+                ({"wall","west wall"}) : "墙上似乎有很多模糊的手印。",
+                ({"dark","darkness"})  : "到处都是黑暗。",
+                ({"light","lighting","fluorescent lighting"}) : "这里的照明已经完全损坏。",
+                ({"prints","print","handprint","handprints"}) : "模糊的手印，好像有人曾靠在墙上。",
+                "air" : "空气沉重，让人难以呼吸。很难想象谁会喜欢待在这里。"]));
     SetExits( ([
                 "east" : "/domains/campus/room/basement.c",
                 ]) );

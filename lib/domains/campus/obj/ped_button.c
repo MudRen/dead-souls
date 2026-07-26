@@ -34,8 +34,8 @@ protected void create() {
     SetKeyName("button");
     SetId(({"button","button on the pedestal" }));
     SetAdjectives("pedestal", "red","shiny","candylike","candy-like","big");
-    SetShort("a big red button");
-    SetLong("It is a red, shiny, candy-like button.");
+    SetShort("红色大按钮");
+    SetLong("这是一个红色、闪亮、像糖果一样的按钮。");
     //SetPress((: PushButton :));
     SetPress(tell_object(this_player(),"hi!"));
 }

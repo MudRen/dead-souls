@@ -8,7 +8,7 @@ protected void create(){
     SetKeyName("identification badge");
     SetId(({"badge","pass","id","i.d.","pass of dr kleiner"}));
     SetAdjectives( ({"clip on", "plastic", "id","i.d.","access","kleiner"}) );
-    SetShort("an identification badge");
+    SetShort("身份徽章");
     SetLong("This clip-on plastic badge grants the owner access to "+
             "restricted areas. There is a photo of someone on it, as well "+
             "as some writing.");

@@ -9,7 +9,7 @@ protected void create() {
     SetKeyName("backpack");
     SetId(({"bag","pack"}));
     SetAdjectives(({"sturdy","green","olive","olive-green","od green","od-green"}));
-    SetShort("a sturdy, olive-green backpack");
+    SetShort("结实的橄榄绿背包");
     SetLong("This is a large, sturdy backpack made of some sort of "
             "strong, canvas-like material. It appears suitable "+
             "for just about any adventure you'd find yourself in.");

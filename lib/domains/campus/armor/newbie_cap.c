@@ -12,7 +12,7 @@ protected void create(){
     SetKeyName("baseball cap");
     SetId(({"cap","hat"}));
     SetAdjectives(({"baseball"}));
-    SetShort("a baseball cap");
+    SetShort("棒球帽");
     SetLong("This baseball cap looks pretty normal, except "+
             "the trim is fine corinthian leather and the bill "+
             "is plated in what appears to be pure mithril. There is some "+

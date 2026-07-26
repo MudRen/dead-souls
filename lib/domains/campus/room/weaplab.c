@@ -6,8 +6,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("Weapons Lab");
-    SetLong("Weapons are tested here.");
+    SetShort("武器实验室");
+    SetLong("武器在此进行测试。");
     SetClimate("indoors");
     SetProperty("nopeer",1);
     SetItems( ([ 

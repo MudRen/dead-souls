@@ -13,9 +13,8 @@ void create() {
     SetKeyName("redbox");
     SetId( ({ "box","redbox","rbox" }) );
     SetAdjectives( ({ "small", "plastic","red", "a" }) );
-    SetShort("a small, %^RED%^red%^RESET%^ plastic box");
-    SetLong("It is a simple plastic box used to hold things. It is %^RED%^red%^RESET%^, and it has a cute Virtual Campus "+
-            "logo on it.");
+    SetShort("小%^RED%^红色%^RESET%^塑料盒");
+    SetLong("这是一个简单的塑料盒，用来装东西。它是%^RED%^红色%^RESET%^的，上面印有可爱的虚拟校区标志。");
     SetMass(274);
     SetDollarCost(1);
     SetMaxCarry(100);

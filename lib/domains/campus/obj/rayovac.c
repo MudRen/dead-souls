@@ -8,8 +8,8 @@ void create(){
     SetKeyName("flashlight");
     SetId( ({"fl","flashlight","light","torch","flashlite"}) );
     SetAdjectives( ({"plastic","small","cheap","rayovac","Rayovac"}) );
-    SetShort( "a small, plastic flashlight" );
-    SetLong("This is a cheap Rayovac brand flashlight.");
+    SetShort( "塑料小手电筒" );
+    SetLong("这是一个廉价的Rayovac品牌手电筒。");
     SetMass(20);
     SetDollarCost(10);
     SetLightLevel(6);

@@ -7,8 +7,8 @@ void create(){
     SetKeyName("lab key");
     SetAdjectives( ({"engineering", "lab", "probability lab"}) );
     SetId( ({"prob_door_key", "key", "labkey"}) );
-    SetShort("a key");
-    SetLong("This is a key labeled 'engineering and lab'.");
+    SetShort("钥匙");
+    SetLong("这是一把标有'工程和实验室'的钥匙。");
     SetMass(20);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

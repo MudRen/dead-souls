@@ -8,7 +8,7 @@ protected void create(){
     SetKeyName("bandanna");
     SetAdjectives( ({"red"}) );
     SetId( ({"kerchief", "handkerchief"}) );
-    SetShort("a red bandanna");
+    SetShort("红色头巾");
     SetLong("This is a red kerchief fashioned into improvised headgear, possibly to prevent getting dirt on one's hair and vice versa.");
     SetMass(1);
     SetBaseCost("silver",1);

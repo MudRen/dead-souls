@@ -6,8 +6,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("Science building, second floor");
-    SetLong("This is the second floor of the LPC University Science Building. To the west is an elevator door.");
+    SetShort("科学楼，二楼");
+    SetLong("这是LPC大学科学楼的二楼。西边是一扇电梯门。");
     SetClimate("indoors");
     SetExits( ([
                 "north" : "/domains/campus/room/kleiner",

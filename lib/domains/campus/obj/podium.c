@@ -23,14 +23,8 @@ int x;
 object ob;
 protected void create() {
     storage::create();
-    SetShort("a podium");
-    SetLong("This is the speaker's podium. It is about four feet tall "+
-            "and made of some expensive-looking, deep grain wood. This podium "+
-            "facilitates the running of meetings by giving the speaker the power "+
-            "to recognize individual people to speak at a time. There is "+
-            "some space in the podium to store things in, perhaps there is something "+
-            "in there now. For more "+
-            "details on running a meeting with the podium, type: help podium.");
+    SetShort("讲台");
+    SetLong("这是演讲者的讲台。它大约四英尺高，由某种看起来很昂贵的深纹理木材制成。这个讲台通过赋予演讲者一次认可一个人发言的权力来促进会议的进行。讲台里有一些存放物品的空间，也许里面现在就有东西。有关使用讲台主持会议的更多详细信息，请输入：help podium。");
     SetMass(10);
     SetId( ({"podium", "speaker's podium", "podium.c"}) );
     SetDollarCost(-110);

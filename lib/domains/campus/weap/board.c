@@ -15,7 +15,7 @@ protected void create() {
     SetKeyName("board of ed");
     SetId(({"board","board of ed","board of education"}));
     SetAdjectives(({"ed","education"}));
-    SetShort("the board of education");
+    SetShort("教育板");
     SetLong("A long, wide wooden board with a handle at one "+
             "end. Inscribed along its length are the words: "+
             "'Board of Education'.");

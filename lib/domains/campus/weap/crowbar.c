@@ -9,7 +9,7 @@ protected void create(){
     SetKeyName("crowbar");
     SetId( ({ "rod" }) );
     SetAdjectives( ({ "heavy", "iron"}) );
-    SetShort("a crowbar");
+    SetShort("撬棍");
     SetLong("This is heavy iron rod with specialized ends for prying "
             "things open.");
     SetVendorType(VT_WEAPON);

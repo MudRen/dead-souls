@@ -5,23 +5,14 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(20);
-    SetShort("stairwell");
-    SetLong("You are standing on a stairwell landing. Flights of stairs "+
-            "lead up and down, although the stairs up are roped off to prevent "+
-            "passage. The flickering fluorescent lights make it difficult to see what "+
-            "lies below here. There is a sign tied to the rope on the flight of stairs "+
-            "going up.");
+    SetShort("楼梯间");
+    SetLong("你站在楼梯间的平台上。楼梯向上和向下延伸，不过向上的楼梯被绳子拦住了，无法通行。闪烁的荧光灯让人难以看清下面有什么。向上的楼梯绳子上挂着一块告示牌。");
     SetItems(([
-                ({"stairs","flight","flight of stairs"}) : "The stairs are made of concrete, appear to "+
-                "be part of the foundation of the building, and seem quite sturdy.",
-                "landing" : "This is a landing between flights of stairs leading up and down.",
-                "rope" : "Thick yellow construction rope. There's a lot of it tied to the " +
-                "flight of stairs leading up, preventing your passage. There's a sign hanging "+
-                "on it.",
-                ({"light","lights","fluorescent lights"}) : "Cheap lighting that doesn't seem to work "+
-                "very well. Occasionally the landing is lit orange, then white again by the flickering "+
-                "lights.",
-                "sign" : "This is a handwritten, cardboard sign hanging on the roped-off stairs."]));
+                ({"stairs","flight","flight of stairs"}) : "楼梯是混凝土建造的，似乎是大楼地基的一部分，看起来相当坚固。",
+                "landing" : "这是连接上下楼梯的平台。",
+                "rope" : "粗大的黄色施工绳。向上的楼梯上绑了很多绳子，阻止你通行。上面挂着一块告示牌。",
+                ({"light","lights","fluorescent lights"}) : "廉价的照明设备，似乎不太好用。闪烁的灯光偶尔将平台照成橙色，然后又恢复白色。",
+                "sign" : "这是一块挂在被绳子拦住的楼梯上的手写纸板告示牌。"]));
     SetExits(([
                 "north" : "/domains/campus/room/corridor3",
                 "down" : "/domains/campus/room/basement" 
@@ -36,8 +27,8 @@ void init(){
 }
 int r_sign(string str){
     if(str=="sign" || str=="cardboard sign"){
-        write("The sign reads:\n"+
-                "WARNING! Second floor under construction, all access prohibited!\n");
+        write("告示牌上写着：\n"+
+                "警告！二楼正在施工，禁止通行！\n");
         say(this_player()->GetName()+" read the sign.\n");
         return 1;
     }

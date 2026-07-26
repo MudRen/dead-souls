@@ -7,11 +7,8 @@ protected void create() {
     barkeep::create();
     SetKeyName("gloria");
     SetId(({"woman","worker","gloria","lady","lunch lady"}));
-    SetShort("Gloria, the lunch lady");
-    SetLong("Gloria is a short, tired-looking woman getting along in "+
-            "her years. She doesn't seem very happy...in fact, she looks downright "+
-            "grumpy. Maybe if you ask her, she'll sell you something on the menu. Then "+
-            "again, maybe not.");
+    SetShort("格洛丽亚，午餐阿姨");
+    SetLong("格洛丽亚是一个身材矮小、看起来疲惫的女人，年纪不小了。她看起来不太高兴……事实上，她看起来很暴躁。也许你问她的话，她会卖给你菜单上的东西。但也可能不会。");
     SetInventory(([
                 "/domains/campus/armor/collar" : "wear collar on neck",
                 "/domains/campus/obj/spam" : 1,

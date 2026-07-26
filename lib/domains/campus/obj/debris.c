@@ -28,10 +28,8 @@ void create(){
     SetKeyName("debris");
     SetId( ({"pile","debris","crap","crud"}) );
     SetAdjectives( ({"disgusting","pile of","smelly"}) );
-    SetShort("a pile of debris");
-    SetLong("This is a smelly, disgusting pile of crud "+
-            "that has accumulated from the running stream of "+
-            "sewage here. ");
+    SetShort("一堆碎屑");
+    SetLong("这是一堆臭烘烘、令人恶心的污物，是从这里流淌的污水中积累起来的。");
     SetMass(20);
     SetDollarCost(0);
     SetVendorType(VT_TREASURE);

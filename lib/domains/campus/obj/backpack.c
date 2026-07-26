@@ -9,10 +9,8 @@ protected void create() {
     SetKeyName("backpack");
     SetId(({"bag","pack"}));
     SetAdjectives(({"sturdy","green","olive","olive-green","od green","od-green"}));
-    SetShort("a sturdy, olive-green backpack");
-    SetLong("This is a large, sturdy backpack made of some sort of "
-            "strong, canvas-like material. It appears suitable "+
-            "for just about any adventure you'd find yourself in.");
+    SetShort("结实的橄榄绿背包");
+    SetLong("这是一个大而结实的背包，由某种坚固的帆布状材料制成。它似乎适合你可能遇到的任何冒险。");
     SetInventory(([
                 "/domains/campus/obj/match" : 3,
                 "/domains/campus/weap/sharpsword" : 1,

@@ -6,9 +6,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("Dr. Kleiner's Office");
-    SetLong("The place where Dr. Kleiner conducts administrative "+
-            "business.");
+    SetShort("克莱纳博士的办公室");
+    SetLong("克莱纳博士处理行政事务的地方。");
     SetClimate("indoors");
     SetItems( ([ 
                 ]) );

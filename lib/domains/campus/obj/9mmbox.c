@@ -7,8 +7,8 @@ void create() {
     SetKeyName("cardboard case");
     SetId(({"case","box"}));
     SetAdjectives(({"small", "cardboard", "9mm", "9 millimeter", "ammo"}));
-    SetShort("a small 9mm ammo case");
-    SetLong("A small cardboard case designed to carry 9mm ammunition.");
+    SetShort("9毫米弹药盒");
+    SetLong("一个小纸板盒，设计用于携带9毫米弹药。");
     SetMass(10);
     SetDollarCost(1);
     SetMaxCarry(36);

@@ -5,9 +5,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(0);
-    SetShort("Maintenance room");
-    SetLong("A room for access to service areas and to store "
-            "maintenance supplies.");
+    SetShort("维修间");
+    SetLong("一个用于进入服务区域和存放维修物资的房间。");
     SetItems(([
                 ]));
     SetInventory(([

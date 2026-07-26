@@ -7,11 +7,8 @@ protected void create(){
     npc::create();
     SetKeyName("dummy");
     SetId( ({"dummy","mokujin"}) );
-    SetShort("a training dummy");
-    SetLong("This is a magical sparring partner. It is made of "+
-            "logs, cut to the proportions of a human's "+
-            "head, torso, and limbs. The logs are held "+
-            "together by joints made of chains.");
+    SetShort("训练假人");
+    SetLong("这是一个魔法陪练伙伴。它由原木制成，切割成人类头部、躯干和四肢的比例。原木由链条制成的关节连接在一起。");
     SetPacifist(1);
     SetBodyComposition("wood");
     SetInventory(([

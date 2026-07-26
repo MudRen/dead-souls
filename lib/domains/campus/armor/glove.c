@@ -16,7 +16,7 @@ protected void create() {
     SetKeyName("red glove");
     SetId( ({ "glove", "red glove" }) );
     SetAdjectives( ({ "red" }) );
-    SetShort("a red glove");
+    SetShort("红色手套");
     SetLong("A red glove with five fingers.");
     SetDamagePoints(75);
     SetVendorType(VT_ARMOR);

@@ -6,9 +6,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("Keliner storage");
-    SetLong("This is where Dr. Kleiner apparently keeps large "+
-            "pieces of research equipment.");
+    SetShort("克莱纳储藏室");
+    SetLong("这里显然是克莱纳博士存放大型研究设备的地方。");
     SetClimate("indoors");
     SetItems( ([ 
                 ]) );

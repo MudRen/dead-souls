@@ -8,7 +8,7 @@ protected void create(){
     SetKeyName("wizard's hat");
     SetAdjectives( ({"wizard","wizards", "floppy", "large", "conical", "blue"}) );
     SetId( ({"hat"}) );
-    SetShort("a wizard's hat");
+    SetShort("巫师帽");
     SetLong("This is a large, floppy hat with a wide brim all "+
             "around it, and a conical center. It is dark blue in color, "+
             "and is decorated with pictures of yellow moons and stars.");

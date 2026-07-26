@@ -6,7 +6,7 @@ protected void create(){
     armor::create();
     SetKeyName("chainmail shirt");
     SetId(({"armor","chainmail armor","chain mail armor","shirt","chainmail shirt","chainmail","chain mail shirt"}));
-    SetShort("a sturdy-looking chainmail shirt");
+    SetShort("结实的锁子甲衬衫");
     SetLong("This is a shirt made of metal rings fashioned together as armor. ");
     SetMass(75);
     SetDollarCost(100);

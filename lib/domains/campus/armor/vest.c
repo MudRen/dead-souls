@@ -7,7 +7,7 @@ protected void create(){
     SetKeyName("paisley vest");
     SetId(({"vest"}));
     SetAdjectives(({"paisley","colorful","hippie","hippy","psychedelic"}));
-    SetShort("a colorful, paisley vest");
+    SetShort("彩色佩斯利花纹背心");
     SetLong("A stupid-looking hippie vest with psychedelic paisley patterns on it.");
     SetMass(5);
     SetDollarCost(1);

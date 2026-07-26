@@ -14,9 +14,8 @@ void create() {
     SetKeyName("rack");
     SetId(({"wrack"}));
     SetAdjectives(({"wooden","large","weapon","weapons"}));
-    SetShort("a wooden weapons rack");
-    SetLong("This is a large wooden rack designed to contain "+
-            "conventional or melee weapons. It is set into the wall.");
+    SetShort("木质武器架");
+    SetLong("这是一个大型木质架子，设计用于存放常规或近战武器。它嵌入墙壁中。");
     SetMass(3000);
     SetDollarCost(500);
     SetMaxCarry(5000);

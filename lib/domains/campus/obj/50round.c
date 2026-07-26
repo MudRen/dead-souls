@@ -7,7 +7,7 @@ void create(){
     SetKeyName(".50 round");
     SetId(({"round","bullet"}));
     SetAdjectives(({".50","caliber","rifle"}));
-    SetShort("a .50 caliber rifle bullet");
+    SetShort(".50口径步枪子弹");
     SetLong("This mammoth bullet is nearly five inches long. Anything this bad "+
             "boy hits is in for a rough time.");
     SetCaliber(50);

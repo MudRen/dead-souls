@@ -6,15 +6,14 @@ protected void create() {
     ::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("the campus bookstore");
-    SetLong("This is the Virtual Campus Bookstore. It is a fairly small place, and in fact has few books available, since the campus is not open for classes yet. There is, however, a wide assortment of useful items available, which you can browse by typing the 'list' command. The storeroom is above. There is a sign on the wall behind the counter.");
+    SetShort("校园书店");
+    SetLong("这是虚拟校区书店。这是一个相当小的地方，实际上可供出售的书籍很少，因为校园尚未开学。不过，这里有各种实用物品可供选购，你可以输入 'list' 命令来浏览。储藏室在楼上。柜台后面的墙上有一块告示牌。");
     SetItems(([
-                ({"store","bookstore","place"}) : "This is the Virtual Campus bookstore.",
-                "books" : "There aren't any yet. Weren't you paying attention?",
-                ({"assortment","items","stuff"}) : "To browse what you can buy, type: list.",
-                "counter" : "A cheap wood-textured counter designed to make the surrender "+
-                "of your money more convenient.",
-                "sign" : "A sign on the wall, meant for reading.",
+                ({"store","bookstore","place"}) : "这是虚拟校区书店。",
+                "books" : "还没有书呢。你刚才没注意听吗？",
+                ({"assortment","items","stuff"}) : "输入 list 来浏览你可以购买的物品。",
+                "counter" : "一个廉价的仿木纹柜台，设计目的是让你更方便地掏钱。",
+                "sign" : "墙上的一块告示牌，可以阅读。",
                 ]));
     SetExits( ([
                 "south" : "/domains/campus/room/corridor4",
@@ -41,12 +40,12 @@ void init(){
 }
 
 int read_sign(){
-    write("HOW TO CONDUCT BUSINESS HERE\n");
-    write("list : Get a list of all the items Kim has for sale");
-    write("appraise <item> : Ask Kim to tell you how much she would pay you for your item");
-    write("price <item> : Ask Kim the price of her item");
-    write("show <item> : Ask Kim for a closer look at her item\n");
-    write("\nbuy <item> from kim\nsell <item> to kim\n");
-    write("Cash US Dollars only!");
+    write("如何在此处交易\n");
+    write("list ：获取Kim出售的所有物品列表");
+    write("appraise <物品> ：请Kim告诉你她愿意为你的物品支付多少");
+    write("price <物品> ：询问Kim她的物品价格");
+    write("show <物品> ：请Kim展示她的物品供你仔细查看\n");
+    write("\nbuy <物品> from kim\nsell <物品> to kim\n");
+    write("仅收现金美元！");
     return 1;
 }

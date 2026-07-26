@@ -6,7 +6,7 @@ protected void create() {
     meal::create();
     SetKeyName("hamburger");
     SetId(({"hamburger","burger"}));
-    SetShort("a greasy hamburger");
+    SetShort("油腻的汉堡包");
     SetLong("Evidently considered to be food by some people, "+
             "this little horror in a bun is greasy, flat, and slightly gray. Enjoy!");
     SetNoCondition(1);

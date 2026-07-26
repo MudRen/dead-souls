@@ -5,8 +5,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(0);
-    SetShort("sub basement");
-    SetLong("This is a basement deep under the campus. The basement continues west from here. There is a doorway to the east.");
+    SetShort("地下层");
+    SetLong("这是校园深处的地下室。地下室从这里向西延伸。东边有一个门口。");
     SetExits( ([
                 "east" : "/domains/campus/room/maintenance",
                 "west" : "/domains/campus/room/sub_basement2.c",

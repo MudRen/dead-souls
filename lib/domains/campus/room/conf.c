@@ -10,29 +10,17 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(50);
-    SetShort("Conference Room");
-    SetLong("This is the Virtual Campus ad hoc conference room. It is "+
-            "elegantly appointed with richly carved mahogany paneling and gold-leaf trim. "+
-            "The luxurious carpeting and moody lighting make this conference room "+
-            "a very comfortable, relaxing environment. The main hallway is north of here.\n"+
-            "%^GREEN%^There is a sign you can read here.%^RESET%^");
+    SetShort("会议室");
+    SetLong("这是虚拟校区的临时会议室。房间装饰精美，配有雕刻华丽的红木镶板和金箔饰边。豪华的地毯和柔和的灯光使这间会议室成为一个非常舒适、令人放松的环境。主走廊在北边。\n%^GREEN%^这里有一块你可以阅读的告示牌。%^RESET%^");
     SetItems(([
-                ({"panels","paneling","wall","walls","mahogany","wood"}) : "The walls are "+
-                "paneled in rich, dark mahogany. The wood is intricately carved with "+
-                "exquisite designs. This sort of craftmanship must have cost a fortune.",
-                ({"room","conference room","ad hoc conference room"}) : "This is a "+
-                "well-appointed, comfortable room to hold meetings in.",
-                ({"carving","carvings","design","designs","craftmanship"}) : "The carvings "+
-                "are mostly abstract shapes that seem so detailed and tightly interwoven "+
-                "they almost squirm before your eyes.",
-                ({"leaf","gold-leaf trim","trim","gold leaf trim"}) : "The trim along the walls' "+
-                "baseboards and doorframe is a beautiful gold leaf design.",
-                ({"floor","carpet","carpeting","luxurious carpeting"}) : "The carpet is thick, and "+
-                "a rich maroon color.",
-                ({"lighting","lights","moody lighting"}) : "The lighting here is indirect and diffused, "+
-                "giving everything a warm glow.",
-                "environment" : "Very comfortable indeed.",
-                "sign" : "Try: read sign",
+                ({"panels","paneling","wall","walls","mahogany","wood"}) : "墙壁镶嵌着深色红木。木材上雕刻着精美的图案。这种工艺一定花费不菲。",
+                ({"room","conference room","ad hoc conference room"}) : "这是一间设备齐全、舒适的会议室。",
+                ({"carving","carvings","design","designs","craftmanship"}) : "雕刻大多是抽象形状，细节丰富、紧密交织，几乎在你眼前蠕动。",
+                ({"leaf","gold-leaf trim","trim","gold leaf trim"}) : "墙壁踢脚线和门框上的饰边是美丽的金箔设计。",
+                ({"floor","carpet","carpeting","luxurious carpeting"}) : "地毯厚实，呈深栗色。",
+                ({"lighting","lights","moody lighting"}) : "这里的照明是间接和漫射的，给一切带来温暖的光芒。",
+                "environment" : "确实非常舒适。",
+                "sign" : "试试：read sign",
                 ]));
     SetExits( (["north" : "/domains/campus/room/corridor4",
                 ]));
@@ -86,11 +74,11 @@ object *RemoveEjected(object punk){
 }
 
 string ReadSign(){
-    string ret = "This is a special room for the orderly administration of meetings. It uses a special podium to manage speaking, and prevents the receipt of channel messages. It also prevents teleporting in under some circumstances. If you are attending a meeting here, please try to be polite and avoid being disruptive. You are here by choice, so if you're bored, feel free to leave quietly. Some useful commands in this room:\n";
-    ret += "raise : indicates you wish to speak.\n";
-    ret += "agenda : displays the current agenda.\n\n";
-    ret += "Remember! Channels and some commands like \"call\" may ";
-    ret += "not work here!";
+    string ret = "这是一个用于有序管理会议的特殊房间。它使用特殊的讲台来管理发言，并阻止接收频道消息。在某些情况下还阻止传送进入。如果你在这里参加会议，请尽量保持礼貌，避免打扰他人。你是自愿来的，所以如果你感到无聊，请随意安静离开。这个房间的一些有用命令：\n";
+    ret += "raise ：表示你希望发言。\n";
+    ret += "agenda ：显示当前议程。\n\n";
+    ret += "记住！频道和一些命令如 \"call\" 可能";
+    ret += "在这里不起作用！";
     return ret;
 }
 

@@ -14,9 +14,8 @@ void create() {
     SetKeyName("bag");
     SetId( ({ "bag" }) );
     SetAdjectives( ({ "small", "cloth", "a" }) );
-    SetShort("a small cloth bag");
-    SetLong("It is a simple cloth bag used to hold things. It has a cute Virtual Campus "+
-            "logo on it.");
+    SetShort("小布袋");
+    SetLong("这是一个简单的布袋，用来装东西。上面印有可爱的虚拟校区标志。");
     SetMass(274);
     SetDollarCost(1);
     SetMaxCarry(50);

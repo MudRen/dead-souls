@@ -6,8 +6,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("Science Classroom");
-    SetLong("This small room provides a teaching space for the advanced topics researched by the facility.");
+    SetShort("科学教室");
+    SetLong("这个小房间为该设施研究的高级课题提供教学空间。");
     SetClimate("indoors");
     SetItems( ([ 
                 ]) );

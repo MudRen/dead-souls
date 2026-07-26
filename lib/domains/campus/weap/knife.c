@@ -9,7 +9,7 @@ protected void create() {
     SetKeyName("knife");
     SetId( ({ "knife"}));
     SetAdjectives( ({ "small","utility"}));
-    SetShort("a small utility knife");
+    SetSmall("小多功能刀");
     SetLong("A small utility knife.");
     SetMass(40);
     SetBaseCost("silver",5);

@@ -13,7 +13,7 @@ protected void create() {
     meal::create();
     SetKeyName("ale");
     SetId( ({ "bottle", "bourbon" }) );
-    SetShort("a bottle of bourbon");
+    SetShort("一瓶波旁威士忌");
     SetLong("A dark green bottle of cheap bourbon.");
     SetMass(100);
     SetMealType(MEAL_DRINK | MEAL_ALCOHOL);

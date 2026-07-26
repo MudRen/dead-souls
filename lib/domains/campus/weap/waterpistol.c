@@ -16,7 +16,7 @@ protected void create() {
     SetKeyName("water pistol");
     SetId(({"pistol","gun"}));
     SetAdjectives(({"water","toy","plastic","squirt"}));
-    SetShort("a small plastic squirt gun");
+    SetShort("小塑料水枪");
     SetLong("A small red see-through plastic squirt gun in the shape "+
             "of a ray gun.");
     SetMass(10);

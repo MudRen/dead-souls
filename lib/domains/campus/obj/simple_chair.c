@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("chair");
     SetAdjectives( ({"simple", "wooden"}) );
     SetId("chair");
-    SetShort("a wooden chair");
-    SetLong("A simple chair, made of wood, for sitting on.");
+    SetShort("木椅");
+    SetLong("一把简单的木椅，用来坐的。");
     SetMass(150);
     SetDollarCost(15);
     SetMaxSitters(1);

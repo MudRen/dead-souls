@@ -7,7 +7,7 @@ void create(){
     SetKeyName("223round");
     SetId(({"round","bullet"}));
     SetAdjectives(({".223","caliber","rifle","m16","M16","m-16","M-16"}));
-    SetShort("a .223 caliber rifle round");
+    SetShort(".223口径步枪子弹");
     SetLong("This is a .223 caliber rifle round, probably for an M-16 assault rifle. "+
             "It is not very wide, but contains a large powder charge. It is no doubt a powerful "+
             "piece of ammunition. It has not been fired.");

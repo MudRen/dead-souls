@@ -16,7 +16,7 @@ protected void create() {
     SetKeyName("large shield");
     SetId( ({ "shield" }) );
     SetAdjectives( ({ "wood", "wooden","large" }) );
-    SetShort("a large wooden shield");
+    SetShort("大木盾");
     SetLong("A large, heavy shield made of strong wood banded with iron.");
     SetDamagePoints(75);
     SetVendorType(VT_ARMOR);

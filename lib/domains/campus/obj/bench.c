@@ -14,9 +14,8 @@ protected void create() {
     SetKeyName("bench");
     SetId("bench");
     SetAdjectives("wooden");
-    SetShort("a wooden bench");
-    SetLong("This is a typical wooden bench, the sort you might "+
-            "see in a park. It appears designed for sitting on.");
+    SetShort("木长椅");
+    SetLong("这是一把典型的木制长椅，就像你在公园里看到的那种。它显然是用来坐的。");
     SetMass(1500);
     SetDollarCost(15);
     SetMaxSitters(3);

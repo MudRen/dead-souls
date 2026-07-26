@@ -5,8 +5,8 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("a blue room");
-    SetLong("This is a blue room. Probability Lab 2 is east.");
+    SetShort("蓝房间");
+    SetLong("这是一个蓝房间。概率实验室二在东边。");
     SetExits( ([
                 "east" : "/domains/campus/room/plab2"
                 ]) );

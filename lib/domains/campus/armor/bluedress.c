@@ -7,7 +7,7 @@ protected void create(){
     SetKeyName("blue dress");
     SetId(({"dress","outfit","costume"}));
     SetAdjectives(({"blue","cotton","lovely","light"}));
-    SetShort("a lovely blue dress");
+    SetShort("可爱的蓝色连衣裙");
     SetLong("This is a lovely little blue dress of simple, "+
             "efficient design, yet obviously comfortable and practical. The hem is at "+
             "the knees, and the fabric feels soft and light yet strong, like some sort of cotton.");

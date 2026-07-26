@@ -10,12 +10,8 @@ protected void create() {
     smart = 0;
     SetKeyName("charly");
     SetId(({"charly"}));
-    SetShort("Charly");
-    SetLong("Charly is a test subject in unethical artificial "
-            "intelligence experiments. If he were smart "
-            "enough, he'd resent his forced servitude and "
-            "lack of rights. Dangerously, his overlords "
-            "are trying to make him smarter.");
+    SetShort("查理");
+    SetLong("查理是不道德人工智能实验的测试对象。如果他足够聪明，他会怨恨被迫的奴役和缺乏权利。危险的是，他的主人们正在试图让他变得更聪明。");
     SetLevel(5);
     SetRace("human");
     SetGender("male");

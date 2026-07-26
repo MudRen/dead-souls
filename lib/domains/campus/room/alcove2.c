@@ -6,8 +6,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("An alcove");
-    SetLong("An alcove.");
+    SetShort("壁龛");
+    SetLong("一个壁龛。");
     SetClimate("indoors");
     SetItems( ([ 
                 ]) );

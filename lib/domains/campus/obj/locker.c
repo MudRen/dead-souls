@@ -14,9 +14,8 @@ void create() {
     //SetMatching(0);
     SetId(({"locker"}));
     SetAdjectives(({"metal","tall","school"}));
-    SetShort("a tall metal locker");
-    SetLong("This is a large school locker, the kind one might find in any of "+
-            "thousands of schools around the world.");
+    SetShort("高大的金属储物柜");
+    SetLong("这是一个大型学校储物柜，就像世界各地成千上万所学校里都能找到的那种。");
     SetInventory(([
                 "/domains/campus/weap/waterpistol" : 1,
                 "/domains/town/obj/9mmclip" : 1,

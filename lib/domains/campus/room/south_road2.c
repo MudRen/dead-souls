@@ -11,14 +11,12 @@ protected void create() {
     SetClimate("outdoors");
     SetAmbientLight(30);
     SetObviousExits("north, south");
-    SetShort("South Old Saquivor Road");
-    SetLong("This is a cobblestone road, leading south to some sort of University campus.");
+    SetShort("南旧萨奎沃尔路");
+    SetLong("这是一条鹅卵石道路，向南通往某个大学校园。");
     SetItems( ([
-                ({"road","cobblestone road"}) : "A "
-                "cobblestone road, south.",
+                ({"road","cobblestone road"}) : "一条鹅卵石道路，向南延伸。",
                 //"sign":"A large sign on the road. To read it, 'read sign'.",
-                ({"grate","drainage grate","sewer","sewer grate"}) : "A grate that "+
-                "seems to lead into sewers. It can't be opened from here.",
+                ({"grate","drainage grate","sewer","sewer grate"}) : "一个似乎通往下水道的格栅。从这里无法打开。",
                 ]) );
     //SetSkyDomain("town");
     AddTerrainType(T_ROAD);

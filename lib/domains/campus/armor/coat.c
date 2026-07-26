@@ -7,7 +7,7 @@ protected void create(){
     SetKeyName("lab coat");
     SetId(({"coat","labcoat"}));
     SetAdjectives(({"lab","science","white","long"}));
-    SetShort("a lab coat");
+    SetShort("白大褂");
     SetLong("This is a long white lab coat of the type used by scientists "+
             "to avoid getting experimental results on themselves.");
     SetMass(75);

@@ -14,9 +14,8 @@ protected void create() {
     SetKeyName("sofa");
     SetId("sofa");
     SetAdjectives( ({ "black", "small", "tasteful", "upholstered" }) );
-    SetShort("a sofa");
-    SetLong("This is a small, plush sofa tastefully upholstered "+
-            "in black. It appears designed for sitting on.");
+    SetShort("沙发");
+    SetLong("这是一张小型豪华沙发，黑色装饰品味高雅。它显然是用来坐的。");
     SetMass(1500);
     SetDollarCost(15);
     SetMaxSitters(2);

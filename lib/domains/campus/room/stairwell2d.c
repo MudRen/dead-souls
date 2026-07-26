@@ -6,11 +6,11 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("Science Building Stairwell, bottom");
-    SetLong("This is the bottom of the stairwell of the university Science building. The stairs go up from here. There is a crawlspace here under the stairs. The sub basement is north.");
+    SetShort("科学楼楼梯间，底部");
+    SetLong("这是大学科学楼楼梯间的底部。楼梯从这里向上延伸。楼梯下面有一个爬行空间。地下层在北边。");
     SetItems(([
-                ({ "stairs", "stair" }) : "Steps which lead up.",
-                "crawlspace" : "A crawlspace under the stairs.",
+                ({ "stairs", "stair" }) : "向上的台阶。",
+                "crawlspace" : "楼梯下的爬行空间。",
                 ]));
     SetEnters( ([
                 "crawlspace" : "/domains/campus/room/crawlspace2.c",

@@ -13,8 +13,8 @@ void create() {
     SetKeyName("locker");
     SetId(({"locker"}));
     SetAdjectives(({"metal","tall","large","weapon","weapons"}));
-    SetShort("a metal weapons locker");
-    SetLong("This is a large metal locker designed to contain firearms."); 
+    SetShort("金属武器柜");
+    SetLong("这是一个大型金属储物柜，设计用于存放枪支。"); 
     SetMass(3000);
     SetDollarCost(50);
     SetMaxCarry(500);

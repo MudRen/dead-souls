@@ -7,8 +7,8 @@ void create() {
     SetKeyName("workbench");
     SetAdjectives( ({"work", "simple", "flat"}) );
     SetId( ({"table", "workbench", "bench"}) );
-    SetShort("a workbench");
-    SetLong("A simple flat surface for analyzing materials.");
+    SetShort("工作台");
+    SetLong("一个用于分析材料的简单平面。");
     SetMaxCarry(5000);
     SetInventory(([
                 "/domains/town/armor/rocketpack" : 1,

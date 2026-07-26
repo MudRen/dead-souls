@@ -5,11 +5,11 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Corridor");
-    SetLong("You are in an east-west corridor on the first floor of the Virtual Campus administrative building. The building's snack bar lies to the north, and a door to the south leads into a stairwell. A foyer and the building exit lie west of here.");
-    SetItems( (["corridor" : "This is a carpeted corridor, leading west.",
-                "floor" : "The carpet is purple, and somewhat institutional.",
-                "carpet" : "The carpet is purple, and somewhat institutional."]) );
+    SetShort("走廊");
+    SetLong("你在虚拟校区行政楼一楼的一条东西走向的走廊里。大楼的快餐吧在北边，南边的门通往楼梯间。门厅和大楼出口在西边。");
+    SetItems( (["corridor" : "这是一条铺着地毯的走廊，向西延伸。",
+                "floor" : "地毯是紫色的，颇有几分机构风格。",
+                "carpet" : "地毯是紫色的，颇有几分机构风格。"]) );
     SetExits( ([
                 "south" : "/domains/campus/room/stairwell",
                 "east" : "/domains/campus/room/corridor",

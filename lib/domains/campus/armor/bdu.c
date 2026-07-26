@@ -7,7 +7,7 @@ protected void create(){
     SetKeyName("battle dress uniform");
     SetId(({"uniform","bdu","bdu's","fatigues"}));
     SetAdjectives(({"camouflage","battle","dress","combat"}));
-    SetShort("a battle dress uniform");
+    SetShort("作战服");
     SetLong("This uniform consists of a camouflage blouse and "+
             "pants. It is green with mottled brown and black camouflage patterns, "+
             "and probably provides excellent concealment in a wooded environment.");

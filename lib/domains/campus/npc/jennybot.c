@@ -22,18 +22,10 @@ mixed GreetingResponse(object who, mixed foo, string message, mixed bar){
 string LongDesc(){
     string ret;
     if(!active){
-        ret = "On closer inspection, this attractive "+
-            "young lady is no lady at all...she's an android! "+
-            "She appears to be totally motionless and frozen "+
-            "in place, with a friendly smile. Perhaps you "+
-            "can make her do something by typing: %^RED%^activate bot%^RESET%^ ";
+        ret = "仔细一看，这位迷人的年轻女士根本不是女士……她是一个安卓机器人！她似乎完全静止不动，脸上挂着友好的微笑。也许你可以通过输入 %^RED%^activate bot%^RESET%^ 让她做些什么。";
     }
     else {
-        ret = "On closer inspection, this attractive "+
-            "young lady is no lady at all...she's an android! "+
-            "She appears to be in the middle of giving an orientation "+
-            "on this mud, with bizarrely friendly mannerisms. Perhaps you "+
-            "can make her be quiet by typing: %^RED%^deactivate bot%^RESET%^ ";
+        ret = "仔细一看，这位迷人的年轻女士根本不是女士……她是一个安卓机器人！她似乎正在为这个MUD做新人指导，带着异常友好的举止。也许你可以通过输入 %^RED%^deactivate bot%^RESET%^ 让她安静下来。";
     }
     return ret;
 }
@@ -47,7 +39,7 @@ protected void create(){
     SetId(({"guide","guidebot","fembot","bot","jennifer","niffy","android","jenny","robot","woman","lady"}));
     SetAdjectives(({"orientation","young","female","polite","pretty","guide","newbie","simple","extremely"}));
     SetGender("female");
-    SetShort("a polite young woman");
+    SetShort("一位彬彬有礼的年轻女士");
     SetLong( (: LongDesc :) );
     SetInventory(([
                 "/domains/campus/armor/pillbox_hat" : "wear hat",

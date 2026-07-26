@@ -5,8 +5,8 @@ protected void create() {
     room::create();
     SetAmbientLight(30);
     SetClimate("indoors");
-    SetShort("a generic room");
-    SetLong("This is an utterly plain, blank room.");
+    SetShort("普通房间");
+    SetLong("这是一个极其普通、空白的房间。");
     SetInventory(([
                 "/domains/campus/obj/diamond" : 1,
                 "/domains/default/obj/phints" : 5,
