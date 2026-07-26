@@ -25,9 +25,8 @@ protected void create(){
     item::create();
     SetKeyName("die");
     SetId(({"dado","bone", "alea"}));
-    SetShort("a six-sided die");
-    SetLong("A typical die used for games of chance. It is orange and marked "
-            "with numbers rather than dots.");
+    SetShort("一个六面骰子");
+    SetLong("这是一个用于赌博游戏的普通骰子。它是橙色的，上面标有数字而不是圆点。");
     SetDenominator(6);
     SetNoCondition(1);
 }

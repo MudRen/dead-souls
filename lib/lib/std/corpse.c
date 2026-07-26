@@ -44,7 +44,7 @@ int eventDecay(){
                         "is starting to stink.", MSG_ROOMDESC);
                 SetId(GetId()..., "corpse", "remains","flesh","pile","pile of flesh");
                 SetAdjectives(GetAdjectives()..., "stinky", "rotting");
-                SetShort("the stinky remains of a rotting corpse");
+                SetShort("一具腐烂尸体散发恶臭的残骸");
                 SetSmell("This corpse is beginning to stink up the entire area.");
             }
             break;
@@ -53,7 +53,7 @@ int eventDecay(){
                 environment()->eventPrint("A rotting stench fills the entire "
                         "area.", MSG_ROOMDESC);
                 SetId(GetId()..., "flesh", "pile", "pile of flesh");
-                SetShort("a pile of rotting flesh");
+                SetShort("一堆腐烂的血肉");
                 SetSmell("Its smell is nearly unbearable.");
             }
             break;
@@ -82,10 +82,10 @@ void SetCorpse(object who){
     Race = who->GetRace();
     Count = 1;
     Fresh = 1;
-    SetShort("the corpse of "+tmpshort);
-    SetLong("As you look closely at " + who->GetCapName() +
-            ", you notice that " +  nominative(who) +
-            " does not appear to be moving.");
+    SetShort(tmpshort+"的尸体");
+    SetLong("当你仔细观察" + who->GetCapName() +
+            "时，你注意到" + nominative(who) +
+            "似乎已经不再活动了。");
     Skills = who->GetSkillsMap();
     Stats = who->GetStatsMap();
     Level = who->GetLevel();

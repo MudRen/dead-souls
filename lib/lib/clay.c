@@ -18,8 +18,8 @@ void create(){
     SetKeyName("lump");
     SetId( ({"lump","clay","mass"}) );
     SetAdjectives( ({"lump of","clay","mass of","heavy", "shapeless"}) );
-    SetShort("a lump of clay");
-    SetLong("This is a heavy, shapeless mass of clay.");
+    SetShort("一块粘土");
+    SetLong("这是一团沉重、没有固定形状的粘土。");
     call_out( (: InitComposition :), 0);
     SetNoCondition(1);
     SetCanClose(0);

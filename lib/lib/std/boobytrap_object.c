@@ -41,8 +41,8 @@ void create(){
     item::create();
     SetId( ({ "trap", "sample trap" }) );
     SetAdjectives( ({ "simple","sample" }) );
-    SetShort("a sample trap");
-    SetLong("It is a simple sample trap.");
+    SetShort("一个示例陷阱");
+    SetLong("这是一个简单的示例陷阱。");
     SetMass(50);
     SetBaseCost(500);
     SetNoCondition(1);

@@ -9,7 +9,7 @@ int Spent(){
     if(rechargeable == 1) return 1;
     if(!charge || charge <= 0){
         charge = 0;
-        SetShort("a spent power cell");
+        SetShort("一个耗尽的能量电池");
         tmp = GetAdjectives();
         tmp += ({"spent", "empty", "drained", "used"});
         SetAdjectives(tmp);
@@ -24,8 +24,8 @@ void create(){
     SetKeyName("cell");
     SetId(({"battery"}));
     SetAdjectives(({"power","generic"}));
-    SetShort("a generic power cell");
-    SetLong("This is a generic power cell.");
+    SetShort("一个普通的能量电池");
+    SetLong("这是一个普通的能量电池。");
     SetMass(1);
     SetBaseCost(4);
     SetVendorType(VT_TREASURE);

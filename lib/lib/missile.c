@@ -17,8 +17,8 @@ void create(){
     SetKeyName("generic missile");
     SetId( ({"missile"}) );
     SetAdjectives( ({"generic","sample","template"}) );
-    SetShort("a generic missile");
-    SetLong("This is an object that is launched.");
+    SetShort("一枚普通导弹");
+    SetLong("这是一个可发射的物体。");
     SetMass(20);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

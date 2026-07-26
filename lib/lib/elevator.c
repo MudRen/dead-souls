@@ -11,9 +11,8 @@ protected void create() {
     SetKeyName("elevator");
     SetId(({"box"}));
     SetAdjectives(({"simple"}));
-    SetShort("a elevator");
-    SetLong("This is a large, boxlike conveyance for transporting "
-            "things and people along a defined vertical axis.");
+    SetShort("一部电梯");
+    SetLong("这是一个大型箱式运输工具，用于沿固定垂直轴线运送物品和人员。");
     SetRace("vehicle");
     SetPosition(POSITION_NULL);
     SetMelee(0);

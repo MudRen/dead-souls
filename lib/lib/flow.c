@@ -32,8 +32,8 @@ void create(){
     SetKeyName("water");
     SetId( ({"flow","flood","object","water","overflow"}) );
     SetAdjectives( ({"flow","flood"}) );
-    SetShort("some water");
-    SetLong("This is an overflow of water.");
+    SetShort("一些水");
+    SetLong("这是一片溢出的水流。");
     SetMass(20);
     SetInvis(1);
     SetBaseCost("silver",10);

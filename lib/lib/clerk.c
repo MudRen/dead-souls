@@ -14,8 +14,8 @@ void create(){
     SetAdjectives("town");
     SetGender("male");
     SetRace("human");
-    SetShort("the town clerk");
-    SetLong("An officious-looking clerk."); 
+    SetShort("镇上的文书");
+    SetLong("一位看起来很官僚的文书。");
     SetLocalCurrency("silver");
     SetClass("priest");
     AddCommandResponse("marry", (: MarriageRequest :));

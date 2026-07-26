@@ -48,8 +48,8 @@ void SetLimb(string limb, string owner, string race){
     Race = race;
     Player = interactive(previous_object());
     Count = 1;
-    SetShort("a rotting " + possessive_noun(Race) + " " + Limb);
-    SetLong("This limb has a horrible stench as it rots to nothing.");
+    SetShort("一截腐烂的" + possessive_noun(Race) + " " + Limb);
+    SetLong("这个肢体正在腐烂，散发着可怕的恶臭。");
     if(Player){
         SetNoClean(1);
         slowdecay = 50;
@@ -99,13 +99,13 @@ int eventDecay(){
         case 10:
             if(stank)
                 message("smell", "The "+Limb+" really stinks.", environment());
-            SetShort("the stinky remains of a rotting " + Limb);
+            SetShort("腐烂的" + Limb + "散发恶臭的残余");
             break;
         case 20:
             if(stank)
                 message("smell", "A rotting stench fills the entire area.",
                         environment());
-            SetShort("a pile of rotting flesh");
+            SetShort("一堆腐烂的血肉");
             break;
         case 30:
             Destruct();

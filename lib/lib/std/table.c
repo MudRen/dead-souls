@@ -4,8 +4,8 @@ inherit LIB_BED;
 
 void create(){
     bed::create();
-    SetShort("A table");
-    SetLong("A table");
+    SetShort("一张桌子");
+    SetLong("这是一张桌子。");
     SetMaxSitters(2);
     SetMaxLiers(1);
     SetMaxCarry(500);

@@ -10,9 +10,8 @@ void create(){
     SetKeyName("magazine");
     SetId(({"clip","magazine"}));
     SetAdjectives(({"ammunition","pistol"}));
-    SetShort("a pistol ammunition clip");
-    SetLong("This is a slender, spring-loaded container for semiautomatic "+
-            "pistol ammunition.");
+    SetShort("一个手枪弹匣");
+    SetLong("这是一个细长的弹簧装填容器，用于半自动手枪弹药。");
     SetMass(10);
     SetValue(1);
     SetVendorType(VT_TREASURE);

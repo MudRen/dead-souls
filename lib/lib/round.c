@@ -10,8 +10,8 @@ void create(){
     ::create();
     SetKeyName("round");
     SetId(({"round","bullet"}));
-    SetShort("a generic pistol round");
-    SetLong("This is a generic pistol round.");
+    SetShort("一发普通手枪弹");
+    SetLong("这是一发普通手枪弹。");
     SetMass(1);
     SetValue(1);
     SetVendorType(VT_TREASURE);

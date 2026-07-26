@@ -9,8 +9,8 @@ void create(){
     if(!firearmtype) firearmtype = "firearm";
     SetKeyName("shell");
     SetId(({"shell","casing","shell casing"}));
-    SetShort("a spent "+firearmtype+" shell");
-    SetLong("This is the empty shell casing of a bullet that has been fired.");
+    SetShort("一个用过的"+firearmtype+"弹壳");
+    SetLong("这是一颗已发射子弹的空弹壳。");
     SetMass(1);
     SetValue(0);
     SetVendorType(VT_TREASURE);

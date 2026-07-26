@@ -29,7 +29,7 @@ int eventDecay(){
                         "begins to corrode.", MSG_ROOMDESC);
             SetId(GetId()..., "chassis", "body");
             SetAdjectives(GetAdjectives()..., "melting", "corroding");
-            SetShort("the corroding chassis of an artificial body");
+            SetShort("一副正在腐蚀的人造躯体骨架");
             SetSmell("The chassis emits an acrid chemical odor.");
             break;
         case 20:
@@ -37,7 +37,7 @@ int eventDecay(){
                 environment()->eventPrint("An acrid chemical odor fills the entire "
                         "area.", MSG_ROOMDESC);
             SetId(GetId()..., "synthetics", "pile", "pile of synthetics");
-            SetShort("a pile of corroding synthetics");
+            SetShort("一堆腐蚀的合成材料");
             SetSmell("Its smell is nearly unbearable.");
             break;
         case 30:
@@ -57,8 +57,8 @@ void SetCorpse(object who){
     Race = who->GetRace();
     Count = 1;
     Fresh = 1;
-    SetShort("the wreckage of "+tmpshort);
-    SetLong("As you look closely at " + who->GetCapName() +
-            ", you notice that " +  nominative(who) +
-            " does not appear to be moving.");
+    SetShort(tmpshort+"的残骸");
+    SetLong("当你仔细观察" + who->GetCapName() +
+            "时，你注意到" + nominative(who) +
+            "似乎已经不再活动了。");
 }

@@ -8,8 +8,8 @@ void create(){
     SetKeyName("lockpick");
     SetAdjectives(({"lockpicking","picking"}));
     SetId(({ "tool","pick" }));
-    SetShort("a lockpick");
-    SetLong("A tool for picking locks.");
+    SetShort("一把开锁器");
+    SetLong("这是一把开锁工具。");
     SetMass(10);
 }
 

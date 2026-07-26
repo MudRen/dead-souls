@@ -24,13 +24,13 @@ int eventDecay(){
         case 10:
             if(stank)
                 message("smell", "The "+Limb+" rapidly corrodes.", environment());
-            SetShort("the corroding remnant of a " + Limb);
+            SetShort("正在腐蚀的" + Limb + "残余");
             break;
         case 20:
             if(stank)
                 message("smell", "An acrid chemical odor fills the area.",
                         environment());
-            SetShort("some corroded chemicals");
+            SetShort("一些腐蚀的化学物质");
             break;
         case 30:
             CallOut = -1;
@@ -47,6 +47,6 @@ void SetLimb(string limb, string owner, string race){
     Owner = owner;
     Race = race;
     Count = 1;
-    SetShort("a melting " + possessive_noun(Race) + " " +Limb);
-    SetLong("This limb is rapidly corroding into its component chemicals.");
+    SetShort("一段正在融化的" + possessive_noun(Race) + " " + Limb);
+    SetLong("这个肢体正在快速腐蚀，分解成化学成分。");
 }

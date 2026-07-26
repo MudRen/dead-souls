@@ -16,36 +16,34 @@ string WoundLong(){
         return "Error.";
     }
 
-    num = env->GetLead(); 
+    num = env->GetLead();
 
     if(env == this_player()){
-        noun = "You";
-        verb = "have";
-        poss = "your";
+        noun = "你";
+        verb = "";
+        poss = "你的";
     }
     else {
         noun = env->GetName();
-        verb = "has";
+        verb = "";
         poss = possessive(env);
     }
     num = env->GetLead();
     if(!num){
-        verb = (env == this_player() ? "are" : "is");
-        ret =  noun + " " + verb + " recovering from gunfire wounds.";   
+        ret = noun + "正在从枪伤中恢复。";
         return ret;
     }
     if(num > 1){
-        being = "are";
-        plural = "s";
+        being = "有";
+        plural = "个";
     }
     else {
-        being = "is";
-        plural = "";
+        being = "有";
+        plural = "个";
     }
 
-    ret = noun + " " + verb + " been wounded by gunfire. There "+ 
-        being + " " + cardinal(this_player()->GetLead())+" bullet hole"+
-        plural + " in " + poss + " body.";
+    ret = noun + "被枪击受伤了。" + poss + "身上" +
+        being + cardinal(this_player()->GetLead()) + plural + "弹孔。";
 
     return ret;
 }
@@ -54,14 +52,14 @@ void create(){
     ::create();
     SetKeyName("wound");
     SetId(({"wound","firearms_wound","wounds"}));
-    SetShort("a gunshot wound");
+    SetShort("一处枪伤");
     SetLong( (: WoundLong :) );
     set_heart_beat(20);
 }
 
 string GetAffectLong(object ob) {
     if(!ob || !living(ob) || ob->GetUndead()) return 0;
-    return ob->GetName() + " is suffering from gunshot wounds.";
+    return ob->GetName() + "正在遭受枪伤的折磨。";
 }
 
 void heart_beat(){

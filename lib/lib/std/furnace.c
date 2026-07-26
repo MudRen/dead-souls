@@ -7,9 +7,8 @@ inherit LIB_ROOM;
 void create(){
     room::create();
     SetAmbientLight(30);
-    SetShort("the furnace");
-    SetLong("The furnace. Things that arrive here are "+
-            "incinerated. You probably shouldn't be here. Go down to get out.");
+    SetShort("焚化炉");
+    SetLong("焚化炉。到达这里的物品都会被焚化。你可能不应该待在这里。往下走可以离开。");
     SetProperties(([
                 "no attack" : 1,
                 ]));
