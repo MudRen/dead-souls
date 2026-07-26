@@ -30,7 +30,7 @@ mixed cmd(string str) {
             file = base_name(tmp);
     }
     if(!file_exists(file) && !file_exists(file+".c")){
-        write("Cannot find the file specified.");
+        write("找不到指定的文件。");
         return 1;
     }
     str = ShowTree(file, func, 0);

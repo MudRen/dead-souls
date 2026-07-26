@@ -17,7 +17,7 @@ mixed cmd(string args) {
     if( environment(ob) == environment(this_player()) ) 
         return ob->GetCapName() + " is right here.";
     if(archp(ob) && !archp(this_player())){
-        write("You can't trans an admin.");
+        write("你不能传送管理员。");
         tell_player(ob, this_player()->GetName()+" just tried to trans you.");
         return 1;
     }

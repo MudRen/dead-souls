@@ -22,7 +22,7 @@ mixed cmd(string str) {
     bkname = homedir(this_player())+"/bak/bk.db";
 
     if(!file_exists(bkname)) {
-        write("The backup database file does not exist. Aborting.");
+        write("备份数据库文件不存在。中止操作。");
         return 1;
     }
 
@@ -42,7 +42,7 @@ mixed cmd(string str) {
     }
 
     if(!sizeof(new_arr)){
-        write("You haven't backed up a file by that name."); 
+        write("你没有备份过该名称的文件。");
         return 1;
     }
 
@@ -50,10 +50,10 @@ mixed cmd(string str) {
         unguarded( (: globalint = cp(homedir(this_player())+"/bak/workroom.orig",
                         homedir(this_player())+"/workroom.c") :) );
         if(globalint) {
-            write("Workroom file restored.");
+            write("工作室文件已恢复。");
             load_object(CMD_UPDATE)->cmd("-a "+homedir(this_player())+"/workroom.c");
         }
-        else write("Workroom could not be restored.");
+        else write("工作室无法恢复。");
         return 1;
     }
 
@@ -68,14 +68,14 @@ mixed cmd(string str) {
 
     sub_arr = explode(line," : ");
     if(!file_exists(REALMS_DIRS + "/" + this_player()->GetKeyName()+"/bak/"+sub_arr[0])){
-        write("That file has an entry in the backup database but can't be found in your backup directory.");
+        write("该文件在备份数据库中有记录，但在备份目录中找不到。");
         return 1;
     }
     globalstr1 = REALMS_DIRS + "/" + this_player()->GetKeyName()+"/bak/"+sub_arr[0];
     globalstr2 = sub_arr[1];
     cp(globalstr1, globalstr2);
     if(here) reload(here);
-    write("File restored.");
+    write("文件已恢复。");
     return 1;
 }
 

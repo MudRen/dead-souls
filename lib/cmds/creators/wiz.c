@@ -8,19 +8,19 @@ mixed cmd(){
     int ret, err;
 
     if(!room){
-        write("There seems to be a problem with the wiz room.");
+        write("巫师房间似乎存在问题。");
         return 1;
     }
 
     if(env && env == room){
-        write("Wiz!");
+        write("你已经在巫师房间了！");
         return 1;
     }
 
     err = catch( ret = who->eventMoveLiving(room) );
 
     if(err || !ret){
-        write("Looks like some kind of problem getting into the wiz room.");
+        write("进入巫师房间时似乎出现了问题。");
     }
 
     return 1;

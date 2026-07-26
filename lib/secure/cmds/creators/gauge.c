@@ -14,7 +14,7 @@ mixed cmd(string args) {
     int stime, usertime, eval_cost;
 
 #ifndef __HAS_RUSAGE__
-    write("This command depends on an efun that is not available.");
+    write("此命令依赖于一个不可用的外部函数。");
 #else
     if( !args || args == "" ) return "You must specify a command to execute.";
     before = rusage();

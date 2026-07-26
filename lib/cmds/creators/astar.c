@@ -93,7 +93,7 @@ mixed cmd(string str)
         for(j = 0; j < strlen(map_ex[i]); j++)
             if(member_array(map_ex[i][j], keys(map_costs)) != -1) l++;
 
-    write("Walkable paths: " + l + "\n");
+    write("可行走路径: " + l + "\n");
 
     if(sizeof(path_ret))
     {
@@ -102,7 +102,7 @@ mixed cmd(string str)
 
         m_ind = keys(data);
         sz = sizeof(m_ind);
-        write("Walkable paths checked: " + sz + "\n");
+        write("已检查可行走路径: " + sz + "\n");
 
         while(--sz != -1)
         {
@@ -152,12 +152,12 @@ mixed cmd(string str)
 
     if(mapp(data))
     {
-        write("Path cost: " + data[goal][AS_FCOST] + "\n");
+        write("路径代价: " + data[goal][AS_FCOST] + "\n");
         write("\n");
     }
 
-    if(path) write("You should go: " + path + "\n");
-    else write("No path could be found.\n");
+    if(path) write("你应该走: " + path + "\n");
+    else write("找不到可用路径。\n");
 
     return 1;
 }

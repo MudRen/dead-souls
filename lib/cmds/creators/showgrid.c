@@ -5,41 +5,41 @@ inherit LIB_DAEMON;
 varargs int cmd(string str){
 #if GRID
     if(!str){
-        write("Showgrid is "+ (this_player()->GetVisibleGrid() ? "on." : "off."));
+        write("网格显示: "+ (this_player()->GetVisibleGrid() ? "开启" : "关闭"));
         return 1;
     }
     if(str == "on"){
         if(this_player()->GetVisibleGrid()){
-            write("You are already seeing grid coordinates.");
+            write("你已经在显示网格坐标了。");
             return 1;
         }
         this_player()->SetVisibleGrid(1);
         if(this_player()->GetVisibleGrid()){
-            write("You are now seeing grid coordinates.");
+            write("你现在可以看到网格坐标了。");
         }
         else {
-            write("Fail. Coordinates are not shown.");
+            write("失败。坐标未显示。");
         }
         return 1;
     }
     if(str == "off"){
         if(!(this_player()->GetVisibleGrid())){
-            write("Grid coordinate display is already disabled.");
+            write("网格坐标显示已禁用。");
             return 1;
         }
         this_player()->SetVisibleGrid(0);
         if(!(this_player()->GetVisibleGrid())){
-            write("Grid coordinate display is now disabled.");
+            write("网格坐标显示已禁用。");
         }
         else {
-            write("Fail. Coordinates are still displaying.");
+            write("失败。坐标仍在显示。");
         }
         return 1;
     }
-    write("Try: help showgrid");
+    write("试试: help showgrid");
     return 1;
 #else
-    write("This feature is disabled.");
+    write("此功能已禁用。");
     return 1;
 #endif
 }

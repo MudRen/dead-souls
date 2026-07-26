@@ -13,14 +13,14 @@ int cmd(string str) {
     if (who) {
         ob = find_player(who);
         if (!ob) {
-            write("No such player.");
+            write("没有该玩家。");
             return 1;
         }
     }
     else ob = this_player();
     frame = ob->GetLastError();
     if (!frame) {
-        write("No error.");
+        write("没有错误。");
         return 1;
     }
     if (num<0 || num>=sizeof(frame["trace"]))

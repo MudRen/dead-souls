@@ -17,7 +17,7 @@ mixed cmd(string args) {
 
     callouts = call_out_info();
     if( !sizeof(callouts) ) {
-        previous_object()->eventPrint("No pending callouts.", MSG_SYSTEM);
+        previous_object()->eventPrint("没有待处理的回调。", MSG_SYSTEM);
         return 1;
     }
     tmp = sprintf("%:-40s %:-25s Delay\n", "Object", "Function");

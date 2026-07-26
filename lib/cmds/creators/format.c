@@ -9,8 +9,7 @@ inherit LIB_DAEMON;
 
 int cmd(string str)
 {
-    write("This is a fake wiz command.  Try \"help format\" to get" +
-            " information on\nspecifying objects for certain wiz commands.\n");
+    write("这是一个虚拟巫师命令。试试 \"help format\" 来获取\n关于某些巫师命令指定对象的信息。\n");
     return 1;
 }
 
@@ -27,21 +26,16 @@ string GetHelp(){
             "  /str  str is a filename of an object\n" +
             "Objects can also be \"me\", which is your player\n" +
             "  object, or \"here\", which is you environment.\n");
-    write("Objects denoted by prefixes are joined by a few\n" +
-            "functional symbols:\n" +
-            "  object@environment  denotes the object at an\n" +
-            "    environment.  Environment can be either an\n" +
-            "    object or an object@environment.\n" +
-            "  e(object)  denotes the environment of object.\n\n");
-    write("For example:\n" +
-            "  !sword@%descartes  is the sword in Descartes'\n" +
-            "     inventory.\n" +
-            "  #2@!bag@$orc@here  is the 3rd item in the bag\n" +
-            "     that the orc in front of you is holding.\n" +
-            "     NOTE: #0 is the first object.\n" +
-            "  $orc@/d/standard/square  is the orc that\n" +
-            "     shouldn't be in the square.\n" +
-            "See also: patch\n"+
-            "See man: to_object, get_object, get_objects\n"+
+    write("用前缀表示的对象通过一些功能符号连接:\n" +
+            "  object@environment  表示在某个环境中的对象。\n" +
+            "    环境可以是对象或 object@environment。\n" +
+            "  e(object)  表示对象所在的环境。\n\n");
+    write("例如:\n" +
+            "  !sword@%descartes  是 Descartes 背包中的剑。\n" +
+            "  #2@!bag@$orc@here  是你面前兽人持有的袋子里的第3个物品。\n" +
+            "     注意: #0 是第一个对象。\n" +
+            "  $orc@/d/standard/square  是不应该出现在广场上的兽人。\n" +
+            "参见: patch\n"+
+            "参见手册: to_object, get_object, get_objects\n"+
             "");
 }

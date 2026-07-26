@@ -43,8 +43,8 @@ mixed cmd(string args) {
     else if( res != 1 ) {
         return res;
     }
-    previous_object()->eventPrint("Transferred " + identify(what) + " into " +
-            identify(destination) + ".", MSG_SYSTEM);
+    previous_object()->eventPrint("已将 " + identify(what) + " 转移到 " +
+            identify(destination) + "。", MSG_SYSTEM);
     if( living(what) ) {
         what->eventDescribeEnvironment();
     }

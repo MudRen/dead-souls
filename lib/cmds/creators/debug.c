@@ -9,11 +9,11 @@ mixed cmd(string str) {
     else if(!str && status) str = "off";
     if(str != "on" && str != "off") return "Try: help debug";
     if(str == "on"){
-        write("You enable debugging.");
+        write("你启用了调试模式。");
         this_player()->SetProperty("debug", 1);
         return 1;
     }
-    write("You disable debugging.");
+    write("你禁用了调试模式。");
     this_player()->SetProperty("debug", 0);
     return 1;
 }

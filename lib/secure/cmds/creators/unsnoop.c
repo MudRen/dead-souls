@@ -14,7 +14,7 @@ int cmd(string str) {
         return 1;
     }
     SNOOP_D->RemoveWatcher(this_player()->GetKeyName(), str);
-    write("The snoop daemon has received your request.");
+    write("监听守护进程已收到你的请求。");
     return 1;
 }
 

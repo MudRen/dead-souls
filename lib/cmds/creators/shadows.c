@@ -19,7 +19,7 @@ mixed cmd(string str) {
     retmap = target->GetShadows();
 
     if(!sizeof(retmap)){
-        write("No shadows found.");
+        write("未找到阴影。");
         return 1;
     }
 

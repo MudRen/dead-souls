@@ -23,7 +23,7 @@ mixed cmd(string args) {
                 previous_object()->SetBlocked(class_name);
             }
         }
-        previous_object()->eventPrint("You are now blocking all class lines.",
+        previous_object()->eventPrint("你现在正在屏蔽所有职业频道。",
                 MSG_SYSTEM);
     }
     else {
@@ -32,8 +32,8 @@ mixed cmd(string args) {
                 previous_object()->SetBlocked(class_name);
             }
         }
-        previous_object()->eventPrint("You are no longer blocking any class "
-                "lines.", MSG_SYSTEM);
+        previous_object()->eventPrint("你不再屏蔽任何职业频道。",
+                MSG_SYSTEM);
     }
     return 1;
 }

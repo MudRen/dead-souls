@@ -206,7 +206,7 @@ void read_callback( int fd, mixed message )
 void write_callback( int fd )
 {
 #ifdef _DEBUG
-    player->eventPrint("Connected!");
+    player->eventPrint("已连接！");
 #endif
     status = SOCK_CONNECTED;
     http_file_found = 0;
@@ -219,13 +219,13 @@ void close_callback( int fd )
     {
         // Process HTML here
 #ifdef _DEBUG
-        player->eventPrint("Connection closed by host.");
+        player->eventPrint("连接被主机关闭。");
 #endif
         ProcessHTTPResult(fd);
     }
     if( status == SOCK_CONNECTING )
     {       
-        player->eventPrint("Connection attempt failed.");
+        player->eventPrint("连接尝试失败。");
     }
     socket_close( fd ) ;
     map_delete(Sockets,fd);
@@ -242,7 +242,7 @@ void sendHTTPGet()
     int result = 0;
     results = "";
 #ifdef _DEBUG
-    player->eventPrint("Sending HTTP get request..." );
+    player->eventPrint("正在发送HTTP GET请求..." );
 #endif
     if( status == SOCK_CONNECTED )
     {
@@ -292,7 +292,7 @@ int openHTTPConnection()
                 "Reason: " + error ) ;
         return 0 ;
     }
-    write("Attempting to connect to "+HTTP_HOST+ " on port "+ HTTP_PORT + "\n");
+    write("正在尝试连接到 "+HTTP_HOST+ " 端口 "+ HTTP_PORT + "\n");
     sc_result = socket_connect( sock, Feeds[args_list]["ip_port"],
             "read_callback", "write_callback" ) ;
     if( sc_result != EESUCCESS )
@@ -335,7 +335,7 @@ void resolveHost()
 
 mixed cmd(string args) {
     if(args == "list"){
-        write("Known feeds: "+implode(keys(Feeds),", "));
+        write("已知的订阅源: "+implode(keys(Feeds),", "));
         return 1;
     }
     player = previous_object();

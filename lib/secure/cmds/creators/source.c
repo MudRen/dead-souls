@@ -13,7 +13,7 @@ mixed cmd(string args) {
     int queued, gauged;
 
     if(!args) {
-        write("Please specify a file as an argument.");
+        write("请指定一个文件作为参数。");
         return 1;
     }
     if(sscanf(args,"-%s %s",flags, tmpargs) == 2){
@@ -36,13 +36,13 @@ mixed cmd(string args) {
         file = this_player()->query_cwd()+"/"+args;
     }
     else {
-        write("That is not a valid file.");
+        write("那不是一个有效的文件。");
         return 1;
     }
 
     if(!strsrch(file,"/secure/scripts/") ||
             !strsrch(file,user_path(this_player())) ){
-        write("Processing "+file+"...");
+        write("正在处理 "+file+"...");
     }
     else {
         write(file+" is not in a permitted script directory. Aborting.");
@@ -52,7 +52,7 @@ mixed cmd(string args) {
     contents = read_file(file);
 
     if(!contents || !sizeof(contents)) {
-        write("Either the file is unreadable or it is empty.");
+        write("文件不可读或为空。");
         return 1;
     }
 
@@ -73,14 +73,14 @@ mixed cmd(string args) {
             this_player()->eventQueueCommand(line);
         }
         this_player()->eventExecuteQueuedCommands();
-        write("Commands queued.");
+        write("命令已排队。");
     }
     else {
         foreach( string line in lines ){
             if(line && line != "") write("sourcing command: "+line);
             this_player()->eventForce(line);
         }
-        write("Sourcing complete.");
+        write("脚本执行完成。");
     }
     return 1;
 

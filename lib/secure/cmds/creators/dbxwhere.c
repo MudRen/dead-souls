@@ -17,7 +17,7 @@ mixed cmd(string str) {
         ob = this_player();
     if (error = ob->GetLastError()) {
         return sprintf("%s\n", master()->standard_trace(error, 1));
-    } else write("No error.\n");
+    } else write("没有错误。\n");
     return "dbxwhere run complete.";
 }
 

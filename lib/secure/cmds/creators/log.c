@@ -14,7 +14,7 @@ int cmd(string str) {
         return 0;
     }
     write(str+":\n");
-    if(!tail(DIR_LOGS+"/"+str)) write("No such log file: "+str+"\n");
+    if(!tail(DIR_LOGS+"/"+str)) write("没有该日志文件: "+str+"\n");
     return 1;
 }
 

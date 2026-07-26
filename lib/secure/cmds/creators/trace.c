@@ -10,7 +10,7 @@ mixed cmd(string args) {
     x = atoi(args);
     if(!archp(previous_object())) return 0;
     trace(x);
-    write("Set tracing level to "+x+".");
+    write("已将跟踪级别设置为 "+x+"。");
 #endif
     return 1;
 }

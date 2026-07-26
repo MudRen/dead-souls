@@ -5,7 +5,7 @@ inherit LIB_DAEMON;
 
 int cmd() {
     int bugs = BUGS_D->BugCheck();
-    write("Unresolved bug reports: "+bugs);
+    write("未解决的错误报告: "+bugs);
     return 1;
 }
 

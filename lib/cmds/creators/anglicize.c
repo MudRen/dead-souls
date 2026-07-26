@@ -10,16 +10,16 @@ mixed cmd(string str) {
 
     if(str == "me") str = this_player()->GetKeyName();
     if(!target = present(str, environment(this_player()))){
-        write("They're not here.");
+        write("他们不在这里。");
         return 1;
     }
     if(!living(target)) {
-        write("That's not a living thing.");
+        write("那不是活物。");
         return 1;
     }
     if(creatorp(target) && !archp(this_player()) &&
             target != this_player()){
-        write("That's impolite.");
+        write("这不太礼貌。");
         tell_player(target,capitalize(this_player()->GetKeyName())+
                 " just tried to anglicize you.");
         return 1;
@@ -28,7 +28,7 @@ mixed cmd(string str) {
     target->SetNativeLanguage("English");
     if(target == this_player()) str = "yourself";
     else str = capitalize(str);
-    write("You anglicize "+str+".");
+    write("你将"+str+"的母语设为英语。");
     if(target != this_player()) 
         tell_object(target, capitalize(this_player()->GetKeyName())+" anglicizes you.");
     return 1;

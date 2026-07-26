@@ -5,9 +5,9 @@ inherit LIB_DAEMON;
 mixed cmd(string str) {
     object player;
     if(!str || str =="") {
-        if(!sizeof(this_player()->GetMuffed())) write("You are ignoring no one.");
+        if(!sizeof(this_player()->GetMuffed())) write("你没有屏蔽任何人。");
         else {
-            write("You are ignoring the following:\n");
+            write("你正在屏蔽以下玩家:\n");
             write(implode(filter(this_player()->GetMuffed(), (: capitalize($1) :)), "\n")+"\n");
         }
         return 1;
@@ -15,12 +15,12 @@ mixed cmd(string str) {
 
     else str = lower_case(str);
     if(!(player = find_player(str))){
-        write("No such player to be found.");
+        write("找不到该玩家。");
         return 1;
     }
 
     if(!sizeof(player->GetMuffed())){
-        write("That player is ignoring no one.");
+        write("该玩家没有屏蔽任何人。");
         return 1;
     }
 

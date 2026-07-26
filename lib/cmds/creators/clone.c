@@ -26,9 +26,9 @@ mixed cmd(string args) {
     if( res = catch(ob = new(file)) ) 
         return "Error in cloning object: " + res;
     if( !ob ){
-        write("Failed to clone file: " + file);
+        write("克隆文件失败: " + file);
         if(!file_exists(file)){
-            write("It seems that the file "+file+" does not exist.");
+            write("文件 "+file+" 似乎不存在。");
         }
         return 1;
     }

@@ -25,7 +25,7 @@ int cmd(string str) {
     int ow;
 
     if(this_player()->GetForced()) {
-        write("Someone has tried forcing you to cp " + str);
+        write("有人试图强迫你复制 " + str);
         return 1;
     }
     localdest = 0;    /* Assume it's not a local destination */
@@ -67,7 +67,7 @@ int cmd(string str) {
             case -2:
                 break;
             default:
-                return(write("Cannot copy wild card to a single file."),1);
+                return(write("无法将通配符复制到单个文件。"),1);
         }
     }
 
@@ -96,7 +96,7 @@ int cmd(string str) {
                 write( "Copied: "+file+" to "+dest );
             }
             else {
-                write("Copy failed.");
+                write("复制失败。");
             }
         }
     }

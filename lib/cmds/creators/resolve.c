@@ -8,11 +8,11 @@ mapping NamesMap = ([]);
 varargs int cmd(string str)
 {
     if(!RESOLV_D->GetResolving()){
-        write("This mud is not using name resolution.");
+        write("此泥潭未使用名称解析。");
         return 1;
     }
 
-    write("Querying for information on "+str+"...");
+    write("正在查询 "+str+" 的信息...");
     RESOLV_D->eventResolve(str, "resolve_callback");
     NamesMap[str] = this_player();
     return 1;

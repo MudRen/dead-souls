@@ -13,17 +13,17 @@ int cmd(string str) {
     object ob;
 
     if( !str || str == "" ) {
-        write("Snoop whom?\n");
+        write("监听谁？\n");
     }
     else if(!(ob=find_player(str=lower_case(str))))
         write(str+": no such player.\n");
     else if(str == this_player()->GetKeyName()){
-        write("That would be very foolish.");
+        write("那将是非常愚蠢的。");
         return 1;
     }
     else
         SNOOP_D->AddWatcher(this_player()->GetKeyName(), str);
-    write("The snoop daemon has received your request.");
+    write("监听守护进程已收到你的请求。");
     return 1;
 }
 

@@ -17,7 +17,7 @@ mixed cmd(string args){
     string emote, xtra, prep;
     if( !(master()->valid_apply(({ "ASSIST" }))) &&
             !member_group(this_player(), "EMOTES") ){
-        write("You are not admin, nor a member of the EMOTES group.");
+        write("你不是管理员，也不是EMOTES组的成员。");
         return 1;
     }
 
@@ -55,7 +55,7 @@ mixed cmd(string args){
         prep = 0;
     }
     if( !SOUL_D->AddVerb(emote, capitalize(emote) + " how?") ) {
-        previous_object()->eventPrint("Failed to create emote.");
+        previous_object()->eventPrint("创建表情失败。");
         return 1;
     }
     foreach(string rule in rules) {
@@ -93,7 +93,7 @@ mixed cmd(string args){
             SOUL_D->AddRule(emote, rule, ({ ({ emote }), msg }));
         }
     }
-    previous_object()->eventPrint("Stupid emote added.");
+    previous_object()->eventPrint("简单表情已添加。");
     return 1;
 }
 

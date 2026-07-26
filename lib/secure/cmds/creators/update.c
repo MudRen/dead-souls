@@ -78,14 +78,13 @@ mixed cmd(string args) {
         if(ob->GetVirtual()){
             virt = path_prefix(file);
         }
-        this_player()->eventPrint("Updating environment");
+        this_player()->eventPrint("正在更新环境");
         obs = filter(all_inventory(ob), (: userp :));
         if(mount) obs += ({ mount });
         if( sizeof(obs) ) CacheAndCarry(obs);
         err = catch( ret = eventUpdate(file, flags, virt) );
         if( err || !ret ) {
-            obs->eventPrint("You are thrown into the void as your "
-                    "surroundings violently destruct.");
+            obs->eventPrint("你的周围剧烈崩塌，你被抛入了虚空。");
             return "Error in reloading environment.";
         }
         obs = filter(obs, (: $1 :));
@@ -135,7 +134,7 @@ varargs protected int eventUpdate(string args, int flags, string virt) {
         i = sizeof(ancestors);
         while(i--) if( !eventUpdate(ancestors[i], flags ^ U_RECURSIVE) ) {
             if(this_player())
-                this_player()->eventPrint("Recursive update failed.");
+                this_player()->eventPrint("递归更新失败。");
             return 0;
         }
     }
@@ -159,12 +158,12 @@ varargs protected int eventUpdate(string args, int flags, string virt) {
             this_player()->eventPrint(args + ": Failed to destruct old object.");
     }
     if( args == base_name(this_object()) && this_player() ) {
-        this_player()->eventPrint("Cannot reload update after destruct.\n"
-                "It will be reloaded at next reference.");
+        this_player()->eventPrint("销毁后无法重新加载更新。\n"
+                "它将在下次引用时重新加载。");
         return 0;
     }
     if(!sizeof(args)){
-        write("Error updating. Mojo meditation 8675309.");
+        write("更新错误。");
         return 1;
     }
     tmp = catch(call_other(args, "???"));

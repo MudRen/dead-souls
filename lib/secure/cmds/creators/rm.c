@@ -18,7 +18,7 @@ int cmd(string str) {
         return 0;
     }
     if((ob=previous_object())->GetForced()) {
-        write("Someone attempted to force you to rm "+str+".");
+        write("有人试图强迫你删除 "+str+"。");
         return 1;
     }
     tmp = absolute_path(ob->query_cwd(), str);

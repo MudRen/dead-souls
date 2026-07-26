@@ -34,7 +34,7 @@ int cmd(string str) {
 
     ret = sort_array(ret, 1);
 
-    write("List of variables for "+identify(ob)+": ");
+    write(identify(ob)+" 的变量列表: ");
     this_player()->eventPage(ret);
 
     return 1;

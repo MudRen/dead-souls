@@ -20,21 +20,21 @@ mixed cmd(string args) {
     else self = 0;
 
     if( !self && !who = find_living(args) ) {
-        write("That being is unavailable."); 
+        write("该生物不可用。");
         return 1;
     }
     if((who && who->GetGhost()) ) {
-        write("You can't heal the dead.");
+        write("你无法治愈死者。");
         return 1;
     }
     if(!self){
-        previous_object()->eventPrint("You heal " + who->GetName() + ".");
-        who->eventPrint(previous_object()->GetCapName() + " heals you.");
+        previous_object()->eventPrint("你治愈了 " + who->GetName() + "。");
+        who->eventPrint(previous_object()->GetCapName() + " 治愈了你。");
         say(this_player()->GetCapName() + " heals "+ who->GetName() + ".",who);
     }
     else {
         who = this_player();
-        previous_object()->eventPrint("You heal thyself.");
+        previous_object()->eventPrint("你治愈了自己。");
         say(this_player()->GetCapName() + " heals "+
                 objective(this_player())+"self.",who);
     }

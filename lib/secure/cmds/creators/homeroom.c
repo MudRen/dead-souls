@@ -16,11 +16,11 @@ mixed cmd(string str){
         if(room) path = base_name(room);
     }
     if(!path){
-        write("Unable to set "+str+" as your home room.");
+        write("无法将 "+str+" 设为你的主房间。");
         return 1;
     } 
     this_player()->SetParanoia("homeroom", path);
-    write("Your current home room is: "+path);
+    write("你当前的主房间: "+path);
     return 1;
 }
 

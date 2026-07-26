@@ -81,7 +81,7 @@ int cmd(string str){
         ret = doRotate(code, str);
     }
 
-    write("Output: "+ret);
+    write("输出: "+ret);
     return 1;
 }
 

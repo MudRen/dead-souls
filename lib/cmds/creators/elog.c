@@ -12,7 +12,7 @@ int cmd(string str) {
     if(!str) str = DIR_ERROR_LOGS+"/"+previous_object()->GetKeyName();
     else str = DIR_ERROR_LOGS+"/"+str;
     write(str+":\n");
-    if(!tail(str)) write("No errors in "+str+".\nTry /log/runtime or /log/catch\n");
+    if(!tail(str)) write(str+"中没有错误。\n试试 /log/runtime 或 /log/catch\n");
     return 1;
 }
 

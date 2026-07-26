@@ -2,7 +2,7 @@
 
 int cmd(string str){
     if(!(IMC2_D->command(str))){
-        write("IMC2 daemon is currently unavailable.");
+        write("IMC2守护进程当前不可用。");
     }
     return 1;
 }

@@ -13,15 +13,15 @@ int cmd(string str) {
     else ob = get_object(str, this_player());
 
     if(!ob) {
-        write("That object can't be found.");
+        write("找不到该对象。");
         return 1;
     }
 
     filename = file_name(ob);
     basename = base_name(ob);
 
-    write("The unique object identifier is: "+filename);
-    write("The file it is loaded from is: "+basename+".c");
+    write("对象唯一标识符: "+filename);
+    write("加载的文件: "+basename+".c");
 
     return 1;
 }

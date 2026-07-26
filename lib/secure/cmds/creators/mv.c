@@ -17,7 +17,7 @@ mixed cmd(string str){
     int force = 0;
     int dir = 0;
     if(this_player()->GetForced()) {
-        write("Someone tried forcing you to mv "+str+"\n");
+        write("有人试图强迫你移动 "+str+"\n");
         return 1;
     }
 

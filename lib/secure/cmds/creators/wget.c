@@ -8,7 +8,7 @@ mapping FilesMap = ([]);
 varargs int cmd(string str){
     object wget = new(WGET_D, this_object()); 
     if(!FilesMap) FilesMap = ([]);
-    write("Requesting url: "+str);
+    write("正在请求URL: "+str);
     FilesMap[wget] = this_player();
     wget->eventGet(str);
     return 1;
@@ -23,7 +23,7 @@ varargs mixed eventReceiveWebData(string content, string file){
         return 1;
     }
     savefile = user_path(who)+last_string_element(file,"/");
-    who->eventPrint("File received: "+file+" , saving to: "+savefile);
+    who->eventPrint("收到文件: "+file+" ，保存到: "+savefile);
     write_file(savefile,content,1);
     return 1;
 }

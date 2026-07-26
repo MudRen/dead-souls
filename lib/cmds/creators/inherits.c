@@ -7,13 +7,13 @@ varargs int cmd(string str){
     string tmp, thing, file, *inheriteds;
     object ob;
     if(!str || sscanf(str,"%s %s",file,thing) != 2){
-        write("Syntax: inherits FILE THING");
+        write("语法: inherits FILE THING");
         return 1;
     }
 
     ob = get_object(thing);
     if(!ob){
-        write("Sorry I can't find that thing.");
+        write("抱歉，找不到那个东西。");
         return 1;
     }
     thing = (ob->GetShort() || thing);
@@ -24,8 +24,8 @@ varargs int cmd(string str){
 
     if(tmp) file = tmp;
 
-    write("Checking " + identify(ob) + " for inheritance of " +
-            file + " , just a moment...");
+    write("正在检查 " + identify(ob) + " 是否继承了 " +
+            file + " ，请稍候...");
     if(file){
         if(inherits(file, ob)){
             write(thing+" inherits "+file+".");
@@ -37,11 +37,11 @@ varargs int cmd(string str){
         }
     }
     if(!sizeof(inheriteds)){
-        write("No matches found. "+ thing +
-                " does not appear to inherit that file.");
+        write("未找到匹配项。"+ thing +
+                " 似乎没有继承该文件。");
         return 1;
     }
-    write("Exact match not found, but here are some possible matches: ");
+    write("未找到精确匹配，但以下是一些可能的匹配: ");
     write(implode(inheriteds,"\n"));
     return 1;
 }

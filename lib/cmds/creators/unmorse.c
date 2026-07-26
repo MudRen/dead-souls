@@ -7,13 +7,13 @@ int cmd(string str){
     string ret = "";
 
     if(!str){
-        write("See: help morse");
+        write("参见: help morse");
         return 1;
     }
 
     ret = unmorse(str);
 
-    write("Output: "+ret);
+    write("输出: "+ret);
     return 1;
 }
 

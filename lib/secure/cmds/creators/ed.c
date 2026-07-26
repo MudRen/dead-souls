@@ -25,10 +25,10 @@ mixed cmd(string args) {
     }
 
     if(!this_player()->GetProperty("EdWarned")){
-        write("This is the first time you've used ed. If you get stuck, simply "
-                "hit return a few times, then enter a dot on a blank line, hit return, "
-                "then type Q, then enter. Then visit this page to learn more about "
-                "using the ed editor: http://dead-souls.net/editor.html");
+        write("这是你第一次使用ed。如果卡住了，只需按几次回车，"
+                "然后在空行输入一个点，按回车，"
+                "然后输入Q，再按回车。然后访问此页面了解更多关于"
+                "ed编辑器的使用方法: http://dead-souls.net/editor.html");
         this_player()->SetProperty("EdWarned", 1);
     }
     args = absolute_path( this_player()->query_cwd(), args );

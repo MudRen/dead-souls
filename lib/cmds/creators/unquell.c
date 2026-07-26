@@ -4,7 +4,7 @@
 inherit LIB_COMMAND;
 
 int cmd(string str){
-    write("You snap your fingers, and permit hostilities to resume.");
+    write("你打了个响指，允许战斗继续进行。");
     say(this_player()->GetCapName()+" snaps "+possessive()+" fingers "+
             "and permits hostilities to resume.");
     foreach(object combatant in get_livings(environment(this_player()))){

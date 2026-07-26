@@ -11,12 +11,12 @@ varargs int cmd(string str){
     string file = "/open/typecheck.c";
     mixed ret, tmpret;
     if(!str){
-        write("Try: help types");
+        write("试试: help types");
         return 1;
     }
     i = sscanf(str,"%s %s", s1, s2);
     if(i != 2 || member_array(s1, types) == -1){
-        write("Try: help types");
+        write("试试: help types");
         return 1;
     }
     contents = header+program;
@@ -30,7 +30,7 @@ varargs int cmd(string str){
     }
     else ret = TYPES_D->eventCalculateTypes(s1, tmpret);
     if(arrayp(ret)) ret = implode(ret," ");
-    write("The value "+tmpret+" for "+s1+" is: "+ret);
+    write(s1+" 的值 "+tmpret+" 是: "+ret);
     return 1;
 }
 

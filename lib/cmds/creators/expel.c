@@ -12,7 +12,7 @@ mixed cmd(string args) {
         return "Expel only works for living things in your environment.";
     }
     if(archp(ob) && !archp(this_player())){
-        write("You can't expel an admin.");
+        write("你不能驱逐管理员。");
         tell_player(ob, this_player()->GetName()+" just tried to expel you.");
         return 1;
     }

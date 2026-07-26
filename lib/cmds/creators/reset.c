@@ -11,7 +11,7 @@ int cmd(string str) {
 
     if(!str || str == "here") {
         environment(this_player())->reset();
-        write("You reset the room.\n");
+        write("你重置了房间。\n");
         return 1;
     }
     ob = present(str, environment(this_player()));
@@ -19,11 +19,11 @@ int cmd(string str) {
     if(!ob) ob = parse_objects(environment(this_player()), str);
     if(!ob) ob = parse_objects(this_player(), str);
     if(!ob) {
-        write("That object can't be found.");
+        write("找不到该对象。");
         return 1;
     }
     else ob->reset();
-    write("You reset "+str+".\n");
+    write("你重置了"+str+"。\n");
     return 1;
 }
 

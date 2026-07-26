@@ -15,7 +15,7 @@ mixed cmd(string args){
     string verb, rule;
     if( !(master()->valid_apply(({ "ASSIST" }))) &&
             !member_group(this_player(), "EMOTES") ){
-        write("You are not admin, nor a member of the EMOTES group.");
+        write("你不是管理员，也不是EMOTES组的成员。");
         return 1;
     }
 
@@ -28,17 +28,17 @@ mixed cmd(string args){
     }
     if( !rule ) {
         if( !SOUL_D->RemoveVerb(verb) ) {
-            previous_object()->eventPrint("Removal of verb failed.");
+            previous_object()->eventPrint("删除动词失败。");
             return 1;
         }
-        previous_object()->eventPrint("Verb removed.");
+        previous_object()->eventPrint("动词已删除。");
     }
     else {
         if( !SOUL_D->RemoveRule(verb, rule) ) {
-            previous_object()->eventPrint("Removal of rule failed.");
+            previous_object()->eventPrint("删除规则失败。");
             return 1;
         }
-        previous_object()->eventPrint("Rule removed.");
+        previous_object()->eventPrint("规则已删除。");
     }
     return 1;
 }

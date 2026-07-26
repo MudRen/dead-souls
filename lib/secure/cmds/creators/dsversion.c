@@ -74,7 +74,7 @@ void read_callback( int fd, mixed message ){
 
 void write_callback( int fd ){
 #ifdef _DEBUG
-    player->eventPrint("Connected!");
+    player->eventPrint("已连接！");
 #endif
     status = SOCK_CONNECTED;
     http_file_found = 0;
@@ -108,7 +108,7 @@ void sendHTTPGet()
     int result = 0;
     results = "";
 #ifdef _DEBUG
-    player->eventPrint("Sending HTTP get request..." );
+    player->eventPrint("正在发送HTTP GET请求..." );
 #endif
     if( status == SOCK_CONNECTED )
     {
@@ -160,7 +160,7 @@ int openHTTPConnection()
         return 0 ;
     }
 #ifdef _DEBUG
-    write("Attempting to connect to "+HTTP_HOST+ " on port "+ HTTP_PORT + "\n");
+    write("正在尝试连接到 "+HTTP_HOST+ " 端口 "+ HTTP_PORT + "\n");
 #endif	
     sc_result = socket_connect( sock, HTTP_ADDRESS + " " + HTTP_PORT,
             "read_callback", "write_callback" ) ;

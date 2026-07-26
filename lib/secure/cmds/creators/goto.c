@@ -53,9 +53,9 @@ mixed cmd(string str) {
         else if(!file_exists(str) && !file_exists(str + ".c")){
             str == lower_case(str);
             if(str == "home" || str == "workroom"){
-                write("Try: help home");
+                write("试试: help home");
             }
-            else write("Location not found.");
+            else write("未找到该位置。");
             return 1;
         }
     }

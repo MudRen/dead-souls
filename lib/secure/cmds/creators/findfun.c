@@ -11,7 +11,7 @@ mixed cmd(string args) {
     string *ret_arr, *lc_hits = ({}), *lc_tmp;
 
     if(!args || args == ""){
-        write("You'll need to be more specific. Try: help findfun");
+        write("你需要更具体一些。试试: help findfun");
         return 1;
     }
     if(!strsrch(args, "-s ")){
@@ -19,13 +19,13 @@ mixed cmd(string args) {
         subs = 1;
     }
     if(!args || args == ""){
-        write("You'll need to be more specific. Try: help findfun");
+        write("你需要更具体一些。试试: help findfun");
         return 1;
     }
     if(subs){
         ret_arr = FUNCTION_D->GetLCFunctions(args, 1);
         if(!sizeof(ret_arr)){
-            write("No matches found.");
+            write("未找到匹配项。");
             return 1;
         }
         ret_arr = explode(format_page(ret_arr, 2), "\n");

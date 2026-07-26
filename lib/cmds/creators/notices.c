@@ -25,8 +25,8 @@ mixed cmd(string str) {
             if( x < 1 && words[1] != "0" )
                 return "Bad value ("+words[1]+").";
             if( NOTIFY_D->eventRemoveNotice(x) )
-                ob->eventPrint("Notice number " + x + " has been erased.");
-            else ob->eventPrint("Could not remove number " + x + ".");
+                ob->eventPrint("通知编号 " + x + " 已被删除。");
+            else ob->eventPrint("无法删除编号 " + x + "。");
             return 1;
         }
         else if( words[0] == "-p" && sizeof(words) > 1 ) {
@@ -35,8 +35,8 @@ mixed cmd(string str) {
             else x = 1;
             if( x < 1 ) return GetHelp(0);
             if( NOTIFY_D->eventWriteNotices(file, time() - (OneDay*x)) )
-                ob->eventPrint("Notices dumped to " + file + ".");
-            else ob->eventPrint("No notices found, nothing done.");
+                ob->eventPrint("通知已导出到 " + file + "。");
+            else ob->eventPrint("未找到通知，未执行任何操作。");
             return 1;
         }
         else return GetHelp(0);

@@ -62,7 +62,7 @@ int cmd(string str){
     string *str_array = ({});
 
     if(!str){
-        write("Please see \"help rot\".");
+        write("请查看 \"help rot\"。");
         return 1;
     }
 
@@ -93,7 +93,7 @@ int cmd(string str){
         }
     }
 
-    write("Output: "+ret);
+    write("输出: "+ret);
     return 1;
 }
 

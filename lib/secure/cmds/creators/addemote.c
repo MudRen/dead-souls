@@ -60,7 +60,7 @@ protected void EnterEditChoice(string str, string* rules, string emote) {
                 return;
             }
             else if( str[0] == 'a' ) {
-                this_player()->eventPrint("Enter verb rule: ", MSG_PROMPT);
+                this_player()->eventPrint("输入动词规则: ", MSG_PROMPT);
                 input_to((: AddRule :), emote);
                 return;
             }
@@ -89,22 +89,22 @@ protected void AddAdverbs(string adv, string emote, string* rules,
     foreach(string rule in rules) {
         SOUL_D->AddRule(emote, rule, ({ verbs, msg }), adverbs);
     }
-    this_player()->eventPrint("Emote '" + emote + "' added.");
+    this_player()->eventPrint("表情 '" + emote + "' 已添加。");
 }
 
 protected void AddMessage(string msg, string emote, string* rules,
         string* verbs) {
     validate();
     if( !msg || msg == "" ) {
-        this_player()->eventPrint("Which message? [q to quit] ", MSG_PROMPT);
+        this_player()->eventPrint("哪个消息？[q 退出] ", MSG_PROMPT);
         input_to((: AddMessage :), emote, rules, verbs);
         return;
     }
     if( lower_case(msg) == "q" ) {
-        this_player()->eventPrint("Addition of rule aborted.");
+        this_player()->eventPrint("添加规则已中止。");
         return;
     }
-    this_player()->eventPrint("Enter adverbs: ", MSG_PROMPT);
+    this_player()->eventPrint("输入副词: ", MSG_PROMPT);
     input_to((: AddAdverbs :), emote, rules, verbs, msg);
 }
 
@@ -112,7 +112,7 @@ protected void AddVerbs(string list, string emote, string* rules) {
     string* verbs = map(explode(list, ","), (: trim :));
     validate();
 
-    this_player()->eventPrint("Enter message: ", MSG_PROMPT);
+    this_player()->eventPrint("输入消息: ", MSG_PROMPT);
     input_to((: AddMessage :), emote, rules, verbs);
 }
 
@@ -123,29 +123,29 @@ protected void AddRule(string rule, string emote) {
     if( !sizeof(rules) ) {
         rules = ({ "" });
     }
-    this_player()->eventPrint("Enter the verbs: ", MSG_PROMPT);
+    this_player()->eventPrint("输入动词: ", MSG_PROMPT);
     input_to((: AddVerbs :), emote, rules);
 }
 
 protected void AddErrorMessage(string msg, string emote) {
     validate();
     if( !msg || msg == "" ) {
-        this_player()->eventPrint("Which message? [q to quit] ", MSG_PROMPT);
+        this_player()->eventPrint("哪个消息？[q 退出] ", MSG_PROMPT);
         input_to((: AddErrorMessage :), emote);
         return;
     }
     if( !emote || emote == "" ) {
-        this_player()->eventPrint("Which emote? [q to quit] ", MSG_PROMPT);
+        this_player()->eventPrint("哪个表情？[q 退出] ", MSG_PROMPT);
         input_to((: AddEmote :));
         return;
     }
     emote = lower_case(emote);
     if( lower_case(msg) == "q" ) {
-        this_player()->eventPrint("Addition of emote aborted.");
+        this_player()->eventPrint("添加表情已中止。");
         return;
     }
     SOUL_D->AddVerb(emote, msg);
-    this_player()->eventPrint("Enter a parser rule for " + emote + ": ",
+    this_player()->eventPrint("输入 " + emote + " 的解析规则: ",
             MSG_PROMPT);
     input_to((: AddRule :), emote);
 }
@@ -153,16 +153,16 @@ protected void AddErrorMessage(string msg, string emote) {
 protected void AddEmote(string emote) {
     validate();
     if( !emote || emote == "" ) {
-        this_player()->eventPrint("Which emote? [q to quit] ", MSG_PROMPT);
+        this_player()->eventPrint("哪个表情？[q 退出] ", MSG_PROMPT);
         input_to((: AddEmote :));
         return;
     }
     emote = lower_case(emote);
     if( emote == "q" ) {
-        this_player()->eventPrint("Addition of emote aborted.");
+        this_player()->eventPrint("添加表情已中止。");
         return;
     }
-    this_player()->eventPrint("Enter error message: ", MSG_PROMPT);
+    this_player()->eventPrint("输入错误消息: ", MSG_PROMPT);
     input_to((: AddErrorMessage :), emote);
 }
 
@@ -180,13 +180,13 @@ protected void MainMenu() {
     }
     tmp += format_page(display, screen[0]/17) + "\n";
     this_player()->eventPrint(tmp, MSG_SYSTEM);
-    this_player()->eventPrint("Enter an emote or 'q' to quit: ", MSG_PROMPT);
+    this_player()->eventPrint("输入表情或 'q' 退出: ", MSG_PROMPT);
     input_to((: EnterEmote :), emotes);
 }
 
 protected void EditErrorMessage(string emote) {
     validate();
-    this_player()->eventPrint("Enter new error message: ", MSG_PROMPT);
+    this_player()->eventPrint("输入新的错误消息: ", MSG_PROMPT);
     input_to(function(string str, string emote) {
             if( str && str != "" ) {
             SOUL_D->SetErrorMessage(emote, str);
@@ -224,12 +224,12 @@ protected void ShowEmote(string emote) {
 mixed cmd(string args) {
     if( !(master()->valid_apply(({ "ASSIST" }))) &&
             !member_group(this_player(), "EMOTES") ){
-        write("You are not admin, nor a member of the EMOTES group.");
+        write("你不是管理员，也不是EMOTES组的成员。");
         return 1;
     }
 
     if( !args || args == "" ) {
-        this_player()->eventPrint("Enter emote name: ", MSG_PROMPT);
+        this_player()->eventPrint("输入表情名称: ", MSG_PROMPT);
         input_to((: AddEmote :));
     }
     else if( args[0] == '-' ) {
@@ -237,7 +237,7 @@ mixed cmd(string args) {
             MainMenu();
         }
         else if( args == "-add") {
-            this_player()->eventPrint("Enter emote name: ", MSG_PROMPT);
+            this_player()->eventPrint("输入表情名称: ", MSG_PROMPT);
             input_to((: AddEmote :));
         }
         else {

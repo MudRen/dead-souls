@@ -8,14 +8,14 @@ mixed cmd(string str){
     }
     else {
         if(!directory_exists(str)){
-            write("That path appears inaccessible. No change made.");
+            write("该路径似乎不可访问。未做更改。");
         }
         else {
             if(last(str, 1) != "/") str += "/";
             this_player()->SetUserPath(str);
         }
     }
-    write("Your current home directory is: "+user_path(this_player()));
+    write("你当前的主目录: "+user_path(this_player()));
     return 1;
 }
 

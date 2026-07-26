@@ -8,20 +8,19 @@ mixed cmd(string str) {
     string file, content;
 
     if(!str){
-        write("Try: help about");
+        write("试试: help about");
         return 1;
     }
 
     thing = get_object(str);
 
     if(!thing){
-        write("There's no such object available here.");
+        write("这里没有这样的对象。");
         return 1;
     }
 
     if(interactive(thing)){
-        write("Player save files are not subject to examination "
-                "with this command.");
+        write("玩家存档文件不能使用此命令检查。");
         return 1;
     }
 
@@ -34,7 +33,7 @@ mixed cmd(string str) {
     if(file && file_exists(file)) content = read_file(file);
 
     if(!content){
-        write("That data is not currently available to you.");
+        write("该数据目前不可用。");
         return 1;
     }
 

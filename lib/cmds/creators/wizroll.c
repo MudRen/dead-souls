@@ -13,8 +13,8 @@ int cmd(string str){
     foreach(mixed foo in tmp){
         tmp2 += ({ itoa(foo) });
     }
-    write("The individual rolls are: "+implode(tmp2[1..]," "));
-    write("The sum total roll is: "+tmp[0]);
+    write("各次投掷结果: "+implode(tmp2[1..]," "));
+    write("总和: "+tmp[0]);
     return 1;
 
 }

@@ -25,10 +25,10 @@ mixed cmd() {
 
     if(minutes < 10) nulle = "0";
 
-    write("It is "+query_day_name()+", "+daynum+ordinal(daynum)+" day of "+
-            query_month()+", in "+query_season()+".");
+    write("今天是"+query_day_name()+"，"+query_month()+""+daynum+ordinal(daynum)+"天，"+
+            query_season()+"季节。");
 
-    write("In the MUD, the time is "+hours+":"+nulle+minutes+meridiem+"."); 
+    write("泥潭中的时间是 "+hours+":"+nulle+minutes+meridiem+"。");
 
     return 1;
 

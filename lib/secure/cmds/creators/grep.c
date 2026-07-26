@@ -56,7 +56,7 @@ int cmd(string str) {
             if((file_size(files[i]) == -2)&&(flags&GREP_RECURSE_DIRECTORIES)){
                 r_files = wild_card(files[i]+"/*");
                 if(max + sizeof(r_files) > max_files){
-                    write("Too many files in the recurse. Aborting grep.");
+                    write("递归中文件过多。中止grep。");
                     return 1;
                 }
                 files += r_files;
@@ -99,7 +99,7 @@ int cmd(string str) {
             if((file_size(files[i]) == -2)&&(flags&GREP_RECURSE_DIRECTORIES)){
                 r_files = wild_card(files[i]+"/*");
                 if(max + sizeof(r_files) > max_files){
-                    write("Too many files in the recurse. Aborting grep.");
+                    write("递归中文件过多。中止grep。");
                     return 1;
                 }
                 files += r_files;

@@ -8,7 +8,7 @@ mixed cmd(string str) {
     if(!str || str == "") str = mud_name();
     target = INTERMUD_D->GetMudName(str);
     if(!target){
-        write("Unknown target mud.");
+        write("未知的目标泥潭。");
         return 1;
     }
     this_player()->SetProperty("pinging",1);

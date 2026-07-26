@@ -6,12 +6,12 @@ varargs int cmd(string str){
     object tmp, player, mount, room;
     string name;
     if(!str){
-        write("Try: help pwhere");
+        write("试试: help pwhere");
         return 1;
     }
     player = find_player(str);
     if(!player){
-        write("That person is not logged in.");
+        write("该玩家未登录。");
         return 1;
     }
     else name = player->GetShort();

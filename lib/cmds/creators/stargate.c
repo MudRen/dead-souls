@@ -13,7 +13,7 @@ mixed cmd(string str){
     err = catch( sgd = load_object(STARGATE_D) );
 
     if(!sgd || err){
-        write("There appears to be a problem with the stargate daemon.");
+        write("星门守护进程似乎存在问题。");
         return 1;
     }
 
@@ -22,12 +22,12 @@ mixed cmd(string str){
     if(sizeof(stargates)) gates = keys(stargates);
 
     if(!gates){
-        write("There are no known stargates.");
+        write("没有已知的星门。");
         return 1;
     }
 
     if(!str){
-        write("Known stargates:");
+        write("已知的星门:");
         write(implode(gates, ", "));
         return 1;
     }
@@ -35,7 +35,7 @@ mixed cmd(string str){
     gatename = lower_case(str);
 
     if(member_array(gatename, gates) == -1){
-        write("Unknown stargate: \""+str+"\"");
+        write("未知的星门: \""+str+"\"");
         return 1;
     }
 

@@ -12,8 +12,8 @@ inherit LIB_DAEMON;
 
 int cmd() {
     this_player()->SetBlocked("tell");
-    if(this_player()->GetBlocked("tell")) write("Tellblock on.\n");
-    else write("Tellblock off.\n");
+    if(this_player()->GetBlocked("tell")) write("私聊屏蔽已开启。\n");
+    else write("私聊屏蔽已关闭。\n");
     return 1;
 }
 

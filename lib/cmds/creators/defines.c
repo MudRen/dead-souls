@@ -6,7 +6,7 @@ inherit LIB_DAEMON;
 varargs int cmd(string str){
     mixed ret;
     if(!str){
-        write("Try: help defines");
+        write("试试: help defines");
         return 1;
     }
     ret = DEFINES_D->GetDefine(str);

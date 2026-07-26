@@ -18,10 +18,10 @@ mixed cmd(string str) {
     else if(!(ob = find_object(str))) str = DEFINES_D->GetDefine(str);
     if(!ob && file_exists(lpc_file(str))) err = catch( ob = load_object(str) );
     if(err || !ob){
-        write("Could not find or load that object.");
+        write("找不到或无法加载该对象。");
         return 1;
     }
-    write("Found "+identify(ob));
+    write("找到 "+identify(ob));
     funs = function_profile(ob);
     foreach(mixed element in funs){
         mixed temp = sort_array(keys(element),1);
@@ -33,7 +33,7 @@ mixed cmd(string str) {
     write(ret);
     return 1;
 #else
-    write("This command depends on an efun that is not available.");
+    write("此命令依赖于一个不可用的外部函数。");
     return 1;
 #endif
 }

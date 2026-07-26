@@ -5,30 +5,30 @@ inherit LIB_DAEMON;
 mixed cmd(string args) {
 #if (WIZMAP && GRID)
     int status = this_player()->GetProperty("wizmapping");
-    string sstatus = "are";
-    if(!status) sstatus = "are not";
+    string sstatus = "正";
+    if(!status) sstatus = "没有";
     if(!args){
-        write("You "+sstatus+" wizmapping.");
+        write("你"+sstatus+"在使用巫师地图。");
         return 1;
     }
     if(args == "on"){
-        if(status) write("You are already wizmapping.");
-        else write("You enable wizmapping.");
+        if(status) write("你已经在使用巫师地图了。");
+        else write("你启用了巫师地图。");
         this_player()->SetProperty("wizmapping", 1);
         return 1;
     }
 
     if(args == "off"){
-        if(!status) write("You are already not wizmapping.");
-        else write("You disable wizmapping.");
+        if(!status) write("你已经不在使用巫师地图了。");
+        else write("你禁用了巫师地图。");
         this_player()->SetProperty("wizmapping", 0);
         return 1;
     }
 
-    write("Try: help wizmap");
+    write("试试: help wizmap");
     return 1;
 #else
-    write("This feature is disabled.");
+    write("此功能已禁用。");
     return 1;
 #endif
 }

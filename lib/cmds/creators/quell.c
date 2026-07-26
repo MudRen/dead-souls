@@ -7,10 +7,10 @@ int cmd(string str){
     object who = this_player();
     object env = environment(who);
     if(!env){
-        write("No environment.");
+        write("没有环境。");
         return 1;
     }
-    write("You casually wave your hand, and bring about peace.");
+    write("你随意挥了挥手，带来了和平。");
     say(who->GetCapName()+" waves "+possessive(who)+" hand "+
             "and brings peace to the area.");
     foreach(object combatant in get_livings(env)){

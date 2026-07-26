@@ -18,14 +18,12 @@ mixed cmd(string args) {
     }
 
     if(!x){
-        write("Character mode is a requirement for using this "+  
-                "command. For more information, see: help charmode");
+        write("使用此命令需要字符模式。更多信息请查看: help charmode");
         return 1;
     }
 
     if(!this_player()->GetProperty("cedWarned")){
-        write("This is the first time you've used ced. If you get stuck, "
-                "simply hit: Ctrl-Q");
+        write("这是你第一次使用ced。如果卡住了，只需按: Ctrl-Q");
         this_player()->SetProperty("cedWarned", 1);
     }
     args = absolute_path( this_player()->query_cwd(), args );

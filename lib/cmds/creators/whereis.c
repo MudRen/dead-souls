@@ -13,13 +13,13 @@ mixed cmd(string str) {
     if(str == "me" || str == "myself") str = this_player()->GetKeyName();
     player = find_player(str);
     if(!player){
-        write("That person could not be found.");
+        write("找不到那个人。");
         return 1;
     }
     env = environment(player);
     if(env && living(env)) env = environment(env);
     if(!env){
-        write("That player appears to lack an environment.");
+        write("该玩家似乎没有环境。");
         return 1;
     }
     my_env = environment(this_player());

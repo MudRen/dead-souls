@@ -4,31 +4,31 @@ inherit LIB_DAEMON;
 
 varargs int cmd(string args){
     int status = this_player()->GetProperty("noclip");
-    string sstatus = "are";
+    string sstatus = "正";
 #if !(GRID)
-    write("This feature is disabled.");
+    write("此功能已禁用。");
     return 1;
 #endif
-    if(!status) sstatus = "are not";
+    if(!status) sstatus = "没有";
     if(!args){
-        write("You "+sstatus+" noclipping.");
+        write("你"+sstatus+"在使用穿墙模式。");
         return 1;
     }
     if(args == "on"){
-        if(status) write("You are already noclipping.");
-        else write("You enable noclip mode.");
+        if(status) write("你已经在穿墙模式中了。");
+        else write("你启用了穿墙模式。");
         this_player()->SetProperty("noclip", 1);
         return 1;
     }
 
     if(args == "off"){
-        if(!status) write("You are already not noclipping.");
-        else write("You disable noclip mode.");
+        if(!status) write("你已经不在穿墙模式中了。");
+        else write("你禁用了穿墙模式。");
         this_player()->SetProperty("noclip", 0);
         return 1;
     }
 
-    write("Try: help noclip");
+    write("试试: help noclip");
     return 1;
 }
 

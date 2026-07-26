@@ -15,7 +15,7 @@ mixed cmd(string args) {
     else obs = findobs(args);
 
     if(!sizeof(obs)) {
-        write("No such objects found.");
+        write("未找到此类对象。");
         return 1;
     }
 

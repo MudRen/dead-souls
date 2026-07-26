@@ -25,7 +25,7 @@ mixed cmd(string args) {
     else where = load_object(last_loc);
 
     if(!where){
-        write("There is a problem with that location.");
+        write("该位置存在问题。");
         write(name+" remain where "+lower_case(name)+" are.");
         return 1;
     }

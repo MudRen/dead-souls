@@ -19,7 +19,7 @@ mixed cmd(string args) {
         ret = ob->eventDestruct();
         if(!ret || ob) destruct(ob);
         if(ob){
-            write("Failed to destruct "+args);
+            write("销毁 "+args+" 失败。");
             return 1;
         }
         write(args + " destructed.");
