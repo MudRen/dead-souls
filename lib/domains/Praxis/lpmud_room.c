@@ -8,10 +8,10 @@ void create() {
     ::create();
     SetProperty("light", 2);
     SetProperty("indoors", 1);
-    SetShort( "The LPMud Room");
+    SetShort( "LPMud室");
     SetLong(
-            "Advertisements for new LPMuds are posted here. "
-            "Ads on other boards will be quickly removed.");
+            "新LPMud的广告张贴在这里。"
+            "其他布告板上的广告将被迅速删除。");
     SetExits( 
             (["west" : "/domains/Praxis/adv_main"]) );
 
@@ -21,9 +21,9 @@ void create() {
     ob->set_board_id("lpmud");
     ob->set_max_posts(20);
     ob->move("/domains/Praxis/lpmud_room");
-    ob->SetShort( "LPMud Advertising Board");
-    ob->SetLong( "This board exists to promote LPMuds everywhere. "
-            "Please feel free to post about a mud you know of here.\n");
+    ob->SetShort( "LPMud广告布告板");
+    ob->SetLong( "这个布告板用于推广各地的LPMud。"
+            "请随意在这里发布你知道的泥潭信息。\n");
 }
 
 void init(){

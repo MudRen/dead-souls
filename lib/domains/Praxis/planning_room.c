@@ -6,7 +6,7 @@ void create() {
     ::create();
     SetProperty("light", 2);
     SetProperty("indoors", 1);
-    SetShort( "The Planning Room");
+    SetShort( "计划室");
     SetLong( (: this_object(), "go_away" :));
     SetExits( 
             (["west" : "/domains/Praxis/adv_inner",
@@ -18,9 +18,8 @@ void create() {
     ob->set_board_id("planning");
     ob->set_max_posts(30);
     ob->move("/domains/Praxis/planning_room");
-    ob->SetShort( "the Planning Our Reality Board");
-    ob->SetLong( "A board for posting ideas so that others "
-            "will not use them.\n");
+    ob->SetShort( "规划我们的世界布告板");
+    ob->SetLong( "一个用于发布想法以防止他人使用的布告板。\n");
 }
 
 int do_check() { return archp(this_player()); }
@@ -28,10 +27,10 @@ int do_check() { return archp(this_player()); }
 string go_away() {
     string str;
 
-    if(archp(this_player())) str = "The arch meeting room is upstairs. ";
+    if(archp(this_player())) str = "大法师会议室在楼上。";
     else str = "";
-    str += "All ideas are unclaimed until they appear here.  "
-        "If your idea is taken, and you did not post it, you have only yourself to blame.";
+    str += "所有想法在出现在这里之前都是无主的。"
+        "如果你的想法被采用了，而你没有发布它，那只能怪你自己。";
     return str;
 }
 void init(){

@@ -7,13 +7,12 @@ void create() {
     SetProperty("light", 1);
     SetProperty("indoors", 1);
     SetProperty("no castle", 1);
-    SetShort( "The Hall of Immortals");
+    SetShort( "不朽者大厅");
     SetLong(
-            "Welcome to the hall of immortals!\n"
-            "High mortals come here to seek mentors who will guide them into "
-            "the world of immortality.  Mortals come here to prove "
-            "their worthiness for high mortalhood.  A spiral flight "
-            "of stairs leads up out of the cellar.");
+            "欢迎来到不朽者大厅！\n"
+            "高级凡人来这里寻找导师，引导他们进入不朽世界。"
+            "凡人来这里证明他们有资格成为高级凡人。"
+            "一段螺旋楼梯从地窖向上延伸。");
     SetExits( 
             (["up" : "/domains/Praxis/stairs"]) );
     SetProperty("no castle", 1);

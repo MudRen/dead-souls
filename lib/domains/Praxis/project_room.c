@@ -24,17 +24,16 @@ void create() {
                 "no teleport" : 1,
                 "no castle" : 1
                 ]) );
-    SetShort("Project Room");
-    SetLong("Welcome to the Project Tracking Department!\n"
-            "A list of commands is printed on the wall, use <read list> to view it.  "
-            "This is the room you can come to find out about "
-            "what is going on on the immortal plane on Nightmare.");
+    SetShort("项目室");
+    SetLong("欢迎来到项目追踪部门！\n"
+            "墙上印着一份命令列表，使用 <read list> 查看。"
+            "你可以来这里了解噩梦世界不朽层面正在发生的事情。");
     SetExits( ([ "west" : "/domains/Praxis/mudlib" ]) );
 }
 
 int start_fun(string group) {
     if(!group) {
-        message("my_action", "Start what?", this_player());
+        message("my_action", "开始什么？", this_player());
         return 1;
     }
     //if(!PROJECT_D->add_group(group, this_player()->query_name()))
@@ -46,7 +45,7 @@ int start_fun(string group) {
 
 int list_fun(string which) {
     if(!which)
-        return notify_fail("List what?\n");
+        return notify_fail("列出什么？\n");
     if(which == "groups")
         return;
 }

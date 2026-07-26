@@ -13,8 +13,8 @@ void create() {
     int i;
     ::create();
     SetProperty("light", 1);
-    SetShort( "Quest room");
-    SetLong( "Quests are stored here.");
+    SetShort( "任务室");
+    SetLong( "任务存储在这里。");
     quest_ls = get_dir(QUEST_DIR);
     if(!sizeof(quest_ls)) return;
     for(i=0; i<sizeof(quest_ls); i++) {
@@ -29,7 +29,7 @@ void list_quests(object tp, int x) {
 
     inv = all_inventory(this_object());
     if(!sizeof(inv)) {
-        tell_object(tp, "There are no quests.");
+        tell_object(tp, "没有任务。");
         return;
     }
     quest_list = ({});
@@ -37,15 +37,14 @@ void list_quests(object tp, int x) {
         if(member_array(inv[i]->query_name(), tp->query_quests()) == -1) quest_list += ({ inv[i] });
     }
     if(!x) {
-        tell_object(tp, "There are "+sizeof(quest_list)+" quests you "
-                "have not solved. They are these quests:\n");
+        tell_object(tp, "你有"+sizeof(quest_list)+"个尚未完成的任务。它们是这些任务：\n");
         for(i=0; i<sizeof(quest_list); i++) {
             tell_object(tp, (i+1)+": "+present(quest_list[i], this_object())->GetShort()+"\n");
         }
     }
     else {
         if(x > sizeof(quest_list)) {
-            tell_object(tp, "No such quest.\n");
+            tell_object(tp, "没有这个任务。\n");
             return;
         }
         tell_object(tp, present(quest_list[x-1], this_object())->GetLong());

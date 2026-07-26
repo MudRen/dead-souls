@@ -13,13 +13,12 @@ mapping vote;
 
 void create() {
     ::create();
-    SetShort("Nightmare referendum room");
+    SetShort("噩梦世界公投室");
     SetProperty("light", 2);
     SetProperty("indoors", 1);
     SetLong(
-            "This is the referendum room of Nightmare.  Players come here to vote "+
-            "on issues that the wizards desire input on.  The current voting "+
-            "question is posted on the wall <read question> will display it."
+            "这是噩梦世界的公投室。玩家们来这里对巫师们希望获得意见的"
+            "议题进行投票。当前的投票问题张贴在墙上，<read question> 将显示它。"
            );
 
     SetExits( (["down" : "/domains/Praxis/adv_main"]) );
@@ -40,28 +39,28 @@ int vote(string str) {
 
     me=this_player()->query_name();
     if(str!="a" && str!="b") {
-        notify_fail("You may only vote for a or b.\n");
+        notify_fail("你只能投票给a或b。\n");
         return 0;
     }
     if(PLAYERS_D->non_voter(me)) {
-        write("You are listed as a second character.  You may not vote.");
+        write("你被列为第二角色。你不能投票。");
         return 1;
     }
     if(vote[me]) {
-        write("You have already voted.");
+        write("你已经投过票了。");
         return 1;
     }
     if(str=="a") {
         vote[me]="a";
         a++;
-        write("Vote counted.  Thank you.");
+        write("投票已计数。谢谢。");
         SaveObject(BOOTH_VOTES);
         return 1;
     }
     if(str=="b") {
         vote[me]="b";
         b++;
-        write("Vote counted.  Thank you.");
+        write("投票已计数。谢谢。");
         SaveObject(BOOTH_VOTES);
         return 1;
     }
@@ -70,7 +69,7 @@ int vote(string str) {
 
 int read(string str) {
     if(!str || str != "question") return 0;
-    write("The current voting question is this:\n");
+    write("当前的投票问题是：\n");
     this_player()->more(BOOTH_QUESTION); 
     return 1;
 }

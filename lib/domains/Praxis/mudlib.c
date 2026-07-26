@@ -6,12 +6,10 @@ void create() {
     ::create();
     SetProperty("light", 2);
     SetProperty("indoors", 1);
-    SetShort( "The Mudlib Room");
+    SetShort( "泥潭库室");
     SetLong(
-            "In this room you can see the status of work being done on "
-            "bugs in the game by the mudlib department, as well as report "
-            "bugs that have not been getting the attention you think the bug "
-            "deserves.");
+            "在这个房间里你可以看到泥潭库部门对游戏漏洞的修复状态，"
+            "也可以报告那些你认为没有得到应有关注的漏洞。");
     SetExits( 
             (["down" : "/domains/Praxis/adv_inner"]) );
 
@@ -21,8 +19,8 @@ void create() {
     ob->set_board_id("mudlib");
     ob->set_max_posts(50);
     ob->move("/domains/Praxis/mudlib");
-    ob->SetShort( "the Mudlib Board");
-    ob->SetLong( "A board for complete and utter nonsense.\n");
+    ob->SetShort( "泥潭库布告板");
+    ob->SetLong( "一个用于发布完全无意义内容的布告板。\n");
 }
 void init(){
     ::init();

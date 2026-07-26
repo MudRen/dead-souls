@@ -12,9 +12,9 @@ void create() {
     ::create();
     SetProperty("light", 2);
     SetProperty("indoors", 1);
-    SetShort( "The Arch's Room");
+    SetShort( "大法师室");
     SetLong(
-            "This is where the arches decide the fate of Nightmare.");
+            "这里是大法师们决定噩梦世界命运的地方。");
     SetExits( 
             (["down" : "/domains/Praxis/planning_room"]) );
 
@@ -24,7 +24,7 @@ void create() {
     ob->set_board_id("arch");
     ob->set_max_posts(20);
     ob->move("/domains/Praxis/arch");
-    ob->SetShort( "the Arch Immortal's Board");
-    ob->SetLong( "A board for utter nonsense.\n");
+    ob->SetShort( "大法师布告板");
+    ob->SetLong( "一个用于发布完全无意义内容的布告板。\n");
 }
 
