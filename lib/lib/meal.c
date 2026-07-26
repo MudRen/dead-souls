@@ -28,7 +28,7 @@ protected void create(){
     EmptyName = "bottle";
     EmptyShort = "an empty bottle";
     EmptyLong = "This empty bottle once contained some liquid.";
-    MyMessage = "You drink your drink.";
+    MyMessage = "你喝了你的饮料。";
     OtherMessage = "$N drinks $P drink.";
     SetVendorType(VT_DRINK);
     SetNoCondition(1);

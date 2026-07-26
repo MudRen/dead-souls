@@ -98,7 +98,7 @@ mixed eventBuy(object who, object *obs){
             tell_player(this_player(),GetShort()+" gives you "+value+
                     " "+GetLocalCurrency()+".");
             if(bargain) who->AddSkillPoints("bargaining", value*5);
-            message("my_action", "You sell " + ob->GetShort() + ".", who);
+            message("my_action", "你卖掉了" + ob->GetShort() + "。", who);
             message("other_action", capitalize(who->GetKeyName()) + " sells " +
                     ob->GetShort() + ".", environment(),
                     ({ who, this_object() }));
@@ -121,7 +121,7 @@ mixed eventBuy(object who, object *obs){
         }
         if(bargain) who->AddSkillPoints("bargaining", value*5);
         tmp += ({ ob });
-        message("my_action", "You sell " + ob->GetShort() + ".", who);
+        message("my_action", "你卖掉了" + ob->GetShort() + "。", who);
         message("other_action", capitalize(who->GetKeyName()) + " sells " +
                 ob->GetShort() + ".", environment(),
                 ({ who, this_object() }));

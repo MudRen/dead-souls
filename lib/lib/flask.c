@@ -200,7 +200,7 @@ mixed eventFill(object who, object from){
 }
 
 varargs mixed eventDrink(object who, object target, string foo){
-    write("You drink from "+GetShort()+".");
+    write("你从"+GetShort()+"里喝了一口。");
     say(who->GetName()+" drinks from "+GetShort()+".");
     if(!EverFill) FlaskUses--;
     who->eventDrink(this_object());
