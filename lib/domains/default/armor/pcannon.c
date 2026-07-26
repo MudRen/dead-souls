@@ -15,13 +15,13 @@ object myroom;
 varargs mixed DoWear(object who, mixed where);
 
 string LongDesc(){
-    string ret = "A highly advanced weapon of Poleepkwa design, "+
-        "meant to be worn.";
+    string ret = "一件极先进的波利普克瓦设计武器，"+
+        "可穿戴使用。";
     if(!active) return ret;
-    if(cache < percent_of(10, maxcache)) ret += " A %^RED%^red%^RESET%^ light is illuminated on it.";
-    else if(cache < percent_of(50, maxcache)) ret += " A %^YELLOW%^yellow%^RESET%^ light is illuminated on it.";
-    else if(cache < percent_of(80, maxcache)) ret += " A %^GREEN%^green%^RESET%^ light is illuminated on it.";
-    else ret += " A %^BLUE%^blue%^RESET%^ light is illuminated on it.";
+    if(cache < percent_of(10, maxcache)) ret += " 上面亮起了一个%^RED%^红色%^RESET%^指示灯。";
+    else if(cache < percent_of(50, maxcache)) ret += " 上面亮起了一个%^YELLOW%^黄色%^RESET%^指示灯。";
+    else if(cache < percent_of(80, maxcache)) ret += " 上面亮起了一个%^GREEN%^绿色%^RESET%^指示灯。";
+    else ret += " 上面亮起了一个%^BLUE%^蓝色%^RESET%^指示灯。";
     return ret;
 }
 
@@ -31,7 +31,7 @@ protected void create() {
     SetId(({"cannon"}));
     AddSave(({"cache","Prey"}));
     SetAdjectives(({"shoulder","poleepkwa","plasma"}));
-    SetShort("a plasma shoulder cannon");
+    SetShort("一门等离子肩炮");
     SetLong((:LongDesc:));
     SetMass(400);
     SetDollarCost(15000);

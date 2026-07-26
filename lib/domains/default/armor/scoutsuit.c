@@ -17,10 +17,9 @@ protected void create(){
     SetKeyName("scout suit");
     SetId(({"suit", "armor"}));
     SetAdjectives(({"scout","suit of","powered","formidable", "formidable looking"}));
-    SetShort("a suit of powered scout armor");
-    SetLong("A formidable looking suit of powered armor used by "+
-            "forces of the Extant Authority. This one appears to be one of "+
-            "the scout variety.");
+    SetShort("一套侦察兵动力装甲");
+    SetLong("一套外观威武的动力装甲，由现存权威力量使用。"+
+            "这一套似乎是侦察兵型号的。");
     SetMass(700);
     SetMatching(0);
     SetBaseCost("silver",5000);

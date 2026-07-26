@@ -7,9 +7,9 @@ void create(){
     SetKeyName(".223 clip");
     SetId(({"clip","magazine"}));
     SetAdjectives(({".223","rifle","caliber","ammo","ammunition"}));
-    SetShort("a .223 caliber rifle ammunition clip");
-    SetLong("This is a spring-loaded ammunition clip for a .223 caliber "+
-            "rifle. It will contain a maximum of thirty rounds.");
+    SetShort("一个.223口径步枪弹匣");
+    SetLong("这是一个用于.223口径步枪的弹簧式弹匣，"+
+            "最多可容纳三十发子弹。");
     SetCaliber(223);
     SetMaxAmmo(30);
     SetAmmoType("nato");

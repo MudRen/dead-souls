@@ -28,171 +28,116 @@ void create() {
                 "获得了巨大的魔法力量，有些人甚至说获得了智慧。"
                 "今天，这棵树是法师职业的职业大厅。",
 
-                ({"n", "north"}) : "North of the Tree lie the dark expanses of the North "+
-                    "Forest, a place of fear and wonder, great danger and "+
-                        "great treasure. Far off in the distance you see a city "+
-                        "consisting mainly of a huge library--probably the "+
-                        "Philosophers' city of Cartesia. Still farther, at the "+
-                        "very horizon, you see the gleaming of pristine snow at "+
-                        "what must be the north pole.",
-                    ({"e", "east"}) : "East of the mage tree lie the northern reaches of Krasna. "+
-                        "Nearby a few buildings lie, whereas farther off the "+
-                            "north-south road Centre Path connects with the "+
-                            "eastward-leading Sun Alley. A hospital lies west of that "+
-                            "juncture, while Sun Alley harbors a classy restaurant, "+
-                            "and a small residential area mainly occupied by "+
-                            "aristocrats fallen on hard times.  Sun Alley ends when "+
-                            "it connects with East Road. East of Sun Alley is the "+
-                            "Cemetery, where the restless spirits of the immortals "+
-                            "make their home. East Road leads northwards, to the "+
-                            "gates of Newbieland. North of the cemetery, a small "+
-                            "path connects with East Road and leads yet eastward, "+
-                            "over a plateau. Dragons are said to make their lair "+
-                            "beyond the plateau.",
-                        ({"w", "west"}) : "To the west a vast desert lies, crossed by a range of "+
-                            "towering mountains. The Desert Highway slices the "+
-                                "barrenness of the desert as it leads westwards, its "+
-                                "farthest expanses cloaked by shimmering heat waves... "+
-                                "Nearby a strange valley lies, somewhat to the north of "+
-                                "the Desert Highway. In the distance, you can barely "+
-                                "glimpse the glistening white spires of a desert city.",
+                ({"n", "north"}) : "树的北方是黑暗辽阔的北方森林，一个充满恐惧与奇迹、"
+                    "巨大危险与丰厚宝藏的地方。在远处你看到一座主要由巨大图书馆组成的城市"
+                        "——可能就是哲人之城卡特西亚。更远的地平线上，你看到原始积雪的闪光，"
+                        "那一定是北极了。",
+                    ({"e", "east"}) : "法师树的东方是克拉斯纳的北部区域。"
+                        "附近有些建筑，而更远处南北走向的中央路与东向延伸的太阳巷相连。"
+                            "医院位于那个交叉口的西边，太阳巷则有一家高档餐厅，"
+                            "以及一个主要由落魄贵族居住的小住宅区。太阳巷在与东方路交汇处终止。"
+                            "太阳巷的东边是墓地，不死者们不安的灵魂在那里安家。"
+                            "东方路向北通往新手乐园的大门。墓地北边，一条小路连接东方路并继续向东延伸，"
+                            "经过一片高原。据说龙在高原的另一边筑巢。",
+                        ({"w", "west"}) : "西边是一片广阔的沙漠，被一条高耸的山脉横穿。"
+                            "沙漠公路向西延伸，切过沙漠的荒凉，最远处笼罩在闪烁的热浪之中……"
+                                "附近有一个奇怪的山谷，位于沙漠公路偏北的地方。在远处，"
+                                "你勉强能看到一座沙漠城市闪闪发光的白色尖塔。",
 
-                            ({"s", "south"}) : "South of the Mage Tree lies West Road, the north-south "+
-                                "road that marks the western limit of Krasna. It "+
-                                    "connects at the southern end with Boc-La Road, the main "+
-                                    "road of the city.  A hut to the eastern side of the "+
-                                    "road, slightly south of the tree, catches your eye.",
+                            ({"s", "south"}) : "法师树的南方是西方路，这条南北走向的道路标志着克拉斯纳的西界。"
+                                "它的南端与博克拉路——城市的主要道路——相连。"
+                                    "树稍南边、路东侧的一间小屋吸引了你的目光。",
                                 ({"se", "southeast"})
-                                    : "Southeast of the Mage Tree lies the main body of the "+
-                                    "city of Krasna. West Road leads south from the Tree, "+
-                                    "and ends at Boc-La, the east-west road that has been "+
-                                    "called ``the main artery of Krasna''. Boc-La's western "+
-                                    "end begins at West Road's southern end, and from "+
-                                    "there it leads east, passing through Monument "+
-                                    "Square and continuing eastwards toward the dark Eastern "+
-                                    "Jungle, where savages, cannibals and rogues make their "+
-                                    "home. Along the way, Boc-La passes through Lars' Bar, "+
-                                    "the establishment of the Sage of Languages, the local "+
-                                    "Monastery, Horace's Supply shop, and other famous "+
-                                    "sites. At its eastern end, just before heading "+
-                                    "into the jungle, Boc-La road has a small gate leading "+
-                                    "south to the fabled docks of the Flying Galleys. From "+
-                                    "Monument Square another main road, Centre Path, leads "+
-                                    "north and south. North, Centre Path passes by the "+
-                                    "church, a hospital and Sun Alley before heading to the "+
-                                    "North Forest; south, it leads past the bar to south "+
-                                    "Krasna, where the business sector lies (and where the "+
-                                    "bank and post office are located).  Yet southwards, "+
-                                    "Centre Path leads to the headquarters of the class of "+
-                                    "fighters and, eventually, all the way south are the "+
-                                    "piers where fishermen cast nets to provide the local "+
-                                    "restaurant with fresh seafood.",
+                                    : "法师树的东南方是克拉斯纳城的主体部分。"
+                                    "西方路从树向南延伸，终止于博克拉——这条东西走向的道路被称为"
+                                    "「克拉斯纳的大动脉」。博克拉的西端始于西方路的南端，"
+                                    "从那里向东延伸，穿过纪念碑广场，继续向东通往黑暗的东方丛林——"
+                                    "野蛮人、食人族和盗贼在那里安家。沿途，博克拉经过拉尔斯酒吧、"
+                                    "语言贤者的居所、当地修道院、贺拉斯杂货店和其他著名地点。"
+                                    "在东端，就在进入丛林之前，博克拉路有一扇小门通往南方"
+                                    "传说中的飞帆船码头。从纪念碑广场，另一条主要道路——中央路——"
+                                    "向南北延伸。向北，中央路经过教堂、医院和太阳巷，通往北方森林；"
+                                    "向南，经过酒吧通往克拉斯纳南部，那里是商业区"
+                                    "（银行和邮局所在地）。再往南，中央路通往战士职业的大本营，"
+                                    "最终一路向南是码头，渔民在那里撒网为当地餐厅提供新鲜海鲜。",
                                 ({"nw", "northwest"})
-                                    : "The North Forest is abruptly arrested by a range of "+
-                                    "mountains lying west and slightly north of the Mage "+
-                                    "Tree. On the other side of the mountains lies the desert.",
+                                    : "北方森林在法师树西偏北的一条山脉处戛然而止。"
+                                    "山脉的另一边是沙漠。",
                                 ({"ne", "northeast"})
-                                    : "As it leaves Krasna to the north, Centre Path turns "+
-                                    "into a trail winding through the North Forest. Slightly "+
-                                    "north of the city limits an east-west path leads from "+
-                                    "the remains of Centre Path. Passing by this path, the "+
-                                    "trail continues north, past a hole in the ground, then "+
-                                    "curves northwest for a short while, and when it curves "+
-                                    "back north, it has joined the North Forest Highway. "+
-                                    "The Highway goes north for a long time, passing by in "+
-                                    "turn a bog, an exit going west to some city, a tower "+
-                                    "and a house, and finally reaching the polar ice cap "+
-                                    "at the very horizon.",
+                                    : "中央路向北离开克拉斯纳后，变成一条蜿蜒穿过北方森林的小径。"
+                                    "在城市边界稍北处，一条东西向的小路从中央路的遗迹分出。"
+                                    "经过这条小路后，小径继续向北，经过一个地洞，"
+                                    "然后向西北弯了一小段，当它再次折向北方时，便汇入了北方森林公路。"
+                                    "公路向北延伸很长一段距离，依次经过一片沼泽、一个通往某座城市的西向出口、"
+                                    "一座塔楼和一栋房屋，最终到达地平线上的极地冰盖。",
 
                                 ({"valley", "strange valley"})
-                                    : "This strange valley to the north of the Great Western "+
-                                    "Highway (sometimes known as the Desert Highway) is "+
-                                    "obviously artificial. Its clumsy manufacture leads you "+
-                                    "to believe that it was constructed by some particularly "+
-                                    "maladroit race, perhaps by orcs.",
+                                    : "这个位于西部大公路（有时称为沙漠公路）以北的奇怪山谷"
+                                    "显然是人工开凿的。它拙劣的做工让你相信它是由某个特别笨拙的种族建造的，"
+                                    "也许是兽人。",
                                 ({"desert highway", "western highway", "great western highway"})
-                                    : "Constructed many years ago to allow trade between "+
-                                    "Krasna and the cities beyond the desert, this highway "+
-                                    "is protected by magic against sand storms. It provides "+
-                                    "no protection against heat, however; sometimes one can "+
-                                    "see a small bag, or trinket, that is all that remains of "+
-                                    "an unfortunate traveller whose body has long since "+
-                                    "become dust.",
+                                    : "这条公路建于许多年前，用于促进克拉斯纳与沙漠那边城市之间的贸易，"
+                                    "受到魔法保护免受沙尘暴侵袭。然而它无法抵御酷热；"
+                                    "有时你能看到一个小袋子或小饰品，那是一个不幸旅人留下的全部，"
+                                    "而他们的身体早已化为尘土。",
                                 ({"spires", "desert city"})
-                                    : "The shimmering is too strong for you to make out any "+
-                                    "details, but you can glimpse the white spires of a "+
-                                    "desert city at the end of the Great Desert Highway.", 
+                                    : "热浪太强烈，你无法看清任何细节，但你能瞥见大沙漠公路尽头"
+                                    "一座沙漠城市的白色尖塔。", 
                                 ({"mountains", "desert mountains"})
-                                    : "A mighty mountain range crosses the desert to the west "+
-                                    "of Krasna. It is rumored to harbour orcs, goblin caves, "+
-                                    "stirges and all kinds of nasty creatures.",
-                                "centre path"    : "A road leading north and south from Monument Square, "+
-                                    "the heart of Krasna. Along it lie some of the most "+
-                                    "famous establishments of Krasna, not least being "+
-                                    "Lars' Pub and the Clerics' Hospital.",
-                                "east road"      : "A north-south road at the eastern limit of Krasna, "+
-                                    "East Road connects with Sun Alley at the cemetery. "+
-                                    "Its northern end leads to Newbieland.",
-                                "sun alley"      : "An east-west alley leading from the hospital at its "+
-                                    "western end to the cemetery at its eastern end "+
-                                    "(coincidence?), Sun Alley is home to the Last Dragon "+
-                                    "Restaurant and also to barons and knights who have "+
-                                    "fallen on hard times.",
-                                "cemetery"       : "Praxis Cemetery is already occupied by the ghosts of "+
-                                    "the immortals. Thus, for new entrants it is strictly "+
-                                    "Standing Room Only.",
-                                "newbieland"     : "Newbieland lies north of East Road; a force-field "+
-                                    "surrounding it prevents you from seeing anything else.",
-                                "hospital"       : "The Clerics' Hospital was established many years ago "+
-                                    "by the kind class of Clerics, who have their class "+
-                                    "head-quarters in the church just south of the hospital. "+
-                                    "Normally they charge a fee to cover their expenses, but "+
-                                    "in certain cases they make exceptions for first-level "+
-                                    "players.",
-                                "restaurant"     : "The Last Dragon Restaurant is the classiest restaurant "+
-                                    "in Krasna! Located in Sun Alley, once a prestigious "+
-                                    "neighbourhood, this restaurant uses only the freshest "+
-                                    "ingredients.  Needless to say it also charges a lot.",
-                                "plateau"        : "East of Krasna lies a plateau. Dragons are said to lie "+
-                                    "beyond, and horridly injured travellers returning from "+
-                                    "there confirm the tale.",
-                                "square"         : "Monument Square, once known as Krasna Square, is the "+
-                                    "teeming heart of Krasna City.  People come there to "+
-                                    "converse, meet, receive healing if a cleric is there, "+
-                                    "and generally relax. The immortals have graciously put "+
-                                    "protective forces on the Square to prevent and fighting, "+
-                                    "stealing and any spell-casting except heal-craft.",
-                                ({"krasna", "praxis", "city"}) 
-                                    : "Krasna City is the major city in this reality. All of "+
-                                    "the class halls are located in or near it (except the "+
-                                    "class hall of the rogues, who have been banished to the "+
-                                    "jungle). Once known as Praxis, Krasna has a rich history "+
-                                    "and a lively commerce with other, lesser cities such as "+
-                                    "the desert city, Arberth, Cartesia and many more.\n"+
-                                    "                         To Global Newbieland        A - Mage Tree\n"+
-                                    "                                                     B - Hospital\n"+
-                                    "                                  |                  C - Post Office\n"+
-                                    "                                  +                  D - Square\n"+
-                                    "                                  |                  E - Monastery\n"+
-                                    "                  Here there      |                  F - Free equipment\n"+
-                                    "                  be dragons   F--+                  G - Horace's Store\n"+
-                                    "                      |           |                  H - Boards\n"+
-                                    "                      |           |   Here there     I - Library\n"+
-                                    "          A           +           +-- be dragons\n"+
+                                    : "一条雄伟的山脉横穿克拉斯纳以西的沙漠。"
+                                    "据传山中藏着兽人、地精洞穴、针蝠和各种可怕的生物。",
+                                "centre path"    : "一条从纪念碑广场——克拉斯纳的心脏——向南北延伸的道路。"
+                                    "沿途坐落着克拉斯纳最著名的场所，其中不乏拉尔斯酒吧和牧师医院。",
+                                "east road"      : "位于克拉斯纳东界的一条南北向道路，"
+                                    "东方路在墓地处与太阳巷相连。它的北端通往新手乐园。",
+                                "sun alley"      : "一条东西向的小巷，西端是医院，东端是墓地"
+                                    "（巧合吗？），太阳巷是末日龙餐厅的所在地，"
+                                    "也是落魄男爵和骑士们的家园。",
+                                "cemetery"       : "普拉克西斯墓地已经被不死者的鬼魂占据了。"
+                                    "因此，新来者只能站着——没有空位。",
+                                "newbieland"     : "新手乐园位于东方路以北；环绕它的力场使你看不到其他东西。",
+                                "hospital"       : "牧师医院由善良的牧师职业在许多年前建立，"
+                                    "他们的职业总部就在医院南边的教堂里。"
+                                    "通常他们收取费用来支付开支，但在某些情况下会对一级玩家网开一面。",
+                                "restaurant"     : "末日龙餐厅是克拉斯纳最高档的餐厅！"
+                                    "坐落在曾经的高档社区太阳巷，这家餐厅只使用最新鲜的食材。"
+                                    "不用说，价格也很昂贵。",
+                                "plateau"        : "克拉斯纳东边有一片高原。据说龙栖息在那边，"
+                                    "从那里回来的伤痕累累的旅人证实了这个传说。",
+                                "square"         : "纪念碑广场，曾被称为克拉斯纳广场，"
+                                    "是克拉斯纳城繁华的中心。人们来此交谈、会面、"
+                                    "如果有牧师在场则接受治疗，以及放松休息。"
+                                    "不死者们仁慈地在广场上设置了保护力量，"
+                                    "防止一切战斗、偷窃和除治疗术以外的任何施法。",
+                                ({"krasna", "praxis", "city"})
+                                    : "克拉斯纳城是这个世界的主要城市。"
+                                    "所有职业大厅都位于城内或附近（除盗贼职业外，他们被放逐到了丛林）。"
+                                    "克拉斯纳曾名为普拉克西斯，有着丰富的历史，"
+                                    "与沙漠城市、阿伯斯、卡特西亚等其他城市有着繁荣的贸易往来。\n"+
+                                    "                         通往全球新手乐园        A - 法师树\n"+
+                                    "                                                     B - 医院\n"+
+                                    "                                  |                  C - 邮局\n"+
+                                    "                                  +                  D - 广场\n"+
+                                    "                                  |                  E - 修道院\n"+
+                                    "                  此处有龙        |                  F - 免费装备\n"+
+                                    "                      F--+                  G - 贺拉斯商店\n"+
+                                    "                      |           |                  H - 公告栏\n"+
+                                    "                      |           |   此处有龙       I - 图书馆\n"+
+                                    "          A           +           +--\n"+
                                     "          |           |           |\n"+
                                     "          |           |           |\n"+
-                                    " T        +--+     B--+---+---+---+-- To Graveyard\n"+
-                                    " o        |           |   |   |   |\n"+
-                                    "          |           |   +   +   |\n"+
-                                    " M        +           +           +---I\n"+
-                                    " o        |           |   E   G   |\n"+
-                                    " u        |           |   |   |   |\n"+
-                                    " n ---+---+---+----+--D---+---+---+---+-- To Outlands\n"+
-                                    " t            |    |  |       |   |\n"+
-                                    " a            +    +--+       H-+ |\n"+
-                                    " i                    |           +\n"+
-                                    " n            +   +   |       To Ships\n"+
-                                    " s            |   |   |\n"+
+                                    " 通        +--+     B--+---+---+---+-- 通往墓地\n"+
+                                    " 往        |           |   |   |   |\n"+
+                                    " 山        |           |   +   +   |\n"+
+                                    " 脉        +           +           +---I\n"+
+                                    " 的        |           |   E   G   |\n"+
+                                    " 方        |           |   |   |   |\n"+
+                                    " 向 ---+---+---+----+--D---+---+---+---+-- 通往外地\n"+
+                                    "            |    |  |       |   |\n"+
+                                    "            +    +--+       H-+ |\n"+
+                                    "                    |           +\n"+
+                                    "            +   +   |       通往码头\n"+
+                                    "            |   |   |\n"+
                                     "          +---+---+---+---+\n"+
                                     "              |   |   |\n"+
                                     "              |   |   |\n"+
@@ -203,153 +148,100 @@ void create() {
                                     "                   |\n"+
                                     "                   |\n"+
                                     "                   +",
-                                "bar"            : "When this reality was created, Lars' Bar was one of the "+
-                                    "first establishments to operate. Lars spared no expense "+
-                                    "in providing the very best atmosphere for players to "+
-                                    "relax in. Recent anti-alcohol measures, notably a tax on "+
-                                    "drinks, have caused Lars' Bar to lose some of its "+
-                                    "grandeur, however.  Lars tried at first to draw more "+
-                                    "customers by publishing a list of the most powerful "+
-                                    "adventurers in this world, but when that failed to bring "+
-                                    "enough customers Lars had to resort to increasing "+
-                                    "prices. Still, despite ever-rising prices, if you really "+
-                                    "need a drink then Lars' Bar is *the* place to go; his "+
-                                    "profits may have gone down but his drinks are still as "+
-                                    "powerful as they ever were.",
-                                "church"         : "The local church is where the class of clerics make "+
-                                    "their home. Ever willing to help their kindred, the "+
-                                    "clerics of Nightmare have established a hospital just "+
-                                    "north of the church, where for a fee one can get healing "+
-                                    "and magical energy, and even limbs can be restored.",
-                                "monastery"      : "Home of the powerful class of monks, the monastery is a "+
-                                    "proud and solemn place where many of the sacred rituals "+
-                                    "of Nightmare take place. It is in the main hall of the "+
-                                    "monastery that ghosts come to pray for resurrection "+
-                                    "after being killed, and it is in a chapel in the "+
-                                    "monastery that couples are joined in marriage. Located "+
-                                    "north of Boc-La, slightly to the east of Monument "+
-                                    "Square, the monastery is awarded deep respect by most "+
-                                    "members of society.",
+                                "bar"            : "当这个世界被创造时，拉尔斯酒吧是最早营业的场所之一。"
+                                    "拉尔斯不惜成本为玩家提供最好的放松氛围。"
+                                    "然而，最近的禁酒措施——尤其是酒水税——使拉尔斯酒吧失去了一些昔日的辉煌。"
+                                    "拉尔斯起初试图通过发布这个世界最强大冒险者的榜单来吸引更多顾客，"
+                                    "但当这未能带来足够客源时，拉尔斯不得不提高价格。"
+                                    "尽管价格不断上涨，如果你真的想喝一杯，拉尔斯酒吧仍是首选之地；"
+                                    "他的利润可能下降了，但他的酒仍然和以前一样烈。",
+                                "church"         : "当地教堂是牧师职业的家园。"
+                                    "噩梦世界的牧师们乐于助人，在教堂北边建立了一所医院，"
+                                    "在那里付费可以获得治疗和魔法能量，甚至断肢也能修复。",
+                                "monastery"      : "强大的僧侣职业的家园，修道院是一个庄严而自豪的地方，"
+                                    "噩梦世界的许多神圣仪式在此举行。正是在修道院的大厅里，"
+                                    "鬼魂在被杀后来此祈祷复活；也正是在修道院的小教堂里，"
+                                    "恋人们结为连理。修道院位于博克拉以北、纪念碑广场略偏东处，"
+                                    "受到社会大多数成员的深深敬重。",
                                 ({"docks", "galleys"})
-                                    : "At the very east end of Boc-La a gate leads south to "+
-                                    "the magic docks of Krasna where flying galleys are "+
-                                    "purchased, to bring travellers to different realms.",
-                                "shop"           : "Horace, one of the first true-blooded elves to come to "+
-                                    "Nightmare, promptly set up shop near the east end of "+
-                                    "Krasna. Taking advantage of his position, Horace buys "+
-                                    "low and sells high. He is noted for his cold-blooded "+
-                                    "mercantility and his crass profiteering; since his store "+
-                                    "is, however, one of the few places where newbies can "+
-                                    "sell their gear, the High Mortals of Nightmare "+
-                                    "discourage people from killing him.",
-                                "piers"          : "Located at the very southern end of Krasna, the piers "+
-                                    "are frequently visited by hopeful players with fishing "+
-                                    "poles on their shoulders and a lot of time on their "+
-                                    "hands.",
+                                    : "在博克拉最东端，一扇门通往南方克拉斯纳的魔法码头，"
+                                    "在那里可以购买飞帆船，将旅人送往不同的领域。",
+                                "shop"           : "贺拉斯是最早来到噩梦世界的纯血精灵之一，"
+                                    "他迅速在克拉斯纳东端附近开店。利用其位置优势，"
+                                    "贺拉斯低买高卖。他以冷酷的商业头脑和粗暴的牟利闻名；"
+                                    "然而由于他的商店是新手为数不多可以出售装备的地方，"
+                                    "噩梦世界的高等不死者们不鼓励人们杀他。",
+                                "piers"          : "位于克拉斯纳最南端，码头经常有满怀希望的玩家光顾，"
+                                    "他们肩扛钓竿，大把闲暇时光无处打发。",
                                 ({"bank",
-                                 "post office"})  : "South of Monument Square an east-west alley marks the "+
-                                    "business sector of Krasna. To the east it leads to the "+
-                                        "sewers, and to the west it leads to the bank and the "+
-                                        "post office. The bank is where people open an account to "+
-                                        "store their cash; no interest payments, unfortunately. "+
-                                        "At the post office mail is handled, sent, and received.",
-                                    "jungle"         : "To the east of Krasna lies the dark Eastern Jungle. Its "+
-                                        "inhabitants include cannibals, savages, rogues, and "+
-                                        "other vermin.  At the far end of the jungle a mysterious "+
-                                        "tower is rumored to lie, but few have returned to tell "+
-                                        "the tale.  The few who have speak of death traps, doors "+
-                                        "that lock behind you and other chilling details.",
-                                    "sage"           : "The Sage dwells in a small hut north of Boc-La, near "+
-                                        "the western end of the city. He is the person in charge "+
-                                        "of instructing players in the proper use of various "+
-                                        "languages.",
+                                 "post office"})  : "纪念碑广场以南，一条东西向的小巷标志着克拉斯纳的商业区。"
+                                    "向东通往下水道，向西通往银行和邮局。"
+                                        "银行是人们开户存钱的地方；遗憾的是没有利息。"
+                                        "邮局则处理邮件的收发。",
+                                    "jungle"         : "克拉斯纳以东是黑暗的东方丛林。"
+                                        "其居民包括食人族、野蛮人、盗贼和其他害群之马。"
+                                        "据传丛林深处有一座神秘的塔楼，但很少有人能回来讲述这个故事。"
+                                        "少数幸存者谈到了死亡陷阱、身后自动上锁的门和其他令人毛骨悚然的细节。",
+                                    "sage"           : "贤者居住在博克拉以北的一间小屋里，靠近城市的西端。"
+                                        "他是负责指导玩家正确使用各种语言的人。",
 
                                     ({"forest", "north forest"})
-                                        : "A dark place of many legends and a thousand tales, the "+
-                                        "North Forest is home to a myriad of creatures, ranging "+
-                                        "from evil faeries to wicked wolves, from trolls to "+
-                                        "dragons to centaurs.  It is even said that the gates of "+
-                                        "hell lie somewhere in the North Forest. And yet the "+
-                                        "forest harbours heros, and scholars, paladins and "+
-                                        "seekers of truth...  and treasures beyond the wildest "+
-                                        "dreams of avarice...  Fortunately for travellers, the "+
-                                        "North Forest Highway provides magical protection from "+
-                                        "monsters, but even the highway offers no shield from "+
-                                        "the bandits and highwaymen who frequently beset the "+
-                                        "unwary.",
+                                        : "一个充满无数传说和故事的黑暗之地，"
+                                        "北方森林是无数生物的家园，从邪恶的精灵到凶残的恶狼，"
+                                        "从巨魔到龙到半人马。甚至有人说地狱之门就在北方森林的某处。"
+                                        "然而森林也庇护着英雄、学者、圣骑士和真理的追寻者……"
+                                        "以及超出贪婪最疯狂想象的宝藏……"
+                                        "幸运的是，北方森林公路为旅人提供了对抗怪物的魔法保护，"
+                                        "但即使是公路也无法抵御经常袭击粗心行人的强盗和劫匪。",
                                     ({"north pole", "pole", "snow"})
-                                        : "At the north horizon, where sky embraces earth in a "+
-                                        "white-grey swirl, lies the North Pole.  Once the "+
-                                        "residence of one Mr. S. Claus and his elves, sometimes "+
-                                        "referred to as subordinate clauses, the North Pole has "+
-                                        "been ruthlessly taken over by a tribe of ferocious "+
-                                        "giants who evicted Mr. Claus and turned his helpers "+
-                                        "into yummy bite-sized (by giant standards) pieces of "+
-                                        "raw meat.  At least, that is what is claimed by the few "+
-                                        "who have returned from there; but they may well have "+
-                                        "suffered trauma from the cold and entered a "+
-                                        "hallucinatory state.",
-                                    "west road"      : "This north-south road harbours two important magical "+
-                                        "establishments, the legendary Tree of Mages and the "+
-                                        "less well-known hut of Mora the Teller of Fortunes. The "+
-                                        "Tree is at the north end of the road, Mora's hut is "+
-                                        "somewhat to the south. The south end of the road "+
-                                        "connects to the western end of Boc-La.",
-                                    "boc-la"         : "This road runs east-west through the heart of the "+
-                                        "city. To the west it merges with the western highway, "+
-                                        "and to the east it dissappears in the jungle. The road "+
-                                        "passes through the square, and many important "+
-                                        "establishments can be found just off it. Horace's shop "+
-                                        "and the adventurer's hall flank the road in the east. "+
-                                        "Nearer to the tree you can see Lars' pub, and the "+
-                                        "Sage's house is opposite a bit of farmlands.",
-                                    "hut"            : "Mora's hut lies south and east of the Mage Tree.  "+
-                                        "Training the telescope on the sign above the door, you "+
-                                        "make out that Mora is a fortune-teller specializing in "+
-                                        "horoscopes.",
-                                    "library"        : "You cannot clearly make out the library, as your view "+
-                                        "is obstructed.",
-                                    "cartesia"       : "Far north of Krasna lies the famous Philosopher City "+
-                                        "of Cartesia, home to the largest known library in the "+
-                                        "world.  The Philosophers of Cartesia, or Seekers of "+
-                                        "Truth as they are sometimes called, have long been a "+
-                                        "major force, exploring new areas, seeking out new life, "+
-                                        "and new civilizations, boldly going where no player has "+
-                                        "gone before.",
-                                    "north highway"  : "A magical path leading through the North Forest, the "+
-                                        "North Forest Highway is magically protected against "+
-                                        "monsters, thus ensuring free passage to those who are "+
-                                        "not stupid.. err..  bold enough to wander off it. "+
-                                        "However, it does not offer protection against bandits "+
-                                        "and highwaymen. The Highway connects with a path "+
-                                        "leading north from Krasna, forming a single, long road "+
-                                        "from the heart of civilization (Krasna) to, "+
-                                        "essentially, the polar icecap. A ways north of its "+
-                                        "southern end, the Highway has an exit leading to the "+
-                                        "rationally-designed, empirically-built and dogmatically-"+
-                                        "defended city of philosophers, Cartesia.",
-                                    "horizon"        : "You do not notice that here. duh.",
-                                    "hole"           : "North of the city, right before the remains of Centre "+
-                                        "Path curve northwest, lies a hole in the ground with a "+
-                                        "reddish glow coming out of it. That hole is reputed to "+
-                                        "be the lair of the evil demon-worshipping class known "+
-                                        "as the Class of Kataans.",
-                                    "tower"          : "The tower is obscured by trees.",
-                                    "house"          : "A fairly large mansion on the lies west of the North "+
-                                        "Highway, somewhat to the north of the exit to the "+
-                                        "Philosopher City. Not much is known about it, except "+
-                                        "that a necromancer might be living in it.",
-                                    "bog"            : "At the south end of the North Forest Highway a path "+
-                                        "leads east to a diseased-looking bog. Many explorers "+
-                                        "have gone there, and quite a few have come back.  Those "+
-                                        "who came back all had one thing in common: they had "+
-                                        "wimpy set ``on''.  They report of nasty beasts, horrid "+
-                                        "insects, ghoulish graveyards and some other.. well.. "+
-                                        "weird things.",
-                                    "exit"           : "Several miles north of where the North Highway "+
-                                        "connects with the trail that is the northern extension "+
-                                        "of Centre Path, an exit leads west from the Highway "+
-                                        "toward a small city with a big library."]) ) ; }
+                                        : "在北方地平线上，天空与大地以灰白色的漩涡相拥之处，"
+                                        "就是北极。这里曾是某位克劳斯先生和他的精灵们的住所——"
+                                        "有时被称为从句先生们，北极已被一群凶猛的巨人无情占领，"
+                                        "他们赶走了克劳斯先生，把他的帮手们变成了"
+                                        "美味的、一口大小（以巨人标准来看）的生肉块。"
+                                        "至少，少数从那里回来的人是这么说的；"
+                                        "但他们很可能因寒冷而遭受创伤，进入了幻觉状态。",
+                                    "west road"      : "这条南北走向的道路拥有两个重要的魔法场所，"
+                                        "传奇的法师树和不太知名的莫拉算命小屋。"
+                                        "法师树在路的北端，莫拉的小屋在稍南处。"
+                                        "路的南端连接博克拉的西端。",
+                                    "boc-la"         : "这条东西走向的道路贯穿城市心脏。"
+                                        "向西与西部公路汇合，向东消失在丛林中。"
+                                        "道路穿过广场，许多重要场所就在路边。"
+                                        "贺拉斯的商店和冒险者大厅在东侧夹道而立。"
+                                        "靠近法师树的地方可以看到拉尔斯酒吧，"
+                                        "贤者的房子对面是一片农田。",
+                                    "hut"            : "莫拉的小屋位于法师树的东南方向。"
+                                        "将望远镜对准门上方的招牌，你辨认出莫拉是一位专攻星座运势的算命师。",
+                                    "library"        : "你看不清图书馆，视线被遮挡了。",
+                                    "cartesia"       : "克拉斯纳遥远的北方是著名的哲人之城卡特西亚，"
+                                        "拥有世界上已知最大的图书馆。卡特西亚的哲人们——"
+                                        "有时被称为真理追寻者——长期以来一直是一股重要力量，"
+                                        "探索新区域，寻找新生命和新文明，"
+                                        "勇敢地前往没有玩家去过的地方。",
+                                    "north highway"  : "一条穿过北方森林的魔法道路，"
+                                        "北方森林公路受到魔法保护免受怪物侵袭，"
+                                        "从而确保那些不够愚蠢……呃……不够大胆而不会偏离道路的人安全通行。"
+                                        "然而，它无法抵御强盗和劫匪。"
+                                        "公路与从克拉斯纳向北延伸的小路相连，"
+                                        "形成一条从文明中心（克拉斯纳）直达极地冰盖的漫长道路。"
+                                        "在南端以北一段距离处，公路有一个出口通往"
+                                        "理性设计、经验建造、教条守护的哲人之城——卡特西亚。",
+                                    "horizon"        : "你在这里注意不到那个。哼。",
+                                    "hole"           : "在城市北边，就在中央路遗迹向西北弯曲之前，"
+                                        "地上有一个洞，散发出红色的光芒。"
+                                        "据传那个洞是邪恶的恶魔崇拜职业——卡塔安人的巢穴。",
+                                    "tower"          : "塔楼被树木遮挡了。",
+                                    "house"          : "一栋相当大的宅邸位于北方公路西侧，"
+                                        "在通往哲人之城的出口以北不远处。"
+                                        "人们对它知之甚少，只知道可能有一个死灵法师住在里面。",
+                                    "bog"            : "在北方森林公路的南端，一条小路向东通往一片病态的沼泽。"
+                                        "许多探险者去过那里，相当多的人回来了。"
+                                        "那些回来的人都有一个共同点：他们把逃跑模式设为了「开」。"
+                                        "他们报告说那里有凶猛的野兽、可怕的昆虫、"
+                                        "食尸鬼的墓地和其他一些……嗯……奇怪的东西。",
+                                    "exit"           : "在北方公路与中央路北延伸段交汇处以北几英里处，"
+                                        "公路有一个西向出口，通往一座拥有大型图书馆的小城市。"]) ) ; }
                                         void init(){
                                             ::init();
                                         }

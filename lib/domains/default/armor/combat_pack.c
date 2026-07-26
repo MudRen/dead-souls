@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("combat pack");
     SetAdjectives( ({"combat", "back"}) );
     SetId( ({"pack", "backpack"}) );
-    SetShort("a combat backpack");
-    SetLong("A pack containing the equipment a testchar will need to jump into battle.");
+    SetShort("一个战斗背包");
+    SetLong("一个装有测试角色投入战斗所需装备的背包。");
     SetClosed(1);
     SetInventory(([
                 "/domains/default/armor/glove_r" : 1,

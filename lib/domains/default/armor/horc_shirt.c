@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("shirt");
     SetAdjectives( ({"tee"}) );
     SetId( ({"t-shirt", "t shirt", "tshirt", "tee shirt"}) );
-    SetShort("a t-shirt that reads: 'I'M HALF-HUMAN'");
-    SetLong("A generic piece of armor of indeterminate proportions.");
+    SetShort("一件写着"我是半人类"的T恤");
+    SetLong("一件尺寸不定的普通护甲。");
     SetMass(50);
     SetDamagePoints(100);
     SetArmorType(A_SHIRT);

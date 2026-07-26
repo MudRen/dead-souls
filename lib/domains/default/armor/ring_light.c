@@ -8,9 +8,9 @@ protected void create(){
     SetKeyName("ring");
     SetId(({"ring"}));
     SetAdjectives( ({"magic","magical","glowing","light","glowing"}) );
-    SetShort("a brilliant, glowing ring");
-    SetLong("This magical ring radiates very bright light that "+
-            "can illuminate a room.");
+    SetShort("一枚璀璨发光的戒指");
+    SetLong("这枚魔法戒指散发出非常明亮的光芒，"+
+            "足以照亮整个房间。");
     SetRadiantLight(30);
     SetMass(1);
     SetBaseCost("silver",5000);

@@ -11,8 +11,8 @@ protected void create() {
     SetKeyName("leather glove");
     SetId( ({ "glove" }) );
     SetAdjectives( ({ "black","leather","right" }) );
-    SetShort("a black leather glove");
-    SetLong("A black glove with five fingers designed for a right hand.");
+    SetShort("一只黑色皮手套");
+    SetLong("一只五指黑色手套，专为右手设计。");
     SetDamagePoints(75);
     SetVendorType(VT_ARMOR);
     SetMass(10);

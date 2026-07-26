@@ -11,9 +11,9 @@ protected void create(){
     armor::create();
     SetKeyName("gray amulet");
     SetId(({"amulet", "gray", "idler_amulet" }));
-    SetShort("a gray amulet");
-    SetLong("This dull, heavy amulet seems rather worthless, though "
-            "something about it seems to suggest hidden purpose.");
+    SetShort("一枚灰色护符");
+    SetLong("这枚暗淡、沉重的护符看起来相当不起眼，"
+            "但它的某些特质似乎暗示着隐藏的用途。");
     SetProperties(([
                 "no steal" : 1,
                 ]));

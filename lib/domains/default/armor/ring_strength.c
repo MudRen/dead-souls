@@ -11,8 +11,8 @@ protected void create(){
     SetKeyName("ring");
     SetId(({"ring"}));
     SetAdjectives( ({"magic", "heavy", "metal"}) );
-    SetShort("a heavy metal ring");
-    SetLong("This ring seems to almost pulse with power.");
+    SetShort("一枚重金属戒指");
+    SetLong("这枚戒指似乎在随着力量脉动。");
     SetMass(10);
     SetBaseCost("silver",5000);
     SetArmorType(A_RING);

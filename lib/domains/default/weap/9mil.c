@@ -7,9 +7,9 @@ void create(){
     SetKeyName("gun");
     SetId(({"gun","pistol"}));
     SetAdjectives(({"9mm","automatic","9 millimeter","semiautomatic"}));
-    SetShort("a 9 millimeter semiautomatic pistol");
-    SetLong("This is a large, semiautomatic pistol that fires 9mm rounds. It is "+
-            "a heavy, serious-looking weapon.");
+    SetShort("一把9毫米半自动手枪");
+    SetLong("这是一把大型半自动手枪，发射9毫米弹药。"+
+            "它是一件沉重、看起来很严肃的武器。");
     SetMillimeter(9);
     SetFirearmType("auto");
     SetAmmoType("acp");

@@ -7,16 +7,14 @@ protected void create(){
     SetKeyName("bearskin");
     SetId(({"bearskin","bear skin"}));
     SetAdjectives(({"thick","shaggy"}));
-    SetShort("a thick, shaggy bearskin");
-    SetLong("This is a thick bearskin which can be worn "+
-            "as armor. Unfortunately the hide "+
-            "has not been tanned, so it's rather "+
-            "foul-smelling.");
+    SetShort("一张厚实蓬松的熊皮");
+    SetLong("这是一张厚实的熊皮，可以当作护甲穿戴。"+
+            "不幸的是这张皮没有经过鞣制，"+
+            "所以气味相当难闻。");
     SetItems( ([
-                "hide" : "It is untanned and subject "+
-                "to natural decomposition."
+                "hide" : "它没有经过鞣制，会自然腐烂。"
                 ]) );
-    SetSmell( ([ "default" : "It reeks of death." ]) );
+    SetSmell( ([ "default" : "它散发着死亡的气息。" ]) );
     SetMass(75);
     SetDamagePoints(100);
     SetProtection(BLUNT,1);
@@ -26,5 +24,5 @@ protected void create(){
 }
 string GetAffectLong(object ob) {
     if(!ob || !living(ob)) return 0;
-    return ob->GetName() + " reeks of death and decay.";
+    return ob->GetName() + " 散发着死亡和腐烂的气息。";
 }

@@ -19,18 +19,17 @@ void create(){
     sscanf(base_name(this_object()),"/domains/%s/%*s",domain);
     SetId( ({"grenade","rpg"}) );
     SetAdjectives( ({"rocket","propelled","angular","oblong"}) );
-    SetShort("a rocket propelled grenade");
-    SetLong("This is an angular, oblong device attached to a tubelike rocket motor. "+
-            "It is usually installed in a rocket propelled grenade launcher and shot "+
-            "at faraway enemies.");
-    SetCruiseInMessage("A rocket propelled grenade roars in!");
-    SetCruiseOutMessage("The rocket propelled grenade flies $D.");
+    SetShort("一枚火箭推进榴弹");
+    SetLong("这是一个安装在管状火箭发动机上的棱角分明的椭圆形装置。"+
+            "它通常安装在火箭推进榴弹发射器中，用于射击远处的敌人。");
+    SetCruiseInMessage("一枚火箭推进榴弹呼啸而来！");
+    SetCruiseOutMessage("火箭推进榴弹向$D方向飞去。");
     SetMass(20);
     SetDollarCost(10);
     SetRange(20);
     SetSpeed(5);
     SetVendorType(VT_WEAPON);
-    AddItem(({"motor","rocket motor"}),"The thing that pushes this grenade.");
+    AddItem(({"motor","rocket motor"}),"推动这枚榴弹的装置。");
     count=5;
     detonated=0;
 }

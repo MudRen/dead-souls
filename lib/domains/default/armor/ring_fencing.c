@@ -11,9 +11,9 @@ protected void create(){
     SetKeyName("ring");
     SetId(({"ring"}));
     SetAdjectives( ({"magic", "thin", "unobtrusive"}) );
-    SetShort("a thin ring");
-    SetLong("This thin ring seems designed to be "+
-            "as light and unobtrusive as possible.");
+    SetShort("一枚纤细的戒指");
+    SetLong("这枚纤细的戒指似乎被设计得"+
+            "尽可能轻巧低调。");
     SetMass(10);
     SetBaseCost("silver",5000);
     SetArmorType(A_RING);

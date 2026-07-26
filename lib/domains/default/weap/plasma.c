@@ -20,10 +20,10 @@ void create(){
     sscanf(base_name(this_object()),"/domains/%s/%*s",domain);
     SetId( ({"bolt","plasma"}) );
     SetAdjectives( ({"plasma", "energy"}) );
-    SetShort("a plasma bolt");
-    SetLong("This is a brilliant ball of superheated material.");
-    SetCruiseInMessage("A plasma bolt roars in from $D!");
-    SetCruiseOutMessage("The plasma bolt flies $D.");
+    SetShort("一枚等离子弹");
+    SetLong("这是一个炽热物质形成的耀眼球体。");
+    SetCruiseInMessage("一枚等离子弹从$D方向呼啸而来！");
+    SetCruiseOutMessage("等离子弹向$D方向飞去。");
     SetMass(0);
     SetDollarCost(10);
     SetRange(20);

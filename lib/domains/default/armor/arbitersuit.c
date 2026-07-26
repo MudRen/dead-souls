@@ -16,10 +16,9 @@ protected void create(){
     SetKeyName("arbiter suit");
     SetId(({"suit", "armor"}));
     SetAdjectives(({"arbiter","suit of","powered","formidable", "formidable looking"}));
-    SetShort("a suit of powered arbiter armor");
-    SetLong("A formidable looking suit of powered armor used by "+
-            "forces of the Extant Authority. This one appears to be one of "+
-            "the arbiter variety.");
+    SetShort("一套仲裁者动力装甲");
+    SetLong("一套外观威武的动力装甲，由现存权威力量使用。"+
+            "这一套似乎是仲裁者型号的。");
     SetMass(7000);
     SetMatching(0);
     SetBaseCost("silver",50000);

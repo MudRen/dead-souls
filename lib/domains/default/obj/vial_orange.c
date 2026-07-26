@@ -8,8 +8,8 @@ void create(){
     SetKeyName("orange vial");
     SetId( ({"vial"}) );
     SetAdjectives( ({"small","transparent","orange","glowing"}) );
-    SetShort("a glowing orange vial");
-    SetLong("A small transparent vial filled with a glowing orange fluid.");
+    SetShort("一个发光的橙色小瓶");
+    SetLong("一个小的透明小瓶，装满了发光的橙色液体。");
     SetMass(10);
     SetBaseCost("silver",1000);
     SetMaxClones(3);

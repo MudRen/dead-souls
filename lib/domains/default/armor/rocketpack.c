@@ -14,10 +14,10 @@ string current_direction;
 mapping Directions = ([]);
 
 string LongD(){
-    string ret = "This is a large device worn on the back and designed to \"boost\" " +
-        "the wearer through the air or through space. For continuous operation, "+
-        "it should probably be activated.  The fuel gauge "+
-        "reads "+to_int(percent(charge,maxcharge))+" percent.";
+    string ret = "这是一个穿戴在背部的大型装置，设计用于"推动"+
+        "穿戴者在空中或太空中移动。要持续运作，"+
+        "应该将其激活。燃料表显示"+
+        "百分之"+to_int(percent(charge,maxcharge))+"。";
     return ret;
 }
 
@@ -27,7 +27,7 @@ protected void create(){
     SetKeyName("rocket pack");
     SetId(({"pack","rocket"}));
     SetAdjectives(({"large","rocket"}));
-    SetShort("a small rocket pack");
+    SetShort("一个小型火箭背包");
     SetLong( (: LongD :) );
     SetMass(800);
     SetBaseCost(18000);

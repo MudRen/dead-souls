@@ -20,30 +20,29 @@ void create(){
     SetKeyName("torpedo");
     SetId( ({"torpedo","mk14","mark 14","cylinder"}) );
     SetAdjectives( ({"electric","mk14", "mark 14"}) );
-    SetShort("a pink torpedo");
-    SetLong("Typical of early models, this torpedo was produced during a "+
-            "severe shortage of red and white lead undercoat pigments, requiring "+
-            "its pink anti-friction paint. This self-propelled cylinder is "+
-            "twenty feet long and packed with a tremendous explosive charge. "+
-            "It has markings stenciled on the side.");
-    SetCruiseInMessage("A torpedo cruises in!");
-    SetCruiseOutMessage("The torpedo cruises $D.");
+    SetShort("一枚粉色鱼雷");
+    SetLong("这是早期型号的典型产品，这枚鱼雷生产于红白底漆颜料严重短缺时期，"+
+            "因此使用了粉色防摩擦涂料。这枚自推进圆柱体"+
+            "长二十英尺，内部装载了巨大的爆炸装药。"+
+            "侧面印有标记。");
+    SetCruiseInMessage("一枚鱼雷巡航而来！");
+    SetCruiseOutMessage("鱼雷向$D方向巡航而去。");
     SetMass(33000);
     SetDollarCost(10000);
     SetRange(200);
     SetSpeed(3);
     SetVendorType(VT_WEAPON);
-    AddItem(({"motor","electric motor"}),"The thing that pushes this torpedo.");
+    AddItem(({"motor","electric motor"}),"推动这枚鱼雷的装置。");
     detonated=0;
     SetItems( ([
-                ({"markings","marking","stencil"}) : "Markings "+
-                "you can read, applied in stencil.",
-                ({"fins","flaps"}) : "This baby's got 'em.",
+                ({"markings","marking","stencil"}) : "可以阅读的标记，"+
+                "用模板印制。",
+                ({"fins","flaps"}) : "这宝贝有鳍。",
                 ]) );
     SetReads( ([
-                "default" : "Try 'read markings on torpedo'",
+                "default" : "试试'阅读鱼雷上的标记'",
                 ({"markings","marking","stencil"}) : "SS-666 "+
-                "Sea Tiger",
+                "海虎号",
                 ]) );
 }
 

@@ -12,12 +12,12 @@ object myroom;
 varargs mixed DoWield(object who, mixed where);
 
 string LongDesc(){
-    string ret = "A highly advanced weapon of Poleepkwa design.";
+    string ret = "一件极先进的波利普克瓦设计武器。";
     if(!active) return ret;
-    if(cache < 5) ret += " A %^RED%^red%^RESET%^ light is illuminated on it.";
-    else if(cache < 25) ret += " A %^YELLOW%^yellow%^RESET%^ light is illuminated on it.";
-    else if(cache < 40) ret += " A %^GREEN%^green%^RESET%^ light is illuminated on it.";
-    else ret += " A %^BLUE%^blue%^RESET%^ light is illuminated on it.";
+    if(cache < 5) ret += " 上面亮起了一个%^RED%^红色%^RESET%^指示灯。";
+    else if(cache < 25) ret += " 上面亮起了一个%^YELLOW%^黄色%^RESET%^指示灯。";
+    else if(cache < 40) ret += " 上面亮起了一个%^GREEN%^绿色%^RESET%^指示灯。";
+    else ret += " 上面亮起了一个%^BLUE%^蓝色%^RESET%^指示灯。";
     return ret;
 }
 
@@ -27,7 +27,7 @@ protected void create() {
     SetId(({"rifle"}));
     AddSave(({"cache","Prey"}));
     SetAdjectives(({"small","poleepkwa","plasma"}));
-    SetShort("a small plasma rifle");
+    SetShort("一把小型等离子步枪");
     SetLong((:LongDesc:));
     SetHands(2);
     SetMass(100);

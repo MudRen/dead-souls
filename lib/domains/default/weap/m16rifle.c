@@ -7,10 +7,10 @@ void create(){
     SetKeyName("rifle");
     SetId(({"rifle","m16","M-16","weapon"}));
     SetAdjectives(({"m-16","M-16","m16","M16","assault","colt"}));
-    SetShort("an M-16 assault rifle");
-    SetLong("This sleek black weapon has been a military workhorse "+
-            "for decades. It is durable, accurate, and above all, extraordinarily deadly. "+
-            "This rifle uses .223 caliber ammunition magazines.");
+    SetShort("一把M-16突击步枪");
+    SetLong("这把流线型黑色武器数十年来一直是军队的主力装备。"+
+            "它耐用、精准，最重要的是，极具杀伤力。"+
+            "这把步枪使用.223口径弹匣。");
     SetCaliber(223);
     SetFirearmType("auto");
     SetFirearmName("rifle");

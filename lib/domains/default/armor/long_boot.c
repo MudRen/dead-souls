@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("riding boot");
     SetId(({"boot"}));
     SetAdjectives(({"long","riding","black","leather","left"}));
-    SetShort("a long riding boot");
-    SetLong("A long riding boot, made of black leather.");
+    SetShort("一只长筒马靴");
+    SetLong("一只黑色皮革制成的长筒马靴。");
     SetMass(60);
     SetBaseCost("silver",75);
     SetDamagePoints(5);

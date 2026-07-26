@@ -14,14 +14,13 @@ string owner;
 varargs mixed GetSuitHelp(mixed who, string where);
 
 string LongDesc(){
-    string ret = "A highly advanced armored suit of Poleepkwa design, "+
-        "used by elements of the Host whose role requires them to have "+
-        "some protection from environmental hazards.";
+    string ret = "一件极先进的波利普克瓦设计装甲服，"+
+        "由需要一定环境危害防护的宿主成员使用。";
     if(!active) return ret;
-    if(charge < percent_of(10, maxcharge)) ret += " A %^RED%^red%^RESET%^ light is illuminated on it.";
-    else if(charge < percent_of(50, maxcharge)) ret += " A %^YELLOW%^yellow%^RESET%^ light is illuminated on it.";
-    else if(charge < percent_of(80, maxcharge)) ret += " A %^GREEN%^green%^RESET%^ light is illuminated on it.";
-    else ret += " A %^BLUE%^blue%^RESET%^ light is illuminated on it.";
+    if(charge < percent_of(10, maxcharge)) ret += " 上面亮起了一个%^RED%^红色%^RESET%^指示灯。";
+    else if(charge < percent_of(50, maxcharge)) ret += " 上面亮起了一个%^YELLOW%^黄色%^RESET%^指示灯。";
+    else if(charge < percent_of(80, maxcharge)) ret += " 上面亮起了一个%^GREEN%^绿色%^RESET%^指示灯。";
+    else ret += " 上面亮起了一个%^BLUE%^蓝色%^RESET%^指示灯。";
     return ret;
 }
 
@@ -30,7 +29,7 @@ protected void create(){
     SetKeyName("scout suit");
     SetId(({"suit", "armor"}));
     SetAdjectives(({"poleepkwa","scout","suit of","powered","formidable", "formidable looking"}));
-    SetShort("a suit of poleepkwa scout armor");
+    SetShort("一套波利普克瓦侦察装甲");
     SetLong((:LongDesc:));
     SetMass(500);
     SetMatching(0);

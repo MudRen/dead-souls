@@ -27,11 +27,10 @@ protected void create() {
     SetId( ({ "computer", "bracer","comp","wristcomp","system" }) );
     SetAdjectives( ({ "wrist","odd","odd looking","complex","tough","rugged",
                 "tactical", "tactical data" }) );
-    SetShort("a Yautja wrist computer");
-    SetLong("An odd looking bracer intended to be worn on the arm. It looks "
-            "extremely complex yet also very tough and rugged. One may perhaps "
-            "\"activate bracer\". It appears that one can access special functions "
-            "by opening it.");
+    SetShort("一台铁血战士腕式电脑");
+    SetLong("一个外形奇特的臂环，设计用于穿戴在手臂上。它看起来"+
+            "极其复杂，但同时也非常坚固耐用。也许可以"+
+            ""激活护腕"。看起来打开它就能访问特殊功能。");
     SetDamagePoints(75);
     SetVendorType(VT_ARMOR);
     SetMass(10);
