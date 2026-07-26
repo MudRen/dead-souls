@@ -13,22 +13,22 @@ create() {
     ::create();
     SetKeyName("gallows");
     SetId( ({ "gallows", "noose", "platform" }) );
-    SetShort("the gallows");
+    SetShort("绞刑架");
     SetLong( (: "long_func" :) );
-    SetPreventGet("You cannot get that!");
+    SetPreventGet("你不能拿走那个！");
 }
 
 string long_func() {
     string str, name;
 
-    str = "A large wooden platform with two upright timbers and "
-        "a crossbeam with a rope and noose.";
+    str = "一个大型木制平台，有两根直立的木材和"
+        "一根横梁，上面挂着绳索和绞索。";
     if(hangman) {
         if(name = capitalize(present("the corpse of "+hangman->query_name(),
                         environment(this_object()))->GetKeyName()))
-            str += "\n"+name+" is hanging from the noose.";
-        else str += "\n"+hangman->query_cap_name()+" is standing "
-            "upon the platform, noose around "+hangman->query_possessive()+" neck.";
+            str += "\n"+name+"被吊在绞索上。";
+        else str += "\n"+hangman->query_cap_name()+"站在"
+            "平台上，绞索套在"+hangman->query_possessive()+"脖子上。";
     }
     return str;
 }

@@ -16,11 +16,11 @@ void create() {
     loaded=stored_amount=0;
     SetKeyName("donation box");
     SetId( ({ "donation box", "box" }) );
-    SetShort("a donation box");
-    SetRead("Property of Frobitz collection agency.");
+    SetShort("一个捐款箱");
+    SetRead("弗罗比茨收藏社财产。");
     SetMass(0);
     SetValue(0);
-    SetPreventGet("You aren't allowed to take that. No one is.");
+    SetPreventGet("你不被允许拿走那个。没有人可以。");
     SetNoClean(1);
 }
 
@@ -47,27 +47,27 @@ int donate(string str) {
     int amount;
 
     if(!str) {
-        notify_fail("Donate what?\n");
+        notify_fail("捐献什么？\n");
         return 0;
     }
     if(sscanf(str, "%d gold", amount) !=1) {
-        notify_fail("Correct syntax: <donate [#] gold>\n");
+        notify_fail("正确语法：<donate [#] gold>\n");
         return 0;
     }
     if(amount < 1) {
-        notify_fail("That would be a nifty trick indeed!\n");
+        notify_fail("那确实是个巧妙的把戏！\n");
         return 0;
     }
     if(this_player()->query_money("gold") < amount) {
-        notify_fail("You don't have that much gold!\n");
+        notify_fail("你没有那么多金币！\n");
         return 0;
     }
     if (!loaded) {
         stored_amount = restore_int("mage_coffers");
         loaded=1;}
     this_player()->add_money("gold", -1*amount);
-    write("You donate "+amount+" gold coins to the mages.");
-    say(this_player()->query_cap_name()+" donates some gold.", this_player());
+    write("你向法师们捐献了"+amount+"枚金币。");
+    say(this_player()->query_cap_name()+"捐献了一些金币。", this_player());
     stored_amount += amount;
     write_file(LOG,""+stored_amount+"\t"+
             this_player()->query_name()+" donates ."+amount+"\n");
@@ -80,9 +80,9 @@ string GetLong(string junk) {
         stored_amount = restore_int("mage_coffers");
         loaded=1;}
     return
-        "A medium sized, VERY heavy box that contains the funds of the mage class.\n"+
-        "If you wish, you can <donate # gold> to increase those funds.\n"+
-        "The coffers currently contain "+stored_amount+" gold.\n";
+        "一个中等大小、非常重的箱子，里面装着法师职业的资金。\n"+
+        "如果你愿意，你可以 <donate # gold> 来增加这些资金。\n"+
+        "金库目前有"+stored_amount+"金币。\n";
 }
 
 int withdraw(string str) {
@@ -90,26 +90,26 @@ int withdraw(string str) {
 #define TESTERS ({"nialson", "lassondra", "zaknaifen"})
     if((-1==member_array(this_player()->query_name(), TESTERS))&&
             (-1==member_array(this_player()->query_name(), MAGE_COUNCIL))) {
-        notify_fail("Only council members may withdraw money.\n");
+        notify_fail("只有议会成员才能取款。\n");
         return 0; }
     if(!str) {
-        notify_fail("Withdraw what?\n");
+        notify_fail("取出什么？\n");
         return 0; }
     if(sscanf(str, "%d gold", amount) !=1) {
-        notify_fail("Correct syntax: <withdraw [#] gold>\n");
+        notify_fail("正确语法：<withdraw [#] gold>\n");
         return 0; }
     if (!amount) {
-        notify_fail("Stop wasting my time and yours.\n");
+        notify_fail("别浪费我和你的时间了。\n");
         return 0; }
     if (amount < 0) {
-        notify_fail("Negatives not allowed!\n");
+        notify_fail("不允许负数！\n");
         return 0; }
     if (!loaded) {
         stored_amount = restore_int("mage_coffers");
         loaded=1;}
 
-    write("You withdraw "+amount+" gold coins from the mages.");
-    say(this_player()->query_cap_name()+" withdraws some gold.", this_player());
+    write("你从法师金库中取出了"+amount+"枚金币。");
+    say(this_player()->query_cap_name()+"取出了一些金币。", this_player());
     stored_amount -= amount;
     this_player()->add_money("gold", amount);
     write_file(LOG,""+stored_amount+"\t"+

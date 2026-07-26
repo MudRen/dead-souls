@@ -11,9 +11,9 @@ create() {
     ::create();
     SetKeyName("hood");
     SetId(({"hood", "black hood" }) );
-    SetShort("a black hood");
-    SetLong("A black hood to hide the eyes of victims");
-    SetPreventDrop("The hood is securly fastened to your neck");
+    SetShort("一个黑色头套");
+    SetLong("一个用来遮住受害者眼睛的黑色头套");
+    SetPreventDrop("头套牢牢地固定在你的脖子上");
 }
 
 void init() {
@@ -25,7 +25,7 @@ void init() {
 }
 
 int cmd_look() {
-    message("my_action", "It is too dark.", this_player());
+    message("my_action", "太暗了。", this_player());
     return 1;
 }
 

@@ -19,15 +19,12 @@ void create() {
     ::create();
     SetKeyName("work order");
     SetId( ({ "order", "work order" }) );
-    SetShort("a work order");
-    SetLong("An order for workers to begin modifying your estate "
-            "to your desires.  In order to modify your estate, go to "
-            "any room in it, and type \"build <room name>\".  "
-            "For example, to build your study, type: "
-            "\"build the study\".  Room's as you type in the command "
-            "are what people see when they enter a room in brief mode.  "
-            "In this case, people would see \"The study\".  You will then be "
-            "asked some questions about your room."
+    SetShort("一份工作订单");
+    SetLong("一份让工人们按照你的意愿修改房产的订单。"
+            "要修改你的房产，进入其中任何一间房间，然后输入 \"build <房间名>\"。"
+            "例如，要建造你的书房，输入："
+            "\"build the study\"。你输入命令时的房间名是人们在简略模式下进入房间时看到的内容。"
+            "在这种情况下，人们会看到\"The study\"。然后你会被问一些关于房间的问题。"
            );
     SetMass(10);
     SetValue(99);
@@ -40,18 +37,18 @@ void init() {
 }
 
 protected int cmd_build(string str) {
-    if(!str) return notify_fail("Build which room?\n");
+    if(!str) return notify_fail("建造哪个房间？\n");
     if(file_size(ESTATES_DIRS+"/"+geteuid(this_player())) != -2)
-        return notify_fail("You need an estates directory!\n");
+        return notify_fail("你需要一个房产目录！\n");
     /*
        if(!high_mortalp(this_player()))
        return notify_fail("Only high mortals may build!\n");
      */
     if(strsrch(file_name(environment(this_player())),
                 ESTATES_DIRS+"/"+geteuid(this_player())) != 0)
-        return notify_fail("You can only build on your stuff!\n");
+        return notify_fail("你只能在自己的地盘上建造！\n");
     __Short = str;
-    message("prompt", "Is the room 0) outdoors, or 1) indoors? ", this_player());
+    message("prompt", "房间是 0) 室外，还是 1) 室内？", this_player());
     input_to("input_indoors");
     return 1;
 }
@@ -61,13 +58,13 @@ protected void input_indoors(string str) {
 
     x = to_int(str);
     if(x && x != 1) {
-        message("system", "That was not a valid value.", this_player());
+        message("system", "这不是一个有效的值。", this_player());
         return;
     }
     __Indoors = x;
-    message("system", "How well lit is the room?", this_player());
-    message("system", "    0 is darkest, 3 brightest", this_player());
-    message("prompt", "\nEnter light value: ", this_player());
+    message("system", "房间的光照程度如何？", this_player());
+    message("system", "    0 最暗，3 最亮", this_player());
+    message("prompt", "\n请输入光照值：", this_player());
     input_to("input_light");
 }
 
@@ -76,17 +73,15 @@ protected void input_light(string str) {
 
     x = to_int(str);
     if(x && x != 1 && x != 2 && x != 3) {
-        message("system", "Invalid light number.", this_player());
+        message("system", "无效的光照数值。", this_player());
         return;
     }
     __Light = x;
-    message("system", "Enter in a long description for the room.  "
-            "A long description is what people see when they enter a "
-            "room in verbose mode.  A line showing obvious exits is automatically "
-            "appended.  In addition, if you add any smells or sounds, the "
-            "default ones are automatically appended.  So do not describe sounds or "
-            "smells here.", this_player());
-    message("system", "Enter in the long description like mail.", this_player());
+    message("system", "请输入房间的详细描述。"
+            "详细描述是玩家在详细模式下进入房间时看到的内容。"
+            "明显的出口会自动附加显示。此外，如果你添加了任何气味或声音描述，"
+            "默认的气味和声音也会自动附加。所以请不要在这里描述声音或气味。", this_player());
+    message("system", "请像写邮件一样输入详细描述。", this_player());
     rm(DIR_TMP+"/"+geteuid(this_player())+".estate");
     this_player()->edit(DIR_TMP+"/"+geteuid(this_player())+".estate",
             "done_edit", this_object());
@@ -94,18 +89,18 @@ protected void input_light(string str) {
 
 void abort() {
     rm(DIR_TMP+"/"+geteuid(this_player())+".estate");
-    message("system", "Building aborted.", this_player());
+    message("system", "建造已中止。", this_player());
 }
 
 void done_edit(mixed *unused) {
     string str;
 
     if(!(str = read_file(DIR_TMP+"/"+geteuid(this_player())+".estate"))) {
-        message("system", "No long!", this_player());
+        message("system", "没有详细描述！", this_player());
         return;
     }
     __Long = replace_string(str, "\n", " ");
-    message("prompt", "\nIn which direction do you wish to build "+__Short+"? ",
+    message("prompt", "\n你希望在哪个方向建造"+__Short+"？",
             this_player());
     input_to("input_exit");
 }
@@ -116,8 +111,7 @@ protected void input_exit(string str) {
 
     if(member_array(str, environment(this_player())->query_exits())
             != -1) {
-        message("system", "A room already exists in that direction!",
-                this_player());
+        message("system", "那个方向已经有房间了！", this_player());
         return;
     }
     valid_exits = ([ "north": "south", "south": "north", "east":"west",
@@ -125,7 +119,7 @@ protected void input_exit(string str) {
             "northwest":"southeast", "southwest":"northeast",
             "northeast":"southwest" ]);
     if(!valid_exits[str]) {
-        message("system", "That is not a real direction!", this_player());
+        message("system", "那不是一个真正的方向！", this_player());
         return;
     }
     __Exit = "$"+(file=file_name(environment(this_player())))+";$"+valid_exits[str];
@@ -138,8 +132,7 @@ protected void input_exit(string str) {
     write_file(__NewRoom, "SetLong: $"+__Long+"\n");
     write_file(__NewRoom, "AddExit: "+__Exit+"\n");
     //seteuid(getuid());
-    message("system", "Room begun.  You will see your addition "
-            "appear later when the work is complete.", this_player());
+    message("system", "房间已开始建造。工程完成后，你将看到你的新增部分。", this_player());
     this_object()->remove();
 }
 

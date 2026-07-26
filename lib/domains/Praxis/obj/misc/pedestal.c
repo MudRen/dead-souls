@@ -14,12 +14,12 @@ void create() {
     has_ball=0;
     SetKeyName("pedestal");
     SetId( ({ "pedestal" }) );
-    SetShort("a pedestal");
+    SetShort("一个基座");
     SetLong(
-            "This small (gnome-height) pedestal is made from a dark, mysterious stone. "+
-            "There is a small indentation on the flat top, as if a round object were "+
-            "meant to be placed there. ");
-    SetRead("Made by the Wilsonshire and Sons corintian pillar specialists.");
+            "这个小（侏儒高度）基座由一种黑暗、神秘的石头制成。"+
+            "平坦的顶部有一个小凹痕，好像有一个圆形物体"+
+            "应该放在那里。");
+    SetRead("由威尔逊郡和子公司的科林斯柱专家制造。");
     SetMass(10000);
     SetValue(0);
 }
@@ -33,24 +33,23 @@ int place(string str)
     if (has_ball) {
         if (!(ths=present(this,this_player()))) return 0;
         if (!ths->id("crystal ball")) return 0;
-        write("The pedestal already has a crystal ball on it. ");
+        write("基座上已经有一个水晶球了。");
         return 1;}
     if (!(ths=present(this,this_player()))) {
-        notify_fail("You are not carrying "+this+". ");
+        notify_fail("你没有携带"+this+"。");
         return 0;}
     if (!ths->id("crystal ball")) {
-        notify_fail("That's pointless. ");
+        notify_fail("那没有意义。");
         return 0;}
     ths->remove();
-    write("You place the crystal ball on the pedestal, and watch it fuse into place. ");
-    say("Places a crystal ball on the pedestal. The ball is fused to the pedestal");
-    SetShort("a pedestal with crystal ball.");
+    write("你把水晶球放在基座上，看着它融合到位。");
+    say("把水晶球放在基座上。球与基座融合了。");
+    SetShort("一个带水晶球的基座。");
     SetLong(
-            "This small (gnome-height) pedestral is made from a dark, mysterious "+
-            "stone.  A crystal ball snugly fits into an indentation on the top. As "+
-            "you peer at it, you notice barely-perceptible lines of force streaming "+
-            "from the stone to the crystal ball. It seems your lessons in discerning "+
-            "magic forces have paid off. ");
+            "这个小（侏儒高度）基座由一种黑暗、神秘的石头制成。"
+            "一个水晶球紧紧地嵌入顶部的凹痕中。"
+            "当你注视它时，你注意到从石头到水晶球有几乎难以察觉的力量线条。"
+            "看来你辨别魔法力量的课程已经见效了。");
     add_action("view", "view");
     has_ball=1;
     return 1;
@@ -62,9 +61,9 @@ int view(string str)
     string desc;
     object ob, env, *inv;
 
-    write("You gaze into the crystal ball. ");
+    write("你凝视着水晶球。");
     if(this_player()->query_mp() < 5) {
-        write("Your magic powers are just too weak to help you. ");
+        write("你的魔法力量太弱了，无法帮助你。");
         return 1;
     }
     if(!(ob = find_living(str))
@@ -72,15 +71,15 @@ int view(string str)
             || creatorp(ob)
 #endif
       ) {
-        write("No such person in our reality. ");
+        write("我们的世界中没有这个人。");
         return 1;
     }
     this_player()->add_mp(-5);
     if(!(env = environment(ob))) {
-        write(ob->query_cap_name()+" is lost. ");
+        write(ob->query_cap_name()+"迷路了。");
         return 1;
     }
-    write("You find "+ob->query_cap_name()+" in the crystal ball: "); 
+    write("你在水晶球中找到了"+ob->query_cap_name()+"："); 
     ob=environment(ob);
     desc = ob->GetLong()+"\n";
     inv = all_inventory(ob);

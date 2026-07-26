@@ -8,6 +8,6 @@ void create() {
     SetKeyName("board");
     SetId( ({"board","approval board"}) );
     set_board_id("approval");
-    SetShort("the approval board");
-    SetLong("Posts and notes for the approval team.\n");
+    SetShort("审批布告板");
+    SetLong("审批团队的帖子和笔记。\n");
 }

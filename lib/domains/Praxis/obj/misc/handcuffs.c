@@ -15,11 +15,11 @@ create() {
     ::create();
     SetId( ({ "handcuffs", "cuffs" }) );
     SetKeyName("handcuffs");
-    SetShort("Rope handcuffs");
-    SetLong("Thick rope used to restrain unlawful characters.");
+    SetShort("绳索手铐");
+    SetLong("用来约束不法角色的粗绳。");
     SetMass(0);
     SetValue(0);
-    SetPreventDrop("You're unable to drop that, you're hands are tied.");
+    SetPreventDrop("你无法放下那个，你的手被绑住了。");
 }
 
 void init() {
@@ -36,7 +36,7 @@ mixed *query_auto_load() {
 int all_cmds(string str) {
 
     if(member_array(query_verb(), ALLOWED_COMMANDS) == -1) {
-        message("say", "%^RED%^You cannot do that with the handcuffs on.",
+        message("say", "%^RED%^你戴着手铐无法那样做。",
                 this_player());
         return 1;
     }
