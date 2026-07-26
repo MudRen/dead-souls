@@ -115,23 +115,23 @@ varargs void display_policy( mapping policy, int as_law )
     if( as_law )
     {
         then = policy["Time"];
-        printf( "As of %s, %d %s, %d NM;  at the urging of %s\n\n\t\t\%s\n\n%s",
+        printf( "自%s，%d %s，%d NM；在%s的推动下\n\n\t\t\%s\n\n%s",
                 day( then ), date( then ), month( then ), year( then ),
                 capitalize( policy["Proposer"] ), policy["Title"], policy["Text"] );
         return;
     }
     printf(
-            "Title: %s\nProposer: %s\n\n%s",
+            "标题：%s\n提议者：%s\n\n%s",
             policy["Title"],
             capitalize( policy["Proposer"] ),
             policy["Text"],
           );
     if( sizeof( policy["Aye"] ) )
-        write( wrap( "In favour: " + implode( policy["Aye"], ", " ) ) );
+        write( wrap( "赞成：" + implode( policy["Aye"], ", " ) ) );
     if( sizeof( policy["Nay"] ) )
-        write( wrap( "Against: " + implode( policy["Nay"], ", " ) ) );
+        write( wrap( "反对：" + implode( policy["Nay"], ", " ) ) );
     if( sizeof( policy["Abs"] ) )
-        write( wrap( "Abstentions: " + implode( policy["Abs"], ", " ) ) );
+        write( wrap( "弃权：" + implode( policy["Abs"], ", " ) ) );
 }
 
 int cmd_law( string arg )
