@@ -8,15 +8,15 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Creators' Hall");
-    SetLong("A generic Wiz Hall.");
+    SetShort("创造者大厅");
+    SetLong("一个通用的巫师大厅。");
     SetProperty("no attack", 1);
     SetProperty("nopeer",1);
 }
 
 int CanReceive(object ob) {
     if(playerp(ob) && !creatorp(ob) && !present("testchar badge",ob)) {
-        message("info","Creator staff only, sorry.", ob);
+        message("info","仅限创造者工作人员，抱歉。", ob);
         return 0;
     }
     return ::CanReceive(ob);

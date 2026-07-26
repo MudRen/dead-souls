@@ -15,13 +15,13 @@ void create() {
     SetAmbientLight(5);
     SetNightLight(15);
     SetDayLight(25);
-    SetShort("A Dark Cave");
-    SetNightLong("This is a cave in the rough stone mountain wall. "+
-            "The cave opens south into the night. To the north is darkness.");
-    SetDayLong("This is a cave in the rough stone mountain wall. Daylight shines in from the south, where where a forest lies. To the north, the cave continues into darkness.");
-    SetLong("This is a small cave near a forest.");
+    SetShort("黑暗洞穴");
+    SetNightLong("这是一个位于粗糙石壁山体中的洞穴。"+
+            "洞穴向南敞开，通向夜色。北面是一片黑暗。");
+    SetDayLong("这是一个位于粗糙石壁山体中的洞穴。日光从南面照入，那里有一片森林。北面，洞穴继续延伸向黑暗之中。");
+    SetLong("这是森林附近的一个小洞穴。");
     SetItems(([
-                ({ "wall", "rocky wall", "mountain wall", "rough stone mountain wall", "stone mountain wall" }) : "Geological activity has created this cave ove the years, but clearly some sentient activity has formed it into a usable size and shape for habitation.",
+                ({ "wall", "rocky wall", "mountain wall", "rough stone mountain wall", "stone mountain wall" }) : "地质活动在漫长岁月中形成了这个洞穴，但显然有智慧生物将其改造成了适合居住的大小和形状。",
                 ]));
     SetInventory(([
                 "/domains/town/obj/ladder" : 1,

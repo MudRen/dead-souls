@@ -12,7 +12,7 @@ varargs protected void create(int x, int y) {
     virt_land::create();
     SetClimate("temperate");
     SetAmbientLight(30);
-    SetLong("A featureless void.");
-    SetShort("an empty place");
+    SetLong("一片毫无特色的虚空。");
+    SetShort("空旷之地");
     AddExit("down", ROOM_START);
 }

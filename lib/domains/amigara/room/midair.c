@@ -8,10 +8,10 @@ inherit LIB_ROOM;
 void create() {
     ::create();
     SetAmbientLight(5);
-    SetShort("midair in a cave");
-    SetLong("This is a cave in the stone mountain north of the town forest. There is no floor here. There is darkness below.");
+    SetShort("洞穴半空中");
+    SetLong("这是城镇森林北面石山中的一个洞穴。这里没有地面。下方是一片黑暗。");
     SetItems(([
-                ({ "wall", "rocky wall", "mountain wall", "rough stone mountain wall", "stone mountain wall" }) : "Geological activity has created this cave ove the years, but clearly some sentient activity has formed it into a usable size and shape for habitation.",
+                ({ "wall", "rocky wall", "mountain wall", "rough stone mountain wall", "stone mountain wall" }) : "地质活动在漫长岁月中形成了这个洞穴，但显然有智慧生物将其改造成了适合居住的大小和形状。",
                 ]));
     SetExits( ([
                 "south" : "/domains/amigara/room/cave",
