@@ -4,18 +4,16 @@ object coffin;
 void create() {
     ::create();
     SetProperty("light", 0);
-    SetShort( "The grave");
+    SetShort( "坟墓");
     SetLong(
-            "You have foolishly climbed down into the ancient grave of one of "
-            "the founders of Praxis.  You are standing on the closed lower door "
-            "of a coffin.  The upper door is open and gruesomely inviting.  The "
-            "soil presses in around you claustrophobicly.");
+            "你愚蠢地爬进了普拉克西斯创始人之一的古老坟墓。"
+            "你正站在一口棺材关闭的下门上。"
+            "上门敞开着，令人毛骨悚然地诱人。"
+            "土壤以幽闭恐惧症般的方式压在你周围。");
     SetItems(
-            (["under" : "You can't look under the coffin, you're "
-             "standing on it.",
-             "soil" : "The dirt walls of the grave are soft and "
-             "smell of the earth.",
-             "grave" : "The grave is horribly empty and sad."]) );
+            (["under" : "你不能往棺材下面看，你正站在上面。",
+             "soil" : "坟墓的土墙很软，散发着泥土的气味。",
+             "grave" : "坟墓空荡荡的，令人恐惧和悲伤。"]) );
     SetExits( 
             ([ "up" :	"/domains/Praxis/cemetery/grave_yard2"]) );
 }
