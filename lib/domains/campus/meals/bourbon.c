@@ -14,7 +14,7 @@ protected void create() {
     SetKeyName("ale");
     SetId( ({ "bottle", "bourbon" }) );
     SetShort("一瓶波旁威士忌");
-    SetLong("A dark green bottle of cheap bourbon.");
+    SetLong("一瓶廉价波旁威士忌，装在深绿色的瓶子里。");
     SetMass(100);
     SetMealType(MEAL_DRINK | MEAL_ALCOHOL);
     SetStrength(100);

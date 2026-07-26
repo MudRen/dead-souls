@@ -14,7 +14,7 @@ protected void create() {
     SetKeyName("sandwich");
     SetId(({"sandwich","ham sandwich"}));
     SetShort("一个火腿三明治");
-    SetLong("This is a rather plain ham sandwich on white bread.");
+    SetLong("这是一个相当普通的白面包火腿三明治。");
     SetMass(10);
     SetStrength(25);
     //SetDollarCost(2);

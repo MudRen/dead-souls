@@ -21,11 +21,10 @@ void create(){
     item::create();
     SetNoClean(1);
     SetId( ({ "board", "message board" }) );
-    SetLong("A board for reading and posting messages. To read the "+
-            "first message: read 1\nTo post a message: post <message title>\n");
-    SetPreventGet("You cannot get that!");
-    SetPreventPut("You cannot put that in there!");
-    SetPreventDrop("Drop a bulletin board?");
+    SetLong("一块用来阅读和发布消息的公告板。要阅读第一条消息：read 1\n要发布消息：post <消息标题>\n");
+    SetPreventGet("你不能拿走那个！");
+    SetPreventPut("你不能把那个放进去！");
+    SetPreventDrop("丢掉公告板？");
     SetNoCondition(1);
     SetRead( (: GetLong :) );
     __EditOK = ({});

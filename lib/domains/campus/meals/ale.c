@@ -14,7 +14,7 @@ protected void create() {
     SetKeyName("ale");
     SetId( ({ "bottle", "ale", "praxis ale" }) );
     SetShort("一瓶麦酒");
-    SetLong("A nice bottle of Lars' famous Praxis Ale.");
+    SetLong("一瓶好喝的拉尔斯著名普拉克西斯麦酒。");
     SetMass(60);
     SetMealType(MEAL_DRINK | MEAL_ALCOHOL);
     SetStrength(20);

@@ -7,8 +7,7 @@ protected void create() {
     SetKeyName("hamburger");
     SetId(({"hamburger","burger"}));
     SetShort("油腻的汉堡包");
-    SetLong("Evidently considered to be food by some people, "+
-            "this little horror in a bun is greasy, flat, and slightly gray. Enjoy!");
+    SetLong("显然有些人认为这是食物，这个夹在面包里的小怪物又油腻、又扁平，还有点发灰。请享用！");
     SetNoCondition(1);
     SetMass(15);
     SetStrength(35);

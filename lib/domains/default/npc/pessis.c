@@ -8,7 +8,7 @@ protected void create() {
     SetId( ({"half-orc", "half orc", "half human", "half-human"}) );
     SetAdjectives(({"non-player", "non player"}));
     SetShort("半兽人佩西斯");
-    SetLong("Too rough and brutish looking to be a handsome human， too delicate to be a proper orc， Pessis has lived through great indignity and rejection his entire existence。 He's understandably a bit defensive about it， so perhaps it's best not to bring up the subject。");
+    SetLong("长相太过粗犷野蛮，算不上英俊的人类；又太过纤细，称不上合格的兽人。佩西斯一生都活在屈辱和排斥之中。可以理解他对这个话题有些敏感，所以最好不要提起这件事。");
     SetInventory(([
                 "/domains/default/armor/horc_shirt" : "wear tshirt",
                 ]));

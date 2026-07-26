@@ -13,7 +13,7 @@ protected void create() {
     SetKeyName("gatorade");
     SetId(({"gatorade","drink","sports drink","bottle"}));
     SetShort("一瓶佳得乐");
-    SetLong("This is a bottle of lemon-lime Gatorade. ");
+    SetLong("这是一瓶柠檬青柠味的佳得乐。");
     SetMass(60);
     SetBaseCost("silver", 2);
     SetMealType(MEAL_DRINK);

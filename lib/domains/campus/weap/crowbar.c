@@ -10,8 +10,7 @@ protected void create(){
     SetId( ({ "rod" }) );
     SetAdjectives( ({ "heavy", "iron"}) );
     SetShort("撬棍");
-    SetLong("This is heavy iron rod with specialized ends for prying "
-            "things open.");
+    SetLong("这是一根沉重的铁棍，两端专门设计用来撬开东西。");
     SetVendorType(VT_WEAPON);
     SetClass(20);
     SetBaseCost("silver",150);

@@ -8,8 +8,7 @@ protected void create(){
     SetId(({"ring","silver ring"}));
     SetAdjectives( ({"beautiful"}) );
     SetShort("美丽的银戒指");
-    SetLong("This is a simple but beautiful ring made of "+
-            "silver, suitable for wearing on one's finger. The ring bears an inscription.");
+    SetLong("这是一枚简洁而美丽的银戒指，适合戴在手指上。戒指上刻有铭文。");
     SetMass(1);
     SetDollarCost(5000);
     SetDamagePoints(100);

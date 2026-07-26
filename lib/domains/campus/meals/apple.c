@@ -8,7 +8,7 @@ protected void create() {
     SetId(({"fruit"}));
     SetAdjectives( ({ "fresh","tasty","tasy-looking","red"}) );
     SetShort("一个苹果");
-    SetLong("This is a fresh, red, tasty-looking apple. ");
+    SetLong("这是一个新鲜的、红色的、看起来很好吃的苹果。");
     SetMass(5);
     SetStrength(35);
     SetDollarCost(1);

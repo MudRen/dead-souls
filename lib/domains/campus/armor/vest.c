@@ -8,7 +8,7 @@ protected void create(){
     SetId(({"vest"}));
     SetAdjectives(({"paisley","colorful","hippie","hippy","psychedelic"}));
     SetShort("彩色佩斯利花纹背心");
-    SetLong("A stupid-looking hippie vest with psychedelic paisley patterns on it.");
+    SetLong("一件看起来很蠢的嬉皮士背心，上面印着迷幻的佩斯利花纹。");
     SetMass(5);
     SetDollarCost(1);
     SetDamagePoints(1);

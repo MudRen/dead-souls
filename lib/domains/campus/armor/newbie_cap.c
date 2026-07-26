@@ -13,10 +13,7 @@ protected void create(){
     SetId(({"cap","hat"}));
     SetAdjectives(({"baseball"}));
     SetShort("棒球帽");
-    SetLong("This baseball cap looks pretty normal, except "+
-            "the trim is fine corinthian leather and the bill "+
-            "is plated in what appears to be pure mithril. There is some "+
-            "writing on the front of the cap.");
+    SetLong("这顶棒球帽看起来很普通，除了帽边是精致的科林斯皮革，帽檐镀了一层看起来是纯秘银的金属。帽子正面写着一些字。");
     SetMass(50);
     SetDollarCost(100);
     SetDamagePoints(20);

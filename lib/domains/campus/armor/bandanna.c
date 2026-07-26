@@ -9,7 +9,7 @@ protected void create(){
     SetAdjectives( ({"red"}) );
     SetId( ({"kerchief", "handkerchief"}) );
     SetShort("红色头巾");
-    SetLong("This is a red kerchief fashioned into improvised headgear, possibly to prevent getting dirt on one's hair and vice versa.");
+    SetLong("这是一条红色头巾，被改造成简易头饰，可能是为了防止头发沾上灰尘，同时也避免灰尘掉落。");
     SetMass(1);
     SetBaseCost("silver",1);
     SetArmorType(A_HELMET);

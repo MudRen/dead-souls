@@ -8,7 +8,7 @@ protected void create(){
     SetId(({"uniform","bdu","bdu's","fatigues"}));
     SetAdjectives(({"camouflage","battle","dress","combat"}));
     SetShort("一套作战服");
-    SetLong("这套制服由一件迷彩上衣和一条迷彩裤组成。是军 standard standard issue。");
+    SetLong("这套制服由一件迷彩上衣和一条迷彩裤组成，是军队标准制式装备。");
     SetMass(10);
     SetBaseCost("silver",100);
     SetDamagePoints(100);

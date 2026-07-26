@@ -16,8 +16,8 @@ void create(){
     AddSave( ({ "Skills", "Stats", "Points", "Duration", "bonusname" }) );
     SetInvis(1);
     SetId("bonus_object");
-    SetShort("bonus");
-    SetLong("A bonus");
+    SetShort("奖励");
+    SetLong("一个奖励");
 }
 
 void init(){

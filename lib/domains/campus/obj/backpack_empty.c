@@ -10,9 +10,7 @@ protected void create() {
     SetId(({"bag","pack"}));
     SetAdjectives(({"sturdy","green","olive","olive-green","od green","od-green"}));
     SetShort("结实的橄榄绿背包");
-    SetLong("This is a large, sturdy backpack made of some sort of "
-            "strong, canvas-like material. It appears suitable "+
-            "for just about any adventure you'd find yourself in.");
+    SetLong("这是一个大型结实的背包，由某种坚固的帆布状材料制成。看起来适合你可能遇到的任何冒险。");
     SetMass(100);
     SetBaseCost("silver", 40);
     SetCanClose(1);

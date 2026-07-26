@@ -43,10 +43,10 @@ void SetPile(string str, int amt){
     PileType = str;
     PileAmount = amt;
     if(!PileAmount || PileAmount < 1 ){
-        SetLong("a pile of money");
+        SetLong("一堆钱");
         call_out( (: eventDestruct :), 1);
     }
-    else SetLong("It is a pile of " + PileAmount + " " + PileType + ".");
+    else SetLong("这是一堆" + PileAmount + "个" + PileType + "。");
     parse_refresh();
 }
 
@@ -63,19 +63,19 @@ string GetShort(){
 
     if(!PileAmount || PileAmount < 1 ){
         call_out( (: eventDestruct :), 1);
-        return "a pile of money";
+        return "一堆钱";
     }
     if( str ){
         return str;
     }
     else {
-        return "a pile of " + PileAmount + " " + PileType;
+        return "一堆" + PileAmount + "个" + PileType;
     }
 }
 
 mixed eventGetMoney(object who, int amount, string curr){
     if( who->AddCurrency(curr, amount) == -1 ){
-        who->eventPrint("You had a problem getting the money.");
+        who->eventPrint("你拿钱时出了问题。");
         return 1;
     }
     send_messages("get", "$agent_name $agent_verb " + amount + " " +
@@ -111,22 +111,22 @@ mixed direct_get_wrd_wrd_out_of_obj(string num, string curr){
     int amt;
 
     if( environment() != environment(this_player()) ){
-        return "#You cannot reach the pile!";
+        return "#你够不到那堆钱！";
     }
     if( num[0] < '0' || num[0] > '9' ){
         return 0;
     }
     if( (amt = to_int(num)) < 1 ){
-        return "That's a totally bogus amount.";
+        return "那是一个完全无效的数量。";
     }
     if( curr != PileType ){
-        return "#The pile has no " + curr + " in it, only " + PileType + ".";
+        return "#那堆钱里没有" + curr + "，只有" + PileType + "。";
     }
     if( amt > PileAmount ){
-        return "#There is not that much in the pile.";
+        return "#那堆钱里没有那么多。";
     }
     if( !this_player()->CanCarry(currency_mass(amt, curr)) ){
-        return "It is too heavy for you!";
+        return "那对你来说太重了！";
     }
     return 1;
 }
@@ -138,7 +138,7 @@ mixed direct_get_wrd_wrd_from_obj(string amt, string curr){
 void init(){
     ::init();
     if(!PileAmount || PileAmount < 1 ){
-        SetLong("some money");
+        SetLong("一些钱");
         call_out( (: eventDestruct :), 1);
     }
 }

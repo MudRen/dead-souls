@@ -9,8 +9,7 @@ protected void create(){
     SetId(({"overalls","pants", "trousers"}));
     SetAdjectives(({"worn","abused","pair of","set of"}));
     SetShort("一条工装裤");
-    SetLong("This is a set of worn and abused overall trousers with large pockets "
-            "for carrying stuff.");
+    SetLong("这是一条破旧磨损的工装裤，带有大口袋可以装东西。");
     SetMass(50);
     SetMaxCarry(300);
     SetBaseCost("silver",1);

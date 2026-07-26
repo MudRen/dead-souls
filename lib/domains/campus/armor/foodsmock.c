@@ -9,7 +9,7 @@ protected void create(){
     SetAdjectives( ({"food workers","food worker's"}) );
     SetId( ({"overalls", "smock"}) );
     SetShort("餐饮工作服");
-    SetLong("This is a set of overalls used by food workers to keep their bodies and the food at a healthy distance.");
+    SetLong("这是一套餐饮工作服，用来让工人的身体与食物保持适当距离。");
     SetMass(50);
     SetArmorType(A_BODY_ARMOR);
 }

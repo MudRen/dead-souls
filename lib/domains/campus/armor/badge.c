@@ -8,10 +8,7 @@ protected void create(){
     SetKeyName("visitor's pass");
     SetId(({"testchar badge","badge","pass","visitor's pass"}));
     SetShort("测试角色访客通行证");
-    SetLong("This clip-on plastic badge grants the wearer access to "+
-            "some areas typically restricted to creator staff only. Abuse of this "+
-            "pass is grounds for disciplinary action. A small scribble "+
-            "at the bottom of the pass reads: click heels");
+    SetLong("这枚夹式塑料徽章可以让佩戴者进入一些通常只有管理员才能进入的区域。滥用此通行证将受到纪律处分。通行证底部有一行小字写着：点击鞋跟");
     SetMass(10);
     SetDollarCost(5000);
     SetDamagePoints(100);

@@ -8,8 +8,7 @@ protected void create(){
     SetId(({"coat","labcoat"}));
     SetAdjectives(({"lab","science","white","long"}));
     SetShort("白大褂");
-    SetLong("This is a long white lab coat of the type used by scientists "+
-            "to avoid getting experimental results on themselves.");
+    SetLong("这是一件白色的长实验服，科学家们常穿这种衣服以避免把实验结果弄到自己身上。");
     SetMass(75);
     SetDollarCost(20);
     SetArmorType(A_CLOAK);

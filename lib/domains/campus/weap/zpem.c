@@ -16,8 +16,7 @@ protected void create() {
     SetId(({"gun","zpem"}));
     SetAdjectives(({"zero","point","energy","bulky","boxy","futuristic"}));
     SetShort("零点能量操纵器");
-    SetLong("A large, bulky device appearing to be a kind of boxy, "
-            "futuristic gun.");
+    SetLong("一个大型笨重的装置，看起来像是一种方形的、充满未来感的枪。");
     set_heart_beat(1);
     SetMass(400);
     SetDollarCost(5);

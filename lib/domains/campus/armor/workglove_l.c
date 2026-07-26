@@ -11,7 +11,7 @@ protected void create() {
     SetAdjectives( ({"work", "brown", "leather", "left"}) );
     SetId( ({ "glove" }) );
     SetShort("皮工作手套");
-    SetLong("A thick, brown leather work glove, designed for wear on the left hand.");
+    SetLong("一只厚实的棕色皮工作手套，设计为左手佩戴。");
     SetVendorType(VT_ARMOR);
     SetMass(10);
     SetBaseCost("silver",7);

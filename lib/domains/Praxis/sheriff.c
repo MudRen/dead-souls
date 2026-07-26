@@ -32,22 +32,20 @@ void create() {
     SetNoClean(1);
     SetProperties( ([ "light":2, "indoors":1, "no bump":1, "no kill":1,
                 "no steal":1 ]) );
-    SetShort("praxis sheriff's office");
+    SetShort("普拉克西斯治安官办公室");
     SetLong(
-            "In the corner of this small, one room wooden building is "
-            "a barred off area indicating that you have entered the Praxis "
-            "sheriff's office.  An old desk belonging to the sheriff occupies "
-            "the northeast corner of the room.  Exits to court room and yard are "
-            "west and south respectively."
+            "在这间小型单间木屋的角落里，有一个装着铁栏的区域，"
+            "表明你已进入普拉克西斯治安官办公室。治安官的一张旧桌子占据着"
+            "房间的东北角。通往法庭和院子的出口分别在西面和南面。"
            );
-    SetItems( ([ "desk":"A rickety wooden desk hardly ever used, as the "
-                "sheriff never does seem to be able to sit for any period of time.",
-                ({ "building", "office", "room" }): "A wooden building constructed "
-                "long ago for a lawless era.  There is a jail cell in one area.",
-                "area": "A jail cell.",
+    SetItems( ([ "desk":"一张摇摇晃晃的木桌，几乎从未使用过，因为"
+                "治安官似乎从来都坐不住。",
+                ({ "building", "office", "room" }): "一座很久以前为无法无天的时代建造的木屋。"
+                "其中一个区域有一间牢房。",
+                "area": "一间牢房。",
                 ({ "cell", "jail cell", "jail" }): (: "la_jail" :),
-                "exits": "Boc La Road and Centre Path."]) );
-    SetSmell("default", "You can smell the residue of sweaty outlaws.");
+                "exits": "博克拉路和中心路。"]) );
+    SetSmell("default", "你能闻到汗流浃背的亡命之徒留下的气味。");
     SetExits( ([ "south":"/"+__DIR__+"yard",
                 "west":"/"+__DIR__+"court_room" ]) );
     x = POLITICS_D->query_personnel("police");
@@ -58,10 +56,9 @@ void create() {
     obs->SetKeyName("deputy");
     obs->SetId( ({ "law officer", "praxis police", "police", "deputy",
                 "officer" }) );
-    obs->SetShort("a Praxis deputy");
-    obs->SetLong("A law officer charged with preserving the peace in "
-            "Praxis.  If you are hunted by this officer, type \"surrender\" "
-            "to surrender yourself and go to jail.");
+    obs->SetShort("普拉克西斯副警长");
+    obs->SetLong("一位负责维护普拉克西斯治安的执法官员。"
+            "如果你被这位官员追捕，输入\"surrender\"投降并入狱。");
     obs->SetRace("klingon");
     obs->SetRace("human");
     obs->SetGender(random(2) ? "male" : "female");
@@ -83,7 +80,7 @@ void init() {
 }
 
 protected int cmd_quit(string str) {
-    message("system", "You cannot quit from the sheriff's office.",
+    message("system", "你不能从治安官办公室退出。",
             this_player());
     return 1;
 }
@@ -119,8 +116,8 @@ string la_jail(string arg) {
     string str;
     int i;
 
-    if(!sizeof(__Prisoners)) return "There are no prisoners right now.";
-    str = "The following prisoners are in the cell: ";
+    if(!sizeof(__Prisoners)) return "目前没有囚犯。";
+    str = "以下囚犯在牢房中：";
     i = sizeof(__Prisoners);
     while(i--) str += __Prisoners[i]->query_cap_name()+"    ";
     return str;
@@ -138,7 +135,7 @@ object *clone_guards(int num) {
     tell_object(find_player("manny"), "tot = "+tot);
     obs->SetKeyName("guard");
     obs->SetId( ({ "guard", "city guard", "officer", "praxis guard" }) );
-    obs->SetShort("a Praxis guard");
+    obs->SetShort("普拉克西斯守卫");
     obs->SetRace("klingon");
     obs->SetRace("human");
     obs->SetGender(random(2) ? "male" : "female");
@@ -154,23 +151,19 @@ object *clone_guards(int num) {
 }
 
 string death_by_hanging(object who) {
-    if(member_array(who, __Prisoners) == -1) 
-        return who->query_cap_name()+" is not a prisoner.";
-    message("say", "%^RED%^You hear the rythmic pounding of "
-            "the city guard approaching the door.  Two large, burly "
-            "men in blue step through the door and, without emotion, "
-            "bind you hands tightly together with thick rope.",
+    if(member_array(who, __Prisoners) == -1)
+        return who->query_cap_name()+"不是囚犯。";
+    message("say", "%^RED%^你听到城卫兵走近门口的有节奏的脚步声。两个高大魁梧的"
+            "蓝衣男子走进门来，面无表情地用粗绳把你的双手紧紧绑在一起。",
             who);
-    shout("%^BOLD%^%^RED%^Distant bells ring thrice, "
-            "signaling the pending execution of "+who->query_cap_name()+
-            ".");
+    shout("%^BOLD%^%^RED%^远处的钟声敲了三下，"
+            "预示着"+who->query_cap_name()+"即将被处决。");
     call_out("hanging_part_two", 2, who);
-    return "The execution has begun.";
+    return "处决已经开始了。";
 }
 
 void hanging_part_two(object who) {
-    message("say", "\n%^CYAN%^The guard whispers to you: "
-            "%^RESET%^Scumbag.", who);
+    message("say", "\n%^CYAN%^守卫对你低语：%^RESET%^人渣。", who);
     call_out("hanging_part_three", 3, who);
 }
 
@@ -178,8 +171,7 @@ void hanging_part_three(object who) {
     int x, y;
     object *obs;
 
-    message("say", "\n%^RED%^The two guards securely grasp your "
-            "arms and begin dragging you to the town square.", who);
+    message("say", "\n%^RED%^两个守卫牢牢抓住你的手臂，开始把你拖向城镇广场。", who);
     (DIR_STANDARD_DOMAIN+"/square")->SetProperty("no bump", 1);
     new("/"+__DIR__+"obj/misc/handcuffs")->move(who);
     obs = clone_guards(2);
@@ -193,41 +185,33 @@ void hanging_part_three(object who) {
 }
 
 void hanging_part_four(object who) {
-    message("say", "\n%^RED%^Meanancing jeers from the gathering "
-            "bloodthirsty crowd fill your ears as one of the guards "
-            "covers your head with a black hood.  Burned into your "
-            "mind is the last image of life you shall ever see, an "
-            "image filled with faces of hate and disgust.  You are "
-            "overcome with a sincere regret for your crimes, a burning "
-            "emotion extinguished by the realization that it is "
-            "too late.", who);
-    message("say", who->query_cap_name()+" is dragged up the stairs onto "
-            "the wooden platform.  Menacing jeers fill the crowd as "
-            "one of the more burly guards places a large black hood over "
-            "the paniced face of "+who->query_cap_name()+".  Any mercy "
-            "for "+who->query_possessive()+" soul is quickly replaced "
-            "by hatred and disgust for such a lowly individual.",
+    message("say", "\n%^RED%^聚集的嗜血人群中传来恶意的嘲笑声，"
+            "一个守卫用黑头罩蒙住了你的头。你脑海中烙印着你此生"
+            "将看到的最后一幅画面，一幅充满仇恨和厌恶面孔的画面。"
+            "你被对自己罪行的真诚悔恨所淹没，但意识到为时已晚，"
+            "这种燃烧的情感被扑灭了。", who);
+    message("say", who->query_cap_name()+"被拖上楼梯来到"
+            "木制平台上。人群中充满威胁的嘲笑声，"
+            "一个较为魁梧的守卫将一个大黑头罩罩在"
+            +who->query_cap_name()+"惊恐的脸上。"
+            "对"+who->query_possessive()+"灵魂的任何怜悯"
+            "很快被对这样一个卑劣之人的仇恨和厌恶所取代。",
             environment(who), who);
     call_out("hanging_part_five", 3, who);
 }
 
 void hanging_part_five(object who) {
-    message("say", "\n%^RED%^A tight grip upon your shaking "
-            "forarm leads you up a short set of stairs onto a wooden "
-            "platform.  A heavy rope is placed around your neck, then "
-            "tightened.  The rythmic beat of a nearby drum is all that "
-            "fills your conscience, as you do not dare fathom what awaits "
-            "you on the other side...", who);
-    message("say", "\nThe rythmic beat of the drum of death brings a "
-            "hush over the surrounding crowd.", environment(who), who);
+    message("say", "\n%^RED%^有人紧紧抓住你颤抖的前臂，"
+            "引你走上一小段楼梯来到木制平台上。一根沉重的绳索套在你的脖子上，"
+            "然后收紧。附近鼓声的有节奏的敲击是你意识中唯一的声音，"
+            "因为你不敢去想另一边等待你的是什么……", who);
+    message("say", "\n死亡之鼓的有节奏的敲击让周围的人群安静下来。", environment(who), who);
     call_out("hanging_part_six", 4, who);
 }
 
 void hanging_part_six(object who) {
-    message("say", "\n%^RED%^The drum's beat falls into a steady "
-            "roll...", who);
-    message("say", "\nThe drum's beat falls into a steady "
-            "roll...", environment(who), who);
+    message("say", "\n%^RED%^鼓声变成了一阵连续的滚奏……", who);
+    message("say", "\n鼓声变成了一阵连续的滚奏……", environment(who), who);
     call_out("hanging_part_seven", random(3) + 2, who);
 }
 
@@ -235,14 +219,11 @@ void hanging_part_seven(object who) {
     object here;
 
     here = environment(who);
-    message("say", "\n%^RED%^The klunk of the floor falling beneath "
-            "you is the final sound to reach your ears.", who);
-    message("say", "\nSuddenly without warning, the floor beneath "+
-            who->query_cap_name()+"'s feet falls away, leaving "+
-            who->query_cap_name()+" suspended only by the rope attached "
-            "to "+who->query_possessive()+" neck.  "+
-            who->query_cap_name()+" struggles for a moment, then falls "
-            "limp.", environment(who), who);
+    message("say", "\n%^RED%^脚下地板落下的沉闷声是你耳朵听到的最后一个声音。", who);
+    message("say", "\n突然毫无预警地，"+who->query_cap_name()+
+            "脚下的地板塌陷了，只留下"+who->query_cap_name()+
+            "被系在"+who->query_possessive()+"脖子上的绳索吊着。"+
+            who->query_cap_name()+"挣扎了一会儿，然后瘫软下来。", environment(who), who);
     present("handcuffs", who)->destruct();
     who->die();
     call_out("hanging_part_eight", 3, here);
@@ -250,8 +231,7 @@ void hanging_part_seven(object who) {
 
 void hanging_part_eight(object where) {
     object stuff;
-    message("say", "The guards dispurse, removing the gallows and cleaning up "
-            "the area before leaving.", where);
+    message("say", "守卫们散去，拆除绞刑架并清理场地后离开。", where);
     if(stuff = present("guard", where)) stuff->destruct();
     if(stuff = present("guard", where)) stuff->destruct();
     if(stuff = present("gallows", where)) stuff->destruct();
@@ -260,95 +240,79 @@ void hanging_part_eight(object where) {
 
 string death_by_firing_squad(object who) {
     object *obs;
-    if(member_array(who, __Prisoners) == -1) 
-        return who->query_cap_name()+" is not a prisoner.";
-    message("say", "%^RED%^A large, burly guard enters, accompanied by "
-            "a priest in black robes mumbling a prose from a small book "
-            "he carries.", who);
+    if(member_array(who, __Prisoners) == -1)
+        return who->query_cap_name()+"不是囚犯。";
+    message("say", "%^RED%^一个高大魁梧的守卫走了进来，身边跟着"
+            "一个穿着黑袍的牧师，嘴里念叨着一本小书里的经文。", who);
     obs=clone_guards(2);
     obs[1]->SetKeyName("priest");
-    obs[1]->SetShort("a priest");
+    obs[1]->SetShort("牧师");
     obs->move(environment(who));
-    shout("%^RED%^Distant bells ring, signaling the execution "
-            "of "+who->query_cap_name()+" in the town square.");
+    shout("%^RED%^远处的钟声响起，预示着"+who->query_cap_name()+
+            "将在城镇广场被处决。");
     call_out("squad_part_two", 2, who);
-    return "The execution has begun.";
+    return "处决已经开始了。";
 }
 
 void squad_part_two(object who) {
     object pole, *obs;
     int x;
 
-    message("say", "\n%^RED%^%^BOLD%^The guard tells you:%^RESET%^ Your "
-            "time has come.", who);
-    message("say", "\n%^RED%^Opening the cell, one of the guards ties "
-            "your hands behind your back with a thick rope.  A guard then "
-            "places a tight grip upon your arm and drags you out of the "
-            "building and towards the town square.", who);
+    message("say", "\n%^RED%^%^BOLD%^守卫告诉你：%^RESET%^你的时间到了。", who);
+    message("say", "\n%^RED%^打开牢房后，一个守卫用粗绳把你的双手绑在背后。"
+            "然后一个守卫紧紧抓住你的手臂，把你拖出建筑物，朝城镇广场走去。", who);
     new("/"+__DIR__+"obj/misc/handcuffs")->move(who);
-    message("say", "A Praxis guard enters carrying a large bloodstained "
-            "pole.  Walking to the far side of the square, he digs a small "
-            "hole and firmly plants the pole.", DIR_STANDARD_DOMAIN+"/square");
+    message("say", "一个普拉克西斯守卫扛着一根大型血迹斑斑的柱子走了进来。"
+            "走到广场的另一边，他挖了一个小洞并牢牢地把柱子固定在地上。", DIR_STANDARD_DOMAIN+"/square");
     (DIR_STANDARD_DOMAIN+"/square")->SetProperty("no bump", 1);
     clone_guards(1)->move(DIR_STANDARD_DOMAIN+"/square");
     pole=new(LIB_ITEM);
     pole->SetKeyName("pole");
     pole->SetId( ({ "pole", "bloodstained pole", "large pole" }) );
-    pole->SetShort("a large, bloodstained pole");
-    pole->SetLong("A large pole firmly planted in the ground.  Blood "
-            "spots are scattered in various places near the top half of "
-            "the pole.");
-    pole->SetPreventGet("The pole is firmly planted in the ground.");
+    pole->SetShort("一根大型血迹斑斑的柱子");
+    pole->SetLong("一根牢牢固定在地上的大柱子。柱子上半部分各处散布着血迹。");
+    pole->SetPreventGet("这根柱子牢牢固定在地上。");
     pole->move(DIR_STANDARD_DOMAIN+"/square");
-    message("say", "A small set of guards enter and form a line opposite "
-            "of the pole.", DIR_STANDARD_DOMAIN+"/square");
+    message("say", "一小队守卫走了进来，在柱子对面排成一列。", DIR_STANDARD_DOMAIN+"/square");
     clone_guards(5)->move(DIR_STANDARD_DOMAIN+"/square");
     call_out("squad_part_three", 5, who);
 }
 
 void squad_part_three(object who) {
     object thing;
-    if(thing=present("guard", environment(who))) 
+    if(thing=present("guard", environment(who)))
         thing->move(DIR_STANDARD_DOMAIN+"/square");
     else clone_guards(1)->move(DIR_STANDARD_DOMAIN+"/square");
-    if(thing=present("priest", environment(who))) 
+    if(thing=present("priest", environment(who)))
         thing->move(DIR_STANDARD_DOMAIN+"/square");
     else clone_guards(1)->move(DIR_STANDARD_DOMAIN+"/square");
     who->eventMoveLiving(DIR_STANDARD_DOMAIN+"/square");
-    message("say", "\n%^RED%^In the once familar town square, a large "
-            "area has been cleared out, with one pole near a wall on the "
-            "far side of the square.  This pole is in the direction you "
-            "and the ever stoic guard are headed.", who);
-    message("say", "\n%^RED%^The guard ties your hands securly behind the "
-            "rough blood-stained pole, facing a line of the town guards, "
-            "each wielding a large bow with a single arrow.", who);
-    message("say", "\n%^RED%^The guard pulls out a large black "
-            "hood which is placed over your head and steps away.", who);
+    message("say", "\n%^RED%^在曾经熟悉的城镇广场上，一大片区域已被清理出来，"
+            "广场远端的墙边立着一根柱子。这根柱子就是你和面无表情的守卫前进的方向。", who);
+    message("say", "\n%^RED%^守卫把你的双手牢牢地绑在粗糙的血迹斑斑的柱子后面，"
+            "面对着一列城镇守卫，每人手持一把大弓，搭着一支箭。", who);
+    message("say", "\n%^RED%^守卫拿出一个大黑头罩罩在你头上，然后退开了。", who);
     new("/"+__DIR__+"obj/misc/hood")->move(who);
-    message("say", who->query_cap_name()+" is dragged towards a pole "
-            "on the far side of the square, where he is tied by one of "
-            "the guards.  The guard places a large black hood over the "
-            "criminal's head and steps away.", environment(who), who);
-    message("say", "\nA nearby drum begins a steady, rythmic beat.",
+    message("say", who->query_cap_name()+"被拖向广场远端的一根柱子，"
+            "被一个守卫绑在上面。守卫把一个大黑头罩罩在罪犯头上，然后退开了。", environment(who), who);
+    message("say", "\n附近的一面鼓开始有节奏地敲击。",
             environment(who));
     call_out("squad_part_four", 4, who);
 }
 
 void squad_part_four(object who) {
-    message("say", "\n%^RED%^The drums' beat becomes a steady roll, and "
-            "you hear a guard shout a single, inaudiable word.  You hear "
-            "the rustle of weapons being cocked.", who);
-    message("say", "\nA lead guard yells out a single inaudiable word "
-            "as the line of guards ready their weapons.", environment(who), 
+    message("say", "\n%^RED%^鼓声变成了一阵连续的滚奏，"
+            "你听到一个守卫喊了一个听不清的词。你听到武器上膛的声音。", who);
+    message("say", "\n领头的守卫喊了一个听不清的词，"
+            "一列守卫准备好了武器。", environment(who),
             who);
     call_out("squad_part_five", 4, who);
 }
 
 void squad_part_five(object who) {
-    message("say", "\n%^RED%^A guard yells a second word as the firing "
-            "squad prepare the arrows for launching.", who);
-    message("say", "\nThe lead guard yells a second word as the firing "
-            "line pull back their arrows in preparation.", environment(who),
+    message("say", "\n%^RED%^一个守卫喊出第二个词，行刑队准备发射箭矢。", who);
+    message("say", "\n领头的守卫喊出第二个词，"
+            "一列守卫拉弓搭箭准备发射。", environment(who),
             who);
     call_out("squad_part_six", 4, who);
 }
@@ -356,13 +320,12 @@ void squad_part_five(object who) {
 void squad_part_six(object who) {
     int x, dam;
 
-    message("say", "\n%^RED%^The guard yells a thrid and final word, and "
-            "dozens of arrows peirce your entire body.  The darkness surrounding "
-            "you becomes even darker, and vague voices begin to cackle evily "
-            "within you mind..", who);
-    message("say", "\nThe guard yells out a third and final word, and "
-            "the entire squad releases their arrows into the helpless body "
-            "of "+who->query_cap_name()+".  The body instantly falls limp.",
+    message("say", "\n%^RED%^守卫喊出第三个也是最后一个词，"
+            "数十支箭矢穿透了你的整个身体。包围你的黑暗变得更加浓重，"
+            "模糊的声音开始在你脑海中邪恶地咯咯笑……", who);
+    message("say", "\n守卫喊出第三个也是最后一个词，"
+            "整个行刑队将箭矢射入"+who->query_cap_name()+
+            "无助的身体。尸体瞬间瘫软下来。",
             environment(who), who);
     dam= (who->query_max_hp())/5;
     present("hood", who)->destruct();
@@ -375,9 +338,8 @@ void squad_part_six(object who) {
 
 void squad_part_seven(object place) {
     object thing;
-    message("say", "The guards begin marching away, one removing the pole "
-            "on his way out.  He leaves the dead body on the "
-            "ground to rot away, just as it deserves.", 
+    message("say", "守卫们开始列队离开，其中一个在离开时拔走了柱子。"
+            "他把尸体留在地上任其腐烂，这正是它应得的下场。",
             DIR_STANDARD_DOMAIN+"/square");
     place->SetProperty("no bump", 0);
     while(thing = present("guard", place)) 
@@ -386,63 +348,53 @@ void squad_part_seven(object place) {
 }
 
 string death_by_torture(object who) {
-    if(member_array(who, __Prisoners) == -1) 
-        return who->query_cap_name()+" is not a prisoner.";
-    message("say", "%^RED%^A large guard enters your cell and ties "
-            "your hands with a large rope.  Saying nothing, he drags you "
-            "out of the room.", who);
+    if(member_array(who, __Prisoners) == -1)
+        return who->query_cap_name()+"不是囚犯。";
+    message("say", "%^RED%^一个高大的守卫走进你的牢房，"
+            "用一根大绳子绑住你的双手。他一言不发地把你拖出了房间。", who);
     new("/"+__DIR__+"obj/misc/handcuffs")->move(who);
     call_out("torture_part_two", 3, who);
-    return "The execution has begun.";
+    return "处决已经开始了。";
 }
 
 void torture_part_two(object who) {
     who->eventMoveLiving("/"+__DIR__+"torture_room");
-    message("say", "%^RED%^The guard brings you into a room of which "
-            "the likes you have only heard about.  Your heart sinks at the "
-            "thought of parting with life in such a cruel way.", who);
-    message("say", "\n%^RED%^The guard forces you to lie down on a "
-            "small table in the middle of the room.   Heavy straps are "
-            "placed over your legs, arms and forehead, making all "
-            "movement impossible.  When you look up you finally see the "
-            "object of your death: a large, clean blade at the end of "
-            "a long pole.", who);
+    message("say", "%^RED%^守卫把你带进了一个你只在传闻中听过的房间。"
+            "一想到要以如此残忍的方式告别生命，你的心就沉了下去。", who);
+    message("say", "\n%^RED%^守卫强迫你躺在房间中央的一张小桌子上。"
+            "沉重的束缚带被固定在你的双腿、手臂和额头上，让你无法动弹。"
+            "当你抬头看时，你终于看到了将夺走你生命的东西：一根长杆末端"
+            "的一把巨大而锋利的刀片。", who);
     call_out("torture_part_three", 4, who);
 }
 
 void torture_part_three(object who) {
-    message("say", "\n%^RED%^%^BOLD%^The guard tells you: %^RESET%^Now "
-            "just sit tight and it will all be over in a few hours.", who);
-    message("say", "\nThe guard grins evilly.", who);
-    message("say", "\n%^RED%^The guard reaches up and grabs the blade, "
-            "swinging it like a pendulium.", who);
+    message("say", "\n%^RED%^%^BOLD%^守卫告诉你：%^RESET%^现在老实待着，"
+            "几个小时后一切就结束了。", who);
+    message("say", "\n守卫邪恶地咧嘴一笑。", who);
+    message("say", "\n%^RED%^守卫伸手抓住刀片，像钟摆一样摆动它。", who);
     call_out("torture_part_four", 4, who);
 }
 
 void torture_part_four(object who) {
-    message("say", "\nThe guard ponders for a moment.", who);
+    message("say", "\n守卫沉思了片刻。", who);
     call_out("torture_part_five", 4, who);
 }
 
 void torture_part_five(object who) {
-    message("say", "\n%^RED%^%^BOLD%^The guard tells you:%^RESET%^ Ya' "
-            "know, I respect yer kind.  Nun too many pe'ple gots the balls "
-            "ta do wha' ya did.", who);
-    message("say", "\n%^RED%^%^BOLD%^The guard tells you:%^RESET%^ I's "
-            "gonna show ya a lit'le bit o' mercy, make it quiker fer ya.", who);
-    message("say", "\n%^RED%^The guard grabs the pole above the "
-            "bladed pendulium and pulls down upon it, bringing the blade "
-            "closer to your neck.  He gives it a hardy shove, and it begins "
-            "it's steady swing again.", who);
+    message("say", "\n%^RED%^%^BOLD%^守卫告诉你：%^RESET%^你知道吗，"
+            "我尊重你这种人。没多少人有胆量做你做的事。", who);
+    message("say", "\n%^RED%^%^BOLD%^守卫告诉你：%^RESET%^我会对你仁慈一点，"
+            "让你走得快一些。", who);
+    message("say", "\n%^RED%^守卫抓住刀片钟摆上方的杆子往下拉，"
+            "让刀片更靠近你的脖子。他用力推了一下，刀片又开始了"
+            "稳定的摆动。", who);
     call_out("torture_part_six", 3, who);
 }
 void torture_part_six(object who) {
-    message("say", "\n%^RED%^After a moment of careful examination, the "
-            "guard gives a satisfied smirk.", who);
-    message("say", "\n%^BOLD%^%^RED%^The guard tells you: %^RESET%^Have "
-            "a happy afterlife.", who);
-    message("say", "\n%^RED%^The guard grins evilly and stalks out of "
-            "the room, locking the door behind him.", who);
+    message("say", "\n%^RED%^经过一番仔细检查后，守卫露出了满意的冷笑。", who);
+    message("say", "\n%^BOLD%^%^RED%^守卫告诉你：%^RESET%^祝你来世愉快。", who);
+    message("say", "\n%^RED%^守卫邪恶地咧嘴一笑，大步走出房间，锁上了身后的门。", who);
     call_out("torture_part_seven", 6, ({ who, 1 }) );
 }
 
@@ -452,18 +404,13 @@ void torture_part_seven(mixed *stuff) {
     switch(random(7)) {
         case 0:
         case 1:
-        case 2: tell_object(who, "\n%^RED%^You notice the swinging blade seems "
-                        "to be getting closer"); break;
-        case 3: tell_object(who, "\n%^RED%^You feel a very strong urge to "
-                        "use the restroom."); break;
-        case 4: tell_object(who, "\n%^RED%^Shivers run through your body.");
+        case 2: tell_object(who, "\n%^RED%^你注意到摆动的刀片似乎越来越近了"); break;
+        case 3: tell_object(who, "\n%^RED%^你有一种非常强烈的想上厕所的冲动。"); break;
+        case 4: tell_object(who, "\n%^RED%^你的身体一阵颤抖。");
                 break;
-        case 5: tell_object(who, "\n%^RED%^A small rat scurries across the "
-                        "floor");
-        case 6: tell_object(who, "\n%^RED%^With closer examination, the blade "
-                        "swinging just above your neck seems remarkably clean.  "
-                        "You can't help but to wonder if you're the first life "
-                        "to be claimed by this horrific device.");
+        case 5: tell_object(who, "\n%^RED%^一只小老鼠快速跑过地面");
+        case 6: tell_object(who, "\n%^RED%^仔细一看，在你脖子上方摆动的刀片看起来异常干净。"
+                        "你不禁想知道你是否是这台可怕装置夺走的第一条生命。");
     }
     if(++stuff[1] == 10) 
         call_out("torture_part_eight", 5, who);
@@ -471,34 +418,32 @@ void torture_part_seven(mixed *stuff) {
 }
 
 void torture_part_eight(object who) {
-    message("say", "\n%^RED%^The blade swings dangerously close to your "
-            "neck.  By your best estimate, you have a single breath left...",
+    message("say", "\n%^RED%^刀片危险地靠近你的脖子摆动。"
+            "据你估计，你只剩下最后一口气了……",
             who);
     call_out("torture_part_nine", 3, who);
 }
 
 void torture_part_nine(object who) {
-    message("say", "\n%^RED%^In one final swoop, the huge metal blade "
-            "places a clean cut into your throat.  Your struggle for more "
-            "air only fills your mouth and lungs with your life blood.", who);
-    message("say", "\n%^BOLD%^%^BLACK%^The ever-persistant darkness "
-            "finally covers your eyes.  Distant, evil voices cackle with "
-            "glee at thier newest victim...", who);
+    message("say", "\n%^RED%^在最后一击中，巨大的金属刀片"
+            "在你的喉咙上切出一道干净的伤口。你挣扎着想要呼吸更多空气，"
+            "却只是让你的嘴巴和肺里充满了你的鲜血。", who);
+    message("say", "\n%^BOLD%^%^BLACK%^永恒的黑暗终于覆盖了你的双眼。"
+            "远处，邪恶的声音为它们最新的受害者而欢快地咯咯笑着……", who);
     present("handcuffs", who)->destruct();
     who->die();
 }
 
 string death_by_the_pit(object who) {
     if(member_array(who, __Prisoners) == -1)
-        return who->query_cap_name()+" is not a prisoner.";
-    message("say", "%^RED%^A large, burly guard enters the cell and "
-            "securly ties your hands with a peice of rope.", who);
-    message("say", "\n%^RED%^%^BOLD%^The guard tells you:%^RESET%^ It's "
-            "to the pit with your sorry self.  Hehehe.", who);
-    message("say", "\n%^RED%^The guard drags you out of the building "
-            "towards the dreaded pit...", who);
-    shout("%^RED%^Distant bells signal the pending death "
-            "of "+who->query_cap_name()+" in the dreaded Pit of Spiders.");
+        return who->query_cap_name()+"不是囚犯。";
+    message("say", "%^RED%^一个高大魁梧的守卫走进牢房，"
+            "用一根绳子牢牢地绑住你的双手。", who);
+    message("say", "\n%^RED%^%^BOLD%^守卫告诉你：%^RESET%^你这可怜虫要去"
+            "蜘蛛坑了。嘿嘿嘿。", who);
+    message("say", "\n%^RED%^守卫把你拖出建筑物，朝可怕的蜘蛛坑走去……", who);
+    shout("%^RED%^远处的钟声预示着"+who->query_cap_name()+
+            "即将死在可怕的蜘蛛坑中。");
     new("/"+__DIR__+"obj/misc/handcuffs")->move(who);
     call_out("pit_part_two", 5, who);
     return "The execution has begun.";
@@ -508,49 +453,42 @@ string death_by_the_pit(object who) {
 void pit_part_two(object who) {
     string orig_long;
 
-    message("say", "Two guards enter and clear off an area "
-            "revealing a large stone covering.  The guards lift the heavy "
-            "plate, opening a deep, black hole on the northeastern side of "
-            "the square.", DIR_STANDARD_DOMAIN+"/square");
+    message("say", "两个守卫走进来清理出一块区域，"
+            "露出一块巨大的石盖。守卫们抬起沉重的石板，"
+            "在广场的东北侧打开了一个深邃的黑洞。", DIR_STANDARD_DOMAIN+"/square");
     (DIR_STANDARD_DOMAIN+"/square")->SetProperty("no bump", 1);
     orig_long = (DIR_STANDARD_DOMAIN+"/square")->GetLong();
     (DIR_STANDARD_DOMAIN+"/square")->AddExit("down",
             DIR_STANDARD_DOMAIN+"/spider_pit", (: "prevent_down" :) );
     (DIR_STANDARD_DOMAIN+"/square")->SetLong(
-            orig_long+"\n\nA large, deep pit has been uncovered in "
-            "the middle of the square.");
+            orig_long+"\n\n广场中央露出了一个又大又深的坑。");
     clone_guards(2)->move(DIR_STANDARD_DOMAIN+"/square");
     call_out("pit_part_three", 3, ({ who, orig_long }));
 }
 
 void pit_part_three(mixed *stuff) {
     stuff[0]->eventMoveLiving(DIR_STANDARD_DOMAIN+"/square");
-    message("say", "\n%^RED%^Upon the arrival of the all too familar "
-            "town square, two guards have already removed the cover from "
-            "the pit.  Deep in the dark hole, the erie floor seems to "
-            "be crawling...", stuff[0]);
-    message("say", "\n"+stuff[0]->query_cap_name()+" enters, dragged by the "
-            "town guards.", environment(stuff[0]), stuff[0]);
+    message("say", "\n%^RED%^来到再熟悉不过的城镇广场，"
+            "两个守卫已经移开了坑上的盖子。在深邃的黑洞中，"
+            "阴森的地面似乎在蠕动……", stuff[0]);
+    message("say", "\n"+stuff[0]->query_cap_name()+"被城镇守卫拖了进来。", environment(stuff[0]), stuff[0]);
     call_out("pit_part_four", 4, stuff);
 }
 
 void pit_part_four(mixed *stuff) {
     object here;
 
-    message("say", "\n%^RED%^%^BOLD%^A guard tells you:%^RESET%^ Say "
-            "hi to the Leaper for me!", stuff[0]);
-    message("say", "\n%^RED%^The guard cackles evilly as he shoves you "
-            "into the pit.", stuff[0]);
-    message("say", "\nThe guard cackles evilly as he shoves "+
-            stuff[0]->query_cap_name()+" into the pit", environment(stuff[0]),
+    message("say", "\n%^RED%^%^BOLD%^守卫告诉你：%^RESET%^替我向跳跃者问好！", stuff[0]);
+    message("say", "\n%^RED%^守卫邪恶地咯咯笑着把你推进了坑里。", stuff[0]);
+    message("say", "\n守卫邪恶地咯咯笑着把"+stuff[0]->query_cap_name()+
+            "推进了坑里", environment(stuff[0]),
             stuff[0]);
     here=environment(stuff[0]);
     stuff[0]->eventMoveLiving("/"+__DIR__+"spider_pit",
             "falls screaming into the pit!!");
     (DIR_STANDARD_DOMAIN+"/square")->SetProperty("no bump", 0);
-    message("say", "\nThe guard pulls the protective covering over the "
-            "hole.  Muffled screams of pain echo from within as you realize "
-            "the criminal's chances of a peacful death are zero.", 
+    message("say", "\n守卫把防护盖拉回洞口上。"
+            "你意识到罪犯安详死去的可能性为零，因为洞内传来了沉闷的痛苦尖叫声。",
             DIR_STANDARD_DOMAIN+"/square");
     call_out("pit_part_five", 10, ({ here, stuff[1] }));
 }
@@ -558,9 +496,8 @@ void pit_part_four(mixed *stuff) {
 void pit_part_five(mixed *stuff) {
     object thing;
 
-    message("say", "The guards, satisfied that this world is a better "
-            "place, replace the cover upon the pit of spiders and"
-            "walk off.", stuff[0]);
+    message("say", "守卫们满意地认为这个世界变得更美好了，"
+            "把蜘蛛坑的盖子盖好后走开了。", stuff[0]);
     stuff[0]->RemoveExit("down");
     stuff[0]->SetLong(stuff[1]);
     if(thing = present("guard", stuff[0])) thing->destruct();
@@ -568,8 +505,8 @@ void pit_part_five(mixed *stuff) {
 }
 
 int prevent_down() {
-    message("say", "A guard blocks your way, making it clear that "
-            "you really don't want to go down there.", this_player());
+    message("say", "一个守卫挡住了你的去路，让你明白"
+            "你真的不想下去那里。", this_player());
     return 0;
 }
 

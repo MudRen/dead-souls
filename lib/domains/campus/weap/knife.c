@@ -10,7 +10,7 @@ protected void create() {
     SetId( ({ "knife"}));
     SetAdjectives( ({ "small","utility"}));
     SetSmall("小多功能刀");
-    SetLong("A small utility knife.");
+    SetLong("一把小多功能刀。");
     SetMass(40);
     SetBaseCost("silver",5);
     SetVendorType(VT_WEAPON);

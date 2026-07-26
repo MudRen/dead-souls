@@ -17,8 +17,7 @@ protected void create() {
     SetId(({"pistol","gun"}));
     SetAdjectives(({"water","toy","plastic","squirt"}));
     SetShort("小塑料水枪");
-    SetLong("A small red see-through plastic squirt gun in the shape "+
-            "of a ray gun.");
+    SetLong("一把小型红色透明塑料水枪，形状像射线枪。");
     SetMass(10);
     SetDollarCost(5);
     SetVendorType(VT_WEAPON);

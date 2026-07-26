@@ -7,8 +7,8 @@ protected void create(){
     SetKeyName("a Def Leppard shirt");
     SetId(({"shirt"}));
     SetAdjectives(({"Def Leppard", "def leppard", "stupid", "black"}));
-    SetShort("Def Leppard T恤");
-    SetLong("A stupid-looking black shirt with a ridiculous band logo on it.");
+    SetShort("一件Def Leppard T恤");
+    SetLong("一件看起来很蠢的黑色T恤，上面印着一个可笑的乐队标志。");
     SetMass(5);
     SetDollarCost(1);
     SetDamagePoints(1);

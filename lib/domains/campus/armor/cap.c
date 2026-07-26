@@ -9,8 +9,7 @@ protected void create(){
     SetAdjectives( ({"red", "old", "greasy", "dirty", "baseball", "cat"}) );
     SetId( ({"cap", "hat", "cover"}) );
     SetShort("红色棒球帽");
-    SetLong("A greasy, old, dirty baseball cap that was once mostly red, with "
-            "the word 'CAT' on the front.");
+    SetLong("一顶油腻、破旧、肮脏的棒球帽，曾经主要是红色的，正面印着'CAT'字样。");
     SetMass(5);
     SetBaseCost("silver",1);
     SetArmorType(A_HELMET);

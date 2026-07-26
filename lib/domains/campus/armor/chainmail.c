@@ -7,7 +7,7 @@ protected void create(){
     SetKeyName("chainmail shirt");
     SetId(({"armor","chainmail armor","chain mail armor","shirt","chainmail shirt","chainmail","chain mail shirt"}));
     SetShort("结实的锁子甲衬衫");
-    SetLong("This is a shirt made of metal rings fashioned together as armor. ");
+    SetLong("这是一件由金属环串联而成的锁子甲衬衫。");
     SetMass(75);
     SetDollarCost(100);
     SetDamagePoints(100);

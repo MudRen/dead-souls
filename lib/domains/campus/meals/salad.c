@@ -7,9 +7,7 @@ protected void create() {
     SetKeyName("dish");
     SetId(({"salad","dish of salad","dish"}));
     SetShort("一碟沙拉");
-    SetLong("This expensive little dish consists of some wilted lettuce "+
-            "and 2 orange-colored tomato slices. It is, however, not as bad "+
-            "for your heart as the hamburger in the snack bar.");
+    SetLong("这碟昂贵的小菜由一些枯萎的生菜和两片橙色的番茄片组成。不过，它对心脏的危害可比小吃店的汉堡小多了。");
     SetMass(5);
     SetMealType(MEAL_FOOD);
     SetStrength(2);

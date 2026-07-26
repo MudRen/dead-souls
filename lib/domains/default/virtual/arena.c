@@ -45,7 +45,7 @@ varargs protected void create(int x, int y) {
     SetClimate("temperate");
     SetAmbientLight(30);
     SetLongAndItems(x, y);
-    SetShort("a flat plain");
+    SetShort("一片平坦的平原");
     if( x == max_east ) e = "arena/" + (x) + "," + y;
     else e = "arena/" + (x+1) + "," + y;
     if( x == max_west ) w = "arena/" + (x) + "," + y;
@@ -64,7 +64,7 @@ varargs protected void create(int x, int y) {
     //SetFlyRoom(__DIR__+fly);
     SetSkyDomain("town");
 
-    SetGoMessage("You can't travel in that direction.");
+    SetGoMessage("你不能往那个方向走。");
     if( n ) AddExit("north", __DIR__ + n);
     if( s ) AddExit("south", __DIR__ + s);
     if( e ) AddExit("east", __DIR__ + e);
@@ -100,8 +100,8 @@ varargs protected void create(int x, int y) {
     if(x == 5005 && y == 4999){
         RemoveExit("west");
         AddExit("west","/domains/default/room/wiz_corr_east3");
-        AddItem("sign" , "This is a sign planted on the ground.");
-        SetRead( ({"sign"}) , "Wiz labs west of here.");
+        AddItem("sign" , "这是一块插在地上的告示牌。");
+        SetRead( ({"sign"}) , "巫师实验室在西边。");
     }
 }
 
@@ -111,38 +111,37 @@ varargs void SetLongAndItems(int x, int y, int z) {
     ::SetLongAndItems(x, y, z);
 
     inv = ([]);
-    str = "You are on a large flat plain, bordered on all sides "
-        "by stone walls, forming a large arena for heavy weapons and "
-        "mounted combat.";
-    if(query_night()) str += " The stars of the night sky glitter overhead.";
-    if(x == max_west && y != max_north) str += " A stone wall prevents further travel west.";
-    if(x == max_east) str += " A stone wall prevents further travel east.";
-    if(y == max_south ) str += " A stone wall prevents further travel south.";
-    if(y == max_north) str += " A stone wall prevents further travel north.";
-    if(x == max_west && y == max_north) str += "\n%^GREEN%^There is a sign here you can read.%^RESET%^";
+    str = "你身处一片广阔的平坦平原上，四周被石墙环绕，"
+        "形成了一个用于重武器和骑马作战的大型竞技场。";
+    if(query_night()) str += " 夜空中的星星在头顶闪烁。";
+    if(x == max_west && y != max_north) str += " 石墙阻止了继续向西前进。";
+    if(x == max_east) str += " 石墙阻止了继续向东前进。";
+    if(y == max_south ) str += " 石墙阻止了继续向南前进。";
+    if(y == max_north) str += " 石墙阻止了继续向北前进。";
+    if(x == max_west && y == max_north) str += "\n%^GREEN%^这里有一块可以阅读的告示牌。%^RESET%^";
 
-    SetItems( ([ "arena" : "A place of violent death and great destruction.",
+    SetItems( ([ "arena" : "一个充满暴力死亡和巨大毁灭的地方。",
                 ]) );
 
     if(y == max_north) {
         AddItem( ({ "rock wall","wall","stone wall"}),
-                "This vast stone wall prevents further travel north." );
+                "这堵巨大的石墙阻止了继续向北前进。" );
     }
     else if(y == max_south) {
         AddItem( ({ "rock wall","wall","stone wall"}),
-                "This vast stone wall prevents further travel south." );
+                "这堵巨大的石墙阻止了继续向南前进。" );
     }
 
     if(x == max_east) {
         AddItem( ({ "rock wall","wall","stone wall"}),
-                "This vast stone wall prevents further travel east." );
+                "这堵巨大的石墙阻止了继续向东前进。" );
     }
     if(x == max_west) {
         AddItem( ({ "rock wall","wall","stone wall"}),
-                "This vast stone wall prevents further travel west." );
+                "这堵巨大的石墙阻止了继续向西前进。" );
     }
     AddItem( ({ "walls","rock walls","stone walls" }),
-            "Large walls form the bounds of this killing field." );
+            "巨大的围墙构成了这片杀戮之地的边界。" );
     SetLong(str);
     SetDayLight(30);
     SetNightLight(30);

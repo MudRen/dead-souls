@@ -24,8 +24,7 @@ int SetDesc(){
         case 14 : picture = "Deathblade";break;
         case 15 : picture = "Marius";break;
     }
-    SetLong("This is a little carton of grade-A milk. The rear has a "+
-            "picture of "+picture+", and reads \"Have you seen me?\"");
+    SetLong("这是一小盒A级牛奶。背面有一张"+picture+"的照片，上面写着\"你见过我吗？\"");
     return 1;
 }
 

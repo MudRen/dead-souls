@@ -9,7 +9,7 @@ protected void create(){
     SetAdjectives( ({"strong", "brown", "leather", "work", "right", "heavy"}) );
     SetId( ({"boot"}) );
     SetShort("棕色皮工作靴");
-    SetLong("A heavy, brown leather workboot with strong ankle and sole support. It is designed for wear on the right foot.");
+    SetLong("一只厚重的棕色皮工作靴，脚踝和鞋底支撑力强。设计为右脚穿着。");
     SetMass(40);
     SetBaseCost("silver",25);
     SetProtection(BLUNT,5);

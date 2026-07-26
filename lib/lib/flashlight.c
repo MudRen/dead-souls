@@ -16,8 +16,8 @@ void create(){
     SetKeyName("generic flashlight");
     SetId( ({"fl","flashlight","light","torch","flashlite"}) );
     SetAdjectives( ({"generic","simple","cheap"}) );
-    SetShort( "a flashlight" );
-    SetLong("This is a cheap, simple light source.");
+    SetShort( "手电筒" );
+    SetLong("这是一个廉价、简单的光源。");
     SetMass(20);
     SetBaseCost(10);
     SetLightLevel(6);

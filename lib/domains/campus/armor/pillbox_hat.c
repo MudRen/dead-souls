@@ -8,9 +8,7 @@ protected void create(){
     SetId(({"hat"}));
     SetAdjectives(({"pillbox"}));
     SetShort("浅蓝色药盒帽");
-    SetLong("A cute little pillbox hat, light blue in "+
-            "color. The inside appears to be lined with leopard "+
-            "skin. Looks uncomfortable.");
+    SetLong("一顶可爱的浅蓝色药盒帽。内衬看起来是豹皮的。看起来不太舒服。");
     SetMass(50);
     SetDollarCost(50);
     SetDamagePoints(10);

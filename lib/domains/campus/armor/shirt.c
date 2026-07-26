@@ -8,7 +8,7 @@ protected void create(){
     SetId(({"shirt","tshirt","t-shirt","t shirt"}));
     SetAdjectives(({"white"}));
     SetShort("白色T恤");
-    SetLong("An ordinary white t-shirt.");
+    SetLong("一件普通的白色T恤。");
     SetMass(5);
     SetDollarCost(1);
     SetDamagePoints(1);

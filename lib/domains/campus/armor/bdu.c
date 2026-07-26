@@ -8,9 +8,7 @@ protected void create(){
     SetId(({"uniform","bdu","bdu's","fatigues"}));
     SetAdjectives(({"camouflage","battle","dress","combat"}));
     SetShort("作战服");
-    SetLong("This uniform consists of a camouflage blouse and "+
-            "pants. It is green with mottled brown and black camouflage patterns, "+
-            "and probably provides excellent concealment in a wooded environment.");
+    SetLong("这套制服由一件迷彩上衣和一条迷彩裤组成。绿色底色上有棕色和黑色的斑驳迷彩图案，在树林环境中应该能提供良好的隐蔽效果。");
     SetMass(10);
     SetDollarCost(100);
     SetDamagePoints(100);

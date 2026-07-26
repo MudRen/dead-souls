@@ -10,9 +10,7 @@ protected void create(){
     SetId(({"repellent_collar","bane"}));
     SetAdjectives( ({"repellent","odd","plastic","white"}) );
     SetShort("塑料项圈");
-    SetLong("This is a simple collar made of a soft white plastic. It "+
-            "seems to be coated with a fine, clear resin. There is something "+
-            "written on the collar.");
+    SetLong("这是一个由柔软的白色塑料制成的简单项圈。表面似乎涂有一层薄薄的透明树脂。项圈上写着一些字。");
     SetRead("Disease and parasite repellent collar, test character use only.");
     SetMass(1);
     SetDollarCost(5000);

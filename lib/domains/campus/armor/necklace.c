@@ -10,7 +10,7 @@ protected void create(){
     SetId(({"necklace"}));
     SetAdjectives( ({"gold","beautiful"}) );
     SetShort("金项链");
-    SetLong("This is a simple and beautiful gold necklace."); 
+    SetLong("这是一条简洁而美丽的金项链。");
     SetMass(1);
     SetDollarCost(5000);
     SetDamagePoints(100);

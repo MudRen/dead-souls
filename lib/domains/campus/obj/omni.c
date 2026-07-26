@@ -65,9 +65,7 @@ void heart_beat(){
     }
     if(vanish_count == 5){
         tell_object(env,"The omni begins to glow a dull red.");
-        this_object()->SetLong("This is a small, round metal device, copper in color, "+
-                "and similar in appearance to a pocket watch. There is a blinking red light "+
-                "next to the tiny metal button at its top. It is glowing a dull red.");
+        this_object()->SetLong("这是一个小型圆形金属装置，铜色，外观类似于怀表。顶部小金属按钮旁边有一个闪烁的红灯。它正发出暗红色的光芒。");
         this_object()->SetShort("万能遥控器（发光中）");
     }
 }
