@@ -26,7 +26,7 @@ object* GetSitters(){
 mixed eventReceiveSit(object who){
     mixed furn = who->GetProperty("furniture");
     if(furn && objectp(furn)){
-        write("You are already using a piece of furniture.");
+        write("你已经在使用一件家具了。");
         return 1;
     }
     Sitters = ({ Sitters..., who });
@@ -46,10 +46,10 @@ mixed eventReleaseStand(object who){
 mixed direct_sit_word_obj(){
     Sitters = filter(Sitters, (: $1 && $1->GetPosition()==POSITION_SITTING :));
     if( sizeof(Sitters) >= MaxSitters ){
-        return "There is no room to sit there.";
+        return "那里没有坐下的空间。";
     }
     if(environment() != environment(this_player())){
-        return "That's not available for sitting right now.";
+        return "那个现在不能用来坐下。";
     }
     return 1;
 }
@@ -64,7 +64,7 @@ int CanGet(object who){
         foreach(object wer in sitters){
             if(!wer || environment(wer) != environment()) this_object()->eventReleaseStand(wer);
         }         if(sizeof(this_object()->GetSitters())){
-            write(this_object()->GetSitters()[0]->GetName()+" is using it right now.");
+            write(this_object()->GetSitters()[0]->GetName()+"正在使用它。");
             return 0;
         }
         else return 1;

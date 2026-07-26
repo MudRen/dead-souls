@@ -25,8 +25,8 @@ varargs string GetExternalDesc(object who){
     string openstate;
 
     if(this_object()->CanClose()){
-        if(this_object()->GetClosed()) openstate = " It is closed.";
-        else openstate = " It is open.";
+        if(this_object()->GetClosed()) openstate = " 它是关着的。";
+        else openstate = " 它是开着的。";
     }
     else openstate = "";
 
@@ -131,7 +131,7 @@ varargs mixed GetItem(string item, object who){
     }
     else if( functionp(val) ){
         if( functionp(val) & FP_OWNER_DESTED ){
-            return "An error occurred evaulating a function pointer.";
+            return "评估函数指针时发生错误。";
         }
         return evaluate(val, who, item);
     }
@@ -191,14 +191,14 @@ varargs mixed eventShow(object who, string component){
     if( component ){
         component = remove_article(lower_case(component));
         desc = GetItem(component, who);
-        environment(who)->eventPrint(who->GetName() + " looks at the " +
-                component + " on the " + remove_article(GetShort()) + ".",
+        environment(who)->eventPrint(who->GetName() + "看了看" +
+                remove_article(GetShort()) + "上的" + component + "。",
                 ({ who, this_object() }));
     }
     else {
         desc = GetExternalDesc(who);
-        environment(who)->eventPrint(who->GetName() + " looks at the " +
-                remove_article(GetShort()) + ".",
+        environment(who)->eventPrint(who->GetName() + "看了看" +
+                remove_article(GetShort()) + "。",
                 ({ who, this_object() }));
     }
 
@@ -219,8 +219,8 @@ mixed direct_look_obj(){
     object env = environment();
     if(!this_object()->GetInvis()){
         if( env != this_player() && env != environment(this_player()) ){
-            return "#Perhaps \"look at "+this_object()->GetKeyName()+
-                " on\" something?";
+            return "#也许你应该\"看\" "+this_object()->GetKeyName()+
+                " \"在\"什么东西上？";
         }
     }
     return 1;
@@ -238,11 +238,11 @@ mixed direct_look_at_obj_on_obj(object target, object ob,mixed arg, mixed arg2){
     if(!ob) ob=environment(target);
     if((inherits(LIB_SIT,ob) && sizeof(ob->GetSitters())) ||
             (inherits(LIB_LIE,ob) && sizeof(ob->GetLiers()))){
-        write("There appears to be someone blocking your view.");
+        write("似乎有人挡住了你的视线。");
     }
 
     if(ob->GetInvis()){
-        return "#There is no "+arg+" on "+arg2+" here.";
+        return "#这里"+arg2+"上没有"+arg+"。";
     }
 
     if(!target->GetInvis()){
@@ -252,11 +252,11 @@ mixed direct_look_at_obj_on_obj(object target, object ob,mixed arg, mixed arg2){
                 if(living(target)) return target->GetLong();
                 else return target->GetExternalDesc();
             }
-            else return "#You can't quite make out its details.";
+            else return "#你无法看清它的细节。";
         }
     }
     if( environment(target) != ob || target->GetInvis() ){
-        return "#There is no " + arg + " on " + ob->GetShort() + ".";
+        return "#" + ob->GetShort() + "上没有" + arg + "。";
     }
     return 1;
 }
@@ -270,7 +270,7 @@ mixed direct_look_at_str_on_obj(string str, object target){
     str = remove_article(lower_case(str));
     if((inherits(LIB_SIT,target) && sizeof(target->GetSitters())) ||
             (inherits(LIB_LIE,target) && sizeof(target->GetLiers()))){
-        write("There appears to be someone blocking your view.");
+        write("似乎有人挡住了你的视线。");
         return 0;
     }
 
@@ -281,7 +281,7 @@ mixed direct_look_at_str_on_obj(string str, object target){
         else return "#You can't quite make out its details.";
     }
     if( !Items[str] ){
-        return "#There is no " + str + " on " + GetShort() + ".";
+        return "#" + GetShort() + "上没有" + str + "。";
     }
     return 1;
 }

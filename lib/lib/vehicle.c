@@ -54,17 +54,17 @@ mixed eventMount(object who){
     rider_weight = who->GetMass();
     if(!environment(this_object())) return 0;
     if(environment(who) && environment(who) == this_object()){
-        return write("You are already mounted.");
+        return write("你已经骑乘了。");
     }
     if(rider_weight + this_object()->GetCarriedMass() > this_object()->GetMaxCarry()){
-        return write("This vehicle cannot handle that much "+weight+".");
+        return write("这辆载具无法承载那么多"+weight+"。");
     }
     else {
         string int_desc = GetVehicleInterior();
         this_object()->SetNoClean(1);
-        write("You enter "+this_object()->GetShort()+".");
+        write("你进入了"+this_object()->GetShort()+"。");
         if(int_desc) write(int_desc);
-        say(who->GetName()+" enters "+this_object()->GetShort()+".");
+        say(who->GetName()+"进入了"+this_object()->GetShort()+"。");
         who->SetProperty("mount", this_object());
         if(who->eventMove(this_object())) return AddRider(who);
         else return 0;
@@ -79,7 +79,7 @@ varargs mixed eventEnter(object who, string what, string verb){
 }
 
 mixed CanGo(object who, string str){
-    if( who->GetParalyzed() ) return "You are unable to move.";
+    if( who->GetParalyzed() ) return "你无法移动。";
     else return 1;
 }
 
@@ -138,21 +138,21 @@ varargs string GetInternalDesc(){
 
     desc = "";
     if(this_object()->CanClose() && GetOpacity() > 33){
-        if(this_object()->GetClosed()) desc += " It is closed. ";
-        else desc += " It is open. ";
+        if(this_object()->GetClosed()) desc += " 它是关着的。 ";
+        else desc += " 它是开着的。 ";
     }
     if(!surfacep) desc = desc + capitalize(add_article(GetShort(), 1));
-    if(surfacep) desc = "On "+add_article(GetShort(), 1);
+    if(surfacep) desc = "在"+add_article(GetShort(), 1)+"上";
     items = filter(items, (: !($1->isDummy()) && !($1->GetInvis()) :));
     if( sizeof(items) ){
         if(surfacep){
-            desc = desc+" you see " + item_list(items) + ".";
+            desc = desc+" 你看到 " + item_list(items) + "。";
         }
-        else desc = desc + " contains " + item_list(items) + ".";
+        else desc = desc + " 里面有 " + item_list(items) + "。";
     }
     else {
-        if(!surfacep) desc = desc + " is completely empty.";
-        else desc = desc + " you see nothing.";
+        if(!surfacep) desc = desc + " 里面空空如也。";
+        else desc = desc + " 你什么也没看到。";
     }
     return desc;
 }

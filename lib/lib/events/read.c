@@ -111,7 +111,7 @@ varargs mixed eventRead(object who, mixed str){
 
     if( functionp(val) ){
         if( functionp(val) & FP_OWNER_DESTED ){
-            who->eventPrint("There was a problem with the read.");
+            who->eventPrint("阅读时出现了问题。");
             return 1;
         }
         ret = evaluate(val, str);
@@ -121,23 +121,23 @@ varargs mixed eventRead(object who, mixed str){
             who);
     if(ret) val = ret;
     if( !val ){
-        who->eventPrint("There is nothing to read.");
+        who->eventPrint("没有什么可读的。");
         return 1;
     }
 
     if(Language){
-        write("The language appears to be "+capitalize(Language)+".");
+        write("这种语言似乎是"+capitalize(Language)+"。");
     }
 
     if(!val){
-        write("You can't read that.");
+        write("你无法读懂那个。");
         return 0;
     }
 
     if(Language && (this_player()->GetLanguageLevel(Language) < 100 &&
                 !(this_player()->GetPolyglot()))){
         if(sizeof(val) > 4800){
-            val = "It is too long and you are too unfamiliar with the language to make sense of it.";
+            val = "这太长了，而且你对这种语言不够熟悉，无法理解其中的含义。";
 
         }
         else {
@@ -156,7 +156,7 @@ mixed direct_read_obj(){
     else {
         if( environment() != this_player()  && environment(this_player()) !=
                 environment()){
-            return "#You don't have that!";
+            return "#你没有那个东西！";
         }
         else return 1;
 
@@ -171,7 +171,7 @@ mixed direct_read_str_word_obj(string str){
     else {
         if( environment() != this_player()  && environment(this_player()) !=
                 environment()){
-            return "#You don't have that!";
+            return "#你没有那个东西！";
         }
         else return 1;
 
@@ -185,7 +185,7 @@ mixed direct_read_obj_at_obj(object reader, object readee){
     else {
         if( environment() != this_player()  && environment(this_player()) !=
                 environment()){
-            return "#You don't have that!";
+            return "#你没有那个东西！";
         }
         else return 1;
 

@@ -7,7 +7,7 @@ mixed direct_boobytrap_obj_with_obj(){
 mixed indirect_boobytrap_obj_with_obj(){
     object env = environment();
     if(!env || env != this_player()){
-        return "#You don't have that!";
+        return "#你没有那个东西！";
     }
     return 1;
 }
@@ -23,8 +23,8 @@ varargs mixed eventDisarm(mixed arg){
     int wisdom_score = this_player()->GetStat("wisdom")["level"];
     mapping Traps = this_object()->FoundTraps();
     object trap = keys(Traps)[0];
-    write("You begin the disarming attempt.");
-    say(this_player()->GetCapName()+" begins the disarming attempt.");
+    write("你开始尝试解除陷阱。");
+    say(this_player()->GetCapName()+"开始尝试解除陷阱。");
 
     disarm_score += this_player()->GetStat("luck")["level"];
     disarm_score += this_player()->GetStat("intelligence")["level"];
@@ -39,11 +39,11 @@ varargs mixed eventDisarm(mixed arg){
     }
 
     if(failure < wisdom_score){
-        write("You fail to disarm the trap.");
+        write("你解除陷阱失败了。");
     }
 
     if(failure > (wisdom_score + 100)){
-        write("You successfully disarm the trap!");
+        write("你成功解除了陷阱！");
     }
     return 1;
 }

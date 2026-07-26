@@ -23,8 +23,7 @@ varargs mixed eventAim(object who, mixed target, string dir, string whom){
         else tmp = target;
     }
     if(!stringp(tmp)) tmp = "something";
-    if(target) write("You aim the "+this_object()->GetShort()+" at "+
-            target+".");
+    if(target) write("你将"+this_object()->GetShort()+"瞄准了"+target+"。");
     targ = target;
     return 1;
 }
@@ -32,10 +31,10 @@ varargs mixed eventAim(object who, mixed target, string dir, string whom){
 mixed CanAim(object aimer, mixed target){
     object env = environment(this_player());
     if(this_object() == aimer && mustcarry > 0 && environment(this_object()) != this_player()){
-        return "#You are not holding the "+remove_article(aimer->GetShort())+".";
+        return "#你没有拿着"+remove_article(aimer->GetShort())+"。";
     } 
     if(this_object() == aimer && mustwield > 0 && this_object()->GetWorn() == 0 && !creatorp(this_player())){
-        return "#You are not wielding the "+remove_article(aimer->GetShort())+".";
+        return "#你没有装备"+remove_article(aimer->GetShort())+"。";
     }
     return 1;
 }

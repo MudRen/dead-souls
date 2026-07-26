@@ -28,7 +28,7 @@ varargs mixed CanPut(object who, object what){
 
     if(what) env = environment(what);
     if(!env || env != this_player()){
-        return "#You don't have that.";
+        return "#你没有那个东西。";
     }
     if( (tmp = CanDrop(who)) != 1 ) return tmp;
     if( !environment() ){ destruct(this_object()); return 1; }
@@ -40,12 +40,12 @@ varargs mixed CanPut(object who, object what){
     if( stringp(PreventPut) ) return PreventPut;
     if( objectp(PreventPut) ){
         if( PreventPut == who )
-            return "You cannot put " + GetShort() + " anywhere.";
+            return "你无法把" + GetShort() + "放在任何地方。";
         else return 1;
     }
     else if(functionp(PreventPut)) return evaluate(PreventPut, who);
     else {
-        return "It seems you're unable to do that right now.";
+        return "看来你现在无法这样做。";
     }
 }
 
@@ -53,31 +53,31 @@ varargs mixed eventPut(object who, object storage, string prep){
     int depth;
     if(!prep || prep == "") prep = " into ";
     if(prep == " onto " && !inherits( LIB_SURFACE, previous_object() ) ){
-        who->eventPrint("That isn't a load-bearing surface.");
+        who->eventPrint("那不是一个可以承重的平面。");
         return 0;
     }
 
     if(prep == " into " && inherits( LIB_SURFACE, previous_object() ) ){
-        who->eventPrint("That's a surface. Try \"put on\"");
+        who->eventPrint("那是一个平面，请用\"put on\"指令。");
         return 0;
     }
 
     if((inherits(LIB_SIT,storage) && sizeof(storage->GetSitters())) ||
             (inherits(LIB_LIE,storage) && sizeof(storage->GetLiers()))){
-        write("There appears to be someone blocking your access.");
+        write("似乎有人挡住了你的路。");
         return 0;
     }
 
 
     if( !eventMove(storage) ){
-        who->eventPrint("The "+remove_article(this_object()->GetShort())+" stays where it is.");
+        who->eventPrint(remove_article(this_object()->GetShort())+"仍然留在原处。");
         return 0;
     }
     who->eventPrint("你把" + GetShort() + "放" + prep +
             storage->GetShort() + ".");
-    environment(who)->eventPrint(who->GetName() + " puts " +
+    environment(who)->eventPrint(who->GetName() + "把" +
             GetShort() + prep +
-            storage->GetShort() + ".", who);
+            storage->GetShort() + "。", who);
     if(inherits(LIB_STORAGE, this_object())){
         depth = this_object()->GetRecurseDepth();
         if(depth && inherits(LIB_STORAGE, storage)) storage->AddRecurseDepth(depth); 

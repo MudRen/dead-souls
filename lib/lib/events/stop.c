@@ -4,14 +4,14 @@ varargs mixed CanStop(object who, string what, mixed args){
         int stop_err;
         object ob = environment(who);
         stop_err = ob->CanStop(this_player(), "fishing");
-        return (stop_err || "You aren't fishing!");
+        return (stop_err || "你没有在钓鱼！");
     }
     if(what == "fighting"){
         mixed *enemies = this_object()->GetEnemies();
         //mixed *hostiles = this_object()->GetHostiles();
         mixed *hostiles = ({});
         if(!sizeof(enemies) && !sizeof(hostiles)){
-            return "You're not mad at anybody!";
+            return "你没有在生任何人的气！";
         }
         return 1;
     }
@@ -29,7 +29,7 @@ varargs mixed eventStop(object who, string what, mixed args){
         mixed *hostiles = this_object()->GetHostiles();
         foreach(object enemy in enemies){
             if(!enemy) continue;
-            write("You are no longer fighting "+enemy->GetShort()+".");
+            write("你不再与"+enemy->GetShort()+"战斗了。");
             this_object()->RemoveEnemy(enemy);
         }
         //foreach(object hostile in hostiles){
@@ -40,7 +40,7 @@ varargs mixed eventStop(object who, string what, mixed args){
         //}
         this_object()->AddNonTargets(enemies);
         //this_object()->AddNonTargets(hostiles);
-        return "You have stopped being aggressive.";
+        return "你已经停止了好斗行为。";
     }
     return 0;
 }

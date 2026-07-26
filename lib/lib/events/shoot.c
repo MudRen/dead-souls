@@ -18,20 +18,20 @@ varargs mixed eventShoot(object who, mixed target, string dir, string whom){
         tmp=target->GetName();
         target = tmp;
     }
-    if(target) write("You shoot at "+target+" with your weapon.");
+    if(target) write("你用武器向"+target+"射击。");
     return 1;
 }
 
 mixed CanShoot(object shooter, mixed target){
     object env = environment(this_player());
     if(this_object() == shooter && mustcarry > 0 && environment(this_object()) != this_player()){
-        return "#You are not holding the "+remove_article(shooter->GetShort())+".";
+        return "#你没有拿着"+remove_article(shooter->GetShort())+"。";
     } 
     if(this_object() == shooter && mustwield > 0 && this_object()->GetWorn() == 0 && !creatorp(this_player())){
-        return "#You are not wielding the "+remove_article(shooter->GetShort())+".";
+        return "#你没有装备"+remove_article(shooter->GetShort())+"。";
     }
     if(env && env->GetProperty("no attack")){
-        return "A mystical force prevents your malice.";
+        return "一股神秘的力量阻止了你的恶意。";
     }
     return 1;
 }

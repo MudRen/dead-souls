@@ -20,7 +20,7 @@ object* GetLiers(){
 mixed eventReceiveLay(object who){
     mixed furn = who->GetProperty("furniture");
     if(furn && objectp(furn)){
-        write("You are already using a piece of furniture.");
+        write("你已经在使用一件家具了。");
         return 1;
     }
     Liers = ({ Liers..., who });
@@ -39,10 +39,10 @@ mixed eventReleaseStand(object who){
 mixed direct_lie_word_obj(){
     Liers = filter(Liers, (: $1 && $1->GetPosition()==POSITION_LYING :));
     if( sizeof(Liers) >= MaxLiers ){
-        return "There is no room to lie there.";
+        return "那里没有躺下的空间。";
     }
     if(environment() != environment(this_player())){
-        return "That's not available for sitting right now.";
+        return "那个现在不能用来躺下。";
     }
     return 1;
 }
@@ -56,7 +56,7 @@ int CanGet(object who){
         foreach(object wer in liers){             if(!wer || environment(wer) != environment()) this_object()->eventReleaseStand(wer);
         }
         if(sizeof(this_object()->GetLiers())){
-            write(this_object()->GetLiers()[0]->GetName()+" is using it right now.");
+            write(this_object()->GetLiers()[0]->GetName()+"正在使用它。");
             return 0;
         }
         else return sit::CanGet(who);
