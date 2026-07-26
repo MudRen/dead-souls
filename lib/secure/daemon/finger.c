@@ -55,12 +55,12 @@ varargs string GetFinger(string who, int html) {
             str = person->GetShort();
             if( !str ) str = person->GetName();
             if( !str ) continue;
-            if( creatorp(person) ) clas = "creator";
+            if( creatorp(person) ) clas = "创造者";
             else clas = person->GetClass();
             if( clas ) clas = capitalize(clas);
-            else clas = "Drifter";
+            else clas = "流浪者";
             town = person->GetTown();
-            if( !town ) town = "Homeless";
+            if( !town ) town = "无家可归";
             str = sprintf("%:-40s %:-11s %s", str, clas, town);
             lines += ({ str });
         }
@@ -80,7 +80,7 @@ varargs string GetFinger(string who, int html) {
         ret += replace_string(Long, "$N", CapName) + "%^BR%^\n";
     }
     if( WebPage ) {
-        ret += "Home Page: %^HREF%^" + WebPage + "%^>%^";
+        ret += "主页: %^HREF%^" + WebPage + "%^>%^";
         if( html ) {
             ret += WebPage + "%^/A%^BR%^\n";
         }
@@ -99,10 +99,10 @@ varargs string GetFinger(string who, int html) {
         string yrstr;
         int yr;
 
-        ret += CapName+" the "+Gender+" "+Race+" "+(Class || "drifter");
-        if( Clan ) ret += " of the " + pluralize(Clan);
+        ret += CapName+"，"+Gender+"性"+Race+"，"+(Class || "流浪者");
+        if( Clan ) ret += "，属于" + pluralize(Clan);
         if( creatorp(this_player()) && Level ) ret += " ("+Level+")";
-        ret += " is a " + Rank+" of " + Town + ".%^BR%^\n";
+        ret += "，是 " + Town + " 的一位" + Rank + "。%^BR%^\n";
         Btime = BirthTime - (18 * YEAR);
         if( (yr = query_year(Btime)) < 0 ){
             yrstr = -yr + " BN";
@@ -117,12 +117,12 @@ varargs string GetFinger(string who, int html) {
     if(!this_player() || !archp(this_player())) Email = "未公开";
     if( !Email ) Email = "#CHANGE";
     ret += "%^TABLE%^TR%^TD%^" +
-        sprintf("In real life: %:-30s %%^/TD%%^TD%%^Email: %s", RealName ,
+        sprintf("真实姓名: %:-30s %%^/TD%%^TD%%^邮箱: %s", RealName ,
                 (Email[0]!='#' || (this_player(1) && archp(this_player(1))))
                 ? (Email[0] == '#' ? Email[1..] : Email) : "未公开") +
         "%^/TD%^/TR%^\n";
     ret += "%^TR%^TD%^" +
-        sprintf("Religion: %:-34s %%^/TD%%^TD%%^Spouse: %s",
+        sprintf("信仰: %:-34s %%^/TD%%^TD%%^配偶: %s",
                 (!creator && Religion[1]) ? Religion[1] : "无信仰",
                 !sizeof(Marriages) ? "未婚" :
                 (((class marriage)Marriages[0])->DivorceDate ?
@@ -135,7 +135,7 @@ varargs string GetFinger(string who, int html) {
     else ret += "最后在线 " + ctime(LoginTime);
     if( this_player(1) && creatorp(this_player(1)) && (!AUTO_WIZ ||
                 master()->valid_apply(({ "SECURE", "ASSIST" }))) ){
-        ret += " from " + HostSite + "%^BR%^\n";
+        ret += " 来自 " + HostSite + "%^BR%^\n";
     }
     else ret += "%^BR%^\n";
     mail_stat = FOLDERS_D->mail_status(who);
@@ -169,16 +169,16 @@ mixed* GetRemoteFinger(string who) {
     if( unguarded( (: file_size, user_path(who) + ".plan" :) ) > 0 ) {
         plan = unguarded( (: read_file, user_path(who) + ".plan", 1, 5 :) );
         if( strlen(plan) ) {
-            plan = "Plan: (truncated to 5 lines)\n" + plan;
+            plan = "计划: (截取前5行)\n" + plan;
             if( plan[<1] != '\n' ) plan += "\n";
         }
         else plan = 0;
     }
-    if(!this_player() || !archp(this_player()))  Email = "Unlisted";
+    if(!this_player() || !archp(this_player()))  Email = "未公开";
     if( !Email ) Email = "#CHANGE";
     tmp = ({ CapName, GetTitle(), RealName, (Email[0] != '#' ? Email : 0),
             ctime(LoginTime), ((ob && interactive(ob) && !(ob->GetInvis())) ? query_idle(ob) : -1),
-            0, (creator ? "Creator" : "" + Level), plan });
+            0, (creator ? "创造者" : "" + Level), plan });
     return tmp;
 }
 

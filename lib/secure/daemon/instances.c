@@ -58,7 +58,7 @@ protected void create() {
         RestoreObject(SaveFile);
     }
     if(ENABLE_INSTANCES){
-        debug_message("\nNOTE: This mud is a non-global instance.\n");
+        debug_message("\n注意: 此MUD是一个非全局实例。\n");
     }
     call_out("Setup", 0);
     set_heart_beat(10);
@@ -234,7 +234,7 @@ varargs void SendWhoUpdate(string name, int status){
     if(ob && !ob->GetInvis()){
         string title = ob->GetShort();
         if(sizeof(strip_colours(title)) > 50){
-            title = capitalize(name)+" the Long-Titled.";
+            title = capitalize(name)+" (长头衔)";
         }
         data["title"] = title;
         data["level"] = ob->GetLevel();
@@ -245,19 +245,19 @@ varargs void SendWhoUpdate(string name, int status){
         else {
             data["status"] = 1;
             if(query_idle(ob)>240){
-                data["state"] = "(%^YELLOW%^idle%^RESET%^)";
+                data["state"] = "(%^YELLOW%^空闲%^RESET%^)";
             }
             if(ob->GetSleeping() > 0){
-                data["state"] = "(%^BLUE%^sleeping%^RESET%^)";
+                data["state"] = "(%^BLUE%^睡眠%^RESET%^)";
             }
             if(ob->GetProperty("afk")){
-                data["state"] = "(%^MAGENTA%^afk%^RESET%^)";
+                data["state"] = "(%^MAGENTA%^离开%^RESET%^)";
             }
             if(ob->GetInCombat()){
-                data["state"] = "(%^RED%^combat%^RESET%^)";
+                data["state"] = "(%^RED%^战斗%^RESET%^)";
             }
             if(in_edit(ob) || ob->GetCedmode()){
-                data["state"] = "(%^CYAN%^edit%^RESET%^)";
+                data["state"] = "(%^CYAN%^编辑%^RESET%^)";
             }
         }
     }

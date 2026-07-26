@@ -58,8 +58,8 @@ mixed eventConnect(string who) {
 
         if( c->LastOnWith == who ) return 1;
         x = c->LastOnDate + min_wait - time();
-        if( x < 60 ) tmp = consolidate(x, "a second");
-        else tmp = consolidate(x/60, "a minute");
+        if( x < 60 ) tmp = consolidate(x, "一秒");
+        else tmp = consolidate(x/60, "一分钟");
         if( !(member_group(who, PRIV_SECURE) || member_group(who,PRIV_ASSIST)))
             return "\n您的角色 " + capitalize(c->LastOnWith) +
                 " 最近在 " + ctime(c->LastOnDate) + " 登录。\n" +
@@ -111,7 +111,7 @@ mixed eventLink(string primary, string secondary, string email) {
     ch->LastOnDate = 0;
     ch->LastOnWith = primary;
     Links[primary] = ch;
-    if( !SaveObject(SaveFile) ) return "Error in saving.";
+    if( !SaveObject(SaveFile) ) return "保存出错。";
     return 1;
 }
 
