@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("match");
     SetId("match");
     SetAdjectives( ({ "wooden" }) );
-    SetShort("a wooden match");
-    SetLong("A wooden match that might light if you strike it.");
+    SetShort("一根火柴");
+    SetLong("一根如果你划它可能会点燃的火柴。");
     SetRadiantLight(2);
     SetStrikeChance(50);
     SetMinHeat(10);

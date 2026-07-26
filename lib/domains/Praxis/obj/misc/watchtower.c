@@ -22,13 +22,11 @@ void create() {
     SetKeyName("monument");
     SetId( ({ "monument", "tower", "clock" }) );
     SetLong(
-            "This monument stands at the centre of Praxis to remind "
-            "everyone of those who have made this reality possible for "
-            "everyone to enjoy.  On one face of the monument is a clock "
-            "which shows the time in Praxis.  All other sides are "
-            "engraved with the names of those who have contributed "
-            "in money to this world.  <read clock> will tell you the time.  "
-            "<read names> to see who all has donated, and do thank them."
+            "这座纪念碑矗立在普拉克西斯的中心，提醒每个人"
+            "那些让这个世界成为可能的人们。纪念碑的一面是一个"
+            "显示普拉克西斯时间的时钟。其他各面都刻着"
+            "为这个世界捐款的人的名字。<read clock> 会告诉你时间。"
+            "<read names> 可以查看所有捐赠者，请感谢他们。"
            );    SetMass( 0);
 
     SetNoClean(1);
@@ -44,21 +42,21 @@ int read(string str) {
         return 1;
     }
     else if (str == "names") {
-        message("Ninfo", "These people have donated money and made Nightmare possible:\n"+
+        message("Ninfo", "这些人捐款使噩梦世界成为可能：\n"+
                 format_page(sort_array(DONATORS_LIST, "alpha", this_object()), 5)
                 ,this_player());
         return 1;
     }
-    notify_fail("Read what?\n");
+    notify_fail("读什么？\n");
     return 0;
 }
 
 void GetLong_time() {
-    write(capitalize(season(time()))+" hovers over "+mud_name()+" on the "+
-            date(time())+ordinal(date(time()))+" day of "+
-            month(time())+" in year "+year(time())+" NM.\n"
+    write(capitalize(season(time()))+"笼罩着"+mud_name()+"，今天是"+
+            month(time())+year(time())+"年NM历，第"+
+            date(time())+ordinal(date(time()))+"天。\n"
          );
-    write("The clock face reads "+query_hour()+".\n");
+    write("钟面显示 "+query_hour()+"。\n");
 }
 
 string query_hour() {
@@ -76,6 +74,6 @@ string query_hour() {
 
 int get() { return 0; }
 
-string affect_environment() { return "A magnificent monument rises above the square."; }
+string affect_environment() return "一座宏伟的纪念碑耸立在广场上。"; }
 
 int alpha(string a, string b) { return strcmp(a,b); }

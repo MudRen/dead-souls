@@ -14,13 +14,13 @@ void create() {
     ::create();
     SetId( ({ "shovel" }) );
     SetKeyName("shovel");
-    SetShort( "a shovel");
-    SetLong( "You might be able to dig with this in the right soil.");
+    SetShort( "一把铲子");
+    SetLong( "你也许能在合适的土壤里用它来挖掘。");
     SetMass(100);    SetValue( 18);
 
 }
 
 int dig(string str) {
-    notify_fail("The shovel can't quite manage the soil here.\n");
+    notify_fail("铲子无法处理这里的土壤。\n");
     return 0;
 }

@@ -40,22 +40,22 @@ void create() {
 
 string GetLong(string str) {
     if(str == "hook") {
-        if(!bait) return ("Perhaps you could bait this with something?\n");
-        else return ("It has bait on it.\n");
+        if(!bait) return ("也许你可以用什么东西做鱼饵？\n");
+        else return ("上面有鱼饵。\n");
     }
-    else if(str == "string") return ("A string with a hook at the end.\n");
+    else if(str == "string") return ("一根末端有钩子的线。\n");
     else {
-        return ("A bamboo stick with a piece of string connected to the end.\n"
-                "At the end of the string is a hook.  What a primitive looking fishing tool!\n");
+        return ("一根末端系着线的竹竿。\n"
+                "线的末端是一个钩子。多么原始的钓鱼工具！\n");
     }
 }
 
 string GetShort() {
     if(!broken) {
-        if(!bait) return "A bamboo stick";
-        else return "A bamboo stick (baited)";
+        if(!bait) return "一根竹竿";
+        else return "一根竹竿（已上饵）";
     }
-    else return "A bamboo stick (broken)";
+    else return "一根竹竿（断了）";
 }
 
 int query_pole_class() {
@@ -72,23 +72,23 @@ int bait_it(string str) {
     if((sscanf(str, "%s with %s", pole, the_bait)) !=2) return 0;
     if(pole != "stick" && pole != "hook") return 0;
     if(!present(the_bait,this_player())) {
-        write("You do not have any "+the_bait+" to bait your stick!\n");
+        write("你没有任何"+the_bait+"来给鱼钩上饵！\n");
         return 1;
     }
     if(!(present(the_bait,this_player())->id("bait"))) {
-        write("You can't use that as bait!\n");
+        write("你不能用那个做鱼饵！\n");
         return 1;
     }
     if(!bait) {
         bait = (100-present(the_bait, this_player())->query_strength())/7;
-        write("You bait your hook with "+the_bait+".\n");
+        write("你用"+the_bait+"给鱼钩上了饵。\n");
 
-        say(this_player()->query_cap_name()+" baits "+this_player()->query_possessive()+" stick.\n");
+        say(this_player()->query_cap_name()+"给鱼钩上了饵。\n");
         find_object(the_bait)->remove();
         return 1;
     }
     else {
-        write("You already have bait on your hook!");
+        write("你的鱼钩上已经有鱼饵了！");
     }
     return 1;
 }

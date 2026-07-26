@@ -11,7 +11,7 @@ void create()
     ::create();
     SetOrigin("praxis", "/domains/Praxis/square");
     SetRead(([ ({ "screen" }) : (: ReadScreen :) ]) );
-    SetItems(([ ({ "screen" }) : "a computer screen which shows the status of the gate network" ]) );
+    SetItems(([ ({ "screen" }) : "一个显示星门网络状态的电脑屏幕"]) );
 }
 
 void init()

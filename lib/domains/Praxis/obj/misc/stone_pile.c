@@ -14,10 +14,9 @@ void create() {
     ::create();
     SetKeyName("pile");
     SetId( ({ "stones", "pile of stones", "pile" }) );
-    SetShort("a pile of stones");
-    SetLong("A pile of nice round stones, perfect for throwing at "
-            "outlaws and criminals.");
-    SetPreventGet("You can only get one stone at a time.");
+    SetShort("一堆石头");
+    SetLong("一堆漂亮的圆石头，非常适合扔向亡命之徒和罪犯。");
+    SetPreventGet("你一次只能拿一块石头。");
 }
 
 void init() {
@@ -29,11 +28,10 @@ int get_stone(string str) {
     object stone;
 
     if(!str || str != "stone") return 0;
-    message("say", "You pick up a stone from the pile.  You feel a "
-            "strong desire to try <throw>ing it at "
+    message("say", "你从石头堆里捡起一块石头。你感到一股强烈的欲望"
+            "想要试着把它<throw>向"
             +target->query_cap_name()+"...", this_player());
-    message("say", this_player()->query_cap_name()+" picks up a stone "
-            "from the pile.", environment(this_player()), this_player());
+    message("say", this_player()->query_cap_name()+"从石头堆里捡起了一块石头。", environment(this_player()), this_player());
     stone = new("/"+__DIR__+"stone");
     stone->set_target(target);
     stone->move(this_player());

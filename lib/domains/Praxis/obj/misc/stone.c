@@ -22,10 +22,10 @@ create() {
 
 void long_func() {
     if(target) {
-        message("say", "A throwing stone just waiting to be thrown at "+
-                target->query_cap_name()+"'s forehead.", this_player());
+        message("say", "一块等待着被扔向"+
+                target->query_cap_name()+"额头的投掷石。", this_player());
     } else {
-        message("say", "A throwing stone whithout direction.", 
+        message("say", "一块没有目标的投掷石。",
                 this_player());
     }
 }
@@ -40,66 +40,59 @@ int throw_stone(string str) {
     string limb;
 
     if(!str) {
-        notify_fail("Throw what?\n");
+        notify_fail("扔什么？\n");
         return 0;
     }
     if(!sscanf(str, "%s at %s", what, who) == 2) {
-        notify_fail("Throw what at whom?\n");
+        notify_fail("扔什么打谁？\n");
         return 0;
     }
     if(!id(what)) {
-        notify_fail("Throw what?\n");
+        notify_fail("扔什么？\n");
         return 0;
     }
     if(who != target->query_name()) {
-        message("say", "The stone misses completely.", this_player());
-        message("say", this_player()->query_cap_name()+" throws a "
-                "stone in some random direction.", environment(this_player()),
+        message("say", "石头完全没打中。", this_player());
+        message("say", this_player()->query_cap_name()+"朝某个随机方向扔了一块石头。", environment(this_player()),
                 this_player());
         return 1;
     }
     switch(random(4)) {
         case 0:
-            message("say", "You hit "+target->query_cap_name()+" square "
-                    "in the forehead!!", this_player());
-            message("say", this_player()->query_cap_name()+" hits "+
-                    target->query_cap_name()+" in the forehead with a stone.",
+            message("say", "你正中"+target->query_cap_name()+"的额头！！", this_player());
+            message("say", this_player()->query_cap_name()+"用石头击中了"+
+                    target->query_cap_name()+"的额头。",
                     environment(this_player()), ({ this_player(), target }) );
-            message("say", this_player()->query_cap_name()+" hits "
-                    "you squarely in the head with a small stone!!", target); 
+            message("say", this_player()->query_cap_name()+"用一块小石头"
+                    "正中你的头部！！", target);
             limb = "head";
             break;
         case 1:
-            message("say", target->query_cap_name()+" screams in agony "
-                    "as you hit "+target->query_possessive()+" squarely in "
-                    "the nose!", this_player());
-            message("say", target->query_cap_name()+" screams in agony "
-                    "as "+this_player()->query_cap_name()+" hits "
-                    +target->query_possessive()+" squarely in "
-                    "the nose!", environment(this_player()),
+            message("say", target->query_cap_name()+"痛苦地尖叫，"
+                    "因为你正中了"+target->query_possessive()+"的鼻子！", this_player());
+            message("say", target->query_cap_name()+"痛苦地尖叫，"
+                    "因为"+this_player()->query_cap_name()+"正中了"
+                    +target->query_possessive()+"的鼻子！", environment(this_player()),
                     ({ this_player(), target }) );
-            message("say", "You scream in agony as a stone plows into your "
-                    "nose!!", target);
+            message("say", "你痛苦地尖叫，因为一块石头砸进了你的鼻子！！", target);
             limb = "head";
             break;
         case 2:
-            message("say", "OUCH! You stone lands right on "+
-                    target->query_possessive()+" nards!!", this_player());
-            message("say", this_player()->query_cap_name()+" is quite "
-                    "a good shot with those stones...", 
+            message("say", "哎哟！你的石头正中了"+
+                    target->query_possessive()+"的要害！！", this_player());
+            message("say", this_player()->query_cap_name()+"的石头扔得真准...",
                     environment(this_player()), ({ this_player(), target }));
-            message("say", this_player()->query_cap_name()+" pegs you "
-                    "right in the nards!! OUCH!", target);
+            message("say", this_player()->query_cap_name()+"正中了你的要害！！哎哟！", target);
             limb = "torso";
             break;
         case 3:
-            message("say", "You plant a stone right in "+
-                    target->query_possessive()+" stomach.", this_player());
-            message("say", this_player()->query_cap_name()+" mercilessly "
-                    "beats on "+target->query_cap_name()+" with the stones.",
+            message("say", "你把一块石头正中了"+
+                    target->query_possessive()+"的肚子。", this_player());
+            message("say", this_player()->query_cap_name()+"无情地"
+                    "用石头砸"+target->query_cap_name()+"。",
                     environment(this_player()), ({ this_player(), target }));
-            message("say", this_player()->query_cap_name()+" plugs a stone "
-                    "into your stomach, knocking your breath from you.", target);
+            message("say", this_player()->query_cap_name()+"把一块石头"
+                    "砸进了你的肚子，让你喘不过气来。", target);
             limb = "torso";
             break;
     }

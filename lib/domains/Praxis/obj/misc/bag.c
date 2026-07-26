@@ -13,10 +13,10 @@ void create() {
     SetKeyName("bag");
     SetId( ({ "bag" }) );
     SetAdjectives( ({ "small", "cloth", "a" }) );
-    SetShort("a small cloth bag");
-    SetLong("It is a simple cloth bag used to hold things.");
+    SetShort("一个小布袋");
+    SetLong("这是一个用来装东西的简单布袋。");
     SetMass(274);
     SetValue(50);
     SetMaxCarry(500);
-    SetPreventPut("You cannot put this in there!");
+    SetPreventPut("你不能把那个放进去！");
 }
