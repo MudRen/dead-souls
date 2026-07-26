@@ -10,18 +10,16 @@ protected void create() {
     SetVerb("initfix");
     SetRules("OBJ", "here");
     SetErrorMessage("initfix what?");
-    SetHelp("Syntax: initfix <OBJ>\n\n"
-            "If you have write permissions to the file of the object "
-            "specified, this command adds an init(){} function. Lacking "
-            "this function makes many objects break or behave unpredictably.\n"
-            "Please note that initfixing a door also reloads the "
-            "door's adjoining rooms.\n"
-            "\nSee also: copy, create, delete, modify, reload, add");
+    SetHelp("语法: initfix <OBJ>\n\n"
+            "如果你对指定对象的文件有写权限，此命令会添加一个init(){}函数。"
+            "缺少此函数会导致许多对象损坏或行为不可预测。\n"
+            "请注意，对门使用initfix也会重新加载门相邻的房间。\n"
+            "\n另见: copy, create, delete, modify, reload, add");
 }
 
-mixed can_initfix_obj(string str) { 
-    if(!creatorp(this_player())) 
-        return "This command is only available to builders and creators.";
+mixed can_initfix_obj(string str) {
+    if(!creatorp(this_player()))
+        return "此命令仅适用于建造者和创造者。";
     else return 1;
 }
 
@@ -33,9 +31,8 @@ mixed do_initfix_obj(object ob) {
             LIB_VIRT_MAP, LIB_VIRT_SPACE, LIB_VIRT_SURFACE, LIB_VIRT_SUBSURFACE });
     staff = present("tanstaafl",this_player());
     if(!staff) {
-        write("You must be holding the creator staff in order to use this command.");
-        write("If you don't know where you put it, get another one from the chest ");
-        write("in your workroom.");
+        write("你必须手持创造者之杖才能使用此命令。");
+        write("如果你不知道把它放在哪里了，可以从你工作室的箱子里再拿一个。");
         return 1;
     }
 
@@ -43,26 +40,26 @@ mixed do_initfix_obj(object ob) {
 
     foreach(string element in virts){
         if(inherits(element, ob)){
-            write("This is a virtual item. Aborting modification.");
+            write("这是一个虚拟物品。修改已中止。");
             return 1;
         }
     }
 
     if(first(base_name(ob),5) == "/lib/") {
-        write("This appears to be a lib file. Aborting modification.");
+        write("这看起来是一个库文件。修改已中止。");
         return 1;
     }
 
     if(interactive(ob)) {
-        write("Players are not initfixable.");
+        write("玩家无法使用initfix。");
         return 1;
     }
 
     if(staff->eventAddInit(base_name(ob)+".c") == 2) {
-        write("File already has a working init function.");
+        write("文件已经有一个有效的init函数。");
     }
 
-    else write("Done.");
+    else write("完成。");
     if(ob && inherits(LIB_DOOR,ob)){
         string *doors = environment(this_player())->GetDoors();
         if(!sizeof(doors)) return 1;

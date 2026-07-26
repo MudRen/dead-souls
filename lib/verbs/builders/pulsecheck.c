@@ -12,13 +12,13 @@ protected void create() {
     SetVerb("pulsecheck");
     SetRules("LVS");
     SetErrorMessage("pulsecheck what?");
-    SetHelp("Syntax: pulsecheck <CREATURE>\n\n"
-            "Check a creature's heartbeat.\n"
-            "See also: zap");
+    SetHelp("语法: pulsecheck <CREATURE>\n\n"
+            "检查一个生物的心跳。\n"
+            "另见: zap");
 }
 
-mixed can_pulsecheck_liv(string str) { 
-    if(!creatorp(this_player())) return "This command is only available to builders and creators.";
+mixed can_pulsecheck_liv(string str) {
+    if(!creatorp(this_player())) return "此命令仅适用于建造者和创造者。";
     else return 1;
 }
 
@@ -27,12 +27,12 @@ mixed do_pulsecheck_liv(object ob){
     int mhp;
 
     if(!living(ob)) {
-        write("You can only pulsecheck living things.");
+        write("你只能检查活着的生物。");
         return 1;
 
     }
-    write(ob->GetName()+"'s heart_beat is "+query_heart_beat(ob)+".");
-    write(ob->GetName()+"'s HeartRate is "+ob->GetHeartRate()+".\n");
+    write(ob->GetName()+"的心跳是"+query_heart_beat(ob)+"。");
+    write(ob->GetName()+"的心率是"+ob->GetHeartRate()+"。\n");
     return 1;
 }
 

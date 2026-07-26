@@ -14,16 +14,13 @@ protected void create() {
     SetVerb("delete");
     SetRules("enter STR", "room STR", "enter STR", "exit STR", "OBJ", "OBJ from OBJ", "OBJ from here", "OBJ from room");
     SetErrorMessage("Delete what?");
-    SetHelp("Syntax: delete exit <DIRECTION>\n"
+    SetHelp("语法: delete exit <DIRECTION>\n"
             "        delete <OBJECT>\n"
             "        delete <OBJECT> from <OBJECT>\n"
-            "  This command removes an object from the permanent "
-            "inventory of another object. When only one object is specified, "
-            "this command assumes you mean to remove an object from the "
-            "inventory of the room you are in.\n"
-            "  If the \"exit\" keyword is used, this command attempts to "
-            "remove the exit in the direction you specify.\n"
-            "See also: add, copy, create, delete, modify, reload, initfix");
+            "  此命令从另一个对象的永久库存中移除一个对象。"
+            "当只指定一个对象时，此命令假定你要从当前房间的库存中移除该对象。\n"
+            "  如果使用\"exit\"关键字，此命令会尝试移除你指定方向的出口。\n"
+            "另见: add, copy, create, delete, modify, reload, initfix");
 }
 
 
@@ -88,24 +85,23 @@ int eventDeleteObject(object ob1, object ob2){
     object staff;
     staff = present("tanstaafl",this_player());
     if(!staff) {
-        write("You must be holding the creator staff in order to use this command.");
-        write("If you don't know where you put it, get another one from the chest ");
-        write("in your workroom.");
+        write("你必须手持创造者之杖才能使用此命令。");
+        write("如果你不知道把它放在哪里了，可以从你工作室的箱子里再拿一个。");
         return 1;
     }
 
     if(userp(ob1) || userp(ob2)){
-        write("No.");
+        write("不行。");
         return 1;
     }
 
     if(environment(ob1) != ob2) {
-        write("That doesn't exist there.");
+        write("那里不存在该物品。");
         return 1;
     }
 
     if(!check_privs(this_player(),base_name(ob2))){
-        write("You lack sufficient privileges for this operation on "+ob2->GetShort()+". Fail.");
+        write("你没有足够的权限对"+ob2->GetShort()+"执行此操作。失败。");
         return 0;
     }
 
@@ -116,12 +112,12 @@ int eventDeleteObject(object ob1, object ob2){
     }
 
     if(starts_with(base_name(ob2),"/lib/")) {
-        write("This appears to be a library object. Canceling modification.");
+        write("这看起来是一个库对象。修改已取消。");
         return 1;
     }
 
     if(ob2->GetNoModify()){
-        write("This object must be modified by hand.");
+        write("此对象必须手动修改。");
         return 1;
     }
 
@@ -139,9 +135,8 @@ int eventDeleteExit(string str){
     object staff;
     staff = present("tanstaafl",this_player());
     if(!staff) {
-        write("You must be holding the creator staff in order to use this command.");
-        write("If you don't know where you put it, get another one from the chest ");
-        write("in your workroom.");
+        write("你必须手持创造者之杖才能使用此命令。");
+        write("如果你不知道把它放在哪里了，可以从你工作室的箱子里再拿一个。");
         return 1;
     }
 
@@ -150,17 +145,17 @@ int eventDeleteExit(string str){
     enters = load_object(filename)->GetEnters();
 
     if(member_array(str,exits) == -1 && member_array(str,enters) == -1) {
-        write("That exit does not exist here.");
+        write("这里不存在该出口。");
         return 1;
     }
 
     if(base_name(environment(this_player())) == ROOM_START){
-        write("You should edit the start room by hand. Change cancelled.");
+        write("你应该手动编辑起始房间。更改已取消。");
         return 1;
     }
 
     if(!check_privs(this_player(),filename)){
-        write("You can't delete an exit from a room that is not yours.");
+        write("你不能从不属于你的房间删除出口。");
         return 1;
     }
 
@@ -173,13 +168,13 @@ int eventDeleteExit(string str){
     exits = load_object(filename)->GetExits();
 
     if(member_array(str,exits) == -1) {
-        write("Exit successfully removed.");
-        say(this_player()->GetCapName()+" removes an exit.");
+        write("出口已成功移除。");
+        say(this_player()->GetCapName()+"移除了一个出口。");
         return 1;
     }
 
     else {
-        write("Exit removal failed.");
+        write("出口移除失败。");
         return 1;
     }
 

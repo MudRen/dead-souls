@@ -14,35 +14,27 @@ protected void create() {
     SetVerb("reload");
     SetRules("OBJ", "STR OBJ", "STR here", "here", "every STR");
     SetErrorMessage("reload what?");
-    SetHelp("Syntax: reload [every] <OBJ>\n\n"
-            "This command loads into memory the file of the object "
-            "you specify, and replaces the current copy with a new "
-            "copy. If you change something about a sword you are "
-            "holding, for example, \"reload sword\" will update the "
-            "changes and you will be holding a sword with the updates.\n"
-            "  When used with the -r flag it recursively loads all the objects "
-            "inherited by the target object. If any of those objects "
-            "or the target object's file fail to load, the object "
-            "is not updated.\n"
-            "    If you \"reload every npc\", then any loaded object that "
-            "inherits LIB_NPC gets reloaded. Other valid lib objects "
-            "that can be used this way are: room, sentient, armor, item.\n"
-            "Please note that if there are too many items to reload, "
-            "the command will fail with \"Too long evaluation\" errors.\n"
-            "    Books, due to their processing-intensive load time, "
-            "are excluded from the \"every\" keyword.\n"
-            "Please note that reloading a door also reloads the "
-            "door's adjoining rooms.\n"
-            "\nSee also: copy, create, delete, modify, initfix, add");
+    SetHelp("语法: reload [every] <OBJ>\n\n"
+            "此命令将你指定对象的文件加载到内存中，并用新副本替换当前副本。"
+            "例如，如果你更改了你持有的一把剑的某些属性，"
+            "\"reload sword\"将更新更改，你将持有一把更新后的剑。\n"
+            "  使用-r标志时，它会递归加载目标对象继承的所有对象。"
+            "如果其中任何对象或目标对象的文件加载失败，则不会更新该对象。\n"
+            "    如果你\"reload every npc\"，那么任何继承LIB_NPC的已加载对象都会被重新加载。"
+            "其他可以这样使用的有效库对象有: room, sentient, armor, item。\n"
+            "请注意，如果有太多物品需要重新加载，命令会因\"评估超时\"错误而失败。\n"
+            "    由于加载时间较长，书籍不包含在\"every\"关键字中。\n"
+            "请注意，重新加载一扇门也会重新加载该门相邻的房间。\n"
+            "\n另见: copy, create, delete, modify, initfix, add");
 }
 
-mixed can_reload_obj(string str) { 
-    if(!builderp(this_player())) return "This command is only available to builders and creators.";
+mixed can_reload_obj(string str) {
+    if(!builderp(this_player())) return "此命令仅适用于建造者和创造者。";
     else return 1;
 }
 
 mixed can_reload_every_str(string str){
-    if(!builderp(this_player())) return "This command is only available to builders and creators.";
+    if(!builderp(this_player())) return "此命令仅适用于建造者和创造者。";
     else return 1;
 }
 
@@ -59,26 +51,26 @@ mixed can_reload_str_word(string str, string str2){
 }
 
 mixed do_reload_obj(object ob) {
-    string s1,s2, foo = "Null object: ";
+    string s1,s2, foo = "空对象: ";
     if(ob && ob->GetDoor()) ob = load_object(ob->GetDoor());
     if(!creatorp(this_player()) && strsrch(base_name(ob), homedir(this_player()))){
-        write("Builders can only reload things that belong to them.");
+        write("建造者只能重新加载属于他们自己的物品。");
         return 1;
     }
     if(!ob || userp(ob)) {
         if(ob) foo = base_name(ob)+": ";
         if(!quiet){
-            write(foo+"Invalid for reloading.");
+            write(foo+"无法重新加载。");
         }
         return -1;
     }
     if(ob && ob->GetDirectionMap()){
-        write(base_name(ob)+" is a virtual room, and not subject to normal reloading.");
+        write(base_name(ob)+"是虚拟房间，不能进行普通重新加载。");
         return 1;
     }
     if(!strsrch(base_name(ob),"/open") ||
             sscanf(base_name(ob),"/realms/%s/tmp/%s",s1,s2) == 2){
-        write(base_name(ob)+" is a temp file and not subject to reloading.");
+        write(base_name(ob)+"是临时文件，不能重新加载。");
         return 1;
     }
     reload(ob, 0, quiet);
@@ -118,7 +110,7 @@ mixed do_reload_every_str(string str){
     object *ob_pool = ({});
     int count;
     if(!archp(this_player())){
-        write("This verb is intended for arches only.");
+        write("此动词仅适用于大法师。");
         return 1;
     }
 
@@ -135,7 +127,7 @@ mixed do_reload_every_str(string str){
     }
 
     if(!file_exists(libfile) && !file_exists(libfile+".c")){
-        write("There is no such library file.");
+        write("没有这样的库文件。");
         return 1;
     }
 
@@ -147,19 +139,19 @@ mixed do_reload_every_str(string str){
         ob_pool = filter(objects(), (: ( base_name($1) == libfile ) :) );
 
     if(!sizeof(ob_pool)) {
-        write("None found.");
+        write("未找到。");
         return 1;
     }
 
     quiet = 1;
     call_out("unQuiet", 6);
-    write("Reloading...");
+    write("正在重新加载...");
     foreach(object ob in ob_pool){
         if(do_reload_obj(ob) > 0) count++;
     }
     quiet = 0;
 
-    write("Done. Reloaded "+count+" objects.");
+    write("完成。已重新加载"+count+"个对象。");
     libfile = "foo";
     return 1;
 }

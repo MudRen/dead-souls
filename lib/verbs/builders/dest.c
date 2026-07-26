@@ -12,19 +12,19 @@ protected void create() {
     SetVerb("dest");
     SetRules("OBS");
     SetErrorMessage("dest what?");
-    SetHelp("Syntax: dest <OBJ>\n\n"
-            "Destroy an object.\n"
-            "See also: zap");
+    SetHelp("语法: dest <OBJ>\n\n"
+            "销毁一个对象。\n"
+            "另见: zap");
 }
 
-mixed can_dest_obj(string str){ 
-    if(!builderp(this_player())) return "This command is only available to builders and creators.";
+mixed can_dest_obj(string str){
+    if(!builderp(this_player())) return "此命令仅适用于建造者和创造者。";
     else return 1;
 }
 
 mixed can_dest_str(string str){
     if(!creatorp(this_player())){
-        return "Object not found.";
+        return "对象未找到。";
     }
     return can_dest_obj(str);
 }
@@ -32,16 +32,16 @@ mixed can_dest_str(string str){
 mixed do_dest_obj(object ob){
     string name, kn, msg;
     if(base_name(ob) == LIB_DUMMY) {
-        write(capitalize(ob->GetShort())+" isn't a normal destable item. It remains in place.");
+        write(capitalize(ob->GetShort())+"不是普通的可销毁物品。它保持原位。");
         return 1;
     }
     if(archp(ob) && !archp(this_player())){
-        write("You can't dest an admin.");
-        tell_player(ob, this_player()->GetName()+" just tried to dest you.");
+        write("你不能销毁管理员。");
+        tell_player(ob, this_player()->GetName()+"刚刚试图销毁你。");
         return 1;
     }
     if(!creatorp(this_player()) && strsrch(base_name(ob), homedir(this_player()))){
-        write("As a builder, you can only dest items that you created.");
+        write("作为建造者，你只能销毁你自己创建的物品。");
         return 1;
     }
     if(!living(ob)) name = ob->GetShort();
@@ -56,11 +56,11 @@ mixed do_dest_obj(object ob){
     ob->eventDestruct();
     if(ob) destruct(ob);
     if(!ob){
-        write("You dest "+name+".");
+        write("你销毁了"+name+"。");
         say(msg);
     }
     else {
-        write("The dest fails.");
+        write("销毁失败。");
     }
     return 1;
 }
@@ -69,7 +69,7 @@ mixed do_dest_obs(object *obs) {
     foreach(object ob in obs){
         if(!interactive(ob)) do_dest_obj(ob);
     }
-    write("Desting complete.");
+    write("销毁完成。");
     return 1;
 }
 
@@ -87,21 +87,21 @@ mixed do_dest_str(string str){
     }
     if(!file_exists(tmp)) tmp += ".c";
     if(!file_exists(tmp)){
-        write("Object not found.");
+        write("对象未找到。");
         return 1;
     }
     ob = find_object(tmp);
     if(!ob){
-        write("Object is not loaded.");
+        write("对象未加载。");
         return 1;
     }
     write("ob: "+identify(ob));
     ob->eventDestruct();
     if(ob) destruct(ob);
     if(ob){
-        write("Destruct failed.");
+        write("销毁失败。");
         return 1;
     }
-    write(str+" destructed.");
+    write(str+"已销毁。");
     return 1;
 }
