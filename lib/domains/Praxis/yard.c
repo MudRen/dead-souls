@@ -7,7 +7,7 @@ void create() {
     SetProperty("light", 3);
     SetProperty("night light", 2);
     SetProperty("no castle", 1);
-    SetShort("A small yard");
+    SetShort("小庭院");
     SetDayLong( "Daytime makes this beautiful yard at the end of a "
             "small alley glow with peace. Quaint houses surround the yard "
             "on all flanks except to the west where the alley intersects "

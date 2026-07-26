@@ -30,7 +30,7 @@ void create(){
     SetKeyName("e coli");
     SetGermName("e. coli");
     SetId(({"ecoli"}));
-    SetLong("Escherichia coli");
+    SetLong("大肠杆菌");
     SetCure(40);
     SetCommunicable(0);
     SetLifeSpan( (: CalculateDuration :) );
