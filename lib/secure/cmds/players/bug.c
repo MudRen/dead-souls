@@ -47,7 +47,7 @@ mixed cmd(string str) {
             case "-r": Report(args); break;
             case "-p": View(args, 1); break;
             case "-v": View(args); break;
-            default: return "To report a bug, use \"bug -r\".";
+            default: return "要报告bug，请使用 \"bug -r\"。";
         }
     }
     return 1;
@@ -55,7 +55,7 @@ mixed cmd(string str) {
 
 void PreMenu(string str) {
     if( str == "q" ) {
-        message("system", "Exiting the bug tracking system.", this_player());
+        message("system", "退出bug追踪系统。", this_player());
         return;
     }
     MainMenu();
@@ -74,23 +74,23 @@ varargs protected void MainMenu(string str) {
             case "p": View(({}), 1); return;
             case "v": View(({})); return;
             case "q":
-                      message("system", "Exiting the bug tracking system.",
+                      message("system", "退出bug追踪系统。",
                               this_player());
                       return;
         }
     }
     cols = ((int *)this_player()->GetScreen())[0] || 80;
-    tmp = center("Dead Souls Bug Tracking System", cols) + "\n\n";
+    tmp = center("Dead Souls Bug追踪系统", cols) + "\n\n";
     if( creatorp(this_player()) ) {
-        tmp += "a)ssign bug to creator\n";
-        tmp += "c)omplete work on a bug\n";
+        tmp += "a) 将bug分配给创建者\n";
+        tmp += "c) 完成bug的处理\n";
     }
-    if( archp(this_player()) ) tmp += "d)elete a bug from the system\n";
-    tmp += "r)eport a new bug to the system\n";
-    tmp += "v)iew an existing bug or a list of existing bugs\n";
-    tmp += "\nq)uit the bug tracking system\n";
+    if( archp(this_player()) ) tmp += "d) 从系统中删除bug\n";
+    tmp += "r) 向系统报告新bug\n";
+    tmp += "v) 查看现有bug或bug列表\n";
+    tmp += "\nq) 退出bug追踪系统\n";
     message("system", tmp, this_player());
-    message("prompt", "Enter your choice: ", this_player());
+    message("prompt", "请输入选择：", this_player());
     input_to( (: MainMenu :) );
 }
 
@@ -98,12 +98,12 @@ protected void Assign(string *args) {
     int i;
 
     if( !creatorp(this_player()) ) {
-        message("system", "Only creators may use the -a option.",
+        message("system", "只有创建者才能使用 -a 选项。",
                 this_player());
         return;
     }
     if( !(i = sizeof(args)) ) {
-        message("prompt", "Enter in the bug ID: ", this_player());
+        message("prompt", "请输入bug ID：", this_player());
         input_to(function(string str) { Assign(({ str })); });
         return;
     }
@@ -114,8 +114,8 @@ protected void Assign(string *args) {
             if( !archp(this_player()) )
                 Assign( ({ args[0], this_player()->GetCapName() }) );
             else {
-                message("prompt", "Enter the creator to assign it to [" +
-                        this_player()->GetCapName() + "]: ",
+                message("prompt", "请输入要分配给的创建者[" +
+                        this_player()->GetCapName() + "]：",
                         this_player());
                 input_to(function(string str, string id) {
                         if( !str || str == "" )
@@ -126,8 +126,8 @@ protected void Assign(string *args) {
             return;
         }
         else {
-            message("prompt", "Enter in the bug ID to assign to " +
-                    capitalize(args[0]) + ": ", this_player());
+            message("prompt", "请输入要分配给" +
+                    capitalize(args[0]) + "的bug ID：", this_player());
             input_to(function(string id, string str) {
                     Assign( ({ id, str }) );
                     }, args[0]);
@@ -135,14 +135,14 @@ protected void Assign(string *args) {
         }
     }
     else if( i == 2 ) {
-        message("prompt", "Do you wish to comment? [n]: ", this_player());
+        message("prompt", "你想要添加评论吗？[n]：", this_player());
         input_to(function(string str, string *args) {
                 if( !str || str == "" ) str = "n";
                 else str = lower_case(str[0..0]);
                 if( str == "y" ) {
                 string file;
 
-                message("system", "Enter comments on the bug...",
+                message("system", "请输入关于bug的评论...",
                     this_player());
                 file = DIR_TMP "/" + this_player()->GetKeyName();
                 rm(file);
@@ -160,8 +160,8 @@ protected void Assign(string *args) {
         if( (x = to_int(args[0])) < 1 ) {
             who = args[0];
             if( (x = to_int(args[1])) < 1 ) {
-                message("system", "Invalid bug ID " + x + ".", this_player());
-                message("prompt", "Hit return: ", this_player());
+                message("system", "无效的bug ID " + x + "。", this_player());
+                message("prompt", "按回车键继续：", this_player());
                 input_to( (: PreMenu :) );
                 return;
             }
@@ -170,24 +170,24 @@ protected void Assign(string *args) {
         comments = args[2];
         if( !archp(this_player()) && (convert_name(who) !=
                     this_player()->GetKeyName()) ) {
-            message("system", "Only arches may assign bugs to other people.",
+            message("system", "只有管理员才能将bug分配给其他人。",
                     this_player());
-            message("prompt", "Hit return: ", this_player());
+            message("prompt", "按回车键继续：", this_player());
             input_to( (: PreMenu :) );
             return;
         }
         if( !user_exists(convert_name(who)) ) {
-            message("system", "No such creator: " + who, this_player());
-            message("prompt", "Hit return: ", this_player());
+            message("system", "没有该创建者：" + who, this_player());
+            message("prompt", "按回车键继续：", this_player());
             input_to( (: PreMenu :) );
             return;
         }
         if( !(BUGS_D->eventAssign(x, who)) ) {
-            message("system", "Failed to assign bug.", this_player());
+            message("system", "分配bug失败。", this_player());
             return;
         }
         if( comments != "" ) BUGS_D->AddComment(x, comments);
-        message("system", "Assigned bug to " + who + ".", this_player());
+        message("system", "已将bug分配给" + who + "。", this_player());
         return;
     }
 }
@@ -206,23 +206,23 @@ protected void Complete(string *args) {
     int x;
 
     if( !sizeof(args) ) {
-        message("prompt", "Enter the bug ID: ", this_player());
+        message("prompt", "请输入bug ID：", this_player());
         input_to(function(string str) { Complete( ({ str }) ); });
         return;
     }
     else if( !creatorp(this_player()) ) {
-        message("system", "Invalid command.", this_player());
-        message("prompt", "Hit return: ", this_player());
+        message("system", "无效的命令。", this_player());
+        message("prompt", "按回车键继续：", this_player());
         input_to( (: PreMenu :) );
         return;
     }
     else if( (x = to_int(args[0])) < 1 ) {
-        message("system", "Invalid bug ID.", this_player());
-        message("prompt", "Hit return: ", this_player());
+        message("system", "无效的bug ID。", this_player());
+        message("prompt", "按回车键继续：", this_player());
         input_to( (: PreMenu :) );
         return;
     }
-    message("system", "Enter in your comments:", this_player());
+    message("system", "请输入你的评论：", this_player());
     file = DIR_TMP "/" + this_player()->GetKeyName();
     if( file_exists(file) ) rm(file);
     this_player()->eventEdit(file, (: EndComplete, x :));
@@ -234,25 +234,25 @@ void EndComplete(int x) {
     if( previous_object() != this_player(1) ) return;
     file = DIR_TMP "/" + this_player()->GetKeyName();
     if( !(stuff = read_file(file)) ) {
-        message("system", "Edit aborted.", this_player());
+        message("system", "编辑已取消。", this_player());
         rm(file);
         return;
     }
     rm(file);
     if( !(BUGS_D->eventComplete(x, stuff)) ) {
-        message("system", "Failed to set the bug completed.", this_player());
+        message("system", "设置bug为已完成失败。", this_player());
         return;
     }
-    message("system", "Bug marked completed!", this_player());
+    message("system", "bug已标记为完成！", this_player());
 }
 
 protected void Delete(string *args) {
     if( !archp(this_player()) ) {
-        message("system","You must be an arch to delete bugs.", this_player());
+        message("system","只有管理员才能删除bug。", this_player());
         return;
     }
     if( !sizeof(args) ) {
-        message("prompt", "Delete which bug? ", this_player());
+        message("prompt", "要删除哪个bug？", this_player());
         input_to(function(string str) { Delete( ({ str }) ); });
         return;
     }
@@ -260,10 +260,10 @@ protected void Delete(string *args) {
         int x;
 
         if( (x = to_int(args[0])) < 1 )
-            message("system", "Invalid bug ID.", this_player());
+            message("system", "无效的bug ID。", this_player());
         else if( !(BUGS_D->eventDelete(x)) )
-            message("system", "Delete failed.", this_player());
-        else message("system", "Deletion succeeded.", this_player());
+            message("system", "删除失败。", this_player());
+        else message("system", "删除成功。", this_player());
         return;
     }
 }
@@ -279,11 +279,11 @@ protected void Report(string *args) {
         if( x = BUGS_D->eventReport(this_player()->GetCapName(),
                     "approval", bug, data) ) {
             BUGS_D->eventAssign(x, query_privs(environment(this_player())));
-            message("system", "Bug reported.", this_player());
+            message("system", "bug已报告。", this_player());
             return;
         }
         else {
-            message("system", "Error in reporting bug.", this_player());
+            message("system", "报告bug时出错。", this_player());
             return;
         }
     }
@@ -295,31 +295,31 @@ protected void EndReport(string type, string data, string file) {
     int x;
 
     if( !type ) {
-        message("system", "Choose a bug type from among the following:\n",
+        message("system", "请选择bug类型：\n",
                 this_player());
-        message("system", "\tidea (some nifty idea to add to the game)",
+        message("system", "\tidea（添加到游戏中的好主意）",
                 this_player());
-        message("system", "\ttypo (misspelling, lexigraphical weirdness)",
+        message("system", "\ttypo（拼写错误、语法问题）",
                 this_player());
-        message("system", "\tunexplained behaviour (something "
-            "contrary to how you would expect it)", this_player());
-        message("system", "\truntime (one of those nasty error messages)\n",
+        message("system", "\tunexplained behaviour（与预期不符的行为）",
                 this_player());
-        message("system", "\tother\n", this_player());
-        message("prompt", "Enter type: ", this_player());
+        message("system", "\truntime（错误消息）\n",
+                this_player());
+        message("system", "\tother（其他）\n", this_player());
+        message("prompt", "请输入类型：", this_player());
         input_to( (: EndReport :), data, 0);
         return;
     }
     if( !file ) {
         file = DIR_TMP "/" + this_player()->GetKeyName();
         rm(file);
-        message("system", "Enter in a description of the bug.  When done, "
-                "enter a period on a line by itself.", this_player());
+        message("system", "请输入bug的描述。完成后，在空白行输入一个点（.）。",
+                this_player());
         this_player()->eventEdit(file, (: EndReport, type, data, file :));
         return;
     }
     if( !(tmp = read_file(file)) ) {
-        message("system", "Bug report aborted.", this_player());
+        message("system", "bug报告已取消。", this_player());
         rm(file);
         return;
     }
@@ -332,11 +332,11 @@ protected void EndReport(string type, string data, string file) {
     }
     if( !(x = BUGS_D->eventReport(this_player()->GetCapName(),
                     type, tmp, data)) ) {
-        message("system", "Bug report failed.", this_player());
+        message("system", "bug报告失败。", this_player());
         return;
     }
-    message("system", "Bug reported, thank you!  Your tracking id is " +
-            x + ".", this_player());
+    message("system", "bug已报告，谢谢！你的追踪ID是 " +
+            x + "。", this_player());
 }
 
 varargs protected void View(string *args, int print) {
@@ -344,25 +344,25 @@ varargs protected void View(string *args, int print) {
     function f;
 
     f = function() {
-        message("prompt", "\nHit return: ", this_player());
+        message("prompt", "\n按回车键继续：", this_player());
         input_to( (: PreMenu :) );
     };
     if( !sizeof(args) ) {
-        message("system", "View:\n\t1) all bugs\n"
-            "\t2) unassigned bugs only\n"
-            "\t3) assigned bugs only\n"
-            "\t4) completed bugs only\n", this_player());
+        message("system", "查看：\n\t1) 所有bug\n"
+            "\t2) 仅未分配的bug\n"
+            "\t3) 仅已分配的bug\n"
+            "\t4) 仅已完成的bug\n", this_player());
         if( creatorp(this_player()) )
-            message("prompt", "Enter a choice [3]: " , this_player());
-        else message("prompt", "Enter a choice [1]: ", this_player());
+            message("prompt", "请选择 [3]：", this_player());
+        else message("prompt", "请选择 [1]：", this_player());
         input_to(function(string str, string it_sucks, int print) {
                 if( !str || str == "" ) {
                 if( creatorp(this_player()) ) str = "3";
                 else str = "1";
                 }
                 if( str < "1" || str > "4" ) {
-                message("system", "Invalid selection", this_player());
-                message("prompt", "Hit return: ", this_player());
+                message("system", "无效的选择", this_player());
+                message("prompt", "按回车键继续：", this_player());
                 input_to( (: PreMenu :) );
                 return;
                 }
@@ -385,9 +385,9 @@ varargs protected void View(string *args, int print) {
                 tmp += GetBugString(bug_id, bugs) + "\n*****\n\n";
         }
         if( tmp == "" ) {
-            message("system", "No bugs meet your query criteria.",
+            message("system", "没有符合条件的bug。",
                     this_player());
-            message("prompt", "Hit return: ", this_player());
+            message("prompt", "按回车键继续：", this_player());
             input_to( (: PreMenu :) );
             return;
         }
@@ -395,15 +395,15 @@ varargs protected void View(string *args, int print) {
         return;
     }
     else if( sizeof(args) == 1 ) {
-        message("system", "View:\n\t1) all bugs\n"
-            "\t2) bugs assigned to me\n"
-            "\t3) bugs reported by me\n", this_player());
-        message("prompt", "Enter choice [2]: ", this_player());
+        message("system", "查看：\n\t1) 所有bug\n"
+            "\t2) 分配给我的bug\n"
+            "\t3) 我报告的bug\n", this_player());
+        message("prompt", "请选择 [2]：", this_player());
         input_to(function(string str, string one, int print) {
                 if( !str || str == "" ) str = "2";
                 else if( str < "1" || str > "3" ) {
-                message("system", "Invalid selection.", this_player());
-                message("prompt", "Hit return: ", this_player());
+                message("system", "无效的选择。", this_player());
+                message("prompt", "按回车键继续：", this_player());
                 input_to( (: PreMenu :) );
                 return;
                 }
@@ -444,8 +444,8 @@ varargs protected void View(string *args, int print) {
             }
         }
         if( tmp == "" ) {
-            message("system", "No bugs match your query.", this_player());
-            message("prompt", "Hit return: ", this_player());
+            message("system", "没有匹配的bug。", this_player());
+            message("prompt", "按回车键继续：", this_player());
             input_to( (: PreMenu :) );
             return;
         }
@@ -464,46 +464,42 @@ nosave string GetBugString(int id, mapping bugs) {
     string tmp;
 
     tmp = "%^YELLOW%^Bug ID:%^RESET%^ " + id + "\n";
-    tmp += "%^YELLOW%^Reported by:%^RESET%^ " +
+    tmp += "%^YELLOW%^报告者：%^RESET%^" +
         bugs[id]["who"] + "\n";
     if( bugs[id]["assigned"] ) {
-        tmp += "%^YELLOW%^Status: %^RESET%^";
+        tmp += "%^YELLOW%^状态：%^RESET%^";
         if( !bugs[id]["date fixed"] )
-            tmp += "assigned to " + bugs[id]["assigned"] + "\n";
-        else tmp += "completed " + ctime(bugs[id]["date fixed"]) + "\n";
+            tmp += "已分配给 " + bugs[id]["assigned"] + "\n";
+        else tmp += "已完成 " + ctime(bugs[id]["date fixed"]) + "\n";
     }
-    else tmp += "%^YELLOW%^Status:%^RESET%^ unassigned\n";
-    tmp += "%^YELLOW%^Type:%^RESET%^ " + bugs[id]["type"] + "\n";
+    else tmp += "%^YELLOW%^状态：%^RESET%^未分配\n";
+    tmp += "%^YELLOW%^类型：%^RESET%^" + bugs[id]["type"] + "\n";
     if( bugs[id]["date fixed"] )
-        tmp += "%^YELLOW%^Notes:%^RESET%^\n" + bugs[id]["resolution"] + "\n";
+        tmp += "%^YELLOW%^备注：%^RESET%^\n" + bugs[id]["resolution"] + "\n";
     if( creatorp(this_player()) )
-        tmp += "\n%^YELLOW%^Creator info:%^RESET%^\n" + bugs[id]["data"] + "\n";
-    tmp += "\n%^YELLOW%^Bug info:%^RESET%^\n" + bugs[id]["bug"] + "\n";
+        tmp += "\n%^YELLOW%^创建者信息：%^RESET%^\n" + bugs[id]["data"] + "\n";
+    tmp += "\n%^YELLOW%^Bug信息：%^RESET%^\n" + bugs[id]["bug"] + "\n";
     return tmp;
 }
 
 string GetHelp(){
     string tmp;
 
-    tmp = "Syntax: bug\n";
+    tmp = "命令格式：bug\n";
     if( creatorp(this_player()) ) {
-        tmp += "        bug -a <BUG_ID CREATOR>\n";
+        tmp += "        bug -a <BUG_ID 创建者>\n";
         tmp += "        bug -c <BUG_ID>\n";
     }
     if( archp(this_player()) ) tmp += "        bug -d <BUG_ID>\n";
     tmp += "        bug -r\n        bug -v [1-4] [1-3]\n\n";
-    tmp += "The command interface to the Dead Souls Bug Tracking System.  "
-        "You can simply type \"bug\" and be prompted for further options, "
-        "or, if you understand the system, pass command line arguments "
-        "to the bug command to make things go faster.  This system allows "
-        "players to report bugs or ideas and periodically see what has "
-        "been done about their report.  It also allows creators a way "
-        "to track bugs which have been reported to them and give feedback "
-        "to the players who have reported them.  It gives admins a way to "
-        "track and assign mudlib level bugs.  The options above correspond "
-        "to assigning, completing, deleting, reporting, and viewing bugs "
-        "respectively.\n"
-        "See also: praise";
+    tmp += "Dead Souls Bug追踪系统的命令接口。"
+        "你可以直接输入\"bug\"来获取进一步选项，"
+        "或者如果你熟悉系统，可以直接使用命令行参数。"
+        "这个系统允许玩家报告bug或建议，并定期查看报告的处理情况。"
+        "它也为创建者提供了一种追踪已报告bug并向报告玩家反馈的方式。"
+        "它为管理员提供了一种追踪和分配mudlib级别bug的方式。"
+        "上述选项分别对应分配、完成、删除、报告和查看bug。\n"
+        "参见：praise";
     return tmp;
 }
 

@@ -15,25 +15,25 @@ mixed cmd(string args) {
     object ob;
 
     if( previous_object()->GetForced() )
-        return "You cannot be forced to change your password.";
+        return "你不能被强制修改密码。";
     if( args && args != "" ) {
         if( !archp(previous_object()) )
-            return "You may not change other people's passwords.";
+            return "你不能修改其他玩家的密码。";
         if( !user_exists(args = convert_name(args)) )
-            return "No such user exists.";
+            return "该用户不存在。";
         ob = find_player(args);
     }
     else ob = previous_object();
-    previous_object()->eventPrint("Changing password for " +
+    previous_object()->eventPrint("正在为" +
             (ob ? ob->GetCapName() :
-             capitalize(args)) + " on " +
-            mud_name() + ".", MSG_SYSTEM);
+             capitalize(args)) + "在" +
+            mud_name() + "上修改密码。", MSG_SYSTEM);
     if( previous_object() == ob ) {
-        ob->eventPrint("Old password: ", MSG_PROMPT);
+        ob->eventPrint("旧密码：", MSG_PROMPT);
         input_to( (: OldPass :), I_NOECHO | I_NOESC, ob);
     }
     else  {
-        previous_object()->eventPrint("New password: ", MSG_PROMPT);
+        previous_object()->eventPrint("新密码：", MSG_PROMPT);
         input_to( (: NewPass :), I_NOECHO | I_NOESC, ob || args);
     }
     return 1;
@@ -44,32 +44,31 @@ protected void OldPass(string pass, object who) {
 
     if( who != this_player() ) return;
     if( !pass || pass == "" ) {
-        who->eventPrint("\nPassword change failed.", MSG_SYSTEM);
+        who->eventPrint("\n密码修改失败。", MSG_SYSTEM);
         return;
     }
     oldpass = this_player()->GetPassword();
     if( oldpass != crypt(pass, oldpass) ) {
-        who->eventPrint("\nPassword change failed.", MSG_SYSTEM);
+        who->eventPrint("\n密码修改失败。", MSG_SYSTEM);
         return;
     }
-    who->eventPrint("\nNew password: ", MSG_PROMPT);
+    who->eventPrint("\n新密码：", MSG_PROMPT);
     input_to((: NewPass :), I_NOECHO | I_NOESC, who);
 }
 
 protected void NewPass(string pass, mixed who) {
     if( !pass || strlen(pass) < 5 ) {
-        this_player()->eventPrint("Password must be at least 5 "
-                "characters, password change failed.",
+        this_player()->eventPrint("密码至少需要5个字符，密码修改失败。",
                 MSG_SYSTEM);
         return;
     }
-    this_player()->eventPrint("\nConfirm: ", MSG_PROMPT);
+    this_player()->eventPrint("\n确认新密码：", MSG_PROMPT);
     input_to( (: ConfirmPass :), I_NOECHO | I_NOESC, who, pass);
 }
 
 protected void ConfirmPass(string str, mixed who, string newpass) {
     if( str != newpass ) {
-        this_player()->eventPrint("Passwords do not match.", MSG_SYSTEM);
+        this_player()->eventPrint("两次输入的密码不一致。", MSG_SYSTEM);
         return;
     }
     if( objectp(who) ) who->SetPassword(crypt(newpass, 0));
@@ -87,15 +86,15 @@ protected void ConfirmPass(string str, mixed who, string newpass) {
             unguarded((: write_file, who, line + "\n" :));
         }
     }
-    this_player()->eventPrint("\nPassword changed.", MSG_SYSTEM);
+    this_player()->eventPrint("\n密码已修改。", MSG_SYSTEM);
 }
 
 string GetHelp(){
     int i;
-    string ret = "Syntax: passwd\n";
-    if(i = (archp(this_player()))) ret += "        passwd <PLAYER>\n";
-    ret += "\nThis command allows you to change your password";
-    if(i) ret += " or that of the specified player";
-    ret += ".\n See also: chfn";
+    string ret = "命令格式：passwd\n";
+    if(i = (archp(this_player()))) ret += "        passwd <玩家>\n";
+    ret += "\n此命令允许你修改自己的密码";
+    if(i) ret += "或指定玩家的密码";
+    ret += "。\n参见：chfn";
     return ret;
 }

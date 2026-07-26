@@ -36,12 +36,12 @@ mixed cmd(string args) {
     string log_contents, location;
     gfile = "";
 
-    if(!args){ 
-        this_player()->eventPrint("Syntax: <hist [channel | say]>");
+    if(!args){
+        this_player()->eventPrint("命令格式：<hist [频道 | say]>");
         return 1;
     }
 
-    this_player()->eventPrint("Retrieving history...\n");
+    this_player()->eventPrint("正在获取历史记录...\n");
 
     if(!strsrch(args, "tell")){
         load_object(CMD_TELL)->cmd("hist");
@@ -67,17 +67,17 @@ mixed cmd(string args) {
     }
     talks = this_player()->GetTalkHistTypes();
     if(talks && member_array(gfile, talks) != -1){
-        string ret2 = "Your "+gfile+" history: \n\n";
+        string ret2 = "你的"+gfile+"历史记录：\n\n";
         ret2 += implode(this_player()->GetTalkHistory(gfile),"\n");
         print_long_string(this_player(), ret2);
         return 1;
     }
 
     if(!CHAT_D->CanListen(this_player(), gfile)){
-        return "You do not have privileges to: "+gfile;
+        return "你没有权限访问："+gfile;
     }
     if(!CHAT_D->GetListening(this_player(), gfile)){
-        return "You are not listening to channel: "+gfile;
+        return "你没有在收听频道："+gfile;
     }
     if(gfile == "admin"){
         location = "/secure/log/admin";
@@ -110,12 +110,12 @@ mixed cmd(string args) {
 }
 
 string GetHelp(){
-    string ret = "Syntax: hist <CHANNEL> [number]\n"
+    string ret = "命令格式：hist <频道> [数量]\n"
         "        hist [ say | whisper | tell | yell | shout ]\n\n"
-        "Gives you the backscroll of the specified communication.\n";
+        "显示指定通讯的历史记录。\n";
     if(!LOG_REMOTE_CHANS){
-        ret += "Note that remote channel logging is not enabled on "
-            "this mud, so hist for intermud channels will not work.";
+        ret += "注意：本MUD没有启用远程频道日志，"
+            "因此跨MUD频道的hist命令将不起作用。";
     }
     return ret;
 }

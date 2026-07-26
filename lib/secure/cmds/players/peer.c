@@ -15,7 +15,7 @@ mixed cmd(string str) {
     string file;
     object env, *livings, *items;
 
-    if( !sizeof(str) ) return "Syntax: peer <direction>";
+    if( !sizeof(str) ) return "命令格式：peer <方向>";
     switch(str){
         case "n" : str = "north";break;
         case "ne" : str = "northeast";break;
@@ -31,39 +31,39 @@ mixed cmd(string str) {
     env = environment(this_player());
     if( !file = env->GetExit(str) ) file = env->GetEnter(str);
     if( !sizeof(file) )
-        return "You cannot peer that way.";
+        return "你无法朝那个方向窥视。";
     if( (i = this_player()->GetEffectiveVision()) > 5 )
-        return "It is too bright to do that.";
+        return "光线太强了，无法窥视。";
     if( env->GetDoor(str) && !((env->GetDoor(str))->CanPeer()) ) {
-        message("my_action", sprintf("%s is blocking your view %s.",
+        message("my_action", sprintf("%s挡住了你朝%s方向的视线。",
                     (capitalize(env->GetDoor(str)->GetShort(str))), str),
                 this_player() );
         return 1;
     }
     err = catch(env = load_object(file));
     if(err || !env){
-        message("my_action", "It is not safe to peer "+str+"!", this_player() );
+        message("my_action", "朝"+str+"方向窥视不安全！", this_player() );
         return 1;
     }
     if(env->GetProperty("no peer")){
-        return "You can't see in that direction.";
+        return "你看不到那个方向。";
     }
     if(env->GetProperty("nopeer")){
-        return "You can't see in that direction.";
+        return "你看不到那个方向。";
     }
     if( (i = this_player()->GetEffectiveVision(file,1)) > 5 )
-        return "It is too bright in that direction.";
+        return "那个方向光线太强了。";
     else if( i < 3 )
-        return "It is too dark there.";
+        return "那里太暗了。";
 
     items = filter(all_inventory(env),
             (: !$1->GetInvis(this_player()) :) );
     items = items - (livings = filter(items, (: living :)));
     message("my_action", "%^GREEN%^"
-            "Peering "+str+" you see...",
+            "你朝"+str+"方向窥视，看到了...",
             this_player() );
     message("other_action",
-            this_player()->GetCapName()+" peers "+str+".",
+            this_player()->GetCapName()+"朝"+str+"方向窥视。",
             environment(this_player()), this_player() );
     message("room_description",
             ("\n"+env->GetLong(0)+"\n" || "\nA void.\n"),
@@ -97,11 +97,11 @@ string DescribeItems(mixed var) {
         if( m[ shorts[i] ] < 2 ) ret += shorts[i];
         else ret += consolidate(m[shorts[i]], shorts[i]);
         if( i == (max - 1) ) {
-            if( max>1 || m[ shorts[i] ] > 1 ) ret += " are here.";
-            else ret += " is here.";
+            if( max>1 || m[ shorts[i] ] > 1 ) ret += "在这里。";
+            else ret += "在这里。";
         }
-        else if( i == (max - 2) ) ret += ", and ";
-        else ret += ", ";
+        else if( i == (max - 2) ) ret += "和";
+        else ret += "、";
     }
     return capitalize(ret);
 }
@@ -126,8 +126,7 @@ string DescribeLiving(mixed var) {
 }
 
 string GetHelp(){
-    return ("Syntax: peer <direction>\n\n"
-            "Allows you to look into an adjacent room without actually "
-            "entering it.  Note that light and doorways affect what you "
-            "see.");
+    return ("命令格式：peer <方向>\n\n"
+            "允许你在不进入房间的情况下窥视相邻的房间。"
+            "注意：光线和门会影响你看到的内容。");
 }

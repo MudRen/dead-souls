@@ -10,13 +10,13 @@ void remote_finger(object me, string target, string mud);
 mixed cmd(string str) {
     string wer, wo;
 
-    if(!str) return "Finger whom?";
+    if(!str) return "你想finger谁？";
 
     if(!str) {
         string ret;
 
         ret = FINGER_D->GetFinger(0);
-        if( !ret ) return "General finger appears broken.";
+        if( !ret ) return "通用finger功能似乎出现了问题。";
         this_player()->eventPage(explode(ret, "\n"), MSG_SYSTEM);
         return 1;
     }
@@ -26,7 +26,7 @@ mixed cmd(string str) {
         string ret;
 
         ret = FINGER_D->GetFinger(convert_name(str));
-        if( !ret ) return "Finger of "+ capitalize(str) + " failed.";
+        if( !ret ) return "finger " + capitalize(str) + " 失败了。";
         this_player()->eventPage(explode(ret, "\n"), MSG_SYSTEM);
     }
     return 1;
@@ -39,24 +39,24 @@ void remote_finger(object ob, string who, string mud) {
 
     if ( mud = INTERMUD_D->GetMudName(mud) ) {
         SERVICES_D->eventSendFingerRequest(convert_name(who), mud);
-        message("system", "Remote finger sent to " + mud + ".", this_player());
+        message("system", "远程finger请求已发送到 " + mud + "。", this_player());
         return;
     }
 
     if ( mud = IMC2_D->find_mud(mud) ) {
         IMC2_D->finger(who+"@"+mud, ob);
-        message("system", "Remote finger sent to " + mud + " on the IMC2 network.", this_player());
+        message("system", "远程finger请求已通过IMC2网络发送到 " + mud + "。", this_player());
         return;
     }
 
-    message("system", mud_name() + " is blissfully unaware of that mud on either the I3 or IMC2 networks.", this_player());
+    message("system", mud_name() + "在I3或IMC2网络上都没有找到该MUD。", this_player());
 }
 
 string GetHelp(){
-    return "Syntax: finger [[player]@[mud]]\n\n"
-        "Gives you information about a player named. If you do not mention "
-        "a particular mud, it searches for that player info here. "
-        " If you mention another mud but no player, "
-        "it may give you general info on the players on that mud.\n"
-        "See also: mail, rwho, tell, users, who";
+    return "命令格式：finger [[玩家]@[MUD]]\n\n"
+        "显示指定玩家的信息。如果没有指定MUD，"
+        "则在本MUD中搜索该玩家的信息。"
+        "如果指定了另一个MUD但没有指定玩家，"
+        "可能会显示该MUD上玩家的一般信息。\n"
+        "参见：mail, rwho, tell, users, who";
 }

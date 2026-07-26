@@ -31,15 +31,15 @@ mixed cmd(string str) {
     int i, maxi, insttell;
     string who, msg, tmp, tmp2, machine_message, retname, me;
 
-    if(!str) return notify_fail("Syntax: tell <who> <message>\n");
+    if(!str) return notify_fail("命令格式：tell <谁> <消息>\n");
     if(str == "hist" || str == "history"){
-        string ret = "Your tell history: \n\n"; 
+        string ret = "你的tell历史记录：\n\n"; 
         ret += implode(this_player()->GetTellHistory(),"\n");
         print_long_string(this_player(), ret);
         return 1;
     }
     if(!creatorp(this_player()) && this_player()->GetMagicPoints() < 15) {
-        write("You lack sufficient magic to tell to anyone right now.");
+        write("你的魔法值不足，无法发送消息。");
         return 1;
     }
     mud = 0;
@@ -72,10 +72,10 @@ mixed cmd(string str) {
             }
         }
         if(!CheckMud(mud) && !(IMC2_D->GetMudName(mud))){
-            write("No such mud found.");
+            write("没有找到该MUD。");
             return 1;
         }
-        if(!sizeof(msg)) return notify_fail("Syntax: tell <who> <message>\n");
+        if(!sizeof(msg)) return notify_fail("命令格式：tell <谁> <消息>\n");
         if(!mud) mud = -1;
     }
     if(!mud || mud == -1){
@@ -101,25 +101,25 @@ mixed cmd(string str) {
             if(!mud){
                 words -= ({ retname });
                 msg = implode(words," ");
-                this_player()->eventTellHist("You tried to tell "+retname+": "+
+                this_player()->eventTellHist("你试图告诉 "+retname+": "+
                         "%^BLUE%^%^BOLD%^"+ msg + "%^RESET%^");
                 insttell = 1;
                 INSTANCES_D->SendTell(retname, msg);
-                write("Tell whom what?");
+                write("告诉谁什么？");
                 return 1;
             }
             else {
                 if(grepp(who, "@")){
-                    write("Malformed message.");
+                    write("格式错误的消息。");
                 }
                 else {
-                    write(mud_name()+" is offline or doesn't exist.\n");
+                    write(mud_name()+" 离线或不存在。\n");
                 }
                 return 1;
             }
         }
         if(msg == ""){
-            write("What do you wish to tell?\n");
+            write("你想说什么？\n");
             return 1;
         }
     }
@@ -153,14 +153,14 @@ mixed cmd(string str) {
         }
         if( (err = this_player()->CanSpeak(ob, "tell", msg)) != 1){
             if(ob && !creatorp(ob)) this_player()->AddMagicPoints(15);
-            this_player()->eventTellHist("You tried to tell "+retname+": "+
+            this_player()->eventTellHist("你试图告诉 "+retname+": "+
                     "%^BLUE%^%^BOLD%^"+ msg + "%^RESET%^");
-            return err || "Tell whom what?";
+            return err || "告诉谁什么？";
         }
-        if( ob->GetInvis() && ( ( archp(ob) && !archp(this_player()) ) 
+        if( ob->GetInvis() && ( ( archp(ob) && !archp(this_player()) )
                     || ( creatorp(ob) && !creatorp(this_player()) ) ) ){
-            string inv_ret = "%^BLUE%^%^BOLD%^" + me + 
-                " unknowingly tells you, %^RESET%^\"" + msg + "\"";
+            string inv_ret = "%^BLUE%^%^BOLD%^" + me +
+                " 不知情地告诉你，%^RESET%^\"" + msg + "\"";
             if(!machine_message){
                 ob->eventPrint(inv_ret);
             }
@@ -169,11 +169,11 @@ mixed cmd(string str) {
             ob->SetProperty("reply_time", time());
             if(!insttell) INSTANCES_D->SendTell(who, msg);
             insttell = 1;
-            this_player()->eventTellHist("You tried to tell "+retname+": "+
+            this_player()->eventTellHist("你试图告诉 "+retname+": "+
                     "%^BLUE%^%^BOLD%^"+ msg + "%^RESET%^");
-            if(query_verb() == "tell") return "Tell whom what?";
+            if(query_verb() == "tell") return "告诉谁什么？";
             else {
-                write("Tell whom what?");
+                write("告诉谁什么？");
                 return 1;
             }
         }
@@ -181,7 +181,7 @@ mixed cmd(string str) {
 #ifdef BLOCK_TELLS_TO_AFK
         if(ob->GetProperty("afk")) {
             message("my_action", ob->GetName()+
-                    " is afk and cannot receive your message.", this_player()); 
+                    "正在离开，无法接收你的消息。", this_player());
         }
 #endif
         else this_player()->eventSpeak(ob, TALK_PRIVATE, msg);
@@ -189,22 +189,22 @@ mixed cmd(string str) {
         ob->SetProperty("reply_time", time());
         if(!archp(ob) && userp(ob) && (query_idle(ob) > 60))
             message("my_action", ob->GetName()+
-                    " is idle and may not have been paying attention.", this_player());
+                    "正在发呆，可能没有注意到你的消息。", this_player());
         else if((in_edit(ob) || in_input(ob))
 #ifdef __DSLIB__
                 && !query_charmode(ob)
 #endif
                )
-            message("my_action", ob->GetCapName()+" is in input "+
-                    "and may not be able to respond.", this_player());
+            message("my_action", ob->GetCapName()+"正在输入中，"+
+                    "可能无法回复。", this_player());
         else if(ob->GetSleeping())
-            message("my_action", ob->GetCapName()+" is sleeping "+
-                    "and is unable to respond.", this_player());
+            message("my_action", ob->GetCapName()+"正在睡觉，"+
+                    "无法回复。", this_player());
     }
     else {
         string ret;
-        ret = "%^BOLD%^RED%^You tell " + capitalize(who) +
-            ":%^RESET%^ " + msg;
+        ret = "%^BOLD%^RED%^你告诉 " + capitalize(who) +
+            "：%^RESET%^ " + msg;
         this_player(1)->eventPrint(ret, MSG_CONV);
         this_player(1)->eventTellHist(ret);
         if(!insttell) INSTANCES_D->SendTell(who, msg);
@@ -213,11 +213,10 @@ mixed cmd(string str) {
 }
 
 string GetHelp(){
-    return ("Syntax: tell <player> <message>\n"
-            "        tell <player>@<mud> <message>\n\n"
-            "Sends the message to the player named either on this mud if no "
-            "mud is specified, or to the player named on another mud when "
-            "another mud is specified. If the other mud is on an IMC2 network "
-            "rather than an Intermud-3 network, use \"imc2 tell\""
-            "\nSee also: imc2, say, shout, yell, emote");
+    return ("命令格式：tell <玩家> <消息>\n"
+            "        tell <玩家>@<MUD> <消息>\n\n"
+            "向指定玩家发送消息。如果没有指定MUD，则发送给本MUD上的玩家；"
+            "如果指定了MUD，则发送给另一个MUD上的玩家。"
+            "如果另一个MUD使用的是IMC2网络而不是Intermud-3网络，请使用 \"imc2 tell\""
+            "\n参见：imc2, say, shout, yell, emote");
 }

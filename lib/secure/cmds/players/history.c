@@ -18,14 +18,13 @@ mixed cmd(string args) {
     if( x = to_int(args) ) {
         if( previous_object()->SetHistorySize(x) != x ) {
             if( x < MIN_HISTORY_SIZE )
-                return "History size must be at least " + MIN_HISTORY_SIZE + ".";
+                return "历史记录大小至少为 " + MIN_HISTORY_SIZE + "。";
             else if( x > MAX_HISTORY_SIZE )
-                return "History size can be no larger than " + MAX_HISTORY_SIZE +
-                    ".";
-            else return "Invalid history size.";
+                return "历史记录大小不能超过 " + MAX_HISTORY_SIZE + "。";
+            else return "无效的历史记录大小。";
         }
         else {
-            previous_object()->eventPrint("History size set to: " + x);
+            previous_object()->eventPrint("历史记录大小已设置为：" + x);
         }
     }
     else {
@@ -45,25 +44,20 @@ mixed cmd(string args) {
 }
 
 string GetHelp(string str) {
-    return ("Syntax: history\n"
-            "        history <SIZE>\n\n"
-            "This command lets you check your command history.  A command "
-            "history is kept for the commands you enter, allowing you "
-            "quick access to execute or modify previous commands.  The size "
-            "of your command buffer defaults to " + MIN_HISTORY_SIZE + " but "
-            "may be expanded to " + MAX_HISTORY_SIZE + " if you desire.  You "
-            "can change the size of your history buffer by passing the size "
-            "as an argument to the history command.  Without arguments, the "
-            "command simply prints the commands in your history buffer.\n\n"
-            "The following syntaxes are available for accessing previously "
-            "issued commands:\n"
-            "\t!!\t\texecute the last command\n"
-            "\t!#\t\texecute command number #\n"
-            "\t!-#\t\texecute #th command prior\n"
-            "\t^old^new\treplace 'old' with 'new' in last command and "
-            "execute\n"
-            "\t!#^old^new\tsame as above, except for command number #\n"
-            "\t!#s/old/new/g\tsame as above, except replacing all "
-            "occurrences of 'old'\n\n"
-            "See also: alias, nickname");
+    return ("命令格式：history\n"
+            "        history <大小>\n\n"
+            "此命令让你查看命令历史记录。系统会记录你输入的命令，"
+            "方便你快速执行或修改之前的命令。"
+            "命令缓冲区的默认大小为" + MIN_HISTORY_SIZE + "，"
+            "但你可以扩展到" + MAX_HISTORY_SIZE + "。"
+            "你可以通过传递大小参数来更改历史缓冲区的大小。"
+            "不带参数时，命令会显示历史缓冲区中的命令。\n\n"
+            "以下是访问之前命令的语法：\n"
+            "\t!!\t\t执行上一条命令\n"
+            "\t!#\t\t执行第#条命令\n"
+            "\t!-#\t\t执行之前第#条命令\n"
+            "\t^old^new\t在上一条命令中将'old'替换为'new'并执行\n"
+            "\t!#^old^new\t同上，但针对第#条命令\n"
+            "\t!#s/old/new/g\t同上，但替换所有出现的'old'\n\n"
+            "参见：alias, nickname");
 }

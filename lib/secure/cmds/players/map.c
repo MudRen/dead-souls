@@ -15,6 +15,6 @@ mixed cmd(string args) {
 }
 
 string GetHelp(){
-    return ("Syntax: map\n\n"
-            "Displays a simple map of your location.");
+    return ("命令格式：map\n\n"
+            "显示你当前位置的简单地图。");
 }

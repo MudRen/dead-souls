@@ -50,7 +50,7 @@ mixed cmd(string text) {
                 ctime(time()) + ":\n";
         log_file("praise", tmp + text + "\n\n");
         if( secondary ) log_file("reports/" + secondary, tmp + text + "\n\n");
-        message("system", "Praise reported!!! Thank you!!!", this_player());
+        message("system", "赞美已报告！！！谢谢！！！", this_player());
         return 1;
     }
     rm( file = DIR_TMP "/" + this_player()->GetKeyName() );
@@ -63,7 +63,7 @@ void eventEndEdit(object ob) {
 
     file = DIR_TMP "/" + this_player()->GetKeyName();
     if( !file_exists(file) || !(text = read_file(file)) ) {
-        message("system", "Praise report aborted.", this_player());
+        message("system", "赞美报告已取消。", this_player());
         return;
     }
     rm(file);
@@ -77,7 +77,7 @@ void eventEndEdit(object ob) {
             ctime(time()) + ":\n";
     log_file("praise", tmp + text + "\n\n");
     if( secondary ) log_file("reports/" + secondary, tmp + text + "\n\n"); 
-    message("system", "Praise reported!!! Thank you!!!", this_player());
+    message("system", "赞美已报告！！！谢谢！！！", this_player());
 }
 
 string GetCreator(object ob) {
@@ -90,13 +90,11 @@ string GetCreator(object ob) {
 }
 
 string GetHelp(){
-    return ("Syntax: praise [object] [message]\n\n"
-            "Allows you to praise things in the MUD to both the MUD "
-            "administrators as well as to the creator of the object you "
-            "are referencing (if any).  If you do not specify an object, "
-            "then the report will be sent to the creator of the room in which "
-            "you are located in addition to the MUD administrators.  If you "
-            "fail to specify text on the command line, then you will be put "
-            "into the editor in order to compose the report.\n"
-            "See also: bug, idea");
+    return ("命令格式：praise [对象] [消息]\n\n"
+            "允许你向MUD管理员以及你所引用对象的创建者（如果有）"
+            "表达赞美。如果没有指定对象，报告将发送给"
+            "你所在房间的创建者以及MUD管理员。"
+            "如果在命令行中没有指定文本，"
+            "你将进入编辑器来撰写报告。\n"
+            "参见：bug, idea");
 }

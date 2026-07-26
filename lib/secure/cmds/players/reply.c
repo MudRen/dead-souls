@@ -18,11 +18,11 @@ int cmd(string str) {
     reply = this_player()->GetProperty("reply");
     if(!reply) reply = "no one";
     if(!str) {
-        notify_fail("Current reply addressee: "+capitalize(reply)+"\n");
+        notify_fail("当前回复对象："+capitalize(reply)+"\n");
         return 0;
     }
     if(reply == "no one") {
-        notify_fail("No current reply addressee.\n");
+        notify_fail("当前没有回复对象。\n");
         return 0;
     }
     this_player()->SetProperty("reply_time", time());
@@ -31,9 +31,8 @@ int cmd(string str) {
 }
 
 string GetHelp(){
-    return ("Syntax: reply [message]\n\n"
-            "With a message, it replies to the person who last told or replied "
-            "to you.  Without a message, it shows who the current object of "
-            "your reply would be.\nSee also: "
-            "finger, idle, muds, say, shout, tell, yell");
+    return ("命令格式：reply [消息]\n\n"
+            "带消息时，回复最后给你发消息的人。"
+            "不带消息时，显示当前回复对象是谁。\n"
+            "参见：finger, idle, muds, say, shout, tell, yell");
 }
