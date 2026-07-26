@@ -35,8 +35,8 @@ int r_sign(string str){
 }
 int untie_r(string str){
     if(str=="rope" || str=="yellow rope"){
-        write("The rope is quite firmly tied. You fail.\n");
-        say(this_player()->GetName()+" fails to untie the rope.\n");
+        write("绳子绑得非常紧。你失败了。\n");
+        say(this_player()->GetName()+"没能解开绳子。\n");
         return 1;
     }
 }

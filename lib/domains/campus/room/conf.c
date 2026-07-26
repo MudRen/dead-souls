@@ -36,12 +36,12 @@ protected void create() {
 }
 int CanReceive(object ob) {
     if(ob && interactive(ob) && !environment(ob)){
-        write("You are whisked to the main start point.");
+        write("你被送到了主起点。");
         ob->eventMoveLiving(ROOM_START);
         return 0;
     }
     if(member_array(ob, ejected_players) != -1) {
-        write("You have been ejected from the meeting room and may not return.");
+        write("你已被逐出会议室，不得返回。");
         return 0;
     }
     return ::CanReceive(ob);
@@ -53,10 +53,10 @@ void init(){
 
 object *AddEjected(object punk){
     if(member_array(punk, ejected_players) == -1){
-        write(capitalize(punk->GetKeyName())+" has been added to the ejected list.");
+        write(capitalize(punk->GetKeyName())+"已被添加到驱逐名单中。");
         ejected_players += ({ punk });
     }
-    else write(capitalize(punk->GetKeyName())+" is already on the ejected list.");
+    else write(capitalize(punk->GetKeyName())+"已经在驱逐名单中了。");
     return ejected_players;
 }
 
@@ -66,10 +66,10 @@ object *GetEjected(){
 
 object *RemoveEjected(object punk){
     if(member_array(punk, ejected_players) != -1){
-        write(capitalize(punk->GetKeyName())+" has been removed from the ejected list.");
+        write(capitalize(punk->GetKeyName())+"已从驱逐名单中移除。");
         ejected_players -= ({ punk });
     }
-    else write(capitalize(punk->GetKeyName())+" is not on the ejected list.");
+    else write(capitalize(punk->GetKeyName())+"不在驱逐名单中。");
     return ejected_players;
 }
 

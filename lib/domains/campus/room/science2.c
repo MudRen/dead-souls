@@ -5,15 +5,15 @@ inherit LIB_ROOM;
 
 int PreExit(mixed args...){
     object who = this_player();
-    write("You are scanned by a beam of light from the sliding door.");
-    say(who->GetName()+" is scanned by a beam of light from the sliding door.");
+    write("你被滑动门的一道光束扫描了。");
+    say(who->GetName()+"被滑动门的一道光束扫描了。");
     if(!present_file("/domains/campus/armor/badge2",who)){
-        write("The door does not open.");
+        write("门没有打开。");
         return 0;
     }
     else {
-        write("The door opens, letting you through.\n");
-        say("The door lets "+who->GetName()+" through.\n");
+        write("门打开了，让你通过。\n");
+        say("门让"+who->GetName()+"通过了。\n");
         return 1;
     }
 } 

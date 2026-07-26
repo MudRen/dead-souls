@@ -32,7 +32,7 @@ protected void create() {
     SetId(({"podium","handler"}));
     SetAdjectives(({"wood","wooden","meeting","speaker's","Speaker's"}));
     SetDamagePoints(1000);
-    SetPreventGet("You can't get that.");
+    SetPreventGet("你拿不了那个。");
     SetMaxCarry(20);
 
     SetInventory(([
@@ -82,11 +82,11 @@ void init() {
     add_action ("RestrictedAction", "zap" );
     add_action ("RestrictedAction", "force" );
 }
-mixed CanGet(object ob) { return "The podium does not budge.";}
+mixed CanGet(object ob) { return "这个讲台纹丝不动。";}
 
 int RestrictedAction(){
     if(!archp(this_player()) && sizeof(mc) && mc != this_player()->GetKeyName()){
-        write("That action is restricted here.");
+        write("此操作在此受限。");
         return 1;
     }
 }
@@ -102,12 +102,12 @@ int eventSay(string args) {
         return 0;
     }
     if ( mc != "" && this_player()-> GetKeyName() != speaker ) {
-        this_player()->eventPrint("%^RED%^It is not polite to talk out of order.");
-        this_player()->eventPrint("Raise your hand if you'd like to speak.");
+        this_player()->eventPrint("%^RED%^不按顺序发言是不礼貌的。");
+        this_player()->eventPrint("如果你想发言，请举手。");
         return 1;
     }
     if ((!args) || (args == " ")) {
-        write ("You mutter to yourself.\n") ;
+        write ("你自言自语。\n") ;
         return 1 ;
     }
     //foo = this_player()->GetCapName() + 
@@ -123,17 +123,17 @@ int eventCallOn(string args) {
     if (present((object)args)) {
         if (mc == this_player()->GetKeyName()) {
             speaker = args;
-            write("You have called on " + speaker+".\n");
-            find_living(args)->eventPrint("%^CYAN%^" + capitalize(mc) + " has called on you, you may speak.");
+            write("你已经请"+speaker+"发言了。\n");
+            find_living(args)->eventPrint("%^CYAN%^" + capitalize(mc) + "请你发言，你现在可以说话了。");
             return 1;
         }
         else {
-            this_player()->eventPrint("Only the speaker can do that.");
+            this_player()->eventPrint("只有主持人可以这样做。");
             return 1;
         }
     }
     else {
-        write("%^CYAN%^This person is not here to be called on.");
+        write("%^CYAN%^此人不在这里，无法被请发言。");
         return 1;
     }
 }	
@@ -147,11 +147,11 @@ int eventRaise() {
                 this_player()->GetName()+" raises "+
                 possessive(this_player())+
                 " hand.", ({this_player()}) );
-        this_player()->eventPrint("%^CYAN%^You raise your hand.");
+        this_player()->eventPrint("%^CYAN%^你举起了手。");
         return 1;
     }
     else {
-        write("You can speak already. Say what's on your mind.");
+        write("你已经可以说话了。说出你的想法吧。");
         return 1;
     }
 }
@@ -159,7 +159,7 @@ int eventRaise() {
 
 int shaddap() {
     if(mc != "" && this_player()->GetKeyName() != speaker){
-        write("%^RED%^It would be impolite to do that at this time.");
+        write("%^RED%^现在这样做是不礼貌的。");
         return 1;
     }
 }
@@ -170,39 +170,35 @@ int help(string args) {
         return 0;
     }
     else {
-        write("%^GREEN%^This is the speakers podium, it is where the "
-                "speaker stands during a speech.  This podium "
-                "has special properties, it can prevent others "
-                "from speaking out of turn, if you are the "+
-                "speaker.%^RESET%^");
+        write("%^GREEN%^这是演讲者的讲台，是演讲者在演讲时站立的地方。这个讲台有特殊功能，如果你是主持人，它可以阻止其他人不按顺序发言。%^RESET%^");
         if (this_player()->GetKeyName() == mc) {
-            write("%^RED%^Available commands:");
-            write("%^YELLOW%^recognize %^RESET%^: Calls on another to speak.");		
-            write("%^YELLOW%^say %^RESET%^: As the speaker, you can say things whenever you like.");
-            write("%^YELLOW%^quiet %^RESET%^: Revokes the speaking privilege to the person you last called on.");
-            write("%^YELLOW%^changemc %^RESET%^: Removes yourself as mc, and let someone else take over.");
-            write("%^YELLOW%^add <string>%^RESET%^: Add agenda item <string> to the bottom of the agenda.");
-            write("%^YELLOW%^remove <int>%^RESET%^: Remove agenda item <int> from the agenda.");
-            write("%^YELLOW%^clear agenda%^RESET%^: Clear the agenda.");
-            write("%^YELLOW%^permit <name>%^RESET%^: Permit player <name> to enter the meeting room when locked.");
-            write("%^YELLOW%^eject <name>%^RESET%^: Eject player <name> from the meeting room.");
-            write("%^YELLOW%^time <num> [minutes/seconds]%^RESET%^: Set the clock to <num> minutes or seconds.");
-            write("%^YELLOW%^reset clock%^RESET%^: Clear the clock.");
-            write("%^YELLOW%^step down%^RESET%^: Step down as head speaker.");
-            write("%^YELLOW%^rollcall <num> [minutes/seconds] <subject>%^RESET%^: Call for a roll call vote,\n"
-                    "\tlasting num minutes or seconds, on <subject>.");
-            write("%^YELLOW%^add after <int> <string>%^RESET%^: Add agenda item <string> after agenda item #<int>.\n"
-                    "\tadd after 0 <string> adds to the top of the list.");
-            write("%^YELLOW%^call <num> [minutes/seconds] <subject>%^RESET%^: Call for a vote, lasting num minutes\n"
-                    "\tor seconds, on <subject>.");
+            write("%^RED%^可用命令：");
+            write("%^YELLOW%^recognize %^RESET%^：请另一个人发言。");
+            write("%^YELLOW%^say %^RESET%^：作为主持人，你可以随时发言。");
+            write("%^YELLOW%^quiet %^RESET%^：撤销你最后请发言的人的发言权。");
+            write("%^YELLOW%^changemc %^RESET%^：辞去主持人职务，让别人接替。");
+            write("%^YELLOW%^add <内容>%^RESET%^：将议程项目<内容>添加到议程末尾。");
+            write("%^YELLOW%^remove <编号>%^RESET%^：从议程中删除第<编号>项议程。");
+            write("%^YELLOW%^clear agenda%^RESET%^：清除议程。");
+            write("%^YELLOW%^permit <名字>%^RESET%^：允许玩家<名字>在锁定时进入会议室。");
+            write("%^YELLOW%^eject <名字>%^RESET%^：将玩家<名字>逐出会议室。");
+            write("%^YELLOW%^time <数字> [minutes/seconds]%^RESET%^：将时钟设置为<数字>分钟或秒。");
+            write("%^YELLOW%^reset clock%^RESET%^：清除时钟。");
+            write("%^YELLOW%^step down%^RESET%^：辞去首席演讲者职务。");
+            write("%^YELLOW%^rollcall <数字> [minutes/seconds] <议题>%^RESET%^：发起唱名投票，\n"
+                    "\t持续数字分钟或秒，议题为<议题>。");
+            write("%^YELLOW%^add after <编号> <内容>%^RESET%^：在第<编号>项议程后添加议程项目<内容>。\n"
+                    "\tadd after 0 <内容> 添加到列表顶部。");
+            write("%^YELLOW%^call <数字> [minutes/seconds] <议题>%^RESET%^：发起投票，持续数字分钟\n"
+                    "\t或秒，议题为<议题>。");
             return 1;
         }
         else {
-            write("%^RED%^Available commands:");
-            write("%^YELLOW%^raise %^RESET%^: Raise your hand, to motion to the speaker that you would like to speak.");
-            write("%^YELLOW%^say %^RESET%^ : Say something, you only may do this if the speaker has called on you.");
+            write("%^RED%^可用命令：");
+            write("%^YELLOW%^raise %^RESET%^：举手，向主持人示意你想发言。");
+            write("%^YELLOW%^say %^RESET%^：发言，只有在主持人请你发言后才能使用此命令。");
             if (x == 0) {
-                write("%^YELLOW%^setmc%^RESET%^ : There is no mc currently, use this command to set one.");
+                write("%^YELLOW%^setmc%^RESET%^：目前没有主持人，使用此命令设置一个。");
             }
             return 1;
         }
@@ -212,12 +208,12 @@ int help(string args) {
 
 int quiet() {
     if (mc == this_player()->GetKeyName()) {
-        write("%^CYAN%^You thank " + capitalize(speaker) + " for speaking.");
-        find_living(speaker)->eventPrint("%^CYAN%^" + capitalize(mc) + " thanks you for you speaking.");
+        write("%^CYAN%^你感谢" + capitalize(speaker) + "的发言。");
+        find_living(speaker)->eventPrint("%^CYAN%^" + capitalize(mc) + "感谢你的发言。");
         speaker = mc;
         return 1;
     }
-    write ("Only the mc may use this command.\n") ;
+    write ("只有主持人可以使用此命令。\n") ;
     return 1;
 }
 
@@ -225,27 +221,27 @@ int quiet() {
 int changemc(string args) {
     if (args != 0) {
         if ( this_player()->GetKeyName() != mc ) {
-            write("%^RED%^You are not the mc to begin with, you cannot give that position away.");
+            write("%^RED%^你不是主持人，不能把这个职位让给别人。");
             return 1;
         }
         else {
             if (!present(args)) {
-                write("%^CYAN%^" + args + " is not present, and therefore cannot be mc.");
+                write("%^CYAN%^" + args + "不在这里，因此不能成为主持人。");
                 return 1;
             }
             else {
-                write("%^CYAN%^You hand the podium over to " + args);
+                write("%^CYAN%^你把讲台交给了" + args);
                 mc = args;
-                say("%^CYAN%^" + capitalize(args) + " is the new head speaker.");
-                find_living(mc)->eventPrint("%^BLUE%^You are the new head speaker!");
-                find_living(mc)->eventPrint("The command \"help podium\" can help you, if you don't know what to do.");
+                say("%^CYAN%^" + capitalize(args) + "是新的首席演讲者。");
+                find_living(mc)->eventPrint("%^BLUE%^你是新的首席演讲者！");
+                find_living(mc)->eventPrint("命令\"help podium\"可以帮助你，如果你不知道该怎么做的话。");
                 return 1;
             }
         }
     }
     else {
-        write("%^CYAN%^Syntax:");
-        write("changemc <player>");
+        write("%^CYAN%^语法：");
+        write("changemc <玩家>");
         return 1;
     }
 }
@@ -253,18 +249,18 @@ int changemc(string args) {
 int step_down(string args){
     if (args == "down") {
         if ( this_player()->GetKeyName() != mc ) {
-            write("%^RED%^You are not the mc to begin with, you cannot give that position away.");
+            write("%^RED%^你不是主持人，不能辞去这个职位。");
             return 1;
         }
-        say("%^CYAN%^" + capitalize(mc) + " has stepped down as the head speaker.");
-        write ( "You step down as the head speaker" );
+        say("%^CYAN%^" + capitalize(mc) + "已辞去首席演讲者职务。");
+        write ( "你辞去了首席演讲者职务" );
         mc = "";
         x--;
         load_object(base_name(environment(this_object())))->AutoDeactivate();    
         return 1;
     }
     else {
-        write("%^CYAN%^Syntax:");
+        write("%^CYAN%^语法：");
         write("<step down>");
         return 1;
     }
@@ -276,34 +272,33 @@ int SetMc(string args) {
     if(args) ob = find_living(args);
     if(!args || !ob) ob = this_player();
     if(!member_group(ob, "MODERATORS")){
-        write("That person is not a member of the moderators group.");
-        write("An admin should use the admintool command to add the "+
-                "appropriate people to that user group.");
+        write("此人不是版主组的成员。");
+        write("管理员应使用admintool命令将适当的人添加到该用户组中。");
         return 1;
     }
     if (x==0) {
         if (args != 0) {
             if (present(args) ) {
                 mc = args;
-                say("%^CYAN%^" + capitalize(mc) + " is the speaker.");	
-                write("You set " + capitalize(args) + " as the speaker.");
-                find_living(mc)->eventPrint("The command \"help podium\" can help you, if you don't know what to do.");
+                say("%^CYAN%^" + capitalize(mc) + "是演讲者。");
+                write("你把" + capitalize(args) + "设为演讲者。");
+                find_living(mc)->eventPrint("命令\"help podium\"可以帮助你，如果你不知道该怎么做的话。");
                 x++;
                 return 1;
             }
             else {
-                write("You cannot set him/her as the speaker, he/she is not here!");
+                write("你不能把他/她设为演讲者，他/她不在这里！");
                 return 1;
             }
         }
         else {
-            write("%^CYAN%^Syntax:");
-            write("setmc <player>");
+            write("%^CYAN%^语法：");
+            write("setmc <玩家>");
             return 1;
         }
     }
     else {
-        write("There is already a speaker, you cannot set another one.");
+        write("已经有一位演讲者了，你不能再设置另一位。");
         return 1;
     }
 }
@@ -311,26 +306,26 @@ int SetMc(string args) {
 int privacy(string str){
 
     if ( mc != this_player()->GetKeyName() ) {
-        write ("Only the mc may use the shield.\n") ;
+        write ("只有主持人可以使用隐私力场。\n") ;
         return 1 ;
     }
     if(str=="on" || str == "1"){
         load_object(base_name(environment(this_object())))->set_privacy( 1 );
-        write("You enable the privacy shield.\n");
-        say(this_player()->GetName()+" enables a privacy force field around the room.");
+        write("你启用了隐私力场。\n");
+        say(this_player()->GetName()+"在房间周围启用了隐私力场。");
         return 1;
     }
     if(str=="off" || str == "0"){
         load_object(base_name(environment(this_object())))->AutoDeactivate();
-        write("You disable the privacy shield.\n");
-        say(this_player()->GetName()+" disables a privacy force field around the room.");
+        write("你关闭了隐私力场。\n");
+        say(this_player()->GetName()+"关闭了房间周围的隐私力场。");
         return 1;
     }
 }
 
 // Echoing is always forbidden. It's just too much of a hassle.
 int echo (string str) {
-    write ("Echoing is forbidden in the conference room at all times.\n") ;
+    write ("会议室始终禁止使用回声。\n") ;
     return 1 ;
 }
 
@@ -342,16 +337,16 @@ int permit_entry (string name) {
     int oldlock ;
 
     if ( mc != this_player()->GetKeyName() ) {
-        write ("Only the mc may permit entry into a locked conference.\n") ;
+        write ("只有主持人可以允许进入锁定的会议室。\n") ;
         return 1 ;
     }
     user = find_player(name) ;
     if (!user) {
-        write ("There is no user by that name.\n") ;
+        write ("没有该名称的用户。\n") ;
         return 1 ;
     }
     if (present(user,environment(this_object()))) {
-        write (capitalize(name)+" is already here!\n") ;
+        write (capitalize(name)+"已经在这里了！\n") ;
         return 1 ;
     }
     // We save the old locked status of the room, and restore it when we're
@@ -361,9 +356,9 @@ int permit_entry (string name) {
     load_object(base_name(environment(this_object())))->set_privacy( 0 );
     user -> eventMove(environment(this_object())) ;
     load_object(base_name(environment(this_object())))->set_privacy( oldlock );
-    write ("You bring "+capitalize(name)+" into the conference.\n") ;
-    tell_object (user, capitalize(mc)+" permits you to enter.\n") ;
-    say (capitalize(name)+" has been permitted to enter the conference.\n", user) ;
+    write ("你把"+capitalize(name)+"带入了会议室。\n") ;
+    tell_object (user, capitalize(mc)+"允许你进入。\n") ;
+    say (capitalize(name)+"已被允许进入会议室。\n", user) ;
     return 1 ;
 }
 
@@ -376,17 +371,17 @@ int eject_player (string str) {
     object ob ;
 
     if ( mc != this_player()->GetKeyName() ) {
-        write ("Only the mc may eject players.\n") ;
+        write ("只有主持人可以驱逐玩家。\n") ;
         return 1 ;
     }
     ob = find_player(str) ;
     if (!ob || !present (ob, environment(this_object()))) {
-        write ("There is no player named "+capitalize(str)+" here.\n") ;
+        write ("这里没有名为"+capitalize(str)+"的玩家。\n") ;
         return 1 ;
     }
-    write ("You eject "+capitalize(str)+" from the room!\n") ;
-    tell_object (ob, "You have been ejected from the room.\n") ;
-    say (capitalize(str)+" has been ejected from the room.\n") ;
+    write ("你把"+capitalize(str)+"逐出了房间！\n") ;
+    tell_object (ob, "你已被逐出房间。\n") ;
+    say (capitalize(str)+"已被逐出房间。\n") ;
     ob->eventMove(bounce_room) ;
     if(env) env->AddEjected(ob);
     return 1 ;
@@ -405,7 +400,7 @@ varargs int localtime (string str) {
     // If no string, then we just indicate how much time is left on the clock.
     if (!str) {
         if (!endtime || endtime == 0) {
-            write ("Time is not running at the moment.\n") ;
+            write ("时钟目前没有在运行。\n") ;
             return 1 ;
         }
         i = time() ;
@@ -413,35 +408,34 @@ varargs int localtime (string str) {
         min = (i/60) ;
         sec = i - (min*60) ;
         if (min==1) {
-            write ("The clock shows 1 minute and "+sec+" seconds remaining.\n") ;
+            write ("时钟显示剩余1分钟"+sec+"秒。\n") ;
         } else {
-            write ("The clock shows "+min+" minutes and "+sec+" seconds remaining.\n") ;
+            write ("时钟显示剩余"+min+"分钟"+sec+"秒。\n") ;
         }
         return 1 ;
     }
     // If there is a string, then the user is trying to set the clock to some
     // number of minutes or seconds.
     if ( mc != this_player()->GetKeyName() ) {
-        write ("Only the mc may set the clock.\n") ;
+        write ("只有主持人可以设置时钟。\n") ;
         return 1 ;
     }
     // You cannot set a new time if the clock is running. This is for safety.
     // You must reset the clock first. See below.
     if (endtime!=0) {
-        write ("The clock is running. You must reset the clock first.\n"
-              ) ;
+        write ("时钟正在运行。你必须先重置时钟。\n") ;
         return 1 ;
     }
     if (sscanf(str, "%d min%s", i, foo) == 2) {
         i=i*60 ;
     } else {
         if (sscanf(str, "%d seconds", i) != 1) {
-            write ("You must set a number of minutes or seconds: ie, 3 minutes or 90 seconds.\n") ;
+            write ("你必须设置分钟或秒数：例如，3 minutes 或 90 seconds。\n") ;
             return 1 ;
         }
     }
-    write ("You set the clock to "+str+".\n") ;
-    say (capitalize(mc)+" sets the clock to "+str+".\n") ;
+    write ("你把时钟设置为"+str+"。\n") ;
+    say (capitalize(mc)+"把时钟设置为"+str+"。\n") ;
     endtime = time()+i ;
     // We call_out to a function that prints a message when time runs out.
     call_out ("expire_time", i) ;
@@ -456,16 +450,16 @@ int reset_clock (string str) {
         return 0 ;
     }
     if ( mc != this_player()->GetKeyName() ) {
-        write ("Only the mc may reset the clock.\n") ;
+        write ("只有主持人可以重置时钟。\n") ;
         return 1 ;
     }
     if (endtime==0) {
-        write ("The clock isn't running.\n") ;
+        write ("时钟没有在运行。\n") ;
         return 1 ;
     }
     endtime = 0 ;
-    write ("You clear the clock.\n") ;
-    say (capitalize(mc)+" clears the clock.\n") ;
+    write ("你清除了时钟。\n") ;
+    say (capitalize(mc)+"清除了时钟。\n") ;
     // Clear any pending call_outs that may be left behind.
     remove_call_out("expire_time") ;
     remove_call_out("expire_vote") ;
@@ -476,7 +470,7 @@ int reset_clock (string str) {
 // doesn't force the speaker to shut up or anything like that: that's left
 // to the mcs discretion.
 int expire_time() {
-    tell_room (environment(this_object()),"The clock runs out.\n") ;
+    tell_room (environment(this_object()),"时间到了。\n") ;
     endtime = 0 ;
 }
 
@@ -487,10 +481,10 @@ int show_agenda() {
     int i ;
 
     if (!agenda || sizeof(agenda)==0) {
-        write ("The agenda has not been set.\n") ;
+        write ("议程尚未设定。\n") ;
         return 1 ;
     }
-    write ("The current agenda is:\n") ;
+    write ("当前议程：\n") ;
     for (i=0;i<sizeof(agenda);i++) {
         write ((i+1)+". "+agenda[i]+"\n") ;
     }
@@ -502,16 +496,16 @@ int show_agenda() {
 // Clear_speakers erases the speakers list or agenda, depending on argument.
 int clear_items (string str) {
     if ( mc != this_player()->GetKeyName() ) {
-        write ("Only the mc may clear the agenda.\n") ;
+        write ("只有主持人可以清除议程。\n") ;
         return 1 ;
     }
     if (!str || str!="agenda") {
-        write ("Usage: clear [agenda]\n") ;
+        write ("用法：clear [agenda]\n") ;
         return 1 ;
     }
     agenda = ({ }) ;
-    write ("The agenda has been cleared.\n") ;
-    say ("The agenda has been cleared.\n") ;
+    write ("议程已被清除。\n") ;
+    say ("议程已被清除。\n") ;
     return 1 ;
 }
 
@@ -524,25 +518,25 @@ int add_items (string str) {
     string prop ;
 
     if ( mc != this_player()->GetKeyName() ) {
-        notify_fail ("Only the mc may add agenda items.\n") ;
+        notify_fail ("只有主持人可以添加议程项目。\n") ;
         return 0 ;
     }
     if (!str) {
-        write ("Usage: add item  or  add after N item\n") ;
+        write ("用法：add item 或 add after N item\n") ;
         return 1 ;
     }
     if (sscanf(str,"after %d %s", post, prop)!=2) {
         agenda += ({ str }) ;
-        write ("Added the following item to the agenda\n"+str+"\n") ;
+        write ("已将以下项目添加到议程\n"+str+"\n") ;
         return 1 ;
     }
     if (post<0 || post>=sizeof(agenda)) {
-        notify_fail ("Item number out of range.\n") ;
+        notify_fail ("项目编号超出范围。\n") ;
         return 0 ;
     }
     if (post==0) agenda = ({ prop }) + agenda ; else
         agenda = agenda[0..post-1] + ({ prop }) + agenda[post..sizeof(agenda)] ;
-    write ("Added the following agenda item after item "+post+":\n"+
+    write ("已在第"+post+"项之后添加以下议程项目：\n"+
             prop+"\n") ;
     return 1 ;
 }
@@ -553,21 +547,21 @@ int remove_item (string str) {
     int agitem ;
 
     if (!str) {
-        notify_fail ("Usage: remove <number of agenda item>\n") ;
+        notify_fail ("用法：remove <议程项目编号>\n") ;
         return 0 ;
     }
     if (sscanf(str,"%d",agitem)!=1) {
-        notify_fail ("Usage: remove <number of agenda item>\n") ;
+        notify_fail ("用法：remove <议程项目编号>\n") ;
         return 0 ;
     }
     if (agitem<0 || agitem>sizeof(agenda)) {
-        write ("Item number out of range.\n") ;
+        write ("项目编号超出范围。\n") ;
         return 0 ;
     }
     // Convert to 0-(N-1) numbering.
     agitem = agitem-1 ;
     write (agitem+"\n") ;
-    write ("Removing the following agenda item:\n"+agenda[agitem]+"\n") ;
+    write ("正在删除以下议程项目：\n"+agenda[agitem]+"\n") ;
     if (agitem==0) {
         agenda = agenda[1..sizeof(agenda)-1] ;
     } else {
@@ -586,32 +580,32 @@ int vote (string str) {
     // With no argument, we print the proposal, if there is one.
     if (!str) {
         if (!vote_str || vote_str=="none") {
-            write ("No vote is in progress.\n") ;
+            write ("当前没有进行投票。\n") ;
             return 1 ;
         }
-        write ("Voting on: "+vote_str+"\n") ;
+        write ("投票议题："+vote_str+"\n") ;
         return 1 ;
     }
     // If there is a argument, we interpret that string as a vote cast.
     if (!vote_str || vote_str=="none") {
-        write ("No vote is in progress at this time.\n") ;
+        write ("当前没有进行中的投票。\n") ;
         return 1 ;
     }
     if (str!="yes" && str!="no" && str!="abstain") {
-        write ("Please vote yes, no, or abstain..\n") ;
+        write ("请投 yes（赞成）、no（反对）或 abstain（弃权）。\n") ;
         return 1 ;
     }
     if (member_array( this_player()->GetName(),voters)!=-1) {
-        write ("You have already voted!\n") ;
+        write ("你已经投过票了！\n") ;
         return 1 ;
     }
     voters += ({ this_player()->GetName() }) ;
     votes[str] = votes[str]+1 ;
-    write ("You vote "+str+" on "+vote_str+".\n") ;
+    write ("你对"+vote_str+"投了"+str+"。\n") ;
     // If this is a roll call vote - ie, the votes are being logged - we announce
     // the vote to the log file and to the room.
     if (votelog) {
-        say (capitalize(this_player()->GetName())+" votes "+capitalize(str)+".\n") ;
+        say (capitalize(this_player()->GetName())+"投了"+capitalize(str)+"。\n") ;
     }
     return 1 ;
 }
@@ -624,39 +618,39 @@ int call_for_vote (string str) {
     int i ;
 
     if ( mc != this_player()->GetKeyName() ) {
-        write ("Only the mc may call for votes.\n") ;
+        write ("只有主持人可以发起投票。\n") ;
         return 1 ;
     }
     // Must specify an amount of time for which votes may be cast, and a subject
     // which people are voting on.
     if (!str) {
-        write ("Usage: call <num> <minutes|seconds> <subject>\n") ;
+        write ("用法：call <数字> <minutes|seconds> <议题>\n") ;
         return 1 ;
     }
     if (sscanf(str,"%d %s %s",i,timestr,subjstr)!=3) {
-        write ("Usage: call <num> <minutes|seconds> <subject>\n") ;
+        write ("用法：call <数字> <minutes|seconds> <议题>\n") ;
         return 1 ;
     }
     // This is going to reset the clock: so we want to force the mc to
     // clear the clock first.
     if (endtime!=0) {
-        write ("The clock is running. You must reset the clock first.\n") ;
+        write ("时钟正在运行。你必须先重置时钟。\n") ;
         return 1 ;
     }
     if (timestr=="minutes") {
         i = i * 60 ;
     } else {
         if (timestr!="seconds") {
-            write ("Enter the time in minutes or seconds.\n") ;
+            write ("请以分钟或秒为单位输入时间。\n") ;
             return 1 ;
         }
     }
     vote_str = subjstr ;
     // This is a secret ballot so we don't want to log the votes.
     votelog = 0 ;
-    write ("You call for a vote on "+vote_str+".\n") ;
-    say (capitalize(mc)+" calls for a vote on "+vote_str+".\n") ;
-    say (capitalize(mc)+" sets the clock to "+str+".\n") ;
+    write ("你发起了关于"+vote_str+"的投票。\n") ;
+    say (capitalize(mc)+"发起了关于"+vote_str+"的投票。\n") ;
+    say (capitalize(mc)+"把时钟设置为"+str+"。\n") ;
     endtime = time()+i ;
     // Call out to a function which totals the votes at the end of the vote time.
     call_out ("expire_vote",i) ;
@@ -671,35 +665,35 @@ int call_for_roll (string str) {
     int i ;
 
     if ( mc != this_player()->GetKeyName() ) {
-        write ("Only the mc may call for votes.\n") ;
+        write ("只有主持人可以发起投票。\n") ;
         return 1 ;
     }
     if (!str) {
-        write ("Usage: rollcall <num> <minutes|seconds> <subject>\n") ;
+        write ("用法：rollcall <数字> <minutes|seconds> <议题>\n") ;
         return 1 ;
     }
     if (sscanf(str,"%d %s %s",i,timestr,subjstr)!=3) {
-        write ("Usage: rollcall <num> <minutes|seconds> <subject>\n") ;
+        write ("用法：rollcall <数字> <minutes|seconds> <议题>\n") ;
         return 1 ;
     }
     if (endtime!=0) {
-        write ("The clock is running. You must reset the clock first.\n") ;
+        write ("时钟正在运行。你必须先重置时钟。\n") ;
         return 1 ;
     }
     if (timestr=="minutes") {
         i = i * 60 ;
     } else {
         if (timestr!="seconds") {
-            write ("Enter the time in minutes or seconds.\n") ;
+            write ("请以分钟或秒为单位输入时间。\n") ;
             return 1 ;
         }
     }
     vote_str = subjstr ;
     // This is a roll call vote so we log the votes and announce them.
     votelog = 1 ;
-    write ("You call for a roll call vote on "+vote_str+".\n") ;
-    say (capitalize(mc)+" calls for a roll call vote on "+vote_str+".\n") ;
-    say (capitalize(mc)+" sets the clock to "+str+".\n") ;
+    write ("你发起了关于"+vote_str+"的唱名投票。\n") ;
+    say (capitalize(mc)+"发起了关于"+vote_str+"的唱名投票。\n") ;
+    say (capitalize(mc)+"把时钟设置为"+str+"。\n") ;
     endtime = time()+i ;
     call_out ("expire_vote",i) ;
     return 1 ;
@@ -709,10 +703,10 @@ int call_for_roll (string str) {
 // announce the outcome because some votes required 2/3 or 3/4 to pass
 // rather than a simple majority.
 int expire_vote() {
-    tell_room (environment(this_object()), "The clock runs out. Voting is over.\n") ;
+    tell_room (environment(this_object()), "时间到。投票结束。\n") ;
     endtime = 0 ;
-    tell_room (environment(this_object()), "The results of the vote were:\n"+
-            "Yes:  "+votes["yes"]+"     No:   "+votes["no"]+"       Abstain:  "+
+    tell_room (environment(this_object()), "投票结果：\n"+
+            "赞成：  "+votes["yes"]+"     反对：   "+votes["no"]+"       弃权：  "+
             votes["abstain"]+"\n") ;
     voters = ({ }) ;
     votes["yes"] = 0 ;
@@ -723,14 +717,14 @@ int expire_vote() {
 
 int localupdate() {
     if(!archp(this_player())){
-        write ("You may not update objects while in the conference room.\n") ;
+        write ("在会议室中你不能更新对象。\n") ;
         return 1;
     }
 }
 
 int eventDestruct(){
     if(sizeof(mc) && !this_player() || (this_player() && !archp(this_player()))){
-        write("You may not tamper with the podium.");
+        write("你不能摆弄讲台。");
         return 0;
     }
     else return ::eventDestruct();
@@ -738,7 +732,7 @@ int eventDestruct(){
 
 int eventMove(mixed dest){
     if(sizeof(mc)){
-        write("No.");
+        write("不行。");
         return 0;
     }
     else return ::eventMove(dest);

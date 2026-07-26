@@ -13,7 +13,7 @@ void create(){
     SetShort("带红色按钮的基座");
     SetLong("这是一个圆柱形基座，大约齐腰高，由神秘材料制成。上面有一个按钮。");
     SetItems( ([
-                ({"button","red button"})  : "A red button."
+                ({"button","red button"})  : "一个红色按钮。"
                 ]) );
     SetMass(20);
     SetDollarCost(10);
@@ -22,7 +22,7 @@ void create(){
                 ({"button","red button"}) : (: PushTheButton :)
                 ]) );
 }
-mixed CanGet(object ob) { return "The pedestal does not budge.";}
+mixed CanGet(object ob) { return "这个基座纹丝不动。";}
 int ResetGame(){
     object *objects;
     object *contents;
@@ -58,20 +58,19 @@ int PushTheButton(){
     if(genrand == 1) gagnant = "green door";
     if(genrand == 2) gagnant = "blue door";
 #if 0
-    tell_room(environment(),"A voice from the pedestal says: "
+    tell_room(environment(),"基座发出声音说："
             "PRECOG: genrand is: "+genrand);
-    tell_room(environment(),"A voice from the pedestal says: "
+    tell_room(environment(),"基座发出声音说："
             "PRECOG: gagnant is: "+gagnant+".\n"
             "PRECOG: genrand modulus is: "+genrand);
 #endif
     remove_action("doStay","stay");
     remove_action("doSwitch","switch");
     add_action("choose","choose");
-    tell_room(environment(),"A voice from the pedestal says: "
-            "You must now choose one door from these "
-            "three. Behind one is a prize. Behind the "
-            "other two, nothing. To choose the "
-            "red door, for example: choose red door");
+    tell_room(environment(),"基座发出声音说："
+            "你现在必须从这三扇门中选择一扇。"
+            "其中一扇后面有奖品。另外两扇后面什么都没有。"
+            "例如要选择红门，请输入：choose red door");
     ResetGame();
     return 1;
 }
@@ -87,21 +86,21 @@ void init(){
 }
 int choose(string str){
     if(!str || str == ""){
-        tell_room(environment(),"A voice from the pedestal says: "
-                "Please try choosing a door, ok?");
+        tell_room(environment(),"基座发出声音说："
+                "请试着选择一扇门，好吗？");
     }
     else if(str == "door"){
-        tell_room(environment(),"A voice from the pedestal says: "
-                "You'll need to be more specific.");
+        tell_room(environment(),"基座发出声音说："
+                "你需要说得更具体一些。");
     }
     else if(str == "red door" || str == "blue door" ||str == "green door"){
-        tell_room(environment(),"A voice from the pedestal says: "
-                "You choose the "+str+".");
+        tell_room(environment(),"基座发出声音说："
+                "你选择了"+str+"。");
         this_object()->MontyMagic(str);
     }
     else {
-        tell_room(environment(),"A voice from the pedestal says: "
-                "I don't understand that.");
+        tell_room(environment(),"基座发出声音说："
+                "我不明白你的意思。");
     }
     reap_dummies();
     reap_other("/domains/campus/armor/silverring");
@@ -126,14 +125,14 @@ int MontyMagic(string str){
     if(sscanf(removed_door,"%s door",color)>0) color = color;
     load_object("/domains/campus/doors/"+color+"_door3")->SetLocked(0);
     load_object("/domains/campus/doors/"+color+"_door3")->SetClosed(0);
-    tell_room(environment(),"A voice from the pedestal says: "
-            "I have opened the "+removed_door+"! \n"
-            "You may enter the "+color+" room and see that it is empty.\n"
-            "Only the "+choices[0]+" and "+choices[1]+" remain.\n\n"
-            "Would you like to switch to the "+other_door+"? \n"
-            "Or would you rather stay with the "+str+"?\n\n"
-            "To switch, type: switch\n"
-            "To stay, type: stay");
+    tell_room(environment(),"基座发出声音说："
+            "我已经打开了"+removed_door+"！\n"
+            "你可以进入"+color+"房间看看里面是空的。\n"
+            "只剩下"+choices[0]+"和"+choices[1]+"了。\n\n"
+            "你想换到"+other_door+"吗？\n"
+            "还是你想留在"+str+"？\n\n"
+            "要换，请输入：switch\n"
+            "要留下，请输入：stay");
     remove_action("choose","choose");
     add_action("doStay","stay");
     add_action("doSwitch","switch");
@@ -148,23 +147,22 @@ int CheckWin(string str){
     }
     load_object("/domains/campus/doors/"+color+"_door3")->SetLocked(0);
     load_object("/domains/campus/doors/"+color+"_door3")->SetClosed(0);
-    tell_room(environment(),"A voice from the pedestal says: "
-            "YOU LOOOOOSE!\n"
-            "You may enter the "+color+" room to get your big "
-            "load of NOTHING. Haaa haa!");
+    tell_room(environment(),"基座发出声音说："
+            "你输了！！！\n"
+            "你可以进入"+color+"房间去领取你的大奖——什么都没有。哈哈哈！");
     return 1;
 }
 int doStay(){
-    tell_room(environment(),"A voice from the pedestal says: "
-            "Oh, how loyal!");
+    tell_room(environment(),"基座发出声音说："
+            "哦，多么忠诚！");
     remove_action("doStay","stay");
     remove_action("doSwitch","switch");
     CheckWin(my_door);
     return 1;
 }
 int doSwitch(){
-    tell_room(environment(),"A voice from the pedestal says: "
-            "Why you're inconstant as a feather!");
+    tell_room(environment(),"基座发出声音说："
+            "你真是反复无常！");
     remove_action("doStay","stay");
     remove_action("doSwitch","switch");
     my_door = other_door;
@@ -174,9 +172,9 @@ int doSwitch(){
 int WinFun(){
     load_object("/domains/campus/doors/"+color+"_door3")->SetLocked(0);
     load_object("/domains/campus/doors/"+color+"_door3")->SetClosed(0);
-    tell_room(environment(),"A voice from the pedestal says: "
-            "You win, kid. Congrats!\n"
-            "You may enter the "+color+" room and claim your prize.\n\n"
-            "Push the button on the pedestal to reset the game.");
+    tell_room(environment(),"基座发出声音说："
+            "你赢了，恭喜！\n"
+            "你可以进入"+color+"房间领取你的奖品。\n\n"
+            "按下基座上的按钮可以重置游戏。");
     return 1;
 }

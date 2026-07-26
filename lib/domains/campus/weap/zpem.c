@@ -35,45 +35,42 @@ varargs mixed eventShoot(object shooter, mixed target, string direction){
     //tc("target: "+identify(target));
 
     if(!active){
-        write("You have to activate it first.");
+        write("你必须先激活它。");
         return 1;
     }
 
     if(!target || direction){
         if(!sizeof(inv)){
-            write("You can't do that.");
+            write("你不能那样做。");
             return 1;
         }
     }
 
     if(sizeof(inv)){
-        write("The zero-point energy manipulator is already actively "+
-                "manipulating "+inv->GetShort()+".");
+        write("零点能量操纵器已经在操纵"+inv->GetShort()+"了。");
         return 1;
     }
 
     if(living(target)){
         if(!(RACES_D->GetNonMeatRace(target->GetRace()))){
-            write("The zero-point energy manipulator does not work "+
-                    "well on meat-based objects.");
+            write("零点能量操纵器对肉质物体效果不佳。");
             return 1;
         }
     }
 
     if(base_name(target) == LIB_CORPSE || base_name(target) == LIB_LIMB){
-        write("The zero-point energy manipulator does not work "+
-                "well on meat-based objects.");
+        write("零点能量操纵器对肉质物体效果不佳。");
         return 1;
     }
 
     if(target->isDummy() || target->GetMass() > 5000 ||
             target->GetPreventGet()){
-        write("The zero-point energy manipulator clicks and whines.");
+        write("零点能量操纵器发出咔嗒声和嗡嗡声。");
         return 1;
     }
 
     if(!GetWielded()){
-        write("You are not wielding it.");
+        write("你没有装备它。");
         return 0;
     }
 
@@ -84,11 +81,10 @@ varargs mixed eventShoot(object shooter, mixed target, string direction){
 
     tell_room(env,name+" picks up "+patsy+" with "+possessive(killer)+" "+
             "zero-point energy manipulator.",({killer,target}) );
-    tell_object(killer,"You surround "+patsy+" in a zero-point energy field, "+
-            " and "+nominative(target)+" is picked up by "+
-            "your zero-point energy manipulator.");
-    tell_object(target,name+" picks you up with "+possessive(killer)+" "+
-            "zero-point energy manipulator. You are helpless in its field.");
+    tell_object(killer,"你用零点能量场包围了"+patsy+"，"+
+            nominative(target)+"被你的零点能量操纵器吸了起来。");
+    tell_object(target,name+"用"+possessive(killer)+
+            "零点能量操纵器把你吸了起来。你在它的力场中毫无办法。");
 
     active = 1;
     target->SetZPG(1);
@@ -99,24 +95,21 @@ varargs mixed eventShoot(object shooter, mixed target, string direction){
 int eventTurnOff(){
     object *inv;
     if(!active){
-        write("It's already inactive.");
+        write("它已经处于未激活状态。");
         return 1;
     }
 
     inv = all_inventory();
     active = 0;
-    write("You deactivate the zero-point energy manipulator.");
+    write("你关闭了零点能量操纵器。");
     if(sizeof(inv)){
         inv->eventMove(room_environment(this_object()));
         foreach(object ob in inv){
-            tell_object(ob, "You are released from "+this_player()->GetName()+
-                    "'s zero-point energy manipulator.");
+            tell_object(ob, "你从"+this_player()->GetName()+
+                    "的零点能量操纵器中被释放了。");
             tell_room(environment(this_player()), capitalize(ob->GetShort())+
-                    " is "+
-                    "released from "+this_player()->GetName()+"'s zero-point "+
-                    "energy manipulator.", ({ ob, this_player() }) );
-            write("You release "+ob->GetShort()+" from your zero-point "+
-                    "energy manipulator.");
+                    "从"+this_player()->GetName()+"的零点能量操纵器中被释放了。", ({ ob, this_player() }) );
+            write("你把"+ob->GetShort()+"从你的零点能量操纵器中释放了。");
         }
     }
     return 1;
@@ -124,10 +117,10 @@ int eventTurnOff(){
 
 int eventTurnOn(){
     if(active){
-        write("It's already active.");
+        write("它已经处于激活状态。");
         return 1;
     }
-    write("You activate the zero-point energy manipulator.");
+    write("你激活了零点能量操纵器。");
     say(this_player()->GetName()+" activates "+possessive(this_player())+
             " zero-point energy manipulator.");
     active = 1;

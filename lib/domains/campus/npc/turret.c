@@ -13,23 +13,23 @@ int eventShootDude(object ob){
     if(!environment()) return 0;
     str = ob->GetName();
     if(!ammo){
-        tell_room(environment(),"The gun turret clicks.");
+        tell_room(environment(),"炮塔发出咔嗒声。");
         active = 0;
         return 0;
     }
-    tell_object(this_object(),"You fire at "+ob->GetName()+"!");
-    tell_room(environment(),"The gun turret fires at "+ob->GetName()+"!",
+    tell_object(this_object(),"你向"+ob->GetName()+"开火！");
+    tell_room(environment(),"炮塔向"+ob->GetName()+"开火！",
             ({this_object(),ob}));
-    tell_object(ob,"The gun turret fires at you!");
+    tell_object(ob,"炮塔向你开火！");
     ammo--;
     if(random(100) < 10) return 1;
     limbs=ob->GetLimbs();
     numlimbs=sizeof(limbs);
     limbname = limbs[random(numlimbs-1)]; 
     tell_room(environment(this_object()),
-            "The bullet smashes into "+
-            capitalize(str)+"'s "+limbname+"!\n",ob);
-    tell_object(ob,"The bullet smashes into your "+limbname+"!\n");
+            "子弹击中了"+
+            capitalize(str)+"的"+limbname+"！\n",ob);
+    tell_object(ob,"子弹击中了你的"+limbname+"！\n");
     ob->SetAttack(this_agent());
     if(!present("firearms_wound",ob)){
         new(LIB_WOUND)->eventMove(ob);
@@ -67,8 +67,7 @@ int eventTargetScan(){
     if(!(targs = sizeof(targets))) return 0;
     if(targs > 10) targs = 10;
     else {
-        eventForce("say "+cardinal(targs)+" target"+
-                ((targs > 1) ? "s" : "" )+" acquired.");
+        eventForce("say 已锁定 "+cardinal(targs)+" 个目标。");
     }
     targs--;
     targets = targets[0..targs];
@@ -87,11 +86,11 @@ int AddLegs(){
 
 int ActivateTurret(){
     if(!ammo){
-        write("The turret clicks and goes silent.");
+        write("炮塔发出咔嗒声后归于沉寂。");
         return 0;
     }
     active = 1;
-    eventForce("say TURRET IS NOW FULLY ARMED AND OPERATIONAL.");
+    eventForce("say 炮塔现在完全武装并开始运作。");
     eventTargetScan();
     set_heart_beat(1);
     return 1;
@@ -123,25 +122,25 @@ void init(){
 
 int eventTurnOn(){
     if(active){
-        write("The turret is already active.");
+        write("炮塔已经处于激活状态。");
         return 1;
     }
     else {
         call_out("ActivateTurret",7);
-        write("You activate the gun turret.");
-        eventForce("say TURRET ACTIVE.");
-        eventForce("say YOU HAVE 5 SECONDS TO REACH MINIMUM SAFE DISTANCE.");
+        write("你激活了炮塔。");
+        eventForce("say 炮塔已激活。");
+        eventForce("say 你有5秒时间到达最小安全距离。");
     }
     return 1;
 }
 
 int eventTurnOff(){
     if(!active){
-        write("The turret is already inactive.");
+        write("炮塔已经处于未激活状态。");
         return 1;
     }
     else {
-        write("It seems this turret cannot be deactivated.");
+        write("看来这个炮塔无法被关闭。");
         //write("You deactivate the gun turret.");
         //active = 0;
     }

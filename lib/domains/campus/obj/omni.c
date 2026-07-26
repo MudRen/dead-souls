@@ -13,7 +13,7 @@ protected void create() {
     SetLong("这是一个小型圆形金属装置，铜色，外观类似于怀表。顶部小金属按钮旁边有一个闪烁的红灯。");
     SetMass(10);
     SetDollarCost(300);
-    AddItem("button", "A button on the omni.");
+    AddItem("button", "万能遥控器上的一个按钮。");
 }
 void init() {
     ::init();
@@ -21,10 +21,10 @@ void init() {
 }
 mixed CanPress(object who, string target) {
     if(!present(this_object()->GetKeyName(),who ) && target == "button"){
-        return "You do not have the Omni!";
+        return "你没有万能遥控器！";
     }
     if(this_object()->GetId() == target){
-        return "You cannot push that.";
+        return "你不能按那个。";
     }
     return 1;
 }
@@ -39,15 +39,15 @@ mixed eventPress(object who, string where) {
                 !inherits(LIB_FURNACE,$1) && 
                 !($1->GetVirtual() && !grepp(base_name($1),",")) &&
                 last_string_element(base_name($1),"/") != "death" :) );
-    say(who->GetName()+" turns "+dbz_colors("multicolored")+" and disappears!");
-    write("You feel momentarily disoriented and find yourself elsewhere!");
+    say(who->GetName()+"变成了"+dbz_colors("multicolored")+"然后消失了！");
+    write("你感到一阵短暂的眩晕，发现自己已经身在别处！");
     while(!success){
         target = rooms[random(sizeof(rooms)-1)];
         success = who->eventMove(target);
     }
     who->eventDescribeEnvironment();
-    tell_room(target, "With a multicolored flash, "+who->GetName()+
-            " appears!",who);
+    tell_room(target, "伴随着一道彩色闪光，"+who->GetName()+
+            "出现了！",who);
     return 1;
 }
 
@@ -60,11 +60,11 @@ void heart_beat(){
     if(interactive(env)) vanish_count--;
     else if(sizeof(holders) && random(100) > 80) vanish_count--;
     if(vanish_count < 0){
-        tell_object(env,"The omni glows brightly and disappears!");
+        tell_object(env,"万能遥控器发出耀眼的光芒后消失了！");
         this_object()->eventDestruct();
     }
     if(vanish_count == 5){
-        tell_object(env,"The omni begins to glow a dull red.");
+        tell_object(env,"万能遥控器开始发出暗红色的光芒。");
         this_object()->SetLong("这是一个小型圆形金属装置，铜色，外观类似于怀表。顶部小金属按钮旁边有一个闪烁的红灯。它正发出暗红色的光芒。");
         this_object()->SetShort("万能遥控器（发光中）");
     }

@@ -35,12 +35,12 @@ int check_time(string str){
         if(present("pocket watch",this_player())){
             tzone="/daemon/timezone"->GetTZ();
             l_time="/daemon/current_time"->GetCurrentTime(tzone);
-            write("Checking the pocket watch, you see it is "+l_time+".\n");
+            write("看了看怀表，你发现现在是"+l_time+"。\n");
             say(this_player()->GetName()+" checks "+possessive(this_player())+
                     " pocket watch.\n");
             return 1;
         }
-        write("You cannot read the watch face from here.\n");
+        write("你从这里看不清表盘。\n");
         return 1;
     }
 }

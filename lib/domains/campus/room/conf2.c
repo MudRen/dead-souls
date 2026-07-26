@@ -34,7 +34,7 @@ protected void create() {
 }
 
 int AutoDeactivate(){
-    message("info","%^RED%^The privacy field shuts off.%^RESET%^", this_object());
+    message("info","%^RED%^隐私力场关闭了。%^RESET%^", this_object());
     timer = 0;
     privacy = 0;
     return 1;
@@ -53,23 +53,23 @@ int report_time(){
     int secs = time() - timer;
 
     if(!timer){
-        write("Privacy field is not active.");
+        write("隐私力场未激活。");
         return 1;
     }
 
-    write("Elapsed seconds: "+secs);
-    write("Elapsed minutes: "+(secs/60));
+    write("经过秒数："+secs);
+    write("经过分钟："+(secs/60));
     return secs;
 }
 
 int CanReceive(object ob) {
     if(privacy){
         if(!interactive(ob)) { 
-            message("info","\n\nPRIVACY WARNING: "+ob->GetName()+" has entered the room.\n\n",this_object() );
+            message("info","\n\n隐私警告："+ob->GetName()+"进入了房间。\n\n",this_object() );
         }
         else if(!archp(ob)){
-            message("info","You bounce off the conference room privacy shield.", ob);
-            message("info",ob->GetName()+" bounced off the privacy shield.",this_object());
+            message("info","你被会议室隐私力场弹开了。", ob);
+            message("info",ob->GetName()+"被隐私力场弹开了。",this_object());
             if(!environment(ob)) ob->eventMoveLiving(ROOM_START);
             return 0;
         }
@@ -80,8 +80,8 @@ int CanReceive(object ob) {
 
 int set_privacy(int i){
     if(environment(this_player()) != this_object() && !archp(this_player())) {
-        write("You lack the adequate privileges to do that.");
-        say(this_player()->GetName()+" is trying to mess around with the privacy shield system.");
+        write("你没有足够的权限执行此操作。");
+        say(this_player()->GetName()+"正在试图干扰隐私力场系统。");
         return 1;
     }
     privacy=i;

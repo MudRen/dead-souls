@@ -2,8 +2,8 @@
 inherit LIB_ROOM;
 
 int eventHopDown(){
-    write("You hop down into the hole, noting that there is no ladder for getting back up.");
-    say(this_player()->GetName()+" hops into the open manhole.",this_player());
+    write("你跳进了洞里，注意到这里没有梯子可以爬回去。");
+    say(this_player()->GetName()+"跳进了敞开的检修孔。",this_player());
     return 1;
 }
 protected void create() {
@@ -25,7 +25,7 @@ protected void create() {
 }
 int CanReceive(object ob){
     if(ob && ob->GetRace() == "rodent"){
-        message("info","You are repelled by rodenticide.",ob);
+        message("info","你被灭鼠剂驱退了。",ob);
         return 0;
     }
     return ::CanReceive(ob);

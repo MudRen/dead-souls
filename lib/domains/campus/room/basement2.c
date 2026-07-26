@@ -3,8 +3,8 @@ inherit LIB_ROOM;
 
 int push_it(string str){
     if(str=="wall" || str=="west wall"){
-        write("The west wall opens and you fall through!\n");
-        say(this_player()->GetName()+" suddenly falls and is gone!\n");
+        write("西墙打开了，你掉了进去！\n");
+        say(this_player()->GetName()+"突然掉了下去消失了！\n");
         this_player()->eventMoveLiving("/domains/campus/room/tunnel", "west through a secret exit", this_player()->GetName()+" tumbles in.");
         return 1;
     }

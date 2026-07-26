@@ -41,7 +41,7 @@ int SteamBlast(){
             lstuff[i]->eventReceiveDamage("steam",HEAT,random(30)+10,0,"torso");
 
     }
-    tell_room(this_object(), "You are hit by a blast of scalding-hot steam!");
+    tell_room(this_object(), "你被一股滚烫的蒸汽击中了！");
     return 1;
 }
 void heart_beat(){

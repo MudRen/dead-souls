@@ -19,7 +19,7 @@ void create() {
 
 mixed CanReceive(object ob){
     if(ob->GetKeyName() != ".45 round") {
-        write("This cardboard case is for .45 acp ammunition only.");
+        write("这个纸板盒只能装.45口径ACP弹药。");
         return 0;
     }
     return storage::CanReceive(ob);

@@ -6,7 +6,7 @@ inherit LIB_READ;
 int lupus;
 int TestFunc(){
     if(lupus){
-        write("Bad wolf.");
+        write("坏狼。");
         return 1;
     }
     this_player()->eventPage("/domains/campus/txt/note.txt","system");

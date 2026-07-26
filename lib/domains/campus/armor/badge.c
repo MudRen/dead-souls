@@ -24,24 +24,22 @@ void init(){
 int nplh(string str){
     if(str=="heels"){
         if(present(this_object()->GetKeyName(),this_player() ) ){
-            write("There's no place like home!\n"+
-                    "You are transported by an awesome whirlwind somewhere "+
-                    "else...\n");
+            write("没有什么地方比得上家！\n"+
+                    "你被一阵奇妙的旋风传送到了其他地方……\n");
             this_player()->eventMoveLiving("/domains/campus/room/start");
             return 1;
         }
-        write("You click your heels together...but feel "+
-                "as though you're missing something.\n");
+        write("你把鞋跟碰在一起……但感觉好像少了什么东西。\n");
         return 1;
     }
 }
 int post_it(string str){
     if(present("chalkboard",environment(this_player())) && !creatorp(this_player()) ){
-        write("As a visitor, you are not allowed to post on creator boards.");
+        write("作为访客，你不能在创造者公告板上发帖。");
         return 1;
     }
 }
 string GetAffectLong(object ob) {
     if(!ob || !living(ob)) return 0;
-    return ob->GetName() + " is an authorized Test Character.";
+    return ob->GetName() + " 是一位授权的测试角色。";
 }

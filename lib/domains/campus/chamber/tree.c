@@ -15,11 +15,8 @@ protected void create() {
     SetId(({"oak"}));
     SetAdjectives(({"large"}));
     SetShort("一棵大树");
-    SetLong("This is a very large tree. It has been around since long "+
-            "before the Virtual Campus, and looks like it will be around long "+
-            "after, as well.");
-    SetChamberInterior("You are among the sturdy branches of "+
-            "the large tree in University Square.");
+    SetLong("这是一棵非常大的树。它在虚拟校区出现之前就已经存在了，看起来在虚拟校区消失之后它还会继续存在。");
+    SetChamberInterior("你在大学广场这棵大树粗壮的枝干之间。");
     SetRace("tree");
     SetPacifist(1);
     SetPosition(POSITION_NULL);

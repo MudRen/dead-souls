@@ -20,11 +20,11 @@ protected void create() {
     AddCommandResponse("give", (: give_it :));
     AddCommandResponse("omni", (: give_it :) );
     SetAction(25, ({
-                "Seth Brundle runs a nervous hand through his hair.",
-                "Dr. Brundle twitches momentarily.", "Dr. Seth Brundle ponders.",
-                "Seth thinks.", "Dr. Seth Brundle thinks carefully.",
-                "Dr. Seth Brundle says, \"You won't be able to get back without an omni.\"",
-                "Dr. Seth Brundle peers nervously at the portal."}));
+                "塞斯·布伦德尔紧张地用手捋了捋头发。",
+                "布伦德尔博士抽搐了一下。", "塞斯·布伦德尔博士在思考。",
+                "塞斯在思考。", "塞斯·布伦德尔博士仔细地思考着。",
+                "塞斯·布伦德尔博士说，\"没有万能遥控器你就回不来了。\"",
+                "塞斯·布伦德尔博士紧张地盯着传送门。"}));
 }
 void reset(){
     if(!present("omni",this_object())){
@@ -34,20 +34,20 @@ void reset(){
 }
 int give_it(string str){
     if(!present("omni",this_object())){
-        this_object()->eventForce("say I'm afraid I don't have anything to give");
+        this_object()->eventForce("say 恐怕我没有什么东西可以给你");
         this_object()->eventForce("ponder");
         return 1;
     }
     if(!present("omni",this_player())){
-        write("Dr. Brundle looks at you skeptically for a moment.\n");
-        say("Dr. Brundle looks at "+this_player()->GetName()+" skeptically for a moment.\n");
+        write("布伦德尔博士怀疑地看了你一眼。\n");
+        say("布伦德尔博士怀疑地看了"+this_player()->GetName()+"一眼。\n");
         this_object()->eventForce("give first omni to "+lower_case(this_player()->GetName()) );
-        this_object()->eventForce("say Just try not to get killed, "+this_player()->GetName());
+        this_object()->eventForce("say 尽量别死掉，"+this_player()->GetName());
         this_object()->eventForce("sigh");
         return 1;
     }
     this_object()->eventForce("snort");
-    this_object()->eventForce("say You've already got one, "+this_player()->GetName());
+    this_object()->eventForce("say 你已经有一个了，"+this_player()->GetName());
     return 1;
 }
 void init(){

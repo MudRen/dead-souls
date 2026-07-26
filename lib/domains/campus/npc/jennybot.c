@@ -13,8 +13,8 @@ mixed GreetingResponse(object who, mixed foo, string message, mixed bar){
     message = lower_case(message);
     if(!strsrch(message, "hi") || !strsrch(message, "hello") ||
             !strsrch(message, "hey") || !strsrch(message, "sup")){
-        tell_player(who,"The woman does not respond to your greeting, "+
-                "but you sense that you can: \n%^BOLD%^look at woman%^RESET%^");
+        tell_player(who,"这位女士没有回应你的问候，"+
+                "但你觉得你可以：\n%^BOLD%^look at woman%^RESET%^");
     }
     return 1;
 }
@@ -53,9 +53,9 @@ protected void create(){
     SetLevel(99);
     SetRace("android");
     SetAction(1, ({
-                "Jenny straightens her hair.",
-                "Jenny the guide bot touches up her rouge a bit.",
-                "Jenny smiles."}));
+                "珍妮理了理她的头发。",
+                "导游机器人珍妮稍微补了补妆。",
+                "珍妮微笑着。"}));
     AddCommandResponse("shutdown", (: eventTurnOff :));
     AddCommandResponse("shut down", (: eventTurnOff :) );
     AddCommandResponse("shut up", (: eventTurnOff :));
@@ -87,15 +87,13 @@ varargs int eventGreet(string newbie){
     if(newbie && newbie != "there") noob = find_player(newbie);
     if(noob && newbie != "there") guy = noob->GetName();
     else guy = "there";
-    tell_room(environment(this_object()),"The polite young "+
-            "lady springs to life!\n");
-    prespiel = "Jennybot says, \"%^BOLD%^CYAN%^ Hello, "+guy;
+    tell_room(environment(this_object()),"这位彬彬有礼的年轻女士突然活了过来！\n");
+    prespiel = "珍妮机器人说，\"%^BOLD%^CYAN%^ 你好，"+guy;
     spiel = read_file("/domains/campus/txt/jenny/spiel.txt");
     tell_room(environment(this_object()),prespiel+spiel);
-    tell_room(environment(this_object()),"\n\t%^RED%^activate bot%^RESET%^\n");
+    tell_room(environment(this_object()),"\n\t%^RED%^activate bot%^RESET%^（激活机器人）\n");
     eventForce("yell DEDDA SORUZE: GETTO DA ZE!");
-    tell_room(environment(this_object()),"The polite young "+
-            "woman becomes totally motionless again.");
+    tell_room(environment(this_object()),"这位彬彬有礼的年轻女士再次变得一动不动。");
     noob->SetProperty("greeted",1);
     return 1;
 }
@@ -126,8 +124,8 @@ int next_tip(string str){
     if(!str) return 0;
     if(str=="") return 0;
     if(str="tip"){
-        if(active != 1) { write("Jennybot is not active."); return 1; }
-        if(tip == tipnumber) ob->eventForce("say Sorry. No more tips.");
+        if(active != 1) { write("珍妮机器人未激活。"); return 1; }
+        if(tip == tipnumber) ob->eventForce("say 抱歉，没有更多提示了。");
         else {
             this_object()->eventDoTip(tip);
         }
@@ -151,14 +149,13 @@ int refreshlist(){
 
 int eventTurnOff(mixed arg){
     if( active == 0 ){
-        write("Jennybot is already inactive.");
+        write("珍妮机器人已经处于未激活状态。");
     }
     tip = 0;
     if( active != 0) {
         eventForce("yell DEDDA SORUZE: GETTO DA ZE!");
-        tell_room(environment(this_object()),"Jenny nods and becomes motionless again, "+
-                "her expression now fixed and staring out into "+
-                "space.");
+        tell_room(environment(this_object()),"珍妮点了点头，再次变得一动不动，"+
+                "她的表情凝固了，目光呆滞地望向前方。");
     }
     active=0;
     return 1;
@@ -170,31 +167,28 @@ int eventTurnOn(mixed arg){
     name=this_player()->GetName();
     if(!name || !sizeof(name)) name = "player";
     if(active==1){
-        write("Jennybot has already been activated.");
+        write("珍妮机器人已经处于激活状态。");
         return 1;
     }
     refreshlist();
     active=1;
     hb=0;
     tip=1;
-    write("The female android comes to life! She "+
-            "smiles at you and straightens her dress.");
-    ob->eventForce("say Hello, "+name+"! I'm Jenny, the LPC University "+
-            "newbie guide bot. I'm an extremely simple android, so "+
-            "please don't expect a lot of interactivity.");
+    write("这个女性安卓机器人活了过来！她对你微笑，整了整她的裙子。");
+    ob->eventForce("say 你好，"+name+"！我是珍妮，LPC大学的"+
+            "新手导游机器人。我是一个非常简单的安卓机器人，所以"+
+            "请不要期望太多互动。");
     ob->eventForce("smile "+name);
-    ob->eventForce("say I'm here to give you a few "+
-            "tips. To deactivate me, simply "+
-            "type: %^RED%^deactivate bot%^CYAN%^.");
-    ob->eventForce("say To jump to the next tip, type: next tip");
+    ob->eventForce("say 我在这里给你一些提示。要停用我，只需"+
+            "输入：%^RED%^deactivate bot%^CYAN%^。");
+    ob->eventForce("say 要跳到下一个提示，请输入：next tip");
     return 1;
 }
 
 int eventAct4(){
     if(!new("/domains/campus/obj/note")->eventMove(this_object())){
-        tell_room(environment(this_object()),"Oops! There's a bug, "+
-                "and I don't have a note for you. Let's pretend I gave you "+
-                "one and move on. Please email your admin about this, though.");
+        tell_room(environment(this_object()),"哎呀！出了个问题，"+
+                "我没有纸条给你。就假装我已经给你了吧。不过请给管理员发邮件报告这个问题。");
         return 1;
     }
     if(player && environment(this_object()) == environment(player)) {
@@ -205,9 +199,8 @@ int eventAct4(){
 
 int eventAct6(){
     if(!new("/domains/campus/obj/map")->eventMove(this_object())){
-        tell_room(environment(this_object()),"Oops! There's a bug, "+
-                "and I don't have a map for you. Let's pretend I gave you "+
-                "one and move on. Please email your admin about this, though.");
+        tell_room(environment(this_object()),"哎呀！出了个问题，"+
+                "我没有地图给你。就假装我已经给你了吧。不过请给管理员发邮件报告这个问题。");
         return 1;
     }
     if(player && environment(this_object()) == environment(player)) {
@@ -219,13 +212,11 @@ int eventAct6(){
 int eventAct8(){
     if(mooch || !new("/domains/campus/armor/newbie_cap")->eventMove(this_object())){
         tell_room(environment(this_object()),
-                "I don't have a hat for you. Let's pretend I gave you "+
-                "one and move on.");
+                "我没有帽子给你。就假装我已经给你了吧。");
     }
     if(mooch || !new("/domains/campus/obj/squirtbag")->eventMove(this_object())){
         tell_room(environment(this_object()),
-                "I don't have a bag for you. Let's pretend I gave you "+
-                "one and move on.");
+                "我没有袋子给你。就假装我已经给你了吧。");
     }
     if(player && environment(this_object()) == environment(player)) {
         eventForce("give cap to "+player->GetName());
@@ -239,14 +230,12 @@ int eventAct8(){
 int eventAct9(){
     eventForce("smile "+player->GetName());
     if(!new("/domains/campus/meals/badapple")->eventMove(this_object())){
-        tell_room(environment(this_object()),"Oops! There's a bug, "+
-                "and I don't have a rotten apple for you. Let's pretend I gave you "+
-                "one and move on. Please email your admin about this, though.");
+        tell_room(environment(this_object()),"哎呀！出了个问题，"+
+                "我没有烂苹果给你。就假装我已经给你了吧。不过请给管理员发邮件报告这个问题。");
     }
     if(!new("/domains/campus/meals/apple")->eventMove(this_object())){
-        tell_room(environment(this_object()),"Oops! There's a bug, "+
-                "and I don't have an apple for you. Let's pretend I gave you "+
-                "one and move on. Please email your admin about this, though.");
+        tell_room(environment(this_object()),"哎呀！出了个问题，"+
+                "我没有苹果给你。就假装我已经给你了吧。不过请给管理员发邮件报告这个问题。");
     }
     if(player && environment(this_object()) == environment(player)) {
         eventForce("give first apple to "+player->GetName());

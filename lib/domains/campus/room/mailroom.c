@@ -29,11 +29,11 @@ void init(){
 }
 int instr(string str){
     if(str=="instructions"||str=="sign"){
-        write("To mail someone, type mail <person's name here>.\n"+
-                "Enter a subject line.\n"+
-                "Enter your message.\n"+
-                "Once you've finished, enter a period (.) on a blank line.\n"+
-                "Hit x, then s to send it. You're done!\n");
+        write("要给某人寄信，请输入 mail <收件人名字>。\n"+
+                "输入主题行。\n"+
+                "输入你的消息内容。\n"+
+                "完成后，在空白行输入一个句号（.）。\n"+
+                "按 x，然后按 s 发送。完成了！\n");
         return 1;
     }
 }
@@ -51,11 +51,11 @@ mixed eventMail(object who, string args) {
     object ob;
 
     if( !(ob = new(OBJ_POST)) ) {
-        who->eventPrint("Failed to load postal object!");
+        who->eventPrint("加载邮政对象失败！");
         return 1;
     }
     if( !(ob->eventMove(who)) ) {
-        who->eventPrint("You can't seem to carry the postal object.");
+        who->eventPrint("你似乎无法携带邮政对象。");
         return 1;
     }
     ob->start_post(args);

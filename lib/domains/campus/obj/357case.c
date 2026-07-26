@@ -16,7 +16,7 @@ void create() {
 
 mixed CanReceive(object ob){
     if(ob->GetKeyName() != ".357 round") {
-        tell_object(this_player(),"This cardboard case is for .357 ammunition only.");
+        tell_object(this_player(),"这个纸板盒只能装.357口径弹药。");
         return 0;
     }
     return storage::CanReceive(ob);

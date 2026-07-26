@@ -32,7 +32,7 @@ varargs mixed eventShoot(object shooter, mixed target, string direction){
     object killer, env;
 
     if(!target || direction){
-        write("You can't do that.");
+        write("你不能那样做。");
         return 1;
     }
 
@@ -41,12 +41,12 @@ varargs mixed eventShoot(object shooter, mixed target, string direction){
     env = environment(killer);
     patsy = target->GetName();
 
-    tell_room(env,name+" drenches "+patsy+" with "+possessive(killer)+" "+
-            "water gun!",({killer,target}) );
-    tell_object(killer,"You drench "+patsy+" with your water gun! Ha ha ha, "+
-            nominative(target)+" looks like a dope!");
-    tell_object(target,name+" drenches you with "+possessive(killer)+" "+
-            "water gun! Ha ha ha! You look like a big wet dope!");
+    tell_room(env,name+"用"+possessive(killer)+
+            "水枪把"+patsy+"淋了个透！",{killer,target} );
+    tell_object(killer,"你用水枪把"+patsy+"淋了个透！哈哈哈，"+
+            nominative(target)+"看起来像个傻瓜！");
+    tell_object(target,name+"用"+possessive(killer)+
+            "水枪把你淋了个透！哈哈哈！你看起来像个湿漉漉的大傻瓜！");
     return 1;
 }
 

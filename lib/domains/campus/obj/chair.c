@@ -29,14 +29,14 @@ int swivel(string str){
             if( member_array(this_player(),this_object()->GetSitters()) != -1) hit = 7;
         }
         if( hit == 7) {
-            write("You swivel around in your swivel chair! Whee!");
-            say(this_player()->GetName()+" swivels around in "+possessive(this_player())+" "+
-                    "swivel chair, yelling \"WHEEEE!!!\"");
+            write("你在转椅上转了一圈！呜呼！");
+            say(this_player()->GetName()+"在"+possessive(this_player())+
+                    "转椅上转了一圈，大喊\"呜呼！！！\"");
             return 1;
         }
-        else { write("You are not sitting in a swivel chair."); }
+        else { write("你没有坐在转椅上。"); }
     }
     if(hit == 42) return 1;
     else return 0;
 }
-mixed CanGet(object ob) { return "The chair does not budge.";}
+mixed CanGet(object ob) { return "这把椅子纹丝不动。";}
