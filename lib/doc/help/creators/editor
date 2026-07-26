@@ -1,110 +1,107 @@
 
 
-			     The Ed Primer
-				 --or--
-	Your Introduction To The Wonderful World Of Programming With Ed!
 
-0. A Prelude:
-   (How to read the author's peculiar notation)
+				     Ed 入门指南
+					 --或--
+		你与 Ed 编程奇妙世界的初次相遇！
 
-In all examples:
+0. 前言：
+   （如何阅读作者的特殊记号）
 
-Words in angle brackets <like this> are not to be typed literally, but rather
-to be substituted for.  For example, '<number>p' could be '4p' or '27p', etc.
-[Anything in square brackets] is optional.
-<x|y> represents <x> OR <y>, but not both.
-> is assumed to be the standard lpmud prompt.
-: is assumed to be the ed command mode prompt.
-* is assumed to be the ed insert mode prompt.
+在所有示例中：
 
---The author/editor
+尖括号中的单词 <像这样> 不是要直接输入，而是要替换为实际内容。
+例如，'<number>p' 可以是 '4p' 或 '27p' 等。
+[方括号中的任何内容] 是可选的。
+<x|y> 表示 <x> 或 <y>，但不能同时使用。
+> 被假定为标准 lpmud 提示符。
+: 被假定为 ed 命令模式提示符。
+* 被假定为 ed 插入模式提示符。
 
-I. A Beginning:
-   (The 'ed', 'a', 'i', 'w', and 'q' commands)
+--作者/编辑
 
-First, the command to enter ed from lpmud can take one of two basic forms:
+I. 入门：
+   （'ed'、'a'、'i'、'w' 和 'q' 命令）
+
+首先，从 lpmud 进入 ed 的命令可以采用两种基本形式之一：
 > ed <filename>
-    or
+    或
 > ed <dummy filename>.
 
-The first is used to edit an existing file.  The second is used to create a new
-file.  The dummy filename can be any string that isn't already the name of a
-file.  Short strings like 'a' work well for this.
+第一种用于编辑现有文件。第二种用于创建新文件。
+虚拟文件名可以是任何尚未作为文件名的字符串。
+像 'a' 这样的短字符串很适合这个用途。
 
-Once you are in ed, your prompt will become ':'.  From this prompt you enter
-ed commands.  If you are beginning a new file, you can use one of two commands
-to enter insert mode: 'a' or 'i'.  The difference between these two will become
-significant later on.  In insert mode, your prompt will become '*'.  From here
-you type in the body of your file.  You can leave insert mode at any time by
-typing a single '.' on a line by itself.
+一旦进入 ed，你的提示符将变为 ':'。从这个提示符
+你输入 ed 命令。如果你正在开始一个新文件，你可以
+使用两个命令之一进入插入模式：'a' 或 'i'。
+这两个命令的区别将在后面变得重要。
+在插入模式下，你的提示符将变为 '*'。
+从这里你输入文件的正文。你可以随时通过在单独一行
+输入一个 '.' 来离开插入模式。
 
-Once you are finished entering your text and have returned to command mode 
-(':' prompt), you can save your file with the 'w' command, specifying a
-filename:
+一旦你完成输入文本并返回到命令模式（':' 提示符），
+你可以用 'w' 命令保存文件，指定文件名：
 
 :w myfile.c
 
-          Then you can use 'q' to exit ed, and return to your normal propmt.
+          然后你可以用 'q' 退出 ed，返回到你的正常提示符。
 
-Summary:
+总结：
 
-> ed <file | dummy file>  takes you into ed.
-'a' and 'i' in command mode begin insert mode.
-   ---> Implicit assumtion from now on: all commands will be from command mode
-   ---> unless it is stated otherwise.
-'.' in insert mode returns you to command mode.
-'w <file>' saves your file.
-'q' takes you out of ed.
+> ed <file | dummy file>  带你进入 ed。
+'a' 和 'i' 在命令模式下开始插入模式。
+   ---> 从现在开始的隐含假设：所有命令都来自命令模式
+   ---> 除非另有说明。
+'.' 在插入模式下返回命令模式。
+'w <file>' 保存你的文件。
+'q' 带你退出 ed。
 
 
-II. Editing existing files:
-    (The 'ed', 'a', 'c', 'd', 'i', 'l', 'p', 'w', 'z', and '=' commands.)
+II. 编辑现有文件：
+    （'ed'、'a'、'c'、'd'、'i'、'l'、'p'、'w'、'z' 和 '=' 命令。）
 
-To edit an existing file (a reminder from section I), use:
+要编辑现有文件（来自第 I 节的提醒），使用：
 
 > ed <filename>
 
-This again puts you in command mode, with the difference from starting a new 
-file that there are already lines in the buffer.  Use the command '.p' to
-see the line you are presently on.
+这再次让你进入命令模式，与开始新文件的区别在于
+缓冲区中已经有行。使用命令 '.p' 查看你当前所在的行。
 
-The command 'p' will print out a line or range of lines.  Its syntax is this:
-'p' or '.p'* will print out the line you are presently on.  '<number>p' will
-print out line number <number>.  '<number1>,<number2>p' will print out the
-range of lines from <number1> to <number2>.  In this case, <number1> must be
-less than or equal to <number2>.  In both cases, all numbered lines must exist,
-or the command will fail.  The command 'l' is similar to 'p' in most respects,
-except that it also makes visible some 'invisible' characters, like newline
-(which shows up as $).  Tabs become completely invisible.  'z' will display
-21 lines in 'p' fashion (i.e., ctrl characters remain invisible).  'z' can
-be prepended by a line number to start at.
+命令 'p' 将打印一行或一个范围的行。其语法如下：
+'p' 或 '.p'* 将打印你当前所在的行。'<number>p' 将打印
+行号 <number>。'<number1>,<number2>p' 将打印从 <number1>
+到 <number2> 的行范围。在这种情况下，<number1> 必须小于
+或等于 <number2>。在这两种情况下，所有编号的行必须存在，
+否则命令将失败。命令 'l' 在大多数方面与 'p' 相似，
+除了它还使一些"不可见"字符可见，如换行符（显示为 $）。
+制表符变得完全不可见。'z' 将以 'p' 的方式显示 21 行
+（即控制字符保持不可见）。'z' 前面可以加行号作为起始位置。
 
-The command <number> will take you to the line of the same number.
+命令 <number> 将带你到相同编号的行。
 
-The commands 'i' and 'a' are the commands introduced in section I.  The
-difference between these two commands now takes on a significance; 'i' starts
-inserting before the line you are presently on, while 'a' starts inserting
-after the line you are on.  (Use '.' or '.p' to display the line you are on.)
-Also, 'i' and 'a' can both be prepended by a <number>, ('<number>i' and
-'<number>a'), which sets your present line at <number> before beginning insert
-mode.
+命令 'i' 和 'a' 是在第 I 节中介绍的命令。
+这两个命令之间的区别现在变得重要了；'i' 在你当前
+所在的行之前开始插入，而 'a' 在你所在的行之后开始插入。
+（使用 '.' 或 '.p' 来显示你所在的行。）
+此外，'i' 和 'a' 前面都可以加 <number>（'<number>i' 和
+'<number>a'），在开始插入模式之前将你当前行设置为 <number>。
 
-The command '=' can be used to discover the number of the line you are on.
+命令 '=' 可以用来发现你所在行的行号。
 
-The command 'd' deletes the current line you are on.  'd' can, like 'p' and
-'l', be used with a single line number, or a range of them for arguments.
+命令 'd' 删除你当前所在的行。'd' 可以像 'p' 和 'l' 一样，
+使用单个行号或行范围作为参数。
 
-The command 'c' is used to change lines.  It is essentially similar to 'd'
-in its usage, except that instead of leaving you in command mode, you are
-put into insert mode, inserting text to 'replace' what was removed.
+命令 'c' 用于更改行。它在使用上本质上与 'd' 相似，
+只是它不会让你留在命令模式，而是让你进入插入模式，
+插入文本以"替换"被删除的内容。
 
-Finally, 'w' without being followed by '<file>' will save the file under the
-name you began editing it as, provided that that file already existed.
+最后，不跟 '<file>' 的 'w' 将以你开始编辑时的文件名
+保存文件，前提是该文件已经存在。
 
-Footnote: * As a number, '.' refers to the present line; '$' refers to the last
-          line of the file.
+脚注：* 作为数字，'.' 指当前行；'$' 指文件的最后一行。
 
-An example encompassing what we've done so far:
+一个包含我们目前所学内容的示例：
 > ed a
 :a
 *This is line 1.
@@ -150,63 +147,59 @@ This is line 5.
     1 file.txt
 >
 
-Summary:
+总结：
 
-'p' and 'l' are used to display ranges of lines.  'l' displays some invisible
-	characters.
-'z' displays 21 lines in 'p' format.
-'=' displays the current line number.
-'d' deletes a line.
-'c' changes a line by deleting it and putting you into insert mode.
---As numbers, '.' refers to the present line, and '$' to the last line of the
-	file.
+'p' 和 'l' 用于显示行范围。'l' 显示一些不可见字符。
+'z' 以 'p' 格式显示 21 行。
+'=' 显示当前行号。
+'d' 删除一行。
+'c' 通过删除一行并让你进入插入模式来更改一行。
+--作为数字，'.' 指当前行，'$' 指文件的最后一行。
 
-III. More Advanced Editing: 
-	(The 's' command)
+III. 更高级的编辑：
+	（'s' 命令）
 
-The 's' command is used for substitutions. The general format is this:
+'s' 命令用于替换。一般格式如下：
 
 :[<number1>[,<number2>]]s<delimiter><pattern><delimiter><sub>[<delimiter>gp]
 
-The command may look intimidating at first, but it turns out to be one of the
-most powerful commands in ed.
+这个命令一开始可能看起来很吓人，但事实证明它是 ed 中
+最强大的命令之一。
 
-An explanation of all the angle-brackets:
-<number1> and <number2> are the range of substitution.  If ',<number2>' is
-omitted, the range of effect is merely line <number1>.  If '<number1>' is also
-omitted, the substitution defaults to the present line.
+所有尖括号的解释：
+<number1> 和 <number2> 是替换范围。如果省略了 ',<number2>'，
+作用范围仅限于行 <number1>。如果也省略了 '<number1>'，
+替换默认为当前行。
 
-<delimiter> is simply a character used as a separator.  Care should be taken
-that '<delimiter>' does not occur in either <pattern> or <sub>.  The most 
-common choices for <delimiter> are '/' and '!', although any character can be
-used.
+<delimiter> 只是用作分隔符的字符。应注意 '<delimiter>'
+不要出现在 <pattern> 或 <sub> 中。最常见的 <delimiter>
+选择是 '/' 和 '!'，尽管可以使用任何字符。
 
-<pattern> is the string that will be changed. <sub> is the string that it will
-be changed to.  If <pattern> begins with a '^', that is taken to mean 'beginning
-of line.'  Similarly, if it ends with '$', it signifies 'end of line.'
+<pattern> 是要被更改的字符串。<sub> 是它将被更改成的字符串。
+如果 <pattern> 以 '^' 开头，那意味着"行首"。类似地，
+如果它以 '$' 结尾，表示"行尾"。
 
-The final optional [gp] are used, respectively, to make the substitution global
-throughout the line (instead of just affecting the first occurrence), and to
-display the newly-changed line immediately afterwards.  Note that g must come
-before p, if both are used.
+最后的可选 [gp] 分别用于使替换在整个行中全局生效
+（而不是只影响第一个出现），以及在之后立即显示新更改的行。
+注意如果同时使用 g 和 p，g 必须在 p 之前。
 
-Some examples:
+一些示例：
 
 :.
 This is line nubmer 3.
-:s/bm/mb/p        <--- Note that '/' is used as the delimiter here.
+:s/bm/mb/p        <--- 注意这里使用 '/' 作为分隔符。
 This is line number 3.
 :
 
 :.
 Thsi si line 3.
-:s!si!is!p        <--- The delimiter here is '!'.
-This si line 3.   <--- Note that only the 1st occurrence of 'si' was changed
+:s!si!is!p        <--- 这里的分隔符是 '!'。
+This si line 3.   <--- 注意只有第一个 'si' 被更改了
 :
 
 :.
 Thsi si line number 3.
-:s!si!is!gp       <--- Here, the delimiter is '!', again.
+:s!si!is!gp       <--- 这里，分隔符又是 '!'。
 This is line number 3.
 :
 
@@ -214,90 +207,86 @@ This is line number 3.
 This is lize 3.
 This is lize 4.
 This is lize 5.
-:3,5sqzqnqp      <--- Here, to confuse matters, the delimiter is 'q'.
+:3,5sqzqnqp      <--- 这里，为了混淆，分隔符是 'q'。
 This is line 3.
 This is line 4.
 This is line 5.
 :
 
-General notes:
-For a global substitution, use:
+一般说明：
+对于全局替换，使用：
 :1,$s/<pattern>/<sub>/g
 
-Beware of special characters in <pattern>.  '.', '(', ')', '&', '*', '|', '[',
-'^', and ']' should all be prepended by backslashes ('\') if they are used. 
-'\' is, although possible to use in <sub> and <pattern>, very tricky to use. 
-The author recommends beginners use the 'c' command to do sunstitutions for
-this character instead.
+注意 <pattern> 中的特殊字符。'.'、'('、')'、'&'、'*'、'|'、'['、
+'^' 和 ']' 如果被使用，都应该在前面加反斜杠（'\'）。
+'\' 虽然可以在 <sub> 和 <pattern> 中使用，但使用起来非常棘手。
+作者建议初学者对这个字符使用 'c' 命令来进行替换。
 
-Some of these special characters that can be used in <pattern>:
-.	Match any character.
-x*	Match any numbers of x (0 or more).
-[abc]	Match 'a', 'b' or 'c'.
-[0-9]	Match any digit 0 - 9.
-[a-z]	Match any lowercase letter.
-[^0-9]  Match anything except a digit 0 - 9.
+可以在 <pattern> 中使用的一些特殊字符：
+.	匹配任何字符。
+x*	匹配任意数量的 x（0 个或更多）。
+[abc]	匹配 'a'、'b' 或 'c'。
+[0-9]	匹配任何数字 0 - 9。
+[a-z]	匹配任何小写字母。
+[^0-9]  匹配除数字 0 - 9 以外的任何字符。
 
-The & can be used in the replacement to represent the text being replaced.
+& 可以在替换中用来代表被替换的文本。
 
-Example:
+示例：
 :.
 This is a lazy line, lying abed.  It is also silly; abcd.
 :s/ab.d/ABCD/gp
 This is a lazy line, lying ABCD.  It is also silly; ABCD.
 :
 
-Example:
+示例：
 :.
 This is a long line that is being used to demonstrate a silly example.
 :s/l.n./&foo/
 This is a longfoo linefoo that is being used to demonstrate a silly example.
 
-III-I/II. (3.5, for those who can't figure that out.) Author's Interjection:
-         (The '<range>' notation)
+III-I/II.（3.5，给那些算不出来的人。）作者的插话：
+         （'<range>' 记号）
 
-What was formerly referred to as <number1>,<number2><command> will, from here
-on out, be referred to as <range><commmand>, for the author's typing ease.
-Thank you.
+以前被称为 <number1>,<number2><command> 的内容，从现在开始
+将被称为 <range><command>，为了作者打字方便。谢谢。
 
-Campus. Still More Advanced Commands, and Related Shortcuts:
-    (The 'e', 'E', 'f', 'j', 'k', 'Q', 'm', 'r', 't', 'x', and '!' commands)
+Campus. 更多高级命令和相关快捷方式：
+    （'e'、'E'、'f'、'j'、'k'、'Q'、'm'、'r'、't'、'x' 和 '!' 命令）
 
-The 'e', 'E', and 'r' commands can all be used to read external files into the
-buffer.  'e <file>' reads <file> into the buffer, deleting everything in the
-buffer.  Because it is destructive, the exact buffer contents must be saved
-before this command can be executed.  'E <file>' works exactly as 'e <file>',
-except that it ignores the saved status of the present buffer.
-'<number>r <file>' reads in the contents of <file>, placing them after line
-<number>.  As usual, if <number> is omitted, it defaults to the current line.
+'e'、'E' 和 'r' 命令都可以用来将外部文件读入缓冲区。
+'e <file>' 将 <file> 读入缓冲区，删除缓冲区中的所有内容。
+因为它是破坏性的，确切的缓冲区内容必须在此命令执行前保存。
+'E <file>' 的工作方式与 'e <file>' 完全相同，只是它忽略
+当前缓冲区的保存状态。
+'<number>r <file>' 读入 <file> 的内容，将其放在行 <number> 之后。
+像往常一样，如果省略 <number>，默认为当前行。
 
-'Q' and 'x' can, like 'q', be used to exit ed.  'q' can only be used to exit
-ed if the exact contents of the buffer are saved.  'Q' can be used to exit 
-regardless of the saved status of the buffer.  'x' saves the buffer to the
-default file name and exits ed.  Note that if there is no default file name, 
-'x' will fail.
+'Q' 和 'x' 可以像 'q' 一样用来退出 ed。
+'q' 只有在缓冲区的确切内容已保存时才能用来退出 ed。
+'Q' 可以在不考虑缓冲区保存状态的情况下退出。
+'x' 将缓冲区保存到默认文件名并退出 ed。
+注意如果没有默认文件名，'x' 将失败。
 
-'<range>j' will join all of the lines in <range> together into one line.
+'<range>j' 将 <range> 中的所有行连接成一行。
 
-'<number>k<marker>' will assign <marker> to line <number>.  <marker> can be
-any lowercase letter.  A line marked is referred to as "'<marker>".  For
-example, the commands:
+'<number>k<marker>' 将 <marker> 分配给行 <number>。
+<marker> 可以是任何小写字母。被标记的行被称为 "'<marker>"。
+例如，命令：
 :5kd
 :1,'dp
-                       will mark line 5 as "d" and then print out lines 1-5.
+                       将把第 5 行标记为 "d"，然后打印第 1-5 行。
 
-'f <file>' sets the default name of the file (used for the 'w' and 'x'
-commands) to <file>.
+'f <file>' 将文件的默认名称（用于 'w' 和 'x' 命令）设置为 <file>。
 
-'t' and 'm' are both used to move sections of text.  The format is:
+'t' 和 'm' 都用于移动文本段。格式是：
 :<range>t|m<number>
-where <range> is the text to be moved, and <number> the line it is to be
-inserted after.  't' is 'transfer' and leaves a copy of the text to be moved
-at the original site; it is basically a 'copy' command.  'm' is 'move' and 
-moves the text from its original site to its new site.
+其中 <range> 是要移动的文本，<number> 是要插入在其后的行。
+'t' 是"传输"并在原始位置留下要移动文本的副本；它基本上是
+一个"复制"命令。'm' 是"移动"并将文本从原始位置移动到新位置。
 
-'!' is used to execute lpmud commands from within ed, and can be used in either
-the command or the insert mode.  For example:
+'!' 用于从 ed 内部执行 lpmud 命令，可以在命令模式或插入模式下使用。
+例如：
 :!'Wait, please; I'm in ed.
 Guest says: But I want to talk.
 :i
@@ -305,46 +294,45 @@ Guest says: But I want to talk.
 *
 
 
-A summary:
-'e', 'E', and 'r' are used to retrieve external files to the buffer.
-'Q' is used to exit, regardless of save status.
-'x' is used to save and exit in one step.
-'f' changes the default name of the file.
-'j' joins lines together.
-'k' marks lines.
-'t' is used to transfer, or copy lines.
-'m' is used to move lines.
-'!' in command and insert modes, is used to execute an lpmud command.
+总结：
+'e'、'E' 和 'r' 用于将外部文件检索到缓冲区。
+'Q' 用于退出，不考虑保存状态。
+'x' 用于一步保存并退出。
+'f' 更改文件的默认名称。
+'j' 连接行。
+'k' 标记行。
+'t' 用于传输或复制行。
+'m' 用于移动行。
+'!' 在命令和插入模式下用于执行 lpmud 命令。
 
-Campus. Seek, and Ye Shall Find
-   (The 'g', 'v', '?', and '/' commands)
+Campus. 寻找，你就会找到
+   （'g'、'v'、'?' 和 '/' 命令）
 
-'/' and '?' are used to find expressions in the buffer.  '/<string>' does a
-forward search for <string>, while '?<string>' does a backward search.
-'/' and '?' with no arguments default to the previous argument.  If no argument
-was given prior, an error occurs.
+'/' 和 '?' 用于在缓冲区中查找表达式。
+'/<string>' 向前搜索 <string>，而 '?<string>' 向后搜索。
+不带参数的 '/' 和 '?' 默认使用之前的参数。
+如果之前没有给出参数，则会发生错误。
 
-'g' and 'v' use similar formats for operation:
+'g' 和 'v' 使用类似的格式进行操作：
 :<range>g|v/<string>/<command>
 
-Both 'g' and 'v' search through <range> for lines that contain <string>.
-'g' executes <command> on all lines in <range> that contain <string>, while
-'v' executes <command> on all lines that do not contain <string>.
+'g' 和 'v' 都在 <range> 中搜索包含 <string> 的行。
+'g' 对 <range> 中所有包含 <string> 的行执行 <command>，
+而 'v' 对所有不包含 <string> 的行执行 <command>。
 
-<command> may be one of the following commands: 's', 'l', 'p', 'd', 'm', or
-'r'.  Arguments for these commands work normally.
+<command> 可以是以下命令之一：'s'、'l'、'p'、'd'、'm' 或 'r'。
+这些命令的参数正常工作。
 
-'/' and '?' may be used similarly to operate on the first occurrence of
-<string> found.  For example:
+'/' 和 '?' 可以类似地用于对找到的第一个 <string> 进行操作。
+例如：
 :/foo/s/x/ox/gp
 
-                will replace all instances of 'x' on the next line containing
-'foo' with 'ox' and set your current line there.  Similarly, 
+                将在包含 'foo' 的下一行中将所有 'x' 替换为 'ox'
+并将你当前行设置在那里。类似地，
 :?bar?=
-                                                             will give you the
-number of the first previous line containing the string 'bar', and set your
-current line there.
-Exapmles:
+                                                             将给你包含
+字符串 'bar' 的第一个前一行的编号，并将你当前行设置在那里。
+示例：
 
 :1,$p
 This is a test.
@@ -367,6 +355,6 @@ There are more than two lines.
 :Q
 >
 
---Mishael, author/editor.
+--Mishael，作者/编辑。
 David "Mishael" Green
 dgreen@jarthur.claremont.edu

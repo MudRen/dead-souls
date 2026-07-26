@@ -9,16 +9,16 @@ int t, BootScore, PerformanceScore, hasrun = 0;
 
 string RateScore(int i){
     string ret;
-    if(!i) ret = "No score available.";
-    else if(i < 51) ret = "Spectacular.";
-    else if(i < 101) ret = "Excellent.";
-    else if(i < 201) ret = "Very good.";
-    else if(i < 301) ret = "Good.";
-    else if(i < 401) ret = "Fair.";
-    else if(i < 501) ret = "Poor.";
-    else if(i < 601) ret = "Very poor.";
-    else if(i < 701) ret = "Bad.";
-    else ret = "Execrable.";
+    if(!i) ret = "无评分。";
+    else if(i < 51) ret = "极好。";
+    else if(i < 101) ret = "优秀。";
+    else if(i < 201) ret = "很好。";
+    else if(i < 301) ret = "良好。";
+    else if(i < 401) ret = "一般。";
+    else if(i < 501) ret = "较差。";
+    else if(i < 601) ret = "很差。";
+    else if(i < 701) ret = "糟糕。";
+    else ret = "极差。";
     return ret;
 }
 
@@ -27,7 +27,7 @@ protected void eventRun() {
     mapping before, after;
     string *noobnames = ({ "Dead_Souls_"+DEBUGGER, "DeadSoulsNew",
             "DeadSoulsWin" });
-    debug_message("\nRunning autoexec, please wait...");
+    debug_message("\n正在运行自动执行，请稍候...");
     BootScore = MASTER_D->GetBootScore();
 #ifdef __HAS_RUSAGE__
     before = rusage();
@@ -62,10 +62,10 @@ protected void eventRun() {
 #ifdef __HAS_RUSAGE__
     if(sizeof(before) && sizeof(after)){
         t = after["utime"] - before["utime"];
-        ret = "Autoexec daemon run complete. ("+t+"ms)\n";
+        ret = "自动执行守护进程运行完成。("+t+"毫秒)\n";
     }
 #else 
-    ret =  "Autoexec daemon run complete.\n";
+    ret =  "自动执行守护进程运行完成。\n";
 #endif
     debug_message(ret);
     call_out("perfreport", 1);
@@ -78,10 +78,10 @@ void perfreport(){
     if(!BootScore) BootScore = MASTER_D->GetBootScore();
     if(BootScore){
         secs = ((BootScore + t ) * 0.001);
-        ret += "CPU time in boot: " + sprintf("%.2f",secs)+ " seconds.";
+        ret += "启动CPU耗时: " + sprintf("%.2f",secs)+ " 秒。";
     }
     if(PerformanceScore){
-        ret += " (Performance score: " + (RateScore(PerformanceScore))+")\n";
+        ret += " (性能评分: " + (RateScore(PerformanceScore))+")\n";
     }
     debug_message(ret);
 }

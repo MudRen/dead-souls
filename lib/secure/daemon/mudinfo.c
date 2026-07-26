@@ -51,8 +51,8 @@ int PrintMudInfo(string str){
     }
     if(!MudList) MudList = ([]);
     if(!str || str == "all"){
-        write("Total muds: "+sizeof(MudList));
-        write("Muds: "+implode(sort_array(keys(MudList), 1),", "));
+        write("MUD总数: "+sizeof(MudList));
+        write("MUD列表: "+implode(sort_array(keys(MudList), 1),", "));
         return 1;
     }
 
@@ -68,36 +68,36 @@ int PrintMudInfo(string str){
         if(MudList) tempy = GetMudName(str);
     }
     if(!tempy){
-        write("Mud not found.");
+        write("未找到MUD。");
         return 1;
     }
     info = INTERMUD_D->GetMudList()[tempy];
     if(!info) info = MudList[tempy];
     if(!info){
-        write("No information available on "+tempy);
+        write("没有关于 "+tempy+" 的信息");
         return 1;
     }
-    write("Mudname: "+tempy);
-    write("Status: "+(info[0] < 0 ? "online" : "offline"));
-    write("IP address: "+info[1]);
-    write("Port: "+info[2]);
-    write("imud out-of-band (tcp OOB) port: "+info[3]);
-    write("imud udp port (obsolete): "+info[4]);
-    write("mudlib: "+info[5]);
-    write("base mudlib: "+info[6]);
-    write("driver: "+info[7]);
-    write("mud type: "+info[8]);
-    write("open status: "+info[9]);
-    write("admin email: "+info[10]);
+    write("MUD名称: "+tempy);
+    write("状态: "+(info[0] < 0 ? "在线" : "离线"));
+    write("IP地址: "+info[1]);
+    write("端口: "+info[2]);
+    write("IMUD带外(TCP OOB)端口: "+info[3]);
+    write("IMUD UDP端口(已废弃): "+info[4]);
+    write("MUD库: "+info[5]);
+    write("基础MUD库: "+info[6]);
+    write("驱动: "+info[7]);
+    write("MUD类型: "+info[8]);
+    write("开放状态: "+info[9]);
+    write("管理员邮箱: "+info[10]);
     if(sizeof(info[11])){
-        string tmp = "Services: ";
+        string tmp = "服务: ";
         foreach(mixed key, mixed val in info[11]){
             if(val) tmp += key+" ";
         }
         write(tmp+"\n");
     }
     if(sizeof(info[12])){
-        write("extra info\n---------- ");
+        write("额外信息\n---------- ");
         foreach(mixed key, mixed val in info[12]){
             write(identify(key)+": "+identify(val));
         }
@@ -181,10 +181,10 @@ int do_reconnect()
 {
     if( !connected )
     {
-        notify_fail( "The telnet client is not connected!\n" ) ;
+        notify_fail( "Telnet客户端未连接！\n" ) ;
         return 0 ;
     }
-    write("Reconnecting into telnet session.\n");
+    write("重新连接Telnet会话。\n");
     person = this_player() ;
     input_to( "parse_comm", 0 ) ;
     return 1 ;
@@ -217,25 +217,25 @@ varargs int do_connect(string args, string mud){
     if( new_socket < 0 ){
         switch( new_socket ){
             case EEMODENOTSUPP :
-                error = "Socket mode not supported.\n" ;
+                error = "不支持的套接字模式。\n" ;
                 break ;
             case EESOCKET :
-                error = "Problem creating socket.\n" ;
+                error = "创建套接字出错。\n" ;
                 break ;
             case EESETSOCKOPT :
-                error = "Problem with setsockopt.\n" ;
+                error = "设置套接字选项出错。\n" ;
                 break ;
             case EENONBLOCK :
-                error = "Problem with setting non-blocking mode.\n" ;
+                error = "设置非阻塞模式出错。\n" ;
                 break ;
             case EENOSOCKS :
-                error = "No more available efun sockets.\n" ;
+                error = "没有可用的efun套接字。\n" ;
                 break ;
             case EESECURITY :
-                error = "Security violation attempted.\n" ;
+                error = "安全违规尝试。\n" ;
                 break ;
             default :
-                error = "Unknown error code: " + new_socket + ".\n" ;
+                error = "未知错误代码: " + new_socket + "。\n" ;
                 break ;
         }
         return 0 ;

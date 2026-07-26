@@ -78,7 +78,7 @@ mixed InstCreate(string name, string addy, int port){
     if(InstData[name]) return name + " 已存在。";
     foreach(mixed key, mixed val in InstData){
         if(val && val["port"] == port){
-            return key + " is already on port "+port;
+            return key + " 已在端口 "+port+" 上";
         }
     }
     InstData[name] = ([ "addy" : addy, "port" : port ]);
@@ -169,7 +169,7 @@ mixed InstDelete(mixed arg){
     mixed which;
     if(base_name(prev) != CMD_INSTCONFIG) return 0;
     if(ENABLE_INSTANCES){
-        return "Only the global instance can delete instances.";
+        return "只有全局实例才能删除实例。";
     }
     if(InstData[arg]) which = arg;
     else {
@@ -197,7 +197,7 @@ mixed InstDelete(mixed arg){
         SaveObject(SaveFile, 1);
         return 1;
     }
-    else return "No such instance exists.";
+    else return "不存在此实例。";
 }
 
 string* GetInstances(){
@@ -331,7 +331,7 @@ protected void ProcessTell(mixed data){
     string ret;
     if(!who) return;
     ret = "%^BOLD%^RED%^"+capitalize(data[3]) +
-        " tells you:%^RESET%^ " + data[7];
+        " 对你说:%^RESET%^ " + data[7];
     who->eventPrint(ret, MSG_CONV);
     who->SetProperty("reply", data[3]);
     who->SetProperty("reply_time", time());

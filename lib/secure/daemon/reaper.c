@@ -68,7 +68,7 @@ protected void heart_beat(){
 
 int eventDestruct(){
     if( !(master()->valid_apply(({ "SECURE" }))) )
-        error("Illegal attempt to destruct reaper: "+get_stack()+" "+identify(previous_object(-1)));
+        error("非法销毁收割者: "+get_stack()+" "+identify(previous_object(-1)));
     return ::eventDestruct();
 }
 

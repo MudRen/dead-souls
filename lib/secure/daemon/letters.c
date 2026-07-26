@@ -106,8 +106,8 @@ string query_letter(string id) {
     string base;
 
     if((base = base_name(previous_object(0))) != OBJ_POST &&
-            base != FOLDERS_D) return "Illegal access.";
-    if(!restore_letter(id)) return "Invalid message.\n";
+            base != FOLDERS_D) return "非法访问。";
+    if(!restore_letter(id)) return "无效的消息。\n";
     return __Letter;
 }
 
