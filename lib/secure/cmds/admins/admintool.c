@@ -82,14 +82,14 @@ float rate, weight, inflation;
 
 mixed InvalidChoice(){
     validate();
-    write("Invalid choice. Try again or choose q to quit.\n");
+    write("无效选择，请重试或输入 q 退出。\n");
     Menu();
     return 1;
 }
 
 int PlaceHolder(){
     validate();
-    write("This function has not yet been defined.");
+    write("此功能尚未定义。");
     Menu();
     return 1;
 }
@@ -114,9 +114,9 @@ varargs int Menu(string str){
 string process_input(string str){
     validate();
     switch (str) {
-        case "q" : write("Ok, quitting admintool.\nBye.\n");return " ";
-        case "x" : write("Ok, quitting admintool.\nBye.\n");return " ";
-        case "y" : write("Ok, quitting admintool.\nBye.\n");return " ";
+        case "q" : write("好的，退出管理工具。\n再见。\n");return " ";
+        case "x" : write("好的，退出管理工具。\n再见。\n");return " ";
+        case "y" : write("好的，退出管理工具。\n再见。\n");return " ";
         case "z" : Menu("main"); break;
         case "1" : Menu("general"); break;
         case "2" : Menu("daemon");break;
@@ -153,14 +153,14 @@ string process_input(string str){
 varargs mixed MainMenu(string str) {
     string tmp;
     validate();
-    tmp = "\tDead Souls Admin Tool\n";
+    tmp = "\tDead Souls 管理工具\n";
     tmp += "\t=====================\n\n";
-    tmp += "\t\t1) general\n";
-    tmp += "\t\t2) daemon\n";
-    tmp += "\t\t3) users\n";
-    tmp += "\t\t4) driver\n";
-    tmp += "\t\t5) groups\n\n";
-    tmp += "\t\tq) quit\n";
+    tmp += "\t\t1) 通用设置\n";
+    tmp += "\t\t2) 守护进程\n";
+    tmp += "\t\t3) 用户管理\n";
+    tmp += "\t\t4) 驱动设置\n";
+    tmp += "\t\t5) 权限组\n\n";
+    tmp += "\t\tq) 退出\n";
 
     this_player()->eventPrint(tmp, "foo");
 
@@ -172,16 +172,16 @@ protected int GeneralMenu() {
     string tmp;
 
     validate();
-    tmp = "\tDead Souls Admin Tool General Menu\n";
+    tmp = "\tDead Souls 管理工具 - 通用设置\n";
     tmp += "\t\n\n";
-    tmp += "\t\ta) toggle mud lock\n";
-    tmp += "\t\tb) display current lock status\n";
-    tmp += "\t\tc) change timezone\n";
-    tmp += "\t\td) change admin email\n";
-    tmp += "\t\te) change shutdown interval\n";
-    tmp += "\t\tSD) shut down the MUD\n\n";
-    tmp += "\t\tz) return to main menu\n";
-    tmp += "\t\tq) quit\n";
+    tmp += "\t\ta) 切换游戏锁定状态\n";
+    tmp += "\t\tb) 显示当前锁定状态\n";
+    tmp += "\t\tc) 更改时区\n";
+    tmp += "\t\td) 更改管理员邮箱\n";
+    tmp += "\t\te) 更改重启间隔\n";
+    tmp += "\t\tSD) 关闭游戏\n\n";
+    tmp += "\t\tz) 返回主菜单\n";
+    tmp += "\t\tq) 退出\n";
 
     this_player()->eventPrint(tmp, "foo");
     input_to((: process_input :));
@@ -192,16 +192,16 @@ int DaemonMenu() {
     string tmp;
 
     validate();
-    tmp = "\tDead Souls Admin Tool Daemon Menu\n";
+    tmp = "\tDead Souls 管理工具 - 守护进程\n";
     tmp += "\t\n\n";
-    tmp += "\t\tf) add class\n";
-    tmp += "\t\tg) remove class\n";
-    tmp += "\t\th) add race\n";
-    tmp += "\t\ti) remove race\n";
-    tmp += "\t\tj) add currency\n";
-    tmp += "\t\tk) remove currency\n\n";
-    tmp += "\t\tz) return to main menu\n";
-    tmp += "\t\tq) quit\n";
+    tmp += "\t\tf) 添加职业\n";
+    tmp += "\t\tg) 移除职业\n";
+    tmp += "\t\th) 添加种族\n";
+    tmp += "\t\ti) 移除种族\n";
+    tmp += "\t\tj) 添加货币\n";
+    tmp += "\t\tk) 移除货币\n\n";
+    tmp += "\t\tz) 返回主菜单\n";
+    tmp += "\t\tq) 退出\n";
 
     this_player()->eventPrint(tmp, "foo");
     input_to((: process_input :));
@@ -212,13 +212,13 @@ int UsersMenu() {
     string tmp;
 
     validate();
-    tmp = "\tDead Souls Admin Tool Users Menu\n";
+    tmp = "\tDead Souls 管理工具 - 用户管理\n";
     tmp += "\t\n\n";
-    tmp += "\t\tn) completely erase a user\n";
-    tmp += "\t\to) banish a username\n";
-    tmp += "\t\tp) unbanish a username\n\n";
-    tmp += "\t\tz) return to main menu\n";
-    tmp += "\t\tq) quit\n";
+    tmp += "\t\tn) 彻底删除用户\n";
+    tmp += "\t\to) 封禁用户名\n";
+    tmp += "\t\tp) 解封用户名\n\n";
+    tmp += "\t\tz) 返回主菜单\n";
+    tmp += "\t\tq) 退出\n";
 
     this_player()->eventPrint(tmp, "foo");
     input_to((: process_input :));
@@ -230,13 +230,13 @@ int DriverMenu(){
     string tmp;
 
     validate();
-    tmp = "\tDead Souls Admin Tool Driver Menu\n";
+    tmp = "\tDead Souls 管理工具 - 驱动设置\n";
     tmp += "\t^^^^^^^^^^^^^^^^^^^^^^*******^^^^^\n";
     tmp += "\t\n\n";
-    tmp += "\t\tr) display the MUD's name\n";
-    tmp += "\t\ts) change the MUD's connection port\n\n";
-    tmp += "\t\tz) return to main menu\n";
-    tmp += "\t\tq) quit\n";
+    tmp += "\t\tr) 显示游戏名称\n";
+    tmp += "\t\ts) 更改游戏连接端口\n\n";
+    tmp += "\t\tz) 返回主菜单\n";
+    tmp += "\t\tq) 退出\n";
 
     this_player()->eventPrint(tmp, "foo");
     input_to((: process_input :));
@@ -248,17 +248,17 @@ int GroupsMenu(){
     string tmp;
 
     validate();
-    tmp = "\tDead Souls Admin Tool Groups Menu\n";
+    tmp = "\tDead Souls 管理工具 - 权限组\n";
     tmp += "\t^^^^^^^^^^^^^^^^^^^^^^*******^^^^^\n";
     tmp += "\t\n\n";
-    tmp += "\t\tt) Add a group\n";
-    tmp += "\t\tu) Remove a group\n";
-    tmp += "\t\tv) Modify a group\n";
-    tmp += "\t\tw) Show groups\n\n";
-    tmp += "\t\tz) return to main menu\n";
-    tmp += "\t\tq) quit\n";
-    tmp += "\n\nNote that this menu is %^RED%^DEPRECATED%^RESET%^.\n";
-    tmp += "You should use the \"groupmod\" command instead.\n";
+    tmp += "\t\tt) 添加权限组\n";
+    tmp += "\t\tu) 移除权限组\n";
+    tmp += "\t\tv) 修改权限组\n";
+    tmp += "\t\tw) 显示权限组\n\n";
+    tmp += "\t\tz) 返回主菜单\n";
+    tmp += "\t\tq) 退出\n";
+    tmp += "\n\n注意：此菜单已%^RED%^弃用%^RESET%^。\n";
+    tmp += "请使用 \"groupmod\" 命令代替。\n";
 
     this_player()->eventPrint(tmp, "foo");
     input_to((: process_input :));
@@ -267,11 +267,11 @@ int GroupsMenu(){
 }
 
 string GetHelp(){
-    return ("Syntax: <admintool>\n\n"
-            "Menu-driven tool used to edit the MUD's configuration.\n"
-            "To change mud name or port number, choose the Driver menu.\n"
-            "Use the Users menu for promoting a player to creator status.\n"
-            "Use the Groups menu to make someone an assistant admin.\n");
+    return ("语法: <admintool>\n\n"
+            "菜单驱动的工具，用于编辑游戏配置。\n"
+            "要更改游戏名称或端口号，请选择驱动设置菜单。\n"
+            "使用用户管理菜单将玩家提升为创造者身份。\n"
+            "使用权限组菜单将某人设为助理管理员。\n");
 }
 
 int ToggleMudLock(){
@@ -281,9 +281,9 @@ int ToggleMudLock(){
 
     validate();
     line_string = read_file(CONFIG_H);
-    if(!sizeof(line_string)) write("Couldn't read file.");
+    if(!sizeof(line_string)) write("无法读取文件。");
     line_array = explode(line_string, "\n");
-    if(!sizeof(line_array)) write("Array is zero length.");
+    if(!sizeof(line_array)) write("数组长度为零。");
 
     foreach(string line in line_array){
         if(strsrch(line,"MUD_IS_LOCKED") != -1){
@@ -291,16 +291,15 @@ int ToggleMudLock(){
         }
     }
     if(sscanf(lockline,"%s%d",junk, num) < 2) {
-        write("Operation failed. You need to hand-"+
-                "edit "+CONFIG_H+" immediately.");
+        write("操作失败，您需要立即手动编辑 "+CONFIG_H+" 文件。");
         return 0;
     }
     if(num == 0) {
-        write("Locking mud.\n");
+        write("正在锁定游戏。\n");
         num = 1;
     }
     else {
-        write("Unlocking mud.\n");
+        write("正在解锁游戏。\n");
         num = 0;
     }
     newline = junk + num;
@@ -316,9 +315,9 @@ int ToggleMudLock(){
 int ShowLock(){
     validate();
     if(load_object("/secure/daemon/master")->is_locked()){
-        write("Mud is locked. Only admins and designated personnel can log in.\n");
+        write("游戏已锁定，只有管理员和指定人员可以登录。\n");
     }
-    else write("Mud is unlocked. Players are free to login.\n");
+    else write("游戏未锁定，玩家可以自由登录。\n");
     Menu();
     return 1;
 }
@@ -326,7 +325,7 @@ int ShowLock(){
 
 int SetTZ(){
     validate();
-    write("Please enter the desired time zone: \n");
+    write("请输入所需的时区：\n");
     input_to( (: eventSetTZ :) );
     return 1;
 }
@@ -344,8 +343,8 @@ int eventSetTZ(string str){
 
 int ChangeEmail(){
     validate();
-    write("Current admin email is: "+admin_email());
-    write("Please enter the new email address of the mud administrator: \n");
+    write("当前管理员邮箱是："+admin_email());
+    write("请输入游戏管理员的新邮箱地址：\n");
     input_to( (: eventChangeEmail :) );
     return 1;
 }
@@ -356,23 +355,22 @@ varargs int eventChangeEmail(string str, int auto){
 
     validate();
     if(strsrch(str,"@") == -1 ) {
-        write("That isn't a valid email address.");
+        write("这不是一个有效的邮箱地址。");
         if(!auto) Menu();
         return 0;
     }
     str == replace_string(str, "#", "");
     line_string = read_file(CONFIG_H);
-    if(!sizeof(line_string)) write("Couldn't read file.");
+    if(!sizeof(line_string)) write("无法读取文件。");
     line_array = explode(line_string, "\n");
-    if(!sizeof(line_array)) write("Array is zero length.");
+    if(!sizeof(line_array)) write("数组长度为零。");
     foreach(string line in line_array){
         if(strsrch(line,"ADMIN_EMAIL") != -1){
             lockline = line;
         }
     }
     if(sscanf(lockline,"%s\"%s\"",junk, email) < 2) {
-        write("Operation failed. You need to hand-"+
-                "edit "+CONFIG_H+" immediately.");
+        write("操作失败，您需要立即手动编辑 "+CONFIG_H+" 文件。");
         if(!auto) Menu();
         return 0;
     }
@@ -388,9 +386,9 @@ varargs int eventChangeEmail(string str, int auto){
 
 int SetReboot(){
     validate();
-    write("Current reboot interval is set to "+EVENTS_D->GetRebootInterval()+" hours.");
+    write("当前重启间隔设置为 "+EVENTS_D->GetRebootInterval()+" 小时。");
     write(load_object("/cmds/players/nextreboot")->cmd("string"));
-    write("Please enter the new desired interval in hours:\n");
+    write("请输入新的间隔时间（小时）：\n");
     input_to( (: eventSetReboot :) );
     return 1;
 }
@@ -400,7 +398,7 @@ int eventSetReboot(mixed i){
 
     validate();
     if(!intp(i) && !sscanf(i,"%d",num)){
-        write("Failed to set new interval.\n");
+        write("设置新间隔失败。\n");
         Menu();
         return 1;
     }
@@ -408,18 +406,17 @@ int eventSetReboot(mixed i){
     check = EVENTS_D->SetRebootInterval(num);
     reload(EVENTS_D);
     if(num == check)
-        write("Reboot interval set to "+EVENTS_D->GetRebootInterval()+" hours.");
+        write("重启间隔已设置为 "+EVENTS_D->GetRebootInterval()+" 小时。");
     else
-        write("Reboot interval could not be set. Current interval is: "+
-                check + " hours.");
+        write("重启间隔无法设置，当前间隔为："+check+" 小时。");
     Menu();
     return 1;
 }
 
 int AddClass(){
     validate();
-    write("Classes currently available: "+implode(load_object(CLASSES_D)->GetClasses()," "));
-    write("Please enter the name of the class you'd like to add: \n");
+    write("当前可用的职业："+implode(load_object(CLASSES_D)->GetClasses()," "));
+    write("请输入您要添加的职业名称：\n");
     input_to( (: eventAddClass :) );
     return 1;
 }
@@ -430,29 +427,28 @@ int eventAddClass(string str){
 
     validate();
     if(!str) {
-        write("Invalid class name.\n");
+        write("无效的职业名称。\n");
         Menu();
         return 1;
     }
 
     classpath = "/secure/cfg/classes/"+str;
-    write("Looking for "+classpath+"...");
+    write("正在查找 "+classpath+"...");
     classes = load_object(CLASSES_D)->GetClasses();
     if(member_array(str,classes) != -1) {
-        write("That class is already available.\n");
+        write("该职业已经存在。\n");
         Menu();
         return 1;
     }
     if(file_size(classpath) < 1) {
-        write("For a class to be added, you must create and ");
-        write("edit a class file, then place it in /secure/cfg/classes ");
-        write("with the other class files.\n");
-        write("Operation Failed: no such class file\n");
+        write("要添加职业，您必须先创建并编辑一个职业文件，");
+        write("然后将其放置在 /secure/cfg/classes 目录中与其他职业文件一起。\n");
+        write("操作失败：没有找到该职业文件\n");
         Menu();
         return 1;
     }
     CLASSES_D->AddClass(classpath);
-    write("Classes currently available: "+implode(load_object(CLASSES_D)->GetClasses()," ")+"\n");
+    write("当前可用的职业："+implode(load_object(CLASSES_D)->GetClasses()," ")+"\n");
 
     Menu();
     return 1;
@@ -460,8 +456,8 @@ int eventAddClass(string str){
 
 int RemoveClass(){
     validate();
-    write("Classes currently available: "+implode(load_object(CLASSES_D)->GetClasses()," "));
-    write("Please enter the class you'd like to remove: \n");
+    write("当前可用的职业："+implode(load_object(CLASSES_D)->GetClasses()," "));
+    write("请输入您要移除的职业：\n");
     input_to( (: eventRemoveClass :) );
     return 1;
 }
@@ -469,27 +465,27 @@ int RemoveClass(){
 int eventRemoveClass(string str){
     validate();
     if(!str){
-        write("That is not a valid class.\n");
+        write("这不是一个有效的职业。\n");
         Menu();
         return 1;
     }
 
     if(member_array(str,load_object(CLASSES_D)->GetClasses()) == -1) {
-        write("That class is already unavailable.\n");
+        write("该职业已经不存在了。\n");
         Menu();
         return 1;
     }
 
     load_object(CLASSES_D)->RemoveClass(str);
-    write("Classes currently available: "+implode(load_object(CLASSES_D)->GetClasses()," ")+"\n");
+    write("当前可用的职业："+implode(load_object(CLASSES_D)->GetClasses()," ")+"\n");
     Menu();
     return 1;
 }
 
 int AddRace(){
     validate();
-    write("Races currently available: "+implode(load_object(RACES_D)->GetRaces()," "));
-    write("Please enter the name of the race you'd like to add: \n");
+    write("当前可用的种族："+implode(load_object(RACES_D)->GetRaces()," "));
+    write("请输入您要添加的种族名称：\n");
     input_to( (: eventAddRace :) );
     return 1;
 }
@@ -499,30 +495,29 @@ int eventAddRace(string str){
 
     validate();
     if(!str) {
-        write("Invalid race name.\n");
+        write("无效的种族名称。\n");
         Menu();
         return 1;
     }
 
     racepath = "/secure/cfg/races/"+str;
-    write("Looking for "+racepath+"...");
+    write("正在查找 "+racepath+"...");
     races = load_object(RACES_D)->GetRaces();
     if(member_array(str,races) != -1) {
-        write("That race is already available.\n");
+        write("该种族已经存在。\n");
         Menu();
         return 1;
     }
     if(file_size(racepath) < 1) {
-        write("For a race to be added, you must create and ");
-        write("edit a race file, then place it in /secure/cfg/races ");
-        write("with the other race files.\n");
-        write("Operation Failed: no such race file\n");
+        write("要添加种族，您必须先创建并编辑一个种族文件，");
+        write("然后将其放置在 /secure/cfg/races 目录中与其他种族文件一起。\n");
+        write("操作失败：没有找到该种族文件\n");
         Menu();
         return 1;
     }
 
-    write("Should players be able to play as this race?");
-    write("A response other than yes will be interpreted as a no.\n");
+    write("玩家是否可以选择此种族？");
+    write("除 yes 以外的回答将被视为否。\n");
     input_to( (: PlayerRace :) );
     return 1;
 }
@@ -534,7 +529,7 @@ int PlayerRace(string str){
     if(!str) str = "no";
     if(member_array(str,response_array) != -1) RACES_D->AddRace(racepath, 1);
     else RACES_D->AddRace(racepath);
-    write("Races currently available: "+implode(load_object(RACES_D)->GetRaces()," ")+"\n");
+    write("当前可用的种族："+implode(load_object(RACES_D)->GetRaces()," ")+"\n");
 
     Menu();
     return 1;
@@ -542,8 +537,8 @@ int PlayerRace(string str){
 
 int RemoveRace(){
     validate();
-    write("Races currently available: "+implode(load_object(RACES_D)->GetRaces()," "));
-    write("Please enter the race you'd like to remove: \n");
+    write("当前可用的种族："+implode(load_object(RACES_D)->GetRaces()," "));
+    write("请输入您要移除的种族：\n");
     input_to( (: eventRemoveRace :) );
     return 1;
 }
@@ -551,27 +546,27 @@ int RemoveRace(){
 int eventRemoveRace(string str){
     validate();
     if(!str){
-        write("That is not a valid race.\n");
+        write("这不是一个有效的种族。\n");
         Menu();
         return 1;
     }
 
     if(member_array(str,load_object(RACES_D)->GetRaces()) == -1) {
-        write("That race is already unavailable.\n");
+        write("该种族已经不存在了。\n");
         Menu();
         return 1;
     }
 
     load_object(RACES_D)->RemoveRace(str);
-    write("Races currently available: "+implode(load_object(RACES_D)->GetRaces()," ")+"\n");
+    write("当前可用的种族："+implode(load_object(RACES_D)->GetRaces()," ")+"\n");
     Menu();
     return 1;
 }
 
 int AddCurrency(){
     validate();
-    write("Currencies currently available: "+implode(ECONOMY_D->__QueryCurrencies()," "));
-    write("Please enter the name of the curency you'd like to add: \n");
+    write("当前可用的货币："+implode(ECONOMY_D->__QueryCurrencies()," "));
+    write("请输入您要添加的货币名称：\n");
     input_to( (: eventAddCurrency :) );
     return 1;
 }
@@ -582,24 +577,24 @@ int eventAddCurrency(string str){
     validate();
     currency = str;
     if(!str || str == "") {
-        write("Invalid currency name.\n");
+        write("无效的货币名称。\n");
         Menu();
         return 1;
     }
 
     currencies = ECONOMY_D->__QueryCurrencies();
     if(member_array(str,currencies) != -1) {
-        write("That currency is already available.\n");
+        write("该货币已经存在。\n");
         Menu();
         return 1;
     }
     if(sizeof(currencies) > 2){
-        query = "What should its exchange rate, or value be? For comparison, "+currencies[0]+" ";
-        query += "has a rate of "+ ECONOMY_D->__Query(currencies[0],"rate")+", "+currencies[1]+" ";
-        query += "has a rate of "+ ECONOMY_D->__Query(currencies[1],"rate")+", and "+currencies[2]+" ";
-        query += "has a rate of "+ ECONOMY_D->__Query(currencies[2],"rate")+".\n";
+        query = "其汇率或价值应该是多少？作为参考，"+currencies[0]+" ";
+        query += "的汇率为 "+ ECONOMY_D->__Query(currencies[0],"rate")+"，"+currencies[1]+" ";
+        query += "的汇率为 "+ ECONOMY_D->__Query(currencies[1],"rate")+"，"+currencies[2]+" ";
+        query += "的汇率为 "+ ECONOMY_D->__Query(currencies[2],"rate")+"。\n";
     }
-    else query = "What should its exchange rate, or value be?";
+    else query = "其汇率或价值应该是多少？";
 
     write(query);
     input_to( (: CurrencyRate :) );
@@ -611,17 +606,17 @@ int CurrencyRate(string str){
 
     validate();
     if(!str || !sscanf(str,"%f",rate) ){
-        write("Invalid rate. Currency not added.\n");
+        write("无效的汇率，货币未添加。\n");
         Menu();
         return 1;
     }
     if(sizeof(currencies) > 2){
-        query = "What should its weight be? For comparison, "+currencies[0]+" ";
-        query += "has a weight of "+ ECONOMY_D->__Query(currencies[0],"weight")+", "+currencies[1]+" ";
-        query += "has a weight of "+ ECONOMY_D->__Query(currencies[1],"weight")+", and "+currencies[2]+" ";
-        query += "has a weight of "+ ECONOMY_D->__Query(currencies[2],"weight")+".\n";
+        query = "其重量应该是多少？作为参考，"+currencies[0]+" ";
+        query += "的重量为 "+ ECONOMY_D->__Query(currencies[0],"weight")+"，"+currencies[1]+" ";
+        query += "的重量为 "+ ECONOMY_D->__Query(currencies[1],"weight")+"，"+currencies[2]+" ";
+        query += "的重量为 "+ ECONOMY_D->__Query(currencies[2],"weight")+"。\n";
     }
-    else query = "What should its weight be?";
+    else query = "其重量应该是多少？";
     write(query);
     input_to( (: CurrencyWeight :) );
     return 1;
@@ -633,17 +628,17 @@ int  CurrencyWeight(string str){
 
     validate();
     if(!str || !sscanf(str,"%f",weight) ){
-        write("Invalid weight. Currency not added.\n");
+        write("无效的重量，货币未添加。\n");
         Menu();
         return 1;
     }
     if(sizeof(currencies) > 2){
-        query = "What should its inflation rate be? For comparison, "+currencies[0]+" ";
-        query += "has an inflation rate of "+ ECONOMY_D->__Query(currencies[0],"inflation")+", "+currencies[1]+" ";
-        query += "has an inflation rate of "+ ECONOMY_D->__Query(currencies[1],"inflation")+", and "+currencies[2]+" ";
-        query += "has an inflation rate of "+ ECONOMY_D->__Query(currencies[2],"inflation")+".\n";
+        query = "其通胀率应该是多少？作为参考，"+currencies[0]+" ";
+        query += "的通胀率为 "+ ECONOMY_D->__Query(currencies[0],"inflation")+"，"+currencies[1]+" ";
+        query += "的通胀率为 "+ ECONOMY_D->__Query(currencies[1],"inflation")+"，"+currencies[2]+" ";
+        query += "的通胀率为 "+ ECONOMY_D->__Query(currencies[2],"inflation")+"。\n";
     }
-    else query = "What should its inflation rate be?";
+    else query = "其通胀率应该是多少？";
     write(query);
     input_to( (: CurrencyInflation :) );
     return 1;
@@ -652,14 +647,14 @@ int  CurrencyWeight(string str){
 int CurrencyInflation(string str){
     validate();
     if(!str || !sscanf(str,"%f",inflation) ){
-        write("Invalid inflation rate. Currency not added.\n");
+        write("无效的通胀率，货币未添加。\n");
         Menu();
         return 1;
     }
     write(identify(previous_object(-1)));
     write("ECONOMY_D->add_currency(\""+currency+"\", "+rate+", "+inflation+", "+weight+");");
     ECONOMY_D->add_currency(currency, rate, inflation, weight);
-    write("Thank you. Currency added.\n");
+    write("谢谢，货币已添加。\n");
     Menu();
     return 1;
 }
@@ -668,13 +663,12 @@ int RemoveCurrency(){
     validate();
     currencies = ECONOMY_D->__QueryCurrencies();
     if(sizeof(currencies) == 1) {
-        write("Please add a currency before removing this last one.");
-        write("Removing the last currency would cause the mud to "+
-                "behave unexpectedly.");
+        write("请在移除最后一种货币之前先添加另一种货币。");
+        write("移除最后一种货币会导致游戏出现异常行为。");
         return 1;
     }
-    write("Available currencies: "+ identify(currencies) +".");
-    write("Which currency would you like to remove?\n");
+    write("可用的货币："+ identify(currencies) +"。");
+    write("您要移除哪种货币？\n");
 
     input_to( (: eventRemoveCurrency :) );
     return 1;
@@ -683,19 +677,19 @@ int RemoveCurrency(){
 int eventRemoveCurrency(string str){
     validate();
     if(!str || member_array(str, currencies) == -1) {
-        write("Invalid currency. No currency removed.\n");
+        write("无效的货币，没有移除任何货币。\n");
         Menu();
         return 1;
     }
     ECONOMY_D->remove_currency(str);
-    write("Remaining currencies: "+identify(ECONOMY_D->__QueryCurrencies())+"\n");
+    write("剩余的货币："+identify(ECONOMY_D->__QueryCurrencies())+"\n");
     Menu();
     return 1;
 }
 
 int RidUser(){
     validate();
-    write("Please enter the name of the player you'd like to erase.\n");
+    write("请输入您要删除的玩家名称。\n");
     input_to( (: eventRidUser :) );
     return 1;
 }
@@ -703,13 +697,13 @@ int RidUser(){
 int eventRidUser(string str){
     validate();
     if(!str){
-        write("Invalid entry.\n");
+        write("无效的输入。\n");
         Menu();
         return 1;
     }
 
     if( !user_exists(str) ) {
-        write("No such person: " + str + ".\n");
+        write("没有这个人："+str+"。\n");
         Menu();
     }
     DoRid(str);
@@ -725,19 +719,19 @@ int DoRid(string who) {
     str = convert_name(who);
     who = capitalize(who);
     if( member_group(str, PRIV_SECURE) || member_group(str, PRIV_ASSIST) ){
-        write("You must first remove this person from a secure group.");
+        write("您必须先将此人从安全权限组中移除。");
         Menu();
         return 1;
     }
     if( ob = find_player(ridded)) {
         who = ob->GetCapName();
-        message("system", "You are being ridded from " + mud_name() + ".",
+        message("system", "您正在被从 " + mud_name() + " 中删除。",
                 ob);
         ob->eventForce("quit");
     }
     file = player_save_file(ridded);
-    write("Target is: "+ridded);
-    write("Please enter the reason for ridding " + ridded + ".\n");
+    write("目标是："+ridded);
+    write("请输入删除 " + ridded + " 的原因。\n");
     unguarded( (: rm(file) :) );
     input_to( (: LogRid :) );
     return 1;
@@ -747,14 +741,14 @@ int LogRid(string str){
     validate();
     globalstr = str;
     log_file("rid", "\n" + ridded + " by " + this_player()->GetCapName() + "\n" + str + "\n");
-    write(ridded + " has been ridded from " + mud_name() + ".");
+    write(ridded + " 已从 " + mud_name() + " 中删除。");
     Menu();
     return 1;
 }
 
 int BanishUser(){
     validate();
-    write("Please enter the name to banish: \n");
+    write("请输入要封禁的名称：\n");
     input_to( (: eventBanishUser :) );
     return 1;
 }
@@ -762,16 +756,16 @@ int BanishUser(){
 int eventBanishUser(string str){
     validate();
     if(member_array(str,BANISH_D->query_banished()) != -1) {
-        write("That name is already banished.\n");
+        write("该名称已被封禁。\n");
         Menu();
         return 1;
     }
     if(!user_exists(str = lower_case(str))) {
-        write(capitalize(str)+" is now banished.\n");
+        write(capitalize(str)+" 现在已被封禁。\n");
         catch(call_other(BANISH_D, "banish_name", str));
     }
     else {
-        write("A player by that name already exists.\n");
+        write("该名称的玩家已存在。\n");
         this_player()->eventPrint(FINGER_D->GetFinger(str));
     }
     Menu();
@@ -780,7 +774,7 @@ int eventBanishUser(string str){
 
 int UnBanishUser(){
     validate();
-    write("Please enter the name to unbanish: \n");
+    write("请输入要解封的名称：\n");
     input_to( (: eventUnBanishUser :) );
     return 1;
 }
@@ -788,21 +782,21 @@ int UnBanishUser(){
 int eventUnBanishUser(string str){
     validate();
     if(member_array(str,BANISH_D->query_banished()) == -1) {
-        write("That is not a banished name.");
+        write("该名称未被封禁。");
         Menu();
         return 1;
     }
     catch(call_other(BANISH_D, "unbanish_name", str));
-    write(str+" is unbanished.\n");
+    write(str+" 已被解封。\n");
     Menu();
     return 1;
 }
 
 int ChangeName(){
     validate();
-    write("Current MUD name is "+mud_name());
-    write("To change the mud's name, use the command: ");
-    write("mudconfig mudname <name>");
+    write("当前游戏名称是 "+mud_name());
+    write("要更改游戏名称，请使用命令：");
+    write("mudconfig mudname <名称>");
     Menu();
     return 1;
 }
@@ -813,7 +807,7 @@ varargs int eventChangeName(string newname, int automated){
 
     validate();
     if(!newname || newname == "") {
-        write("Name change cancelled.\n");
+        write("名称更改已取消。\n");
         Menu();
         return 1;
     }
@@ -833,9 +827,9 @@ varargs int eventChangeName(string newname, int automated){
     }
 
     line_string = read_file(mconfig);
-    if(!sizeof(line_string)) write("Couldn't read file.");
+    if(!sizeof(line_string)) write("无法读取文件。");
     line_array = explode(line_string, "\n");
-    if(!sizeof(line_array)) write("Array is zero length.");
+    if(!sizeof(line_array)) write("数组长度为零。");
 
     if(!sizeof(line_array) || !sizeof(line_string)) {
         if(!automated) Menu();
@@ -849,8 +843,7 @@ varargs int eventChangeName(string newname, int automated){
     }
 
     if(!nameline || sscanf(nameline,"%s : %s",junk, name) < 2) {
-        write("Operation failed. You need to copy over "+
-                mconfig+" immediately with an original.");
+        write("操作失败，您需要立即用原始文件覆盖 "+mconfig+"。");
         if(!automated) Menu();
         return 0;
     }
@@ -870,8 +863,8 @@ varargs int eventChangeName(string newname, int automated){
     }
     write("\n");
     if(!automated)  {
-        write("\nMUD's name changed. Reboot the MUD to activate new name.\n");
-        write("\n Do you want to shut down the MUD now to activate the change?\n");
+        write("\n游戏名称已更改，请重启游戏以激活新名称。\n");
+        write("\n您要现在关闭游戏以激活更改吗？\n");
         input_to( (: eventShutDownMud :) );
     }
     return 1;
@@ -881,12 +874,12 @@ int ChangePort(){
     validate();
     if(!find_object(INSTANCES_D) || !ENABLE_INSTANCES ||
             INSTANCES_D->GetMyInstanceName() == "global"){
-        write("Current MUD network port is "+query_host_port());
-        write("Please enter the new network port for your MUD:\n");
+        write("当前游戏网络端口是 "+query_host_port());
+        write("请输入游戏的新网络端口：\n");
         input_to( (: eventChangePort :) );
     }
     else {
-        write("Port changing in admintool is disabled for instances.");
+        write("管理工具中对实例禁用了端口更改功能。");
         Menu();
     }
 
@@ -900,22 +893,22 @@ varargs int eventChangePort(string newport, int automated){
 
     validate();
     if(!newport || newport == "") {
-        write("Port change cancelled.\n");
+        write("端口更改已取消。\n");
         Menu();
         return 1;
     }
 
     if(!sscanf(newport,"%d", num) > 0 || num < 1 || num > 65535 ) {
-        write("Invalid port: numeral between 1 and 65535 expected.");
-        write("Port change cancelled.\n");
+        write("无效的端口：需要 1 到 65535 之间的数字。");
+        write("端口更改已取消。\n");
         Menu();
         return 1;
     }
 
     line_string = read_file("/secure/cfg/mudos.cfg");
-    if(!sizeof(line_string)) write("Couldn't read file.");
+    if(!sizeof(line_string)) write("无法读取文件。");
     line_array = explode(line_string, "\n");
-    if(!sizeof(line_array)) write("Array is zero length.");
+    if(!sizeof(line_array)) write("数组长度为零。");
 
     foreach(string line in line_array){
         if(strsrch(line,"external_port_1 :") != -1){
@@ -924,8 +917,7 @@ varargs int eventChangePort(string newport, int automated){
     }
 
     if(!nameline || sscanf(nameline,"%s : %s",junk, name) < 2) {
-        write("Operation failed. You need to copy over "+
-                "/secure/cfg/mudos.cfg immediately with an original.");
+        write("操作失败，您需要立即用原始文件覆盖 /secure/cfg/mudos.cfg。");
         if(!automated) Menu();
         return 0;
     }
@@ -934,10 +926,9 @@ varargs int eventChangePort(string newport, int automated){
     newfile = replace_string(line_string, nameline, newline);
     write_file("/secure/cfg/mudos.cfg",newfile,1);
     if(!automated)  {
-        write("\nMUD's port changed. Reboot the MUD to activate new port.");
-        write("NOTE: If the port you selected is 1024 or below, your OS "+
-                "may require the MUD to run as a privileged user.");
-        write("\n Do you want to shut down the MUD now to activate the change?\n");
+        write("\n游戏端口已更改，请重启游戏以激活新端口。");
+        write("注意：如果您选择的端口是 1024 或以下，您的操作系统可能要求游戏以特权用户身份运行。");
+        write("\n您要现在关闭游戏以激活更改吗？\n");
         input_to( (: eventShutDownMud :) );
     }
     return 1;
@@ -945,7 +936,7 @@ varargs int eventChangePort(string newport, int automated){
 
 int ShutDownMud(){
     validate();
-    write("Are you sure?");
+    write("您确定吗？");
     input_to( (: eventShutDownMud :) );
     return 1;
 }
@@ -956,30 +947,30 @@ int eventShutDownMud(string str){
     validate();
     if(!str) str = "no";
     if(member_array(str,response_array) == -1){
-        write("Shutdown cancelled.\n");
+        write("关闭已取消。\n");
         Menu();
         return 1;
     }
 
-    write("Shutdown initiated.\n");
+    write("正在关闭游戏。\n");
     if(this_player()->GetForced()) return 0;
 
-    shout("Game is shut down by " + this_player()->GetKeyName() + ".\n");
-    log_file("game_log", ctime(time())+" Game shutdown by "+
-            this_player()->GetKeyName()+"(admintool)\n");
+    shout("游戏被 " + this_player()->GetKeyName() + " 关闭了。\n");
+    log_file("game_log", ctime(time())+" 游戏被 "+
+            this_player()->GetKeyName()+" 关闭(admintool)\n");
     foreach(object dude in users()){
         if(sizeof(base_name(dude)) && !archp(dude)) dude->eventForce("quit");
     }
     shutdown();
-    write("Shutdown complete.");
+    write("关闭完成。");
     Menu();
     return 1;
 }
 
 int AddGroup(){
     validate();
-    write("\nCurrent groups file: \n"+read_file("/secure/cfg/groups.cfg")+"\n\n");
-    write("\nWhat is the name of the group you'd like to add?\n");
+    write("\n当前权限组文件：\n"+read_file("/secure/cfg/groups.cfg")+"\n\n");
+    write("\n您要添加的权限组名称是什么？\n");
     input_to( (: eventAddGroup :) );
     return 1;
 }
@@ -995,27 +986,27 @@ int eventAddGroup(string str){
     bottom_array = ({});
 
     if(!str || str == "") {
-        write("\nGroup addition cancelled.\n");
+        write("\n权限组添加已取消。\n");
         Menu();
         return 1;
     }
     config_file = read_file("/secure/cfg/groups.cfg");
     if(!sizeof(config_file)) {
-        write("Couldn't read file. Addition cancelled.\n");
+        write("无法读取文件，添加已取消。\n");
         Menu();
         return 1;
     }
 
     str = upper_case(str);
     if(strsrch(config_file,"("+str+")") != -1 ) {
-        write("\nThat group already exists. Addition cancelled.\n");
+        write("\n该权限组已存在，添加已取消。\n");
         Menu();
         return 1;
     }
 
     line_array = explode(config_file, "\n");
     if(!sizeof(line_array)) {
-        write("\nArray is zero length. Addition cancelled.\n");
+        write("\n数组长度为零，添加已取消。\n");
         Menu();
         return 1;
     }
@@ -1034,7 +1025,7 @@ int eventAddGroup(string str){
                 new_config_file += "\n";
                 new_config_file += implode(bottom_array,"\n");
                 write_file("/secure/cfg/groups.cfg",new_config_file,1);
-                write("\nGroup "+str+" added.\n");
+                write("\n权限组 "+str+" 已添加。\n");
                 load_object("/secure/cmds/creators/update")->cmd("/secure/daemon/master");
                 load_object("/secure/cmds/creators/update")->cmd("/secure/lib/connect");
                 Menu();
@@ -1043,8 +1034,8 @@ int eventAddGroup(string str){
 
                 int RemoveGroup(){
                     validate();
-                    write("\nCurrent groups file: \n"+read_file("/secure/cfg/groups.cfg")+"\n\n");
-                    write("\nWhat is the name of the group you'd like to remove?\n");
+                    write("\n当前权限组文件：\n"+read_file("/secure/cfg/groups.cfg")+"\n\n");
+                    write("\n您要移除的权限组名称是什么？\n");
                     input_to( (: eventRemoveGroup :) );
                     return 1;
                 }
@@ -1060,36 +1051,34 @@ int eventRemoveGroup(string str){
     bottom_array = ({});
 
     if(!str || str == "") {
-        write("\nGroup removal cancelled.\n");
+        write("\n权限组移除已取消。\n");
         Menu();
         return 1;
     }
     config_file = read_file("/secure/cfg/groups.cfg");
     if(!sizeof(config_file)) {
-        write("Couldn't read file. removal cancelled.\n");
+        write("无法读取文件，移除已取消。\n");
         Menu();
         return 1;
     }
 
     str = upper_case(str);
     if(strsrch(config_file,"("+str+")") == -1 ) {
-        write("\nThat group doesn't exist. removal cancelled.\n");
+        write("\n该权限组不存在，移除已取消。\n");
         Menu();
         return 1;
     }
 
     if(str == "SECURE" || str == "ASSIST"){
-        write("\nThis is a configured administrative group. You "+
-                "can't remove it with admintool. If you really, really, really "+
-                "know what you're doing and you want to remove that group, you'll "+
-                "have to do it manually with an editor.\n");
+        write("\n这是一个已配置的管理权限组，您不能使用管理工具移除它。");
+        write("如果您确实知道自己在做什么并想移除该权限组，您需要手动使用编辑器操作。\n");
         Menu();
         return 1;
     }
 
     line_array = explode(config_file, "\n");
     if(!sizeof(line_array)) {
-        write("\nArray is zero length. removal cancelled.\n");
+        write("\n数组长度为零，移除已取消。\n");
         Menu();
         return 1;
     }
@@ -1107,15 +1096,15 @@ int eventRemoveGroup(string str){
                 write_file("/secure/cfg/groups.cfg",new_config_file,1);
                 load_object("/secure/cmds/creators/update")->cmd("/secure/daemon/master");
                 load_object("/secure/cmds/creators/update")->cmd("/secure/lib/connect");
-                write("\nGroup "+str+" removed.\n");
+                write("\n权限组 "+str+" 已移除。\n");
                 Menu();
                 return 1;
                 }
 
                 int ModGroup(){
                 validate();
-                write("\nCurrent groups file: \n"+read_file("/secure/cfg/groups.cfg")+"\n\n");
-                write("\nWhat is the name of the group you'd like to modify?\n");
+                write("\n当前权限组文件：\n"+read_file("/secure/cfg/groups.cfg")+"\n\n");
+                write("\n您要修改的权限组名称是什么？\n");
                 input_to( (: eventModGroup :) );
                 return 1;
                 }
@@ -1125,37 +1114,37 @@ int eventModGroup(string str){
 
     validate();
     if(!str || str == "") {
-        write("\nGroup modification cancelled.\n");
+        write("\n权限组修改已取消。\n");
         Menu();
         return 1;
     }
     config_file = read_file("/secure/cfg/groups.cfg");
     if(!sizeof(config_file)) {
-        write("Couldn't read file. modification cancelled.\n");
+        write("无法读取文件，修改已取消。\n");
         Menu();
         return 1;
     }
 
     str = upper_case(str);
     if(strsrch(config_file,"("+str+")") == -1 ) {
-        write("\nThat group doesn't exist. modification cancelled.\n");
+        write("\n该权限组不存在，修改已取消。\n");
         Menu();
         return 1;
     }
 
     if(!sizeof(explode(config_file, "\n"))) {
-        write("\nArray is zero length. modification cancelled.\n");
+        write("\n数组长度为零，修改已取消。\n");
         Menu();
         return 1;
     }
 
     write(str);
     global_group_temp = str;
-    write("The group format must be entered correctly. If the members are larry, moe, and curly, enter:\n");
-    write("larry:moe:curly\n");
-    write("\nIt's important to put those colons between names. If the only member is shemp, enter:\n");
-    write("shemp\n");
-    write("\nWhat would you like that group to contain?\n");
+    write("权限组格式必须正确输入。如果成员是张三、李四和王五，请输入：\n");
+    write("张三:李四:王五\n");
+    write("\n重要的是在名字之间加上冒号。如果只有一个成员赵六，请输入：\n");
+    write("赵六\n");
+    write("\n您希望该权限组包含哪些成员？\n");
     input_to ( (: eventEditGroup :) );
     return 1;
 }
@@ -1180,7 +1169,7 @@ int eventEditGroup(string members){
 
     if(str == "ASSIST" || str == "SECURE" ) {
         if(!securep(this_player())){
-            write("Only full admins may do this.");
+            write("只有完全管理员才能执行此操作。");
             Menu();
             return 1;
         }
@@ -1189,7 +1178,7 @@ int eventEditGroup(string members){
     if(str == "SECURE"){
         validate();
         if(!members || members == "") {
-            write("You're not leaving the SECURE group empty. Modification cancelled.\n");
+            write("您不能将 SECURE 权限组留空，修改已取消。\n");
             Menu();
             return 1;
         }
@@ -1197,7 +1186,7 @@ int eventEditGroup(string members){
         else dudes = ({ members });
 
         if(member_array(this_player()->GetKeyName(),dudes) == -1) {
-            write("You can only modify this line with admintool if you include yourself in it. Modification cancelled.\n");
+            write("使用管理工具修改此行时必须包含您自己，修改已取消。\n");
             Menu();
             return 1;
         }
@@ -1218,14 +1207,14 @@ int eventEditGroup(string members){
                 write_file("/secure/cfg/groups.cfg",new_config_file,1);
                 load_object("/secure/cmds/creators/update")->cmd("/secure/daemon/master");
                 load_object("/secure/cmds/creators/update")->cmd("/secure/lib/connect");
-                write("\nGroup "+str+" modified.\n");
+                write("\n权限组 "+str+" 已修改。\n");
                 Menu();
                 return 1;
                 }
 
                 int ShowGroups(){
                 validate();
-                write("\nCurrent groups file: \n"+read_file("/secure/cfg/groups.cfg")+"\n\n");
+                write("\n当前权限组文件：\n"+read_file("/secure/cfg/groups.cfg")+"\n\n");
                 Menu();
                 return 1;
                 }
