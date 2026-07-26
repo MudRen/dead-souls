@@ -6,10 +6,10 @@ void create() {
     ::create();
     SetProperty("light", 2);
     SetProperty("indoors", 1);
-    SetShort( "The bank vault");
+    SetShort( "银行金库");
     SetLong(
-            "The Praxis Bank keeps all cash it has on hand in this otherwise "
-            "empty vault.  The door on the south end leads to the lobby.");
+            "普拉克西斯银行将所有现金都存放在这个原本空无一物的金库里。"
+            "南端的门通往大厅。");
     SetExits( 
             (["south" : "/domains/Praxis/bank"]) );
 }

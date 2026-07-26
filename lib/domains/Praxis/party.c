@@ -11,29 +11,24 @@ void create() {
     room::create();
     SetProperties( ([ "light":2, "indoors":1, "no attack":1,
                 "no teleport":1, "no steal":1, "no magic":1 ]) );
-    SetShort("%^MAGENTA%^%^BOLD%^In the volcano%^RESET%^");
+    SetShort("%^MAGENTA%^%^BOLD%^在火山中%^RESET%^");
     SetLong(
-            "You are standing on a wide, circular platform, surrounded on "
-            "all sides by %^RED%^bubbling lava%^RESET%^.  The platform floats "
-            "above the pool of lava at a safe distance, yet close enough for "
-            "you to feel the heat as the lava sometimes flares upward. "
-            "The platform is decorated with %^MAGENTA%^floating lights "
-            "%^RESET%^of %^BLUE%^varying %^ORANGE%^hues and %^RESET%^size. "
-            "Tables with refreshments have also been placed near the edges of "
-            "the platform. ");
+            "你站在一个宽阔的圆形平台上，四面八方都被%^RED%^冒泡的岩浆%^RESET%^包围。"
+            "平台漂浮在岩浆池上方安全距离处，但足够近，"
+            "让你能感受到岩浆有时向上喷涌时的热量。"
+            "平台装饰着%^MAGENTA%^漂浮的光芒"
+            "%^RESET%^，%^BLUE%^色彩和%^ORANGE%^大小各异。%^RESET%^"
+            "放着茶点的桌子也放置在平台边缘附近。");
     SetItems(
             ([
              ({"platform", "wide platform", "circular platform"}) :
-             "The platform floats "
-             "above the pool of lava at a safe distance, yet close enough for "
-             "you to feel the heat as the lava sometimes flares upward. "
-             "The platform is decorated with %^MAGENTA%^floating lights "
-             "%^RESET%^of %^BLUE%^varying %^ORANGE%^hues and %^RESET%^size. "
-             "Tables with refreshments have also been placed near the "
-             "edges of the platform. ",
+             "平台漂浮在岩浆池上方安全距离处，但足够近，"
+             "让你能感受到岩浆有时向上喷涌时的热量。"
+             "平台装饰着%^MAGENTA%^漂浮的光芒"
+             "%^RESET%^，%^BLUE%^色彩和%^ORANGE%^大小各异。%^RESET%^"
+             "放着茶点的桌子也放置在平台边缘附近。",
              ({"sides", "side", "edges", "edge"}) :
-             "The platform is surrounded on all sides by "
-             "%^RED%^bubbling lava.%^RESET%^",
+             "平台四面八方都被%^RED%^冒泡的岩浆%^RESET%^包围。",
 
              ({"pool", "pool of lava", "lava", "bubbling lava"}) :
              (:this_object(), "look_lava":),
@@ -41,11 +36,10 @@ void create() {
              ({"lights", "light", "floating lights", "floating light"}) :
              (:this_object(), "look_lights":),
              ({"tables", "table"}) :
-             "The tables are covered with many delicious treats. "
-             "Bottles containing every conceivable combination "
-             "of drink possible are set up along the tables. As a matter-of-fact, you feel like pouring yourself a glass of frosty beverage right now. "
-             "You intuit that pour <drinkname> will provide you with a glass of your favorite "
-             "frosty beverage. ",
+             "桌子上摆满了各种美味的茶点。"
+             "装着各种可能组合饮品的瓶子沿着桌子摆放。"
+             "事实上，你现在就想给自己倒一杯冰凉的饮料。"
+             "你直觉到 pour <饮品名> 会为你提供一杯你最喜欢的冰凉饮料。",
                  ({"treats", "treat"}) : (:this_object(), "look_treat":)
                                            ]) );
     SetExits( ([ "square" : "/domains/Praxis/square" ]) );
@@ -59,11 +53,10 @@ void init() {
 void start_party(string msg) {
     if(base_name(previous_object()) != "/cmds/mortal/_mudparty") return;
     if(query_party_time()) return;
-    message("shout", sprintf("Party announcement from %s: A %s party is now "
-                "being held to celebrate %s!", this_player()->query_cap_name(),
+    message("shout", sprintf("来自%s的派对公告：%s派对正在"
+                "举行以庆祝%s！", this_player()->query_cap_name(),
                 mud_name(), msg), users());
-    message("shout", "You have 2 minutes to type \"mudparty join\" in "
-            "order to join the party!", users());
+    message("shout", "你有2分钟时间输入\"mudparty join\"来加入派对！", users());
     __EntryAllowed = 1;
     __PartyTime = 1;
     call_out("deny_entry", 120);
@@ -82,37 +75,32 @@ string look_lava(string unused)
     if(x==1)
     {
         message("info",
-                "%^RED%^A magnificent geyser of lava explodes into the air and "
-                "parts before striking the platform, sparing you certain death. "
-                "%^RESET%^",
+                "%^RED%^一股壮观的岩浆喷泉喷向空中，在撞击平台之前分开，"
+                "让你免于必死的命运。%^RESET%^",
                 environment(this_player()));
     }
 
     if(x==2)
     {
         message("info",
-                "%^RED%^A jet of flame falres from the lava and casts the room "
-                "in red-hued light.%^RESET%^", environment(this_player()));
+                "%^RED%^一股火焰从岩浆中喷出，将房间笼罩在红色光芒中。%^RESET%^", environment(this_player()));
     }
 
     if(x==3)
     {
         message("info",
-                "%^RED%^%^BOLD%^The platform shifts about as a large pillar of lava "
-                "gushes up from beneath it.%^RESET%^",
+                "%^RED%^%^BOLD%^一大股岩浆从平台下方涌出，平台随之晃动。%^RESET%^",
                 environment(this_player()));
     }
 
     if(x==4)
     {
         message("info",
-                "%^MAGENTA%^The lava changes hues and from %^RED%^red %^MAGENTA%^to "
-                "purple.%^RESET%^",
+                "%^MAGENTA%^岩浆的颜色从%^RED%^红色%^MAGENTA%^变成了紫色。%^RESET%^",
                 environment(this_player()));
     }
 
-    return("The lava is constantly shifting and bubbling. You can see large "
-            "chunks of rock floating within it. ");
+    return("岩浆不断变化和冒泡。你可以看到大块的岩石漂浮在其中。");
 }
 
 
@@ -123,29 +111,25 @@ string look_lights(string unused)
     if(x==1)
     {
         return(
-                "A pretty %^YELLOW%^yellow%^RESET%^ orb drifts near to you and casts "
-                "a cheery glow on you. ");
+                "一个美丽的%^YELLOW%^黄色%^RESET%^球体漂浮到你附近，在你身上投下欢快的光芒。");
     }
 
     if(x==2)
     {
         return(
-                "A pretty %^BLUE%^blue%^RESET%^ orb drifts near to you and casts "
-                "a mellow glow on you. ");
+                "一个美丽的%^BLUE%^蓝色%^RESET%^球体漂浮到你附近，在你身上投下柔和的光芒。");
     }
 
     if(x==3)
     {
         return(
-                "A pretty %^MAGENTA%^purple%^RESET%^ orb drifts near to you and casts "
-                "a purple glow over your body. ");
+                "一个美丽的%^MAGENTA%^紫色%^RESET%^球体漂浮到你附近，在你身上投下紫色的光芒。");
     }
 
     if(x==4)
     {
         return(
-                "A pretty %^RED%^red%^RESET%^ orb drifts near to you and casts "
-                "a rosy glow over your body. ");
+                "一个美丽的%^RED%^红色%^RESET%^球体漂浮到你附近，在你身上投下玫瑰色的光芒。");
     }
 }
 
@@ -153,13 +137,12 @@ string look_lights(string unused)
 int look_treat()
 {
     message("other_action",
-            this_player()->query_cap_name()+" eats and drinks "
-            "refreshments from the table after looking them over. ",
+            this_player()->query_cap_name()+"在看了一遍桌子上的茶点后，"
+            "开始吃喝起来。",
             environment(this_player()), this_player());
     message("my_action",
-            "After looking at the vast array of treats before you, you "
-            "decide to try and sample all of them! Punch, cookies, meats.."
-            "The sky is the limit!", this_player());
+            "看着面前琳琅满目的茶点，你决定尝试所有的东西！"
+            "潘趣酒、饼干、肉类..应有尽有！", this_player());
     return 1;
 }
 
