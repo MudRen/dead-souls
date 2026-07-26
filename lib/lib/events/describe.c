@@ -101,7 +101,7 @@ void eventDescribeEnvironment(int brief){
     if( desc ) this_object()->eventPrint(desc, MSG_ROOMDESC);
     if(sizeof(altern_obvious)){
         int quant = sizeof(env->GetExits()) + sizeof(env->GetEnters());
-        if(quant > 1) altern_obvious = replace_string(altern_obvious,"$Q","s");
+        if(quant > 1) altern_obvious = replace_string(altern_obvious,"$Q","们");
         else altern_obvious = replace_string(altern_obvious,"$Q","");
         this_object()->eventPrint(altern_obvious,MSG_ROOMDESC);
     }

@@ -79,7 +79,7 @@ int MarriageRequest(mixed arg1, mixed arg2, mixed arg3){
 
 mixed performMarriage(object spouse1, object spouse2){
     mixed tmp;
-    eventForce("say hmmm...");
+    eventForce("say 嗯嗯...");
     tmp = environment(this_player())->CanMarry(this_player(),
             spouse1, spouse2);
     if( !tmp ){
