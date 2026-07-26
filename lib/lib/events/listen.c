@@ -29,7 +29,7 @@ varargs string GetListen(string str, object who){
     }
     if( functionp(val) ){
         if( functionp(val) & FP_OWNER_DESTED ){
-            return "An error occured in a function pointer.";
+            return "函数指针出现错误。";
         }
         return evaluate(val, who, str);
     }
@@ -97,18 +97,18 @@ varargs mixed SetListen(mixed* args...){
 varargs mixed eventListen(object who, string str){
     str = GetListen(str, who);
     if( !str ){
-        who->eventPrint("You hear nothing unusual.");
+        who->eventPrint("你没有听到什么异常的声音。");
         return 1;
     }
-    environment(who)->eventPrint(who->GetName() + " listens to " + GetShort() +
-            ".", who);
+    environment(who)->eventPrint(who->GetName() + " 倾听了 " + GetShort() +
+            "。", who);
     who->eventPrint(str);
     return 1;
 }
 
 mixed direct_listen_obj(){
     if( !Listen ){
-        return "You hear nothing unusual.";
+        return "你没有听到什么异常的声音。";
     }
     else {
         return 1;
@@ -122,7 +122,7 @@ mixed direct_listen_to_obj(){
 mixed direct_listen_to_str_word_obj(string str){
     str = remove_article(lower_case(str));
     if( !Listens[str] ){
-        return "You hear nothing special.";
+        return "你没有听到什么特别的声音。";
     }
     else {
         return 1;

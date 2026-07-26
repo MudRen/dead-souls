@@ -95,24 +95,24 @@ mixed eventClose(object who){
 varargs mixed eventEnter(object who, string what, string verb){
     if(!verb) verb = "NOVERB";
     if( Door && Door->GetClosed() ){
-        who->eventPrint("You bump into " + Door->GetShort(what) + ".");
-        environment(who)->eventPrint(who->GetName() + " bumps into " +
-                Door->GetShort(what) + ".", who);
+        who->eventPrint("你撞上了 " + Door->GetShort(what) + "。");
+        environment(who)->eventPrint(who->GetName() + " 撞上了 " +
+                Door->GetShort(what) + "。", who);
         return 1;
     }
     if( who->GetPosition() != POSITION_STANDING ){
         if(verb != "crawl" && verb != "fly") who->eventStand();
         if( who->GetPosition() != POSITION_STANDING && verb != "crawl" 
                 && verb != "fly"){
-            who->eventPrint("weird.");
+            who->eventPrint("奇怪。");
             return 0;
         }
     }
     if( Enter["pre"] && !evaluate(Enter["pre"], what) ){
         return 1;
     }
-    if(verb == "crawl") who->eventMoveLiving(Enter["room"],"into the " + this_object()->GetKeyName() );
-    else who->eventMoveLiving(Enter["room"], "$N enters into the " + this_object()->GetKeyName() + ".");
+    if(verb == "crawl") who->eventMoveLiving(Enter["room"],"爬进了 " + this_object()->GetKeyName() );
+    else who->eventMoveLiving(Enter["room"], "$N 走进了 " + this_object()->GetKeyName() + "。");
     if( Enter["post"] ){
         evaluate(Enter["post"], what);
     }
@@ -133,7 +133,7 @@ varargs mixed eventOpen(object who, object tool){
 
 varargs mixed eventKnock(object who, mixed what){
     if(!Door){
-        write("You can't knock on that.");
+        write("你不能敲那个。");
         return 0;
     }
     return Door->eventKnock(who, what);

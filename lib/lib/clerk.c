@@ -41,7 +41,7 @@ int MarriageRequest(mixed arg1, mixed arg2, mixed arg3){
 
     if(sscanf(arg3,"%s and %s", s1, s2) !=2 &&
             sscanf(arg3,"%s to %s", s1, s2) !=2){
-        eventForce("say "+arg1->GetName()+", you are confusing me.");
+        eventForce("say "+arg1->GetName()+", 你把我搞糊涂了。");
         return 1;
     }
 
@@ -50,27 +50,27 @@ int MarriageRequest(mixed arg1, mixed arg2, mixed arg3){
     if(s2 == "me" || s2 == "i") s2 = dudename;
 
     if(s1 != dudename && s2 != dudename ){
-        eventForce("say Those people will have to decide "+
-                "to get married on their own. It isn't "+
-                "any of your business.");
+        eventForce("say 那些人得自己决定 "+
+                "是否结婚。这不关 "+
+                "你的事。");
         return 1;
     }
 
     if( s1 == s2){
-        eventForce("say we don't do single-member marriages here.");
+        eventForce("say 我们这里不办理单人婚姻。");
         return 1;
     }
     if(! ob1 = present(s1, environment(this_object()))){
-        eventForce("say "+capitalize(s1)+" isn't here.");
+        eventForce("say "+capitalize(s1)+" 不在这里。");
         return 1;
     }
     if(! ob2 = present(s2, environment(this_object()))){
-        eventForce("say "+capitalize(s2)+" isn't here.");
+        eventForce("say "+capitalize(s2)+" 不在这里。");
         return 1;
     }
 
     if(!living(ob1) || !living(ob2)){
-        eventForce("say I do not perform marriages with inanimate objects.");
+        eventForce("say 我不会为无生命的物体主持婚礼。");
         return 1;
     }
     this_object()->performMarriage(ob1, ob2);
@@ -83,7 +83,7 @@ mixed performMarriage(object spouse1, object spouse2){
     tmp = environment(this_player())->CanMarry(this_player(),
             spouse1, spouse2);
     if( !tmp ){
-        this_player()->eventPrint("This place is not holy to you.");
+        this_player()->eventPrint("这个地方对你来说并不神圣。");
         return 1;
     }
     else if( stringp(tmp) ){
@@ -110,21 +110,21 @@ int performDivorce(object ob1){
 
     spouse1 = ob1->GetKeyName();
     if(!ob1->GetSpouse()){
-        eventForce("say You don't appear to be married.");
+        eventForce("say 你好像没有结婚。");
         return 1;
     }
     spouse2 = lower_case(ob1->GetSpouse());
     ob2 = find_player(spouse2);
 
     if(!ob1->CanDivorce(ob1)){
-        eventForce("say I cannot perform this divorce. Are you sure "+
-                "you are still married?");
+        eventForce("say 我无法办理这次离婚。你确定 "+
+                "你们还是已婚状态吗？");
         return 1;
     }
 
     if(!find_player(spouse1) || !ob1 ){
-        eventForce("say I'm sorry. Both spouses must be logged "+
-                "on for a divorce to take place.");
+        eventForce("say 很抱歉。离婚需要 "+
+                "双方都在线才能办理。");
         return 1;
     }
 
@@ -137,10 +137,10 @@ int performDivorce(object ob1){
     if(ring1) ring1->eventDestruct();
     if(ring2) ring2->eventDestruct();
 
-    eventForce("say The divorce is complete.");
-    tell_player(spouse1,"%^RED%^You are now divorced from "+capitalize(spouse2)+"%^RESET%^!");
-    tell_player(spouse2,"%^RED%^You are now divorced from "+capitalize(spouse1)+"%^RESET%^!");
-    eventForce("shout this office duly records and announces that "+capitalize(spouse1) +" has divorced "+capitalize(spouse2)+"!");
+    eventForce("say 离婚手续已完成。");
+    tell_player(spouse1,"%^RED%^你已经与 "+capitalize(spouse2)+" 离婚了%^RESET%^！");
+    tell_player(spouse2,"%^RED%^你已经与 "+capitalize(spouse1)+" 离婚了%^RESET%^！");
+    eventForce("shout 本办事处正式记录并公告 "+capitalize(spouse1) +" 已与 "+capitalize(spouse2)+" 离婚！");
     return 1;
 }
 

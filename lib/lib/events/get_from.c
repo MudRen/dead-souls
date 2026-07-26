@@ -18,18 +18,18 @@ string GetShort();
 mixed CanGetFrom(object who, object item){
     int check = GUARD_D->CheckGet(who, this_object());
     if(!check){
-        who->eventPrint("You can't get it.", MSG_SYSTEM);
+        who->eventPrint("你无法拾取它。", MSG_SYSTEM);
         return 0;
     }
 
     if( !item ){
-        return "#You seem oddly confused.";
+        return "#你好像有点困惑。";
     }
     if( this_object()->GetClosed() ){
-        return "#It's closed!";
+        return "#它是关着的！";
     }
     if( !sizeof(all_inventory(this_object())) ){
-        return "#It's empty.";
+        return "#它是空的。";
     }
     //if( environment(item) != this_object() ){
     //    item = present(item->GetKeyName(),this_object());
@@ -38,7 +38,7 @@ mixed CanGetFrom(object who, object item){
 
     if( (environment() != environment(this_player())) &&
             (environment() != this_player()) ){
-        return "#" + capitalize(GetShort()) + " is not in reach.";
+        return "#" + capitalize(GetShort()) + " 不在你的触及范围内。";
     }
     return 1;
 }
@@ -48,20 +48,20 @@ mixed CanPutInto(object who, object item){
 
     if((inherits(LIB_SIT,item) && sizeof(item->GetSitters())) ||
             (inherits(LIB_LIE,item) && sizeof(item->GetLiers()))){
-        write("There appears to be someone in your way.");
+        write("好像有人挡着你。");
         return 0;
     }
 
     if( item == this_object() ){
-        return "#You cannot change the laws of physics.";
+        return "#你不能改变物理定律。";
     }
     env = environment();
     if( env != this_player() && env != environment(this_player()) ){
-        return "#It is not within reach.";
+        return "#它不在你的触及范围内。";
     }
 
     if( this_object()->GetClosed() ){
-        return "#It's closed!";
+        return "#它是关着的！";
     }
     return 1;
 }
@@ -71,19 +71,19 @@ mixed CanPutOnto(object who, object item){
 
     if((inherits(LIB_SIT,item) && sizeof(item->GetSitters())) ||
             (inherits(LIB_LIE,item) && sizeof(item->GetLiers()))){
-        write("There appears to be someone preventing your access.");
+        write("好像有人在阻碍你。");
         return 0;
     }
 
     if(!inherits( LIB_SURFACE, item ) ){
-        return "#That isn't a load-bearing surface.";
+        return "#那不是一个可承载的表面。";
     }
     if( item == this_object() ){
-        return "#You cannot change the laws of physics.";
+        return "#你不能改变物理定律。";
     }
     env = environment();
     if( env != this_player() && env != environment(this_player()) ){
-        return "#It is not within reach.";
+        return "#它不在你的触及范围内。";
     }
     return 1;
 }
@@ -99,7 +99,7 @@ mixed eventGetFrom(object who, object* what){
 
     if((inherits(LIB_SIT,this_object()) && sizeof(this_object()->GetSitters())) ||
             (inherits(LIB_LIE,this_object()) && sizeof(this_object()->GetLiers()))){
-        write("There appears to be someone on there.");
+        write("那上面好像有人。");
         return 0;
     }
 
@@ -109,17 +109,17 @@ mixed eventGetFrom(object who, object* what){
         }
         if( (tmp = ob->CanGet(who)) != 1 ){
             if(stringp(tmp)) write(tmp);
-            else write("It would appear you can't get "+
-                    (ob->GetShort() || "that") +" right now.");
+            else write("看起来你现在无法拿起 "+
+                    (ob->GetShort() || "那个东西") +"。");
             continue;
         }
         if( !who->CanCarry(ob->GetMass()) ){
-            write("It seems you can't carry it.");
+            write("看来你拿不动它。");
             continue;
         }
         if( !ob->eventMove(who) ){
-            who->eventPrint("You have a problem getting " +
-                    ob->GetShort() + ".");
+            who->eventPrint("你拿起 " +
+                    ob->GetShort() + " 时遇到了问题。");
             continue;
         }
         AddCarriedMass( -(ob->GetMass()) );
@@ -142,14 +142,14 @@ mixed eventGetFrom(object who, object* what){
             msg += consolidate(mp[shorts[i]], shorts[i]) +  "%^RESET%^";
         }
         if( i == maxi-2 ){
-            msg += ", and ";
+            msg += " 和 ";
         }
         else if( i != maxi-1 ){
             msg += ", ";
         }
     }
-    send_messages("get", "$agent_name $agent_verb " + msg +
-            " from $target_name.", who, this_object(), environment(who));
+    send_messages("get", "$agent_name 从 $target_name 中拿出了 " + msg + "。",
+            who, this_object(), environment(who));
     return 1;
 }
 
@@ -160,7 +160,7 @@ mixed eventPutInto(object who, object what){
 mixed eventPutOnto(object who, object what){
     if((inherits(LIB_SIT,this_object()) && sizeof(this_object()->GetSitters())) ||
             (inherits(LIB_LIE,this_object()) && sizeof(this_object()->GetLiers()))){
-        write("There appears to be someone in the way of that.");
+        write("好像有人挡在那里。");
         return 0;
     }
     return what->eventPut(who, this_object()," onto ");
@@ -177,10 +177,10 @@ int inventory_visible(){
 
 mixed indirect_get_obj_from_obj(object item, object container){
     if(!item){
-        return "#That's not there.";
+        return "#那不在那里。";
     }
 
-    if(!clonep(container)) return "#wat";
+    if(!clonep(container)) return "#什么";
 
     //if(environment(item) != this_object()) return "#That's not in there.";
 
@@ -197,7 +197,7 @@ mixed indirect_get_obj_obj(object item, object container){
 
 mixed indirect_get_obs_from_obj(object* items, object storage){
     if( !items ){
-        return (storage == this_object() || "#It's not there.");
+        return (storage == this_object() || "#那不在那里。");
     }
     return 1;
 }

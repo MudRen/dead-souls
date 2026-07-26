@@ -73,21 +73,21 @@ string* GetSave(){
 
 mixed CanLock(object who, string id){
     if( GetLocked() ){
-        return "It is already locked.";
+        return "它已经是锁着的了。";
     }
     return 1;
 }
 
 mixed CanPick(object who, string id){
     if( !GetLocked() ){
-        return "Pick it when it is not even locked?";
+        return "它都没有锁，你要撬什么？";
     }
     return 1;
 }
 
 varargs mixed CanUnlock(object who, string id, object key){
     if( !GetLocked() ){
-        return "It is already unlocked.";
+        return "它已经是开着的了。";
     }
     return 1;
 }
@@ -98,7 +98,7 @@ varargs mixed eventLock(object who, mixed arg1, mixed arg2){
 
     if(objectp(arg1)) key = arg1;
     else if(objectp(arg2)) key = arg2;
-    else return "There seems to be a problem with unlocking things.";
+    else return "解锁似乎出了点问题。";
 
     ids = key->GetId();
     ids += ({ key->GetName() });
@@ -108,15 +108,15 @@ varargs mixed eventLock(object who, mixed arg1, mixed arg2){
     }
 
     if( !sizeof(ids & GetKeys()) ){
-        send_messages("try", "$agent_name $agent_verb to lock $target_name "
-                "with " + key->GetShort() + ", but it does not work.",
+        send_messages("try", "$agent_name 试图用 " +
+                key->GetShort() + " 锁上 $target_name，但没有成功。",
                 who, this_object(), environment(who));
     }
     else {
         mixed tmp;
 
-        send_messages("attempt", "$agent_name $agent_verb to lock "
-                "$target_name with " + key->GetShort() + ".",
+        send_messages("attempt", "$agent_name 试图用 " +
+                key->GetShort() + " 锁上 $target_name。",
                 who, this_object(), environment(who));
         tmp = key->eventLockLock(who, this_object());
         if( tmp != 1 ){
@@ -129,7 +129,7 @@ varargs mixed eventLock(object who, mixed arg1, mixed arg2){
             return 0;
         }
         environment(who)->eventPrint(capitalize(GetDefiniteShort()) +
-                " locks.");
+                " 锁上了。");
     }
     return 1;
 }
@@ -147,7 +147,7 @@ varargs mixed eventPick(object who, string id, object tool){
 
     prehensiles = who->GetWieldingLimbs();
     if(!sizeof(prehensiles)){
-        who->eventPrint("You lack prehensile limbs with which to do that.");
+        who->eventPrint("你没有可以用来做这件事的灵活肢体。");
         return 1;
     }
 
@@ -166,7 +166,7 @@ varargs mixed eventPick(object who, string id, object tool){
         tmp = evaluate(Pick, who, id, tool, strength);
         if( tmp != 1 ){
             if( !tmp ){
-                who->eventPrint("You fail to pick it.");
+                who->eventPrint("你撬锁失败了。");
                 return 1;
             }
             return tmp;
@@ -180,18 +180,17 @@ varargs mixed eventPick(object who, string id, object tool){
     if( strength > ( LockStrength / 10 + random(LockStrength) ) ){
         who->AddSkillPoints("stealth", 2*(LockStrength + strength));
         SetLocked(0);
-        send_messages("pick", "$agent_name $agent_verb the lock on "+
-                (short ? short : "$target_name") +"!",
+        send_messages("pick", "$agent_name 撬开了"+
+                (short ? short : "$target_name") +"的锁！",
                 who, this_object(), environment(who));
         return 1;
     }
-    send_messages("fail", "$agent_name $agent_verb in $agent_possessive "
-            "attempt to pick the lock on "+
-            (short ? short : "$target_name") +".",
+    send_messages("fail", "$agent_name 在试图撬开"+
+            (short ? short : "$target_name") +"的锁时失败了。",
             who, this_object(), environment(who));
     if( random(100) > strength ){
-        send_messages("cut", "$agent_name $agent_verb $agent_reflexive "
-                "on the lock.", who, this_object(), environment(who));
+        send_messages("cut", "$agent_name 在撬锁时弄伤了自己。",
+                who, this_object(), environment(who));
         who->eventReceiveDamage(this_object(), PIERCE, random(10) + 1, 0, limb);
     }
     return 1;
@@ -203,7 +202,7 @@ varargs mixed eventUnlock(object who, mixed arg1, mixed arg2){
 
     if(objectp(arg1)) key = arg1;
     else if(objectp(arg2)) key = arg2;
-    else return "There seems to be a problem with unlocking things.";
+    else return "解锁似乎出了点问题。";
 
     ids = key->GetId();
     ids += ({ key->GetName() });
@@ -213,16 +212,16 @@ varargs mixed eventUnlock(object who, mixed arg1, mixed arg2){
     }
 
     if( !sizeof(ids & GetKeys()) ){
-        send_messages("attempt", "$agent_name $agent_verb to unlock "
-                "$target_name with " + key->GetShort() + ", but it "
-                "does not work.", who, this_object(), environment(who));
+        send_messages("attempt", "$agent_name 试图用 " +
+                key->GetShort() + " 打开 $target_name，但没有成功。",
+                who, this_object(), environment(who));
     }
     else {
         mixed tmp;
 
-        send_messages("attempt", "$agent_name $agent_verb $target_name with "+
-                key->GetShort() + ".", who, this_object(),
-                environment(who));
+        send_messages("attempt", "$agent_name 用 " +
+                key->GetShort() + " 打开了 $target_name。",
+                who, this_object(), environment(who));
         tmp = key->eventUnlockLock(who, this_object());
         if( tmp != 1 ){
             if( tmp ){
@@ -234,7 +233,7 @@ varargs mixed eventUnlock(object who, mixed arg1, mixed arg2){
             return 0;
         }
         environment(who)->eventPrint(capitalize(GetDefiniteShort()) +
-                " comes unlocked.");
+                " 开锁了。");
     }
     return 1;
 }
@@ -250,7 +249,7 @@ varargs mixed direct_lock_obj_with_str(object target, mixed key, mixed id...){
 varargs mixed direct_pick_str_on_obj(string str, object target, string str2,
         string id){
     if( remove_article(lower_case(str)) != "lock" ){
-        return "Pick the what?";
+        return "撬什么？";
     }
     return CanPick(this_player(), id);
 }
@@ -258,7 +257,7 @@ varargs mixed direct_pick_str_on_obj(string str, object target, string str2,
 varargs mixed direct_pick_str_on_obj_with_obj(string str, object target, object tool,
         string str2, string targ_id){
     if( remove_article(lower_case(str)) != "lock" ){
-        return "Pick the what?";
+        return "撬什么？";
     }
     targ_id = remove_article(lower_case(targ_id));
     return CanPick(this_player(), targ_id);

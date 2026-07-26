@@ -51,7 +51,7 @@ mixed CanClimb(object who, int type){
     thingname=this_object()->GetKeyName();
 
     if(present(thingname,dude) && ccc == 0){
-        return "You can't climb that while it's being carried.";
+        return "你不能在携带它的时候攀爬。";
     }
 
     if( Climb[type] ){
@@ -66,19 +66,19 @@ mixed CanClimb(object who, int type){
     }
     switch(type){
         case CLIMB_UP:
-            return "Perhaps you mean to climb up it?";
+            return "你是不是想爬上去？";
 
         case CLIMB_DOWN:
-            return "Perhaps you mean to climb down it?";
+            return "你是不是想爬下去？";
 
         case CLIMB_OUT:
-            return "Perhaps you mean to climb out of it?";
+            return "你是不是想爬出来？";
 
         case CLIMB_INTO:
-            return "Perhaps you mean to climb into it?";
+            return "你是不是想爬进去？";
 
         case CLIMB_THROUGH:
-            return "Perhaps you mean to climb through it?";
+            return "你是不是想爬过去？";
     }
     return 0;
 }
@@ -89,7 +89,7 @@ varargs mixed eventClimb(object who, int type, string where){
 
     if( functionp(dest) ){
         if( functionp(dest) & FP_OWNER_DESTED ){
-            who->eventPrint("There will be no climbing that today!");
+            who->eventPrint("今天没法爬那个了！");
             return 1;
         }
         return evaluate(dest, who, type);
@@ -99,28 +99,28 @@ varargs mixed eventClimb(object who, int type, string where){
 
         switch(type){
             case CLIMB_UP:
-                omsg = "$N climbs up " + GetDefiniteShort() + ".";
-                imsg = "$N comes climbing in.";
+                omsg = "$N 爬上了 " + GetDefiniteShort() + "。";
+                imsg = "$N 爬了进来。";
                 break;
 
             case CLIMB_DOWN:
-                omsg = "$N climbs down " + GetDefiniteShort() + ".";
-                imsg = "$N comes climbing in.";
+                omsg = "$N 爬下了 " + GetDefiniteShort() + "。";
+                imsg = "$N 爬了进来。";
                 break;
 
             case CLIMB_OUT:
-                omsg = "$N climbs out " + GetDefiniteShort() + ".";
-                imsg = "$N comes climbing in.";
+                omsg = "$N 从 " + GetDefiniteShort() + " 爬了出来。";
+                imsg = "$N 爬了进来。";
                 break;
 
             case CLIMB_INTO:
-                omsg = "$N climbs into " + GetDefiniteShort() + ".";
-                imsg = "$N comes climbing in.";
+                omsg = "$N 爬进了 " + GetDefiniteShort() + "。";
+                imsg = "$N 爬了进来。";
                 break;
 
             case CLIMB_THROUGH:
-                omsg = "$N climbs through " + GetDefiniteShort() + ".";
-                imsg = "$N comes climbing in.";
+                omsg = "$N 爬过了 " + GetDefiniteShort() + "。";
+                imsg = "$N 爬了进来。";
                 break;
         }
         who->eventMoveLiving(dest, omsg, imsg);

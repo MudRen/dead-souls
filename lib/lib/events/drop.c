@@ -50,7 +50,7 @@ mixed CanDrop(object who){
     if( objectp(PreventDrop) ){
         if( PreventDrop == who ){
             return capitalize(GetDefiniteShort()) +
-                " simply will not leave your grasp.";
+                " 根本不想离开你的手中。";
         }
         else {
             return 1;
@@ -58,7 +58,7 @@ mixed CanDrop(object who){
     }
     else {
         if( functionp(PreventDrop) & FP_OWNER_DESTED ){
-            return "There is a problem with a functional.";
+            return "函数对象出现问题。";
         }
         return evaluate(PreventDrop, who);
     }
@@ -75,8 +75,8 @@ mixed eventDrop(object who){
     else tmp = eventMove(environment(who));
 
     if( !tmp ){
-        who->eventPrint("Something prevents you from dropping "
-                + GetDefiniteShort() + ".");
+        who->eventPrint("有什么东西阻止你放下 "
+                + GetDefiniteShort() + "。");
         return 1;
     }
     if( tmp != 1 ){
@@ -84,13 +84,13 @@ mixed eventDrop(object who){
     }
     send_messages("drop", "$agent_name $agent_verb $target_name.",
             who, this_object(), environment(who));
-    if(DestructOnDrop) tell_room(environment(who),capitalize(this_object()->GetShort())+" vanishes in a flash of light!");
+    if(DestructOnDrop) tell_room(environment(who),capitalize(this_object()->GetShort())+" 在一道闪光中消失了！");
     return 1;
 }
 
 mixed direct_drop_obj(object target){
     if( environment() != this_player() ){
-        return "#You don't have that to drop.";
+        return "#你没有那样东西可以丢弃。";
     }
     return CanDrop(this_player());
 }

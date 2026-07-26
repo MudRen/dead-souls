@@ -31,11 +31,11 @@ mixed CanMarry(object who, object spouse1, object spouse2){
 
     if( (tmp = spouse1->CanMarry(who, spouse2)) != 1 ){
         if( tmp ) return tmp;
-        else return spouse1->GetName() + " cannot be married.";
+        else return spouse1->GetName() + " 无法结婚。";
     }
     if( (tmp = spouse2->CanMarry(who, spouse1)) != 1 ){
         if( tmp ) return tmp;
-        else return spouse2->GetName() + " cannot be married.";
+        else return spouse2->GetName() + " 无法结婚。";
     }
     if( archp(who) ){
         return 1;
@@ -45,11 +45,11 @@ mixed CanMarry(object who, object spouse1, object spouse2){
 
 mixed CanSacrifice(object who, object what, string deus){
     if( who->GetReligion(1) != Religion[1] )
-        return "You must hold the beliefs of " + Religion[1] + " to do that.";
+        return "你必须信仰 " + Religion[1] + " 才能这样做。";
     if( !(what->GetVendorType() & SacrificeType) )
-        return "You cannot sacrifice that here.";
+        return "你不能在这里献祭那样东西。";
     if( member_array(deus, DeityIds) == -1 )
-        return "You do not worship anything called \"" + deus + "\".";
+        return "你不信仰名为 \"" + deus + "\" 的神灵。";
     return AllowSacrifice;
 }
 
@@ -61,22 +61,22 @@ mixed eventMarry(object who, object spouse1, object spouse2){
         spouse1->SetMarried(0);
         return tmp;
     }
-    spouse1->eventPrint(who->GetName() + " weds you to " +
-            spouse2->GetName() + ".");
-    spouse2->eventPrint(who->GetName() + " weds you to " +
-            spouse1->GetName() + ".");
-    who->eventPrint("You join " + spouse1->GetName() + " to " +
-            spouse2->GetName() + " in marriage.");
-    this_object()->eventPrint(who->GetName() + " joins " +
-            spouse1->GetName() + " and " +
-            spouse2->GetName() + ".",
+    spouse1->eventPrint(who->GetName() + " 将你许配给了 " +
+            spouse2->GetName() + "。");
+    spouse2->eventPrint(who->GetName() + " 将你许配给了 " +
+            spouse1->GetName() + "。");
+    who->eventPrint("你将 " + spouse1->GetName() + " 和 " +
+            spouse2->GetName() + " 结为夫妻。");
+    this_object()->eventPrint(who->GetName() + " 将 " +
+            spouse1->GetName() + " 和 " +
+            spouse2->GetName() + " 结为夫妻。",
             ({ spouse1, spouse2, who }));
     who->AddSkillPoints("faith", random(100));
     return 1;
 }
 
 mixed eventSacrifice(object who, object what, string deus){
-    who->eventPrint("You attempt to make a sacrifice, but nothing happens.");
+    who->eventPrint("你尝试进行献祭，但什么也没有发生。");
     return 1;
 }
 

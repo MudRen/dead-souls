@@ -15,14 +15,14 @@ void eventDescribeEnvironment(int brief){
     string altern_obvious = "";
 
     if(!(env = environment(this_object()))){
-        this_object()->eventPrint("You are nowhere.", MSG_ROOMDESC);
+        this_object()->eventPrint("你不知身在何处。", MSG_ROOMDESC);
         return;
     }
 
     if(env->GetMount() || base_name(env) == LIB_CORPSE){ 
         env = environment(environment(this_player()));
         if(!env){
-            this_object()->eventPrint("You are in serious trouble. Ask an admin for help.");
+            this_object()->eventPrint("你遇到了大麻烦。请向管理员求助。");
             return;
         }
         i = this_object()->GetEffectiveVision(env); 
@@ -31,19 +31,19 @@ void eventDescribeEnvironment(int brief){
     else i =  this_object()->GetEffectiveVision();
     switch( i ){
         case VISION_BLIND:
-            this_object()->eventPrint("You are blind and can see nothing.");
+            this_object()->eventPrint("你什么都看不见。");
             break;
         case VISION_TOO_DARK:
-            this_object()->eventPrint("It is much too dark to see.");
+            this_object()->eventPrint("太暗了，什么都看不见。");
             break;
         case VISION_DARK:
-            this_object()->eventPrint("It is too dark to see.");
+            this_object()->eventPrint("光线太暗，看不清楚。");
             break;
         case VISION_TOO_BRIGHT:
-            this_object()->eventPrint("It is much too %^YELLOW%^bright%^RESET%^ to see.");
+            this_object()->eventPrint("光线太%^YELLOW%^明亮%^RESET%^了，什么都看不见。");
             break;
         case VISION_BRIGHT:
-            this_object()->eventPrint("It is too %^YELLOW%^bright%^RESET%^ to see.");
+            this_object()->eventPrint("光线太%^YELLOW%^明亮%^RESET%^了，看不清楚。");
             break;
     }
     if( !brief ){
@@ -56,7 +56,7 @@ void eventDescribeEnvironment(int brief){
             if(!NM_STYLE_EXITS){
                 desc = capitalize(env->GetShort()+"\n" || "\n");
                 if(!(env->GetNoObviousExits())){
-                    altern_obvious = "Obvious exit$Q: "+env->GetObviousExits() || "none";
+                    altern_obvious = "明显出口$Q: "+env->GetObviousExits() || "无";
                 }
             }
         }
@@ -177,7 +177,7 @@ void eventDescribeEnvironment(int brief){
                 return 1;
                 }) - ({ this_object(), mount });
         maxi = sizeof(shorts = map(obs, (: 
-                        ($1->GetInvis() ? "(invisible) " : "") + 
+                        ($1->GetInvis() ? "(隐形) " : "") +
                         $1->GetHealthShort() :)));
         foreach(object liv in obs){
             int envtype = environment(liv)->GetMedium();
@@ -185,7 +185,7 @@ void eventDescribeEnvironment(int brief){
             int pos = liv->GetPosition();
             if( !s ) continue;
             if(liv->GetInvis() && this_object()->GetWizVision()){
-                s = "(invis) " + s;
+                s = "(隐形) " + s;
             }
             if(liv->GetProperty("furniture")){
                 s += "BEGIN"+random(999999)+"END";
@@ -234,8 +234,8 @@ void eventDescribeEnvironment(int brief){
                     ((furniture[globaltmp]) ? furniture[globaltmp] : "") +"上。";
             }
             else if(furniture[key]){
-                desc += capitalize(key) + "%^RESET%^ is lying down"+
-                    ((furniture[key]) ? furniture[key] : "") +".";
+                desc += capitalize(key) + "%^RESET%^ 躺在"+
+                    ((furniture[key]) ? furniture[key] : "") +"上。";
             }
 
 

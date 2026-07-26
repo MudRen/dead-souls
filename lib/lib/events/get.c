@@ -30,22 +30,22 @@ mixed SetPreventGet(mixed val){
 mixed CanGet(object who){
     int check = GUARD_D->CheckGet(who, this_object());
     if(!check){
-        who->eventPrint("You are unable to get it.", MSG_SYSTEM);
+        who->eventPrint("你无法拾取它。", MSG_SYSTEM);
         return 0;
     }
-    if( !(who->CanCarry(GetMass())) ) return "It is too heavy for you!";
+    if( !(who->CanCarry(GetMass())) ) return "它对你来说太重了！";
     if( !PreventGet && !GetProperty("keep") ) return 1;
     if( stringp(GetProperty("keep")) ){
         if( who->GetKeyName() == GetProperty("keep") ){
             if( !PreventGet ) return 1;
         }
-        else return "Mystical forces prevent you from getting " + this_object()->GetShort() + ".";
+        else return "神秘的力量阻止你拾取 " + this_object()->GetShort() + "。";
     }
     if( PreventGet && intp(PreventGet) ) return 0;
     if( stringp(PreventGet) ) return PreventGet;
     if( objectp(PreventGet) ){
         if( PreventGet == who )
-            return capitalize(this_object()->GetShort()) + " simply will not be taken.";
+            return capitalize(this_object()->GetShort()) + " 根本不想被拿走。";
         else return 1;
     }
     else{
@@ -55,7 +55,7 @@ mixed CanGet(object who){
 
 mixed eventGet(object who){
     if( !eventMove(who) ){
-        who->eventPrint("You fail to get it.");
+        who->eventPrint("你没能拾取它。");
         return 1;
     }
     if(living(this_object())){
@@ -80,14 +80,14 @@ protected void create(){
 
 mixed direct_get_obj(object target){
     if(environment() == this_player())
-        return "#You're already holding it.";
+        return "#你已经拿着它了。";
     if( environment() != environment(this_player()) ){
         string str = this_object()->GetShort();
 
         if( !str ) str = "It";
         else str = capitalize(str);
-        return "#You may need to get closer to it. Perhaps "+
-            "\"get "+this_object()->GetKeyName()+" from\" something?";
+        return "#你可能需要靠近一点。也许 "+
+            "试试 \"get "+this_object()->GetKeyName()+" from\" 某个东西？";
     }
     return CanGet(this_player());
 }
@@ -100,7 +100,7 @@ mixed direct_get_obj_out_of_obj(object target, object src){
     if( !(str = this_object()->GetShort()) ) str = "It";
     else str = capitalize(str);
     if( env==this_player() || env ==environment(this_player()) || living(env) ){
-        return "#You can't do that right now.";
+        return "#你现在不能那样做。";
     }
     return CanGet(this_player());
 }

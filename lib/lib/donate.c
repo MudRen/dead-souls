@@ -22,8 +22,8 @@ protected void init(){
 }
 
 string GetLong(string str){
-    string ret = "\nIt currently contains "+TotalAssets+" " +
-        "coins and bills.";
+    string ret = "\n目前里面有 "+TotalAssets+" " +
+        "枚金币和钞票。";
     if(TotalAssets) return ret;
     else return "";
 }
@@ -50,31 +50,31 @@ int eventDonate(string amt, string type){
     object tp = this_player();   
 
     if(sscanf(amt,"%d", amount) < 1){
-        write("That isn't a proper amount.");
+        write("这不是一个正确的金额。");
         return 1;
     }
 
     if(!valid_currency(type)){
-        write("That isn't a valid currency.");
+        write("这不是一种有效的货币。");
         return 1;
     }
 
     if(!amount){
-        tp->eventPrint("Donate how much?\n");
+        tp->eventPrint("捐赠多少？\n");
         return 0;
     }   
     if(amount < 0){
-        tp->eventPrint("Nice try!\n");
+        tp->eventPrint("想得美！\n");
         return 0;
     }
     if(tp->GetCurrency(type) < amount){
-        tp->eventPrint("You don't have that much " + type + "!\n");
+        tp->eventPrint("你没有那么多 " + type + "！\n");
         return 0;
     }
     tp->AddCurrency(type, -amount);
     AddAssets(amount);
-    tp->eventPrint(GetOwner() + " is grateful "
-            "for your donation.");
-    if(living(this_object())) this_object()->eventForce("say Thank you!");
+    tp->eventPrint(GetOwner() + " 感谢 "
+            "你的捐赠。");
+    if(living(this_object())) this_object()->eventForce("say 谢谢！");
     return 1;
 }

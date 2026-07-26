@@ -137,12 +137,12 @@ varargs mixed eventClose(object who){
         foreach(string side, mapping val in Sides){
             if( member_array(environment(whom), val["Rooms"]) != -1 ) tmp = side;
             if(who)
-                filter(val["Rooms"], (: $1 && ($1 != $(room)):))->eventPrint(capitalize(GetShort(side)) + " closes.");
-            else (val["Rooms"])->eventPrint(capitalize(GetShort(side)) + " closes.");
+                filter(val["Rooms"], (: $1 && ($1 != $(room)):))->eventPrint(capitalize(GetShort(side)) + " 关上了。");
+            else (val["Rooms"])->eventPrint(capitalize(GetShort(side)) + " 关上了。");
         }
         if(who){
             who->eventPrint("你关上了" + GetShort(tmp) + "。");
-            room->eventPrint(who->GetName() + " closes " + GetShort(tmp) + ".",
+            room->eventPrint(who->GetName() + " 关上了 " + GetShort(tmp) + "。",
                     who);
         }
     }
@@ -170,18 +170,18 @@ varargs mixed eventLock(object who, mixed key, mixed foo){
 
             tmp = GetShort(side);
             if( !(sizeof(key->GetId() & GetKeys(side))) ){
-                who->eventPrint("You fail to lock " + tmp +
-                        " with " + key->GetShort()+".");
-                room->eventPrint(who->GetName() + " attempts to "
-                        "lock " + tmp + " with " +
-                        key->GetShort() + ", but fails.",who);
+                who->eventPrint("你未能用 " + key->GetShort() + " 锁上 " +
+                        tmp + "。");
+                room->eventPrint(who->GetName() + " 试图用 " +
+                        key->GetShort() + " 锁上 " +
+                        tmp + "，但失败了。",who);
                 return 1;
             }
             SetLocked(1);
-            who->eventPrint("You lock " + tmp +
-                    " with " + key->GetShort()+".");
-            room->eventPrint(who->GetName() + " locks " + tmp +
-                    " with " + key->GetShort() + ".", who);
+            who->eventPrint("你用 " + key->GetShort() + " 锁上了 " +
+                    tmp + "。");
+            room->eventPrint(who->GetName() + " 用 " + key->GetShort() +
+                    " 锁上了 " + tmp + "。", who);
             return 1;
         }
     }
@@ -212,12 +212,12 @@ varargs int eventOpen(object who, object tool){
         foreach(string side, mapping val in Sides){
             if( member_array(environment(whom), val["Rooms"]) != -1 ) tmp = side;
             if(who)
-                filter(val["Rooms"], (: $1 && ($1 != $(room)) :))->eventPrint(capitalize(GetShort(side)) + " opens.");
-            else (val["Rooms"])->eventPrint(capitalize(GetShort(side)) + " opens.");
+                filter(val["Rooms"], (: $1 && ($1 != $(room)) :))->eventPrint(capitalize(GetShort(side)) + " 打开了。");
+            else (val["Rooms"])->eventPrint(capitalize(GetShort(side)) + " 打开了。");
         }
         if(who){
             who->eventPrint("你打开了" + GetShort(tmp) + "。");
-            room->eventPrint(who->GetName() + " opens " + GetShort(tmp) + ".",
+            room->eventPrint(who->GetName() + " 打开了 " + GetShort(tmp) + "。",
                     who);
         }
     }
@@ -273,17 +273,17 @@ mixed eventUnlock(object who, object key){
 
             tmp = GetShort(side);
             if(!sizeof((key_id & (GetKeys(side) || ({}))))){
-                who->eventPrint("You fail to unlock " + tmp +
-                        " with " + key->GetShort()+".");
-                room->eventPrint(who->GetName() + " attempts to "
-                        "unlock " + tmp + " with " +
-                        key->GetShort() + ", but fails.",who);
+                who->eventPrint("你未能用 " + key->GetShort() + " 打开 " +
+                        tmp + "。");
+                room->eventPrint(who->GetName() + " 试图用 " +
+                        key->GetShort() + " 打开 " +
+                        tmp + "，但失败了。",who);
                 return 1;
             }
             SetLocked(0);
-            who->eventPrint("You unlock " + tmp + ".");
-            room->eventPrint(who->GetName() + " unlocks " + tmp +
-                    " with " + key->GetShort() + ".", who);
+            who->eventPrint("你打开了 " + tmp + "。");
+            room->eventPrint(who->GetName() + " 用 " + key->GetShort() +
+                    " 打开了 " + tmp + "。", who);
             return 1;
         }
     }
@@ -378,8 +378,8 @@ mixed SetLong(string side, mixed long){
 string GetLong(string side){
     string tmp;
 
-    if( GetClosed() ) tmp = "It is closed.";
-    else tmp = "It is open.";
+    if( GetClosed() ) tmp = "它是关着的。";
+    else tmp = "它是开着的。";
     if( stringp(Sides[side]["Long"] ) )
         return Sides[side]["Long"] + "\n" + tmp;
     else return evaluate(Sides[side]["Long"], side);
@@ -413,17 +413,17 @@ varargs mixed eventKnock(object who, mixed what){
             if( member_array(environment(whom), val["Rooms"]) != -1 ) tmp = side;
             if(who)
                 filter(val["Rooms"], (: $1 && ($1 != $(room)):))->eventPrint(
-                        "There is a knock at the "+remove_article(GetShort(side)) + ".");
+                        remove_article(GetShort(side)) + " 传来一阵敲门声。");
             else (val["Rooms"])->eventPrint(
-                    "There is a knock at the "+remove_article(GetShort(side)) + ".");
+                    remove_article(GetShort(side)) + " 传来一阵敲门声。");
         }
         if(who){
-            who->eventPrint("You knock on the " + remove_article(GetShort(tmp)) + ".");
-            room->eventPrint(who->GetName() + " knocks on the " + remove_article(GetShort(tmp)) + ".",
+            who->eventPrint("你敲了敲 " + remove_article(GetShort(tmp)) + "。");
+            room->eventPrint(who->GetName() + " 敲了敲 " + remove_article(GetShort(tmp)) + "。",
                     who);
         }
     }
-    else write("It isn't closed!");
+    else write("它没有关上！");
     return 1;
 }
 
@@ -439,17 +439,17 @@ varargs mixed eventScratch(object who, mixed what){
             if( member_array(environment(whom), val["Rooms"]) != -1 ) tmp = side;
             if(who)
                 filter(val["Rooms"], (: $1 && ($1 != $(room)):))->eventPrint(
-                        "There is a scratch at the "+remove_article(GetShort(side)) + ".");
+                        remove_article(GetShort(side)) + " 传来一阵刮擦声。");
             else (val["Rooms"])->eventPrint(
-                    "There is a scratch at the "+remove_article(GetShort(side)) + ".");
+                    remove_article(GetShort(side)) + " 传来一阵刮擦声。");
         }
         if(who){
-            who->eventPrint("You scratch on the " + remove_article(GetShort(tmp)) + ".");
-            room->eventPrint(who->GetName() + " scratches on the " + remove_article(GetShort(tmp)) + ".",
+            who->eventPrint("你在 " + remove_article(GetShort(tmp)) + " 上刮擦了一下。");
+            room->eventPrint(who->GetName() + " 在 " + remove_article(GetShort(tmp)) + " 上刮擦了一下。",
                     who);
         }
     }
-    else write("It isn't closed!");
+    else write("它没有关上！");
     return 1;
 }
 
