@@ -6,8 +6,8 @@ inherit LIB_ROOM;
 void create() {
     room::create();
     SetAmbientLight(30);
-    SetShort("Learning Center Start");
-    SetLong("This is where you can start learning how to interact with the virtual world you've connected to.\n\nTo begin the tutorial, enter: tutorial\n\nTo return to the normal areas, enter: normal\n");
+    SetShort("学习中心起点");
+    SetLong("在这里你可以开始学习如何与你连接的虚拟世界进行互动。\n\n要开始教程，请输入：tutorial\n\n要返回正常区域，请输入：normal\n");
     SetCoordinates("2000,2000,0");
     SetNoObviousExits(1);
     SetNoClean(1);
