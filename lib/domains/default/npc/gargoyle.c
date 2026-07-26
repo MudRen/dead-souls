@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("gargoyle");
     SetAdjectives( ({"stone", "grotesque", "ugly", "repellent"}) );
     SetId(({"npc","mob","character","mobile"}));
-    SetShort("一个 grotesque 石像鬼");
-    SetLong("一个石头精灵活了过来，这个 monstrosity was designed to be as ugly and repellent as anything could be and still hold its shape。它是 wildly successful。它的 rolling eyes and lolling tongue make it a horrid sight indeed。");
+    SetShort("一个怪诞的石像鬼");
+    SetLong("一个石头精灵活了过来，这个怪物被设计得尽可能丑陋和令人厌恶，同时还能保持形状。它非常成功。它转动的眼睛和伸出的舌头确实让它看起来很恐怖。");
     SetLevel(1);
     SetMelee(1);
     SetRace("gargoyle");

@@ -10,12 +10,11 @@ protected void create(){
     SetId(({"repellent_collar","bane"}));
     SetAdjectives( ({"repellent","odd","plastic","white"}) );
     SetShort("一个塑料项圈");
-    SetLong="a plastic collar";
-    SetLong("这是一个 simple collar made of a soft white plastic。它 seems to be coated with a fine, clear resin。 There is something written on the collar。");
+    SetLong("这是一个由柔软的白色塑料制成的简单项圈。它似乎涂有一层细腻的透明树脂。项圈上写着一些字。");
     SetProperties(([
                 "no steal" : 1,
                 ]));
-    SetRead("疾病和寄生虫 repellent 项圈，仅限测试角色使用。");
+    SetRead("疾病和寄生虫防护项圈，仅限测试角色使用。");
     SetMass(10);
     SetBaseCost("silver", 10);
     SetDamagePoints(100);

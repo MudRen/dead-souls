@@ -15,23 +15,23 @@ int eventShootDude(object ob){
     if(!environment()) return 0;
     str = ob->GetName();
     if(!ammo){
-        tell_room(environment(),"The killbot clicks.");
+        tell_room(environment(),"杀手机器人咔哒一声。");
         active = 0;
         return 0;
     }
-    tell_object(this_object(),"You fire at "+ob->GetName()+"!");
-    tell_room(environment(),"The killbot fires at "+ob->GetName()+"!",
+    tell_object(this_object(),"你向"+ob->GetName()+"开火！");
+    tell_room(environment(),"杀手机器人向"+ob->GetName()+"开火！",
             ({this_object(),ob}));
-    tell_object(ob,"The killbot fires at you!");
+    tell_object(ob,"杀手机器人向你开火！");
     ammo--;
     if(random(100) < 10) return 1;
     limbs=ob->GetLimbs();
     numlimbs=sizeof(limbs);
     limbname = limbs[random(numlimbs-1)]; 
     tell_room(environment(this_object()),
-            "The bullet smashes into "+
-            capitalize(str)+"'s "+limbname+"!\n",ob);
-    tell_object(ob,"The bullet smashes into your "+limbname+"!\n");
+            "子弹击中了"+
+            capitalize(str)+"的"+limbname+"！\n",ob);
+    tell_object(ob,"子弹击中了你的"+limbname+"！\n");
     dam = 20;
     dam *= random(10);
     dam -= random(ob->GetStatLevel("coordination"));
@@ -75,15 +75,14 @@ int eventTargetScan(){
     targets = scramble_array(targets);
     targets -= ({ this_object() });
     if((targs = sizeof(targets)) < 1){
-        if(newenv) eventForce("say Environment scan complete.");
+        if(newenv) eventForce("say 环境扫描完成。");
         newenv = 0;
         eventQuell();
         return 0;
     }
     if(targs > 10) targs = 10;
     else {
-        eventForce("say "+cardinal(targs)+" target"+
-                ((targs > 1) ? "s" : "" )+" acquired.");
+        eventForce("say 已锁定"+chinese_number(targs)+"个目标。");
     }
     targs--;
     targets = targets[0..targs];
@@ -95,11 +94,11 @@ int eventTargetScan(){
 
 int ActivateTurret(){
     if(!ammo){
-        write("The killbot clicks and goes silent.");
+        write("杀手机器人咔哒一声，然后安静下来。");
         return 0;
     }
     active = 1;
-    eventForce("say KILLBOT IS NOW FULLY ARMED AND OPERATIONAL.");
+    eventForce("say 杀手机器人现已完全武装并开始运作。");
     eventTargetScan();
     set_heart_beat(1);
     return 1;
@@ -113,7 +112,7 @@ protected void create() {
     SetId( ({"drone","bot", "robot","turret"}) );
     SetAdjectives(({"kill","non-player", "non player"}));
     SetShort("一个杀手机器人");
-    SetLong("这是一个 hovering orb with a machine gun hanging underneath it and a single red glowing eye scanning the area。");
+    SetLong("这是一个悬浮的球体，下面挂着一挺机枪，一只红色发光的眼睛扫描着周围区域。");
     SetPosition(POSITION_FLYING);
     SetLevel(1);
     SetPacifist(1);
@@ -134,25 +133,25 @@ void init(){
 
 int eventTurnOn(){
     if(active){
-        write("The killbot is already active.");
+        write("杀手机器人已经处于激活状态。");
         return 1;
     }
     else {
         call_out("ActivateTurret",7);
-        write("You activate the killbot.");
-        eventForce("say KILLBOT ACTIVE.");
-        eventForce("say YOU HAVE 5 SECONDS TO REACH MINIMUM SAFE DISTANCE.");
+        write("你激活了杀手机器人。");
+        eventForce("say 杀手机器人已激活。");
+        eventForce("say 你有5秒时间到达最小安全距离。");
     }
     return 1;
 }
 
 int eventTurnOff(){
     if(!active){
-        write("The killbot is already inactive.");
+        write("杀手机器人已经处于未激活状态。");
         return 1;
     }
     else {
-        write("It seems this killbot cannot be deactivated.");
+        write("似乎这个杀手机器人无法被关闭。");
     }
     return 1;
 }
@@ -187,7 +186,7 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal,
         mixed limbs){
     object env = room_environment();
     if(env){
-        tell_room(env,"The killbot %^RED%^BEEPS%^RESET%^.");
+        tell_room(env,"杀手机器人%^RED%^哔哔%^RESET%^作响。");
     }
     ActivateTurret();
     return ::eventReceiveDamage(agent, type, x, internal, limbs);
@@ -222,7 +221,7 @@ varargs int eventDie(mixed arg){
             newbot = new(base_name(this_object()));
             ret = newbot->eventMove(env);
             if(ret){
-                tell_room(env,"The killbot has teleported in reinforcements.");
+                tell_room(env,"杀手机器人传送来了援军。");
             }
         }
     }

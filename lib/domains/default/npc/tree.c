@@ -25,7 +25,7 @@ int make_money(string str){
     int d1;
     string s1,s2;
     if(!creatorp(this_player()) && !member_group(this_player(),"TEST")) {
-        write("你的手似乎从树上滑了下来...好像它 somehow 知道这些钱不应该落入你贪婪的手中。");
+        write("你的手似乎从树上滑了下来...好像它不知怎的知道这些钱不应该落入你贪婪的手中。");
         return 1;
     }
     if(!str){ write("获取什么？\n"); return 1; }

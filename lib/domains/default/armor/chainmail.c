@@ -9,7 +9,7 @@ protected void create(){
     SetId(({"armor","chainmail","mail","shirt","chain mail"}));
     SetAdjectives(({"chainmail","sturdy","sturdy-looking","chain mail"}));
     SetShort("锁子甲");
-    SetLong("一套由小金属环 fashion together 制成的全身盔甲。");
+    SetLong("一套由小金属环编织在一起制成的全身盔甲。");
     SetMass(600);
     SetBaseCost("silver",1000);
     SetDamagePoints(100);

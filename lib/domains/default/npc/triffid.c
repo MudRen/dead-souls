@@ -8,7 +8,7 @@ protected void create() {
     SetAdjectives( ({"six foot tall", "six feet tall", "thick", "bushy", "thorned", "menacing"}) );
     SetId( ({"plant"}) );
     SetShort("一株高大的植物");
-    SetLong("这种植物大约六英尺高， similar to a very thick and bushy corn plant。它 possesses tentacle-like thorned vines which wave about menacingly， and it appears capable of locomotion。");
+    SetLong("这种植物大约六英尺高，类似于一种非常粗壮茂密的玉米植物。它拥有触手般的带刺藤蔓，威胁地挥舞着，看起来能够移动。");
     SetLevel(1);
     SetMelee(1);
     SetRace("plant");

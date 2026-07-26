@@ -31,7 +31,7 @@ protected void create() {
     SetId(({"npc","mob","character","mobile"}));
     SetAdjectives(({"non-player", "non player"}));
     SetShort("一个肯德人");
-    SetLong("身材 slender and rather attractive，肯德人是与 hobbits 相关的另一个种族，具有所有的 playfulness and a little extra disregard for other people's privacy。肯德人以他们 extraordinary skill in relieving others of their property 而 infamous， and it is said they are taught to steal before being taught to read。 Others dispute this, arguing kenders don't read at all。");
+    SetLong("身材纤细且相当迷人，肯德人是与霍比特人相关的另一个种族，具有所有的爱玩天性和对他人隐私的额外漠视。肯德人以他们在偷窃他人财物方面的非凡技巧而臭名昭著，据说他们在学会阅读之前就被教导偷窃。其他人对此表示异议，认为肯德人根本不识字。");
     SetClass("thief");
     SetLevel(5);
     SetMelee(1);

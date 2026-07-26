@@ -78,9 +78,9 @@ int eventDrain(mixed args...){
             default: break;
         }
         if(enemy && which < 100){
-            tell_object(enemy,"幽灵吸取了你的 vital essence！");
+            tell_object(enemy,"幽灵吸取了你的生命力！");
             tell_room(environment(this_object()), "幽灵吸取了 "+
-                    enemy->GetName()+"的 precious bodily essence！", ({ enemy }));
+                    enemy->GetName()+"的宝贵精华！", ({ enemy }));
         }
     }
     return 0;
@@ -92,7 +92,7 @@ protected void create() {
     SetAdjectives( ({"arch", "shadowy", "undead", "unholy", "malevolent", "spiteful"}) );
     SetId( ({"archwraith", "wraith", "specter", "ghost", "apparition", "manifestation"}) );
     SetShort("一个幽灵领主");
-    SetLong("这个阴影般的显现是一个亡灵、 unholy apparition，散发着恶意和怨恨。");
+    SetLong("这个阴影般的显现是一个亡灵、邪恶的幽灵，散发着恶意和怨恨。");
     SetPosition(POSITION_FLYING);
     SetRace("wraith");
     SetClass("fighter");
@@ -151,7 +151,7 @@ int add_target(string str){
         return 0;
     }
     if(target){
-        write("seeking "+str);
+        write("正在寻找 "+str);
         if(environment(target)){
             this_object()->eventMove(environment(target));
             this_object()->AddEnemy(target);
@@ -167,7 +167,7 @@ int track_target(string str){
     }
     qname = str;
     if(target){
-        write("tracking "+str);
+        write("正在追踪 "+str);
         if(environment(target)){
             quarry = target;
             this_object()->eventMove(environment(target));

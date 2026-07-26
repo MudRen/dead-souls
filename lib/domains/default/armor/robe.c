@@ -9,7 +9,7 @@ protected void create(){
     SetAdjectives( ({"wizards", "wizard's", "soft", "wizard"}) );
     SetId(({"robe","cloak","duster"}));
     SetShort("一件长袍");
-    SetLong("这是一件 large, comfortable-looking robe, like a wizard might wear。它有 many pockets and compartments for holding things。");
+    SetLong("这是一件宽大、看起来很舒适的长袍，像巫师穿的那种。它有许多口袋和隔层可以装东西。");
     SetProperties(([
                 "gamma" : 3,
                 "no steal" : 1,

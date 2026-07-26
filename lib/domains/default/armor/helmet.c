@@ -8,7 +8,7 @@ protected void create(){
     SetId(({"helmet","cover","steel"}));
     SetAdjectives(({"steel","battle","hard"}));
     SetShort("一顶钢盔");
-    SetLong("这是一顶由 tough metal 制成的头盔。");
+    SetLong("这是一顶由坚韧金属制成的头盔。");
     SetMass(180);
     SetBaseCost("silver",500);
     SetDamagePoints(100);

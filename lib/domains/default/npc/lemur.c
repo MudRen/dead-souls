@@ -8,7 +8,7 @@ protected void create() {
     SetAdjectives( ({"small", "startling", "grey", "gray"}) );
     SetId( ({"primate", "simian"}) );
     SetShort("一只狐猴");
-    SetLong("这只小动物的 appearance is startling。它看起来 much like a cross between a small monkey and a raccoon。它有 an elongated snout and the fur around its eyes is dark, like the mask of a bandit。 Yet its body is clearly simian, with the prehensile front limbs of a monkey。 Its grey, furry body ends in a ridiculously long tail that is striped white and black。");
+    SetLong("这只小动物的外表令人惊讶。它看起来很像小型猴子和浣熊的杂交。它有一个细长的口鼻部，眼睛周围的皮毛是深色的，像强盗的面具。然而它的身体明显是猿类的，有着猴子那样的可缠绕的前肢。它灰色的毛茸茸的身体末端是一条荒谬地长的尾巴，上面有黑白条纹。");
     SetLevel(1);
     SetMelee(1);
     SetRace("primate");

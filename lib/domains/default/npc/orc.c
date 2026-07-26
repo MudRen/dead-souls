@@ -8,7 +8,7 @@ protected void create() {
     SetId(({"orc"}));
     SetAdjectives(({"dirty"}));
     SetShort("一个肮脏的兽人");
-    SetLong("这个兽人是其种族的典型代表：肮脏、野蛮、矮小。它似乎是幼年或青少年，这使得它 somewhat less dangerous but more hostile。");
+    SetLong("这个兽人是其种族的典型代表：肮脏、野蛮、矮小。它似乎是幼年或青少年，这使得它危险性稍低但更具敌意。");
     SetLevel(1);
     SetRace("orc");
     SetGender("male");

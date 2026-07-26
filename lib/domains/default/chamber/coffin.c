@@ -8,8 +8,8 @@ protected void create() {
     SetKeyName("coffin");
     SetId(({"box"}));
     SetAdjectives(({"pine", "simple"}));
-    SetShort="a coffin";
-    SetLong("这是一个 simple pine box for holding the remains of the deceased。");
+    SetShort("一口棺材");
+    SetLong("这是一个简单的松木盒子，用于存放死者的遗体。");
     SetRace("vehicle");
     SetPosition(POSITION_NULL);
     SetMelee(0);

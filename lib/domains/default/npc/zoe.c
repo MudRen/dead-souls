@@ -11,7 +11,7 @@ protected void create() {
     SetAdjectives( ({ "bank","executive","friendly","efficient" }) );
     SetShort("银行出纳员佐伊");
     SetLevel(12);
-    SetLong("佐伊是一个 attractive young blonde woman，有着法国口音。她 dressed in a conservative, executive style， and has a friendly and efficient air about her。");
+    SetLong("佐伊是一个迷人的年轻金发女郎，有着法国口音。她穿着保守的行政风格服装，散发着友好而高效的气质。");
     SetGender("female");
     SetMorality(40);
     SetRace("human");

@@ -8,7 +8,7 @@ protected void create() {
     SetId( ({"half elf", "half-elf", "half-human", "half human"}) );
     SetAdjectives(({"non-player", "non player"}));
     SetShort("半精灵奥普蒂斯");
-    SetLong("Like most of his kind， Optis is very attractive and athletic。 His ears aren't entirely pointy， but he's exotic enough to be very popular with the ladies。");
+    SetLong("像他的大多数同类一样，奥普蒂斯非常迷人且健壮。他的耳朵不是完全尖的，但他足够异域风情，在女士们中很受欢迎。");
     SetLevel(1);
     SetMelee(1);
     SetRace("half-elf");

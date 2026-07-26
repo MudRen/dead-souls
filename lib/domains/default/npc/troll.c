@@ -25,7 +25,7 @@ protected void create() {
     SetId(({"troll"}));
     SetAdjectives(({"dirty"}));
     SetShort("一个长相凶恶的巨魔");
-    SetLong("这是传说中可怕的生物：一个黏糊糊的、绿色的、看起来腐烂的恶魔，有着长长的、 razor-sharp 的爪子和獠牙。");
+    SetLong("这是传说中可怕的生物：一个黏糊糊的、绿色的、看起来腐烂的恶魔，有着长长的、锋利如剃刀的爪子和獠牙。");
     SetLevel(3);
     SetRace("troll");
     SetClass("fighter");

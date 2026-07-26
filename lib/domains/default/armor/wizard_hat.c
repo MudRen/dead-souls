@@ -9,7 +9,7 @@ protected void create(){
     SetAdjectives( ({"wizard","wizards", "floppy", "large", "conical", "blue"}) );
     SetId( ({"hat"}) );
     SetShort("一顶巫师帽");
-    SetLong("这是一顶 large, floppy hat with a wide brim all around it, and a conical center。它是 dark blue in color， and is decorated with pictures of yellow moons and stars。");
+    SetLong("这是一顶宽大、松软的帽子，四周有宽帽檐，中间是圆锥形。它是深蓝色的，上面装饰着黄色月亮和星星的图案。");
     SetProperties(([
                 "beta" : 2,
                 ]));

@@ -8,7 +8,7 @@ protected void create() {
     SetAdjectives( ({"tree hugging", "tree-hugging", "hippie"}) );
     SetId( ({"hippie"}) );
     SetShort("一个抱树嬉皮士");
-    SetLong("仔细一看，这不只是个嬉皮士 chick。这是一个 honest-to-goodness tree spirit， evidently a bit lost to be hanging around here。");
+    SetLong("仔细一看，这不只是个嬉皮士女孩。这是一个货真价实的树灵，显然是迷路了才会在这里闲逛。");
     SetLevel(1);
     SetMelee(1);
     SetRace("dryad");
