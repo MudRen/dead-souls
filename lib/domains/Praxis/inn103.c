@@ -4,32 +4,25 @@ void init() {
     ::init();
     add_action( "leave", "leave" );
     add_action( "bounce", "bounce" );
-}   
+}
 
 void create() {
     ::create();
     SetProperties( ([ "light" : 2, "no castle" : 1 ]) );
-    SetShort( "a sleeping chamber" );
-    SetLong( "You have entered one of the sleeping chambers of "
-            "the posh Nightmare Inn. The room is in perfect order. "
-            "A large bed sits in the middle of the room, surrounded "
-            "by night stands on both side. A crystal lamp rests "
-            "the nightstand on the right. The carpet is a lovely "
-            "shade of sand, and the furniture is a deep oaken "
-            "color. In order to exit the room, try 'leave'." );
-    SetItems( ([ 
+    SetShort( "一间卧房" );
+    SetLong( "你进入了噩梦旅馆豪华卧房中的一间。房间整洁有序。"
+            "一张大床位于房间中央，两侧各有一个床头柜。"
+            "一盏水晶灯放在右边的床头柜上。地毯是柔和的沙色，"
+            "家具是深橡木色。要离开房间，请输入 'leave'。" );
+    SetItems( ([
                 ({ "room", "chambers", "chamber" }) :
-                "The chamber is a very comfortable room.",
-                "inn" : "The Nightmare Inn is reputed to be the best "
-                "in the land.",
-                "bed" : "The bed is very large and comfortable. It "
-                "looks like it would be fun to bounce on.",
+                "这是一间非常舒适的房间。",
+                "inn" : "噩梦旅馆被誉为这片土地上最好的旅馆。",
+                "bed" : "床非常大且舒适。看起来在上面蹦跳会很有趣。",
                 ({ "night stand", "night stands" }) :
-                "The night stands are very solid oaken structures.",
-                "lamp" : "The lamp is a very old antique lamp that "
-                "is made out of fine crystal.",
-                "carpet" : "The carpet is a very soothing shade of "
-                "beige.", ]) );
+                "床头柜是非常坚固的橡木家具。",
+                "lamp" : "灯是一盏精致水晶制成的古董灯。",
+                "carpet" : "地毯是非常柔和的米色。", ]) );
     SetExits( ([
                 "west" : "/domains/Praxis/hall2.c",
                 ]) );
@@ -38,16 +31,15 @@ void create() {
 
 int bounce(string str) {
     if(!str || str!="bed" ) {
-        notify_fail( "Bounce on what?\n");
+        notify_fail( "在什么上面蹦？\n");
         return 0;
     }
 
-    write( "You bounce up and down on the bed happily.");
+    write( "你在床上开心地蹦上蹦下。");
     return 1;
 }
 int leave(string str) {
-    write( "You open the door to your hotel room and venture out "
-            "into the hallway." );
+    write( "你打开旅馆房间的门，走进了走廊。" );
     this_player()->eventMoveLiving( "/domains/Praxis/hall2.c");
     return 1;
 }

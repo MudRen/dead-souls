@@ -10,22 +10,19 @@ void init() {
 void create() {
     ::create();
     SetProperties( ([ "light" : 2, "indoors" : 1, "no castle" : 1 ]) );
-    SetShort("Horace's general supply shop");
+    SetShort("霍勒斯综合杂货店");
     SetLong(
-            "Welcome to Horace's General Supply Shop!\n"
-            "Horace's supply shop is the largest business running in Praxis "
-            "to date. It was established long ago, and has earned itself "
-            "a very high reputation over the years. A long counter stands "
-            "at the back of the store, where you can often see Horace himself "
-            "standing, bargaining with customers. Two windows frame the front "
-            "wall of the store, and a cheery red door exits you back out to "
-            "the main street. Horace buys and sells goods created for and found "
-            "by adventurer's when he is in. The pasasge north is guarded "
-            "by a magic field.");
+            "欢迎来到霍勒斯综合杂货店！\n"
+            "霍勒斯杂货店是普拉克西斯迄今为止最大的商铺。"
+            "它建立于很久以前，多年来赢得了极高的声誉。"
+            "商店后方有一个长长的柜台，你经常可以看到霍勒斯本人"
+            "站在那里与顾客讨价还价。两扇窗户装饰着商店的前墙，"
+            "一扇欢快的红色大门让你回到主街。霍勒斯在他营业时"
+            "买卖冒险者们创造和发现的物品。北边的通道由魔法力场守卫。");
     SetItems(
-            (["shop" : "You can buy and sell things here.",
-             "passage" : "Horace keeps the things he has for sale back there.",
-             "road" : "Boc La Road."]) );
+            (["shop" : "你可以在这里买卖物品。",
+             "passage" : "霍勒斯把待售的物品放在后面。",
+             "road" : "博克拉路。"]) );
     SetInventory(([
                 "/domains/Praxis/obj/mon/horace" : 1,
                 ]));
@@ -43,14 +40,14 @@ void reset() {
 int go_north(string str) {
     if(str !="north") return notify_fail("What?\n");
     if(!creatorp(this_player())) {
-        message("my_action", "The magic of Horace stops you.", this_player());
+        message("my_action", "霍勒斯的魔法阻止了你。", this_player());
         message("other_action", this_player()->query_cap_name()+
-                " is stopped by the magic of Horace.", this_object(),
+                "被霍勒斯的魔法阻止了。", this_object(),
                 ({ this_player() }));
         return 1;
     }
     message("other_action", this_player()->query_cap_name()+
-            " cannot be stopped by Horace's magic.", this_object(),
+            "不受霍勒斯魔法的阻挡。", this_object(),
             ({ this_player() }));
     this_player()->eventMoveLiving("/domains/Praxis/storage", "north");
     return 1;

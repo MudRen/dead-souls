@@ -4,15 +4,13 @@ void create() {
     ::create();
     SetProperty("light", 3);
     SetProperty("night light", 1);
-    SetShort( "The wilderness outside of Praxis");
+    SetShort( "普拉克西斯郊外的荒野");
     SetLong(
-            "The vegetation in the area outside the village "
-            "thickens into jungle as you head east.");
+            "村庄外的植被随着你向东行进而变得茂密，形成了丛林。");
     SetItems(
-            (["jungle" : "A wilderness area full of outlaws and "
-             "mysterious things.",
-             "village" : "The adventurer's town of Praxis.",
-             "vegetation" : "It gets thicker to the east."]) );
+            (["jungle" : "一片充满亡命之徒和神秘事物的荒野区域。",
+             "village" : "冒险者的城镇普拉克西斯。",
+             "vegetation" : "向东越来越茂密。"]) );
     SetSkyDomain("town");
     SetExits( 
             (["east" : "/domains/Praxis/wild2",

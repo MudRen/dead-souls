@@ -36,15 +36,14 @@ void create() {
     SetProperty("no attack",1);
     SetProperty("light", 1);
     SetProperty("indoors", 1);
-    SetShort( "The heart of the rogue hideout");
+    SetShort( "盗贼藏身处核心");
     SetLong(
-            "Welcome into the rogue hideout!\n"+
-            "Rogues come here to sharpen their fiendish skills.\n"+
-            "The available commands are <cost>, <advance>, <list (number)>, "
-            "<train skill amount>, <improve stat> and <roll stats>.  Up "
-            "through a stairway guarded by a shimmering %^BLUE%^blue%^RESET%^ "
-            "light is the entrance to the fortress. <help skills> will list "
-            "all of the full names of skills.");
+            "欢迎来到盗贼藏身处！\n"
+            "盗贼们来这里磨练他们邪恶的技能。\n"
+            "可用的命令有 <cost>、<advance>、<list (编号)>、"
+            "<train 技能 数量>、<improve 属性> 和 <roll stats>。"
+            "穿过被闪烁的%^BLUE%^蓝色%^RESET%^光芒守护的楼梯向上"
+            "是堡垒的入口。<help skills> 将列出所有技能的完整名称。");
     SetExits( 
             (["up" : "/domains/Praxis/rogue_join",
              "council" : "/domains/Praxis/council_hall",
@@ -57,10 +56,9 @@ void create() {
     ob->set_max_posts(25);
     ob->set_edit_ok(ROGUE_COUNCIL);
     ob->move("/domains/Praxis/rogue_hall");
-    ob->SetShort( "Rogue's Board of Fiendish Plots");
-    ob->SetLong( "On this rotting wood board, rogues come to post "
-            "of bounties dastardly deeds, and other fiendish foils "
-            "for other rogues to see.\n");
+    ob->SetShort( "盗贼邪恶阴谋布告板");
+    ob->SetLong( "在这块腐烂的木板上，盗贼们发布悬赏、"
+            "卑鄙行为和其他邪恶阴谋，供其他盗贼查看。\n");
     //    new("/realms/grumpy/rogue/obj/box.c")->move(this_object());
 }
 
@@ -150,12 +148,12 @@ int train(string str) {
 
     if(sscanf(str, "%s %s %d", which, which_tmp, amount) ==3) which = which + " "+ which_tmp;
     else if(sscanf(str, "%s %d", which, amount) !=2) {
-        notify_fail("Correct syntax: <train skill amount>\n");
+        notify_fail("正确语法：<train 技能 数量>\n");
         return 0;
     }
     which = lower_case(which);
     if(!this_player()->skill_exists(which)) {
-        notify_fail("No such skill.\n");
+        notify_fail("没有这个技能。\n");
         return 0;
     }
     return ADVANCE_D->train_player(this_player(), which, amount);
@@ -168,24 +166,24 @@ int improve(string str) {
     stats = ({ "strength", "intelligence", "wisdom", "dexterity", "constitution", "charisma" });
     str = lower_case(str);
     if(member_array(str, stats) == -1) {
-        notify_fail("You have no such stat.\n");
+        notify_fail("你没有这个属性。\n");
         return 0;
     }
     stat_cost = get_cost(str, this_player()->query_base_stats(str));
     if( this_player()->query_exp()-stat_cost < ADVANCE_D->get_exp( this_player()->query_level() ) ) {
-        notify_fail("You are not experienced enough to improve yourself in that way.\n");
+        notify_fail("你的经验不足以以那种方式提升自己。\n");
         return 0;
     }
     this_player()->SetStat(str, this_player()->query_base_stats(str) + 1);
     this_player()->add_exp(-stat_cost);
-    write("You feel much ");
-    say(this_player()->query_cap_name()+" looks much ");
-    if(str == "strength") tell_room(this_object(), "stronger.\n");
-    else if(str == "intelligence") tell_room(this_object(), "more intelligent.\n");
-    else if(str == "wisdom") tell_room(this_object(), "wiser.\n");
-    else if(str == "dexterity") tell_room(this_object(), "more nimble.\n");
-    else if(str == "constitution") tell_room(this_object(), "sturdier.\n");
-    else tell_room(this_object(), "more attractive.\n");
+    write("你感觉更加");
+    say(this_player()->query_cap_name()+"看起来更加");
+    if(str == "strength") tell_room(this_object(), "强壮了。\n");
+    else if(str == "intelligence") tell_room(this_object(), "聪明了。\n");
+    else if(str == "wisdom") tell_room(this_object(), "睿智了。\n");
+    else if(str == "dexterity") tell_room(this_object(), "敏捷了。\n");
+    else if(str == "constitution") tell_room(this_object(), "健壮了。\n");
+    else tell_room(this_object(), "有魅力了。\n");
     return 1;
 }
 
@@ -201,12 +199,11 @@ int get_cost(string stat, int lev) {
 int cost(string str) {
     int bing;
 
-    write("Costs for advancement, training, and improvement:\n");
+    write("升级、训练和提升的费用：\n");
     bing = ADVANCE_D->get_exp( this_player()->query_level() + 1 );
-    if(bing < 1) write("level:\t\tIt will cost you nothing to advance.");
-    else write("level:\t\t"+bing+"\n");
-    write("skills: You train by spending the amount of experience you
-            desire.\n");
+    if(bing < 1) write("等级：\t\t升级不需要花费。");
+    else write("等级：\t\t"+bing+"\n");
+    write("技能：你通过花费你想要的经验值来训练。\n");
     write("strength:\t\t" + get_cost("strength",
                 this_player()->query_base_stats("strength")) +
             "\t\tconstitution:\t\t" + get_cost("constitution",
@@ -236,11 +233,11 @@ int list(string str) {
     if(!str) "/domains/Praxis/quest_room"->list_quests(this_player(), 0);
     else {
         if(sscanf(str, "%d", x) != 1) {
-            notify_fail("You must give the number of the quest you want listed.\n");
+            notify_fail("你必须给出想要列出的任务编号。\n");
             return 0;
         }
         if(x<1) {
-            notify_fail("No such quest.\n");
+            notify_fail("没有这个任务。\n");
             return 0;
         }
         "/domains/Praxis/quest_room"->list_quests(this_player(), x);

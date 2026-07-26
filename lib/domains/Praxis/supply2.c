@@ -5,17 +5,16 @@ inherit LIB_ROOM;
 void create() {
     ::create();
     SetProperties( ([ "light" : 2, "indoors" : 1, "no castle" : 1 ]) );
-    SetShort("Horace's General Supply Shop");
+    SetShort("霍勒斯综合杂货店");
     SetLong(
-            "Welcome to Horace's General Supply Shop!\n"
-            "Horace buys and sells goods created for and found "
-            "by adventurer's when he is in.  The store opens out "
-            "onto Boc La Road south.  There is a passage to the "
-            "north guarded by a magic field.");
+            "欢迎来到霍勒斯综合杂货店！\n"
+            "霍勒斯在他营业时买卖冒险者们创造和发现的物品。"
+            "商店朝南通往博克拉路。"
+            "北边有一条由魔法力场守卫的通道。");
     SetItems(
-            (["shop" : "You can buy and sell things here.",
-             "passage" : "Horace keeps the things he has for sale back there.",
-             "road" : "Boc La Road."]) );
+            (["shop" : "你可以在这里买卖物品。",
+             "passage" : "霍勒斯把待售的物品放在后面。",
+             "road" : "博克拉路。"]) );
     SetExits( ([ "south" : "/domains/Praxis/e_boc_la2",
                 "north" : "/domains/Praxis/storage" ]) );
     set_pre_exit_functions( ({ "north" }), ({ "go_north" }) );
@@ -37,7 +36,7 @@ string shop_long(string str) {
 void shop_closing(string str) {
     object ob;
 
-    if(str == "night" && ob = present("horace", this_object())) 
+    if(str == "night" && ob = present("horace", this_object()))
         ob->destruct();
     else if(str == "dawn" && !present("horace", this_object()))
         new("/domains/Praxis/obj/mon/horace")->move(this_object());
@@ -45,14 +44,14 @@ void shop_closing(string str) {
 
 int go_north(string str) {
     if(!creatorp(this_player())) {
-        message("my_action", "The magic of Horace stops you.", this_player());
+        message("my_action", "霍勒斯的魔法阻止了你。", this_player());
         message("other_action", this_player()->query_cap_name()+
-                " is stopped by the magic of Horace.", this_object(),
+                "被霍勒斯的魔法阻止了。", this_object(),
                 ({ this_player() }));
         return 0;
     }
     message("other_action", this_player()->query_cap_name()+
-            " cannot be stopped by Horace's magic.", this_object(),
+            "不受霍勒斯魔法的阻挡。", this_object(),
             ({ this_player() }));
     return 1;
 }

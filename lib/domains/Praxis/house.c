@@ -5,20 +5,18 @@ inherit LIB_ROOM;
 void create() {
     ::create();
     SetProperties( ([ "no castle" : 1,"light" : 2, "indoors" : 1]) );
-    SetShort("a house with a thatched roof");
+    SetShort("一间茅草屋顶的房子");
     SetLong(
-            "The small thatch covered house has been standing for many years. "
-            "It is the dwelling of an old, dishonored knight. The house "
-            "is very sparse, devoid of any decorations or furnishings. The knight "
-            "is quite poor and cannot afford any more than a few meager belongings. "
-            "A rough wooden  door leads into a room to the south, "
-            "and north leads back to Sun Alley.");
+            "这间小小的茅草屋已经矗立了很多年。"
+            "它是一位年老、名誉扫地的骑士的住所。房子非常简陋，"
+            "没有任何装饰或家具。骑士相当贫穷，除了几件微薄的"
+            "物品外什么也买不起。一扇粗糙的木门通往南边的房间，"
+            "向北则回到太阳巷。");
     SetItems(
-            (["thatch" : "It is beginning to suffer from the weather "
-             "and ill-keeping.",
-             "house" : "It is very unimpressive.",
-             "furnishing" : "Nothing.",
-             "decoration" : "Absolutely nothing.",
+            (["thatch" : "开始受到天气和疏于维护的影响。",
+             "house" : "非常不起眼。",
+             "furnishing" : "什么都没有。",
+             "decoration" : "完全没有。",
              "door" : (: this_object(), "look_at_door" :) ]) );
     SetExits( ([ 
                 "north" : "/domains/Praxis/sun1",
@@ -40,10 +38,9 @@ void reset() {
         key = new(LIB_ITEM);
         key->SetKeyName("key");
         key->SetId( ({ "key", "honor key" }) );
-        key->SetShort( "a wooden key");
-        key->SetLong("The wooden key is very coarse, and rough. "
-                "It doesn't look like it would lead to anything of "
-                "importance.");
+        key->SetShort( "一把木钥匙");
+        key->SetLong("这把木钥匙非常粗糙。"
+                "看起来不会通往什么重要的地方。");
         key->SetValue(15);
         key->SetMass(40);
         key->move(mon);
@@ -55,7 +52,7 @@ void reset() {
 }
 
 void look_at_door() {
-    write("It is a door.");
+    write("这是一扇门。");
 }
 void init(){
     ::init();

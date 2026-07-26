@@ -3,16 +3,15 @@ inherit "/lib/std/room";
 void create() {
     ::create();
     SetProperties( ([ "light" : 1, "no castle" : 1 ]) );
-    SetShort( "the Nightmare Inn" );
-    SetLong( "The hallway is very quiet, you can barely hear the whisper "
-            "of your feet against the rich carpet. Large wooden doors for each room "
-            "stand both to your left and right, trimmed with gold. Small lanterns "
-            "hang every 5 feet or so, giving off a gentle glow, lighting the way." );
-    SetItems( ([ "hallway" : "The hallway is very quiet.",
-                "carpet" : "It is a deep burgundy colour.",
+    SetShort( "噩梦旅馆" );
+    SetLong( "走廊非常安静，你几乎听不到脚踩在厚实地毯上的声音。"
+            "每间房间的左右两侧都有镶着金边的大型木门。"
+            "每隔约5英尺悬挂着一盏小灯笼，发出柔和的光芒，照亮道路。" );
+    SetItems( ([ "hallway" : "走廊非常安静。",
+                "carpet" : "深酒红色。",
                 ({ "lanterns", "lanter" }) :
-                "The lanterns are gold with glass panes.",
-                "doors" : "The doors are large oaken barriers.",
+                "灯笼是带玻璃面板的金色灯笼。",
+                "doors" : "门是大型橡木屏障。",
                 ]) );
     SetExits( ([ "north" : "/domains/Praxis/hall2",
                 "south" : "/domains/Praxis/hotel",
@@ -25,14 +24,14 @@ void create() {
 int room_101() {
     if(present("/domains/Praxis/hotel"->query_key_id(101),this_player()))
         return 1;
-    write( "You cannot go in there!");
+    write( "你不能进去！");
     return 0;
 }
 
 int room_102() {
     if(present("/domains/Praxis/hotel"->query_key_id(102),this_player()))
         return 1;
-    write( "You cannot go in there!");
+    write( "你不能进去！");
     return 0;
 }
 

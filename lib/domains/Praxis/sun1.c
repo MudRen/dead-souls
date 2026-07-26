@@ -7,20 +7,17 @@ void create() {
     SetProperty("light", 4);
     SetProperty("night light", 1);
     SetProperty("no castle", 1);
-    SetShort( "Sun Alley near Centre Path");
+    SetShort( "中心路附近的太阳巷");
     SetLong(
-            "Sun Alley is a bright path, named for the fact that the sun "
-            "always seems to be shining down upon it. The path is fairly "
-            "quiet, except for the occasional villager that is out strolling "
-            "or running their errands. The alley runs north of the village, "
-            "and interescts Centre Path west of here. To the south "
-            "you can see a small brown thatch house. " );
+            "太阳巷是一条明亮的小路，因阳光似乎总是照耀着它而得名。"
+            "小路相当安静，只有偶尔出来散步或办事的村民。"
+            "小巷位于村庄北边，与西边的中心路相交。"
+            "南边你可以看到一间棕色的茅草屋。");
     SetItems(
-            (["alley" : "It is bright and cheerful, not like that alley on "
-             "the south end.",
-             "path" : "The main north-south road of Praxis.",
-             "intersection" : "Sun alley meets Centre Path there.",
-             "house" : "It's a small thatch house, nothing special."]) );
+            (["alley" : "明亮而欢快，不像南边那条小巷。",
+             "path" : "普拉克西斯的主要南北向道路。",
+             "intersection" : "太阳巷在那里与中心路交汇。",
+             "house" : "一间小小的茅草屋，没什么特别的。"]) );
     SetSkyDomain("town");
     SetExits( 
             (["east" : "/domains/Praxis/sun2",

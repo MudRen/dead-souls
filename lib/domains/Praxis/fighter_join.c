@@ -14,44 +14,38 @@ void create() {
     SetProperty("light", 2);
     SetProperty("indoors", 1);
     SetProperty("no castle", 1);
-    SetShort( "The Hall of Fighters");
+    SetShort( "战士大厅");
     SetLong(
-            "The Hall of Fighters is decorated with ornate tapestries of "
-            "men and women engaged in combat of all traditions.  Adventuring "
-            "fighters are gathered around discussing glory at the base of a "
-            "spiraling staircase which leads up through a magically lit hole "
-            "in the ceiling.  Young warriors stand about hoping to learn the "
-            "ways of the fighter.  Children may <preview> what it is like to "
-            "be a fighter.");
-    SetItems( 
-            ([({"tapestry", "tapestries", "wall"}) : "The walls are all "
-             "covered with some of the most ornate tapestries from "
-             "all over.  The one you are looking at depicts a heroic "
-             "battle between a dragon and a human combatant.",
-             ({"hole", "light", "opening", "ceiling"}) : "Up in the ceiling, "
-             "the staircase leads through a mystical light up "
-             "to the second floor.",
-             "staircase" : "It leads through the opening in the ceiling "
-             "to the second floor.",
-             "fighters" : "They are loud and obnoxious.", 
-             ({"warriors", "young warriors"}) : "They look clueless."]) );
-    SetExits( 
+            "战士大厅装饰着华丽的挂毯，描绘着各种传统中"
+            "战斗的男男女女。冒险的战士们聚集在螺旋楼梯底部"
+            "讨论荣耀，楼梯通向天花板上一个被魔法照亮的洞口。"
+            "年轻的战士们站在周围，希望能学习战士之道。"
+            "年轻人可以<preview>了解成为战士是什么感觉。");
+    SetItems(
+            ([({"tapestry", "tapestries", "wall"}) : "墙上到处覆盖着"
+             "来自各地最华丽的挂毯。你正在看的那幅描绘了"
+             "一条龙和一个人类战士之间的英勇战斗。",
+             ({"hole", "light", "opening", "ceiling"}) : "在天花板上，"
+             "楼梯穿过一道神秘的光芒通向二楼。",
+             "staircase" : "它穿过天花板的开口通往二楼。",
+             "fighters" : "他们吵闹且令人讨厌。",
+             ({"warriors", "young warriors"}) : "他们看起来茫然无知。"]) );
+    SetExits(
             (["southeast" : "/domains/Praxis/s_centre4"]) );
     AddExit("up", "/domains/Praxis/fighter_hall", (:go_up:));
-    SetListen("default", "Fighters are yelling and screaming and "
-            "being generally obnoxiously loud.");
+    SetListen("default", "战士们大喊大叫，吵闹得令人讨厌。");
 }
 
 int preview() {
     if(this_player()->query_class() != "explorer") {
-        write("This is not for you.\n");
+        write("这不适合你。\n");
         return 1;
     }
-    say(this_player()->query_cap_name()+" seeks to learn about fighter.", 
+    say(this_player()->query_cap_name()+"想要了解战士。",
             this_player());
-    write("Welcome, explorer!");
-    write("Fighters are people whose only uniting belief is in combat as a "
-            "form of art.  Some are great knights who fight for good wherever "
+    write("欢迎，探索者！");
+    write("战士是唯一将战斗视为艺术形式的人。"
+            "some are great knights who fight for good wherever "
             "they go.  Others might be considered quite fiendish in some circles. "
             "They therefore have no moral restrictions placed upon them. But "
             "they spend so much time learning the arts of combat, that they "
@@ -62,19 +56,19 @@ int preview() {
 
 int become(string str) {
     if(!str) {
-        notify_fail("Become what?\n");
+        notify_fail("成为什么？\n");
         return 0;
     }
     if(str != "fighter") {
-        notify_fail("You cannot become that here.\n");
+        notify_fail("你不能在这里成为那个。\n");
         return 0;
     }
     if(this_player()->query_class() != "explorer") {
-        write("You are much too old to start learning our ways now!");
+        write("你太老了，现在不能开始学习我们的方式！");
         return 1;
     }
-    write("The Great Warrior initiates you into the class of fighters.");
-    say(this_player()->query_cap_name()+" becomes a fighter.", this_player());
+    write("伟大的战士将你引入战士职业。");
+    say(this_player()->query_cap_name()+"成为了一名战士。", this_player());
     this_player()->SetClass("fighter");
     this_player()->setenv("TITLE", "$N the page");
     this_player()->init_skills("fighter");
@@ -84,9 +78,8 @@ int become(string str) {
 
 int go_up() {
     if(this_player()->query_class() != "fighter") {
-        write("You cannot penetrate the force field that blocks the passage.");
-        say(this_player()->query_cap_name()+" tries to get into the "
-                "fighter's sanctuary, but fails.", this_player());
+        write("你无法穿透阻挡通道的力场。");
+        say(this_player()->query_cap_name()+"试图进入战士圣地，但失败了。", this_player());
         return 0;
     }
     return 1;

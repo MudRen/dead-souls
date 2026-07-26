@@ -4,17 +4,16 @@ inherit LIB_ROOM;
 
 void create() {
     ::create();
-    SetShort( "The Praxis sewers");
+    SetShort( "普拉克西斯下水道");
     SetLong(
-            "You are underneath the town of Praxis inside their "
-            "small sewer system.  There is a manhole to the surface above "
-            "you.");
-    SetSmell("default", "The sewers stink of humanoid waste.");
+            "你在普拉克西斯镇地下的小型下水道系统里。"
+            "头顶上方有一个通往地面的检修孔。");
+    SetSmell("default", "下水道散发着人类排泄物的臭味。");
     SetDoor("/domains/Praxis/yard","up");
     SetProperty("light", 0);
     SetProperty("indoors", 1);
     SetItems(
-            ([ "manhole" : "It is a hole that leads to the surface."]) );
+            ([ "manhole" : "一个通往地面的洞。"]) );
     SetExits( ([ 
                 "up" : "/domains/Praxis/yard",
                 "east" : "/domains/Praxis/sewer",

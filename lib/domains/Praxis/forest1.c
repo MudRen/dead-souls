@@ -6,19 +6,18 @@ void create() {
     ::create();
     SetProperty("light", 3);
     SetProperty("no castle", 1);
-    SetShort( "the North Forest");
+    SetShort( "北方森林");
     SetLong(
-            "You are in a huge forest just north of the village of Praxis.  "
-            "The forest extends in all directions, with a small path "
-            "leading deeper into the forest north and into one of the main "
-            "village roads south.");
-    SetExits( 
+            "你正身处普拉克西斯村庄北边的一片巨大森林中。"
+            "森林向四面八方延伸，一条小径向北通往森林深处，"
+            "向南通往村庄的一条主路。");
+    SetExits(
             (["north" : "/domains/Praxis/forest2",
              "south"	 : "/domains/Praxis/n_centre2"]) );
     SetItems(
-            (["path" : "A small path throught the huge North Forest.",
-             "forest" : "The North Forest. It is not a very well traveled place.",
-             "village" : "The grand village of Praxis"]) );
+            (["path" : "穿过巨大北方森林的小径。",
+             "forest" : "北方森林。人迹罕至。",
+             "village" : "宏伟的普拉克西斯村庄"]) );
     SetSkyDomain("town");
 }
 void init(){

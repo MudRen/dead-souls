@@ -8,20 +8,16 @@ void init() {
 void create() {
     ::create();
     SetProperty("light", 2);
-    SetShort( "The tropical wilderness");
+    SetShort( "热带荒野");
     SetLong(
-            "You are inside a jungle that thickens along the path "
-            "northeast.  The path widens west as it heads towards "
-            "the adventuring village of Praxis."
-            // "  You also notice a small opening in the thick jungle."
+            "你在一片沿着东北方向小径变得越来越茂密的丛林中。"
+            "小径向西变宽，通往冒险村庄普拉克西斯。"
            );
     SetItems(
-            (["jungle" : "A wilderness area full of outlaws and "
-             "mysterious things.\n",
-             "village" : "The adventurer's town of Praxis.",
-             "vegetation" : "It gets thicker to the east.",
-             "path" : "You can see it opening up towards the village west.",
-             //"opening" : "On second glance, its too small to enter"
+            (["jungle" : "一片充满亡命之徒和神秘事物的荒野区域。\n",
+             "village" : "冒险者的城镇普拉克西斯。",
+             "vegetation" : "向东越来越茂密。",
+             "path" : "你可以看到它向西通往村庄。",
              ]) );
     SetSkyDomain("town");
     SetExits( 
@@ -31,11 +27,11 @@ void create() {
 
 int enter_opening(string str) {
     if(!str) {
-        notify_fail("Enter what?\n");
+        notify_fail("进入什么？\n");
         return 0;
     }
     if(str != "opening" && str != "hole" && str != "jungle") {
-        notify_fail("That is not here to be entered.\n");
+        notify_fail("这里没有那个可以进入。\n");
         return 0;
     }
     this_player()->eventMoveLiving("/domains/Praxis/outland1", "into the jungle");

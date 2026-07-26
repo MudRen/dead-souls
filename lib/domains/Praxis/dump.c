@@ -4,20 +4,20 @@ inherit LIB_ROOM;
 
 void create() {
     ::create();
-    SetSmell("default", "You nearly pass out from the stench of the place.");
-    SetSmell("piles", "They smell of rotten elf food.");
+    SetSmell("default", "你差点被这里的恶臭熏晕过去。");
+    SetSmell("piles", "闻起来像是腐烂的精灵食物。");
     SetSmell("food", (: this_object(), "smell_food" :));
     SetProperty("light", 3);
-    SetShort( "Praxis dump");
+    SetShort( "普拉克西斯垃圾场");
     SetLong(
-            "The waste of an entire town accumulates here at the Praxis dump.  "
-            "All around you are mounds upon mounds of trash and other stinking "
-            "unidentifiable things.  A small alley leads east.");
+            "整个城镇的废物都堆积在普拉克西斯垃圾场。"
+            "你周围是一堆又一堆的垃圾和其他散发恶臭的"
+            "无法辨认的东西。一条小巷向东延伸。");
     SetItems(
-            (["mounds" : "Who knows what might be in amoung that crap?",
-             "dump" : "The people of Praxis bring their junk here.",
-             "trash" : "Anything and everything.",
-             "alley" : "It leads back to Centre Path."]) );
+            (["mounds" : "谁知道那堆垃圾里会有什么？",
+             "dump" : "普拉克西斯的人们把垃圾带到这里。",
+             "trash" : "什么东西都有。",
+             "alley" : "通往中心路。"]) );
     SetExits( 
             (["east" : "/domains/Praxis/alley2"]) );
 }
@@ -29,10 +29,9 @@ void reset() {
 }
 
 void mound_searching() {
-    message("my_action", "You found a dagger in one of the mounds of trash!",
-            this_player());
+    message("my_action", "你在一堆垃圾中找到了一把匕首！", this_player());
     message("other_action", this_player()->query_cap_name()+
-            " found a dagger in one of the mounds of trash.", this_object(),
+            "在一堆垃圾中找到了一把匕首。", this_object(),
             ({ this_player() }));
     new("/domains/Praxis/obj/weapon/dagger")->move(this_object());
     RemoveSearch("mounds");
@@ -40,14 +39,13 @@ void mound_searching() {
 }
 
 void smell_food(string str) {
-    message("my_action", "You pass out from the stench of rotten elf food.",
-            this_player());
+    message("my_action", "你被腐烂精灵食物的恶臭熏晕过去了。", this_player());
     message("other_action", this_player()->query_cap_name()+
-            " passes out from the stench of rotten elf food.", this_object(),
+            "被腐烂精灵食物的恶臭熏晕过去了。", this_object(),
             ({ this_player() }));
     this_player()->add_sp(-3);
     this_player()->add_hp(-3);
-    this_player()->set_paralyzed(10, "You are too nauseated to move!");
+    this_player()->set_paralyzed(10, "你恶心到无法动弹！");
 }
 void init(){
     ::init();

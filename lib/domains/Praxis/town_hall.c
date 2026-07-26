@@ -26,25 +26,23 @@ void create()
                 "no steal" : 1,
                 "no magic" : 1,
                 ]) );
-    SetShort( "Praxis Town Hall" );
+    SetShort( "普拉克西斯市政厅" );
     SetLong(
-            "This is a large stately hall; the walls are covered with rich hangings, "
-            "the vaulted roof is supported by thick marble columns.  A wide curving "
-            "staircase leads up to the council chambers above.  The exit to the "
-            "street is north."
-            // "  South lies the Court of Justice."
+            "这是一座宏伟的大厅；墙上挂满了华丽的挂毯，"
+            "拱形屋顶由粗大的大理石柱支撑。一道宽阔的弧形楼梯"
+            "通往楼上的议会厅。通往街道的出口在北边。"
            );
     SetItems( ([
-                "hall" : "It is five times the height of a tall man.",
-                "roof" : "If you \"listen to council\", perhaps you will hear them.",
-                "hangings" : "They depict the noble self-sacrifice of being a councilor.",
-                "columns" : "They have gargoyles at their tops.",
-                "staircase" : "It goes between two of the columns.",
-                "chambers" : "If you listen, perhaps you can hear the council.",
-                "court" : "This is where trials are held.",
-                "street" : "It is Boc La Road south of the monastary.",
-                "gargoyles" : "They look innocently inanimate.",
-                "gargoyle" : "It is impenetrateable as a stone wall.",
+                "hall" : "它有五个成年男子那么高。",
+                "roof" : "如果你\"听议会\"，也许你能听到他们。",
+                "hangings" : "它们描绘了作为议员的高尚自我牺牲精神。",
+                "columns" : "顶部有石像鬼装饰。",
+                "staircase" : "它在两根柱子之间。",
+                "chambers" : "如果你仔细听，也许能听到议会的声音。",
+                "court" : "审判在这里进行。",
+                "street" : "修道院南边的博克拉路。",
+                "gargoyles" : "它们看起来毫无生气。",
+                "gargoyle" : "它像石墙一样无法穿透。",
                 ]) );
     SetExits( ([
                 "south" : "/domains/Praxis/court_room",
@@ -56,26 +54,18 @@ int pre_exit_up()
 {
     if( leaderp( this_player() ) || creatorp( this_player() ) )
         return 1;
-    write( "A gargoyle blocks your way.\n" );
+    write( "一个石像鬼挡住了你的去路。\n" );
     return 0;
 }
 string listen_council( string arg )
 {
-    // First, check if there are any councilors to listen to.
-    //call_other( COUNCIL_CHAMBER, "???" );
-    //if( !sizeof( filter_array( all_inventory( find_object( COUNCIL_CHAMBER
-    // ) ), "leaderp", OB_SIMUL_EFUN ) ) )
-    //	return "Council is not in session.\n";
-    //   if( -1 != member_array( this_player(), listeners ) )
-    //	return "You are already listening.\n";
-    //   listeners += ({ this_player() });
-    return "You start listening in to the council's debate.\n";
+    return "你开始倾听议会的辩论。\n";
 }
 int release_objects( object ob )
 {
     if( -1 != member_array( ob, listeners ) )
     {
-        tell_object( ob, "You stop listening to the council.\n" );
+        tell_object( ob, "你停止了倾听议会。\n" );
         listeners -= ({ ob });
     }
     return 1;

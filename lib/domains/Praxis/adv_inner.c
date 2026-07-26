@@ -8,14 +8,13 @@ void create() {
     ::create();
     SetProperty("light", 2);
     SetProperty("indoors", 1);
-    SetShort( "The Hall of the Immortals");
+    SetShort( "不朽者大厅");
     SetLong(
-            "This is the meeting %^GREEN%^green%^RESET%^ room of the immortals of Nightmare. "
-            "In this room, matters of mud policy and events are discussed "
-            "by all Nightmare immortals so that everyone might know what "
-            "is going on.  There is a room for discussing LPC south and "
-            "a planning room east where immortals post their plans for areas "
-            "domains, guilds and quests. Down from here is the approval room.");
+            "这是噩梦世界不朽者的%^GREEN%^绿色%^RESET%^会议室。"
+            "在这个房间里，所有噩梦不朽者讨论泥潭政策和活动事务，"
+            "以便每个人都能了解正在发生的事情。南边有一间讨论LPC的房间，"
+            "东边有一间计划室，不朽者们在那里发布他们对区域、"
+            "领域、公会和任务的计划。下面是审批室。");
     SetExits( 
             (["up" : "/domains/Praxis/mudlib",
              "north" : "/domains/Praxis/adv_main",
@@ -29,10 +28,9 @@ void create() {
     ob->set_board_id("immortal");
     ob->set_max_posts(30);
     ob->move("/domains/Praxis/adv_inner");
-    ob->SetShort( "Immortal's Reality Board");
-    ob->SetLong( "Posts any notes concerning the mud which do "
-            "not belong out in a public forum among players "
-            "here for immortal discussion.\n");
+    ob->SetShort( "不朽者布告板");
+    ob->SetLong( "发布任何不适合在玩家公共论坛上讨论的"
+            "关于泥潭的笔记，供不朽者讨论。\n");
     SetProperty("no steal", 1);
 }
 
@@ -40,10 +38,8 @@ int CanReceive(object ob) {
     if(!living(ob)) return 1;
     if(!userp(ob)) return 0;
     if(!creatorp(ob)) {
-        message("my_action", "You cannot penetrate the magic force of the "
-                "blue shield.", this_player());
-        message("other_action", sprintf("%s tries to pass through the magic "
-                    "blue shield, but fails.", this_player()->query_cap_name()),
+        message("my_action", "你无法穿透蓝色护盾的魔力。", this_player());
+        message("other_action", sprintf("%s试图穿过魔法蓝色护盾，但失败了。", this_player()->query_cap_name()),
                 environment(this_player()), ({ this_player() }));
         return 0;
     }

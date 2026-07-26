@@ -199,8 +199,8 @@ int donate(string str) {
     this_player()->AddCurrency("gold", currency_value(amount/5, "gold"));
     blood[what] += amount;
     blood["who"][this_player()->query_name()] += amount;
-    write("You donate some blood for "+(currency_value(amount/5, "gold"))+" gold coins.");
-    say(this_player()->query_cap_name()+" donates some blood for some gold.", this_player());
+    write("你捐献了一些血液，获得了"+(currency_value(amount/5, "gold"))+"枚金币。");
+    say(this_player()->query_cap_name()+"捐献了一些血液换取金币。", this_player());
     call_out("reduce_donation", 900, ({ this_player(), amount }));
     return 1;
 }
@@ -210,33 +210,33 @@ int transfuse(string str) {
     int amount;
 
     if(!str) {
-        notify_fail("Transfuse what?\n");
+        notify_fail("输什么？\n");
         return 0;
     }
     if(sscanf(str, "%d %s", amount, what) != 2) {
-        notify_fail("Correct syntax: <transfuse [#] [mp | hp]>\n");
+        notify_fail("正确语法：<transfuse [#] [mp | hp]>\n");
         return 0;
     }
     if(what != "hp" && what != "mp") {
-        notify_fail("You cannot do that!\n");
+        notify_fail("你不能那样做！\n");
         return 0;
     }
     if(amount < 1) {
-        notify_fail("Are you crazy?!?\n");
+        notify_fail("你疯了吗？！？\n");
         return 0;
     }
     if(blood[what] < amount) {
-        notify_fail("We do not have that much blood in right now.\n");
+        notify_fail("我们目前没有那么多库存血液。\n");
         return 0;
     }
     if(this_player()->query_money("gold") < currency_value(amount*3, "gold")) {
-        notify_fail("You do not have enough gold for the tithe.\n");
+        notify_fail("你没有足够的金币支付费用。\n");
         return 0;
     }
     this_player()->AddCurrency("gold", -currency_value(amount*3, "gold"));
     call_other(this_player(), "add_"+what, amount);
-    write("You receive a blood transfusion");
-    say(this_player()->query_cap_name()+" receives a blood transfusion.", this_player());
+    write("你接受了一次输血。");
+    say(this_player()->query_cap_name()+"接受了一次输血。", this_player());
     return 1;
 }
 

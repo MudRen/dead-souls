@@ -23,21 +23,18 @@ void create() {
     SetProperty("no steal", 1);
     SetProperty("no attack", 1);
     SetProperty("no magic", 1);
-    SetShort( "Sage room");
-    SetLong( "The walls of this smoke-filled room are covered with trappings "
-            "from far off lands.  In the center of a huge smoke cloud sits a small "
-            "white-haired man.  He looks like he is very wise.  There are books on "
-            "how to speak different languages.");
-    SetItems( 
-            ([({"sage", "man", "old man"}) : "The sage is a tiny little "
-             "wrinkled man. But he looks very wise.",
-             ({"walls", "trappings"}) : "The walls are covered in strange "
-             "writings in many languages, but you can hardly see them "
-             "through all the smoke from the sage's pipe.", 
-             "pipe" : "The sage puffs away on this small water pipe. "
-             "The wisps of smoke remind you of the man's beard.",
-             ({"book", "books"}) : "As you flip through the books you "
-             "decide that you should study a new language."]) );
+    SetShort( "贤者之室");
+    SetLong( "这间烟雾缭绕的房间墙壁上挂满了来自遥远土地的装饰品。"
+            "在一团巨大的烟雾中央坐着一位白发矮小的老人。"
+            "他看起来非常睿智。这里有关于如何说不同语言的书籍。");
+    SetItems(
+            ([({"sage", "man", "old man"}) : "贤者是一位矮小、"
+             "满脸皱纹的老人。但他看起来非常睿智。",
+             ({"walls", "trappings"}) : "墙上覆盖着用多种语言书写的"
+             "奇怪文字，但在贤者烟斗冒出的烟雾中几乎看不清楚。",
+             "pipe" : "贤者在抽着这个小水烟斗。"
+             "缕缕烟雾让你想起了那个人的胡须。",
+             ({"book", "books"}) : "翻阅书籍时，你决定应该学习一门新语言。"]) );
     AddExit("south", "/domains/Praxis/w_boc_la2", (: "leave_the_room" :) );
 }
 
@@ -61,16 +58,16 @@ int remove_old_lang(object ob) {
 }
 
 int fix_languages() {
-    write("The sage peers at you intently.");
+    write("贤者专注地注视着你。");
     if(!remove_old_lang(this_player()))
     {
-        write("The sage says: You need new flesh before I can help your mind.");
+        write("贤者说：你需要新的身体，我才能帮助你的心智。");
         return 1;
     }
     //LANG_D->init_languages(this_player());
-    write("The sage says: You have been healed, my " + 
-            ((this_player()->query_gender() == "male") ? "son" :
-             "daughter") + ".");
+    write("贤者说：你已经被治愈了，我的" +
+            ((this_player()->query_gender() == "male") ? "孩子" :
+             "孩子") + "。");
     return 1;
 }
 
@@ -78,11 +75,11 @@ int ask_sage(string str)
 {
     string trash;
 
-    notify_fail("Ask who, what?\n");
+    notify_fail("问谁，问什么？\n");
     if(!str)
         return 0;
     if(sscanf(str, "sage%s", trash, trash) == 1)
-        notify_fail("What do you want to ask the sage?\n");
+        notify_fail("你想问贤者什么？\n");
     if(sscanf(str, "sage%sfix%s", trash, trash) == 2)
     {
         return fix_languages();
@@ -181,29 +178,29 @@ int study_lang(string str)
 
     if(!str)
     {
-        write("Study which language for how long?");
+        write("学习哪种语言，学多长时间？");
         return 1;
     }
 
     if(queue[this_player()])
     {
-        write("The sage says: I cannot teach you two languages at once, my " +
-                ((this_player()->query_gender() == "male") ? "son." : 
-                 "daughter."));
+        write("贤者说：我不能同时教你两种语言，我的" +
+                ((this_player()->query_gender() == "male") ? "孩子。" :
+                 "孩子。"));
         return 1;
     }
 
     if(!function_exists("learn_language", this_player()))
     {
-        write("The sage says: I am sorry, my " + 
-                ((this_player()->query_gender() == "male") ? "son" : 
-                 "daughter") + ", but I cannot teach you in your current body.");
+        write("贤者说：抱歉，我的" +
+                ((this_player()->query_gender() == "male") ? "孩子" :
+                 "孩子") + "，但我无法在你现在的身体状态下教你。");
         return 1;
     }
-    if((sscanf(str, "%s for %s", lang, timestr) != 2) || (lang == "") || 
+    if((sscanf(str, "%s for %s", lang, timestr) != 2) || (lang == "") ||
             (timestr == "") || !(nmtimespan = convert_time(timestr)))
     {
-        write("Study which language for how long?");
+        write("学习哪种语言，学多长时间？");
         return 1;
     }
 
@@ -211,26 +208,25 @@ int study_lang(string str)
 
     if(nmtimespan <= 0)
     {
-        write("The sage shakes his head at you in disgust.");
+        write("贤者厌恶地对你摇了摇头。");
         return 1;
     }
     if(nmtimespan > DAY)
     {
-        write("You decide that you will get hungry and bored long before then.");
+        write("你觉得在那之前你早就饿了、厌烦了。");
         return 1;
     }
 
     if(!able_to_study(SEC_TO_EXP * nmtimespan))
     {
-        write("The sage says: I am sorry, my " + 
-                ((this_player()->query_gender() == "male") ? "son" : 
-                 "daughter") + ", but you are not experienced enough to study "
-                "for that long.");
+        write("贤者说：抱歉，我的" +
+                ((this_player()->query_gender() == "male") ? "孩子" :
+                 "孩子") + "，但你的经验不足以学习那么长时间。");
         return 1;
     }
 
-    write("You begin studying " + capitalize(lang) + ".  You must stay here and"
-            " study until your time has ended in order to learn the langauge.");
+    write("你开始学习" + capitalize(lang) + "。你必须留在这里"
+            "学习直到时间结束才能学会这门语言。");
     queue[this_player()] = ({ lang, (SEC_TO_EXP * nmtimespan) });
     call_out("advance_em", nmtimespan, this_player());
 
@@ -249,7 +245,7 @@ int leave_the_room()
 {
     if(queue[this_player()])
     {
-        write("You decide to quit studying and go do other things.");
+        write("你决定放弃学习，去做其他事情。");
         map_delete(queue, this_player());
         clean_call_outs(this_player());
     }
@@ -278,6 +274,6 @@ void advance_em(mixed arg)
     exp = queue[ob][1];
     ob->add_exp(-exp);
     ob->learn_language(lang, exp);
-    write("You are done studying " + capitalize(lang) + ".");
+    write("你完成了" + capitalize(lang) + "的学习。");
     map_delete(queue, ob);
 }

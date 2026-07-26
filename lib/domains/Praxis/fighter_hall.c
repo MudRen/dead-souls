@@ -35,16 +35,15 @@ void create() {
 
     ::create();
     SetProperties( (["no attack": 1, "no castle":1,"light":2,"indoors":1]) );
-    SetShort( "the inner sanctum of the fighters");
+    SetShort( "战士内殿");
     SetLong(
-            "Welcome to the inner sanctum of the Hall of Fighters!\n"
-            "Fighters come here to learn about the art of combat. "
-            "You are in what appears to be a large training hall. Large mats are "
-            "on the floor and weapons hang on the walls, in various shapes and forms. "
-            "In this mighty hall, a fighter may <advance>, <cost>, "
-            "<list (number)>, <improve stat>, <train skill amount>, and <roll stats>. "
-            "Down through a stairway guarded by a shimmering %^BLUE%^blue%^RESET%^ "
-            "light is the entrance to the hall.");
+            "欢迎来到战士大厅内殿！\n"
+            "战士们来这里学习战斗艺术。"
+            "你身处一个看起来像大型训练厅的地方。地上铺着大垫子，"
+            "墙上挂着各种形状和形式的武器。"
+            "在这个强大的大厅里，战士可以<advance>、<cost>、"
+            "<list (编号)>、<improve 属性>、<train 技能 数量> 和 <roll stats>。"
+            "穿过被闪烁的%^BLUE%^蓝色%^RESET%^光芒守护的楼梯是大厅的入口。");
     SetExits( ([ 
                 "council" : "/domains/Praxis/council_hall",
                 "east" : "/domains/Praxis/fighter_vote",
@@ -58,10 +57,10 @@ void create() {
     ob->set_edit_ok(FIGHTER_COUNCIL);
     ob->set_max_posts(50);
     ob->move("/domains/Praxis/fighter_hall");
-    ob->SetShort( "Glory Board of Fighters");
+    ob->SetShort( "战士荣耀布告板");
     ob->SetLong(
-            "The Fighters of our reality post tales of their glorious "
-            "adventures here, as well as info on the dangers out there.\n");
+            "我们世界的战士们在这里发布他们辉煌冒险的故事，"
+            "以及关于外面危险的信息。\n");
     //new("/realms/grumpy/fighter/obj/box.c")->move(this_object());
 }
 
@@ -147,17 +146,17 @@ int train(string str) {
     int amount;
 
     if(!str) {
-        notify_fail("Correct syntax: <train skill amount>\n");
+        notify_fail("正确语法：<train 技能 数量>\n");
         return 0;
     }
     if(sscanf(str, "%s %s %d", which, which_tmp, amount) == 3) which = which+ " "+ which_tmp;
     else if(sscanf(str, "%s %d", which, amount) !=2) {
-        notify_fail("Correct syntax: <train skill amount>\n");
+        notify_fail("正确语法：<train 技能 数量>\n");
         return 0;
     }
     which = lower_case(which);
     if(!this_player()->skill_exists(which)) {
-        notify_fail("No such skill.\n");
+        notify_fail("没有这个技能。\n");
         return 0;
     }
     return ADVANCE_D->train_player(this_player(), which, amount);
@@ -171,12 +170,12 @@ int improve(string str) {
     stats = ({ "strength", "intelligence", "wisdom", "dexterity", "constitution", "charisma" });
     str = lower_case(str);
     if(member_array(str, stats) == -1) {
-        notify_fail("You have no such stat.\n");
+        notify_fail("你没有这个属性。\n");
         return 0;
     }
     stat_cost = get_cost(str, this_player()->query_base_stats(str));
     if( this_player()->query_exp()-stat_cost < ADVANCE_D->get_exp( this_player()->query_level() ) ) {
-        notify_fail("You are not experienced enough to improve yourself in that way.\n");
+        notify_fail("你的经验不足以以那种方式提升自己。\n");
         return 0;
     }
     this_player()->SetStat(str, this_player()->query_base_stats(str) + 1);
@@ -184,8 +183,14 @@ int improve(string str) {
     adj = (str == "strength" ? "stronger" : (str == "intelligence" ? "more intelligent" :
                 (str == "wisdom" ? "wiser" : (str == "dexterity" ? "more nimble" :
                                               (str == "constitution" ? "sturdier" : "more attractive")))));
-    message("my_action", sprintf("You look %s.", adj), this_player());
-    message("other_action", sprintf("%s looks much %s",
+    if(str == "strength") adj = "更强壮了";
+    else if(str == "intelligence") adj = "更聪明了";
+    else if(str == "wisdom") adj = "更睿智了";
+    else if(str == "dexterity") adj = "更敏捷了";
+    else if(str == "constitution") adj = "更健壮了";
+    else adj = "更有魅力了";
+    message("my_action", sprintf("你看起来%s。", adj), this_player());
+    message("other_action", sprintf("%s看起来%s",
                 this_player()->query_cap_name(), adj), environment(this_player()),
             ({ this_player() }));
     return 1;
@@ -203,12 +208,11 @@ int get_cost(string stat, int lev) {
 int cost(string str) {
     int bing;
 
-    write("Costs for advancement, training, and improvement:\n");
+    write("升级、训练和提升的费用：\n");
     bing = ADVANCE_D->get_exp( this_player()->query_level() + 1 );
-    if(bing < 1) write("level:\t\tIt will cost you nothing to advance.");
-    else write("level:\t\t"+bing+"\n");
-    write("skills: You train by spending the amount of experience you
-            desire.");
+    if(bing < 1) write("等级：\t\t升级不需要花费。");
+    else write("等级：\t\t"+bing+"\n");
+    write("技能：你通过花费你想要的经验值来训练。");
     write("strength:\t\t" + get_cost("strength",
                 this_player()->query_base_stats("strength")) +
             "\t\tconstitution:\t\t" + get_cost("constitution",
@@ -230,11 +234,11 @@ int list(string str) {
     if(!str) "/domains/Praxis/quest_room"->list_quests(this_player(), 0);
     else {
         if(sscanf(str, "%d", x) != 1) {
-            notify_fail("You must give the number of the quest you want listed.\n");
+            notify_fail("你必须给出想要列出的任务编号。\n");
             return 0;
         }
         if(x<1) {
-            notify_fail("No such quest.\n");
+            notify_fail("没有这个任务。\n");
             return 0;
         }
         "/domains/Praxis/quest_room"->list_quests(this_player(), x);

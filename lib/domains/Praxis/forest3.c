@@ -6,20 +6,18 @@ void create() {
     ::create();
     SetProperty("light", 2);
     SetProperty("no castle", 1);
-    SetShort( "deep in the North Forest");
+    SetShort( "北方森林深处");
     SetLong(
-            "The tiny footpath suddenly turns sharply to the northwest, " 
-            "continuing further into the North Forest. The path is being "
-            "overgrown by large amounts of undergrowth. Over in the corner you "
-            "spy a mysterious dark cavern leading down into the depths "
-            "of the earth. A path leads off to the northwest, and south heads "
-            "back out of the forest.");
+            "小径突然急转向西北，继续深入北方森林。"
+            "小径正被大量灌木丛覆盖。在角落里，你发现了一个"
+            "通往地底深处的神秘黑暗洞穴。一条小路向西北延伸，"
+            "向南则回到森林外面。");
     SetItems(
             ([
-             ({"path", "footpath"}) : "A small path running through North Forest.",
-             "forest" : "North Forest is a very dark and evil place.",
-             "undergrowth" : "The undergrowth slowly is assimilating the path.",
-             "cavern" : "Its mysterious maw beckons you to enter."]) );
+             ({"path", "footpath"}) : "穿过北方森林的小径。",
+             "forest" : "北方森林是一个非常黑暗和邪恶的地方。",
+             "undergrowth" : "灌木丛正在慢慢吞噬小径。",
+             "cavern" : "它神秘的入口召唤你进入。"]) );
     SetSkyDomain("town");
     SetExits( ([ 
                 "south" : "/domains/Praxis/forest2",
