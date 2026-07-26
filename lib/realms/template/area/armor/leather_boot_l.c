@@ -7,9 +7,9 @@ protected void create(){
     SetKeyName("leather boot");
     SetId(({"boot","leather boot"}));
     SetAdjectives( ({"leather","strong","tough","left"}) );
-    SetShort("a leather boot");
-    SetLong("This is the leather combat boot of a professional soldier. "+
-            "It is very thick and very strong. It is designed for wear on the left foot.");
+    SetShort("一只皮靴");
+    SetLong("这是一只职业士兵的皮制战靴。 "+
+            "它非常厚实坚固。设计为左脚穿着。");
     SetMass(50);
     SetBaseCost(50);
     SetDamagePoints(20);

@@ -7,8 +7,8 @@ protected void create(){
     SetKeyName("chainmail shirt");
     SetId(({"armor","chainmail","mail","shirt","chain mail"}));
     SetAdjectives(({"chainmail","sturdy","sturdy-looking","chain mail"}));
-    SetShort("a sturdy-looking chainmail shirt");
-    SetLong("This is a shirt made of small, thin metal rings fashioned together as armor. ");
+    SetShort("一件结实的锁子甲衬衫");
+    SetLong("这是一件由小而薄的金属环串联而成的铠甲衬衫。");
     SetMass(500);
     SetBaseCost(1000);
     SetDamagePoints(100);

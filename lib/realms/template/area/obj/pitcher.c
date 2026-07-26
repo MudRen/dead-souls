@@ -8,9 +8,9 @@ void create(){
     SetKeyName("pitcher");
     SetId( ({"pitcher", "vessel", "pitcher made of clay"}) );
     SetAdjectives( ({"small","clay","vessel"}) );
-    SetShort("a small clay pitcher");
-    SetLong("A small, clay vessel for containing fluids. You may "+
-            "want to \"pour from pitcher into cup\".");
+    SetShort("一个小陶罐");
+    SetLong("一个小陶罐，用于盛装液体。你可以 "+
+            "\"从罐子倒入杯子\"。");
     SetMass(20);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

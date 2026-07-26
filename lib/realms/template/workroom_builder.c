@@ -11,10 +11,10 @@ protected void create() {
 
     SetClimate("indoors");
     SetAmbientLight(40);
-    SetShort("A workroom");
-    SetLong("This is a builder's workroom. The Builders' Hall is down. "+
-            "A sample room is east.");
-    SetItems( ([ "workroom" : "It looks very nice.",
+    SetShort("一间工作间");
+    SetLong("这是一间建造者的工作间。建造者大厅在下方。 "+
+            "示例房间在东边。");
+    SetItems( ([ "workroom" : "看起来很不错。",
                 //({"sign","hint","hints"}) : "A sign with hints for creators.",
                 //({"sheet","reminder","reminders"}) : "A sheet with quick reminders for creators.",
                 ]) );

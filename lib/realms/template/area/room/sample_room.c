@@ -7,10 +7,10 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Sample Room");
-    SetLong("This is a room you can use as a template.");
+    SetShort("示例房间");
+    SetLong("这是一个可以用作模板的房间。");
     SetItems( ([
-                "template" : "That's what this is.",
+                "template" : "这就是模板。",
                 ]) );
     SetExits( ([
                 "west" : MY_DIR "/workroom",

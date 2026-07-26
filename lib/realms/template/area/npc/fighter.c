@@ -20,8 +20,8 @@ protected void create(){
     privs = query_privs();
     SetKeyName("fighter");
     SetId( ({"human","npc","warrior","fighter"}) );
-    SetShort("a fighter");
-    SetLong("This is a sample warrior NPC.");
+    SetShort("一名战士");
+    SetLong("这是一个示例战士NPC。");
     SetLevel(10);
     SetRace("human");
     SetClass("fighter");

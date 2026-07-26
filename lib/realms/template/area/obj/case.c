@@ -8,8 +8,8 @@ void create() {
     SetKeyName("case");
     SetId( ({ "container" }) );
     SetAdjectives( ({ "generic","nondescript" }) );
-    SetShort("a glass case");
-    SetLong("This is an expensive looking, ornamented glass case. It looks perfect for storing trophies or jewelry for display. It is an example of a transparent container.");
+    SetShort("一个玻璃展示柜");
+    SetLong("这是一个看起来价格不菲、装饰华丽的玻璃展示柜。看起来非常适合存放奖杯或珠宝用于展示。这是一个透明容器的示例。");
     SetInventory(([
                 MY_AREA "/obj/watch" : 1,
                 ]));

@@ -7,10 +7,10 @@ protected void create() {
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);
-    SetShort("Second Sample Room");
-    SetLong("This is another sample room.");
+    SetShort("第二示例房间");
+    SetLong("这是另一个示例房间。");
     SetItems( ([
-                "template" : "That's what this is.",
+                "template" : "这就是模板。",
                 ]) );
     SetInventory(([
                 MY_OBJ "/case" :1,

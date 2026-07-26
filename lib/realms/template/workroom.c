@@ -8,13 +8,13 @@ int ReadSheet();
 int privacy = 0;
 string privs = "";
 string LongString(){
-    string ret = "You are standing in the workroom of the mighty " + privs +
-        "!  \nYou may return to the Creators' Hall by going down.\n"+
-        "A sample room is east."+
-        "\n%^GREEN%^There is a sign here you can read.%^RESET%^"+
-        "\n%^GREEN%^There is a sheet here you can read.%^RESET%^";
-    if(privacy) ret += "\n%^YELLOW%^There is a privacy force field "+
-        "active around this room.%^RESET%^";
+    string ret = "你正站在强大的" + privs +
+        "的工作间中！\n你可以向下走返回创作者大厅。\n"+
+        "示例房间在东边。"+
+        "\n%^GREEN%^这里有一块提示牌可以阅读。%^RESET%^"+
+        "\n%^GREEN%^这里有一张便条可以阅读。%^RESET%^";
+    if(privacy) ret += "\n%^YELLOW%^一个隐私力场 "+
+        "正围绕着这个房间激活。%^RESET%^";
     return ret;
 }
 
@@ -26,11 +26,11 @@ protected void create() {
 
     SetClimate("indoors");
     SetAmbientLight(40);
-    SetShort(possessive_noun(privs) + " workroom");
+    SetShort(possessive_noun(privs) + "的工作间");
     SetLong( (: LongString :) );
-    SetItems( ([ "workroom" : "It looks very nice.",
-                ({"sign","hint","hints"}) : "A sign with hints for creators.",
-                ({"sheet","reminder","reminders"}) : "A sheet with quick reminders for creators.",
+    SetItems( ([ "workroom" : "看起来很不错。",
+                ({"sign","hint","hints"}) : "一块给创作者的提示牌。",
+                ({"sheet","reminder","reminders"}) : "一张给创作者的快速提醒便条。",
                 ]) );
     SetRead( ([
                 ({"sign","hint","hints"}) : (: ReadSign :),

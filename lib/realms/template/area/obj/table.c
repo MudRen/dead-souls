@@ -9,9 +9,9 @@ void create() {
     SetKeyName("sample table");
     SetId( ({ "table" ,"sample table"}) );
     SetAdjectives( ({ "simple","sample" }) );
-    SetShort("a simple table");
-    SetLong("It is a simple sample table. It is an example of a \"surface\" "+
-            "type container.");
+    SetShort("一张简单的桌子");
+    SetLong("这是一张简单的示例桌子。它是\"台面\" "+
+            "类型容器的示例。");
     SetBaseCost(1200);
     SetMaxCarry(5000);
     SetInventory( ([

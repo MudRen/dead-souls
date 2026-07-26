@@ -6,9 +6,9 @@ void create() {
     ::create();
     SetKeyName("chest");
     SetId(({"chest","wooden chest"}));
-    SetShort("a wooden chest");
-    SetLong("This is a sturdy wooden chest used to store valuable items.\n"+
-            "It is an example of an opaque container.");
+    SetShort("一个木箱");
+    SetLong("这是一个坚固的木箱，用于存放贵重物品。\n"+
+            "这是一个不透明容器的示例。");
     SetInventory(([
                 "/domains/town/armor/collar" : 1,
                 "/domains/default/armor/breather" : 1,
