@@ -11,7 +11,7 @@ int CanReceive(object ob){
     int ret, level;
     level = ob->GetLevel();
     if((creatorp(ob) && !archp(ob)) || (userp(ob) && level > 20)){
-        write("Sorry. This area is for normal players.");
+        write("抱歉，这个区域只供普通玩家使用。");
         return 0;
     }
     ret = room::CanReceive(ob);
@@ -22,7 +22,7 @@ int CanReceive(object ob){
             level = element->GetLevel();
             if(creatorp(element) && !archp(element)
                     || (userp(element) && level > 20)){
-                write("Sorry. This is a player-only area.");
+                write("抱歉，这是只供玩家使用的区域。");
                 return 0;
             }
             if(!strsrch(name,"/realms/") || !strsrch(name,"/open/")){
@@ -30,7 +30,7 @@ int CanReceive(object ob){
             }
         }
     }
-    return ret;    
+    return ret;
 }
 
 void init(){

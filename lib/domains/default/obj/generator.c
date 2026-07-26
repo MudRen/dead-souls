@@ -30,14 +30,14 @@ varargs mixed CheckBlue(int ob){
 string ExaOrange(){
     string ret = "一个橙色按钮。 ";
     if(CheckOrange()) ret += "它在发光。";
-    else ret += "它是 darkened。";
+    else ret += "它是暗淡的。";
     return ret;
 }
 
 string ExaBlue(){
     string ret = "一个蓝色按钮。 ";
     if(CheckBlue()) ret += "它在发光。";
-    else ret += "它是 darkened。";
+    else ret += "它是暗淡的。";
     return ret;
 }  
 
@@ -47,11 +47,11 @@ mixed PressOrange(mixed args...){
         orange = new(oportal)->eventMove(environment(this_player()));
     }
     if(orange){
-        write("你按下按钮， with a deep thumping sound an orange portal appears。");
-        say(this_player()->GetName()+"按下了"+possessive(this_player())+"传送门生成器上的按钮， with a deep thumping sound an orange portal appears。");
-    }  
+        write("你按下按钮，伴随着低沉的撞击声，一个橙色传送门出现了。");
+        say(this_player()->GetName()+"按下了"+possessive(this_player())+"传送门生成器上的按钮，伴随着低沉的撞击声，一个橙色传送门出现了。");
+    }
     else {
-        write("Click。");
+        write("咔哒。");
         say(this_player()->GetName()+"按下了"+possessive(this_player())+"传送门生成器上的按钮。");
     }
     return 1;
@@ -63,11 +63,11 @@ mixed PressBlue(mixed args...){
         blue = new(bportal)->eventMove(environment(this_player()));
     }
     if(blue){
-        write("你按下按钮， with a deep thumping sound a blue portal appears。");
-        say(this_player()->GetName()+"按下了"+possessive(this_player())+"传送门生成器上的按钮， with a deep thumping sound a blue portal appears。");
+        write("你按下按钮，伴随着低沉的撞击声，一个蓝色传送门出现了。");
+        say(this_player()->GetName()+"按下了"+possessive(this_player())+"传送门生成器上的按钮，伴随着低沉的撞击声，一个蓝色传送门出现了。");
     }
     else {
-        write("Click。");
+        write("咔哒。");
         say(this_player()->GetName()+"按下了"+possessive(this_player())+"传送门生成器上的按钮。");
     }
     return 1;
@@ -75,20 +75,20 @@ mixed PressBlue(mixed args...){
 
 string ReadLabel(){
     string ret = "";
-    ret += "GCM Heavy Industries Portal Generator Mk I\n\n";
-    ret += "* Please read this beard to know act According to carry on!\n";
-    ret += "* no portaling through between same room allowed Interdicted!\n";
-    ret += "* Please the human user to be sign release form the organs!\n";
-    ret += "* If you are stolen, call the police at once!\n";
-    ret += "* values of "+sprintf("%c",223)+" may give rise to dom!\n";
+    ret += "GCM重工业传送门生成器 Mk I\n\n";
+    ret += "* 请阅读此说明以了解操作方法！\n";
+    ret += "* 禁止在同一房间之间传送！\n";
+    ret += "* 请人类用户签署器官释放表！\n";
+    ret += "* 如果你被偷了，请立即报警！\n";
+    ret += "* "+sprintf("%c",223)+"的值可能会导致毁灭！\n";
     return ret;
 }
 
 string ReadScribbles(){
     string ret = "";
-    ret += "this technology was stolen by GCM and they don't understand it. ";
-    ret += "NOBODY HAS EVER RETURNED FROM USING PORTALS IN THE SAME ROOM! ";
-    ret += "and whatever you do, stay away from th\n";
+    ret += "这项技术被GCM偷走了，他们并不理解它。 ";
+    ret += "从来没有人从在同一房间使用传送门中回来过！ ";
+    ret += "无论你做什么，远离那\n";
     return ret;
 }
 
@@ -98,13 +98,13 @@ void create(){
     SetId( ({"generator", "device", "generator mk i","generator mark i"}) );
     SetAdjectives( ({"sleek","mk i","futuristic","portal","gcm"}) );
     SetShort("一个传送门生成器");
-    SetLong("这是一个 sleek, futuristic device with orange and blue buttons。它有一个 printed label you can read， and it looks like someone has scribbled some markings on it as well。");
+    SetLong("这是一个造型流畅的未来主义设备，上面有橙色和蓝色的按钮。它有一个可以阅读的印刷标签，看起来有人还在上面匆忙地涂写了一些标记。");
     SetMass(100);
     SetBaseCost("silver",5000);
     SetVendorType(VT_TREASURE);
     SetItems( ([
                 ({"label","printed label"}) : "一个你可以阅读的印刷标签。",
-                ({"markings","scribbles","scribbled markings"}) : "你可以阅读的 markings， apparently scribbled in haste。",
+                ({"markings","scribbles","scribbled markings"}) : "你可以阅读的标记，看起来是匆忙涂写的。",
                 ({ "button", "buttons" }) : "传送门生成器有两个按钮，一个橙色，一个蓝色。",
                 ({ "orange button" }) : (: ExaOrange :),
                 ({ "blue button" }) : (: ExaBlue :),

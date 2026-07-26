@@ -20,10 +20,10 @@ void create() {
                 ]));
     SetCanClose(0);
 }
-mixed CanGet(object ob) { return "The rack does not budge.";}
+mixed CanGet(object ob) { return "这个架子纹丝不动。";}
 int CanReceive(object ob) {
     if(!inherits(LIB_FLASK,ob)){
-        write("This is a rack for drinking utensils only.");
+        write("这是一个只放饮用器具的架子。");
         return 0;
     }
     else return 1;

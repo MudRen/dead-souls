@@ -27,8 +27,7 @@ void init(){
 varargs int DoWear(object who, string where){
     object env = environment(who);
     who->AddStatBonus("strength", (: CheckRing :) );
-    who->eventPrint("You feel a resonant chord of strength roar within you "+
-            "as you wear the ring.");
+    who->eventPrint("当你戴上戒指时，你感觉到一股共鸣的力量在体内咆哮。");
     if(env) tell_room(env, who->GetName()+" wears "+GetShort()+".", ({who}));
     return 1;
 }

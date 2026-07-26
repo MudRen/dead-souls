@@ -52,22 +52,20 @@ varargs mixed GetSuitHelp(mixed who, string where){
     env = environment(who);
     if(query_verb() == "wear" || (str && answers_to(str, this_object()))){
         if(environment() == who && charge){
-            ret = "The suit's Heads Up Display crackles to life and reads:\n ";
-            ret += "%^GREEN%^This suit allows you, mighty Arbiter, to travel in hazardous terrain "+
-                "with a minimum of inconvenience. In the interest of fulfilling the exigencies "+
-                "of your duties to the Extant Authority, this suit provides the following "+
-                "improvements to your abilities:\n\n"+
-                "* Good vision in all light conditions.\n"+
-                "* A constant supply of breathable air.\n"+
-                "* Substantial enhancement of strength, coordination, agility, and durability.\n"+
-                "* Substantial enhancement of unarmed combat capability.\n"+
-                "* Heads Up Display of key environmental information.\n"+
-                "* Grid coordinate information where available.\n"+
-                "* Protection from all forms of external damage.\n"+
-                "* Immunity from disease.\n"+
-                "\nNote that once the power level of the suit reaches zero, all enhancements "+
-                "become unavailable.%^RESET%^";
-            who->eventPrint("You wear "+GetShort()+".");
+            ret = "装甲的平视显示器噼啪作响地亮了起来，显示：\n ";
+            ret += "%^GREEN%^这套装甲让你，强大的仲裁者，能够在危险地形中"+
+                "以最小的不便行走。为了履行你对现存权威力量的职责，"+
+                "这套装甲提供以下能力增强：\n\n"+
+                "* 在所有光线条件下拥有良好视野。\n"+
+                "* 持续供应可呼吸空气。\n"+
+                "* 大幅增强力量、协调性、敏捷性和耐久性。\n"+
+                "* 大幅增强徒手战斗能力。\n"+
+                "* 平视显示器显示关键环境信息。\n"+
+                "* 在可用时显示网格坐标信息。\n"+
+                "* 免受所有形式的外部伤害。\n"+
+                "* 免疫疾病。\n"+
+                "\n注意，一旦装甲的能量等级降为零，所有增强功能将不可用。%^RESET%^";
+            who->eventPrint("你穿戴上了"+GetShort()+"。");
             if(env) tell_room(env, who->GetName()+" wears "+
                     GetShort()+".", ({who}));
             return 1;
@@ -125,23 +123,23 @@ int eventDecrementCharge(int i){
     perc = to_int(percent(charge, maxcharge));
     if(perc < 10){
         if(living(env) && creatorp(env)){
-            env->eventPrint("Your creator powers magically recharge the "+
-                    remove_article(GetShort())+".");
+            env->eventPrint("你的创造者力量魔法般地为"+
+                    remove_article(GetShort())+"充能了。");
             charge = maxcharge;
             return charge;
         }
-        tell_object(env,"The "+remove_article(GetShort())+" beeps loudly!");
+        tell_object(env,remove_article(GetShort())+"大声哔哔作响！");
         return charge;
     }
 
     if(perc < 20){
         if(living(env) && creatorp(env)){
-            env->eventPrint("Your creator powers magically recharge the "+
-                    remove_article(GetShort())+".");
+            env->eventPrint("你的创造者力量魔法般地为"+
+                    remove_article(GetShort())+"充能了。");
             charge = maxcharge;
             return charge;
         }
-        tell_object(env,"The "+remove_article(GetShort())+" beeps softly.");
+        tell_object(env,remove_article(GetShort())+"轻声哔哔作响。");
         return charge;
     }
 

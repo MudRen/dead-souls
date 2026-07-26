@@ -9,7 +9,7 @@ string LongDesc(){
     string ret;
     Tracked = ([]);
     if(creatorp(this_player())){
-        ret = "这个小型电子设备 designed to provide information, if available, regarding your location in the world。指令：coord, prox";
+        ret = "这个小型电子设备旨在提供关于你在世界中位置的信息（如果可用）。指令：coord, prox";
     }
     else {
         ret = "这是创造者用来分析他们在 MUD 中位置的设备。";
@@ -42,9 +42,9 @@ int GetCoord(){
     string ret;
     if(!creatorp(this_player())) return 0;
     ret = ROOMS_D->GetCoordinates(environment(this_player()));
-    if(!sizeof(ret) || ROOMS_D->GetGrid(ret)["room"] != 
+    if(!sizeof(ret) || ROOMS_D->GetGrid(ret)["room"] !=
             base_name(environment(this_player()))){
-        ret = "看起来你 currently unable to receive positioning data about your location。";
+        ret = "看起来你目前无法接收关于你位置的定位数据。";
     }
     else{
         mixed foo = ROOMS_D->GetGrid(ret);
@@ -63,9 +63,9 @@ int GetProx(int i){
     if(!creatorp(this_player())) return 0;
     coords = ROOMS_D->GetCoordinates(environment(this_player()));
     if(!sizeof(coords) || ROOMS_D->GetGrid(coords)["room"] !=
-            base_name(environment(this_player())) || 
+            base_name(environment(this_player())) ||
             sscanf(coords,"%d,%d,%d",x,y,z) != 3){
-        ret = "看起来你 currently unable to receive proximity data about your location。";
+        ret = "看起来你目前无法接收关于你位置的邻近数据。";
     }
     else{
         if(ROOMS_D->GetGrid(x+","+(y+1)+","+z)["room"])
@@ -159,6 +159,6 @@ int GetShell(string str){
         }
         Shell[i] = distinct_array(Shell[i]);
     }
-    write("Rooms at distance "+shell+": "+identify(Shell[shell]));
+    write("距离为"+shell+"的房间："+identify(Shell[shell]));
     return 1;
 }

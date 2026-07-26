@@ -58,7 +58,7 @@ void heart_beat(){
         object env = environment();
         activated = 0;
         if(env){
-            tell_object(env,"The rocket pack sputters and fails.");
+            tell_object(env,"火箭背包发出噼啪声后熄灭了。");
         }
     }
 
@@ -107,20 +107,20 @@ int boost(string str, int coasting){
     }
 
     if(!coasting && environment(this_object()) != owner){
-        write("You don't have the rocket pack.");
+        write("你没有火箭背包。");
         return 1;
     }
     if(!coasting && !GetWorn()){
-        write("You're not wearing the rocket pack.");
+        write("你没有穿戴火箭背包。");
         return 1;
     }
     if(!coasting && !str || !env){
-        write("Boost in which direction?");
+        write("向哪个方向推进？");
         return 1;
     }
 
     if(!coasting && !charge){
-        write("The rocket pack is out of fuel.");
+        write("火箭背包没有燃料了。");
         return 1;
     }
     dest = env->GetExit(str);
@@ -128,7 +128,7 @@ int boost(string str, int coasting){
         if(str == "up" && env->GetFlyRoom()) dest = env->GetFlyRoom();
         else if(str == "down" && env->GetSinkRoom()) dest = env->GetSinkRoom();
         else {
-            if(!coasting) write("No such direction");
+            if(!coasting) write("没有这个方向。");
             return 1;
         }
     }
@@ -147,24 +147,24 @@ int boost(string str, int coasting){
     }
 
     if(!sizeof(dest)){
-        write("You can't go that way.");
+        write("你不能往那个方向走。");
         return 1;
     }
 
     omsg = owner->GetName()+" rockets "+str+".";
     imsg = owner->GetName()+" rockets in.";
 
-    if(!coasting) write("You engage your rocket pack's boosters to rocket you "+str+".");
+    if(!coasting) write("你启动了火箭背包的推进器，向"+str+"方向飞去。");
     if(!coasting) charge--;
 
     ret = owner->eventMoveLiving(dest, omsg, imsg, str);
     if(ret){
         if( Exit && Exit["post"] ) evaluate(Exit["post"], str);
         if(activated){
-            if(!coasting) write("The rocket pack's boosters resume normal operation.");
+            if(!coasting) write("火箭背包的推进器恢复正常运转。");
         }
         else {
-            if(!coasting) write("The rocket pack's boosters sputter and go silent.");
+            if(!coasting) write("火箭背包的推进器发出噼啪声后熄灭了。");
         }
     }
 
@@ -174,10 +174,10 @@ int boost(string str, int coasting){
 int eventTurnOn(){
     if(!(this_object()->GetWorn()) || !this_player() ||
             environment(this_object()) != this_player()){
-        write("You are not wearing the rocket pack.");
+        write("你没有穿戴火箭背包。");
         return 1;
     }
-    write("You activate the rocket pack with a deep, rumbling roar!");
+    write("你激活了火箭背包，发出低沉的轰鸣声！");
     say(this_player()->GetName()+" fires up "+possessive(this_player())+" "
             "rocket pack with a deep, rumbling roar!");
     activated = 1;
@@ -185,7 +185,7 @@ int eventTurnOn(){
 }
 
 int eventTurnOff(){
-    write("You deactivate the rocket pack. The boosters sputter and go silent.");
+    write("你关闭了火箭背包。推进器发出噼啪声后熄灭了。");
     say(this_player()->GetName()+" deactivates "+possessive(this_player())+" "
             "rocket pack. The boosters sputter and go silent.");
     activated = 0;
@@ -226,12 +226,12 @@ int eventDecrementCharge(){
     else charge--;
 
     if(charge < 50){
-        tell_object(environment(this_object()),"The rocket pack beeps loudly!");
+        tell_object(environment(this_object()),"火箭背包大声哔哔作响！");
         return charge;
     }
 
     if(charge < 100){
-        tell_object(environment(this_object()),"The rocket pack beeps softly.");
+        tell_object(environment(this_object()),"火箭背包轻声哔哔作响。");
         return charge;
     }
 

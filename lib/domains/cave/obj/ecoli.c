@@ -20,8 +20,8 @@ int CalculateDuration(){
 int InfectMess(object ob){
     victim=ob;
     victimname=victim->GetName();
-    tell_room(environment(victim), victimname+" looks weak and woozy.",({victim}) );
-    tell_object(victim, "You feel weak and dizzy.");
+    tell_room(environment(victim), victimname+"看起来虚弱而眩晕。",({victim}) );
+    tell_object(victim, "你感到虚弱和头晕。");
     return 1;
 }
 
@@ -96,13 +96,13 @@ int eventSuffer(){
 
 string GetAffectLong(object ob) {
     if(!ob || !living(ob)) return 0;
-    return ob->GetName() + " is disheveled.\n"+ob->GetName()+" looks very ill and disoriented.";
+    return ob->GetName() + "看起来凌乱不堪。\n"+ob->GetName()+"看起来病得很重，神志不清。";
 }
 
 int damage1(){
     if(victim){
-        tell_object(victim,"You feel weak and ill.");
-        tell_room(environment(victim),victimname+" looks pale and ill.", ({victim}) );
+        tell_object(victim,"你感到虚弱和不适。");
+        tell_room(environment(victim),victimname+"看起来苍白而病态。", ({victim}) );
         victim->AddStaminaPoints(random(-2)-2);
     }
     return 1;
@@ -110,8 +110,8 @@ int damage1(){
 
 int damage2(){
     if(victim){
-        tell_object(victim,"You are racked by a fit of gruesome-sounding retching.");
-        tell_room(environment(victim),victimname+" is racked by a fit of gruesome-sounding retching.", ({victim}) );
+        tell_object(victim,"你被一阵可怕的干呕所折磨。");
+        tell_room(environment(victim),victimname+"被一阵可怕的干呕所折磨。", ({victim}) );
         victim->AddHP(-(random(3)+3));
         victim->AddStaminaPoints(-(random(3))-3);
     }
@@ -120,8 +120,8 @@ int damage2(){
 
 int damage3(){
     if(victim){
-        tell_room(environment(victim),victimname+" lets out a groan of discomfort.", ({victim}) );
-        tell_object(victim,"You let out a groan of discomfort as a wave of weakness hits you.");
+        tell_room(environment(victim),victimname+"发出一声不适的呻吟。", ({victim}) );
+        tell_object(victim,"当一阵虚弱袭来时，你发出一声不适的呻吟。");
         victim->AddStaminaPoints(-(random(4))-4);
     }
     return 1;
@@ -129,8 +129,8 @@ int damage3(){
 
 int damage4(){
     if(victim){
-        tell_room(environment(victim),victimname+" gags violently, then chokes out a thick rope of vomit onto the ground.", ({victim}) );
-        tell_object(victim,"You gag violently, then choke out a thick rope of vomit onto the ground.");
+        tell_room(environment(victim),victimname+"剧烈地干呕，然后吐出一大口呕吐物在地上。", ({victim}) );
+        tell_object(victim,"你剧烈地干呕，然后吐出一大口呕吐物在地上。");
         victim->AddHP(-(random(5)+5));
         victim->AddStaminaPoints(-(random(5))-5);
     }
@@ -140,13 +140,13 @@ int damage4(){
 int damage5(){
     if(victim){
         if(victim->GetPosition() != 1){
-            tell_room(environment(victim),victimname+" makes a horrendous flatulent noise and falls helplessly to the floor, soiling "+objective(victim)+"self.", ({victim}) );
-            tell_object(victim,"You make a horrendous flatulent noise and fall helplessly to the floor, soiling yourself.");
+            tell_room(environment(victim),victimname+"发出一阵可怕的放屁声，无助地倒在地板上，弄脏了"+objective(victim)+"自己。", ({victim}) );
+            tell_object(victim,"你发出一阵可怕的放屁声，无助地倒在地板上，弄脏了自己。");
             victim->SetPosition(1);
         }
         if(victim->GetPosition() == 1){
-            tell_room(environment(victim),victimname+" makes a horrendous flatulent noise as "+nominative(victim)+" lies helplessly on the ground.", ({ victim}));
-            tell_object(victim,"You make a horrendous flatulent noise as you lie helplessly on the ground.");
+            tell_room(environment(victim),victimname+"发出一阵可怕的放屁声，"+nominative(victim)+"无助地躺在地上。", ({ victim}));
+            tell_object(victim,"你发出一阵可怕的放屁声，无助地躺在地上。");
         }
         victim->AddHP(-(random(10)+10));
         victim->AddStaminaPoints(-(random(10))-10);
@@ -154,5 +154,5 @@ int damage5(){
     return 1;
 }
 
-mixed CanGet(object ob) { return "You can't do that.";}
-mixed CanDrop(object ob) { return "You can't do that.";}
+mixed CanGet(object ob) { return "你不能那样做。";}
+mixed CanDrop(object ob) { return "你不能那样做。";}

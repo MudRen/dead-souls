@@ -50,11 +50,11 @@ varargs int OperateThing(object who, mixed what){
     if(!who) who = this_player();
     env = environment(this_player());
     this = remove_article(GetShort());
-    tell_player(who, "You operate your "+this+".");
+    tell_player(who, "你操作了"+this+"。");
     tell_object(env, who->GetName() + " operates " + possessive(who) +
             " " + this + ".", ({who}));
     if(what && stringp(what) && !active){
-        tell_player(who, "The "+this+" is not activated.");
+        tell_player(who, this+"没有被激活。");
         return 0;
     }
     return 1;
@@ -79,14 +79,14 @@ varargs mixed eventShoot(object who, mixed target, string dir, string whom){
     dam = cache + random(maxcache);
 
     if(!active){
-        write("The cannon clicks.");
+        write("大炮发出咔哒声。");
         say(name+"'s cannon emits a click.");
         return 1;
     }
 
     if(cache < 5){
         cache = 0;
-        write("The cannon clicks.");
+        write("大炮发出咔哒声。");
         say(name+"'s cannon emits a click.");
         if(room) room->eventHearTalk(this_object(),0,TALK_LOCAL,"say",
                 "Power cache too low.", "poleepkwa");
@@ -95,7 +95,7 @@ varargs mixed eventShoot(object who, mixed target, string dir, string whom){
 
     if(fuel < maxcache){
         cache = 0;
-        write("The cannon emits a harsh buzzing noise.");
+        write("大炮发出刺耳的嗡嗡声。");
         say(name+"'s cannon emits a harsh buzzing noise.");
         if(room) room->eventHearTalk(this_object(),0,TALK_LOCAL,"say",
                 "Operator essence too low.", "poleepkwa");
@@ -104,19 +104,19 @@ varargs mixed eventShoot(object who, mixed target, string dir, string whom){
 
     if(dir){
         if(!env){
-            write("No environment.");
+            write("没有环境。");
             return 1;
         }
         if(!env->GetExit(dir)){
-            write("You can't shoot in that direction.");
+            write("你不能向那个方向射击。");
             return 1;
         }
         bolt = new("/domains/default/weap/plasma");
         if(!bolt){
-            write("There appears to be some sort of malfunction.");
+            write("似乎出现了某种故障。");
             return 1;
         }
-        write("You fire your plasma cannon "+dir+"!");
+        write("你向"+dir+"方向发射了等离子大炮！");
         tell_room(env, name+" fires "+possessive(killer)+
                 " plasma cannon "+dir+"!", ({killer}));
 
@@ -132,7 +132,7 @@ varargs mixed eventShoot(object who, mixed target, string dir, string whom){
         return 1;
     }
 
-    write("You blast "+patsy+" with your plasma cannon!");
+    write("你用等离子大炮轰击了"+patsy+"！");
     tell_room(env, name+" blasts "+patsy+" with "+possessive(killer)+
             " plasma cannon!", ({killer, target}));
     target->eventPrint(name+" blasts you with "+possessive(killer)+
@@ -184,8 +184,8 @@ void heart_beat(){
     object env = environment();
     object room = room_environment();
     if(active && !GetWorn()){
-        if(env) tell_room(env, "The "+remove_article(GetShort())+
-                " whines and clicks off.");
+        if(env) tell_room(env, remove_article(GetShort())+
+                "发出嗡嗡声然后关闭了。");
         active = 0;
     }
     else if(active){
@@ -195,7 +195,7 @@ void heart_beat(){
             if(environment(env)){
                 tell_room(environment(env), env->GetName()+"'s "+
                         "plasma cannon whines and clicks off.", ({env}));
-                env->eventPrint("Your plasma cannon whines and clicks off.");
+                env->eventPrint("你的等离子大炮发出嗡嗡声然后关闭了。");
             }
         }
         else if(cache < maxcache){
@@ -261,8 +261,8 @@ void init(){
     object env = environment();
     ::init();
     if(active && !GetWorn()){
-        if(env) tell_room(env, "The "+remove_article(GetShort())+
-                " whines and clicks off.");
+        if(env) tell_room(env, remove_article(GetShort())+
+                "发出嗡嗡声然后关闭了。");
         active = 0;
     }
 }
@@ -274,9 +274,9 @@ varargs mixed DoWear(object who, mixed where){
         active = 1; 
         if(creatorp(who)) cache = maxcache;
     }
-    if(active) extra = " and it beeps and clicks on.";
-    else extra = ".";
-    who->eventPrint("You wear "+GetShort()+extra);
+    if(active) extra = "，它发出哔哔声并启动了。";
+    else extra = "。";
+    who->eventPrint("你穿戴上了"+GetShort()+extra);
     if(env) tell_room(env, who->GetName()+" wears "+
             GetShort()+extra, ({who}));
     return 1;
@@ -286,7 +286,7 @@ mixed eventUnequip(object who){
     mixed ret = ::eventUnequip(who);
     object env = environment(who);
     if(ret && active){
-        who->eventPrint("The cannon whines and clicks off.");
+        who->eventPrint("大炮发出嗡嗡声然后关闭了。");
         if(env) tell_room(env, who->GetName()+"'s cannon "+
                 "whines and clicks off.", ({who}));
         active = 0;
@@ -298,35 +298,35 @@ int eventTurnOn(mixed str){
     if(!OperateThing(this_player(), str)) return 1;
     if(str && stringp(str)){
         if(str == "debugging" && creatorp(this_player())){
-            write("Debugging enabled.");
+            write("调试模式已启用。");
             debugging = 1;
             return 1;
         }
         else if(str == "tracking"){
             if(tracking){
-                write("Tracking already enabled.");
+                write("追踪已经启用。");
                 return 1;
             }
-            write("Tracking enabled.");
+            write("追踪已启用。");
             tracking = 1;
             return 1;
         }
         else {
-            write("The "+remove_article(GetShort())+" has "+
-                    "no such feature.");
+            write(remove_article(GetShort())+"没有"+
+                    "这个功能。");
             return 1;
         }
     }
     if(active){
-        write("The cannon is already on.");
+        write("大炮已经开启了。");
         return 1;
     }
     if(!(this_object()->GetWorn()) || !this_player() ||
             environment(this_object()) != this_player()){
-        write("You are not wearing the "+remove_article(GetShort())+".");
+        write("你没有穿戴"+remove_article(GetShort())+"。");
         return 1;
     }
-    write("You activate the "+remove_article(GetShort())+".");
+    write("你激活了"+remove_article(GetShort())+"。");
     say(this_player()->GetName()+"'s "+remove_article(GetShort())+
             " beeps and clicks on.");
     active = 1;
@@ -337,30 +337,30 @@ int eventTurnOff(mixed str){
     if(!OperateThing(this_player())) return 1;
     if(str && stringp(str)){
         if(str == "debugging" && creatorp(this_player())){
-            write("Debugging disabled.");
+            write("调试模式已禁用。");
             debugging = 0;
             return 1;
         }
         else if(str == "tracking"){
             if(!tracking){
-                write("Tracking already disabled.");
+                write("追踪已经禁用。");
                 return 1;
             }
-            write("Tracking disabled.");
+            write("追踪已禁用。");
             tracking = 0;
             return 1;
         }
         else {
-            write("The "+remove_article(GetShort())+" has "+
-                    "no such feature.");
+            write(remove_article(GetShort())+"没有"+
+                    "这个功能。");
             return 1;
         }
     }
     if(!active){
-        write("The cannon is already off.");
+        write("大炮已经关闭了。");
         return 1;
     }
-    write("You deactivate the "+remove_article(GetShort())+".");
+    write("你关闭了"+remove_article(GetShort())+"。");
     say(this_player()->GetName()+"'s "+remove_article(GetShort())+
             " whines and clicks off.");
     active = 0;

@@ -13,10 +13,10 @@ mapping SpecialFuns = ([]);
 
 int CheckPanel(){
     if(this_object()->GetClosed()){
-        write("The wrist computer is closed. The panel is not accessible.");
+        write("腕式电脑是关闭的。面板无法访问。");
     }
     else {
-        write("A panel you can read.");
+        write("一个你可以阅读的面板。");
     }
     return 1;
 }
@@ -105,12 +105,12 @@ int eventTurnOn(){
     object *contents = all_inventory();
     if(!(this_object()->GetWorn()) || !this_player() ||
             environment(this_object()) != this_player()){
-        write("You are not wearing the wrist computer.");
+        write("你没有穿戴腕式电脑。");
         return 1;
     }
-    write("You activate the wrist computer. The computer says:");
+    write("你激活了腕式电脑。电脑显示：");
     say(this_player()->GetName()+" operates "+possessive(this_player())+" "
-            "wrist computer. You hear the computer say: "); 
+            "wrist computer. You hear the computer say: ");
     yaut_say("Computer online.");
     if(sizeof(contents)) contents->eventPowerOn();
     active = 1;
@@ -119,23 +119,23 @@ int eventTurnOn(){
 
 int eventTurnOff(){
     object *contents = all_inventory();
-    write("You deactivate the wrist computer. The computer says:");
+    write("你关闭了腕式电脑。电脑显示：");
     say(this_player()->GetName()+" operates "+possessive(this_player())+" "
             "wrist computer. You hear the computer say: ");
     yaut_say("Computer offline.");
-    if(sizeof(contents)) contents->eventPowerOff();    
+    if(sizeof(contents)) contents->eventPowerOff();
     active = 0;
     return 1;
 }
 
 varargs mixed eventInstall(object what, object where){
-    write("The wrist computer is not installable anywhere");
+    write("腕式电脑不能安装到任何地方。");
     return 1;
 }
 
 int CanReceive(object ob){
     if(!answers_to("yautja data module",ob)){
-        write("That is not a proper data module for this computer.");
+        write("那不是这台电脑的正确数据模块。");
         return 0;
     }
     else return 1;
@@ -148,11 +148,11 @@ varargs mixed eventUninstallModule(object which, int auto){
     if(!auto) say(this_player()->GetName()+" operates "+possessive(this_player())+" "
             "wrist computer.");
     if(!active){
-        if(!auto) write("The computer is not active.");
+        if(!auto) write("电脑没有激活。");
         return 1;
     }
     if(!auto){
-        write("You attempt to uninstall a module from the wrist computer. The computer says:");
+        write("你尝试从腕式电脑中卸载一个模块。电脑显示：");
         say(this_player()->GetName()+"'s wrist computer says: ");
         yaut_say("Uninstalling...");
     }
@@ -174,15 +174,15 @@ varargs mixed eventInstallModule(mapping ModuleData, int auto){
     if(!auto) say(this_player()->GetName()+" operates "+possessive(this_player())+" "
             "wrist computer.");
     if(!answers_to("Yautja data module",module)){
-        if(!auto) write("That is not a proper data module for this computer.");
+        if(!auto) write("那不是这台电脑的正确数据模块。");
         return 0;
     }
     if(!active){
-        if(!auto) write("The computer is not active.");
+        if(!auto) write("电脑没有激活。");
         return 1;
     }
     if(this_object()->GetClosed()){
-        write("The computer is closed.");
+        write("电脑是关闭的。");
         return 1;
     }
     if(sizeof(all_inventory()))
@@ -191,13 +191,13 @@ varargs mixed eventInstallModule(mapping ModuleData, int auto){
         }
     if(member_array(base_name(module),contents) != -1){
         if(!auto){
-            write("The wrist computer already contains that type of module.");
+            write("腕式电脑已经包含了那种类型的模块。");
             return 0;
         }
     }
     SpecialFuns[module] = ModuleData;
-    if(!auto){ 
-        write("You install a module into the wrist computer. The computer says:");
+    if(!auto){
+        write("你将一个模块安装到腕式电脑中。电脑显示：");
         say(this_player()->GetName()+"'s wrist computer says: ");
         yaut_say("Installing...");
     }
@@ -212,11 +212,11 @@ varargs mixed eventInstallModule(mapping ModuleData, int auto){
 }
 
 mixed CanPutInto(object who, object item){
-    return "This is a wrist computer. One can install modules on it.";
+    return "这是一台腕式电脑。可以在上面安装模块。";
 }
 
 mixed CanGetFrom(object who, object item){
-    return "This is a wrist computer. One can uninstall modules from it.";
+    return "这是一台腕式电脑。可以从上面卸载模块。";
 }
 
 varargs mixed eventRead(mixed who, mixed str){
@@ -232,11 +232,11 @@ varargs mixed eventRead(mixed who, mixed str){
         what = str;
     }
     if(this_object()->GetClosed()){
-        write("The wrist computer is closed. There is nothing to read.");
+        write("腕式电脑是关闭的。没有东西可以阅读。");
         return 1;
     }
     if(!active){
-        write("The wrist computer is not activated.");
+        write("腕式电脑没有激活。");
         return 1;
     }
     foreach(mixed ob in all_inventory()){
@@ -259,7 +259,7 @@ varargs mixed eventOpen(object who, object tool){
     SetProtection(HEAT, 3);
     ::eventOpen(who || 0, tool || 0);
     if(!(this_object()->GetClosed())){
-        write("Opening the wrist computer yields a panel you can read.");
+        write("打开腕式电脑露出了一个可以阅读的面板。");
         return 1;
     }
     return 0;

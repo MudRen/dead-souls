@@ -62,14 +62,14 @@ varargs mixed eventShoot(object who, mixed target, string dir, string whom){
     dam = cache + random(50);
 
     if(!active){
-        write("The rifle clicks.");
+        write("步枪发出咔哒声。");
         say(name+"'s rifle emits a click.");
         return 1;
     }
 
     if(cache < 5){
         cache = 0;
-        write("The rifle clicks.");
+        write("步枪发出咔哒声。");
         say(name+"'s rifle emits a click.");
         if(room) room->eventHearTalk(this_object(),0,TALK_LOCAL,"say",
                 "Power cache too low.", "poleepkwa");
@@ -78,7 +78,7 @@ varargs mixed eventShoot(object who, mixed target, string dir, string whom){
 
     if(fuel < 50){
         cache = 0;
-        write("The rifle emits a harsh buzzing noise.");
+        write("步枪发出刺耳的嗡嗡声。");
         say(name+"'s rifle emits a harsh buzzing noise.");
         if(room) room->eventHearTalk(this_object(),0,TALK_LOCAL,"say",
                 "Operator essence too low.", "poleepkwa");
@@ -87,19 +87,19 @@ varargs mixed eventShoot(object who, mixed target, string dir, string whom){
 
     if(dir){
         if(!env){
-            write("No environment.");
+            write("没有环境。");
             return 1;
         }
         if(!env->GetExit(dir)){
-            write("You can't shoot in that direction.");
+            write("你不能向那个方向射击。");
             return 1;
         }
         bolt = new("/domains/default/weap/plasma");
         if(!bolt){
-            write("There appears to be some sort of malfunction.");
+            write("似乎出现了某种故障。");
             return 1;
         }
-        write("You fire your plasma rifle "+dir+"!");
+        write("你向"+dir+"方向发射了等离子步枪！");
         tell_room(env, name+" fires "+possessive(killer)+
                 " plasma rifle "+dir+"!", ({killer}));
         bolt->SetOwner(who);
@@ -112,7 +112,7 @@ varargs mixed eventShoot(object who, mixed target, string dir, string whom){
         return 1;
     }
 
-    write("You blast "+patsy+" with your plasma rifle!");
+    write("你用等离子步枪轰击了"+patsy+"！");
     tell_room(env, name+" blasts "+patsy+" with "+possessive(killer)+
             " plasma rifle!", ({killer, target}));
     target->eventPrint(name+" blasts you with "+possessive(killer)+
@@ -141,8 +141,8 @@ void heart_beat(){
     object env = environment();
     object room = room_environment();
     if(active && !GetWorn()){
-        if(env) tell_room(env, "The "+remove_article(GetShort())+
-                " whines and clicks off.");
+        if(env) tell_room(env, remove_article(GetShort())+
+                "发出嗡嗡声然后关闭了。");
         active = 0;
     }
     else if(active){
@@ -152,7 +152,7 @@ void heart_beat(){
             if(environment(env)){
                 tell_room(environment(env), env->GetName()+"'s "+
                         "plasma rifle whines and clicks off.", ({env}));
-                env->eventPrint("Your plasma rifle whines and clicks off.");
+                env->eventPrint("你的等离子步枪发出嗡嗡声然后关闭了。");
             }
         }
         else if(cache < 50){
@@ -216,8 +216,8 @@ void init(){
     object env = environment();
     ::init();
     if(active && !GetWorn()){
-        if(env) tell_room(env, "The "+remove_article(GetShort())+
-                " whines and clicks off.");
+        if(env) tell_room(env, remove_article(GetShort())+
+                "发出嗡嗡声然后关闭了。");
         active = 0;
     }
 }
@@ -229,9 +229,9 @@ varargs mixed DoWield(object who, mixed where){
         active = 1; 
         if(creatorp(who)) cache = 50;
     }
-    if(active) extra = " and it beeps and clicks on.";
-    else extra = ".";
-    who->eventPrint("You wield "+GetShort()+extra);
+    if(active) extra = "，它发出哔哔声并启动了。";
+    else extra = "。";
+    who->eventPrint("你装备了"+GetShort()+extra);
     if(env) tell_room(env, who->GetName()+" wields "+
             GetShort()+extra, ({who}));
     return 1;
@@ -241,7 +241,7 @@ mixed eventUnequip(object who){
     mixed ret = ::eventUnequip(who);
     object env = environment(who);
     if(ret && active){
-        who->eventPrint("The rifle whines and clicks off.");
+        who->eventPrint("步枪发出嗡嗡声然后关闭了。");
         if(env) tell_room(env, who->GetName()+"'s rifle "+
                 "whines and clicks off.", ({who}));
         active = 0;

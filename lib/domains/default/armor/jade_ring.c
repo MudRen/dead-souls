@@ -122,15 +122,15 @@ int UnsetNPCReporting(string name){
     object ob;
     int stat = 0;
     if(!CheckRing() || !ringshadow){
-        write("The ring must be worn by you in order to access its power.");
+        write("你必须戴上戒指才能使用它的力量。");
         return 1;
     }
     if(CheckRing() == -1){
-        write("The ring's power can only be harnessed by special people. That means, \"not you\".");
+        write("戒指的力量只能被特殊的人驾驭。也就是说，\"不是你\"。");
         return 1;
     }
     if(!(ob = present(name,environment(this_player())))){
-        write("No such creature is here.");
+        write("这里没有这种生物。");
         return 1;
     }
     sombras = keys(ob->GetShadows());
@@ -150,11 +150,11 @@ int UnsetNPCReporting(string name){
 int SetProtection(string str){
     int booly = 0;
     if(!CheckRing() || !ringshadow){
-        write("The ring must be worn by you in order to access its power.");
+        write("你必须戴上戒指才能使用它的力量。");
         return 1;
     }
     if(CheckRing() == -1){
-        write("The ring's power can only be harnessed by special people. That means, \"not you\".");
+        write("戒指的力量只能被特殊的人驾驭。也就是说，\"不是你\"。");
         return 1;
     }
     if(str == "on") booly=1;
@@ -166,11 +166,11 @@ int SetProtection(string str){
 int SetReporting(string str){
     int booly = 0;
     if(!CheckRing() || !ringshadow){
-        write("The ring must be worn by you in order to access its power.");
+        write("你必须戴上戒指才能使用它的力量。");
         return 1;
     }
     if(CheckRing() == -1){
-        write("The ring's power can only be harnessed by special people. That means, \"not you\".");
+        write("戒指的力量只能被特殊的人驾驭。也就是说，\"不是你\"。");
         return 1;
     }
     if(str == "on") booly=1;

@@ -31,33 +31,27 @@ string FunkyPic(){
 }
 
 int regenerate(){
-    write("With a great rush of matter and energy, you rematerialize "+
-            "into a corporeal state, and find yourself in a familiar place...");
+    write("伴随着一股巨大的物质和能量洪流，你重新物质化为实体状态，发现自己身处一个熟悉的地方……");
     this_player()->eventRevive();
     this_player()->eventMoveLiving(ROOM_START);
     return 1;
 }
 
 int wander(){
-    write("There is a strange, hollow vibration all around you, and you "+
-            "realize that some force is compelling your ethereal form elsewhere..."+
-            "you find yourself in a place that is known to you, yet oddly new.");
+    write("你周围传来一种奇怪的、空洞的震动，你意识到某种力量正在迫使你的灵魂前往他处……你发现自己身处一个你熟悉却又奇特崭新的地方。");
     this_player()->eventMoveLiving(ROOM_START);
     return 1;
 }
 
 void heart_beat(){
-    tell_room(this_object(), "A voice whispers: \" You may choose to "+
-            "regenerate into a new body here.\"");
+    tell_room(this_object(), "一个声音低语道：\"你可以选择在这里重生为一个新的身体。\"");
     return;
 }
 
 
 int CanRelease(object ob){
     if(userp(ob) && ob->GetGhost() && environment(ob) == this_object()) {
-        tell_player(ob,"\n%^RED%^Your undead spirit is recalled and as you leave "+
-                "the underworld a new body regenerates around you. "+
-                "You live again!%^RESET%^\n");
+        tell_player(ob,"\n%^RED%^你的亡灵被召回，当你离开冥界时，一个新的身体在你周围重新生成。你又活了！%^RESET%^\n");
         ob->eventRevive();
     }
     return 1;

@@ -24,11 +24,11 @@ int tidy_up(){
 }
 
 int eventReceiveObject(object ob){
-    write("You make a deposit into the the recycling bin.\n");
+    write("你向回收箱中投入了一件物品。\n");
     call_out((: tidy_up :),1);
     return 1;
 }
-mixed CanGet(object ob) { return "The bucket does not budge.";}
+mixed CanGet(object ob) { return "这个垃圾桶纹丝不动。";}
 
 void init(){
 }

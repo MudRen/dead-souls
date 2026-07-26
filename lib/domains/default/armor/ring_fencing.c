@@ -29,8 +29,8 @@ varargs int DoWear(object who, string where){
     object env = environment(who);
     who->AddSkillBonus("blade attack", (: CheckRing :) );
     who->AddSkillBonus("blade defense", (: CheckRing :) );
-    who->eventPrint("You wear the ring and feel oddly dextrous..."+
-            "and somehow fancy.");
+    who->eventPrint("你戴上戒指，感觉异常灵巧……"+
+            "而且不知为何感觉很高雅。");
     if(env) tell_room(env, who->GetName()+" wears "+GetShort()+".", ({who}));
     return 1;
 }

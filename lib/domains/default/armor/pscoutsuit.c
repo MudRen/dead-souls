@@ -73,23 +73,23 @@ varargs mixed GetSuitHelp(mixed who, string where){
     env = environment(who);
     if(query_verb() == "wear" || (str && answers_to(str, this_object()))){
         if(environment() == who){
-            ret = "The suit's Heads Up Display crackles to life and reads:\n ";
+            ret = "装甲的平视显示器噼啪作响地亮了起来，显示：\n ";
             ret += "%^B_BLACK%^CYAN%^";
-            ret2 = "From the Host you get identity. From the many "+
-                "we are Host. You are protected to serve. Serve the Host "+
-                "with this suit. This suit protects you. Use it to serve. "+
-                "\nWhen suit light is yellow or red, hide."
-                "\nWhen suit light is green or blue, serve."
-                "\nYour black juice makes the suit go."
-                "\nThe suit pulls from you the black juice."
-                "\nWhen it is full of black juice, the light is blue."
-                "\nWhen the light is on you can breathe."
-                "\nWhen the light is on you can take big hurt."
-                "\nWhen the light is on you can see good."
-                "\nWhen the light is on you don't get sick.";
-            "\nYou can not trade suits with others.";
+            ret2 = "从宿主你获得身份。从众多中"+
+                "我们是宿主。你被保护以服务。用这套装甲服务宿主。"+
+                "这套装甲保护你。用它来服务。"+
+                "\n当装甲灯为黄色或红色时，躲藏。"
+                "\n当装甲灯为绿色或蓝色时，服务。"
+                "\n你的黑色汁液让装甲运转。"
+                "\n装甲从你身上吸取黑色汁液。"
+                "\n当它充满黑色汁液时，灯为蓝色。"
+                "\n当灯亮着时你可以呼吸。"
+                "\n当灯亮着时你可以承受巨大伤害。"
+                "\n当灯亮着时你看得清楚。"
+                "\n当灯亮着时你不会生病。";
+            "\n你不能与他人交换装甲。";
             if(query_verb() == "wear" && !GetWorn()){
-                who->eventPrint("You wear "+GetShort()+".");
+                who->eventPrint("你穿戴上了"+GetShort()+"。");
                 if(env) tell_room(env, who->GetName()+" wears "+
                         GetShort()+".", ({who}));
             }
@@ -150,23 +150,23 @@ int eventDecrementCharge(int i){
     perc = to_int(percent(charge, maxcharge));
     if(perc < 2){
         if(living(env) && creatorp(env)){
-            env->eventPrint("Your creator powers magically recharge the "+
-                    remove_article(GetShort())+".");
+            env->eventPrint("你的创造者力量魔法般地为"+
+                    remove_article(GetShort())+"充能了。");
             charge = maxcharge;
             return charge;
         }
-        tell_object(env,"The "+remove_article(GetShort())+" beeps loudly!");
+        tell_object(env,remove_article(GetShort())+"大声哔哔作响！");
         return charge;
     }
 
     if(perc < 2){
         if(living(env) && creatorp(env)){
-            env->eventPrint("Your creator powers magically recharge the "+
-                    remove_article(GetShort())+".");
+            env->eventPrint("你的创造者力量魔法般地为"+
+                    remove_article(GetShort())+"充能了。");
             charge = maxcharge;
             return charge;
         }
-        tell_object(env,"The "+remove_article(GetShort())+" beeps softly.");
+        tell_object(env,remove_article(GetShort())+"轻声哔哔作响。");
         return charge;
     }
 
@@ -213,13 +213,13 @@ void heart_beat(){
     if(!env || !room) return;
     envname = env->GetKeyName();
     if(owner && GetWorn() && envname != owner){
-        tell_object(env, "The suit makes a brief cranking, buzzing sound.");
+        tell_object(env, "装甲发出短暂的嘎吱声和嗡嗡声。");
         if(active) active = 0;
         return;
     }
     if(active && !GetWorn()){
-        tell_room(env, "The "+remove_article(GetShort())+
-                " whines.");
+        tell_room(env, remove_article(GetShort())+
+                "发出嗡嗡声。");
         active = 0;
     }
     else if(GetWorn() && charge < maxcharge){
@@ -231,7 +231,7 @@ void heart_beat(){
                 if(environment(env)){
                     tell_room(environment(env), env->GetName()+"'s "+
                             "powered suit whines.", ({env}));
-                    env->eventPrint("Your powered suit whines.");
+                    env->eventPrint("你的动力装甲发出嗡嗡声。");
                 }
             }
         }
@@ -248,7 +248,7 @@ void heart_beat(){
         if(environment(env)){
             tell_room(environment(env), env->GetName()+"'s "+
                     "powered suit chirps.", ({env}));
-            env->eventPrint("Your powered suit chirps.");
+            env->eventPrint("你的动力装甲发出哔哔声。");
         }
     }
 }
@@ -259,8 +259,8 @@ void eventDeteriorate(int type){
     object env = environment();
     if(maxcharge > 100){
         if(active){
-            if(env) env->eventPrint("Your powered suit emits a harsh buzz and "+
-                    "the indicator light dims briefly.");
+            if(env) env->eventPrint("你的动力装甲发出刺耳的嗡嗡声，"+
+                    "指示灯短暂变暗。");
         }
         maxcharge -= 100;
     }

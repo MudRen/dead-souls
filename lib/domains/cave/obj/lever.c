@@ -15,13 +15,13 @@ int GetSprung(){
 
 int openDoor(object who) {
     if(GetSprung()){
-        write("The lever is already in the pulled position.");
+        write("拉杆已经处于拉动位置了。");
     }
     else {
         object *inv = ( all_inventory(chiefroom) - ({ this_object() }) );
-        write("You pull the lever, and the floor drops out!");
+        write("你拉动了拉杆，地板塌陷了！");
         say(this_player()->GetName()+" pulls the lever, and the floor drops out!");
-        tell_room("/domains/cave/room/cavetroll","The ceiling opens up.");
+        tell_room("/domains/cave/room/cavetroll","天花板打开了。");
         chiefroom->SetMedium(MEDIUM_AIR);
         chiefroom->AddExit("down","/domains/cave/room/cavetroll");
         inv->eventCheckEnvironment();
@@ -33,12 +33,12 @@ int openDoor(object who) {
 
 int closeDoor(object who){
     if(!GetSprung()){
-        write("The lever is already in the pushed position.");
+        write("拉杆已经处于推动位置了。");
     }
     else {
-        write("You push the lever, and the floor closes.");
+        write("你推动了拉杆，地板合上了。");
         say(this_player()->GetName()+" pushes the lever, and the floor closes.");
-        tell_room("/domains/cave/room/cavetroll","The ceiling closes.");
+        tell_room("/domains/cave/room/cavetroll","天花板关闭了。");
         chiefroom->SetMedium(MEDIUM_LAND);
         chiefroom->RemoveExit("down");
     }

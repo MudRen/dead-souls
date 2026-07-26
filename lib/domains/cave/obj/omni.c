@@ -27,10 +27,10 @@ void init() {
 
 mixed CanPress(object who, string target) {
     if(!present(this_object()->GetKeyName(),who ) && target == "button"){
-        return "You do not have the Omni!";
+        return "你没有万能器！";
     }
     if(this_object()->GetId() == target){
-        return "You cannot push that.";
+        return "你不能推动那个。";
     }
     return 1;
 }
@@ -40,7 +40,7 @@ mixed eventPress(object who, string where) {
     object target;
     int success = 0;
     if(!presses){
-        write("Click.");
+        write("咔哒。");
         return 1;
     }
     rooms = filter(rooms, (: member_array(base_name($1), ({ ROOM_START,
@@ -51,7 +51,7 @@ mixed eventPress(object who, string where) {
                 !($1->GetVirtual() && !grepp(base_name($1),",")) &&
                 last_string_element(base_name($1),"/") != "death" :) );
     say(who->GetName()+" turns "+dbz_colors("multicolored")+" and disappears!");
-    write("You feel momentarily disoriented and find yourself elsewhere!");
+    write("你感到一阵短暂的迷失，发现自己身处他处！");
     while(!success){
         target = rooms[random(sizeof(rooms)-1)];
         success = who->eventMove(target);
@@ -68,11 +68,11 @@ void heart_beat(){
             (: interactive($1) :) );
     if(sizeof(holders)) vanish_count--;
     if(vanish_count < 0){
-        tell_object(environment(),"The omni glows brightly and disappears!");
+        tell_object(environment(),"万能器发出明亮的光芒后消失了！");
         this_object()->eventDestruct();
     }
     if(vanish_count == 5){
-        tell_object(environment(),"The omni begins to glow a dull red.");
+        tell_object(environment(),"万能器开始发出暗红色的光芒。");
         this_object()->SetLong("这是一个小型圆形金属装置，铜色，外观类似怀表。"+
                 "顶部的小金属按钮旁边有一个闪烁的红灯。它正在发出暗红色的光芒。");
         this_object()->SetShort("一个万能器（发光中）");

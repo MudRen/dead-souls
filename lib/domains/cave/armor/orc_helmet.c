@@ -25,15 +25,13 @@ protected void create(){
 varargs int CheckOrc(object who, mixed where){
     object env = environment(who);
     if( who->GetRace() == "orc" ) {
-        who->eventPrint("You can almost feel the power of the bear as "+
-                "you wear its skull.");
+        who->eventPrint("当你戴上熊的头骨时，你几乎能感受到熊的力量。");
         if(env) tell_room(env, who->GetName()+" wears "+GetShort()+
                 ".", ({who}));
         return 1;
     }
     else {
-        who->eventPrint("The helmet appears designed for orc anatomy. "+
-                "It does not fit you.");
+        who->eventPrint("这顶头盔似乎是为兽人的体型设计的。它不适合你。");
         return 0;
     }
 }

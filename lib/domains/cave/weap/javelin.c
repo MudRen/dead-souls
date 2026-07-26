@@ -24,6 +24,6 @@ void init(){
 }
 
 int podcast(){
-    write("Somehow the javelin just doesn't seem to do that now.");
+    write("不知为何，标枪现在似乎做不到那件事。");
     return 1;
 }

@@ -21,13 +21,13 @@ varargs mixed eventInstall(object what, object where, int auto){
     int ret = this_object()->eventMove(where);
     string wat = remove_article(where->GetShort());
     if(ret){
-        write("You install "+GetShort()+" into the "+wat+".");
+        write("你将"+GetShort()+"安装到了"+wat+"中。");
         say(this_player()->GetName()+" installs "+GetShort()+" into "+
                 where->GetShort()+".");
         return 1;
     }
     else {
-        write("You fail to install it.");
+        write("安装失败了。");
         return 0;
     }
 }
@@ -36,29 +36,29 @@ varargs mixed eventUninstall(object what, mixed auto){
     int success;
     object contenv, env = environment(this_object());
     if(!env || base_name(env) != "/domains/default/obj/generator"){
-        write("It's not installed.");
+        write("它没有被安装。");
         return 0;
     }
 
     if(!env || !environment(env) || env == this_player()){
-        write("That doesn't seem to be installed anywhere.");
+        write("它似乎没有安装在任何地方。");
         return 0;
     }
 
     contenv = environment(env);
 
     if(contenv != this_player() && contenv != environment(this_player())){
-        write("That's not yours to uninstall.");
+        write("那不是你的，不能卸载。");
         return 0;
     }
 
     success = this_object()->eventMove(this_player());
     if(!success){
-        write("You fail to uninstall it.");
+        write("卸载失败了。");
         return 0;
     }
     else {
-        write("You uninstall "+GetShort()+" from "+env->GetShort()+".");
+        write("你从"+env->GetShort()+"中卸载了"+GetShort()+"。");
         say(this_player()->GetName()+" uninstalls "+GetShort()+" from "+
                 possessive(this_player())+" "+env->GetShort()+".");
         return 1;
