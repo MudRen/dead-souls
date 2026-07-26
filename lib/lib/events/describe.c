@@ -149,10 +149,10 @@ void eventDescribeEnvironment(int brief){
             }
             else if( i == maxi - 2 ){
                 if( maxi == 2 ){
-                    desc += " and ";
+                    desc += " 和 ";
                 }
                 else {
-                    desc += ", and ";
+                    desc += "、和 ";
                 }
             }
             else desc += ", ";
