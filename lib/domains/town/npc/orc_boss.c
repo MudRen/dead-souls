@@ -22,9 +22,8 @@ protected void create() {
     SetKeyName("boss orc");
     SetId(({"orc","boss","boss"}));
     SetAdjectives(({"dirty","orc","boss"}));
-    SetShort("the boss orc");
-    SetLong("This orc is typical of its breed: nasty, brutish, and short. It is larger "
-            "than the local orcs you've seen, and looks mean and tough.");
+    SetShort("兽人首领");
+    SetLong("这个兽人是其种族的典型代表：卑鄙、野蛮、矮小。它比你见过的当地兽人更大，看起来凶狠而坚韧。");
     SetLevel(1);
     SetRace("orc");
     SetClass("fighter");
@@ -34,7 +33,7 @@ protected void create() {
     SetInventory(([
                 "/domains/town/weap/dagger":"wield dagger",
                 ]) );
-    SetGuard("west","The boss orc blocks your path!");
+    SetGuard("west","兽人首领挡住了你的去路！");
 }
 
 void init(){

@@ -16,10 +16,8 @@ protected void create() {
     SetKeyName("orc");
     SetId(({"orc"}));
     SetAdjectives(({"armored","professional"}));
-    SetShort("an armored orc");
-    SetLong("This is a large adult orc. He seems to have a professional "
-            "bearing, and a sense of purpose, unlike the ragged, chaotic "
-            "orcs you've heard talk about. He almost appears to be on a mission.");
+    SetShort("一个披甲兽人");
+    SetLong("这是一个成年大型兽人。他似乎有着职业军人的气质和使命感，不像你听说过的那些衣衫褴褛、混乱不堪的兽人。他看起来像是在执行任务。");
     SetInventory(([
                 "/domains/town/weap/sword" : "wield sword",
                 "/domains/town/obj/orc_rucksack" : "wear my sack",

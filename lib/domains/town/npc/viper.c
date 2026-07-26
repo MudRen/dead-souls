@@ -8,8 +8,8 @@ protected void create() {
     SetKeyName("viper");
     SetAdjectives( ({"dangerous", "venomous", "pit"}) );
     SetId( ({"snake", "reptile"}) );
-    SetShort("a pit viper");
-    SetLong("This is a thickly-built snake, about three feet long, with a brown and black pattern along its muscular body. A member of the family viperidae, it is a class of snake known for the deadliness of its venom.");
+    SetShort("一条蝮蛇");
+    SetLong("这是一条体型粗壮的蛇，约三英尺长，肌肉发达的身体上有棕色和黑色的花纹。它是蝰蛇科的成员，这是一类以毒液致命性而闻名的蛇。");
     SetAutoStand(0);
     SetPosition(POSITION_LYING);
     SetLevel(3);

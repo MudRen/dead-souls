@@ -9,11 +9,10 @@ protected void create() {
     barkeep::create();
     SetKeyName("lars");
     SetId( ({ "lars", "owner", "barkeep", "bartender", "keeper" }) );
-    SetShort("Lars, the keeper of the pub");
+    SetShort("酒馆老板拉尔斯");
     SetLevel(1);
-    SetLong("Lars is the owner of the local pub, an old and famous "
-            "drinking establishment in the heart of town.  He is an "
-            "unassuming fellow, and quite jovial.");
+    SetLong("拉尔斯是当地酒馆的老板，这是镇中心一家古老而著名的"+
+            "饮酒场所。他是一个低调的家伙，相当快活。");
     SetMenuItems(([
                 ({ "espresso", "imported espresso" }) : "/domains/town/meals/espresso",
                 ({ "sandwich", "ham sandwich" }) : "/domains/town/meals/ham_sand",
@@ -41,14 +40,14 @@ void init(){
 
 mixed NoKill(object attacker){
     if(attacker->GetTown() == "Town"){
-        return "Lars is like your favorite uncle. You find yourself unable to attack him.";
+        return "拉尔斯就像你最喜欢的叔叔。你发现自己无法攻击他。";
     }
     else {
-        tell_object(attacker,"Lars casually deflects your attack and boots you out the door.");
-        say("Lars casually deflects an attack from "+attacker->GetName()+" and "
-                "boots "+objective(attacker)+" out the door.");
-        tell_room("/domains/town/room/road",attacker->GetName()+" comes flying out of the pub and "
-                "lands on "+possessive(attacker)+" butt on the road.");
+        tell_object(attacker,"拉尔斯轻松地挡开了你的攻击，把你踢出了门外。");
+        say("拉尔斯轻松地挡开了"+attacker->GetName()+"的攻击，"+
+                "把"+objective(attacker)+"踢出了门外。");
+        tell_room("/domains/town/room/road",attacker->GetName()+"从酒馆里飞了出来，"+
+                "一屁股摔在了路上。");
         attacker->eventMove("/domains/town/room/road");
         attacker->eventDescribeEnvironment();
         attacker->SetPosition(POSITION_SITTING);

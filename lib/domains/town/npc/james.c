@@ -8,14 +8,13 @@ protected void create() {
     SetKeyName("james");
     SetId( ({ "vendor","secretary","assistant","manager" }) );
     SetAdjectives( ({ "executive","medical","guild" }) );
-    SetShort("James, the guild secretary and manager");
+    SetShort("公会秘书兼经理詹姆斯");
     SetLevel(12);
-    SetLong("James is typical of apprentice healers: he is a bit "+
-            "arrogant, officious, and brusque; but he appears "+
-            "to be a competent secretary and guild officer.  "+
-            "He is the person you will buy a treatment token "+
-            "from. Read the list on the wall for the tokens "+
-            "available.");
+    SetLong("詹姆斯是典型的学徒治疗师：他有点"+
+            "傲慢、官僚、生硬；但他看起来"+
+            "是一个能干的秘书和公会官员。"+
+            "他是你购买治疗代币的人。"+
+            "请看墙上的列表了解可用的代币。");
     SetGender("male");
     SetMorality(40);
     SetRace("human");

@@ -9,15 +9,13 @@ void create(){
     SetGender("male");
     SetRace("dwarf");
     SetNativeLanguage("common");
-    SetShort("Bugg the schoolteacher");
-    SetLong("This is a person whose job it is to teach you things. "+
-            "For example, 'ask teacher "+
-            "to teach Malkierien' would prompt him to begin teaching a Malkierien "+
-            "lesson to you, if he knows the language and you have "+
-            "earned sufficient training points. If you lack training points, then "+
-            "do some adventuring and earn a level promotion. You will "+
-            "then be awarded training points. To know more about what Bugg "+
-            "can teach: ask bugg for help"); 
+    SetShort("教师巴格");
+    SetLong("这是一个以教你东西为工作的人。"+
+            "例如，'ask teacher to teach Malkierien'会让他开始教你"+
+            "Malkierien语言课程，前提是他知道这种语言，"+
+            "而且你有足够的训练点数。如果你缺少训练点数，"+
+            "那就去冒险并获得升级。升级后你会"+
+            "获得训练点数。要了解更多关于巴格能教什么：ask bugg for help"); 
     SetLevel(1);
     SetLanguage("Malkierien", 100);
     SetLanguage("English", 100);

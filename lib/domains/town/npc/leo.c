@@ -6,10 +6,10 @@ int give_it(string str);
 int WieldStaff(){
     if(!present("staff",this_object())){
         new("/domains/town/weap/leostaff")->eventMove(this_object());
-        tell_room(environment(),"Leo claps his hands and a large "+
-                "wooden staff materializes.");
+        tell_room(environment(),"里奥拍了拍手，一根大"+
+                "木杖凭空出现。");
         this_object()->eventForce("wield staff");
-        this_object()->eventForce("say you poor fool!");
+        this_object()->eventForce("say 你这可怜的傻瓜！");
     }
     return 1;
 }
@@ -19,10 +19,10 @@ protected void create() {
     SetKeyName("leo");
     SetId(({"archwizard","wizard"}));
     SetAdjectives(({"portly","the portly","wizard","archwizard"}));
-    SetShort("Leo the portly archwizard");
-    SetLong("Leo is a large, friendly-looking wizard with a big "+
-            "beard and a huge belly. He seems pretty busy and "+
-            "somewhat preoccupied.");
+    SetShort("肥胖的大巫师里奥");
+    SetLong("里奥是一位身材魁梧、面容友善的巫师，"+
+            "留着大胡子，有一个大肚子。他看起来很忙，"+
+            "有些心事重重。");
     SetInventory(([
                 "/domains/town/armor/wizard_hat" : "wear hat",
                 "/domains/town/armor/robe" : "wear robe",
@@ -35,12 +35,12 @@ protected void create() {
     SetClass("mage");
     SetSkill("multi-hand", 9);
     SetAction(25, ({
-                "Leo scratches his beard thoughtfully.",
-                "Leo seems to be trying to remember something.", "Leo ponders.",
-                "Leo thinks.", "Leo thinks carefully.",
-                "Leo says, \"Where in blazes did I put that Orcslayer?\"",
-                "Leo says, \"I just hope those pesky orcs didn't find it.\"",
-                "Leo says, \"I just don't have time to fight those orcs.\""
+                "里奥若有所思地挠了挠胡子。",
+                "里奥似乎在努力回忆什么。", "里奥沉思着。",
+                "里奥思考着。", "里奥仔细思考着。",
+                "里奥说：\"我到底把屠兽者之剑放哪了？\"",
+                "里奥说：\"我只希望那些讨厌的兽人没有找到它。\"",
+                "里奥说：\"我只是没时间去和那些兽人战斗。\""
                 }));
     SetCombatAction(100, (: WieldStaff :));
     SetPolyglot(1);
@@ -55,8 +55,8 @@ int CompleteQuest(object ob){
     quests = ob->GetQuests();
     if(!ob->GetQuest("Orc Slayer Quest")){
         ob->AddQuest("the Orc Slayer","Orc Slayer Quest");
-        eventForce("say You have solved the Orc Slayer Quest. Congratulations!");
-        eventForce("say I hereby award you 7 quest points, and 2000 experience points!");
+        eventForce("say 你已经完成了屠兽者任务。恭喜你！");
+        eventForce("say 我 hereby 授予你7点任务点数和2000点经验值！");
         ob->AddQuestPoints(7);
         ob->AddExperiencePoints(2000);
         if(sword) sword->eventDestruct();

@@ -31,10 +31,8 @@ protected void create() {
     SetKeyName("orc");
     SetId(({"orc"}));
     SetAdjectives(({"dirty"}));
-    SetShort("a dirty orc");
-    SetLong("This orc is typical of its breed: nasty, brutish, and short. It appears "
-            "to be a juvenile or adolescent, making it somewhat less "
-            "dangerous but more hostile. ");
+    SetShort("一个肮脏的兽人");
+    SetLong("这个兽人是其种族的典型代表：卑鄙、野蛮、矮小。它看起来像是一个幼年或青春期的兽人，因此危险性较低但更具敌意。");
     SetLevel(1);
     SetRace("orc");
     SetGender("male");
@@ -43,8 +41,8 @@ protected void create() {
     SetInventory(([
                 "/domains/town/weap/dagger":"wield dagger",
                 ]) );
-    SetGuard("west", "An orc bars your way!" );
-    SetGuard("north", "An orc bars your way!");
+    SetGuard("west", "一个兽人挡住了你的去路！" );
+    SetGuard("north", "一个兽人挡住了你的去路！");
 }
 void init(){
     ::init();

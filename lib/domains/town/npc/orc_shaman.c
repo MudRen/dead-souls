@@ -16,10 +16,8 @@ protected void create() {
     SetKeyName("orc shaman");
     SetId(({"orc","shaman"}));
     SetAdjectives(({"dirty"}));
-    SetShort("the orc shaman");
-    SetLong("This orc is different from the others you've seen. "+
-            "he has an unearthly ferocity about him and "+
-            "is bigger, tougher, and meaner than the others.");
+    SetShort("兽人萨满");
+    SetLong("这个兽人与你见过的其他兽人不同。他身上散发着超自然的凶猛气息，比其他兽人更大、更坚韧、更凶恶。");
     SetLevel(1);
     SetRace("orc");
     SetClass("fighter");

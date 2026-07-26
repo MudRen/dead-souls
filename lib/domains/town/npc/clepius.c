@@ -10,12 +10,10 @@ protected void create() {
     SetKeyName("clepius");
     SetId(({"clepius","doctor","healer"}));
     SetAdjectives(({"a.s.", "A.S.", "doctor","dr","Dr.","dr."}));
-    SetShort("Clepius the healer");
-    SetLong("Clepius is a kindly old man, legendary for his "
-            "nearly superhuman powers of healing. He is even "
-            "rumored capable of resurrecting the dead. He runs "
-            "a medical care service in town, and can be asked to "
-            "help when needed, though his help is not free.");
+    SetShort("治疗师克勒皮乌斯");
+    SetLong("克勒皮乌斯是一位善良的老人，以他近乎超人的治疗能力而闻名。"+
+            "甚至有传言说他能够复活死者。他在镇上经营医疗服务，"+
+            "需要时可以向他求助，但他的帮助不是免费的。");
     SetLevel(50);
     SetRace("human");
     SetClass("mage");
@@ -52,14 +50,14 @@ int CheckBag(){
     string player, problem;
     slip = present("healer token", this_object());
     if(!slip && busy == 1) {
-        eventForce("say That's a bit odd...\n\n");
-        eventForce("I'm sorry but I must have misplaced your slip. Do you have another one?");
+        eventForce("say 这有点奇怪...\n\n");
+        eventForce("抱歉，我一定是把你的单子放错地方了。你还有另一张吗？");
         busy = 0;
         return 1;
     }
     if(slip){
         busy = 1;
-        eventForce("say mmhmmm...");
+        eventForce("say 嗯嗯...");
         problem = slip->GetProperty("problem");
         player = slip->GetPatient();
         this_object()->DiagPatient(player,problem);
@@ -97,10 +95,10 @@ int ejectRabble(string str){
 int NextPatient(){
     eventForce("put my first slip in bin");
     environment()->SetProperty("busy",0);
-    tell_room(load_object("/domains/town/room/healer"),"From the back room "+
-            "you hear the doctor holler: \"%^BOLD%^CYAN%^NEXT!%^RESET%^\"");
-    tell_room(environment(),"The doctor leans into the east doorway "+
-            "and hollers: \"%^BOLD%^CYAN%^NEXT!%^RESET%^\"");
+    tell_room(load_object("/domains/town/room/healer"),"从后面的房间里"+
+            "你听到医生喊道：\"%^BOLD%^CYAN%^下一位！%^RESET%^\"");
+    tell_room(environment(),"医生探进东边的门口"+
+            "喊道：\"%^BOLD%^CYAN%^下一位！%^RESET%^\"");
     busy = 0;
     environment()->SetProperty("busy",0);
     return 1;
@@ -116,21 +114,21 @@ int PerformHeal(string dude){
         eventForce("shrug");
         return 1;
     }
-    eventForce("say All right...let's take a look at you.");
+    eventForce("say 好吧...让我看看你。");
     hp = person->GetHealthPoints();
     mhp = person->GetMaxHealthPoints()-10;
     if(hp > mhp){
-        eventForce("say You look fine to me. Take back your slip and save it for when you really need it.");
+        eventForce("say 你看起来没事。把你的单子收回去，留到真正需要的时候再用。");
         eventForce("give my first slip to "+dude);
         return 1;
     }
     if(present("clepius mojo",person)){
-        eventForce("say You already have salve on you. Give it a chance to work, then come back later.");
+        eventForce("say 你身上已经有药膏了。让它发挥作用，然后再回来。");
         eventForce("give my first slip to "+dude);
         return 1;
     }
-    eventForce("say Yes, you can use a little help.");
-    tell_room(environment(),"Clepius vigorously rubs a healing salve onto your body. You can feel it enhancing your body's recovery.");
+    eventForce("say 是的，你可以接受一点治疗。");
+    tell_room(environment(),"克勒皮乌斯用力地将治疗药膏涂抹在你身上。你能感觉到它在加速你身体的恢复。");
     new("/secure/obj/mojo")->eventMove(person);
     return 1;
 }
@@ -142,10 +140,10 @@ int PerformRegenerate(string dude){
     person = present(dude,environment());
     stumps=person->GetMissingLimbs();
 
-    eventForce("say Let's count limbs, then. Hmmmm...");
+    eventForce("say 那让我们数数四肢吧。嗯嗯嗯...");
 
     if(!sizeof(stumps)) {
-        eventForce("say You are not missing any limbs. Go sell this slip back to James.");
+        eventForce("say 你没有缺胳膊少腿。把这张单子卖给詹姆斯吧。");
         eventForce("give my first slip to "+dude);
         return 1;
     }
@@ -166,13 +164,13 @@ int PerformExcision(string dude){
     wounds=0;
     wounds=person->GetLead();
     if(!slug){
-        eventForce("say You have no foreign bodies.");
+        eventForce("say 你体内没有异物。");
         eventForce("give my first slip to "+dude);
         return 1;
     }
 
-    tell_room(environment(this_object()),"Clepius deftly extracts a lead slug from "+ dude+".", ({person}));
-    tell_object(person,"Clepius deftly extracts a lead slug from your body.");
+    tell_room(environment(this_object()),"克勒皮乌斯灵巧地从"+dude+"体内取出了一个铅弹。", ({person}));
+    tell_object(person,"克勒皮乌斯灵巧地从你体内取出了一个铅弹。");
     slug=new("/domains/town/obj/spent");
     if(wounds > 0) {
         person->AddLead("firearms_wounds", -1);

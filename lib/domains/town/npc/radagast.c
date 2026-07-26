@@ -10,15 +10,13 @@ void create(){
     SetGender("male");
     SetRace("human");
     SetNoSpells(1);
-    SetShort("Radagast the Brown");
-    SetLong("This is a tall, thin old man. Not much is known of "+
-            "this mysterious wizard, other than his legendary kindness "+
-            "to animals and his controversial reputation as a seditious "+
-            "rebel. He can train you in the arts of magic defense, magic "+
-            "attack, and conjuring. You may, for example, \"ask radagast "+
-            "to train conjuring\". If you lack training points, then "+
-            "do some adventuring and earn a promotion from Dirk. You will "+
-            "then be awarded training points."); 
+    SetShort("褐袍拉达加斯特");
+    SetLong("这是一个高瘦的老人。人们对这位神秘的巫师知之甚少，"+
+            "只知道他对动物有着传奇般的仁慈，以及他作为煽动性叛乱者的争议名声。"+
+            "他可以训练你魔法防御、魔法攻击和召唤术。"+
+            "例如，你可以\"ask radagast to train conjuring\"。"+
+            "如果你缺少训练点数，那就去冒险并从德克那里获得晋升。"+
+            "升级后你会获得训练点数。"); 
     SetClass("mage");
     SetLevel(40);
     AddTrainingSkills( ({ "magic defense", "magic attack", "conjuring" }) );
@@ -29,15 +27,15 @@ void create(){
 
 void init() {
     trainer::init();
-    SetSmell(([  "default" : "A rather odd, musty smell."]));
-    SetListen(([  "default" : "Radagast seems to be constantly "+
-                "humming a quiet tune to himself."]));
+    SetSmell(([  "default" : "一股相当奇怪的霉味。"]));
+    SetListen(([  "default" : "拉达加斯特似乎在不停地"+
+                "低声哼着小曲。"]));
 }
 
 int eventHelp(object who, string unused){
     ::eventHelp(who);
-    this_object()->eventForce("speak Please note I only understand "+
-            "English. If you're speaking to me in another language, I will "+
-            "not understand!");
+    this_object()->eventForce("speak 请注意我只懂"+
+            "英语。如果你用其他语言和我说话，我"+
+            "听不懂！");
     return 1;
 }

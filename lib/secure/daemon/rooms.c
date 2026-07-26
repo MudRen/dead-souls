@@ -698,11 +698,11 @@ mixed GetRoom(mixed ob){
     if(!name) return 0;
     prefix = path_prefix(name);
     room_name = last_string_element(name, "/");
-    if(!WorldMap[prefix]) return "No such prefix.";
-    if(!WorldMap[prefix][room_name]) return "No such room.";
+    if(!WorldMap[prefix]) return "不存在此前缀。";
+    if(!WorldMap[prefix][room_name]) return "不存在此房间。";
     return copy(WorldMap[prefix][room_name]); 
 #else
-    return "Grid is not enabled.";
+    return "网格系统未启用。";
 #endif
 }
 

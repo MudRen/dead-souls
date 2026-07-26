@@ -292,8 +292,8 @@ int AutoAdvance(object ob, int level){
     ob->ChangeLevel(level);
     ret = ob->GetLevel();
     if(ret >= level){
-        ob->eventPrint("%^RED%^%^B_BLACK%^You automatically advance to "+
-                "level "+level+". Congratulations!%^RESET%^");
+        ob->eventPrint("%^RED%^%^B_BLACK%^你自动升级到了 "+
+                "等级 "+level+"。恭喜！%^RESET%^");
         ob->AddTrainingPoints(level);
         if(LevelTitles[level]){
             ob->AddTitle(LevelTitles[level]);
@@ -420,7 +420,7 @@ int RemoveUser(string str){
     }
     debug("REMOVE USER REQUEST: "+str, "red");
     if( ob = find_player(str) ) {
-        message("system", "You are being ridded from " + mud_name() + ".",
+        message("system", "你正在被从 " + mud_name() + " 中移除。",
                 ob);
         if( !(ob->eventDestruct()) ) destruct(ob);
     }
@@ -598,7 +598,7 @@ protected mixed GetVariable(string val){
         return variables(this_object());
     }
     if(member_array(val,variables(this_object())) == -1){
-        write("No such PLAYER_D variable exists.");
+        write("不存在此 PLAYERS_D 变量。");
         return 0;
     }
     return fetch_variable(val);
@@ -630,7 +630,7 @@ mixed GetPlayerData(string player, string val){
     validate();
     if(!player) return 0;
     if(!user_exists(player)){
-        write("No such user exists.");
+        write("不存在此用户。");
         return 0;
     }
     gplayer = player;

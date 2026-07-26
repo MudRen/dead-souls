@@ -10,12 +10,11 @@ void create(){
     SetNativeLanguage("english");
     SetTeachingFee(100);
     SetLocalCurrency("silver");
-    SetShort("Bubb the schoolteacher");
-    SetLong("This is a person whose job it is to teach you things. "+
-            "For example, 'ask teacher "+
-            "to teach Tangetto' would prompt him to begin teaching a Tangetto "+
-            "lesson to you, if he knows the language and you have "+
-            "enough of his preferred currency. ");
+    SetShort("教师巴布");
+    SetLong("这是一个以教你东西为工作的人。"+
+            "例如，'ask teacher to teach Tangetto'会让他开始教你"+
+            "Tangetto语言课程，前提是他知道这种语言，"+
+            "而且你有足够的他偏好的货币。");
     SetLevel(1);
     SetLanguage("Tangetto", 100);
     AddTeachingLanguages( ({"Tangetto", "English" }) );

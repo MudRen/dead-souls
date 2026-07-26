@@ -6,11 +6,10 @@ void create(){
     SetId("mayor");
     SetGender("male");
     SetRace("human");
-    SetShort("the mayor");
-    SetLong("A bit disheveled, this rather eccentric-looking "+
-            "man discharges the official duties of this town's "+
-            "chief executive office. Mostly, people request "+
-            "citizenship from him, for a fee of 5 silver.");
+    SetShort("镇长");
+    SetLong("这位看起来有些邋遢、相当古怪的男人"+
+            "履行着这个镇首席行政官的职责。"+
+            "大多数时候，人们向他申请公民身份，费用是5银币。");
     SetLocalCurrency("silver");
     SetTax(5);
 }
@@ -18,7 +17,6 @@ void create(){
 //snuf
 void init() {
     ::init();
-    SetSmell(([  "default" : "A rather odd, musty smell."]));
-    SetListen(([  "default" : "The mayor grumbles something about an "+
-                "unconscionably small tax revenue base."]));
+    SetSmell(([  "default" : "一股相当奇怪的霉味。"]));
+    SetListen(([  "default" : "镇长嘟囔着什么关于税收基数小得离谱的话。"]));
 }

@@ -9,12 +9,11 @@ protected void create() {
     SetKeyName("zoe");
     SetId( ({ "teller","banker","executive","shawty" }) );
     SetAdjectives( ({ "bank","executive","friendly","efficient" }) );
-    SetShort("Zoe the bank teller");
+    SetShort("银行出纳佐伊");
     SetLevel(12);
-    SetLong("Zoe is an attractive young blonde woman with "
-            "a French accent. She is dressed in a conservative, "
-            "executive style, and has a friendly and efficient air "
-            "about her.");
+    SetLong("佐伊是一位迷人的年轻金发女郎，"+
+            "带着法国口音。她穿着保守的行政风格服装，"+
+            "给人一种友好而高效的感觉。");
     SetGender("female");
     SetMorality(40);
     SetRace("human");

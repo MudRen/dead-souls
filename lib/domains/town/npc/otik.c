@@ -7,11 +7,10 @@ protected void create() {
     ::create();
     SetKeyName("otik");
     SetId( ({ "vendor","otik", "owner", "shopkeep", "shopkeeper", "keeper" }) );
-    SetShort("Otik, the keeper of the shop");
+    SetShort("店主奥提克");
     SetLevel(12);
-    SetLong("Otik is the owner of the local general store, an old and famous "
-            "trading post in the heart of town.  The brother of Lars, he also is an "
-            "unassuming fellow, and just as jovial.");
+    SetLong("奥提克是当地杂货店的老板，这是镇中心一家古老而著名的"+
+            "贸易站。他是拉尔斯的兄弟，同样是一个低调的家伙，同样快活。");
     SetGender("male");
     SetMorality(40);
     SetRace("human");

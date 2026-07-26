@@ -8,8 +8,8 @@ protected void create() {
     SetKeyName("rain man");
     SetId(({"rainman","man","raymond"}));
     SetAdjectives(({"rain"}));
-    SetShort("Rain Man");
-    SetLong("A distracted-looking human.");
+    SetShort("雨人");
+    SetLong("一个看起来心不在焉的人类。");
     SetClass("explorer");
     SetLevel(1);
     SetMelee(0);

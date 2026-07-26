@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("ingrid");
     SetId(({"npc","mob","character","mobile"}));
     SetAdjectives(({"non-player", "non player"}));
-    SetShort("Ingrid");
-    SetLong("Ingrid is rather slight of build, but has a non-nonsense way about her that makes her seem much tougher than she physically looks.");
+    SetShort("英格丽德");
+    SetLong("英格丽德身材相当纤细，但她那不苟言笑的气质让她看起来比外表坚强得多。");
     SetInventory(([
                 "/domains/town/armor/hshirt" : "wear shirt",
                 "/domains/town/armor/workboot_l" : "wear left boot",

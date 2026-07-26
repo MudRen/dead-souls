@@ -7,14 +7,14 @@ protected void create() {
     SetKeyName("naiad");
     SetId( ({"nymph", "ludivine", "woman","spirit"}) );
     SetAdjectives(({"water", "beautiful"}));
-    SetShort("a beautiful naiad");
-    SetLong("This slender nature spirit appears to be a water nymph, protecting this strange pool.");
+    SetShort("一位美丽的水仙子");
+    SetLong("这个苗条的自然精灵看起来是一位水仙子，守护着这个奇异的水池。");
     SetClass("fighter");
     SetLevel(8);
     SetMelee(1);
     SetRace("nymph");
     SetGender("female");
-    SetGuard("down", "The naiad playfully bars your path.");
+    SetGuard("down", "水仙子嬉闹地挡住了你的去路。");
 }
 
 void init(){

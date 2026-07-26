@@ -9,13 +9,11 @@ protected void create() {
     SetKeyName("oana");
     SetId( ({ "shopkeep","shopkeeper","keeper","vendor"}) );
     SetAdjectives( ({ "friendly","sprightly","plain","simple" }) );
-    SetShort("Oana the Magic Shop keeper");
+    SetShort("魔法商店店主奥安娜");
     SetLevel(12);
-    SetLong("Oana is a sprightly young woman with very short "+
-            "dark hair and a simple, plain "+
-            "manner of dress. She is the Magic Shop "+
-            "keeper, and you may trade in magical "+
-            "items with her.");
+    SetLong("奥安娜是一个活泼的年轻女子，留着很短的"+
+            "深色头发，穿着朴素简单。她是魔法商店"+
+            "的店主，你可以和她交易魔法物品。");
     SetGender("female");
     SetMorality(40);
     SetRace("human");

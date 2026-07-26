@@ -8,8 +8,8 @@ protected void create() {
     SetKeyName("fish");
     SetAdjectives( ({"cod", "medium", "unremarkable"}) );
     SetId(({"cod","codfish"}));
-    SetShort("a fish");
-    SetLong("A codfish of medium size.");
+    SetShort("一条鱼");
+    SetLong("一条中等大小的鳕鱼。");
     SetWanderSpeed(1);
     //Letting npc's load virtual rooms can be dangerous.
     //You were warned.

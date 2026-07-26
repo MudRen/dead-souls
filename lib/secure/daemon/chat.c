@@ -320,16 +320,16 @@ int cmdLast(string feep){
 
     if(!chanlast||!Channels[feep]||member_array(this_player(), Channels[feep])==-1){
 
-        this_player()->eventPrint("You are not subscribed to that channel.", MSG_ERROR);
+        this_player()->eventPrint("你没有订阅该频道。", MSG_ERROR);
         return 1;
     }
     if(!sizeof(chanlast[feep]))
     {
-        this_player()->eventPrint("That channel has no backlog.", MSG_ERROR);
+        this_player()->eventPrint("该频道没有历史记录。", MSG_ERROR);
         return 1;
     }
     if(!CanListen(this_player(),feep)){
-        write("You lack privileges to that channel.");
+        write("你没有该频道的权限。");
         return 1;
     }
     this_player()->eventPrint(implode(chanlast[feep], "\n"));
@@ -408,7 +408,7 @@ int cmdChannel(string verb, string str){
             }
             if(grepp(verb,"|file")){
                 if(!file_exists(str) || !(str = read_file(str))){
-                    write("Can't read that file.");
+                    write("无法读取该文件。");
                     return 0;
                 }
                 verb = replace_string(verb,"|file","");
@@ -461,23 +461,23 @@ int cmdChannel(string verb, string str){
 
             if( ch == (ch = GetRemoteChannel(ch)) ) {
                 if(!creatorp(this_player())){
-                    write("Remote channel information is not available to players.");
+                    write("远程频道信息不对玩家开放。");
                     return 1;
                 }
             }
 
             if( !(mud = INTERMUD_D->GetMudName(mud)) ) {
-                this_player()->eventPrint(mud_name() + " is not aware of "+
-                        "such a place.", MSG_ERROR);
+                this_player()->eventPrint(mud_name() + " 不知道有这样的地方。",
+                        MSG_ERROR);
                 return 1;
             }
 
             if(!CanTalk(this_player(),verb)) {
-                write("You lack privileges to that channel.");
+                write("你没有该频道的权限。");
                 return 1;
             }
             SERVICES_D->eventSendChannelWhoRequest(ch, mud);
-            this_player()->eventPrint("Remote listing request sent.",
+            this_player()->eventPrint("远程列表请求已发送。",
                     MSG_SYSTEM);
             return 1;
         }
@@ -489,7 +489,7 @@ int cmdChannel(string verb, string str){
 
         //Build and print the list of listeners
         who = GetChannelList(str);
-        msg = "Online: " + implode(who, "   ");
+        msg = "在线：" + implode(who, "   ");
         this_player()->eventPrint(msg, MSG_SYSTEM);
         return 1;
     }
@@ -521,7 +521,7 @@ int cmdChannel(string verb, string str){
     //******Access Checks
     //No talking if you're not allowed.
     if ( !CanTalk(this_player(),verb) ) {
-        write("You lack privileges to that channel.");
+        write("你没有该频道的权限。");
         return 1;
     }
     //Toggle channel blocking
@@ -534,12 +534,12 @@ int cmdChannel(string verb, string str){
     }
     //Syschans aren't for chatting on, only listening
     if ( member_array(verb, syschans) != -1 ) {
-        write("This is not a channel for chatting.");
+        write("这不是聊天频道。");
         return 1;
     }
     //If gagged, you can't talk on channels
     if ( this_player()->GetGagged(verb) ) {
-        write("You have gag mode enabled. Type: 'gag off' to talk on channels.");
+        write("你已启用禁言模式。输入 'gag off' 以在频道上发言。");
         return 1;
     }
     //Channel doesn't exist, probably an emote typo
@@ -549,11 +549,11 @@ int cmdChannel(string verb, string str){
     //If blocked, allow no chatting
     if( this_player()->GetBlocked(verb) ) {
         if( this_player()->GetBlocked("all") ) {
-            this_player()->eventPrint("You cannot chat while totally blocked.",
+            this_player()->eventPrint("完全屏蔽状态下无法聊天。",
                     MSG_ERROR);
             return 1;
         }
-        this_player()->eventPrint("Turn this channel on to talk on it.", MSG_ERROR);
+        this_player()->eventPrint("请先开启该频道才能发言。", MSG_ERROR);
         return 1;
     }
     //******End Access Checks
@@ -688,10 +688,10 @@ int cmdChannel(string verb, string str){
             //Forced emotes only allow real emotes, not custom ones.
             if (forcedemote == 1) {
                 if ( member_array( emote_cmd,SOUL_D->GetEmotes() ) > -1 ) {
-                    write("Invalid syntax. See %^CYAN%^help "+emote_cmd+"%^RESET%^ for a list of usages.");
+                    write("语法无效。请查看 %^CYAN%^help "+emote_cmd+"%^RESET%^ 了解用法列表。");
                     return 1;
                 } else {
-                    write("No such feeling. See %^CYAN%^help feelings%^RESET%^ for a list of feelings.");
+                    write("没有这种情感。请查看 %^CYAN%^help feelings%^RESET%^ 了解情感列表。");
                     return 1;
                 }
             } else {

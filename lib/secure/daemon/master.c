@@ -192,10 +192,10 @@ void flag(string str) {
         return;
     }
     if(sscanf(str, "call %s %s", file, arg)) {
-        write("Got "+call_other(file, arg)+" back.\n");
+        write("返回值："+call_other(file, arg)+"\n");
         return;
     }
-    write("Master: unknown flag.\n");
+    write("主控对象：未知的标志参数。\n");
 }
 
 string *epilog(int nopreload) {
@@ -247,10 +247,10 @@ void preload(string str) {
     before = rusage();
 #endif
     if( !file_exists(str = lpc_file(str)) ) return;
-    write("Preloading: " + str + "...");
+    write("预加载：" + str + "...");
 
     if( err = catch(call_other(str, "???")) ){
-        write("\nGot error "+err+" when loading "+str+".\n");
+        write("\n加载 "+str+" 时发生错误："+err+"\n");
     }
     else {
 #ifdef __HAS_RUSAGE__
@@ -262,7 +262,7 @@ void preload(string str) {
         }
         return;
 #endif
-        write("(done)\n");
+        write("（完成）\n");
     }
 }
 
@@ -291,7 +291,7 @@ int valid_link(string from, string to) {
     if(!interactive(ob)) ob = previous_object(2);
     if(!interactive(ob)) ob = previous_object(3);
     if(!interactive(ob)) {return 0;}
-    if(ob->GetForced()) { tell_player(ob,"Someone's fucking with you."); return 0;}
+    if(ob->GetForced()) { tell_player(ob,"有人正在操控你的角色。"); return 0;}
     if(!valid_write(from, ob, "link")) {return 0;}
     if(!valid_write(to, ob, "link")) {return 0;}
     return 1;
@@ -418,7 +418,7 @@ object connect(int port) {
 
     file = LIB_CONNECT;
     if( err  = catch(ob = new(file)) ) {
-        write("It looks like someone is working on the user object.\n");
+        write("看起来有人正在修改用户对象。\n");
         write(err);
         destruct(ob);
     }
@@ -500,8 +500,8 @@ protected void crash(mixed args...) {
     write_file(DIR_LOGS "/crashes",
             mud_name() + " crashed " + ctime(time()) + " with error " +
             err+".\n"+guilty_stack+"\n"+guilty_obs+"\n---\n");
-    message("system", "Reality implosion!!!  Everyone duck!!!", users());
-    message("system", "You are being forced to quit.", users());
+    message("system", "世界崩溃了！！！所有人快躲！！！", users());
+    message("system", "你被强制退出游戏。", users());
     users()->cmdQuit();
 }
 
@@ -591,17 +591,17 @@ mixed apply_unguarded(function f) {
     mixed val;
 
     if(!f || !functionp(f)){
-        error("Invalid function passed.");
+        error("传递了无效的函数。");
         return 0;
     }
 
     if((functionp(f) & FP_OWNER_DESTED)){
-        error("Function owner dested: invalid function.");
+        error("函数所有者已销毁：无效的函数。");
         return 0;
     }
 
     if(base_name(previous_object(0)) != SEFUN) {
-        error("Illegal unguarded apply.");
+        error("非法的无保护调用。");
         return 0;
     }
     previous_unguarded = Unguarded;
@@ -657,18 +657,17 @@ string error_handler(mapping mp, int caught) {
     if( this_player(1) && find_object(SEFUN) ) {
         this_player(1)->SetLastError(mp);
         if( creatorp(this_player(1)) ) {
-            this_player(1)->eventPrint(ret + "Trace written to " + file,
+            this_player(1)->eventPrint(ret + "追踪记录已写入 " + file,
                     MSG_SYSTEM);
         }
         else {
             if( !strsrch(file_name(this_player(1)), LIB_CONNECT) ) {
                 return "/log/login\n"+standard_trace(mp)+"\n--\n";
             }
-            this_player()->eventPrint("A runtime error occurred.");
+            this_player()->eventPrint("发生了一个运行时错误。");
             if (find_object(CHAT_D)) {
-              CHAT_D->eventSendChannel("System", "error", "A runtime error "
-                                                          "occurred to " +
-                  this_player(1)->GetCapName()+".");
+              CHAT_D->eventSendChannel("System", "error", this_player(1)->GetCapName()+
+                  " 发生了一个运行时错误。");
             }
             rlog = "-----\n" +timestamp()+ ": "+this_player(1)->GetCapName()+"\n";
             rlog += load_object("/secure/cmds/creators/dbxwhere")->cmd(this_player(1)->GetKeyName());
@@ -855,40 +854,40 @@ string parser_error_message(int type, object ob, mixed arg, int flag) {
             }
         }
         if(ob && wat){
-            err = "You can't use "+ob->GetShort()+" with "+
-                wat->GetShort()+" that way.";
+            err = "你无法这样将 "+ob->GetShort()+" 和 "+
+                wat->GetShort()+" 一起使用。";
         }
         else if(ob){
-            err = "It seems you can't do that with " +ob->GetShort()+".";
+            err = "你似乎无法对 " +ob->GetShort()+ " 执行此操作。";
         }
         else if(wat){
-            err = "It seems you can't do that to " +wat->GetShort()+".";
+            err = "你似乎无法对 " +wat->GetShort()+ " 执行此操作。";
         }
         else {
-            err = "It seems you can't do that.";
+            err = "你似乎无法执行此操作。";
         }
         break;
 
         case ERR_IS_NOT:
         if(flag || (arg && stringp(arg))){
             if(flag || get_object(arg, this_player())){
-                return "It appears you must be more specific.";
+                return "你需要更加明确一些。";
             }
             else if(arg && stringp(arg)) wut = remove_article(arg);
         }
         else wut = "that";
-        err = capitalize(wut) +" is not here.";
+        err = capitalize(wut) +" 不在这里。";
         break;
 
         case ERR_NOT_LIVING:
         if( flag )
-            err = "None of the " + pluralize(remove_article(arg)) +" are alive.";
-        else err = "The " + remove_article(arg) + " is not alive.";
+            err = "这些 " + pluralize(remove_article(arg)) +" 都不是活物。";
+        else err = "这个 " + remove_article(arg) + " 不是活物。";
         break;
 
         case ERR_NOT_ACCESSIBLE:
-        if( flag ) err = "You can't get to them.";
-        else err = "You can't get to it.";
+        if( flag ) err = "你无法接触到它们。";
+        else err = "你无法接触到它。";
         break;
 
         case ERR_AMBIG:
@@ -904,27 +903,27 @@ string parser_error_message(int type, object ob, mixed arg, int flag) {
 
             obs = unique_array(arg, (: $1->GetShort() :));
             if( sizeof(obs) == 1 )
-                err = "Which of the " +
+                err = "你指的是这些中的哪一个 " +
                     consolidate(sizeof(arg), obs[0][0]->GetShort()) +
-                    " do you mean?";
+                    "？";
             else {
-                err = "Do you mean ";
+                err = "你是指 ";
                 for(i = 0; i<sizeof(obs); i++) {
                     if( sizeof(obs[i]) > 1 )
                         err += "one of the " +
                             consolidate(sizeof(obs[i]),obs[i][0]->GetShort());
                     else err += obs[i][0]->GetShort();
-                    if( i == (sizeof(obs)-2) ) err += " or ";
-                    else if( i < sizeof(obs) - 1 ) err += ", ";
+                    if( i == (sizeof(obs)-2) ) err += " 还是 ";
+                    else if( i < sizeof(obs) - 1 ) err += "、";
                 }
-                err += "?";
+                err += "？";
             }
             return err;
         }
 
         case ERR_ORDINAL:
-        if( arg > 1 ) err = "There are only " + arg + " of them.";
-        else err = "There is only one of them.";
+        if( arg > 1 ) err = "这里只有 " + arg + " 个。";
+        else err = "这里只有一个。";
         break;
 
         case ERR_ALLOCATED:
@@ -933,16 +932,16 @@ string parser_error_message(int type, object ob, mixed arg, int flag) {
         case ERR_THERE_IS_NO:
         if(flag || (arg && stringp(arg)) && environment(this_player())){
             if(tmpob = present(arg, environment(this_player()))){
-                return "It seems you must be more specific.";
+                return "你需要更加明确一些。";
             }
             else if(arg && stringp(arg)) wut = remove_article(arg);
         }
         else wut = "such thing";
-        err = "There is no "+ wut +" here.";
+        err = "这里没有 "+ wut +"。";
         break;
 
         case ERR_BAD_MULTIPLE:
-        err = "You can't do that to more than one at a time.";
+        err = "你无法同时对多个目标执行此操作。";
         break;
     }
     return err;

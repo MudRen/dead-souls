@@ -71,8 +71,8 @@ void eventReboot(int x){
         x = 1;
     }
     x *= 60;
-    message("broadcast", mud_name() + " will reboot in " +
-            consolidate(x/60, "a minute") + ".", users());
+    message("broadcast", mud_name() + " 将在 " +
+            (x/60) + " 分钟后重启。", users());
     if( x < 61 ){
         callout = call_out( (: eventAnnounceReboot, 10 :), x - 10);
     }
@@ -87,19 +87,19 @@ void eventReboot(int x){
 
 protected void eventAnnounceReboot(int x) {
     if( x == 10 ) {
-        message("broadcast", "Last warning: Reboot in 10 seconds.", users());
+        message("broadcast", "最后警告：10秒后重启。", users());
         call_out( (: DoSaves :), 7 );
         callout = call_out( (: Shutdown :), 10 );
     }
     else if( x < 61 ) {
-        message("broadcast", mud_name() + " will reboot in a minute.",
+        message("broadcast", mud_name() + " 将在一分钟后重启。",
                 users());
         callout = call_out( (: eventAnnounceReboot, 10 :), 50);
     }
     else {
         int y;
 
-        message("broadcast", "Reboot in " + (x/60) + " minutes.", users());
+        message("broadcast", (x/60) + " 分钟后重启。", users());
         y = ((2 * (x/60))/3) * 60;
         callout = call_out( (: eventAnnounceReboot($(y)) :), x - y);
     }
@@ -111,7 +111,7 @@ void eventShutdown() {
 }
 
 protected void Shutdown() {
-    message("broadcast", "Shutting down " + mud_name() + " immediately!",
+    message("broadcast", "正在立即关闭 " + mud_name() + "！",
             users());
     map(users(), (: catch($1->cmdQuit()) :));
     shutdown();

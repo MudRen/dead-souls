@@ -18,8 +18,8 @@ int FlatterResponse(mixed args...){
         unguarded( (: write_file("/domains/town/save/brandy.o", save_str, 1) :) );
         args[0]->AddExperiencePoints(300);
     }
-    this_object()->eventForce("say Thank you, "+args[0]->GetName()+". Feel free to ask me "+
-            "for my special menu.");
+    this_object()->eventForce("say 谢谢你，"+args[0]->GetName()+"。随时可以问我"+
+            "我的特别菜单。");
     return 1;
 }
 
@@ -31,12 +31,10 @@ protected void create() {
     SetKeyName("brandy");
     SetAdjectives( ({ "bar", "fine", "bartender", "keeper", "good", "serving" }) );
     SetId( ({ "brandy", "barmaid", "barkeep", "bartender", "keeper", "girl", "wench", "maid" }) );
-    SetShort("Brandy the barmaid");
+    SetShort("女招待布兰迪");
     SetLevel(1);
-    SetLong("With eyes that could steal a sailor from the sea, Brandy "
-            "works in this harbor town laying whiskey down, fetching round "
-            "after round for her fiercely loyal clientele. Word is she's receptive "
-            "to flattery.");
+    SetLong("布兰迪有着能将水手从海上迷住的双眼，在这个港口小镇工作，"+
+            "为她忠实的顾客们端上一杯又一杯的威士忌。据说她很喜欢听恭维话。");
     SetMenuItems(([
                 ({ "guinness","beer","stein" }) : "/domains/town/meals/stein",
                 ({ "wine","bottle of wine" }) : "/domains/town/meals/winebottle",
@@ -86,8 +84,8 @@ mixed eventSell(object who, string args){
     //tc("flatterers: "+identify(flatterers));
     if(member_array(args, GetSpecials()) != -1 &&
             member_array(who->GetKeyName(), flatterers) == -1){
-        eventForce("say I don't feel comfortable selling that to you, "+
-                who->GetName()+".");
+        eventForce("say 我不太想卖那个给你，"+
+                who->GetName()+"。");
         return 1;
     }
     return ::eventSell(who, args);
@@ -95,13 +93,13 @@ mixed eventSell(object who, string args){
 
 varargs int eventSpecialList(object who, string what){
     if(member_array(who->GetKeyName(), flatterers) == -1){
-        eventForce("say I'm not sure I have a special menu for you, "+
-                who->GetName()+".");
+        eventForce("say 我不确定我有特别菜单给你，"+
+                who->GetName()+"。");
         return 1;
     }
     return ::eventSpecialList(who, what);
 }
 
 mixed NoKill(object attacker){
-    return "Brandy is such a fine girl you find yourself unable to attack her.";
+    return "布兰迪是个好姑娘，你发现自己无法攻击她。";
 }

@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("spider");
     SetAdjectives( ({"huge", "hairy"}) );
     SetId(({"npc","mob","character","mobile"}));
-    SetShort("a huge spider");
-    SetLong("This is a humongous hairy spider about the size of a housecat. It looks absolutely vile and it has some kind of viscous fluid is dripping from its mouthparts.");
+    SetShort("一只巨大的蜘蛛");
+    SetLong("这是一只巨大的毛蜘蛛，体型和家猫差不多。它看起来极其恶心，某种粘稠的液体正从它的口器中滴落。");
     SetMelee(1);
     SetLevel(1);
     SetRace("arachnid");

@@ -4,10 +4,8 @@ protected void create(){
     npc::create();
     SetKeyName("human champion");
     SetId( ({ "champion", "human","npc","warrior"}) );
-    SetShort("a human champion");
-    SetLong("This is a massive human warrior. Her huge muscles "+
-            "are clearly visible even through her armor. Her face is an angry "+
-            "snarl of rage and hatred.");
+    SetShort("一位人类勇士");
+    SetLong("这是一位魁梧的人类战士。即使透过她的盔甲，她巨大的肌肉也清晰可见。她的脸上带着愤怒和仇恨的咆哮表情。");
     SetLevel(10);
     SetRace("human");
     SetClass("fighter");

@@ -67,8 +67,8 @@ protected void create() {
     SetKeyName("zafo");
     SetId(({"dude"}));
     SetAdjectives(({"punk rock", "punkrock", "rock", "cool"}));
-    SetShort("Zafo");
-    SetLong("Zafo is a cool dude, and totally punk rock.");
+    SetShort("扎福");
+    SetLong("扎福是个很酷的家伙，完全朋克摇滚范儿。");
     SetLevel(10);
     SetRace("human");
     SetClass("fighter");
