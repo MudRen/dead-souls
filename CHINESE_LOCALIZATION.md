@@ -1,5 +1,10 @@
 # Dead Souls MUD 中文汉化指南
 
+## 汉化状态：✅ 已完成
+
+**分支**: chinese
+**统计**: 1,392 个文件已修改，9,299 行插入，11,211 行删除
+
 ## 汉化原则
 
 ### 需要汉化的内容
@@ -16,22 +21,6 @@
 3. **文件路径** - 所有文件路径保持不变
 4. **变量名/函数名** - 程序代码中的标识符
 5. **颜色代码** - %^RED%^, %^GREEN%^ 等格式代码
-
-## 文件结构
-
-```
-lib/
-├── domains/          # 游戏世界区域（主要汉化目标）
-│   ├── town/        # 城镇区域
-│   ├── Ylsrim/      # 伊斯林姆区域
-│   ├── amigara/     # 阿米加拉区域
-│   ├── cave/        # 洞穴区域
-│   └── ...
-├── realms/          # 创作者区域
-├── secure/          # 核心系统（选择性汉化）
-├── std/             # 标准对象模板
-└── www/             # Web界面
-```
 
 ## 汉化示例
 
@@ -53,21 +42,44 @@ SetLong("几十年前，这座小小的单间教堂曾是村庄活动的中心�
         "\n%^GREEN%^电梯旁边有一个按钮。%^RESET%^");
 ```
 
-## 汉化进度追踪
+## 已完成的汉化区域
 
-- [ ] domains/town/ - 城镇区域
-- [ ] domains/Ylsrim/ - 伊斯林姆区域
-- [ ] domains/amigara/ - 阿米加拉区域
-- [ ] domains/cave/ - 洞穴区域
-- [ ] domains/campus/ - 校园区
-- [ ] domains/learning/ - 学习区
-- [ ] domains/default/ - 默认区域
-- [ ] domains/examples/ - 示例区域
-- [ ] domains/Praxis/ - 普拉克西斯区域
-- [ ] secure/ - 核心系统
-- [ ] std/ - 标准对象
-- [ ] realms/ - 创作者区域
-- [ ] doc/help/ - 帮助文档
+| 区域 | 提交 | 状态 |
+|------|------|------|
+| domains/town | `dc0fea9` | ✅ 完成 |
+| domains/amigara | `461525e` | ✅ 完成 |
+| domains/cave | `1126c90` | ✅ 完成 |
+| domains/campus | `fce3980` | ✅ 完成 |
+| domains/default | `9f60e43` | ✅ 完成 |
+| domains/Ylsrim | `c9033ea` | ✅ 完成 |
+| domains/Praxis | `fb8b23c` | ✅ 完成 |
+| domains/learning | `0ad2bfc` | ✅ 完成 |
+| domains/examples | `2cf0dd9` | ✅ 完成 |
+| std | `06dda5b` | ✅ 完成 |
+| realms | `57cb45e` | ✅ 完成 |
+| estates | `b227504` | ✅ 完成 |
+| doc/help | `9a257e7` | ✅ 完成 |
+| verbs | `0d12395` | ✅ 完成 |
+| powers/shadows | `66899a9` | ✅ 完成 |
+| 核心系统消息 | `8f5917f` | ✅ 完成 |
+| 剩余lib目录 | `0d50274` | ✅ 完成 |
+
+## 使用方法
+
+```bash
+# 切换到中文分支
+git checkout chinese
+
+# 编译
+./build.sh
+
+# 启动
+./run.sh
+
+# 访问
+# Web: http://localhost:5555
+# Telnet: localhost:6666
+```
 
 ## 注意事项
 
@@ -76,13 +88,3 @@ SetLong("几十年前，这座小小的单间教堂曾是村庄活动的中心�
 3. **测试汉化结果** - 每个区域汉化后测试功能正常
 4. **备份原文件** - 使用git跟踪所有修改
 5. **分批处理** - 按目录分批汉化，避免遗漏
-
-## 批量汉化命令示例
-
-```bash
-# 查找所有包含SetShort的文件
-grep -r "SetShort" lib/domains/town/
-
-# 查找所有包含SetLong的文件
-grep -r "SetLong" lib/domains/town/
-```
