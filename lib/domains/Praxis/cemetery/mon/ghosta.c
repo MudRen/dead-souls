@@ -6,11 +6,11 @@ void create() {
     ::create();
     SetKeyName("Melissa's Ghost");
     SetId( ({ "ghost","melissa","Melissa","Melissa's Ghost" }) );
-    SetShort( "Melissa's ghost");
+    SetShort( "梅丽莎的幽灵");
     SetAggressive( 0);
     SetLevel(1);
-    SetLong( "A misty figure in a long flowing white gown.  "
-            "She is wringing her hands and weeping.");
+    SetLong( "一个穿着飘逸白色长裙的朦胧身影。"
+            "她正扭着双手哭泣。");
     SetMorality(-200);
     SetRace( "wraith");
     SetGender("female");
@@ -30,9 +30,9 @@ void catch_tell(string str) {
     if(sscanf(str, "%s gives %s to you", a, b) == 2) {
         ob = present( lower_case(a), environment(this_object()));
         if(ob) {
-            tell_object(ob, "The ghost thanks you for your generosity.");
-            tell_room(environment(this_object()), "The ghost thanks "+a+" for "+ob->query_possessive()+" generosity.", ({this_object(), ob}));
+            tell_object(ob, "幽灵感谢你的慷慨。");
+            tell_room(environment(this_object()), "幽灵感谢"+a+"的慷慨。", ({this_object(), ob}));
         }
     }
-    if(sscanf(str, "%ssmiles%s", a, b) == 2) tell_room(environment(this_object()), "The little ghost weeps piteously.", ({this_object()}));
+    if(sscanf(str, "%ssmiles%s", a, b) == 2) tell_room(environment(this_object()), "小幽灵可怜地哭泣着。", ({this_object()}));
 }

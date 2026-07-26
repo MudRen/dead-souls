@@ -4,10 +4,10 @@ create() {
     ::create();
     SetKeyName("balrog");
     SetId( ({ "balrog" }) );
-    SetShort("A wicked balrog");
+    SetShort("一只邪恶的炎魔");
     SetAggressive( 17);
     SetLevel(9);
-    SetLong("He is one of the guardians of the Daroq Mountains.\n");
+    SetLong("他是达洛克山脉的守护者之一。\n");
     SetRace("human");
     SetMorality(-200);
     SetRace( "balrog");

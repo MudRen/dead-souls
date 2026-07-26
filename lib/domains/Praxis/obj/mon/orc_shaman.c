@@ -4,10 +4,10 @@ create() {
     ::create();
     SetKeyName("shaman");
     SetId( ({ "shaman", "orc", "orc shaman" }) );
-    SetShort("The high orc shaman");
+    SetShort("高阶兽人萨满");
     SetAggressive( 29);
     SetLevel(13);
-    SetLong("She is a powerful dark mage and the leader of the orcs of Orc Valley.\n");
+    SetLong("她是一位强大的黑暗法师，也是兽人山谷兽人的领袖。\n");
     SetMorality(-515);
     SetGender("female");
     SetClass("mage");

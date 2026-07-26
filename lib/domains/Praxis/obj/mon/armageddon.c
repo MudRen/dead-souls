@@ -7,8 +7,8 @@ void create() {
     ::create();
     SetKeyName("armageddon");
     SetId( ({ "armageddon", "crasher", "asshole", "game crasher", "armageddon the game crasher" }) );
-    SetShort("Game crasher Armageddon of Borg");
-    SetLong("He appears once and briefly only to cause doom to the mud.\n");
+    SetShort("游戏崩溃者末日博格");
+    SetLong("他只短暂出现一次，只为给泥潭带来毁灭。\n");
     SetLevel(33);
     SetHealthPoints(10000);
     SetRace("human");

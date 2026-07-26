@@ -6,8 +6,8 @@ void create() {
     ::create();
     SetKeyName("easter bunny");
     SetId(  ({ "bunny", "easter bunny" }) );
-    SetShort( "The Easter bunny");
-    SetLong( "Hippity Hoppity.\nOh, joy, it's the Easter Bunny.\nWatch him drool.\nHe is hiding Easter eggs all over Nightmare.\n");
+    SetShort( "复活节兔子");
+    SetLong( "蹦蹦跳跳。\n哦，快乐啊，是复活节兔子。\n看着它流口水。\n它正在噩梦世界各处藏复活节彩蛋。\n");
     SetAggressive( 0);
     SetWanderSpeed(30);
     SetGender("male");
@@ -17,10 +17,10 @@ void create() {
     SetMaxHealthPoints(500000);
     SetHealthPoints(500000);
     SetAction(10,
-            ({ "The Easter Bunny drools.\n",
-             "The Easter Bunny farts at you.\n",
-             "The Easter bunny looks around, confused.\n",
-             "The Easter Bunny mumbles about rotten eggs.\n" })
+            ({ "复活节兔子流口水。\n",
+             "复活节兔子对你放了个屁。\n",
+             "复活节兔子困惑地四处张望。\n",
+             "复活节兔子咕哝着关于臭鸡蛋的事。\n" })
             );
     SetSkill("melee", 400);
     SetRace("rodent");
@@ -41,8 +41,8 @@ void egghead(string who) {
     ob = present(who, environment(this_object()));
     if(!ob) return;
     if(random(101) < 25) {
-        tell_object(ob, "The Easter Bunny throws an egg at you!\n");
-        tell_room(environment(this_object()), "The Easter Bunny throws an egg at "+ob->query_cap_name()+".\n", ({ ob }));
+        tell_object(ob, "复活节兔子朝你扔了一个蛋！\n");
+        tell_room(environment(this_object()), "复活节兔子朝"+ob->query_cap_name()+"扔了一个蛋。\n", ({ ob }));
         it = new("/domains/Praxis/obj/misc/easter_egg");
         it->move(ob);
     }
