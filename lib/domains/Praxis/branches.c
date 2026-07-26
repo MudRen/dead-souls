@@ -2,40 +2,31 @@ inherit "/lib/std/room";
 
 void create() {
     ::create();
-    SetShort("between the branches");
+    SetShort("树枝之间");
     SetLong(
-            "Here, between two strong branches, a small platform (with railing) has "+
-            "been installed. The wind rustles the leaves of the tree, a pleasant "+
-            "sound that helps keep your mind off the fact that if you fell, you would "+
-            "make a very unpleasant-looking mess on the pavement below. But don't "+
-            "worry, there have been no fatalities from here... yet. A telescope "+
-            "stands near each corner of the platform. ");
+            "在这里，在两根强壮的树枝之间，安装了一个小平台（带栏杆）。"
+            "风吹动树叶沙沙作响，这令人愉快的声音帮助你忘记如果你掉下去，"
+            "会在下面的路面上摔得很难看的事实。但别担心，"
+            "这里还没有发生过死亡事件...目前还没有。平台的每个角落附近都有一架望远镜。");
     SetProperties( (["light"     : 2, 
                 "indoors"   : 1 ,
                 "no castle" : 1]) );
     SetExits( (["down" : "/domains/Praxis/trunk"]) );
     SetItems( ([
-                "telescope" : "Through this magically enhanced telescope, you can see the "+
-                "whole world.. you can look at various directions and "+
-                "places, broadening your horizons till they overlap those "+
-                "of the world. With this telescope, you realize, you can "+
-                "add much to your knowledge. ",
-                "platform"  : "The platform is very sturdy. Standing on it, you feel "+
-                "much more comfortable than if you had been standing a "+
-                "few meters to your left--in mid-air. ",
-                "railing"   : "Having a railing immensely increases your sense of "+
-                "security, quite understandably. ",
-                "branches"  : "The broad branches here easily support the platform. ",
-                "leaves"    : "The leaves provide a pleasant green canopy. Even though "+
-                "this tree is deciduous, it stays green all year long. ",
-                "tree"      : "You lean back from the telescope and take a moment to look at "+
-                "your surroundings, the branches of the Tree of Mages. As "+
-                "legend has it, the Tree is as old as the world; some say "+
-                "older, but few believe that. It is a fact, though, that the "+
-                "Tree of Mages has, through millenia of association with "+
-                "powerful mages, acquired tremendous magic and, according to "+
-                "some, even intelligence. Today the Tree serves as the class "+
-                "hall of the Class of Mages.",
+                "telescope" : "通过这个魔法增强的望远镜，你可以看到整个世界.."
+                "你可以看向不同的方向和地方，拓宽你的视野直到与世界的视野重叠。"
+                "有了这个望远镜，你意识到你可以增加很多知识。",
+                "platform"  : "平台非常坚固。站在上面，你感觉比站在左边几米处——"
+                "也就是半空中——要舒服得多。",
+                "railing"   : "有栏杆极大地增加了你的安全感，这完全可以理解。",
+                "branches"  : "这里宽阔的树枝轻松地支撑着平台。",
+                "leaves"    : "树叶提供了令人愉快的绿色树荫。尽管这棵树是落叶树，"
+                "但它全年保持绿色。",
+                "tree"      : "你从望远镜前退后，花点时间看看周围——法师树的树枝。"
+                "根据传说，这棵树和世界一样古老；有些人说更古老，但很少有人相信。"
+                "然而，事实是，法师树通过数千年来与强大法师的联系，"
+                "获得了巨大的魔法力量，有些人甚至说获得了智慧。"
+                "今天，这棵树是法师职业的职业大厅。",
 
                 ({"n", "north"}) : "North of the Tree lie the dark expanses of the North "+
                     "Forest, a place of fear and wonder, great danger and "+
