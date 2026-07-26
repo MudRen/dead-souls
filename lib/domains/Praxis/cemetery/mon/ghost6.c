@@ -4,7 +4,7 @@ create() {
     ::create();
     SetKeyName("descartes's ghost");
     SetId( ({ "ghost","descartes","Descartes","Descartes's Ghost" }) );
-    SetShort("Descartes's ghost");
+    SetShort("笛卡尔的幽灵");
     SetAggressive( 0);
     /*
        set_speed(9);
@@ -12,7 +12,7 @@ create() {
      */
 
     SetLevel(1);
-    SetLong("This is an android ghost, rusted immobile by a sudden, unexpected mud-rain.\n");
+    SetLong("这是一个机器人幽灵，被一场突如其来的泥雨锈蚀得动弹不得。\n");
     SetMorality(400);
     SetRace( "wraith");
     SetGender("male");
@@ -37,9 +37,9 @@ void catch_tell(string str) {
     if(sscanf(str, "%s gives %s to you", a, b) == 2) {
         ob = present( lower_case(a), environment(this_object()));
         if(ob) {
-            tell_object(ob, "The ghost thanks you for your generosity.\n");
-            tell_room(environment(this_object()), "The ghost thanks "+a+" for "+ob->query_possessive()+" generosity.\n", ({this_object(), ob}));
+            tell_object(ob, "幽灵感谢你的慷慨。\n");
+            tell_room(environment(this_object()), "幽灵感谢"+a+"的慷慨。\n", ({this_object(), ob}));
         }
     }
-    if(sscanf(str, "%ssmiles%s", a, b) == 2) tell_room(environment(this_object()), " Descartes, the immobile ghost, makes muffled meeping sounds.\n", ({this_object()}));
+    if(sscanf(str, "%ssmiles%s", a, b) == 2) tell_room(environment(this_object()), "笛卡尔，那个动弹不得的幽灵，发出低沉的哔哔声。\n", ({this_object()}));
 }

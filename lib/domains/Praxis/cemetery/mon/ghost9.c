@@ -5,8 +5,8 @@ void create() {
     SetKeyName("test ghost");
     SetId( ({ "test ghost" }) );
     SetLevel(1);
-    SetShort( "test ghost");
-    SetLong( "Yup, it's a ghost.");
+    SetShort( "测试幽灵");
+    SetLong( "是的，这是一个幽灵。");
     SetRace( "wraith");
     SetGender("neuter");
     SetAggressive( 0);
@@ -23,9 +23,9 @@ void catch_tell(string str) {
     if(sscanf(str, "%s gives %s to you", a, b) == 2) {
         ob = present( lower_case(a), environment(this_object()));
         if(ob) {
-            tell_object(ob, "The ghost thanks you for your generosity.");
-            tell_room(environment(this_object()), "The ghost thanks "+a+" for "+ob->query_possessive()+" generosity.", ({this_object(), ob}));
+            tell_object(ob, "幽灵感谢你的慷慨。");
+            tell_room(environment(this_object()), "幽灵感谢"+a+"的慷慨。", ({this_object(), ob}));
         }
     }
-    if(sscanf(str, "%ssmiles%s", a, b) == 2) tell_room(environment(this_object()), "The little ghost asks plaintively: Why don't gods like me?", ({this_object()}));
+    if(sscanf(str, "%ssmiles%s", a, b) == 2) tell_room(environment(this_object()), "小幽灵哀怨地问道：为什么神灵不喜欢我？", ({this_object()}));
 }

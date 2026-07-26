@@ -4,11 +4,10 @@ void create() {
     ::create();
     SetKeyName("shadowwolf's ghost");
     SetId( ({ "ghost","shadowwolf","Shadowwolf","Shadowwolf's Ghost" }) );
-    SetShort( "Shadowwolf's ghost");
+    SetShort( "影狼的幽灵");
     SetAggressive( 0);
     SetLevel(1);
-    SetLong( "The ghost is a pale wraithe, holding a NI clutched "
-            "tightly to his chest.");
+    SetLong( "幽灵是一个苍白的幽灵，紧紧地将一个NI抱在胸前。");
     SetMorality(100);
     SetRace( "wraith");
     SetGender("male");
@@ -26,9 +25,9 @@ void catch_tell(string str) {
     if(sscanf(str, "%s gives %s to you", a, b) == 2) {
         ob = present( lower_case(a), environment(this_object()));
         if(ob) {
-            tell_object(ob, "The ghost thanks you for your generosity.");
-            tell_room(environment(this_object()), "The ghost thanks "+a+" for "+ob->query_possessive()+" generosity.", ({this_object(), ob}));
+            tell_object(ob, "幽灵感谢你的慷慨。");
+            tell_room(environment(this_object()), "幽灵感谢"+a+"的慷慨。", ({this_object(), ob}));
         }
     }
-    if(sscanf(str, "%stickle%s", a, b) == 2) tell_room(environment(this_object()), "The ghost says: It's only a flesh wound!!", ({this_object()}));
+    if(sscanf(str, "%stickle%s", a, b) == 2) tell_room(environment(this_object()), "幽灵说：这只是皮肉伤！！", ({this_object()}));
 }
