@@ -13,8 +13,8 @@ protected void create() {
     SetStrength(-5);
     SetDollarCost(1);
     SetMealType(MEAL_FOOD);
-    SetMealMessages("You eat your rotten apple. Gross!",
-            "$N eats $P rotten apple. Gross!");
+    SetMealMessages("你吃了你的烂苹果。恶心！",
+            "$N 吃了 $P 的烂苹果。恶心！");
 }
 void init(){
     ::init();

@@ -20,8 +20,8 @@ protected void create() {
     //SetDollarCost(2);
     SetDollarCost(2);
     SetMealType(MEAL_FOOD);
-    SetMealMessages("You eat a ham sandwich. Mmm!",
-            "$N eats $P ham sandwich.");
+    SetMealMessages("你吃了一个火腿三明治。嗯！",
+            "$N 吃了 $P 的火腿三明治。");
 }
 void init(){
     ::init();

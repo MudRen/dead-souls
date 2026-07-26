@@ -13,8 +13,8 @@ protected void create() {
     SetMass(60);
     SetMealType(MEAL_DRINK | MEAL_ALCOHOL);
     SetStrength(5);
-    SetMealMessages("You drink a bottle of ale.",
-            "$N drinks a bottle of ale.");
+    SetMealMessages("你喝了一瓶麦芽酒。",
+            "$N 喝了一瓶麦芽酒。");
     SetBaseCost("silver",10);
 }
 void init(){

@@ -17,8 +17,8 @@ protected void create() {
     SetBaseCost("gold",8);
     SetStrength(1);
     SetMealType(MEAL_FOOD);
-    SetMealMessages("You eat a stick of red spice.",
-            "$N eats a stick of red spice.");
+    SetMealMessages("你吃了一根红色香料。",
+            "$N 吃了一根红色香料。");
     SetDuration(1);
     SetPoints( ([ "HP" : 300 ]) );
     SetVendorType(VT_MAGIC);

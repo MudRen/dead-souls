@@ -39,8 +39,7 @@ protected void create()  {
     SetBaseCost("silver", 1);
     SetMealType(MEAL_DRINK);
     SetStrength(25);
-    SetMealMessages("You drink your milk, and feel refreshed.", "$N drinks "+
-            "$P milk.");
+    SetMealMessages("你喝了你的牛奶，感到神清气爽。", "$N 喝了 $P 的牛奶。");
     SetEmptyName("carton");
     SetEmptyShort("an empty carton of milk");
     SetEmptyLong("A little carton container that once held "+

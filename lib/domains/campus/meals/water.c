@@ -15,8 +15,7 @@ protected void create()  {
     SetMealType(MEAL_DRINK);
     SetStrength(10);
     SetBaseCost("silver",2);
-    SetMealMessages("You drink your water, and feel refreshed.", "$N drinks "+
-            "$P water.");
+    SetMealMessages("你喝了你的水，感到神清气爽。", "$N 喝了 $P 的水。");
 }
 void init(){
     ::init();

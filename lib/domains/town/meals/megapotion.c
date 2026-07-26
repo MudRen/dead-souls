@@ -12,8 +12,8 @@ protected void create() {
     SetMass(60);
     SetMealType(MEAL_DRINK | MEAL_ALCOHOL);
     SetStrength(5);
-    SetMealMessages("You drink a potion.",
-            "$N drinks a potion.");
+    SetMealMessages("你喝了一瓶药水。",
+            "$N 喝了一瓶药水。");
     SetBaseCost("silver",10000);
     SetDuration(30);
     SetStats( ([ "strength" : 50, "speed" : 50 ]) );

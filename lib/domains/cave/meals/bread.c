@@ -13,8 +13,8 @@ protected void create() {
     SetStrength(10);
     SetBaseCost("silver", 1);
     SetMealType(MEAL_FOOD);
-    SetMealMessages("You eat your black bread.",
-            "$N eats $P loaf of black bread.");
+    SetMealMessages("你吃了你的黑面包。",
+            "$N 吃了 $P 的黑面包。");
 }
 
 void init(){

@@ -17,8 +17,8 @@ protected void create() {
     SetMass(60);
     SetMealType(MEAL_DRINK | MEAL_ALCOHOL);
     SetStrength(1);
-    SetMealMessages("You drink a wonderful bottle of Praxis Ale.",
-            "$N drinks a wonderful bottle of Praxis Ale.");
+    SetMealMessages("你喝了一瓶美味的普拉克西斯麦酒。",
+            "$N 喝了一瓶美味的普拉克西斯麦酒。");
     SetEmptyName("bottle");
     SetEmptyShort("an empty bottle of Praxis Ale");
     SetEmptyLong("It is an empty brown bottle that once held some ale.");

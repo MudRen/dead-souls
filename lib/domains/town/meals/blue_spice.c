@@ -17,8 +17,8 @@ protected void create() {
     SetBaseCost("gold",10);
     SetStrength(1);
     SetMealType(MEAL_FOOD);
-    SetMealMessages("You eat a stick of blue spice.",
-            "$N eats a stick of blue spice.");
+    SetMealMessages("你吃了一根蓝色香料。",
+            "$N 吃了一根蓝色香料。");
     SetDuration(30);
     SetStats( ([ "durability" : 1 ]) );
     SetPoints( ([ "HP" : 450 ]) );

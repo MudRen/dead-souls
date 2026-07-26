@@ -14,8 +14,8 @@ protected void create() {
     SetStrength(15);
     SetBaseCost("silver", 20);
     SetMealType(MEAL_FOOD);
-    SetMealMessages("You eat your meat.",
-            "$N eats $P hunk of roast beast.");
+    SetMealMessages("你吃了你的烤兽肉。",
+            "$N 吃了 $P 的烤兽肉。");
 }
 
 void init(){

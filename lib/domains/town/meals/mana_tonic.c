@@ -16,8 +16,8 @@ protected void create() {
     SetMass(60);
     SetMealType(MEAL_DRINK);
     SetStrength(5);
-    SetMealMessages("You drink a potion.",
-            "$N drinks a potion.");
+    SetMealMessages("你喝了一瓶药水。",
+            "$N 喝了一瓶药水。");
     SetBaseCost("silver",500);
     SetPoints( ([ "MP" : 500 ]) );
     SetVendorType(VT_MAGIC);
