@@ -10,12 +10,12 @@ create() {
     ::create();
     SetKeyName("beggar");
     SetId( ({ "beggar" }) );
-    SetShort("A poor beggar");
+    SetShort("一个可怜的乞丐");
     SetAggressive( 0);
     SetWanderSpeed(60);
     SetGender("male");
     SetLevel(4);
-    SetLong("He is a poor beggar looking only for a few coins.\n");
+    SetLong("他只是一个想要几枚硬币的可怜乞丐。\n");
     SetEncounter(0);
     SetMorality(30);
     SetRace( "human");
@@ -40,7 +40,7 @@ void catch_tell(string str) {
     string a, b, c;
 
     if(sscanf(str, "%s quest%*s", a)) {
-        call_out("say_line", 2, "The beggar says: What quest?  I know nothing of any quests.\n");
+        call_out("say_line", 2, "乞丐说：什么任务？我什么任务都不知道。\n");
         return;
     }
     if(sscanf(str, "%s regenerates your %s", a, b) == 2) {
@@ -52,40 +52,40 @@ void catch_tell(string str) {
         return;
     }
     if(sscanf(str, "%s says: %s hand%*s", a, b) == 2) {
-        //if(query_is_limb("left hand")) 
+        //if(query_is_limb("left hand"))
         //call_out("say_line", 2, "The beggar says: My left hand is doing fine now!\n");
-        //        else 
-        call_out("say_line", 2, "The beggar says: I wish it could be replaced.\n");
+        //        else
+        call_out("say_line", 2, "乞丐说：我希望它能被替换掉。\n");
         return;
     }
     if(sscanf(str, "%s gives %s you", a, b) == 2) {
         ob = present( lower_case(a), environment(this_object()));
         if(ob) {
-            tell_object(ob, "The beggar thanks you for your generousity.\n");
-            tell_room(environment(this_object()), "The beggar thanks "+a+" for "+ob->query_possessive()+" generousity.\n", ({this_object(), ob}));
+            tell_object(ob, "乞丐感谢你的慷慨。\n");
+            tell_room(environment(this_object()), "乞丐感谢"+a+"的慷慨。\n", ({this_object(), ob}));
         }
     }
     if(sscanf(str, "%s?", a)) {
-        call_out("say_line", 2, "The beggar says: I do not understand the question.\n");
+        call_out("say_line", 2, "乞丐说：我不明白这个问题。\n");
         return;
     }
     if(sscanf(str, "%ssmiles%s", a, b) == 2)
-        call_out("say_line", 2, "The beggar smiles happily.\n");
+        call_out("say_line", 2, "乞丐开心地笑了。\n");
     AddAlcohol(200);
 }
 void complete_quest(object ob) {
     if(!ob->set_mini_quest("beggar", 5000,
-                "You replaced the missing left hand of a poor beggar.\n")) {
-        tell_object(ob, "The beggar thanks you.\n");
-        tell_room(environment(this_object()), "The beggar thanks "+ob->query_cap_name()+".\n", ({ ob, this_object() }) );
-        SetAction(5, ob->query_cap_name()+" replaced my missing left hand!");
+                "你替一个可怜的乞丐换上了缺失的左手。\n")) {
+        tell_object(ob, "乞丐感谢你。\n");
+        tell_room(environment(this_object()), "乞丐感谢"+ob->query_cap_name()+"。\n", ({ ob, this_object() }) );
+        SetAction(5, ob->query_cap_name()+"替我换上了缺失的左手！");
         return;
     }
-    tell_object(ob, "The beggar glows in satisfaction!\n");
-    tell_object(ob, "The beggar says: Thank you so much!\n");
-    tell_object(ob, "You feel more experienced.\n");
-    tell_room(environment(this_object()), ob->query_cap_name()+" looks more experienced.\n", ({ ob, this_object() }) );
-    SetAction(5, ob->query_cap_name()+" replaced my missing left hand!" );
+    tell_object(ob, "乞丐满意地笑了！\n");
+    tell_object(ob, "乞丐说：太感谢你了！\n");
+    tell_object(ob, "你感觉更有经验了。\n");
+    tell_room(environment(this_object()), ob->query_cap_name()+"看起来更有经验了。\n", ({ ob, this_object() }) );
+    SetAction(5, ob->query_cap_name()+"替我换上了缺失的左手！" );
 }
 void say_line(string str) {
     tell_room(environment(this_object()), str, ({ this_object() }) );

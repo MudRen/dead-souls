@@ -4,10 +4,10 @@ create() {
     ::create();
     SetKeyName("goblin");
     SetId( ({ "goblin", "soldier" }));
-    SetShort( "a goblin soldier");
+    SetShort( "一个哥布林士兵");
     SetAggressive( 17);
     SetLevel(5);
-    SetLong( "A warrior of the Daroq goblins.");
+    SetLong( "达洛克哥布林的战士。");
     SetClass("fighter");
     SetRace("human");
     SetMorality(-200);

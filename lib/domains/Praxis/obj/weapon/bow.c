@@ -11,8 +11,8 @@ create() {
     ::create();
     SetKeyName("bow");
     SetId( ({ "bow", "short bow" }) );
-    SetShort("short bow");
-    SetLong("A small bow.");
+    SetShort("短弓");
+    SetLong("一把小弓。");
     SetMass(10);
     SetClass(2);
     SetValue(10);
@@ -21,7 +21,7 @@ create() {
 void init() {
     ::init();
     if(environment(this_object())->query_name() != "guard") {
-        write("The short bow crumbles in your hands.");
+        write("短弓在你手中碎裂了。");
         destruct();
     }
 }

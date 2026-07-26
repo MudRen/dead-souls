@@ -13,24 +13,21 @@ create() {
     switch(random(5)) {
         case 0:
             SetId( ({ "spider", "leaper", "black leaper" }) );
-            SetShort("Black Leaper");
-            SetLong("There are few spiders larger and more greusome than "
-                    "the infamous Black Leaper..");
+            SetShort("黑色跳跃者");
+            SetLong("很少有蜘蛛比臭名昭著的黑色跳跃者更大更可怕了。");
             SetLevel(20);
             break;
         case 1:
         case 2:
             SetId( ({ "spider", "timber spider", "giant timber spider" }) );
-            SetShort("Giant Timber Spider");
-            SetLong("A very large and ugly grey spider.  It looks quite "
-                    "hungry.");
+            SetShort("巨型木材蜘蛛");
+            SetLong("一只非常大且丑陋的灰色蜘蛛。看起来相当饥饿。");
             SetLevel(random(3)+12);
             break;
         default:
             SetId( ({ "spider", "cave spider" }) );
-            SetShort("Praxis cave spider");
-            SetLong("A medium-sized black spider with a cresent-shaped "
-                    "moon on its tail end.");
+            SetShort("普拉克西斯洞穴蜘蛛");
+            SetLong("一只中等大小的黑色蜘蛛，尾端有一个新月形的标记。");
             SetLevel(random(3)+8);
             break;
     }
@@ -41,13 +38,13 @@ create() {
 }
 
 int death_func() {
-    message("say", "%^RED%^"+this_object()->query_name()+" squeals out "
-            "a loud shreak, then falls dead.", environment(this_object()));
+    message("say", "%^RED%^"+this_object()->query_name()+"发出一声"
+            "响亮的尖叫，然后倒地死亡。", environment(this_object()));
     if(!present("spider", environment(this_object()))) {
         int x;
 
-        message("say", "%^RED%^You notice additional spiders "
-                "creeping in from cracks at the base of the pit!", 
+        message("say", "%^RED%^你注意到更多的蜘蛛"
+                "从坑底的裂缝中爬了进来！",
                 environment(this_object()));
         for(x=0; x<10; ++x) {
             new("/"+__DIR__+"obj/mon/spider")->move(environment(this_object()));

@@ -6,8 +6,8 @@ void create() {
     ::create();
     SetKeyName("helm");
     SetId( ({ "helm", "helmet", "knight's helm" }) );
-    SetShort( "Knight's helm");
-    SetLong( "The helm of a knight of justice.");
+    SetShort( "骑士头盔");
+    SetLong( "正义骑士的头盔。");
     SetMass(375);    SetValue( 95);
 
     SetArmorType(A_HELMET);
@@ -18,11 +18,11 @@ void create() {
 
 int extra_worn() {
     if(this_player()->query_alignment() < 200) {
-        write("This helmet burns with disgust.");
-        say(this_player()->query_cap_name()+" is burned trying to wear the knight's helm.");
+        write("这个头盔因厌恶而灼烧。");
+        say(this_player()->query_cap_name()+"试图戴上骑士头盔时被灼烧了。");
         return 0;
     }
-    write("You feel the the powers of goodness flowing through you.");
-    say(this_player()->query_cap_name() + " shines with the powers of goodness of the knight's helm.");
+    write("你感到善良的力量流过你的全身。");
+    say(this_player()->query_cap_name() + "因骑士头盔的善良力量而闪耀。");
     return 1;
 }

@@ -10,8 +10,8 @@ void create() {
     SetKeyName("invis");
     SetId( ({ "invis" }) );
     SetInvis(1);
-    SetPreventPut("What are you doing?");
-    SetPreventDrop("What are you doing?");
+    SetPreventPut("你在做什么？");
+    SetPreventDrop("你在做什么？");
 }
 
 void create_invis(object who, string what, int x) {
@@ -27,7 +27,7 @@ int test_invis(object who, object whom) {
         return 0;
     }
     if(__InvisTime < time()) {
-        message("environment", "You are feeling more vulnerable now.",
+        message("environment", "你现在感觉更加脆弱了。",
                 __Invis[0]);
         this_object()->reeventMove();
         return 0;
