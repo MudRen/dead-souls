@@ -82,7 +82,7 @@ mixed eventDrop(object who){
     if( tmp != 1 ){
         return tmp;
     }
-    send_messages("drop", "$agent_name $agent_verb $target_name.",
+    send_messages("drop", "$agent_name 丢弃了 $target_name。",
             who, this_object(), environment(who));
     if(DestructOnDrop) tell_room(environment(who),capitalize(this_object()->GetShort())+" 在一道闪光中消失了！");
     return 1;

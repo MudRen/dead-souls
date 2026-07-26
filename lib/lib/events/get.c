@@ -69,7 +69,7 @@ mixed eventGet(object who){
         who->SetMount(1);
         who->eventMount(this_object(), 1, 1);
     }
-    send_messages("get", "$agent_name $agent_verb $target_name.",
+    send_messages("get", "$agent_name 拿起了 $target_name。",
             who, this_object(), environment(who));
     return 1;
 }
