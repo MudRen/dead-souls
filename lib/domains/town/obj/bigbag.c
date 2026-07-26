@@ -7,8 +7,8 @@ void create() {
     SetKeyName("bag");
     SetId( ({ "bag" }) );
     SetAdjectives( ({ "giant", "cloth", "a" }) );
-    SetShort("a giant cloth bag");
-    SetLong("It is a simple cloth bag used to hold things. ");
+    SetShort("一个巨大的布袋");
+    SetLong("这是一个用来装东西的简单布袋。");
     SetMass(100);
     SetBaseCost("silver",1);
     SetMaxCarry(2000);

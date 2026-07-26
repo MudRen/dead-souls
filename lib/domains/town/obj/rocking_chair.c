@@ -8,8 +8,8 @@ protected void create() {
     SetKeyName("chair");
     SetAdjectives( ({"simple", "wood", "wooden", "rocking", "classic"}) );
     SetId("chair");
-    SetShort("a wooden rocking chair");
-    SetLong("A simple wooden rocking chair, fashioned in a classic, non-nonsense style common in the rural parts of town.");
+    SetShort("一把木摇椅");
+    SetLong("一把简单的木摇椅，采用小镇乡村地区常见的经典实用风格。");
     SetMass(100);
     SetDollarCost(15);
     SetMaxSitters(1);

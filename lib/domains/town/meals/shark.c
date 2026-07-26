@@ -15,9 +15,8 @@ protected void create() {
     fish::create();
     SetKeyName("bull shark");
     SetId( ({ "shark", "bull shark" }) );
-    SetShort("a bull shark");
-    SetLong("It is a huge, long fish with razor sharp teeth and a carnivorous "
-            "appetite.");
+    SetShort("一条牛鲨");
+    SetLong("这是一条巨大的长鱼，有锋利的牙齿和肉食性的本能。它看起来很危险。");
     SetMealType(MEAL_FOOD);
     SetMass(100); 
     SetStrength(50);

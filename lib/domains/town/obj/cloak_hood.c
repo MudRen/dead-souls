@@ -11,8 +11,8 @@ protected void create() {
     dummy::create();
     SetKeyName("hood");
     SetId("cloak hood","cloak's hood");
-    SetShort("a hood");
-    SetLong("A hood on a cloak.");
+    SetShort("一个兜帽");
+    SetLong("斗篷上的兜帽。");
     SetInvis(0);
     //SetWear((: eventWear :));
 }

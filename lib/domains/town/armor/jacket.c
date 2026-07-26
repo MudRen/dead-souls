@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("leather jacket");
     SetId(({"jacket"}));
     SetAdjectives(({"black","leather"}));
-    SetShort("a black leather jacket");
-    SetLong("This is a black jacket made of leather. ");
+    SetShort("一件黑色皮夹克");
+    SetLong("这是一件黑色皮革夹克。");
     SetMass(50);
     SetBaseCost("silver",100);
     SetProtection(BLUNT,1);

@@ -46,7 +46,7 @@ void create(){
     SetKeyName("rage virus");
     SetGermName("rage virus");
     SetId(({"rv2"}));
-    SetLong("Rage Virus v2");
+    SetLong("狂怒病毒2版");
     SetCure(20);
     SetCommunicable(30);
     SetLifeSpan(999);

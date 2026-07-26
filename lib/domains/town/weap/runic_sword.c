@@ -17,8 +17,8 @@ protected void create() {
     SetKeyName("sword");
     SetId( ({ "short sword", "shortsword"}));
     SetAdjectives( ({ "crafted","finely crafted","short","sharp","fine","runic"}));
-    SetShort("a finely crafted short sword");
-    SetLong("This is a very fine blade, covered with ancient runes.");
+    SetShort("一把精制短剑");
+    SetLong("这是一把非常好的刀刃，覆盖着古老的符文。");
     SetMass(300);
     SetBaseCost("silver",500);
     SetVendorType(VT_WEAPON);

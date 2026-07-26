@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("antidote");
     SetId( ({ "vial","bottle", "antidote","philtrum","antidote to poison","vial of antidote" }) );
     SetAdjectives( "antidote" );
-    SetShort("a vial of antidote");
-    SetLong("A vial containing a clear blue liquid that counteracts poison.");
+    SetShort("一瓶解药");
+    SetLong("一瓶能解毒的蓝色透明液体。");
     SetMass(20);
     SetMealType(MEAL_DRINK);
     SetStrength(5);

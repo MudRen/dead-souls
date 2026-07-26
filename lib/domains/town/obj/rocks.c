@@ -35,8 +35,8 @@ void create(){
     SetKeyName("rocks");
     SetId( ({"pile","rocks","crap","bunch"}) );
     SetAdjectives( ({"pile of"}) );
-    SetShort("a pile of rocks");
-    SetLong("This is a bunch of rocks piled together.");
+    SetShort("一堆石头");
+    SetLong("这是一堆石头。");
     SetMass(200);
     SetDollarCost(0);
     SetNoCondition(1);

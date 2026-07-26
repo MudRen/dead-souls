@@ -18,8 +18,8 @@ void create(){
     SetKeyName("leaflet");
     SetId(({"leaflet","paper","slip"}));
     SetAdjectives(({"small"}));
-    SetShort("a small leaflet");
-    SetLong("This is a single sheet of paper with a message printed on it. ");
+    SetShort("一张小传单");
+    SetLong("这是一张印有消息的纸。");
     SetMass(1);
     SetDollarCost(1);
     SetVendorType(VT_TREASURE);

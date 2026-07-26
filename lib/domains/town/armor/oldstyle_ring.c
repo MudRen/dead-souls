@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("metal ring");
     SetId(({"ring"}));
     SetAdjectives( ({"simple","metal"}) );
-    SetShort("a simple ring");
-    SetLong("This is a simple metal ring.");
+    SetShort("一枚简单的戒指");
+    SetLong("这是一枚简单的戒指。");
     SetMass(1);
     SetValue(100);
     SetArmorType(A_RING);

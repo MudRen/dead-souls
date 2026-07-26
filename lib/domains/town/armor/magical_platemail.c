@@ -8,12 +8,8 @@ protected void create(){
     SetKeyName("suit of armor");
     SetId(({"armor","plate mail","platemail","suit","armor","suit of armor"}));
     SetAdjectives(({"full","plate","plated","metal"}));
-    SetShort("a full suit of armor");
-    SetLong("This is a large, very heavy suit of armor, the kind "+
-            "one might expect a knight to wear. The thick "+
-            "metal plating promises extraordinary protection, "+
-            "yet the joints are so finely articulated as to "+
-            "permit great freedom of movement.");
+    SetShort("一套全身盔甲");
+    SetLong("这是一套非常大且重的盔甲，那种只有最强大的战士才能穿戴的类型。它散发着魔法光芒。");
     SetMass(900);
     SetBaseCost("silver",10000);
     SetDamagePoints(100);

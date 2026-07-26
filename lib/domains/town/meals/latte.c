@@ -8,9 +8,8 @@ protected void create()  {
     meal::create();
     SetKeyName("milk");
     SetId("latte");
-    SetShort("a cafe latte");
-    SetLong("A perfect pull of espresso married to steamed milk, "
-            "and,  voila!: cafe latte!");
+    SetShort("一杯拿铁咖啡");
+    SetLong("一杯完美的浓缩咖啡与蒸汽牛奶的结合，上面还有一层奶泡。");
     SetMass(10);
     SetMealType( MEAL_DRINK | MEAL_CAFFEINE );
     SetStrength(25);

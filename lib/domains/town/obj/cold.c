@@ -25,7 +25,7 @@ void create(){
     SetKeyName("tc2");
     SetGermName("cold virus");
     SetId(({"tc2"}));
-    SetLong("Test Cold version 2.1");
+    SetLong("测试感冒病毒2.1版");
     SetCure(20);
     SetVendorType(VT_TREASURE);
     SetCommunicable(15);

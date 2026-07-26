@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("herring");
     SetId( ({ "fish" }) );
     SetAdjectives( ({ "red","saltwater","salt water" }) );
-    SetShort("a red herring");
-    SetLong("It is saltwater fish, and red in color.");
+    SetShort("一条红鲱鱼");
+    SetLong("这是一种咸水鱼，红色的。");
     SetMealType(MEAL_FOOD);
     SetMass(10); 
     SetStrength(10); 

@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("butcher knife");
     SetId( ({ "knife"}));
     SetAdjectives( ({ "sharp","razor sharp","steel","hefty","stainless","butcher"}));
-    SetShort("an 8-inch butcher knife");
-    SetLong("This is an 8-inch butcher knife. This razor sharp knife has been forged from molded and hammered high-carbon stainless steel. It is solid, hefty, and well-balanced for kitchen work, but probably not as good a weapon as a carving knife might be.");
+    SetShort("一把8英寸屠宰刀");
+    SetLong("这是一把8英寸屠宰刀。这把极其锋利的刀由锻造的高碳不锈钢制成。它结实、厚重，非常适合厨房工作，但可能不如切肉刀好用作武器。");
     SetMass(50);
     SetBaseCost("silver",95);
     SetVendorType(VT_WEAPON);

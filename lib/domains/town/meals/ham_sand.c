@@ -8,8 +8,8 @@ protected void create() {
     meal::create();
     SetKeyName("sandwich");
     SetId(({"sandwich","ham sandwich"}));
-    SetShort("a ham sandwich");
-    SetLong("This is a large, rather plain ham sandwich.");
+    SetShort("一个火腿三明治");
+    SetLong("这是一个很大的普通火腿三明治。");
     SetMass(10);
     SetStrength(20);
     SetBaseCost("silver",10);

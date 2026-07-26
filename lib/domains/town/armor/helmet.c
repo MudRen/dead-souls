@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("steel helmet");
     SetId(({"helmet","cover","steel"}));
     SetAdjectives(({"steel","battle","hard"}));
-    SetShort("a steel helmet");
-    SetLong("This is a helmet made of tough  metal.");
+    SetShort("一顶钢盔");
+    SetLong("这是一顶由坚硬金属制成的头盔。");
     SetMass(200);
     SetBaseCost("silver",500);
     SetArmorType(A_HELMET);

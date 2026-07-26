@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("workboot");
     SetAdjectives( ({"strong", "brown", "leather", "left", "work", "heavy"}) );
     SetId( ({"boot"}) );
-    SetShort("a brown leather workboot");
-    SetLong("A heavy, brown leather workboot with strong ankle and sole support. It is designed for wear on the left foot.");
+    SetShort("一只棕色皮工作靴");
+    SetLong("一只厚重的棕色皮工作靴，有结实的脚踝和鞋底支撑。适合左脚。");
     SetMass(40);
     SetBaseCost("silver",25);
     SetProtection(BLUNT,5);

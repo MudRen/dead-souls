@@ -7,9 +7,8 @@ protected void create() {
     SetKeyName("cigar");
     SetId( ({ "cigar", "cylinder" }) );
     SetAdjectives( ({ "bitterleaf" }) );
-    SetShort("a cigar");
-    SetLong("A cylinder of tightly wrapped bitterleaf designed for "
-            "combustion and inhalation its smoke.");
+    SetShort("一支雪茄");
+    SetLong("一根紧密卷起的苦叶制成的圆柱体，设计用于点燃后吸食。");
     SetRadiantLight(2);
     SetFuelRequired(1);
     SetMaxFuel(300);

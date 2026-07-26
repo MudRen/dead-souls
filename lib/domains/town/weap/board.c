@@ -9,10 +9,8 @@ protected void create() {
     SetKeyName("board of ed");
     SetId(({"board","board of ed","board of education"}));
     SetAdjectives(({"ed","education"}));
-    SetShort("the board of education");
-    SetLong("A long, wide wooden board with a handle at one "+
-            "end. Inscribed along its length are the words: "+
-            "'Board of Education'.");
+    SetShort("教育之板");
+    SetLong("一块又长又宽的木板，一端有把手。看起来像是某种"教育工具"。");
     SetMass(50);
     SetBaseCost("silver",20);
     SetVendorType(VT_WEAPON);

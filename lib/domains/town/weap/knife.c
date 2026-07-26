@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("small knife");
     SetId( ({ "knife"}));
     SetAdjectives( ({ "small","fine"}));
-    SetShort("a small knife");
-    SetLong("A knife.");
+    SetShort("一把小刀");
+    SetLong("一把刀。");
     SetMass(50);
     SetBaseCost("silver",5);
     SetVendorType(VT_WEAPON);

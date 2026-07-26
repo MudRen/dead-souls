@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("paring knife");
     SetId( ({ "knife"}));
     SetAdjectives( ({ "serrated","sharp","razor sharp","steel","hefty","stainless","paring"}));
-    SetShort("a 4-inch paring knife");
-    SetLong("This is a 4-inch paring knife. This very sharp knife has been forged from molded and hammered high-carbon stainless steel. Though light, it is solid and well-balanced.");
+    SetShort("一把4英寸削皮刀");
+    SetLong("这是一把4英寸削皮刀。这把非常锋利的刀由锻造的高碳不锈钢制成。虽然轻巧，但结实且平衡性好。");
     SetMass(20);
     SetBaseCost("silver",55);
     SetVendorType(VT_WEAPON);

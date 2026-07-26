@@ -18,9 +18,8 @@ void create(){
     SetKeyName("trap");
     SetId( ({ "trap" }) );
     SetAdjectives( ({ "simple","armor", "poison", "needle" }) );
-    SetShort("an armor trap");
-    SetLong("It is a simple poison needle trap designed to trigger when "
-            "armor is worn.");
+    SetShort("一个盔甲陷阱");
+    SetLong("这是一个简单的毒针陷阱，设计为在穿戴盔甲时触发。");
     SetShadowObject("/shadows/needle_trap");
     SetTrapType(BOOBYTRAP_WIELD);
     SetMass(50);

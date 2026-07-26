@@ -11,7 +11,7 @@ void create(){
     SetKeyName("spam can");
     SetId(({"spam","can"}));
     SetAdjectives(({"can of","can","spam"}));
-    SetShort("a can of spam");
+    SetShort("一罐午餐肉");
     SetLong( (: SpamSpam :) );
     SetNoCondition(1);
     SetMass(20);

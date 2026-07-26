@@ -7,8 +7,8 @@ void create(){
     SetKeyName("Log of Shame");
     SetId( ({"shamelog", "log", "book"}) );
     SetAdjectives( ({"shame"}) );
-    SetShort("The Log of Shame");
-    SetLong("The Log of Shame is a book containing channel logs people should be ashamed of, and oddly, usually aren't.");
+    SetShort("耻辱日志");
+    SetLong("《耻辱日志》是一本包含人们应该感到羞耻的频道记录的书，奇怪的是，他们通常并不觉得。");
     SetSource("/domains/town/txt/shame");
     SetMass(20);
     SetBaseCost("silver",10);

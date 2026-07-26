@@ -10,8 +10,8 @@ protected void create() {
     SetKeyName("water");
     SetId(({"river","riverwater" }));
     SetAdjectives("powerful","river");
-    SetLong("The edge of a powerful river.");
-    SetShort("the edge of a powerful river");
+    SetLong("湍急河流的岸边。");
+    SetShort("湍急河流的岸边");
     SetFlaskContents("water");
     SetFlaskUses(2);
     SetStrength(5);

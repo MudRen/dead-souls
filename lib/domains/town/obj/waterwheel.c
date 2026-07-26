@@ -12,8 +12,8 @@ void create(){
     SetKeyName("waterwheel");
     SetId( ({"wheel"}) );
     SetAdjectives( ({"water", "large","metal","iron"}) );
-    SetShort("a large iron wheel embedded in the bedrock");
-    SetLong("This is an iron wheel embedded in the bedrock.");
+    SetShort("一个嵌入基岩的大铁轮");
+    SetLong("这是一个嵌入基岩的铁轮。");
     SetMass(20);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

@@ -7,10 +7,8 @@ void create(){
     SetKeyName("gun");
     SetId(({"gun","pistol","piece","revolver"}));
     SetAdjectives(({".357","357","magnum"}));
-    SetShort("a .357 magnum revolver");
-    SetLong("This is a thick, heavy chunk of weaponry that fires some very "+
-            "serious rounds. Bullets are loaded individually into it, and they, along with spent "+
-            "shells, remain in the cylinder until unloaded.");
+    SetShort("一把.357马格南左轮手枪");
+    SetLong("这是一块厚重的武器，发射非常强大的.357马格南子弹。");
     SetCaliber(357);
     SetFirearmType("revolver");
     SetFirearmName("revolver");

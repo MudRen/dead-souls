@@ -7,9 +7,8 @@ void create() {
     SetKeyName("bin");
     SetId(({"bin","can","dustbin","trash","rubbish"}));
     SetAdjectives(({"metal","small","blue","recycling","trash","garbage","dust"}));
-    SetShort("a recycling bin");
-    SetLong("This is a blue trash can, marked with "+
-            "the letters \"/dev/null\".");
+    SetShort("一个回收箱");
+    SetLong("这是一个蓝色垃圾桶，标有回收标志。你可以把不需要的东西扔进去。");
     SetMass(274);
     SetBaseCost("silver",50);
     SetMaxCarry(999999);

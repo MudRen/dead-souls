@@ -9,9 +9,8 @@ void create() {
     SetKeyName("rack");
     SetId(({"rack"}));
     SetAdjectives(({"knife","metal","fancy","steel","stainless","stainless-steel"}));
-    SetShort("a knife rack");
-    SetLong("This is a fancy stainless steel knife rack, "+
-            "for keeping expensive super-sharp knives.");
+    SetShort("一个刀架");
+    SetLong("这是一个精美的不锈钢刀架，上面挂着各种刀具。");
     SetMass(274);
     SetBaseCost("silver",50);
     SetMaxCarry(5);

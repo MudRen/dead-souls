@@ -15,13 +15,8 @@ void create() {
     SetKeyName("charity bin");
     SetId(({"bin"}));
     SetAdjectives(({"large","charity"}));
-    SetShort("a large bin");
-    SetLong("This a very large bin for holding donations to the "
-            "needy. Since it is in a church, and for charity, it is "
-            "reasonable to guess that folks above a certain level will "
-            "receive a minor bonus for donating valuable things, and a "
-            "severe penalty for taking them. There is a sign on "
-            "the charity bin that you can read.");
+    SetShort("一个大箱子");
+    SetLong("这是一个非常大的箱子，用于存放捐赠给慈善机构的物品。贫困的人可以从里面取东西。");
     SetItems( ([
                 ({ "sign" }) : "A sign on the bin you can read.",
                 ]) );

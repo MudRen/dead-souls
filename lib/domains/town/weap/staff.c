@@ -9,10 +9,8 @@ protected void create(){
     SetKeyName("staff");
     SetId( ({ "staff", "stick", "pole"  }) );
     SetAdjectives( ({ "wood","wooden" }) );
-    SetShort("a wooden staff");
-    SetLong("This staff is old, weathered, "+
-            "and lumpy. However, it feels quite sturdy "+
-            "and solid.");
+    SetShort("一根木杖");
+    SetLong("这根法杖又旧又破，但仍然很结实。它由某种坚硬的木材制成。");
     SetVendorType(VT_WEAPON);
     SetDamagePoints(50);
     SetClass(20);

@@ -8,9 +8,8 @@ void create(){
     SetKeyName("curing slip");
     SetId( ({"slip","leaf","paper","healer token"}) );
     SetAdjectives( ({"cure","curing","medical","paper"}) );
-    SetShort("a curing slip");
-    SetLong("This is a small, fragile piece of paper, possibly even a leaf. "
-            "It has some script scribbled on it.");
+    SetShort("一张治疗纸条");
+    SetLong("这是一张脆弱的小纸片，甚至可能是一片树叶。上面写着一些神秘的文字。");
     SetMass(1);
     SetBaseCost("silver",1500);
     SetVendorType(VT_HERB);

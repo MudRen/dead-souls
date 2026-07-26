@@ -8,10 +8,8 @@ protected void create(){
     SetKeyName("wizard hat");
     SetId(({"hat","headgear"}));
     SetAdjectives(({"wizard","wizard's"}));
-    SetShort("a wizard's hat");
-    SetLong("This is a large, floppy hat with a wide brim all "+
-            "around it, and a conical center. It is dark blue in color, "+
-            "and is decorated with pictures of yellow moons and stars.");
+    SetShort("一顶巫师帽");
+    SetLong("这是一顶宽边大软帽，尖顶，像巫师戴的那种。");
     SetMass(50);
     SetBaseCost("silver",500);
     SetArmorType(A_HELMET);

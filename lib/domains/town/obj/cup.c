@@ -8,8 +8,8 @@ void create(){
     SetKeyName("cup");
     SetId( ({"cup", "trophy"}) );
     SetAdjectives( ({"trophy", "brass", "small"}) );
-    SetShort("a small trophy cup");
-    SetLong("About the size of a teacup, this brass cup appears to be some sort of trophy from a competition. There are words engraved on it.");
+    SetShort("一个小奖杯");
+    SetLong("大约茶杯大小，这个黄铜杯看起来像是某种比赛的奖杯。上面刻着字。");
     SetItems(([
                 ({ "word", "words", "engraving", "inscription" }) : "Words engraved on the cup.",
                 ]));

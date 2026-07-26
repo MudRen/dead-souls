@@ -9,10 +9,8 @@ protected void create() {
     SetKeyName("altar");
     SetId( ({ "altar","platform","pedestal" }) );
     SetAdjectives( ({ "orcish", "simple","stone" }) );
-    SetShort("a simple stone altar, dripping blood");
-    SetLong("This is a ceremonial orcish  altar, where "+
-            "holy offerings and sacrifices are made. It is "+
-            "sheeted in dried blood and rotting tissue.");
+    SetShort("一个滴血的简朴石祭坛");
+    SetLong("这是一个仪式用的兽人祭坛，兽人们在这里用俘虏的鲜血祭拜他们的黑暗之神。");
     SetItems( ([
                 ({"blood","dried blood","tissue","rotting tissue"}) : ""+
                 "This appears to be the accumulated detritus of "+

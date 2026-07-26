@@ -8,10 +8,8 @@ protected void create(){
     SetKeyName("kevlar helmet");
     SetId(({"helmet","cover","kevlar"}));
     SetAdjectives(({"kevlar","battle","hard"}));
-    SetShort("a camouflaged kevlar helmet");
-    SetLong("This is a military helmet made of a very tough "+
-            "polymer fiber that provides excellent ballistic protection. It bears a "+
-            "mottled camouflage design to aid in woodland concealment.");
+    SetShort("一顶迷彩凯夫拉头盔");
+    SetLong("这是一顶军用头盔，由非常坚硬的凯夫拉材料制成。");
     SetMass(50);
     SetBaseCost("silver",500);
     SetArmorType(A_HELMET);

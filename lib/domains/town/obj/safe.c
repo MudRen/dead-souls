@@ -7,10 +7,8 @@ void create() {
     SetKeyName("safe");
     SetId(({"safe"}));
     SetAdjectives(({"metal","small"}));
-    SetShort("a metal safe");
-    SetLong("This is a small safe, about 2 feet high, where "+
-            "one may store valuables. It looks quite "+
-            "strong.");
+    SetShort("一个金属保险箱");
+    SetLong("这是一个小保险箱，大约2英尺高，可以存放贵重物品。");
     SetMaxCarry(1000);
     SetInventory(([
                 "/domains/campus/weap/grenade" : 1,

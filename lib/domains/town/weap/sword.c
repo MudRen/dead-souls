@@ -10,8 +10,8 @@ protected void create() {
     SetKeyName("short sword");
     SetId( ({ "sword", "short sword" }) );
     SetAdjectives( ({ "short" }) );
-    SetShort("a short sword");
-    SetLong("A cheap and rather dull short sword.");
+    SetShort("一把短剑");
+    SetLong("一把便宜且相当钝的短剑。");
     SetMass(300);
     SetBaseCost("silver",800);
     SetVendorType(VT_WEAPON);

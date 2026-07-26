@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("necklace");
     SetId(({"necklace","chain" "locket"}));
     SetAdjectives(({"silver","braided","finest"}));
-    SetShort("a silver necklace");
-    SetLong("A braided chain, made of finest silver. A locket is on it.");  
+    SetShort("一条银项链");
+    SetLong("一条编织链，由最优质的银制成。上面有一个挂坠。");  
     SetMass(50);
     SetMaxCarry(300);
     SetBaseCost("silver",1);

@@ -6,7 +6,6 @@ protected void create() {
     dummy::create();
     SetKeyName("lamp");
     SetId("lamp on a post","post","lamp post","lamppost");
-    SetShort("a lamp on a post");
-    SetLong("This is a lamp on a post which is lit at night so townsfolk "
-            "can find their way around.");
+    SetShort("一根灯柱");
+    SetLong("这是一根灯柱上的灯，夜间点亮以便镇民能看清道路。");
 }

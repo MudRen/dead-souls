@@ -9,9 +9,8 @@ protected void create(){
     SetKeyName("cue");
     SetId( ({ "stick", "pole" }) );
     SetAdjectives( ({ "wood","wooden", "pool", "billiards", "billiard"}) );
-    SetShort("a billiards cue");
-    SetLong("This is a long stick of highly polished wood, used "
-            "in the game of billiards.");
+    SetShort("一根台球杆");
+    SetLong("这是一根高度抛光的长木棍，用于打台球。");
     SetVendorType(VT_WEAPON);
     SetDamagePoints(50);
     SetClass(10);

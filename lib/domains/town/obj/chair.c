@@ -8,9 +8,8 @@ protected void create() {
     SetKeyName("chair");
     SetId("chair");
     SetAdjectives( ({ "swivel", "small", "black" }) );
-    SetShort("a swivel chair");
-    SetLong("This is a small swivel chair, with tasteful and understated "+
-            "black covers.");
+    SetShort("一把转椅");
+    SetLong("这是一把小型转椅，设计雅致而低调，配有软垫座位和靠背。");
     SetMass(150);
     SetDollarCost(15);
     SetMaxSitters(1);

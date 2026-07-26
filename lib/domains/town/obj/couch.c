@@ -9,9 +9,8 @@ protected void create() {
     SetKeyName("beat up couch");
     SetId( ({ "couch","sofa","recliner" }) );
     SetAdjectives( ({ "beat up","beat-up","old" }) );
-    SetShort("a beat-up old couch");
-    SetLong("This is a beat-up, worn and dirty couch, the kind "
-            "one might expect in a university dorm room.");
+    SetShort("一张破旧的沙发");
+    SetLong("这是一张破旧、磨损且肮脏的沙发，那种你在廉价家具店才能看到的款式。");
     SetMass(500);
     SetBaseCost("silver",15);
     SetMaxSitters(2);

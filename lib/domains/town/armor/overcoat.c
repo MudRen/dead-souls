@@ -8,9 +8,8 @@ protected void create(){
     SetKeyName("overcoat");
     SetId(({"coat","overcoat"}));
     SetAdjectives(({"heavy","woolen"}));
-    SetShort("a heavy woolen overcoat");
-    SetLong("This is a large overcoat, of fine craftsmanship. It's "+
-            "likely excellent protection against the cold.");
+    SetShort("一件厚实的羊毛大衣");
+    SetLong("这是一件工艺精良的大衣。非常保暖。");
     SetMass(60);
     SetBaseCost("silver",300);
     SetProtection(BLUNT,10);

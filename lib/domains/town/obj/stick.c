@@ -18,8 +18,8 @@ void create(){
     SetKeyName("stick");
     SetId( ({"branch","piece","piece of a tree"}) );
     SetAdjectives( ({"small"}) );
-    SetShort("a small stick");
-    SetLong("This is a piece of a tree.");
+    SetShort("一根小树枝");
+    SetLong("这是一截树枝。");
     SetMass(20);
 }
 

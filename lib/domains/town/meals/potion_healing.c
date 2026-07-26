@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("potion");
     SetId( ({ "bottle", "potion","philtrum","potion of healing","potion of minor healing" }) );
     SetAdjectives( "green", "healing","minor healing" );
-    SetShort("a green potion of minor healing");
-    SetLong("A bottle containing a green fluid with the magical property of restoring some health.");
+    SetShort("一瓶绿色初级治疗药水");
+    SetLong("一瓶绿色液体，具有恢复一些生命值的魔法属性。");
     SetMass(60);
     SetMealType(MEAL_DRINK);
     SetStrength(5);

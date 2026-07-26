@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("zyqxuwy");
     SetId( ({ "fish", "pinkfish" }) );
     SetAdjectives( ({ "pink","freshwater","fresh water" }) );
-    SetShort("a pink zyqxuwy");
-    SetLong("It is freshwater fish, and pink in color.");
+    SetShort("一条粉色zyqxuwy鱼");
+    SetLong("这是一种淡水鱼，粉色的。");
     SetMealType(MEAL_FOOD);
     SetMass(10); 
     SetStrength(10); 

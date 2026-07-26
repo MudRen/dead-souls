@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("damp towel");
     SetId(({"towel"}));
     SetAdjectives(({"damp","bath","ordinary", "bathtowel"}));
-    SetShort("a damp towel");
-    SetLong("This is an ordinary bath towel.");
+    SetShort("一条湿毛巾");
+    SetLong("这是一条普通的浴巾。");
     SetMass(25);
     SetBaseCost("silver",10);
     SetProtection(BLUNT,1);

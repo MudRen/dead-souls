@@ -25,7 +25,7 @@ void create(){
     SetKeyName("tf2");
     SetGermName("flu virus");
     SetId(({"tf2"}));
-    SetLong("Test Flu version 2");
+    SetLong("测试流感病毒2版");
     SetCure(20);
     SetCommunicable(15);
     SetLifeSpan(900);

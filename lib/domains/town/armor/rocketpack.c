@@ -19,7 +19,7 @@ protected void create(){
     SetKeyName("rocket pack");
     SetId(({"pack","rocket","rocketpack"}));
     SetAdjectives(({"small","rocket"}));
-    SetShort("a small rocket pack");
+    SetShort("一个小火箭背包");
     SetLong( (: LongD :) );
     SetMass(500);
     SetBaseCost(8000);

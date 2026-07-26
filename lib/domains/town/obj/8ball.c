@@ -34,12 +34,8 @@ void create(){
     SetKeyName("magic 8 ball");
     SetId( ({"ball","8ball","8-ball","8 ball"}) );
     SetAdjectives( ({"giant","billiard","black","magic"}) );
-    SetShort("a magic 8 ball");
-    SetLong("This is a plastic sphere, about the size of a human hand, "+
-            "and black in color. On one side a white circle is painted, with the "+
-            "numeral 8 in the middle, as if it were a giant billiard ball. On "+
-            "the other side of the sphere is a little clear window. It would "+
-            "appear that one shakes this ball, then consults it, to get advice.");
+    SetShort("一个魔法8号球");
+    SetLong("这是一个塑料球体，大约手掌大小，黑色。一侧画着一个白色圆圈，中间有数字8，就像一个巨大的台球。球体的另一侧有一个小透明窗口。看起来人们摇动这个球，然后向它咨询以获得建议。");
     SetMass(20);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

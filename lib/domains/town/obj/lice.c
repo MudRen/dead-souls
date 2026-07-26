@@ -23,7 +23,7 @@ void create(){
     germ::create();
     SetKeyName("tf1");
     SetId(({"tf2"}));
-    SetLong("lice version 1");
+    SetLong("虱子病毒1版");
     SetCure(20);
     SetVendorType(VT_TREASURE);
     SetCommunicable(50);

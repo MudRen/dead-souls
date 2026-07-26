@@ -8,11 +8,8 @@ protected void create(){
     SetKeyName("bearskin");
     SetId(({"bearskin","bear skin"}));
     SetAdjectives(({"thick","shaggy"}));
-    SetShort("a thick, shaggy bearskin");
-    SetLong("This is a thick bearskin which can be worn "+
-            "as armor. Unfortunately the hide "+
-            "has not been tanned, so it's rather "+
-            "foul-smelling.");
+    SetShort("一张厚实蓬松的熊皮");
+    SetLong("这是一张厚实的熊皮，可以穿戴在身上提供保暖和防护。");
     SetItems( ([
                 "hide" : "It is untanned and subject "+
                 "to natural decomposition."

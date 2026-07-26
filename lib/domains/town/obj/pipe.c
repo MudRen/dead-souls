@@ -7,9 +7,8 @@ void create(){
     SetKeyName("magic pipe");
     SetId( ({"sigpipe","magical pipe","pipe of insight"}) );
     SetAdjectives( ({"magic","magical","kalinash's", "sig", "smoking"}) );
-    SetShort("a magic pipe");
-    SetLong("This is a handsome pipe for smoking, made of ivory. There "
-            "is some sort of inscription written on it.");
+    SetShort("一支魔法烟斗");
+    SetLong("这是一支漂亮的象牙烟斗。有一些魔法附着在上面。");
     SetMass(5);
     SetBaseCost("silver", 300);
     SetVendorType(VT_TREASURE);

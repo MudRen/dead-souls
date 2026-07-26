@@ -10,9 +10,8 @@ protected void create(){
     SetKeyName("a green cloak");
     SetId(({"cloak"}));
     SetAdjectives(({"green","elven"}));
-    SetShort("a green cloak");
-    SetLong("This is a cloak of elven design, green in color, with an attached hood. "
-            "One may \"wear hood on cloak\" with it, probably.");
+    SetShort("一件绿色斗篷");
+    SetLong("这是一件精灵设计的斗篷，绿色，配有兜帽。穿上它可以隐身。");
     SetMass(200);
     SetBaseCost("silver",500);
     SetDamagePoints(100);

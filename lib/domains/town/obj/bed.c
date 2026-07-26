@@ -12,10 +12,8 @@ protected void create() {
     SetKeyName("king-sized bed");
     SetId( ({ "cot","bed" }) );
     SetAdjectives( ({ "large","king-sized","king-size","four-poster","four poster","big","very big"}) );
-    SetShort("a large four-poster bed");
-    SetLong("This is a very big bed, with a large, decorative wooden "
-            "post at each corner. Though one might expect "
-            "a canopy over such a bed, it is absent here.");
+    SetShort("一张大型四柱床");
+    SetLong("这是一张非常大的床，有一个大的装饰性木制床架。床上铺着柔软的天鹅绒床单。");
     SetMass(4000);
     SetMaxCarry(4000);
     SetBaseCost("silver",1500);

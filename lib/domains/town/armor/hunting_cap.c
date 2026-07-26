@@ -8,9 +8,8 @@ protected void create(){
     SetKeyName("hunting cap");
     SetId(({"hat","headgear","cap"}));
     SetAdjectives(({"soft","felt","hunting"}));
-    SetShort("a hunting cap");
-    SetLong("This is a soft, felt cap one wears when hunting. "+
-            "It has a single feather jauntily stuck to the side.");
+    SetShort("一顶猎帽");
+    SetLong("这是一顶打猎时戴的柔软毡帽。既舒适又实用。");
     SetMass(10);
     SetBaseCost("silver",50);
     SetDamagePoints(10);

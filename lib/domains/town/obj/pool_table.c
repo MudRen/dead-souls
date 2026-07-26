@@ -7,8 +7,8 @@ void create() {
     SetKeyName("pool table");
     SetId( ({ "table" ,"billiards table"}) );
     SetAdjectives( ({ "billiard", "wood","wooden", "pool", "billiards" "large" }) );
-    SetShort("a billiards table");
-    SetLong("It is a large table made of dark, heavy wood. Its surface is covered in green felt and there are six holes in the corners and sides, through which balls may fit.");
+    SetShort("一张台球桌");
+    SetLong("这是一张用深色重木制成的大桌子。桌面覆盖着绿色毛毡，角落和侧面有六个洞，球可以穿过。");
     SetMass(10000);
     SetBaseCost("silver",1200);
     SetMaxCarry(5000);

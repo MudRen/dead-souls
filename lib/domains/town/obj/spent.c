@@ -6,10 +6,8 @@ void create(){
     SetKeyName("slug");
     SetId( ({"slug","round","bullet","projectile"}) );
     SetAdjectives( ({"spent","lead"}) );
-    SetShort("a spent firearms slug");
-    SetLong("This small, twisted chunk of metal appears to be a spent "+
-            "slug: the part of a bullet that is fired from a gun and enters the target. "+
-            "Its shape has been distorted by its impact with whatever it hit.");
+    SetShort("一颗用过的弹头");
+    SetLong("这块扭曲的小金属块看起来是一颗用过的子弹头。");
     SetMass(1);
     SetBaseCost("silver",0);
     SetVendorType(VT_TREASURE);

@@ -8,10 +8,8 @@ protected void create() {
     item::create();
     SetKeyName("omni");
     SetId(({"omni","Omni","device"}));
-    SetShort("an omni");
-    SetLong("This is a small, round metal device, copper in color, "+
-            "and similar in appearance to a pocket watch. There is a blinking red light "+
-            "next to the tiny metal button at its top.");
+    SetShort("一把万能钥匙");
+    SetLong("这是一个小而圆的金属设备，铜色，上面有一些奇怪的符文。它似乎能打开任何锁。");
     SetMass(10);
     SetBaseCost("silver",300);
     AddItem("button", "A button on the omni.");

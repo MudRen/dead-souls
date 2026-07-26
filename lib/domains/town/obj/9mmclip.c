@@ -7,9 +7,8 @@ void create(){
     SetKeyName("9mm clip");
     SetId(({"clip","magazine"}));
     SetAdjectives(({"9mm","ammunition","ammo","9 millimeter","pistol"}));
-    SetShort("a 9 millimeter pistol ammunition clip");
-    SetLong("This is a slender, spring-loaded metal container designed "+
-            "to feed a 9 millimeter pistol with bullets.");
+    SetShort("一个9毫米手枪弹夹");
+    SetLong("这是一个细长的弹簧式金属容器，设计用于为9毫米手枪供弹。");
     SetMillimeter(9);
     SetMaxAmmo(15);
     SetAmmoType("acp");

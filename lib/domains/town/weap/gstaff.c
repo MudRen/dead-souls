@@ -8,9 +8,8 @@ protected void create(){
     SetKeyName("golden staff");
     SetId( ({ "staff"  }) );
     SetAdjectives( ({ "golden" }) );
-    SetShort("a golden staff");
-    SetLong("This is a thick staff, with one end covered in "+
-            "a golden metal.");
+    SetShort("一根金色法杖");
+    SetLong("这是一根粗法杖，一端覆盖着金色的金属。它看起来很强大。");
     SetVendorType(VT_WEAPON);
     SetClass(10);
     SetBaseCost("silver",800);

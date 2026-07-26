@@ -9,11 +9,8 @@ void create(){
     SetKeyName("donation box");
     SetId( ({"box","donation box"}) );
     SetAdjectives( ({"small","wood","wooden"}) );
-    SetShort("a donation box");
-    SetLong("This is a small donation box, made out of wood. "+
-            "It is used to donate money, which is then used "+
-            "to feed the hungry, clothe the naked, et cetera ad "+
-            "nauseam. ");
+    SetShort("一个捐款箱");
+    SetLong("这是一个小捐款箱，木制的。上面有一个投币口。");
     SetMass(20);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

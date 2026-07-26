@@ -7,8 +7,8 @@ void create(){
     SetKeyName("maglite");
     SetId( ({"fl","flashlight","light","flashlite","Maglite"}) );
     SetAdjectives( ({"powerful","heavy","large","Maglite"}) );
-    SetShort( "a large flashlight" );
-    SetLong("This is a powerful, heavy, Maglite brand flashlight.");
+    SetShort("一个大手电筒");
+    SetLong("这是一个强力、沉重的Maglite品牌手电筒。");
     SetMass(250);
     SetBaseCost("silver",40);
     SetLightLevel(20);

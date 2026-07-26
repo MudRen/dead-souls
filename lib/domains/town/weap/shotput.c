@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("shot ball");
     SetAdjectives( ({"ball of", "palm sized", "shot"}) );
     SetId( ({"ball", "lead", "shot", "shotput"}) );
-    SetShort("a palm-sized ball of lead");
-    SetLong("This is a ball of lead, approximately nine inches in diameter. It is a weapon called a 'shot', intended to be thrown at an enemy.");
+    SetShort("一个掌心大小的铅球");
+    SetLong("这是一个铅球，直径约九英寸。这是一种叫做'铅球'的武器，用来投向敌人。");
     SetMass(50);
     SetVendorType(VT_WEAPON);
     SetClass(30);

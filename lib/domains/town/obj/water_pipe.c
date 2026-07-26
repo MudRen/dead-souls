@@ -9,8 +9,8 @@ void create(){
     SetKeyName("pipe");
     SetId( ({"pipe","tube"}) );
     SetAdjectives( ({"water", "thick","metal"}) );
-    SetShort("a thick metal pipe embedded in the bedrock");
-    SetLong("This is a metal pipe embedded in the bedrock.");
+    SetShort("一根嵌入基岩的厚金属管");
+    SetLong("这是一根嵌入基岩的金属管。");
     SetMass(20);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

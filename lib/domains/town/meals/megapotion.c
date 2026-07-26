@@ -7,8 +7,8 @@ protected void create() {
     potion::create();
     SetKeyName("potion");
     SetId( ({ "potion","philtrum","megapotion","megapotion of uberness" }) );
-    SetShort("a megapotion of uberness");
-    SetLong("An example of a potion that is totally out of proportion in power.");
+    SetShort("一瓶超级强力药水");
+    SetLong("一种力量完全超出比例的药水。");
     SetMass(60);
     SetMealType(MEAL_DRINK | MEAL_ALCOHOL);
     SetStrength(5);

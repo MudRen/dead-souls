@@ -7,8 +7,8 @@ void create(){
     SetKeyName("357shell");
     SetId(({"shell","casing","spent bullet"}));
     SetAdjectives(({".357",".357","spent","magnum","shell"}));
-    SetShort("a .357 shell casing");
-    SetLong("This is the spent casing of a .357 magnum bullet.");
+    SetShort("一个.357弹壳");
+    SetLong("这是一枚.357马格南子弹的用过的弹壳。");
     SetCaliber(357);
     SetFirearmType("revolver");
     SetAmmoType("magnum");

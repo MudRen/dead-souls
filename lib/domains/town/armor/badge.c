@@ -8,11 +8,8 @@ protected void create(){
     armor::create();
     SetKeyName("visitor pass");
     SetId(({"testchar badge","badge","pass","visitor's pass"}));
-    SetShort("a test character Visitor's Pass");
-    SetLong("This clip-on plastic badge grants the wearer access to "+
-            "some areas typically restricted to creator staff only. Abuse of this "+
-            "pass is grounds for disciplinary action. A small scribble "+
-            "at the bottom of the pass reads: click heels");
+    SetShort("一张测试角色访客通行证");
+    SetLong("这个塑料别针徽章赋予佩戴者进入某些区域的权限。上面写着"访客通行证"。");
     SetProperties(([
                 "no steal" : 1,
                 ]));

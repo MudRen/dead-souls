@@ -10,8 +10,8 @@ protected void create() {
     SetKeyName("large shield");
     SetId( ({ "shield" }) );
     SetAdjectives( ({ "wood", "wooden","large" }) );
-    SetShort("a large wooden shield");
-    SetLong("A large, heavy shield made of strong wood banded with iron.");
+    SetShort("一面大木盾");
+    SetLong("一面由铁箍加固的结实木材制成的大而重的盾牌。");
     SetVendorType(VT_ARMOR);
     SetMass(100);
     SetBaseCost("silver",250);

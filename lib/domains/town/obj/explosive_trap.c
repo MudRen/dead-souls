@@ -18,8 +18,8 @@ void create(){
     SetKeyName("trap");
     SetId( ({ "trap", "sample trap" }) );
     SetAdjectives( ({ "simple","sample", "poison", "needle" }) );
-    SetShort("a sample trap");
-    SetLong("It is a simple poison needle trap.");
+    SetShort("一个示例陷阱");
+    SetLong("这是一个简单的毒针陷阱。");
     SetShadowObject("/shadows/explosive_trap");
     SetTrapType(BOOBYTRAP_OPEN | BOOBYTRAP_CLOSE | BOOBYTRAP_PICK);
     SetMass(50);

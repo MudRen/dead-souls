@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("smock");
     SetAdjectives( ({"bar workers","food worker's"}) );
     SetId( ({"overalls", "smock", "simple"}) );
-    SetShort("a simple smock");
-    SetLong("This is a set of overalls used by food workers to keep their bodies and the food at a healthy distance.");
+    SetShort("一件简单的工作服");
+    SetLong("这是一套食品工人穿的工作服，用来让身体和食物保持安全距离。");
     SetMass(50);
     SetArmorType(A_BODY_ARMOR);
 }

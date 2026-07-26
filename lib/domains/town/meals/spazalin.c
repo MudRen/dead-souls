@@ -9,9 +9,9 @@ protected void create() {
     ::create();
     SetKeyName("spazalin");
     SetId(({"pill","stimulant"}));
-    SetShort("a spazalin pill");
+    SetShort("一片斯帕扎林药片");
     SetAdjectives(({"spazalin","small","red"}));
-    SetLong("A small red stimulant.");
+    SetLong("一粒红色兴奋剂。");
     SetMass(1);
     SetStrength(1);
     SetBaseCost("gold",3);

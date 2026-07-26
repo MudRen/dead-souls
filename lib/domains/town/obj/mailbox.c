@@ -7,8 +7,8 @@ void create() {
     SetKeyName("mailbox");
     SetId( ({"mailbox", "box"}) );
     SetAdjectives( ({ "generic","nondescript" }) );
-    SetShort("a small mailbox");
-    SetLong("This is a small mailbox standing in front of the white house.");
+    SetShort("一个小邮箱");
+    SetLong("这是一个立在白色房子前面的小邮箱。");
     SetCanClose(1);
     SetMass(274);
     SetBaseCost("silver",1);

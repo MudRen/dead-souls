@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("sock");
     SetId(({"sock"}));
     SetAdjectives(({"black","nylon","knee-length","knee","knee length"}));
-    SetShort("a long black nylon sock");
-    SetLong("A long, knee-length sock, made of black nylon.");
+    SetShort("一只黑色长尼龙袜");
+    SetLong("一只黑色尼龙及膝长袜。");
     SetMass(5);
     SetBaseCost("silver",1);
     SetProtection(BLUNT,1);

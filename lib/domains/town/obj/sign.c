@@ -8,8 +8,8 @@ void create(){
     SetKeyName("sign");
     SetId( ({"thing","item","thang","dingus"}) );
     SetAdjectives( ({"generic","sample","template"}) );
-    SetShort("a sign");
-    SetLong("This is an object of indeterminate nature and proportions.");
+    SetShort("一个标志");
+    SetLong("这是一个性质和大小都不确定的物品。");
     SetItems(([
                 ({ "words", "word", "this is the first read" }) : "These are the smallest units of vocabulary of a language.",
                 ]));

@@ -8,8 +8,8 @@ void create(){
     SetKeyName("flask");
     SetId( ({"flask"}) );
     SetAdjectives( ({"small","metal","vessel"}) );
-    SetShort("a small flask");
-    SetLong("A small, metal vessel for containing fluids.");
+    SetShort("一个小瓶子");
+    SetLong("一个小的金属容器，用来装液体。");
     SetMass(20);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

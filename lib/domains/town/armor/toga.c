@@ -8,9 +8,8 @@ protected void create(){
     SetKeyName("healer's toga");
     SetId(({"toga"}));
     SetAdjectives(({"long","white","comfotable"}));
-    SetShort("a long, white toga");
-    SetLong("This is a comfortable, full-length toga. It is the sort of "
-            "elegant garment that ancient politicians and healers once wore.");
+    SetShort("一件白色长袍");
+    SetLong("这是一件舒适的全长袍。是那种古罗马人穿的款式。");
     SetMass(75);
     SetBaseCost("silver",100);
     SetProtection(BLUNT,1);

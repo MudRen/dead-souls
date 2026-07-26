@@ -127,8 +127,8 @@ void create(){
     SetKeyName("scroll");
     SetId(({"scroll of resurrection"}));
     SetAdjectives(({"resurrection","magic"}));
-    SetShort("a scroll");
-    SetLong("This is a scroll with some words written on it.");
+    SetShort("一卷卷轴");
+    SetLong("这是一卷写有文字的卷轴。");
     SetMass(1);
     SetDollarCost(1000);
     SetVendorType(VT_TREASURE);

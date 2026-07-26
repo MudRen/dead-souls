@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("silver key");
     SetId( ({ "key", "mansion key" }) );
     SetAdjectives( ({ "brilliant", "silver" }) );
-    SetShort("a silver key");
-    SetLong("It is a brilliant silver key with no markings.");
+    SetShort("一把银钥匙");
+    SetLong("这是一把没有标记的闪亮银钥匙。");
     SetMass(1);
     SetBaseCost("silver",1);
     SetDisableChance(5);

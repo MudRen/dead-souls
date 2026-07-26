@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("sock");
     SetId(({"sock"}));
     SetAdjectives(({"white","cotton","athletic"}));
-    SetShort("a white cotton sock");
-    SetLong("An athletic sock, made of white cotton.");
+    SetShort("一只白色棉袜");
+    SetLong("一只白色棉质运动袜。");
     SetMass(5);
     SetBaseCost("silver",1);
     SetArmorType(A_SOCK);

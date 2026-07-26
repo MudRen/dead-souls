@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("shirt");
     SetAdjectives( ({"horse", "t", "simple", "cotton"}) );
     SetId( ({"tshirt", "t-shirt"}) );
-    SetShort("a shirt");
-    SetLong("A simple cotton shirt with a design of a horse drawn on it, and the slogan: 'I'm a little horse girl!'");
+    SetShort("一件衬衫");
+    SetLong("一件简单的棉衬衫，上面画着一匹马，标语是：'我是小马女孩！'");
     SetMass(5);
     SetBaseCost("silver",1);
     SetArmorType(A_SHIRT);

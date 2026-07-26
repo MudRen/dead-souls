@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("javelin");
     SetAdjectives( ({"throwing", "small", "light"}) );
     SetId( ({"spear"}) );
-    SetShort("a javelin");
-    SetLong("This is a small, light throwing spear.");
+    SetShort("一支标枪");
+    SetLong("这是一支轻便的小投枪。");
     SetMass(50);
     SetVendorType(VT_WEAPON);
     SetClass(30);

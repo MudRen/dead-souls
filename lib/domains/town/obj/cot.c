@@ -10,9 +10,8 @@ protected void create() {
     SetKeyName("metal cot");
     SetId( ({ "cot","bed" }) );
     SetAdjectives( ({ "simple","metal" }) );
-    SetShort("a simple cot");
-    SetLong("This is a simple metal cot designed for "
-            "sleepers that do not require a comfortable bed.");
+    SetShort("一张简易小床");
+    SetLong("这是一张简易金属小床，设计用于在营地中临时休息使用。");
     SetMass(50);
     SetBaseCost("silver",15);
     SetMaxSitters(2);

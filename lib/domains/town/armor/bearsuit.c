@@ -10,10 +10,8 @@ protected void create(){
     SetKeyName("bearsuit");
     SetId(({"costume","bear costume","suit","bear suit"}));
     SetAdjectives(({"realistic","terrific"}));
-    SetShort("a bear costume");
-    SetLong("A terrific and very realistic suit which makes "+
-            "the wearer look like a bear. It seems to have "+
-            "been fashioned from real bear parts.");
+    SetShort("一套熊装");
+    SetLong("一套极好且非常逼真的服装，穿上后看起来就像一只真正的熊。");
     SetMass(200);
     SetMatching(0);
     SetBaseCost("silver",800);

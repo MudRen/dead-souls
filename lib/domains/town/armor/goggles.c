@@ -8,9 +8,8 @@ protected void create(){
     SetKeyName("goggles");
     SetId(({"goggles"}));
     SetAdjectives(({"thick","driving","protective","eyewear"}));
-    SetShort("driving goggles");
-    SetLong("A set of protective goggles for wearing during "+
-            "high-speed travel.");
+    SetShort("驾驶护目镜");
+    SetLong("一副防护护目镜，适合在危险环境中佩戴。");
     SetMass(5);
     SetBaseCost("silver",30);
     SetArmorType(A_VISOR);

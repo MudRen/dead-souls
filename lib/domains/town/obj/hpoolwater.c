@@ -10,8 +10,8 @@ protected void create() {
     SetKeyName("water");
     SetId(({"pool","poolwater" }));
     SetAdjectives("pool","glowing");
-    SetLong("The glowing water of a strange pool in the forest.");
-    SetShort("the glowing pool");
+    SetLong("森林中一个奇怪水池的发光水面。");
+    SetShort("发光的水池");
     SetFlaskContents("water");
     SetFlaskUses(2);
     SetStrength(5);

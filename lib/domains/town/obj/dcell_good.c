@@ -6,8 +6,8 @@ void create(){
     SetKeyName("d-cell");
     SetId( ({"cell","battery"}) );
     SetAdjectives( ({"d","generic","D","D-cell"}) );
-    SetShort("a D cell battery");
-    SetLong("This is a typical D-cell battery, of a generic brand.");
+    SetShort("一节D型电池");
+    SetLong("这是一节普通的D型电池，杂牌货。");
     SetMass(2);
     SetBaseCost("silver",2);
     SetVendorType(VT_TREASURE);

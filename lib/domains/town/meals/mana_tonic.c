@@ -9,9 +9,8 @@ protected void create() {
     SetKeyName("eve tonic");
     SetId( ({ "bottle", "liquid", "eve", "tonic"}) );
     SetAdjectives( "eve", "glowing","liquid", "blue" );
-    SetShort("a bottle of Eve");
-    SetLong("A bottle of glowing blue liquid. It has a label on it featuring "+
-            "the silhouette of a bearded man wearing a top hat.");
+    SetShort("一瓶伊芙药水");
+    SetLong("一瓶发光的蓝色液体。标签上印有"伊芙魔力药水"的字样。");
     SetEmptyLong("An empty bottle. It has a label on it featuring "+
             "the silhouette of a bearded man wearing a top hat."); 
     SetMass(60);

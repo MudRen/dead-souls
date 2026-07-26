@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("mansion commode");
     SetId( ({ "toilet","commode","bowl","can" }) );
     SetAdjectives( ({ "porcelain","white" }) );
-    SetShort("a toilet");
-    SetLong("This is a common piece of internal plumbing.");
+    SetShort("一个马桶");
+    SetLong("这是一件常见的室内管道设施。");
     SetMass(2000);
     SetBaseCost("silver",15);
     SetMaxSitters(1);

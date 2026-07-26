@@ -6,8 +6,8 @@ void create() {
     ::create();
     SetKeyName("chest");
     SetId(({"chest","wooden chest"}));
-    SetShort("a wooden chest");
-    SetLong("This is a sturdy wooden chest used to store valuable items.");
+    SetShort("一个木箱");
+    SetLong("这是一个结实的木箱，用于存放贵重物品。");
     SetMass(2000);
     SetBaseCost("silver",50);
     SetMaxCarry(1500);

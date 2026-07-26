@@ -9,9 +9,8 @@ protected void create() {
     SetKeyName("overnight");
     SetId(({"bag"}));
     SetAdjectives(({"overnight","canvas"}));
-    SetShort("an overnight bag");
-    SetLong("This is a medium-sized bag made of soft "
-            "canvas, made for holding useful items.");
+    SetShort("一个过夜包");
+    SetLong("这是一个中等大小的袋子，由柔软的皮革制成。");
     SetMaxCarry(450);
     SetInventory(([
                 "/domains/town/armor/mhelmet" : 1,

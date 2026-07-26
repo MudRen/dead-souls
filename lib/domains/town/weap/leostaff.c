@@ -8,10 +8,8 @@ protected void create(){
     SetKeyName("staff");
     SetId( ({ "staff", "stick", "pole"  }) );
     SetAdjectives( ({ "wood","wooden","strong","heavy","thick","sturdy","solid" }) );
-    SetShort("a large wooden staff");
-    SetLong("This staff is thick, strong, "+
-            "and heavy. It feels like a sturdy "+
-            "and solid weapon.");
+    SetShort("一根大木杖");
+    SetLong("这根法杖又粗又壮，由坚硬的木材制成。它看起来非常结实。");
     SetVendorType(VT_WEAPON);
     SetDamagePoints(50);
     SetClass(500);

@@ -10,9 +10,9 @@ protected void create() {
     meal::create();
     SetKeyName("pill");
     SetId(({"claritin","loratidine","dose","drug"}));
-    SetShort("a claritin pill");
+    SetShort("一片开瑞坦药片");
     SetAdjectives(({"10mg", "10 milligram", "non drowsy","non prescription", "prescription strength"}));
-    SetLong("A tiny, 10 milligram dose of a drug that removes cold symptoms.");
+    SetLong("一粒10毫克的感冒片。");
     SetMass(10);
     SetStrength(1);
     SetBaseCost("silver",10);

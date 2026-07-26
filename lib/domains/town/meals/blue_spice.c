@@ -9,9 +9,9 @@ protected void create() {
     ::create();
     SetKeyName("blue spice");
     SetId(({"spice","stick","stick of blue spice","slender"}));
-    SetShort("a stick of blue spice");
+    SetShort("一根蓝色香料");
     SetAdjectives(({"blue","spice"}));
-    SetLong("A slender stick of blue spice.");
+    SetLong("一根细长的蓝色香料。");
     SetMass(1);
     SetStrength(1);
     SetBaseCost("gold",10);

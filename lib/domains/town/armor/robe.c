@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("wizard's robe");
     SetId(({"robe","cloak","duster"}));
     SetAdjectives(({"wizard","wizard's","soft"}));
-    SetShort("a robe");
-    SetLong("This is a large, comfortable-looking robe, like a wizard might wear. ");
+    SetShort("一件长袍");
+    SetLong("这是一件看起来很舒适的大袍子，像巫师穿的那种。");
     SetMass(200);
     SetBaseCost("silver",100);
     SetProtection(BLUNT,100);

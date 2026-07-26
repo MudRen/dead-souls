@@ -26,8 +26,8 @@ protected void create() {
     SetKeyName("seawater");
     SetId(({"sea","sea water","ocean","water" }));
     SetAdjectives("calm","lovely");
-    SetLong("A calm, lovely sea view.");
-    SetShort("the sea");
+    SetLong("一片平静、美丽的海景。");
+    SetShort("大海");
     SetFlaskContents("sea water");
     SetFlaskUses(2);
     SetStrength(-15);

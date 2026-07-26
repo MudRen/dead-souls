@@ -16,8 +16,8 @@ protected void create() {
     SetKeyName("wall");
     SetId("wall");
     SetAdjectives("bedroom");
-    SetShort("a bedroom wall");
-    SetLong("It is a typical, if ornate, bedroom wall, with a painting on it.");
+    SetShort("一堵卧室墙");
+    SetLong("这是一堵典型而华丽的卧室墙，上面挂着一幅画。");
     SetItems( ([
                 ({"painting","beautiful painting"}) :  (: ShowDali :),
                 ]) );

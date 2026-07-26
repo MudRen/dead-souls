@@ -7,8 +7,8 @@ void create() {
     SetKeyName("bin");
     SetAdjectives( ({"newbie", "charity", "freebie"}) );
     SetId( ({"newbie bin"}) );
-    SetShort("the newbie bin");
-    SetLong("This medium-sized bin is designed to hold stuff that may be of use to newbies. By default it contains stuff that won't sell for much, but players are encouraged to make generous contributions for the benefit of weaker players. To view its contents: look in bin");
+    SetShort("新手物品箱");
+    SetLong("这个中等大小的箱子用来存放可能对新手有用的物品。默认包含一些不值钱的东西，但鼓励玩家慷慨捐献以帮助较弱的玩家。查看内容：look in bin");
     SetInventory(([
                 "/domains/town/obj/slip_heal" : 1,
                 "/domains/town/obj/match" : 5,

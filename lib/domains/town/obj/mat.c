@@ -7,10 +7,8 @@ void create(){
     SetKeyName("bath mat");
     SetId( ({"mat"}) );
     SetAdjectives( ({"slightly damp","damp","blue","light blue"}) );
-    SetShort("a bath mat");
-    SetLong("This is a mat used to help prevent slipping, promote "
-            "foot drying, and avoid a big wet mess on "
-            "the bathroom floor. It is slightly damp.");
+    SetShort("一张浴室垫");
+    SetLong("这是一张浴室垫，用于防滑，促进安全。");
     SetMass(10);
     SetBaseCost("silver",5);
     SetVendorType(VT_TREASURE);

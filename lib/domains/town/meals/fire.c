@@ -10,8 +10,8 @@ protected void create() {
     SetId( ({ "bottle", "bourbon" ,"fire","firebreather",
                 "bottle of bourbon"}) );
     SetAdjectives( ({ "firebreather","dark","green","bourbon"}) );
-    SetShort("a bottle of bourbon");
-    SetLong("A dark green bottle of \"Firebreather\" brand bourbon.");
+    SetShort("一瓶波本威士忌");
+    SetLong("一瓶深绿色的\"火喉\"牌波本威士忌。");
     SetMass(100);
     SetBaseCost("silver",50);
     SetMealType(MEAL_DRINK | MEAL_ALCOHOL);

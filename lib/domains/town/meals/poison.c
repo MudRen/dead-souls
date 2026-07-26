@@ -10,8 +10,8 @@ protected void create() {
     SetKeyName("poison");
     SetId( ({ "vial", "poison", "vial of poison" }) );
     SetAdjectives("glass","small");
-    SetShort("a vial of poison");
-    SetLong("A small glass vial of poison.");
+    SetShort("一瓶毒药");
+    SetLong("一小瓶毒药。");
     SetMass(60);
     SetMealType(MEAL_DRINK);
     SetStrength(1);

@@ -7,8 +7,8 @@ protected void create() {
     SetKeyName("complex key");
     SetId( ({ "key", "mansion safe key" }) );
     SetAdjectives( ({ "complex", "complicated", "complicated looking" }) );
-    SetShort("a complex key");
-    SetLong("It is a complicated-looking key.");
+    SetShort("一把复杂的钥匙");
+    SetLong("这是一把看起来很复杂的钥匙。");
     SetMass(1);
     SetBaseCost("silver",1);
     SetDisableChance(100);

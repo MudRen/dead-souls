@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("potion");
     SetId( ({ "bottle", "potion","philtrum","potion of strength" }) );
     SetAdjectives( "red", "strength", "strongitude", "strongicity" );
-    SetShort("a red potion of strength");
-    SetLong("A bottle containing a red fluid with the magical property of making one stronger.");
+    SetShort("一瓶红色力量药水");
+    SetLong("一瓶红色液体，具有使人更强壮的魔法属性。");
     SetMass(60);
     SetMealType(MEAL_DRINK);
     SetStrength(5);

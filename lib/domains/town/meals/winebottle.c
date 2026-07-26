@@ -8,8 +8,8 @@ void create(){
     SetKeyName("bottle");
     SetId( ({"vessel","winebottle","bottle of wine","nouveau"}) );
     SetAdjectives( ({"wine","glass","nouveau"}) );
-    SetShort("a bottle of wine");
-    SetLong("A bottle of something or other Nouveau. The label is too stained to read.");
+    SetShort("一瓶葡萄酒");
+    SetLong("一瓶什么什么新酒。标签太脏了看不清。");
     SetMass(40);
     SetBaseCost("gold",2);
     SetVendorType(VT_DRINK);

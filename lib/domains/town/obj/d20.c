@@ -8,9 +8,8 @@ void create(){
     SetKeyName("die");
     SetId( ({ "implement"}) );
     SetAdjectives( ({"20","twenty","sided","twenty-sided","20-sided"}) );
-    SetShort("a twenty-sided die");
-    SetLong("A typical implement of games of chance. Orange in color, and "
-            "marked with numbers rather than dots along its twenty surfaces.");
+    SetShort("一个二十面骰子");
+    SetLong("一个典型的博彩用具。橙色，上面有二十个面，分别刻着数字1到20。");
     SetDenominator(20);
     SetMass(4);
     SetBaseCost("silver",5);

@@ -127,8 +127,8 @@ void create(){
     SetKeyName("scroll");
     SetId(({"scroll of raise dead","scroll of necromancy"}));
     SetAdjectives(({"terrible","raise dead","magic","necromancy","dark"}));
-    SetShort("a dark scroll");
-    SetLong("This is a dark scroll with some words written on it.");
+    SetShort("一卷暗色卷轴");
+    SetLong("这是一卷写有文字的暗色卷轴。");
     SetMass(1);
     SetDollarCost(500);
     SetVendorType(VT_TREASURE);

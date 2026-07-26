@@ -7,8 +7,8 @@ void create(){
     SetKeyName(".357 round");
     SetId(({"round","bullet"}));
     SetAdjectives(({".357","caliber","revolver","pistol"}));
-    SetShort("a .357 pistol round");
-    SetLong("This is a .357 caliber revolver bullet. It has not been fired.");
+    SetShort("一颗.357手枪子弹");
+    SetLong("这是一颗.357口径左轮手枪子弹，尚未击发。");
     SetCaliber(357);
     SetFirearmType("revolver");
     SetAmmoType("magnum");

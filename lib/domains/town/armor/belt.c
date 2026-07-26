@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("belt");
     SetId(({"belt"}));
     SetAdjectives(({"leather"}));
-    SetShort("a leather belt");
-    SetLong("A belt made of leather.");
+    SetShort("一条皮带");
+    SetLong("一条皮革制成的腰带。");
     SetMass(5);
     SetBaseCost("silver",10);
     SetProtection(BLUNT,1);

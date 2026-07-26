@@ -8,13 +8,8 @@ void create() {
     SetKeyName("stove");
     SetId(({"stove"}));
     SetAdjectives(({"large","imported","expensive"}));
-    SetShort("a large stove");
-    SetLong("This is a very large kitchen stove, which can "+
-            "handle quite a lot of food at once. The exterior is "+
-            "finished in a very tasteful brushed metal motif, and "+
-            "it seems that this is one of those expensive, imported "+
-            "stoves that only ridiculously rich people have in "+
-            "their homes.");
+    SetShort("一个大炉灶");
+    SetLong("这是一个非常大的厨房炉灶，可以同时烹饪多道菜肴。");
     SetMass(5000);
     SetBaseCost("silver",1000);
     SetMaxCarry(5000);

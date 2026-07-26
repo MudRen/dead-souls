@@ -43,8 +43,8 @@ protected void create() {
     SetKeyName("lever");
     SetId(({"lever","lever on the wall" }));
     SetAdjectives("wooden");
-    SetShort("a lever");
-    SetLong("It is a lever.");
+    SetShort("一根拉杆");
+    SetLong("这是一根拉杆。");
     SetPress((: closeDoor :));
     SetPull((: openDoor :));
 }

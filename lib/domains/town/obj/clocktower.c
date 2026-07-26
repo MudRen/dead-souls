@@ -10,13 +10,8 @@ protected void create(){
     SetKeyName("clock tower");
     SetId( ({"great clock tower rising majestically into the sky", "great clock of the town", "clock", "tower", "structure", "architecture", "clocktower"}) );
     SetAdjectives( ({"large", "great", "majestic", "impressive", "proud"}) );
-    SetShort("a great clock tower rising majestically into the sky");
-    SetLong("This is a large clock tower, rising magestically into "+
-            "the sky. Some forty feet up you can see the great clock of "+
-            "the town, which can be read to know the local time. The "+
-            "intricate details of its architecture are deeply impressive, "+
-            "and there is little doubt that this great structure is the "+
-            "pride of this little town.");
+    SetShort("一座雄伟的钟楼高耸入云");
+    SetLong("这是一座大型钟楼，雄伟地耸入天空。钟面上有一个巨大的时钟。");
     SetMass(1000000);
     SetBaseCost("silver",40);
     SetDefaultRead( (: eventReadClock :) );

@@ -9,10 +9,8 @@ protected void create(){
     SetKeyName("collar");
     SetId(({"repellent_collar","bane"}));
     SetAdjectives( ({"repellent","odd","plastic","white"}) );
-    SetShort("a plastic collar");
-    SetLong("This is a simple collar made of a soft white plastic. It "+
-            "seems to be coated with a fine, clear resin. There is something "+
-            "written on the collar.");
+    SetShort("一个塑料项圈");
+    SetLong("这是一个由柔软白色塑料制成的简单项圈。它能保护脖子免受伤害。");
     SetProperties(([
                 "no steal" : 1,
                 ]));

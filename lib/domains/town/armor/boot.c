@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("leather boot");
     SetId(({"boot"}));
     SetAdjectives(({"military","military-style","black","leather","combat"}));
-    SetShort("a black leather boot");
-    SetLong("A military style combat boot, made of black leather.");
+    SetShort("一只黑色皮靴");
+    SetLong("一只军用风格的战斗靴，黑色皮革制成。");
     SetMass(20);
     SetBaseCost("silver",25);
     SetProtection(BLUNT,5);

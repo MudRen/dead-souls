@@ -9,8 +9,8 @@ protected void create() {
     SetKeyName("Fell Sword");
     SetId( ({"sword", "weapon", "fellsword"}) );
     SetAdjectives( ({"fell", "elvish", "powerful", "antique", "old"}) );
-    SetShort("The Fell Sword");
-    SetLong("An elvish sword of great antiquity and tremendous power.");
+    SetShort("暗黑之剑");
+    SetLong("一把具有悠久历史和巨大力量的精灵之剑。");
     SetUnique(1);
     SetMass(100);
     SetBaseCost("silver", 5000);

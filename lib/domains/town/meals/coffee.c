@@ -9,8 +9,8 @@ protected void create()  {
     SetKeyName("coffee");
     SetId( ({"cup","coffee" }) );
     SetAdjectives( ({"regular","cup of","ordinary"}) );
-    SetShort("a cup of coffee");
-    SetLong("An ordinary cup of coffee"); 
+    SetShort("一杯咖啡");
+    SetLong("一杯普通的咖啡"); 
     SetMass(10);
     SetMealType( MEAL_DRINK | MEAL_CAFFEINE );
     SetStrength(10);

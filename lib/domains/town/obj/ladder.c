@@ -25,8 +25,8 @@ protected void create() {
     SetKeyName("ladder");
     SetId("ladder");
     SetAdjectives(({"short","wood","wooden"}));
-    SetShort("a ladder");
-    SetLong("This is a standard wooden ladder, suitable for climbing.");
+    SetShort("一个梯子");
+    SetLong("这是一把标准的木梯，适合攀爬。");
     SetClimb( (: LadderClimb :) , CLIMB_UP);
     SetCanClimbCarried(0);
     SetMass(100);

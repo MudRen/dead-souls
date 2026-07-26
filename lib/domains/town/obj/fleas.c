@@ -24,7 +24,7 @@ void create(){
     germ::create();
     SetKeyName("tf1");
     SetId(({"tf2"}));
-    SetLong("fleas version 1");
+    SetLong("跳蚤病毒1版");
     SetCure(20);
     SetVendorType(VT_TREASURE);
     SetCommunicable(50);

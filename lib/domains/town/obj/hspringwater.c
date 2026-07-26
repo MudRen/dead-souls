@@ -10,8 +10,8 @@ protected void create() {
     SetKeyName("water");
     SetId(({"spring","springwater" }));
     SetAdjectives("natural","glowing");
-    SetLong("The glowing water of a natural spring.");
-    SetShort("the natural spring");
+    SetLong("天然泉水的发光水面。");
+    SetShort("天然泉水");
     SetFlaskContents("water");
     SetFlaskUses(2);
     SetStrength(5);

@@ -18,8 +18,7 @@ protected void create() {
     SetKeyName("button b");
     SetId("b","button","two","B", "button B");
     SetAdjectives("b", "elevator","button","basement","B");
-    SetShort("a button");
-    SetLong("It is a button that you could probably press. The letter \"B\" " 
-            "is printed on it.");
+    SetShort("一个按钮");
+    SetLong("这是一个你大概可以按下的按钮。字母"B"刻在上面。");
     SetPress((: openDoor :));
 }

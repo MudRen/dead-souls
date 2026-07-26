@@ -10,10 +10,8 @@ protected void create(){
     SetKeyName("orc helmet");
     SetId(({"helmet","skull"}));
     SetAdjectives(({"bear","bone","skull","orc"}));
-    SetShort("a bear skull helmet");
-    SetLong("This is a helmet made of the hard bone of a bear, "+
-            "treated with some sort of thick resin to "+
-            "prevent shattering.");
+    SetShort("一顶熊骨头盔");
+    SetLong("这是一顶由熊的硬骨制成的头盔，看起来非常原始和野蛮。");
     SetMass(150);
     SetBaseCost("silver",100);
     SetArmorType(A_HELMET);

@@ -8,8 +8,8 @@ void create(){
     SetKeyName("stein");
     SetId( ({"mug","vessel","guinness"}) );
     SetAdjectives( ({"large","beer","guinness"}) );
-    SetShort("a large beer stein");
-    SetLong("A large vessel for drinking fluids.");
+    SetShort("一个大啤酒杯");
+    SetLong("一个用来喝液体的大容器。");
     SetMass(40);
     SetBaseCost("gold",1);
     SetVendorType(VT_DRINK);

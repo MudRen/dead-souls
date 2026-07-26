@@ -8,9 +8,8 @@ protected void create(){
     SetKeyName("rod");
     SetId( ({ "staff", "stick", "pole" , "rod of asclepius", "rod of aesculapius"}) );
     SetAdjectives( ({ "wood","wooden" }) );
-    SetShort("a wooden rod with a carved snake on it");
-    SetLong("This handsome staff has been carved to "
-            "seem to have a snake wrapped around it.");
+    SetShort("一根雕蛇木杖");
+    SetLong("这根漂亮的法杖被雕刻成蛇的形状。它看起来很神秘。");
     SetVendorType(VT_WEAPON);
     SetDamagePoints(50);
     SetClass(100);

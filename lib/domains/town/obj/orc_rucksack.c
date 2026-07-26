@@ -9,10 +9,8 @@ protected void create() {
     SetKeyName("rucksack");
     SetId(({"ruck","sack"}));
     SetAdjectives(({"sturdy","green","olive","olive-green","od green","od-green"}));
-    SetShort("a sturdy, olive-green rucksack");
-    SetLong("This is a large, sturdy rucksack made of some sort of "
-            "strong, canvas-like material. It appears suitable "+
-            "for just about any adventure you'd find yourself in.");
+    SetShort("一个结实的橄榄绿帆布背包");
+    SetLong("这是一个大而结实的帆布背包，由某种粗糙的绿色织物制成。");
     SetMass(100);
     SetDollarCost(200);
     SetCanClose(1);

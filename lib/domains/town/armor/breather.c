@@ -16,7 +16,7 @@ protected void create(){
     SetKeyName("breathing mask");
     SetId(({"mask","breather","a98","apparatus","device"}));
     SetAdjectives(({"a98","breathing"}));
-    SetShort("an A98 breathing device");
+    SetShort("一个A98呼吸装置");
     SetLong( (: LongD :) );
     SetMass(30);
     SetBaseCost("silver",900);

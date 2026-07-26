@@ -6,8 +6,8 @@ void create(){
     SetKeyName("silver candlestick");
     SetId( ({"candlestick","candelabra","candelabrum"}) );
     SetAdjectives( ({"small","ornate","silver"}) );
-    SetShort("a silver candlestick");
-    SetLong("This is an small, ornate silver candlestick.");
+    SetShort("一个银烛台");
+    SetLong("这是一个小巧精致的银烛台。");
     SetMass(20);
     SetBaseCost("silver",50);
     SetVendorType(VT_TREASURE);

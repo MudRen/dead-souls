@@ -31,12 +31,8 @@ int read(string args) {
 
 protected void create() {
     ::create();
-    SetShort("a blackjack table");
-    SetLong("A small mechanical blackjack table lies here, "
-            "with a miniature robotic dealer "
-            "built into it. It seems like you can win...err "
-            "try to win a lot of money here.  There are some small "
-            "printed letters on the table.");
+    SetShort("一张21点赌桌");
+    SetLong("这里放着一张小型机械21点赌桌，表面覆盖着绿色毛毡。");
     SetPreventGet("You cannot get that!");
     SetMass(0);
     SetId( ({"table", "blackjack table"}) );

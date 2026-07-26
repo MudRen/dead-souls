@@ -7,9 +7,8 @@ void create(){
     SetKeyName("billiards ball");
     SetId( ({"ball"}) );
     SetAdjectives( ({"pool","billiards","billiard","heavy"}) );
-    SetShort("a billiards ball");
-    SetLong("This is a heavy ball, slighly smaller than palm-sized, "
-            "used in the game of billiards.");
+    SetShort("一个台球");
+    SetLong("这是一个重球，比掌心稍小，表面光滑有光泽。");
     SetMass(30);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

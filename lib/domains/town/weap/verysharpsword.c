@@ -9,9 +9,8 @@ protected void create() {
     SetKeyName("sharp sword");
     SetId( ({"sword"}) );
     SetAdjectives( ({ "very", "short","sharp","fine"}));
-    SetShort("a very sharp sword");
-    SetLong("A very fine, sharp sword. It is solidly crafted "+
-            "and well balanced.");
+    SetShort("一把非常锋利的剑");
+    SetLong("一把非常好、锋利的剑。做工扎实，平衡性极佳。");
     SetMass(400);
     SetBaseCost("silver", 2500);
     SetVendorType(VT_WEAPON);

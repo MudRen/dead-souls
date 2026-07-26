@@ -6,7 +6,7 @@ protected void create(){
     SetKeyName("painting in the room");
     SetId("painting");
     SetAdjectives("beautiful");
-    SetLong("Try: look at painting on the wall");
+    SetLong("尝试：look at painting on the wall");
     SetNoCondition(1);
     SetPreventGet("It does not move.");
 }

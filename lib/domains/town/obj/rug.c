@@ -11,9 +11,8 @@ void create(){
     SetKeyName("persian rug");
     SetId( ({"rug"}) );
     SetAdjectives( ({"persian","ornamental"}) );
-    SetShort("a Persian rug");
-    SetLong("This is a beautiful, intricately patterned Persian "
-            "rug, covering the center of the floor. ");
+    SetShort("一块波斯地毯");
+    SetLong("这是一块美丽的、图案精美的波斯地毯。它的颜色非常鲜艳。");
     SetMass(100);
     SetBaseCost("silver",500);
     SetManipulate( ([ "default" : (: MoveRug :) ]) );

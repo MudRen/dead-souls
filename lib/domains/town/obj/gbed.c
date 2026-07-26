@@ -8,8 +8,8 @@ protected void create() {
     SetKeyName("guest bed");
     SetId( ({ "bed" }) );
     SetAdjectives( ({ "guest" }) );
-    SetShort("a guest bed");
-    SetLong("This is a comfortable-looking bed for guests to sleep on.");
+    SetShort("一张客用床");
+    SetLong("这是一张看起来很舒适的客用床。");
     SetMass(1000);
     SetBaseCost("silver",800);
     SetMaxSitters(2);

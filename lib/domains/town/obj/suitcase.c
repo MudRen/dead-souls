@@ -7,9 +7,8 @@ void create() {
     SetKeyName("wardrobe");
     SetId(({"wardrobe"}));
     SetAdjectives(({"wood","tall"}));
-    SetShort("a tall wooden wardrobe");
-    SetLong("This piece of furniture is designed to hold "+
-            "clothing and related accessories.");
+    SetShort("一个高大的木制衣柜");
+    SetLong("这件家具设计用来存放衣物和其他物品。");
     SetMass(2000);
     SetBaseCost("silver",150);
     SetMaxCarry(2000);

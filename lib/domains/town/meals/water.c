@@ -9,8 +9,8 @@ protected void create()  {
     SetKeyName("water");
     SetId(({ "bottle","water"}));
     SetAdjectives(({"fresh","spring"}));
-    SetShort("a bottle of water");
-    SetLong("This is a little bottle of fresh spring water.");
+    SetShort("一瓶水");
+    SetLong("这是一小瓶新鲜泉水。");
     SetMass(10);
     SetMealType(MEAL_DRINK);
     SetStrength(10);

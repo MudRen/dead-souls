@@ -8,8 +8,8 @@ protected void create(){
     SetKeyName("bandanna");
     SetAdjectives( ({"red"}) );
     SetId( ({"kerchief", "handkerchief"}) );
-    SetShort("a red bandanna");
-    SetLong("This is a red kerchief fashioned into improvised headgear, possibly to prevent getting dirt on one's hair and vice versa.");
+    SetShort("一条红色头巾");
+    SetLong("这是一条红色方巾，被改造成简易头饰，可能是为了防止头发弄脏，反之亦然。");
     SetMass(1);
     SetBaseCost("silver",1);
     SetArmorType(A_HELMET);

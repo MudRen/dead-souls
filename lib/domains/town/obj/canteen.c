@@ -8,8 +8,8 @@ void create(){
     SetKeyName("canteen");
     SetId( ({"canteen","vessel"}) );
     SetAdjectives( ({"plastic","green"}) );
-    SetShort("a green plastic canteen");
-    SetLong("A plastic vessel for containing fluids.");
+    SetShort("一个绿色塑料水壶");
+    SetLong("一个装液体的塑料容器。");
     SetMass(20);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);
