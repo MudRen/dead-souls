@@ -4,34 +4,34 @@
 inherit LIB_DAEMON;
 
 mixed cmd(string str) {
-    int pos;  
+    int pos;
     object ob;
     string ret;
 
     if(str) ob = get_object(str);
     if(!ob || !living(ob)){
         if(str){
-            write("No such living thing found.");
+            write("找不到该生物。");
             return 1;
         }
         ob = this_player();
-        ret = "You are ";
+        ret = "你正在 ";
     }
     else {
-        ret = ob->GetShort()+" is ";
+        ret = ob->GetShort()+" 正在 ";
     }
 
     pos = ob->GetPosition();
 
     switch(pos){
-        case POSITION_STANDING : ret += "standing.";break;
-        case POSITION_SITTING : ret += "sitting.";break;
-        case POSITION_LYING : ret += "prone.";break;
-        case POSITION_FLYING : ret += "flying.";break;
-        case POSITION_KNEELING : ret += "kneeling.";break;
-        case POSITION_FLOATING : ret += "floating.";break;
-        case POSITION_SWIMMING : ret += "swimming.";break;
-        default : ret += "here.";
+        case POSITION_STANDING : ret += "站立。";break;
+        case POSITION_SITTING : ret += "坐着。";break;
+        case POSITION_LYING : ret += "躺着。";break;
+        case POSITION_FLYING : ret += "飞行。";break;
+        case POSITION_KNEELING : ret += "跪着。";break;
+        case POSITION_FLOATING : ret += "漂浮。";break;
+        case POSITION_SWIMMING : ret += "游泳。";break;
+        default : ret += "这里。";
     }
 
     write(ret);
@@ -39,7 +39,6 @@ mixed cmd(string str) {
 }
 
 string GetHelp() {
-    return ("Syntax: position [living thing]\n\n"
-            "Reports the posture of the person named, or if no argument is "
-            "provided, your own physical posture.");
+    return ("用法: position [生物]\n\n"
+            "报告指定人物的姿势，如果不提供参数则报告你自己的姿势。");
 }

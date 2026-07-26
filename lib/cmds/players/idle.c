@@ -11,24 +11,22 @@ mixed cmd(string args) {
     args = convert_name(args);
     who = find_player(args);
     if( !who || who->GetInvis() )
-        return "Unable to locate anyone by that name.";
+        return "找不到该玩家。";
     if( !interactive(who) )
-        return who->GetName() + " is link dead.";
+        return who->GetName() + " 已断开连接。";
     x = query_idle(who);
     if( x > 4 ) {
-        this_player()->eventPrint(who->GetName()+" has been idle for "+time_elapsed(x)+".");
+        this_player()->eventPrint(who->GetName()+" 已发呆 "+time_elapsed(x)+"。");
     }
-    else this_player()->eventPrint(who->GetName() + " is "
-            "not idle.");
+    else this_player()->eventPrint(who->GetName() + " 没有发呆。");
     return 1;
 }
 
 string GetHelp(string str) {
-    return "Syntax: idle [user]\n\n"
-        "Displays named user's idle time.  A user's \"idle time\" is "
-        "the amount of time since the named user last sent input "
-        "to the MUD.\nIf no argument is provided, the command simply "
-        "does nothing. This allows you to send a command to the mud "
-        "to keep your connection alive without generating activity.\n"
-        "See also: keepalive, env";
+    return "用法: idle [用户]\n\n"
+        "显示指定用户的发呆时间。用户的\"发呆时间\"是该用户\n"
+        "最后一次向MUD发送输入以来的时间。\n"
+        "如果不提供参数，此命令不执行任何操作。这允许你\n"
+        "向mud发送命令以保持连接活跃而不产生活动。\n"
+        "参考: keepalive, env";
 }

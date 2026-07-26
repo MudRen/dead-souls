@@ -4,8 +4,8 @@ inherit LIB_DAEMON;
 
 string ReportSyntax(){
     int admin = adminp(this_player());
-    string ret = "Syntax: gag [remote or local] <on or off>";
-    if(admin) ret += "        gag <player> [on or off]";
+    string ret = "用法: gag [remote 或 local] <on 或 off>";
+    if(admin) ret += "        gag <玩家> [on 或 off]";
     return ret;
 }
 
@@ -38,9 +38,9 @@ mixed cmd(string str) {
         }
     }
     if( which != "on" && which != "off" )
-        return "You can only turn gag 'on' or 'off'.";
+        return "你只能将 gag 设置为 'on' 或 'off'。";
     if( !player && member_array(type, validtypes) == -1 )
-        return "Valid gag types are: remote, local, all.";
+        return "有效的 gag 类型有: remote, local, all。";
     if(!player) player = this_player();
     if(admin){
         player->SetGagged(type, (which == "on" ? 2 : 0));
@@ -49,19 +49,19 @@ mixed cmd(string str) {
         player->SetGagged(type, (which == "on"));
     }
     message("system",
-            "Gag mode turned "+str+" for "+type+" channels"+
-            (player != this_player() ? " for "+player->GetName() : "")+
-            ".", this_player() );
+            "禁言模式已为 "+type+" 频道"+str+
+            (player != this_player() ? "（针对 "+player->GetName()+"）" : "")+
+            " 开启。", this_player() );
     return 1;
 }
 
 string GetHelp() {
     int admin = adminp(this_player());
-    return "Syntax: gag [remote | local] <on | off>\n"+
-        (admin ? "        gag <PLAYER> <on | off>\n" : "")+
-        "\nThis command prevents you from talking on channels.\n"
-        "Good for when you're hiding or using multiple chars.\n"
-        "You can gag yourself on all channels with: gag on\n"
-        "You can gag yourself only on intermud channels with: gag remote on\n"
-        "See also: mute, env";
+    return "用法: gag [remote | local] <on | off>\n"+
+        (admin ? "        gag <玩家> <on | off>\n" : "")+
+        "\n此命令阻止你在频道上说话。\n"
+        "当你隐藏或使用多个角色时很有用。\n"
+        "你可以用 gag on 禁言所有频道\n"
+        "你可以用 gag remote on 仅禁言跨mud频道\n"
+        "参考: mute, env";
 }

@@ -4,21 +4,20 @@ inherit LIB_DAEMON;
 
 mixed cmd(string str) {
     if( !sizeof(str) )
-        return "Syntax: screenlock <on or off>";
+        return "用法: screenlock <on 或 off>";
     str = lower_case(str);
     if( str != "on" && str != "off" )
-        return "You can only turn screenlock 'on' or 'off'";
+        return "你只能将 screenlock 设置为 'on' 或 'off'";
     this_player()->SetProperty("screenlock", (str == "on"));
     message("system",
-            "Screenlock mode turned "+str+".",
+            "屏幕锁定模式已"+str+"。",
             this_player() );
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: screenlock [on | off]\n\n"
-            "This command allows you to toggle whether your client is "
-            "allowed to automatically change your screen size settings "
-            "after the initial login negotiation.\n"
-            "See also: screen, terminal, env");
+    return ("用法: screenlock [on | off]\n\n"
+            "此命令允许你切换是否允许客户端在初始登录协商后"
+            "自动更改屏幕大小设置。\n"
+            "参考: screen, terminal, env");
 }

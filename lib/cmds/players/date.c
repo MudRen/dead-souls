@@ -26,11 +26,11 @@ mixed cmd(string timezone) {
     year = parts[x - 1];
     sscanf(parts[x - 2], "%d:%d:%d", hour, min, sec);
     message("info",
-            sprintf("Time: %d:%s%d %s\nDate: %s, %s",
+            sprintf("时间: %d:%s%d %s\n日期: %s, %s",
                 (hour>12 ? (hour-12) : (hour == 0 ? 12 : hour)),
                 (min < 10 ? "0" : ""),
                 min,
-                ((hour>11 && hour) ? "pm" : "am"),
+                ((hour>11 && hour) ? "下午" : "上午"),
                 implode(parts[0..(x-3)], " "),
                 year),
             this_player() );
@@ -38,6 +38,6 @@ mixed cmd(string timezone) {
 }
 
 string GetHelp() {
-    return ("Syntax: date\n\n"
-            "Displays current time and date in local time.");
+    return ("用法: date\n\n"
+            "显示本地时间的当前时间和日期。");
 }

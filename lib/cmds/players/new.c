@@ -4,7 +4,7 @@
 inherit LIB_DAEMON;
 
 int eventNoob(){
-    write("%^RED%^WHAT A NEW PLAYER SHOULD KNOW\n%^RESET%^");
+    write("%^RED%^新玩家须知\n%^RESET%^");
     this_player()->eventPage("/doc/help/players/handbook");
     return 1;
 }

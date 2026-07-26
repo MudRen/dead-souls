@@ -13,8 +13,8 @@ mixed cmd(string form) {
     int x, offset;
 
     if(DISABLE_REBOOTS){
-        write("Recurring reboots are disabled.");
-        write("There is no reboot scheduled by the events daemon.");
+        write("定期重启已禁用。");
+        write("事件守护进程没有安排重启。");
         return 1;
     }
     tz = this_player()->GetProperty("timezone");
@@ -25,18 +25,17 @@ mixed cmd(string form) {
 
     x = EVENTS_D->GetRebootInterval() * 3600;
     x = (time() - uptime()) + x;
-    if(query_os_type() != "windows" ) 
+    if(query_os_type() != "windows" )
         x += offset * 3600;
     str = tz+ " " + ctime(x);
-    message("system", "Current "+tz+" system time is "+timestamp(tz),
+    message("system", "当前 "+tz+" 系统时间是 "+timestamp(tz),
             this_player());
-    if(form && form == "string") return "The next reboot will occur " + str + ".";
-    else message("system", "The next reboot will occur " + str + ".",this_player());
+    if(form && form == "string") return "下次重启将在 " + str + "。";
+    else message("system", "下次重启将在 " + str + "。",this_player());
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: nextreboot\n\n"
-            "Tells you when the next regularly scheduled reboot for " +
-            mud_name() + " will occur.");
+    return ("用法: nextreboot\n\n"
+            "告诉你 " + mud_name() + " 下次定期重启的时间。");
 }

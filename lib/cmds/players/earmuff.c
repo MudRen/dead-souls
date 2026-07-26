@@ -4,25 +4,25 @@ inherit LIB_DAEMON;
 
 mixed cmd(string str) {
     if(!str || str =="") {
-        if(!sizeof(this_player()->GetMuffed())) write("You are ignoring no one.");
+        if(!sizeof(this_player()->GetMuffed())) write("你没有屏蔽任何人。");
         else {
-            write("You are ignoring the following name(s):\n");
+            write("你正在屏蔽以下名称：\n");
             write(implode(filter(this_player()->GetMuffed(), (: capitalize($1) :)), "\n")+"\n");
         }
         return 1;
     }
     else this_player()->AddMuffed(str);
-    write("You add "+capitalize(str)+" to your earmuffed list.");
+    write("你已将 "+capitalize(str)+" 添加到屏蔽列表。");
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: earmuff\n"
-            "        earmuff <name>\n"
+    return ("用法: earmuff\n"
+            "        earmuff <名称>\n"
             "        earmuff @<mud>\n\n"
-            "This command allows you to ignore channel messages from the name specified.\n"
-            "You can also earmuff all channel messages coming from a "
-            "specific mud, for example: earmuff @Spammy Mud II\n"
-            "See also: whomuffed, unmuff");
+            "此命令允许你屏蔽来自指定名称的频道消息。\n"
+            "你也可以屏蔽来自特定mud的所有频道消息，"
+            "例如: earmuff @Spammy Mud II\n"
+            "参考: whomuffed, unmuff");
 }
 

@@ -15,12 +15,12 @@ mixed cmd(string args) {
     string tmp;
     int len;
 
-    tmp = "You know the following spells:\n";
+    tmp = "你知道以下法术：\n";
     foreach(string spell, int val in who->GetSpellBook()) {
         spells += ({ sprintf("%:-20s: %:-3d%%", spell, val) });
     }
     if( !sizeof(spells) ) {
-        tmp += "You know no spells.";
+        tmp += "你不知道任何法术。";
     }
     else {
         foreach(string spell in spells) {
@@ -38,8 +38,7 @@ mixed cmd(string args) {
 }
 
 string GetHelp(){
-    return ("Syntax: spells\n\n"
-            "Lists all of your spells in your spell book with your "
-            "proficiency in each spell.\n"
-            "See also: skills, stats, status");
+    return ("用法: spells\n\n"
+            "列出你法术书中所有法术及其熟练度。\n"
+            "参考: skills, stats, status");
 }

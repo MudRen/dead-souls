@@ -13,33 +13,31 @@ mixed cmd(string str) {
 }
 
 string GetHelp() {
-    string cre = "$P shows current working directory\n"+
-        "To have your creator character's name "+
-        "and current dir show up:\nprompt $N $P >\nIn yellow:\n"+
+    string cre = "$P 显示当前工作目录\n"+
+        "要显示创造者角色的名字和当前目录：\nprompt $N $P >\n用黄色显示：\n"+
         "prompt %%^^YELLOW%%^^$N $P >%%^^RESET%%^^";
     if(!creatorp(this_player())) cre = "";
-    return ("Syntax: prompt [options]\n\n"
-            "This command allows you to customize your prompt. You may use a protected prompt:\n"
+    return ("用法: prompt [选项]\n\n"
+            "此命令允许你自定义提示符。你可以使用受保护的提示符：\n"
             "prompt >\n"
-            "Or you may choose special tokens for an active prompt. The tokens available are:\n"
-            "$V shows invis status\n"
-            "$D shows the date (for the server, not the game)\n"
-            "$T shows the time (for the server, not the game)\n"
-            "$C shows the command number\n"
-            "$H shows maximum health points\n"
-            "$h shows current health points\n"
-            "$G shows maximum magic points\n"
-            "$g shows current magic points\n"
-            "$I shows maximum stamina points\n"
-            "$i shows current stamina points\n"
-            "$M shows the mud name\n"
-            "$N shows the player's name\n"
+            "或者你可以选择特殊标记来创建活动提示符。可用标记有：\n"
+            "$V 显示隐身状态\n"
+            "$D 显示日期（服务器时间，非游戏时间）\n"
+            "$T 显示时间（服务器时间，非游戏时间）\n"
+            "$C 显示命令编号\n"
+            "$H 显示最大生命值\n"
+            "$h 显示当前生命值\n"
+            "$G 显示最大魔法值\n"
+            "$g 显示当前魔法值\n"
+            "$I 显示最大体力值\n"
+            "$i 显示当前体力值\n"
+            "$M 显示mud名称\n"
+            "$N 显示玩家名称\n"
             +cre+
-            "\nFor tactical info as a player:\n" 
+            "\n玩家战斗信息：\n"
             "prompt hp:$h/$H mp:$g/$G sp:$i/$I > \n"
-            "or: prompt status\n\n"
-            "You can colorize elements of the prompt with the "
-            "appropriate color tags, for example:\n"
+            "或: prompt status\n\n"
+            "你可以使用相应的颜色标签为提示符元素着色，例如：\n"
             "prompt %%^^RED%%^^$M %%^^RESET%%^^ >\n"
-            "\nSee also: reprompt, env, colors");
+            "\n参考: reprompt, env, colors");
 }

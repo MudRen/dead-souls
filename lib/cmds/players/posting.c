@@ -10,20 +10,19 @@ int cmd(string str) {
 
     if(str) return 0;
     list=users();
-    write("\nList of users in various editors:\n");
+    write("\n正在使用编辑器的用户列表：\n");
     for(i=0;i<sizeof(list);i++)
         if(!list[i]->GetInvis() && list[i]->GetKeyName())
             if(present("mailer", list[i]))
-                printf("%s - In mailer.\n",
+                printf("%s - 在邮件编辑器中。\n",
                         arrange_string( list[i]->GetName(), 20));
             else if(in_edit(list[i]) || in_input(list[i]))
-                printf("%s - Editing.\n",
+                printf("%s - 编辑中。\n",
                         arrange_string( list[i]->GetName(), 20));
     return 1;
 }
 
 string GetHelp() {
-    return "Syntax: posting\n\n"
-        "Displays whether a user is in editor, posting on a "
-        "bulletin board, or in the mailer.";
+    return "用法: posting\n\n"
+        "显示用户是否在编辑器中、在公告板上发帖或在邮件编辑器中。";
 }

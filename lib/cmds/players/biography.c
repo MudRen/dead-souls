@@ -135,10 +135,8 @@ mixed cmd(string args) {
 }
 
 string GetHelp(){
-    return ("Syntax: biography\n\n"
-            "Biography gives you a full account of the sort of life you "
-            "have lived on " + mud_name() + ".  This information details "
-            "such things as your birth, deaths, marriages, and other life "
-            "information.\n"
-            "See also: score");
+    return ("用法: biography\n\n"
+            "传记详细记录了你在 " + mud_name() + " 上的生活。"
+            "这些信息包括你的出生、死亡、婚姻和其他生活信息。\n"
+            "参考: score");
 }

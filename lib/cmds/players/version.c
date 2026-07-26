@@ -24,19 +24,17 @@ int cmd(string str) {
     scr = ((int *)this_player()->GetScreen())[0];
     nr = (time() - uptime()) + (EVENTS_D->GetRebootInterval() * 3600);
     tmp = center(mud_name(), scr) + "\n";
-    tmp += sprintf("%:-"+(scr/2)+"s%"+(scr/2)+"s\n", "Driver: " + version(),
-            "Library: " + mudlib() + " " + mudlib_version()+extra);
+    tmp += sprintf("%:-"+(scr/2)+"s%"+(scr/2)+"s\n", "驱动: " + version(),
+            "库: " + mudlib() + " " + mudlib_version()+extra);
     tmp += sprintf("%:-" + (scr/2) + "s%" + (scr/2) + "s\n",
-            "Up since: " + ctime((time() - uptime()) +x),
-            "Next reboot: " + ctime(nr + x));
-    tmp += center("Current time: " + ctime(time() + x) + " " + tz, scr);
+            "运行时间: " + ctime((time() - uptime()) +x),
+            "下次重启: " + ctime(nr + x));
+    tmp += center("当前时间: " + ctime(time() + x) + " " + tz, scr);
     message("system", tmp, this_player());
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: version\n\n"
-            "Gives you version information about "+mud_name()+" as well as how "
-            "long the mud has been up in your local time if you have it "
-            "specified.");
+    return ("用法: version\n\n"
+            "显示 "+mud_name()+" 的版本信息，以及（如果你设置了时区）mud的本地运行时间。");
 }

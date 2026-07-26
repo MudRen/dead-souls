@@ -3,21 +3,21 @@
 inherit LIB_DAEMON;
 
 mixed cmd(string str) {
-    if(!sizeof(this_player()->GetMuffed())) return "You are ignoring no one.";
-    else if(!str || str == "") return "Please be more specific.";
+    if(!sizeof(this_player()->GetMuffed())) return "你没有屏蔽任何人。";
+    else if(!str || str == "") return "请更具体一些。";
     else {
         string *iglist = this_player()->GetMuffed();
-        if(member_array(lower_case(str),iglist) == -1) return "You aren't ignoring them.";
+        if(member_array(lower_case(str),iglist) == -1) return "你没有屏蔽他们。";
         iglist -= ({ lower_case(str) });
         this_player()->SetMuffed(iglist);
-        write("You remove "+capitalize(str)+" from your earmuffed list.");
+        write("你已将 "+capitalize(str)+" 从屏蔽列表中移除。");
     }
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: unmuff <name>\n\n"
-            "This command allows you to stop ignoring channel messages from the name specified.\n"
-            "See also: earmuff, whomuffed");
+    return ("用法: unmuff <名称>\n\n"
+            "此命令允许你停止屏蔽指定名称的频道消息。\n"
+            "参考: earmuff, whomuffed");
 }
 

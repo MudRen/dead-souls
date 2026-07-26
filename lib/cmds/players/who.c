@@ -48,7 +48,7 @@ int cmd(string args) {
     object *obs;
 
     if (args && args[0] == '@') { //If there's an @ in the first arg character, it's an rwho request.
-        if( sizeof(args) <=1 ) return notify_fail("Get a remote who from where?"); //If there's only an @, tell them to RTFM.
+        if( sizeof(args) <=1 ) return notify_fail("从哪里获取远程who列表？");
         "/cmds/players/rwho"->cmd(args[1..]); //Pass it the mud name without the @
         return 1;
     } else {
@@ -85,23 +85,23 @@ int cmd(string args) {
                     tmp+=sprintf(" %s", obs[i]->GetShort());
                 }
                 else {
-                    tmp += " " + capitalize(obs[i]->GetKeyName())+ 
-                        " the Long-Titled.";
+                    tmp += " " + capitalize(obs[i]->GetKeyName())+
+                        " (头衔过长)。";
                 }
                 if(obs[i]->GetSleeping() > 0){
-                    tmp += " (%^BLUE%^sleeping%^RESET%^) ";
+                    tmp += " (%^BLUE%^睡眠中%^RESET%^) ";
                 }
                 else if (obs[i]->GetProperty("afk")){
-                    tmp += " (%^MAGENTA%^afk%^RESET%^)";
+                    tmp += " (%^MAGENTA%^暂离%^RESET%^)";
                 }
                 else if (query_idle(obs[i])>240 && obs[i]->GetInCombat()!=1){
-                    tmp += " (%^YELLOW%^idle%^RESET%^)";
+                    tmp += " (%^YELLOW%^发呆中%^RESET%^)";
                 }
                 else if (in_edit(obs[i]) || obs[i]->GetCedmode()){
-                    tmp += " (%^CYAN%^edit%^RESET%^)";
+                    tmp += " (%^CYAN%^编辑中%^RESET%^)";
                 }
                 else if(obs[i]->GetInCombat()){
-                    tmp += " (%^RED%^combat%^RESET%^)";
+                    tmp += " (%^RED%^战斗中%^RESET%^)";
                 }
                 tmp += "%^RESET%^\n";
                 p++;
@@ -163,11 +163,9 @@ int cmd(string args) {
             tmp = "";
         }    
         ret+=SEP;
-        x="There ";
-        (p==1) ? x+="is " : x+="are ";
+        x="当前共有 ";
         x+=cardinal(p);
-        (p==1) ? x+=" member " : x+=" members ";
-        x+="of our reality.\n";
+        x+=" 位成员在线。\n";
         ret+=center(x);
         if(check_string_length(ret)) this_player()->eventPrint(""+ret+"");
         else print_long_string(this_player(),ret);
@@ -176,6 +174,6 @@ int cmd(string args) {
 }
 
 string GetHelp(){
-    return ("Syntax: who [@mud]\n\n"
-            "Gives you a who list in abbreviated form from this mud or other muds on the I3 or IMC2 network.");
+    return ("用法: who [@mud]\n\n"
+            "显示当前mud或其他I3/IMC2网络上mud的在线玩家简要列表。");
 }

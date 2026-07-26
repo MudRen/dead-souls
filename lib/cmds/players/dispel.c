@@ -9,25 +9,25 @@ inherit LIB_DAEMON;
 mixed cmd(string args) {
 
     if(!args){
-        write("Dispel what?");
+        write("驱散什么？");
         return 1;
     }
     if(args == "meditate"){
         object mojo = present("meditate mojo", this_player());
         if(!mojo){
-            write("You have no meditation mojo to dispel.");
+            write("你没有冥想魔力可以驱散。");
             return 1;
         }
-        write("You dispel the meditation mojo from yourself.");
+        write("你驱散了身上的冥想魔力。");
         mojo->eventDispel();
     }
     if(args == "whip"){
         object whip = present_file("/obj/whip", this_player());
         if(!whip){
-            write("You have no whip to dispel.");
+            write("你没有鞭子可以驱散。");
             return 1;
         }
-        write("You dispel the whip from yourself.");
+        write("你驱散了身上的鞭子。");
         whip->eventDispel();
     }
     if(args == "buffer"){
@@ -37,13 +37,13 @@ mixed cmd(string args) {
             if(!tmp->obname) continue;
             if(tmp->obname == "/powers/spells/buffer"){
                 if(!(functionp(tmp->hit) & FP_OWNER_DESTED)){
-                    write("You dispel your buffer.");
+                    write("你驱散了防护罩。");
                     this_player()->RemoveMagicProtection("/powers/spells/buffer");
                     return 1;
                 }
             }
         }
-        write("You have no buffer to dispel.");
+        write("你没有防护罩可以驱散。");
         return 1;
     }
     if(args == "greater buffer"){
@@ -53,13 +53,13 @@ mixed cmd(string args) {
             if(!tmp->obname) continue;
             if(tmp->obname == "/powers/spells/greater_buffer"){
                 if(!(functionp(tmp->hit) & FP_OWNER_DESTED)){
-                    write("You dispel your greater buffer.");
+                    write("你驱散了高级防护罩。");
                     this_player()->RemoveMagicProtection("/powers/spells/greater_buffer");
                     return 1;
                 }
             }
         }
-        write("You have no greater buffer to dispel.");
+        write("你没有高级防护罩可以驱散。");
         return 1;
     }
     return 1;
@@ -67,7 +67,7 @@ mixed cmd(string args) {
 
 
 string GetHelp(){
-    return ("Syntax: dispel <spellname>\n\n"
-            "Dismisses a given magical effect, if appropriate.\n"
-            "\nSee also: cast");
+    return ("用法: dispel <法术名>\n\n"
+            "驱散指定的魔法效果（如果适用）。\n"
+            "\n参考: cast");
 }

@@ -17,28 +17,28 @@ mixed cmd(string args) {
 
     if(args){
         if(!creatorp(this_player())){
-            write("Try: help stats");
+            write("用法: help stats");
             return 1;
         }
         if(args == "me" || args == "myself") who = this_player();
         if(!who) who = find_player(lower_case(args));
         if(!who){
             object *creatures = get_livings(environment(this_player()));
-            creatures = filter(creatures, 
+            creatures = filter(creatures,
                     (: answers_to(lower_case($(args)), $1) :));
             if(sizeof(creatures)) who = creatures[0];
         }
         if(!who){
-            write("No such living thing found.");
+            write("找不到该生物。");
             return 1;
         }
     }
 
     else who = this_player();
 
-    ret = who->GetShort() + ", level " +
+    ret = who->GetShort() + "，等级 " +
         who->GetLevel();
-    if( (tmp = who->GetClass()) ) 
+    if( (tmp = who->GetClass()) )
         ret += " " + capitalize(tmp);
     else ret += " Drifter";
     ret += " (" + who->GetRace() + ")\n";
@@ -55,16 +55,13 @@ mixed cmd(string args) {
 
 string GetHelp() {
     if(creatorp(this_player())){
-        return ("Syntax: stats [player]\n\n"
-                "Lists the stats of the specified player as well as "
-                "the stat level. With no argument, it defaults to your "
-                "own stats.\n"
-                "See also: stat, status, score");
+        return ("用法: stats [玩家]\n\n"
+                "列出指定玩家的属性及其等级。不带参数时默认显示自己的属性。\n"
+                "参考: stat, status, score");
     }
     else {
-        return ("Syntax: stats\n\n"
-                "Lists all of your stats as well as how skilled you are "
-                "at the stat in question.\n"
-                "See also: stat, status, score");
+        return ("用法: stats\n\n"
+                "列出你所有的属性及其等级。\n"
+                "参考: stat, status, score");
     }
 }

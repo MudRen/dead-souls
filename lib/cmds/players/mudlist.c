@@ -71,7 +71,7 @@ mixed cmd(string str) {
             if( all == 1 || info[0] == -1 ) borg[mud] = info;
     }
     if( !sizeof(borg) ) {
-        if(this_player()) message("system", "No MUDs match your query.", this_player());
+        if(this_player()) message("system", "没有MUD匹配你的查询。", this_player());
         return 1;
     }
     else if( sizeof(borg) == 1 ) {
@@ -79,12 +79,12 @@ mixed cmd(string str) {
         int val, comma = 0;
 
         mud = keys(borg)[0];
-        msg = "\nDetailed information on %^GREEN%^" + mud + "%^RESET%^:\n";
-        msg += sprintf("MUD Type: %:-6s Server: %:-20s Library: %s\n",
+        msg = "\n%^GREEN%^" + mud + "%^RESET%^ 的详细信息:\n";
+        msg += sprintf("MUD类型: %:-6s 服务器: %:-20s 库: %s\n",
                 borg[mud][8], borg[mud][7], borg[mud][5]);
-        msg += "Status: " + borg[mud][9] + "\nAdmin email: " +
+        msg += "状态: " + borg[mud][9] + "\n管理员邮箱: " +
             borg[mud][10] + "\n";
-        msg += "Services: ";
+        msg += "服务: ";
         foreach(svc, val in borg[mud][11]) {
             if( val == 1 ) {
                 if( comma ) msg += ", " + svc;
@@ -94,16 +94,16 @@ mixed cmd(string str) {
                 }
             }
         }
-        msg += "\nHost: " + borg[mud][1] + "\n";
-        msg += "Telnet port: " + borg[mud][2] + "\n";
+        msg += "\n主机: " + borg[mud][1] + "\n";
+        msg += "Telnet端口: " + borg[mud][2] + "\n";
         if( borg[mud][11]["amcp"] )
-            msg += "AMCP version: " + borg[mud][11]["amcp"] + "\n";
+            msg += "AMCP版本: " + borg[mud][11]["amcp"] + "\n";
         if( borg[mud][11]["http"] )
-            msg += "HTTP port (World Wide Web): " + borg[mud][11]["http"]+"\n";
+            msg += "HTTP端口 (万维网): " + borg[mud][11]["http"]+"\n";
         if( borg[mud][11]["ftp"] )
-            msg += "FTP port (File Transfer): " + borg[mud][11]["ftp"] + "\n";
+            msg += "FTP端口 (文件传输): " + borg[mud][11]["ftp"] + "\n";
         if( borg[mud][11]["rcp"] )
-            msg += "RCP port (Remote Creator): " + borg[mud][11]["rcp"] + "\n";
+            msg += "RCP端口 (远程创造者): " + borg[mud][11]["rcp"] + "\n";
         if(this_player()) message("info", msg, this_player());
         return 1;
     }
@@ -112,8 +112,8 @@ mixed cmd(string str) {
         list += ({ sprintf("%:-15s %:-6s %:-15s %:-18s %s %d",
                     replace_string(mud,"%^","%%^^"), info[8], info[7], info[5], info[1], info[2]) });
     list = sort_array(list, 1);
-    list = ({ replace_string(mud_name(),"%^","%%^^") + " recognizes " + consolidate(sizeof(borg), "a mud")+
-            " matching your query: ", "" }) + list;
+    list = ({ replace_string(mud_name(),"%^","%%^^") + " 识别到 " + consolidate(sizeof(borg), "a mud")+
+            " 匹配你的查询: ", "" }) + list;
     if(this_player()) this_player()->eventPage(list);
     if(this_player()) return 1;
     else return implode(list,"\n");
@@ -126,19 +126,16 @@ int alphabet(string a, string b) {
 }
 
 string GetHelp() {
-    return ("Syntax: mudlist [-d] [-m] [-n] [arg]\n"
+    return ("用法: mudlist [-d] [-m] [-n] [参数]\n"
             "        <mudlist imc2>\n\n"
-            "Without any arguments, it gives a full listing of all muds "
-            "with which this mud is capable of communication through "
-            "tell, mail, finger, rwho, and other intermud services.  "
-            "With arguments, <mudlist> requires one and only one option "
-            "which must be one of the following:\n"
-            "\t-d [driver]: List only muds using the named driver\n"
-            "\t-m [mudlib]: List only muds using the named mudlib\n"
-            "\t-n [mudname]: List only the muds with the name given\n\n"
-            "Note that the argument need not be complete, for example:\n"
+            "不带参数时，它会列出所有可以通过tell、mail、finger、rwho"
+            "和其他跨mud服务进行通信的mud的完整列表。"
+            "带参数时，<mudlist> 需要且仅需要一个选项，必须是以下之一：\n"
+            "\t-d [驱动]: 仅列出使用指定驱动的mud\n"
+            "\t-m [mudlib]: 仅列出使用指定mudlib的mud\n"
+            "\t-n [mud名称]: 仅列出指定名称的mud\n\n"
+            "注意参数不必完整，例如：\n"
             "\t mudlist -n idea\n"
-            "will list IdeaExchange as well as any other mud whose name "
-            "begins with the string \"idea\".\n"
-            "See also: finger, mail, rwho, tell");
+            "将列出 IdeaExchange 以及名称以 \"idea\" 开头的任何其他mud。\n"
+            "参考: finger, mail, rwho, tell");
 }

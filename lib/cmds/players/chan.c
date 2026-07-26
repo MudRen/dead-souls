@@ -5,39 +5,39 @@ mixed cmd(string args) {
     int i, cre = creatorp(ob);
     string *channels;
     string command, channel;
-    if(!args) return "Try: help chan";
+    if(!args) return "用法: help chan";
     i = sscanf(args, "%s %s", command, channel);
-    if(!channel) return "Try: help chan";
+    if(!channel) return "用法: help chan";
     channels = distinct_array(ob->GetChannels());
     if(command == "block"){
         if(member_array(channel, channels) == -1){
-            write("You are not subscribed to that channel.");
+            write("你没有订阅该频道。");
             return 1;
         }
         if(ob->GetBlocked(channel)){
-            write(channel + " is already blocked.");
+            write(channel + " 已经被屏蔽了。");
         }
         else ob->SetBlocked(channel, 1);
         return 1;
     } 
     if(command == "unblock"){
         if(member_array(channel, channels) == -1){
-            write("You are not subscribed to that channel.");
+            write("你没有订阅该频道。");
             return 1;
         }
         if(!ob->GetBlocked(channel)){
-            write(channel + " is already unblocked.");
+            write(channel + " 已经取消屏蔽了。");
         }
         else ob->SetBlocked(channel, 0);
         return 1;
     }
     if(!cre){
-        write("Try: help chan");
+        write("用法: help chan");
         return 1;
     }
     if(command == "add"){
         if(!creatorp(this_player())){
-            write("Try: help chan");
+            write("用法: help chan");
             return 1;
         }
         if(channel == "all"){
@@ -54,30 +54,30 @@ mixed cmd(string args) {
                 if(!ob->GetChannel(lchan)){
                     ob->AddChannel(lchan);
                     if(ob->GetChannel(lchan)){
-                        write("Added: "+lchan);
+                        write("已添加: "+lchan);
                     }
                 }
             }
-            write("Done.");
+            write("完成。");
             return 1;
         }
         if(member_array(channel, channels) != -1){
-            write("You are already subscribed to that channel.");
+            write("你已经订阅了该频道。");
             return 1;
         }
         ob->AddChannel(channel);
         channels = distinct_array(ob->GetChannels());
         if(member_array(channel, channels) == -1){
-            write("You fail to add that channel to yourself.");
+            write("添加频道失败。");
         }
         else {
-            write("You have added "+channel+" to yourself.");
+            write("你已添加频道 "+channel+"。");
         }
         return 1;
     }
     if(command == "remove"){
         if(!creatorp(this_player())){
-            write("Try: help chan");
+            write("用法: help chan");
             return 1;
         }
         if(channel == "all"){
@@ -85,41 +85,40 @@ mixed cmd(string args) {
             foreach(string chan in allchans){
                 ob->RemoveChannel(chan);
                 if(!(ob->GetChannel(chan))){
-                    write("Removed: "+chan);
+                    write("已移除: "+chan);
                 }
             }
-            write("Done.");
+            write("完成。");
             return 1;
         }
         if(member_array(channel, channels) == -1){
-            write("You are already unsubscribed to that channel.");
+            write("你已经取消订阅该频道了。");
             return 1;
         }
         ob->RemoveChannel(channel);
         channels = distinct_array(ob->GetChannels());
         if(member_array(channel, channels) != -1){
-            write("You fail to remove that channel from yourself.");
+            write("移除频道失败。");
         }
         else {
-            write("You have removed "+channel+" from yourself.");
+            write("你已移除频道 "+channel+"。");
         }
         return 1;
     }
-    write("Try: help chan");
+    write("用法: help chan");
     return 1;
 }
 
 string GetHelp(){
     int cre = creatorp(this_player());
-    string ret = "Syntax: chan block <channel>\n";
-    ret += "        chan unblock <channel>\n";
+    string ret = "用法: chan block <频道>\n";
+    ret += "        chan unblock <频道>\n";
     if(cre){
-        ret += "        chan add <channel>\n";
-        ret += "        chan remove <channel>\n";
+        ret += "        chan add <频道>\n";
+        ret += "        chan remove <频道>\n";
     }
     ret += "\n";
-    ret += "Displays or modifies the user's channel policy "+
-        "on available channels.";
-    ret += "\nSee also: lines, gag, earmuff, env, hist, channels";
+    ret += "显示或修改用户在可用频道上的频道策略。";
+    ret += "\n参考: lines, gag, earmuff, env, hist, channels";
     return ret;
 }

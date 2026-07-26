@@ -19,11 +19,11 @@ mixed cmd(string args) {
 
     if( args == "" || !args || args == "me" ) ob = this_player();
     else if(args && !creatorp(this_player())) {
-        write("You can only stat yourself.");
+        write("你只能查看自己的状态。");
         return 1;
     }
     if(!environment(this_player())){
-        write("You have no environment. Stats are the least of your worries.");
+        write("你没有环境。状态是你最不用担心的事情。");
         return 1;
     }
     gargs = args;
@@ -35,55 +35,55 @@ mixed cmd(string args) {
                 !(ob = find_living(lower_case(args))) &&
                 !(ob = find_object(args)) )
             return capitalize(args) + " is nowhere to be found.";
-    if(!living(ob)) return capitalize(args) + " is not alive.";
+    if(!living(ob)) return capitalize(args) + " 不是活物。";
     cols = (this_player()->GetScreen())[0];
-    tmp1 = ob->GetCapName() + " aka " + ob->GetShort() +
-        ", level " + ob->GetLevel() + " " + ob->GetGender();
+    tmp1 = ob->GetCapName() + " 又名 " + ob->GetShort() +
+        "，等级 " + ob->GetLevel() + " " + ob->GetGender();
     if( !(tmp2 = ob->GetRace()) ) tmp2 = "blob";
     tmp1 += " " + tmp2;
     if( !(tmp2 = ob->GetClass())  || !stringp(tmp2)) tmp2 = "drifter";
     tmp1 += " " + capitalize(tmp2);
     if( tmp2 = ob->GetSpouse() )
-        tmp1 += " (spouse: " + tmp2 + ")";
+        tmp1 += " (配偶: " + tmp2 + ")";
     lines = ({ center(tmp1, cols) });
-    if( ob->GetUndead() ) tmp1 = "%^BOLD%^RED%^UNDEAD%^RESET%^";
-    else tmp1 = "%^BOLD%^GREEN%^Alive%^RESET%^";
-    if( ob->GetSleeping() ) tmp1 += " / Sleeping";
-    else tmp1 += " / Awake";
-    if( ob->GetParalyzed() ) tmp1 += " / Paralyzed";
+    if( ob->GetUndead() ) tmp1 = "%^BOLD%^RED%^不死%^RESET%^";
+    else tmp1 = "%^BOLD%^GREEN%^存活%^RESET%^";
+    if( ob->GetSleeping() ) tmp1 += " / 睡眠中";
+    else tmp1 += " / 清醒";
+    if( ob->GetParalyzed() ) tmp1 += " / 麻痹";
     lines += ({ center(tmp1, cols), "" });
-    lines += ({ center("Health: " +ob->GetHealthPoints() + "/"+
-                ob->GetMaxHealthPoints() + "   Magic: " +
+    lines += ({ center("生命: " +ob->GetHealthPoints() + "/"+
+                ob->GetMaxHealthPoints() + "   魔法: " +
                 ob->GetMagicPoints() + "/" +
-                ob->GetMaxMagicPoints() + "   Stamina: " +
+                ob->GetMaxMagicPoints() + "   体力: " +
                 ob->GetStaminaPoints() + "/" +
-                to_int(ob->GetMaxStaminaPoints()) + "   Carry: " +
+                to_int(ob->GetMaxStaminaPoints()) + "   负重: " +
                 ob->GetCarriedMass() + "/" +
                 ob->GetMaxCarry(), cols) });
-    lines += ({ center("Food: " + ob->GetFood() + "    " +
-                "Drink: " + ob->GetDrink() + "    " +
-                "Alcohol: " + ob->GetAlcohol() + "    " +
-                "Caffeine: " + ob->GetCaffeine() + "    " +
-                "Poison: " + ob->GetPoison() + "    ", cols) });
+    lines += ({ center("食物: " + ob->GetFood() + "    " +
+                "饮水: " + ob->GetDrink() + "    " +
+                "酒精: " + ob->GetAlcohol() + "    " +
+                "咖啡因: " + ob->GetCaffeine() + "    " +
+                "毒素: " + ob->GetPoison() + "    ", cols) });
     lines += ({ "\n" }) ;
     if(dbt = ob->GetExperienceDebt()) {
-        lines += ({ center("Training Points: " + ob->GetTrainingPoints() +
+        lines += ({ center("训练点数: " + ob->GetTrainingPoints() +
                     "    " +
-                    "Quest Points: "+ ob->GetQuestPoints(),cols)
+                    "任务点数: "+ ob->GetQuestPoints(),cols)
                 });
-        lines += ({ center("Experience Points: " + ob->GetExperiencePoints() +
+        lines += ({ center("经验值: " + ob->GetExperiencePoints() +
                     "    " +
-                    "Experience Debt: "+ dbt,cols)
+                    "经验债务: "+ dbt,cols)
                 });
     } else {
-        lines += ({ center("Training Points: " + ob->GetTrainingPoints() +
+        lines += ({ center("训练点数: " + ob->GetTrainingPoints() +
                     "    " +
-                    "Quest Points: "+ ob->GetQuestPoints() +
+                    "任务点数: "+ ob->GetQuestPoints() +
                     "    " +
-                    "Experience Points: "+ ob->GetExperiencePoints(),cols) 
+                    "经验值: "+ ob->GetExperiencePoints(),cols)
                 });
     }
-    lines += ({ "", "Limbs:" });
+    lines += ({ "", "肢体:" });
     limbs = ob->GetWieldingLimbs();
     if(ob && !ob->GetGhost()) arr = map(sort_array(ob->GetLimbs(), 1),
             (: sprintf("%:-14s%s (%d) %d/%d", $1,
@@ -94,7 +94,7 @@ mixed cmd(string args) {
     i = sizeof(arr);
     while(i--) if( (y = strlen(arr[i])) > x ) x = y;
     x = cols/(x+2);
-    lines += explode(format_page2(arr, x), "\n") + ({ "", "Skills:" });
+    lines += explode(format_page2(arr, x), "\n") + ({ "", "技能:" });
     arr = map(sort_array(ob->GetSkills(), 1),
             function(string skill, object who) {
             mapping mp = who->GetSkill(skill);
@@ -109,7 +109,7 @@ mixed cmd(string args) {
     i = sizeof(arr);
     while(i--) if( (y = strlen(arr[i])) > x ) x = y;
     x = cols/(x+2);
-    lines += explode(format_page2(arr, x), "\n") + ({ "", "Stats:" });
+    lines += explode(format_page2(arr, x), "\n") + ({ "", "属性:" });
     arr = map(sort_array(ob->GetStats(), 1),
             (: sprintf("%:-12s (%d) %d/%d", $1,
                        ($(ob))->GetStatClass($1),
@@ -123,22 +123,22 @@ mixed cmd(string args) {
     if(sizeof(ECONOMY_D->__QueryCurrencies())){
         if(valid_currency("gold")) gold = "gold";
         else gold = ECONOMY_D->__QueryCurrencies()[0];
-        lines += ({ "", ob->GetName()+" has amassed a net worth of " +
-                ( ob->GetNetWorth(gold) ) + " "+gold+"."});
+        lines += ({ "", ob->GetName()+" 已积累净资产 " +
+                ( ob->GetNetWorth(gold) ) + " "+gold+"。"});
         arr = filter( map(ob->GetCurrencies(),
                     (: ($(ob))->GetCurrency($1) &&
                      sprintf("%d %s", ($(ob))->GetCurrency($1), $1) :)),
                 (: $1 :));
-        lines += ({ "Money on hand: "+implode(arr, ", ") });
+        lines += ({ "持有金钱: "+implode(arr, ", ") });
     }
     this_player()->eventPage(lines, "system");
     return 1;
 }
 
 string GetHelp(){
-    string ret = "Syntax: stat";
-    if(creatorp(this_player())) ret += " [living]";
-    ret += "\n\nDisplays statistical information of a living object.\n"+
-        "See also: score, status, env.";
+    string ret = "用法: stat";
+    if(creatorp(this_player())) ret += " [生物]";
+    ret += "\n\n显示生物的统计信息。\n"+
+        "参考: score, status, env.";
     return ret;
 }

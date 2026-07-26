@@ -21,8 +21,7 @@ mixed cmd(string str) {
 }
 
 string GetHelp() {
-    return ("Syntax: brief [on | off]\n\n"
-            "This command allows you to toggle brief room descriptions "
-            "on or off.\nSee also: env");
+    return ("用法: brief [on | off]\n\n"
+            "此命令允许你切换简要房间描述的开关。\n参考: env");
 }
 

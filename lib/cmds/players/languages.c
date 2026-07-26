@@ -11,7 +11,7 @@ mixed cmd(string str) {
         mixed ret = this_player()->CanSpeak(0, TALK_LOCAL, "foo", str);
         if(intp(ret)) {
             this_player()->SetDefaultLanguage(str);
-            write("You are now speaking in "+capitalize(lower_case(str))+".");
+            write("你现在使用 "+capitalize(lower_case(str))+" 交流。");
             return 1;
         }
         else return ret;
@@ -22,24 +22,23 @@ mixed cmd(string str) {
     }
 
     if(this_player()->GetPolyglot()){
-        write("You understand all languages with 100% proficiency.");
+        write("你以100%的熟练度理解所有语言。");
     }
 
-    write("You speak: ");
+    write("你会说: ");
     foreach(string key, int val in FluencyMap){
-        write(capitalize(key)+" with "+val+"% proficiency.");
+        write(capitalize(key)+" 熟练度 "+val+"%。");
     }
-    write("Your current default language is: "+
-            this_player()->GetDefaultLanguage()+".");
+    write("你当前的默认语言是: "+
+            this_player()->GetDefaultLanguage()+"。");
 
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: language [LANGUAGE]\n\n"
-            "This command reports which languages you speak and understand.\n"
-            "If a language is specified and you know the language, it is "
-            "set as your default speaking language.\n"
-            "See also: languages, speak");
+    return ("用法: language [语言]\n\n"
+            "此命令报告你会说和理解哪些语言。\n"
+            "如果指定了语言且你了解该语言，它将被设置为你的默认交流语言。\n"
+            "参考: languages, speak");
 }
 

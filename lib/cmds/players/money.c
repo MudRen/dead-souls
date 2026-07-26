@@ -17,14 +17,13 @@ mixed cmd(string str) {
     currs = this_player()->GetCurrencies();
     currs = filter(currs, (: this_player()->GetCurrency($1) > 0 :));
     if( !currs || !sizeof(currs) ) {
-        write("You are broke.");
-        say(this_player()->GetName()+" comes up with empty pockets.");
+        write("你身无分文。");
+        say(this_player()->GetName()+" 翻了翻空空的口袋。");
         return 1;
     }
-    say(this_player()->GetName()+" fishes through "+
-            possessive(this_player())+" pockets examining some money.");
-    message("my_action", "In your pockets you find "+
-            ((sizeof(currs) > 1) ? "these currencies: " : "only: "), this_player());
+    say(this_player()->GetName()+" 翻了翻口袋，检查了一些钱币。");
+    message("my_action", "你在口袋里发现了 "+
+            ((sizeof(currs) > 1) ? "这些货币: " : "只有: "), this_player());
     for(borg = "", i=0, tmp = sizeof(currs); i<tmp; i++) {
         borg += ((this_player()->GetCurrency(currs[i]))+" "+currs[i]);
         if(i == tmp-1) borg +=(".\n");
@@ -37,7 +36,6 @@ mixed cmd(string str) {
 }
 
 string GetHelp() {
-    return ("Syntax: money\n\n"
-            "Allows you to search your pockets for all your money "
-            "of all currency types.");
+    return ("用法: money\n\n"
+            "让你翻口袋查看所有类型的货币。");
 }

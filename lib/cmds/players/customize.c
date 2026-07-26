@@ -17,31 +17,27 @@ mixed cmd(string args) {
 
     if( !args || args == "" ) {
         amt = this_player()->GetCustomStats();
-        this_player()->eventPrint("You have " + amt + " points left to "
-                "spend on stats.", MSG_SYSTEM);
+        this_player()->eventPrint("你还有 " + amt + " 点可以分配给属性。", MSG_SYSTEM);
         return 1;
     }
     amt = to_int((tmp = explode(args, " "))[<1]);
-    if( sizeof(tmp) == 1 ) return "Customize which stat how much?";
+    if( sizeof(tmp) == 1 ) return "定制哪个属性多少点？";
     stat = implode(tmp[0..<2], " ");
     tmp = this_player()->eventCustomizeStat(stat, amt);
     if( stringp(tmp) ) return tmp;
-    if( !tmp ) return "Failed to raise stat.";
-    this_player()->eventPrint("Your " + stat + " is now at " + tmp +
-            ", and you have " +
+    if( !tmp ) return "提升属性失败。";
+    this_player()->eventPrint("你的 " + stat + " 现在是 " + tmp +
+            "，还有 " +
             this_player()->GetCustomStats() +
-            " points left to spend.", MSG_SYSTEM);
+            " 点可以分配。", MSG_SYSTEM);
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: customize [STAT AMOUNT]\n\n"
-            "Allows you to spend customization points to boost the "
-            "stats with which you were born. "
-            "Using this command without arguments tells you how many "
-            "points you have left to spend.\n"
-            "Example: customize strength 5"
-            "\nNOTE: Once spent, that's it. You will not receive "
-            "more customization points.\n"
-            "See also: stats, stat, skills, deviation");
+    return ("用法: customize [属性 数量]\n\n"
+            "允许你使用定制点数来提升你的初始属性。"
+            "不带参数使用此命令可以查看剩余可用点数。\n"
+            "示例: customize strength 5"
+            "\n注意: 点数一旦使用就无法恢复。你不会获得额外的定制点数。\n"
+            "参考: stats, stat, skills, deviation");
 }

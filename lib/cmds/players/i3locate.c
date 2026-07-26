@@ -10,18 +10,16 @@
 inherit LIB_DAEMON;
 
 mixed cmd(string args) {
-    if( !args || args == "" ) return "i3locate whom?";
+    if( !args || args == "" ) return "i3locate 谁？";
     SERVICES_D->eventSendLocateRequest(convert_name(args));
-    message("system", "i3locate query sent.", this_player());
+    message("system", "i3locate 查询已发送。", this_player());
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: i3locate [person]\n\n"
-            "This command allows you to know on which MUDs connected "
-            "through the Intermud 3 network have someone using the "
-            "name you specify.  Note that this person may not actually be "
-            "the person you think it is, as nothing prevents two different "
-            "people from using the same name on different MUDs.\n"
-            "See also: mail, mudlist, rwho, tell");
+    return ("用法: i3locate [人物]\n\n"
+            "此命令允许你了解通过 Intermud 3 网络连接的哪些MUD上"
+            "有人使用你指定的名称。请注意，此人可能实际上不是"
+            "你认为的那个人，因为没有机制阻止不同的人在不同的MUD上使用相同的名称。\n"
+            "参考: mail, mudlist, rwho, tell");
 }

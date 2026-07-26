@@ -5,37 +5,36 @@ inherit LIB_DAEMON;
 mixed cmd(string args) {
 #if MINIMAP
     int status = this_player()->GetProperty("minimapping");
-    string sstatus = "are";
-    if(!status) sstatus = "are not";
+    string sstatus = "正在";
+    if(!status) sstatus = "没有";
     if(!args){
-        write("You "+sstatus+" minimapping.");
+        write("你"+sstatus+"显示小地图。");
         return 1;
     }
     if(args == "on"){
-        if(status) write("You are already minimapping.");
-        else write("You enable minimapping.");
+        if(status) write("你已经在显示小地图了。");
+        else write("你启用了小地图。");
         this_player()->SetProperty("minimapping", 1);
         return 1;
     }
 
     if(args == "off"){
-        if(!status) write("You are already not minimapping.");
-        else write("You disable minimapping.");
+        if(!status) write("你已经没有显示小地图了。");
+        else write("你禁用了小地图。");
         this_player()->SetProperty("minimapping", 0);
         return 1;
     }
 
-    write("Try: help minimap");
+    write("用法: help minimap");
     return 1;
 #else
-    write("This feature is disabled.");
+    write("此功能已禁用。");
     return 1;
 #endif
 }
 
 string GetHelp() {
-    return ("Syntax: minimap [on | off]\n\n"
-            "If enabled, a simple map of your surroundings is displayed "
-            "when your environment is described to you.\nSee also: "
-            "env, terminal, brief, mute, gag.");
+    return ("用法: minimap [on | off]\n\n"
+            "如果启用，当向你描述环境时会显示一个简单的周围地图。\n"
+            "参考: env, terminal, brief, mute, gag.");
 }

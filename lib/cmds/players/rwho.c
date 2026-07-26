@@ -21,11 +21,11 @@ mixed cmd(string str) {
     string tmp, s1, s2;
     string network = "i3";
 
-    if( !str ) return "Get a remote who from where?";
+    if( !str ) return "从哪里获取远程who列表？";
 
     if(grepp(str,"@")){
         if(sscanf(str,"%s@%s", s1, s2) < 2){
-            write("Malformed name. Trying anyway...");
+            write("名称格式不正确。仍然尝试...");
         }
         else str = s1;
 
@@ -37,25 +37,24 @@ mixed cmd(string str) {
 
     if ( network == "imc2" && find_object(IMC2_D) && (tmp = IMC2_D->find_mud(str)) ) {
         IMC2_D->who_out(capitalize(this_player()->GetKeyName()),tmp);
-        message("system", "Remote who query sent to " + tmp + " on the IMC2 network.", this_player());
+        message("system", "远程who查询已发送到 IMC2 网络上的 " + tmp + "。", this_player());
         return 1;
     } else if( CheckMud(str) ) {
         tmp = INTERMUD_D->GetMudName(str);
         SERVICES_D->eventSendWhoRequest(tmp);
-        message("system", "Remote who query sent to " + tmp + " on the I3 network.", this_player());
+        message("system", "远程who查询已发送到 I3 网络上的 " + tmp + "。", this_player());
         return 1;
     } else {
-        return mud_name() + " is not aware of such a place, or it is not currently available.";
+        return mud_name() + " 不知道这个地方，或者它目前不可用。";
         //Maybe do more processing here for bad spelling, etc?
     }
-    return "Oops, rwho checks fell through, and broke.";
+    return "糟糕，rwho 检查失败了。";
 }
 
 string GetHelp(){
-    return ("Syntax: rwho <mud>\n\n"
-            "Gives you a who list in abbreviated form from a mud on the\n"
-            "global network following the CD protocols for intermud communication.\n"
-            "The information given by the who varies from mud to mud.\n"
-            "By default, this command consults the i3 network. You can specify IMC2\n"
-            "with the following syntax: rwho mudname@imc2");
+    return ("用法: rwho <mud>\n\n"
+            "从全球网络上的mud获取简要的who列表。\n"
+            "who提供的信息因mud而异。\n"
+            "默认情况下，此命令查询 i3 网络。你可以指定 IMC2\n"
+            "使用以下语法: rwho mudname@imc2");
 }

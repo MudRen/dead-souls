@@ -15,23 +15,23 @@ varargs mixed eventScore();
 protected void create() {
     daemon::create();
     SetNoClean(1);
-    SetHelp("Syntax: score\n\n"
-            "Displays information about your character.\n"
-            "See also: stat, status, env");
+    SetHelp("用法: score\n\n"
+            "显示你的角色信息。\n"
+            "参考: stat, status, env");
 }
 
 nosave string *FoodDegree =
-({ "starving!", "very hungry.",
- "hungry.", " partially hungry.",
- "feeling full.", "quite full." });
+({ "饿死了！", "非常饿。",
+ "有点饿。", "不太饿。",
+ "感觉饱了。", "很饱。" });
 
 nosave string *DrunkDegree =
-({ "sober", "tipsy", "drunk", "blitzed",
- "three sheets to the wind", "FUBAR" });
+({ "清醒", "微醺", "醉了", "烂醉",
+ "醉得不省人事", "醉得一塌糊涂" });
 
 nosave string *DrinkDegree =
-({ "parched", "extremely thirsty", "very thirsty", "thirsty",
- "somewhat thirsty", "unthirsty" });
+({ "口渴极了", "非常渴", "很渴", "渴",
+ "有点渴", "不渴" });
 
 mixed cmd(string arg) {
     eventScore(arg);
@@ -51,7 +51,7 @@ varargs mixed eventScore(string arg) {
         who = this_player();
         haben = "have";
         be = "are";
-        poss = "your";  
+        poss = "your";
         prn = "you";
         past = "were";
         qual = "qualify";
@@ -67,41 +67,38 @@ varargs mixed eventScore(string arg) {
         qual = "qualifies";
         cnj = "s";
     }
-    str  = ({ capitalize(prn)+" "+be+" "+who->GetShort() + " (" +
+    str  = ({ who->GetShort() + " (" +
         who->GetMoralityDescription() + ")." });
-    str += ({ sprintf(capitalize(prn)+" "+be+" a level %d %s%s %s.",
+    str += ({ sprintf("等级 %d %s%s %s.",
                 who->GetLevel(),
-                ( who->GetUndead() ? "undead " : ""),
+                ( who->GetUndead() ? "不死 " : ""),
                 capitalize(who->GetRace() || "nothing"),
                 capitalize(who->GetClass() || "commoner")) });
-    str += ({ capitalize(poss)+" native town is "+who->GetTown()+", and "+
-            prn+" "+be+" "+ (who->GetReligion() ||
-                "agnostic") + " in faith." });
-    str += ({ sprintf(capitalize(prn)+" "+haben+" solved %s, and "+haben+" %s."+
-                " (%d Quest Points)",
+    str += ({ "出生地是 "+who->GetTown()+"，信仰 "+
+                (who->GetReligion() || "agnostic") + "。" });
+    str += ({ sprintf("完成了 %s 个任务，拥有 %s 个头衔。"+
+                "（%d 任务点数）",
                 consolidate(sizeof(who->GetQuests()),
                     "one quest"),
                 consolidate(sizeof(who->GetTitles()),
                     "one title"), who->GetQuestPoints() ) });
     birth = who->GetBirth();
     age = ( query_year(time()) - query_year(birth) );
-    str += ({ sprintf(capitalize(prn)+" "+past+
-                " born on the %d%s day of %s, year %d. "
-                "(%d years old)", query_date(birth), ordinal(query_date(birth)),
-                query_month(birth), query_year(birth), age) });
+    str += ({ sprintf("出生于第 %d 年 %s 月 %d%s 日。"
+                "（%d 岁）", query_year(birth), query_month(birth),
+                query_date(birth), ordinal(query_date(birth)), age) });
     if( x = who->GetTrainingPoints() < 1 ) {
         y = who->GetLevel() + 1 + (x / -4);
-        str += ({ "Training points await "+(who == this_player() ? "you" :
-                    objective(who))+" at level " + y + "." });
+        str += ({ "在等级 " + y + " 时将获得训练点数。" });
     }
-    else str += ({ capitalize(prn)+" "+haben+" " + consolidate(
+    else str += ({ "拥有 " + consolidate(
                 who->GetTrainingPoints(),
-                "one training point") + "." });
+                "one training point") + "训练点数。" });
     if( who->GetWimpy() )
-        str += ({ capitalize(prn)+" "+be+" feeling wimpy." }); else
-            str += ({ capitalize(prn)+" "+be+" feeling brave." });
+        str += ({ "感觉很胆怯。" }); else
+            str += ({ "感觉很勇敢。" });
     if( who->GetPoison() > 0 )
-        str += ({ capitalize(prn)+" "+be+" poisoned." });
+        str += ({ "中毒了。" });
     x = who->GetFood() / 17;
     if( x > sizeof(FoodDegree) - 1 ) x = (sizeof(FoodDegree) - 1);
     y = who->GetDrink() / 17;
@@ -109,9 +106,8 @@ varargs mixed eventScore(string arg) {
     z = who->GetAlcohol();
     if(z) z = (z/17) + 1;
     if( z > sizeof(DrunkDegree) - 1 ) z = (sizeof(DrunkDegree) - 1);
-    str += ({ capitalize(prn)+" "+be+" "+FoodDegree[x] });
-    str += ({ sprintf(capitalize(prn)+" "+be+
-                " %s and %s.", DrinkDegree[y], DrunkDegree[z]) });
+    str += ({ FoodDegree[x] });
+    str += ({ sprintf("%s，%s。", DrinkDegree[y], DrunkDegree[z]) });
     x = who->GetCustomStats();
 
     tmp = ({});
@@ -121,28 +117,23 @@ varargs mixed eventScore(string arg) {
     lev = PLAYERS_D->GetLevelList()[(who->GetLevel()) + 1];
 
     if(dbt){
-        str += ({ capitalize(prn)+" have "+dbt+" points of "+
-                "experience debt." });
+        str += ({ "有 "+dbt+" 点经验值债务。" });
     }
 
     if(lev){
         if(REQUIRE_QUESTING){
             qp = lev["qp"] - qp;
-            if(qp > 0) tmp += ({capitalize(prn)+" require"+cnj+" "+
-                    comma(qp)+" more quest points to advance."});
+            if(qp > 0) tmp += ({"还需要 "+comma(qp)+" 任务点数才能升级。"});
         }
 
         xp = lev["xp"] - xp;
-        if(xp > 0) tmp += ({capitalize(prn)+" require"+cnj+" "+
-                comma(xp)+" more experience points to advance."});
-        if(!sizeof(tmp)) tmp = ({capitalize(prn)+" "+qual+
-                " to advance a level."});
-        str += tmp; 
+        if(xp > 0) tmp += ({"还需要 "+comma(xp)+" 经验点数才能升级。"});
+        if(!sizeof(tmp)) tmp += ({"满足升级条件。"});
+        str += tmp;
     }
 
     if(x){
-        str += ({ "\n"+capitalize(prn)+" "+haben+" "+x+
-                " customization points left. Type: help customize" });
+        str += ({ "\n还有 "+x+" 点定制点数。输入: help customize" });
     }
     this_player()->eventPage(str, "info");
     return 1;

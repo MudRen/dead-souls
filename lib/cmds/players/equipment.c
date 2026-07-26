@@ -17,15 +17,15 @@ void eventInventory() {
     string *bare_limbs = filter(this_player()->GetLimbs(), (: !sizeof(this_player()->GetWorn($1)) :) );
     object *armors = filter(all_inventory(this_player()), 
             (: $1->GetWorn() && !($1->GetWielded()) :) );
-    string ret = "You are using: \n";
+    string ret = "你正在使用: \n";
 
     foreach(object weapon in weapons){
         string tmp = capitalize(weapon->GetShort());
         string *limbs = ({});
         foreach(string limb in weapon->GetWorn()){
-            limbs += ({ "your "+limb });
+            limbs += ({ "你的"+limb });
         }
-        tmp += " wielded in "+item_list(limbs)+".\n";
+        tmp += " 握在 "+item_list(limbs)+" 中。\n";
         ret += tmp+"\n";
     }
 
@@ -33,24 +33,22 @@ void eventInventory() {
         string tmp = capitalize(armor->GetShort());
         string *limbs = ({});
         foreach(string limb in armor->GetWorn()){
-            limbs += ({ "your "+limb });
+            limbs += ({ "你的"+limb });
         }
-        tmp += " worn on "+item_list(limbs)+".\n";
+        tmp += " 穿在 "+item_list(limbs)+" 上。\n";
         ret += tmp;
     }
 
     if(sizeof(bare_limbs)){
-        ret +="\nYour following body parts are unequipped: \n";
-        ret += capitalize(item_list(bare_limbs)+".");
+        ret +="\n你的以下身体部位未装备: \n";
+        ret += capitalize(item_list(bare_limbs)+"。");
     }
 
     write(ret);
 }
 
 string GetHelp(){
-    return ("Syntax: equipment\n\n"
-            "Lists all items you are currently wearing or wielding. "
-            "This command "
-            "will take up one round of combat if you happen to be in "
-            "combat.");
+    return ("用法: equipment\n\n"
+            "列出你当前穿戴或使用的所有物品。"
+            "如果你正在战斗中，此命令会占用一个战斗回合。");
 }

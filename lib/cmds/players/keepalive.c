@@ -1,9 +1,7 @@
 #include <lib.h>
 
 inherit LIB_DAEMON;
-string err =  "This game appears not to have this feature enabled "+
-"in the driver. Consider asking your mud administrator "+
-"to recompile with PACKAGE_DSLIB defined.";
+string err =  "此游戏似乎未在驱动中启用此功能。请考虑让mud管理员重新编译，定义 PACKAGE_DSLIB。";
 
 
 mixed cmd(string args) {
@@ -17,38 +15,34 @@ mixed cmd(string args) {
 
     if( !args || args == "" ) {
         if(!keepalive){
-            write("You have keepalives disabled.");
+            write("保活功能已禁用。");
             return 1;
         }
         else {
-            write("Keepalive set to once every "+cardinal(keepalive)+
-                    " heartbeat"+(keepalive > 1 ? "s." : "."));
+            write("保活设置为每 "+keepalive+" 次心跳发送一次。");
             return 1;
         }
     }
     if(!intp(keepalive = to_int(args)) || !keepalive) {
         this_player()->SetProperty("keepalive",0);
-        write("Keepalive disabled.");
+        write("保活功能已禁用。");
         return 1;
     }
     else {
         this_player()->SetProperty("keepalive",keepalive);
-        write("Keepalive set to once every "+cardinal(keepalive)+
-                " heartbeat"+(keepalive > 1 ? "s." : "."));
+        write("保活设置为每 "+keepalive+" 次心跳发送一次。");
         return 1;
     }
 }
 
 string GetHelp(){
-    return ("Syntax: keepalive [NUMBER]\n\n"
-            "Without an argument, keepalive will display your current "
-            "keepalive interval. When provided an integer argument, this "
-            "command sets how often an invisible 'keepalive' signal is "
-            "sent to your client. This is useful for people with an "
-            "ISP or modem that kills connections that have been idle "
-            "for a while."
+    return ("用法: keepalive [数字]\n\n"
+            "不带参数时，keepalive 将显示当前的保活间隔。"
+            "提供整数参数时，此命令设置向客户端发送不可见"
+            "'保活'信号的频率。"
+            "这对于那些ISP或调制解调器会断开空闲连接的用户很有用。"
 #ifndef __DSLIB__
-            "\n---NOTE---\n"+err+"\n---\n"
+            "\n---注意---\n"+err+"\n---\n"
 #endif
-            "\nSee also: env");
+            "\n参考: env");
 }

@@ -23,15 +23,15 @@ int cmd() {
             "%^BLACK%^%^B_MAGENTA%^B_MAGENTA\t\t%%^^B_MAGENTA%%^^%^RESET%^\n"
             "%^BOLD%^%^BLACK%^%^B_BLACK%^B_BLACK\t\t\t%%^^B_BLACK%%^^%^RESET%^\n"
             "%^BLACK%^%^B_WHITE%^B_WHITE\t\t\t%%^^B_WHITE%%^^%^RESET%^\n"
-            "Special tags: %%^^BOLD%%^^ and %%^^FLASH%%^^ and %%^^RESET%%^^\n\n"
-            "You can mix and match, for example: \n"
+            "特殊标签: %%^^BOLD%%^^ 和 %%^^FLASH%%^^ 和 %%^^RESET%%^^\n\n"
+            "你可以混合使用，例如: \n"
             "%%^^B_RED%%^^%%^^CYAN%%^^%%^^BOLD%%^^%%^^FLASH%%^^Foo!%%^^RESET%%^^:"
-            "%^B_RED%^%^CYAN%^%^BOLD%^%^FLASH%^Foo!%^RESET%^" 
+            "%^B_RED%^%^CYAN%^%^BOLD%^%^FLASH%^Foo!%^RESET%^"
             );
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: colors\n\n"
-            "Lists all available colors in the corresponding color.");
+    return ("用法: colors\n\n"
+            "列出所有可用颜色及其对应的颜色代码。");
 }

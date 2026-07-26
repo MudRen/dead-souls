@@ -13,9 +13,9 @@ inherit LIB_DAEMON;
 protected void eventChat(string args);
 
 mixed cmd(string args) {
-    message("system", "Entering conversation mode.  Continue entering things "
-            "you wish 'said' until done.", this_player());
-    message("system", "When done, enter a '.' alone on a line like in edit.",
+    message("system", "进入对话模式。继续输入你想"
+            "说的话，直到完成。", this_player());
+    message("system", "完成后，在一行中单独输入 '.' 就像在编辑器中一样。",
             this_player());
     message("system", "______________________________________________________"
             , this_player());
@@ -25,7 +25,7 @@ mixed cmd(string args) {
 
 protected void eventChat(string args) {
     if( trim(args) == "." ) {
-        message("system", "Exiting conversation mode.", this_player());
+        message("system", "退出对话模式。", this_player());
         return;
     }
     else this_player()->eventSpeak(0, TALK_LOCAL, args);
@@ -33,12 +33,11 @@ protected void eventChat(string args) {
 }
 
 string GetHelp() {
-    return ("Syntax: converse\n\n"
-            "Puts you into conversation mode, which means that anything you "
-            "type will act as if you are placing the \"say\" command before "
-            "it.  Once in conversation mode, you exit the same way you do "
-            "from the mail or bulletin board editor, that is, by typing "
-            "a '.' alone on a line.  You may also issue commands while "
-            "in conversation mode by putting a ! before whatever you type.\n"
-            "See also: say, tell");
+    return ("用法: converse\n\n"
+            "进入对话模式，你输入的任何内容都会像在前面加上了"
+            "\"say\"命令一样。进入对话模式后，"
+            "你可以像退出邮件或公告板编辑器一样退出，"
+            "即在一行中单独输入 '.'。"
+            "你也可以在对话模式下通过在输入前加 ! 来执行命令。\n"
+            "参考: say, tell");
 }

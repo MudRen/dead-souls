@@ -9,16 +9,15 @@
 inherit LIB_DAEMON;
 
 mixed cmd(string args) {
-    if( !args || args == "" ) return "Set it to what?";
-    message("system", "Terminal set to " + 
-            this_player()->SetTerminal(args) + ".", this_player());
+    if( !args || args == "" ) return "设置成什么？";
+    message("system", "终端已设置为 " +
+            this_player()->SetTerminal(args) + "。", this_player());
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: terminal <term type>\n\n"
-            "Allows you to set your terminal type manually in the " 
-            "event the MUD does not automatically recognize the proper "
-            "setting.\n"
-            "See also: screen, env");
+    return ("用法: terminal <终端类型>\n\n"
+            "如果MUD没有自动识别正确的设置，"
+            "你可以手动设置终端类型。\n"
+            "参考: screen, env");
 }

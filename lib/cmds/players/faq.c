@@ -15,14 +15,14 @@ mixed cmd(string args) {
         string *files;
         int cols, i, maxi, x, y;
 
-        message("help", mud_name() + " has the following FAQ lists:",
+        message("help", mud_name() + " 有以下常见问题列表:",
                 this_player());
         cols = ((int *)this_player()->GetScreen())[0];
         i = sizeof(files = get_dir(DIR_FAQS "/"));
         while(i--) if( (y =strlen(files[i])) > x ) x = y;
         cols = cols / (x+2);
         message("help", format_page(files, cols), this_player());
-        message("prompt", "\nWhich FAQ (general)? ", this_player());
+        message("prompt", "\n查看哪个常见问题（默认为 general）？ ", this_player());
         input_to( (: GetFAQ :) );
         return 1;
     }
@@ -36,25 +36,23 @@ protected void GetFAQ(string args) {
     if( !args || args == "" || args == "y" || args == "Y" || lower_case(args) == "yes")
         args = "general";
     if( file_size(file = DIR_FAQS "/" + args) < 0 ) {
-        message("error", "No such FAQ available.", this_player());
+        message("error", "没有此常见问题。", this_player());
         return;
     }
     if( !(file = read_file(file)) ) {
-        message("error", "Failed to read FAQ document.", this_player());
+        message("error", "读取常见问题文档失败。", this_player());
         return;
     }
     this_player()->eventPage(explode(file, "\n"), "help");
 }
 
 string GetHelp() {
-    return ("Syntax: faq [FAQ]\n\n"
-            "If you specify a particular FAQ to read, this command will "
-            "display that FAQ for you.  If you fail to specify a FAQ, it "
-            "will give you a list of FAQs from which to choose.  FAQ "
-            "stands for Frequently Asked Questions.  Reading the FAQs is "
-            "a good way of coming to understand topics basic to " +
-            mud_name() + ".\n"
-            "See also: help" + (creatorp(this_player()) ? ", man" : ""));
+    return ("用法: faq [常见问题]\n\n"
+            "如果你指定了要阅读的常见问题，此命令将为你显示该问题。"
+            "如果没有指定，它会给你一个常见问题列表供你选择。"
+            "FAQ 代表常见问题。阅读常见问题是了解 " +
+            mud_name() + " 基本主题的好方法。\n"
+            "参考: help" + (creatorp(this_player()) ? ", man" : ""));
 }
 
 

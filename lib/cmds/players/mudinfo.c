@@ -5,12 +5,11 @@ inherit LIB_DAEMON;
 
 mixed cmd(string str) {
     if( !sizeof(str) )
-        return "Syntax: mudinfo <mudname>";
+        return "用法: mudinfo <mud名称>";
     return MUDINFO_D->PrintMudInfo(str);
 }
 
 string GetHelp() {
-    return ("Syntax: mudinfo <mudname>\n\n"
-            "If available, this command presents detailed Intermud-3 "
-            "information on the mud specified.");
+    return ("用法: mudinfo <mud名称>\n\n"
+            "如果可用，此命令显示指定mud的详细 Intermud-3 信息。");
 }

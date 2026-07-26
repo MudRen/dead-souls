@@ -18,7 +18,7 @@ mixed cmd(string unused) {
     string str;
     int x;
 
-    str = mud_name() + " has been up for %^ORANGE%^";
+    str = mud_name() + " 已运行 %^ORANGE%^";
     if (x = (tm / WEEK)) {
         str += x + "w ";
         tm -= x * WEEK;
@@ -44,5 +44,5 @@ mixed cmd(string unused) {
 }
 
 string GetHelp(){
-    return ("Syntax: uptime\n\nReports how long "+mud_name()+" has been up.");
+    return ("用法: uptime\n\n报告 "+mud_name()+" 已运行多长时间。");
 }

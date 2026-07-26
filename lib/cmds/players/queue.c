@@ -6,13 +6,13 @@ inherit LIB_DAEMON;
 mixed cmd(string args) {
     string *cmds;
     if(!sizeof(args)){
-        write("Try: help queue");
+        write("用法: help queue");
         return 1;
     }
     cmds = explode(args, ";");
     foreach(string cmnd in cmds){
         if(sizeof(cmnd)){
-            write("Queuing command: "+cmnd);
+            write("排队命令: "+cmnd);
             this_player()->eventQueueCommand(cmnd);
         }
     }
@@ -21,6 +21,6 @@ mixed cmd(string args) {
 }
 
 string GetHelp(){
-    return ("Syntax: queue <command1;command2>\n\n"
-            "Stacks commands to be executed in order.");
+    return ("用法: queue <命令1;命令2>\n\n"
+            "将命令堆叠起来按顺序执行。");
 }

@@ -40,6 +40,6 @@ varargs int cmd(string str){
 }
 
 string GetHelp(){
-    return ("Syntax: annoyblock [ on | off ]\n\n"
-            "Blocks annoying messages like \"Joe looks around.\""); 
+    return ("用法: annoyblock [ on | off ]\n\n"
+            "屏蔽烦人的消息，如\"Joe looks around.\"");
 }

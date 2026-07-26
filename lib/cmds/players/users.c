@@ -22,7 +22,7 @@ int cmd(){
     }
     user_name = sort_array(user_name, "sort_names");
     ret = format_page(user_name, 4);
-    ret += sprintf("Total : %d", sizeof(user_name));
+    ret += sprintf("总计 : %d", sizeof(user_name));
     if(sizeof(ret) < __LARGEST_PRINTABLE_STRING__ ) write(ret);
     else this_player()->eventPage(ret);
     return 1;
@@ -38,9 +38,9 @@ int sort_names(string name1, string name2){
 }
 
 string GetHelp(){
-    return "Syntax: users\n\n"
-        "Lists the names of player logged in. "
-        "A shorter and quicker version of \"who\".\n"
-        "See also: who, where\n"
-        "See also: say, tell, class\n";
+    return "用法: users\n\n"
+        "列出已登录玩家的名称。"
+        "是 \"who\" 的简短快速版本。\n"
+        "参考: who, where\n"
+        "参考: say, tell, class\n";
 }

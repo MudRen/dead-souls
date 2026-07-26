@@ -28,7 +28,7 @@ mixed cmd(string args) {
     string ret, tmp;
     int x, scr;
 
-    ret = "You are " +this_player()->GetShort() + ", level " +
+    ret = "你是 " +this_player()->GetShort() + "，等级 " +
         this_player()->GetLevel();
     if( (tmp = this_player()->GetClass()) )
         ret += " " + capitalize(tmp);
@@ -38,7 +38,7 @@ mixed cmd(string args) {
 
     skills = sort_array(this_player()->GetSkills(), 1);
     if( !sizeof(skills) ) {
-        ret += "You are without skills.\n";
+        ret += "你没有任何技能。\n";
         this_player()->eventPrint(ret);
         return 1;
     }
@@ -54,19 +54,18 @@ mixed cmd(string args) {
         while(i--) if( (y = strlen(sarray[i])) > x ) x = y;
     }
     x = scr/(x+2);
-    ret += "%^BOLD%^%^BLUE%^Primary skills:%^RESET%^\n";
+    ret += "%^BOLD%^%^BLUE%^主要技能:%^RESET%^\n";
     ret += format_page2(primes, x);
-    ret += "\n%^BOLD%^%^BLUE%^Secondary skills:%^RESET%^\n";
+    ret += "\n%^BOLD%^%^BLUE%^次要技能:%^RESET%^\n";
     ret += format_page2(secs, x);
-    ret += "\n%^BOLD%^%^BLUE%^Other skills:%^RESET%^\n";
+    ret += "\n%^BOLD%^%^BLUE%^其他技能:%^RESET%^\n";
     ret += format_page2(skills, x);
     this_player()->eventPage(explode(ret, "\n"));
     return 1;
 }
 
 string GetHelp(){
-    return "Syntax: skills\n\n"
-        "Lists all of your skills as well as how skilled you are "
-        "at the skill in question.\n"
-        "See also: stats, status";
+    return "用法: skills\n\n"
+        "列出你所有的技能及其熟练程度。\n"
+        "参考: stats, status";
 }
