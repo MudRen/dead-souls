@@ -17,8 +17,8 @@ protected void create() {
     armor::create();
     SetKeyName("wooden shield");
     SetId( ({ "shield", "wooden shield" }) );
-    SetShort("a wooden shield");
-    SetLong("This shield is a simple circle of woode with no markings.");
+    SetShort("一面木盾");
+    SetLong("这面盾牌是一个没有标记的简单圆形木盾。");
     SetDamagePoints(600);
     SetVendorType(VT_ARMOR);
     SetMass(400);
@@ -34,8 +34,7 @@ protected void create() {
 varargs int eventWearShield(object who, mixed where) {
     object env = environment(who);
     if( who->GetRace() != "hobbit" ) {
-        who->eventPrint("The shield's handle simply does not fit your hand "
-                "right.");
+        who->eventPrint("盾牌的把手就是不适合你的手。");
         return 0;
     }
     who->eventPrint("You wear "+GetShort()+".");

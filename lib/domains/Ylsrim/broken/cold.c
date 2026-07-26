@@ -25,17 +25,16 @@ int eventSuffer(object who) {
     }
     switch(random(3)) {
         case 0:
-            send_messages("cough", "$agent_name $agent_verb miserably.",
+            send_messages("cough", "$agent_name$agent_verb痛苦地咳嗽。",
                     who, 0, environment(who));
             break;
 
         case 1:
-            send_messages("", "$agent_possessive_noun red nose runs all over "
-                    "$agent_possessive face.", who, 0, environment(who));
+            send_messages("", "$agent_possessive_noun红鼻子流满了$agent_possessive脸。", who, 0, environment(who));
             break;
 
         case 2:
-            send_messages("look", "$agent_name $agent_verb miserable.",
+            send_messages("look", "$agent_name$agent_verb看起来很痛苦。",
                     who, 0, environment(who));
             break;
     }

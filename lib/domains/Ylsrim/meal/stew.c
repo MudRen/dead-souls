@@ -13,12 +13,11 @@ protected void create() {
     SetKeyName("elven stew");
     SetId( ({ "stew" }) );
     SetAdjectives( ({ "elven" }) );
-    SetShort("some hot elven stew");
-    SetLong("This stew is made from the left-overs of other dishes served at "
-            "Toral Restaurant.");
+    SetShort("一些热腾腾的精灵炖菜");
+    SetLong("这道炖菜是用托拉尔餐厅其他菜肴的剩料制成的。");
     SetMass(10);
     SetMealType(MEAL_FOOD);
     SetStrength(3);
-    SetMealMessages("The stew clears your sinuses!",
-            "$N perks up after eating some elven stew.");
+    SetMealMessages("炖菜让你的鼻腔通畅了！",
+            "$N吃了精灵炖菜后精神焕发。");
 }

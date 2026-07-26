@@ -13,8 +13,8 @@ protected void create() {
     SetKeyName("stool");
     SetId("stool");
     SetAdjectives("wooden", "rickety");
-    SetShort("a rickety wooden stool");
-    SetLong("The stool is sturdy enough for you to sit in.");
+    SetShort("一张摇晃的木凳");
+    SetLong("这张凳子足够结实，你可以坐在上面。");
     SetMass(1500);
     SetValue(15);
     SetMaxSitters(1);

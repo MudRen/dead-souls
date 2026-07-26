@@ -15,8 +15,8 @@ void create() {
     room::create();
     SetNoClean(1);
     SetProperties(([ "login" : ROOM_START, "no teleport" : 1 ]));
-    SetShort( "The freezer");
-    SetLong( "The local freezer.  Go down to leave.");
+    SetShort( "冷冻室");
+    SetLong( "本地冷冻室。往下走可以离开。");
     SetObviousExits("down");
     SetExits( ([ "down" : ROOM_START ]) );
     Old = ({});

@@ -10,15 +10,13 @@ inherit LIB_DOOR;
 protected void create() {
     door::create();
     SetId("north", "door");
-    SetShort("north", "a door made from fine oak");
-    SetLong("north", "It is a magnificent door marking the entrance to "
-            "the fighter class hall.");
+    SetShort("north", "一扇精致橡木制成的门");
+    SetLong("north", "这是一扇华丽的门，标志着战士职业大厅的入口。");
     SetLockable("north", 1);
     SetKeys("north", "special_key_id");
     SetId("south", "door");
-    SetShort("south", "a door made from fine oak");
-    SetLong("south", "It is a magnificent door leading out to the recruitment "
-            "area.");
+    SetShort("south", "一扇精致橡木制成的门");
+    SetLong("south", "这是一扇华丽的门，通往招募区。");
     SetLockable("south", 1);
     SetKeys("south", "special_key_id");
     SetClosed(1);

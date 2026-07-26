@@ -15,10 +15,10 @@ protected void create() {
     SetKeyName("roof");
     SetId("roof");
     SetAdjectives("adobe", "bank");
-    SetShort("a roof");
-    SetLong("The bank roof looks over the road below. "
-            "Maybe you could jump into it."
-            "The adobe wall looks like you could climb down it.  ");
+    SetShort("屋顶");
+    SetLong("银行屋顶俯瞰着下面的道路。"
+            "也许你可以跳下去。"
+            "土坯墙看起来可以攀爬下去。");
     //"A hole in the center of the roof opens into the bank.");
     AddJump("roof","/domains/Ylsrim/room/bank", JUMP_FROM);
 }

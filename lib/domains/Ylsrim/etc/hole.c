@@ -14,8 +14,7 @@ protected void create() {
     dummy::create();
     SetKeyName("hole");
     SetId("hole", "bank");
-    SetShort("a hole in the roof");
-    SetLong("It is too dark to see inside the bank, but perhaps you could "
-            "jump into it?");
+    SetShort("屋顶上的一个洞");
+    SetLong("银行内部太暗看不清楚，但也许你可以跳进去？");
     AddJump("hole","/domains/Ylsrim/room/bank", JUMP_INTO);
 }

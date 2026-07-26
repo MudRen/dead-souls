@@ -11,7 +11,7 @@ inherit LIB_ROOM;
 
 void create() {
     room::create();
-    SetShort( "The cache");
-    SetLong( "Things are hidden here.");
+    SetShort( "缓存室");
+    SetLong( "东西藏在这里。");
     SetProperties( ([ "storage room" : 1, "logout" : ROOM_START ]) );
 }

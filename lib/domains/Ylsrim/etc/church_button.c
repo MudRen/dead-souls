@@ -12,12 +12,12 @@ inherit LIB_PRESS; // Makes the item pressable
 int openDoor(object who) {
     object door = find_object("/domains/Ylsrim/etc/church_door");
 
-    send_messages("press", "$agent_name $agent_verb the button.",
+    send_messages("press", "$agent_name $agent_verb了按钮。",
             who, 0, environment(who));
     if( !door->GetClosed() ) {
         return 1;
     }
-    environment(who)->eventPrint("You hear a click from the door.");
+    environment(who)->eventPrint("你听到门发出咔嗒声。");
     if( door->GetLocked() ) {
         door->SetLocked(0);
     }
@@ -32,7 +32,7 @@ protected void create() {
     SetKeyName("button");
     SetId("button");
     SetAdjectives("big", "huge");
-    SetShort("a huge button");
-    SetLong("It is a wooden button that you could probably press.");
+    SetShort("一个巨大的按钮");
+    SetLong("这是一个木制按钮，你大概可以按它。");
     SetPress((: openDoor :));
 }

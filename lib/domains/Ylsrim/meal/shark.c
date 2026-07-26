@@ -13,10 +13,10 @@ protected void create() {
     SetKeyName("shark");
     SetId( ({ "blue shark", "shark", "fish" }) );
     SetAdjectives( ({ "blue" }) );
-    SetShort("a blue shark");
-    SetLong("A blue shark who once looked deadly, now looks yummy.");
+    SetShort("一条蓝鲨");
+    SetLong("一条曾经看起来致命的蓝鲨，现在看起来很美味。");
     SetMass(100);
     SetMealType(MEAL_FOOD);
     SetStrength(25);
-    SetMealMessages("It tastes excellent.", "$N eats a blue shark.");
+    SetMealMessages("味道好极了。", "$N吃了一条蓝鲨。");
 }

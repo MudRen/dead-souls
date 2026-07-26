@@ -15,9 +15,8 @@ protected void create() {
     light::create();
     SetKeyName("jar");
     SetId( ({ "jar" }) );
-    SetShort("a jar");
-    SetLong("A jar with lid.  The lid has holes poked in "
-            "the top.  It would be perfect to catch bugs in.");
+    SetShort("一个罐子");
+    SetLong("一个带盖子的罐子。盖子上戳了一些小孔。用来抓虫子再合适不过了。");
     SetDestroyOnSell(1);
     SetMass(100);
     SetValue(30);
@@ -41,14 +40,13 @@ int direct_light_obj() { // They cannot use the light command
 
 mixed CanCapture(object who, object target) {
     if( !target->id("lightning bug") ) {
-        return "The jar has a fit as you try to capture something other "
-            "than a lightning bug!";
+        return "当你试图捕捉萤火虫以外的东西时，罐子发出了抗议！";
     }
     if( GetLit() ) {
-        return "You already have a lightning bug in there!";
+        return "里面已经有一只萤火虫了！";
     }
     if( GetClosed() ) {
-        return "The jar must be open!";
+        return "罐子必须打开！";
     }
     return 1;
 }
@@ -60,9 +58,8 @@ mixed eventCapture(object who, object target) {
         return tmp;
     }
     target->eventDestruct();
-    who->eventPrint("You capture a lightning bug in your jar!");
-    environment(who)->eventPrint(who->GetName() + " captures a lightning bug "
-            "with " + possessive(who) + " jar.", who);
+    who->eventPrint("你在罐子里捉到了一只萤火虫！");
+    environment(who)->eventPrint(who->GetName() + "用" + possessive(who) + "罐子捉到了一只萤火虫。", who);
     SetLit(1);
     BugDies = 360;
     set_heart_beat(2);
@@ -72,12 +69,12 @@ mixed eventDarken() {
     object env = environment();
 
     if( env ) {
-        env->eventPrint("The %^YELLOW%^lighning bug%^RESET%^ dies.");
+        env->eventPrint("%^YELLOW%^萤火虫%^RESET%^死了。");
     }
     if( living(env) && (env = environment(env)) ) {
         env->eventPrint(possessive_noun(environment()->GetName()) +
-                " lightning bug dies and " + possessive(environment()) +
-                " jar goes dark.", environment());
+                "的萤火虫死了，" + possessive(environment()) +
+                "的罐子暗了下来。", environment());
     }
     capture::eventFree("lightning bug");
     SetLit(0);
@@ -95,7 +92,7 @@ mixed eventFree(object who, string target) {
         eventOpen(who, "jar");
     }
     SetLit(0);
-    environment(who)->eventPrint("A lightning bug flies free of the jar!");
+    environment(who)->eventPrint("一只萤火虫从罐子里飞了出来！");
     bug = new("/realms/ariel/wonder/monsters/lbug");
     bug->eventMove(environment(who));
     return 1;
@@ -117,13 +114,13 @@ string GetShort() {
     string tmp = item::GetShort();
 
     if( GetLit() ) {
-        tmp += "\nIt is holding a lightning bug.";
+        tmp += "\n里面有一只萤火虫。";
     }
     if( GetClosed() ) {
-        tmp += "\nIt is closed.";
+        tmp += "\n它是关着的。";
     }
     else {
-        tmp += "\nIt is open.";
+        tmp += "\n它是开着的。";
     }
     return tmp;
 }
@@ -132,13 +129,13 @@ string GetLong(string str) {
     string tmp = item::GetLong();
 
     if( GetLit() ) {
-        tmp += "\nIt is glowing.";
+        tmp += "\n它在发光。";
     }
     if( GetClosed() ) {
-        tmp += "\nIt is closed.";
+        tmp += "\n它是关着的。";
     }
     else {
-        tmp += "\nIt is open.";
+        tmp += "\n它是开着的。";
     }
     return tmp;
 

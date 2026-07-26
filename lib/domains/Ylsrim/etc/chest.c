@@ -12,9 +12,9 @@ protected void create() {
     SetKeyName("chest");
     SetId( ({ "chest" }) );
     SetAdjectives( ({ "wooden" }) );
-    SetShort("a wooden chest");
-    SetLong("This chest is made from an ancient forest far from "
-            "Ylsrim.  You can feel the age in touching it.");
+    SetShort("一个木箱");
+    SetLong("这个箱子是用远离伊尔斯利姆的古老森林的木材制成的。"
+            "触摸它你能感受到它的年代久远。");
     SetMass(1200);
     SetValue(300);
     SetInventory( ([ DIR_STANDARD_DOMAIN "/etc/shovel" : -10,

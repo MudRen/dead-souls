@@ -15,8 +15,8 @@ protected void create() {
     SetKeyName("bamboo pole");
     SetId( ({ "pole", "bamboo pole", "stick"  }) );
     SetAdjectives( ({ "bamboo", "feeble" }) );
-    SetShort("a bamboo pole");
-    SetLong("It is a feeble bamboo stick with a string at the end of it.");
+    SetShort("一根竹竿");
+    SetLong("这是一根纤细的竹竿，末端系着一根线。");
     SetClass(1);
     SetValue(10);
     SetMass(30);

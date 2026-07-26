@@ -16,8 +16,8 @@ protected void create() {
     SetKeyName("wooden helm");
     SetId("helm");
     SetAdjectives("wooden");
-    SetShort("a wooden helm");
-    SetLong("It is a lame wooden helm.");
+    SetShort("一顶木制头盔");
+    SetLong("这是一顶普通的木制头盔。");
     SetDamagePoints(3000);
     SetVendorType(VT_ARMOR);
     SetMass(200);

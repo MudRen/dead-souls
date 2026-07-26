@@ -14,9 +14,8 @@ inherit LIB_JUMP; // This makes it jumpable
 int eventJump(object who) {
     who->eventReceiveDamage(0, BLUNT, random(100) + 5, 1);
     who->eventMoveLiving("/domains/Ylsrim/room/kaliid6",
-            "$N tries to jump into the road "
-            "and seriously hurts " + reflexive(who) + ".",
-            "$N comes falling in.");
+            "$N试图跳到路上，结果" + reflexive(who) + "受了重伤。",
+            "$N从天上掉了下来。");
     return 1;
 }
 
@@ -25,7 +24,7 @@ protected void create() {
     SetKeyName("road");
     SetId("road");
     SetAdjectives("kaliid");
-    SetShort("Kaliid Road", 1); // it is a proper noun
-    SetLong("The main road through Ylsrim.");
+    SetShort("卡利德路", 1); // it is a proper noun
+    SetLong("穿过伊尔斯利姆的主要道路。");
     AddJump("road","/domains/Ylsrim/room/kaliid6",JUMP_INTO);
 }

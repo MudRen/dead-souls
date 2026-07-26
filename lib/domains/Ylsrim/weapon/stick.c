@@ -15,9 +15,8 @@ protected void create() {
     SetKeyName("stick");
     SetId("stick");
     SetAdjectives("wooden");
-    SetShort("a wooden stick");
-    SetLong("A wooden stick which looks like it might once have been used "
-            "as a walking stick, or perhaps as a poor person's club.");
+    SetShort("一根木棍");
+    SetLong("一根木棍，看起来可能曾经被用作拐杖，或者是穷人的棍棒。");
     SetMass(30);
     SetValue(10);
     SetVendorType(VT_WEAPON);

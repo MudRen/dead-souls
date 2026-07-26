@@ -12,8 +12,8 @@ protected void create() {
     SetKeyName("key");
     SetId( ({ "key", "special_key_id" }) );
     SetAdjectives( ({ "brilliant", "silver" }) );
-    SetShort("a silver key");
-    SetLong("It is a brilliant silver key with no markings.");
+    SetShort("一把银钥匙");
+    SetLong("这是一把闪亮的银钥匙，没有任何标记。");
     SetMass(50);
     SetValue(15);
     SetDisableChance(90);

@@ -15,8 +15,7 @@ protected void create() {
     SetKeyName("wall");
     SetId("wall");
     SetAdjectives("adobe", "bank");
-    SetShort("an adobe wall");
-    SetLong("It has enough holes that you can get a good foot hold and "
-            "climb down it!");
+    SetShort("一面土坯墙");
+    SetLong("墙上有足够的孔洞，你可以找到好的落脚点攀爬下去！");
     SetClimb("/domains/Ylsrim/room/kaliid6", CLIMB_DOWN);
 }

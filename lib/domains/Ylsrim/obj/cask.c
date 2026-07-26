@@ -8,8 +8,8 @@ void create(){
     SetKeyName("cask");
     SetId( ({"cask","keg"}) );
     SetAdjectives( ({"large","wooden","wood"}) );
-    SetShort("a wooden cask");
-    SetLong("A large wooden cask for containing fluids.");
+    SetShort("一个木桶");
+    SetLong("一个用来装液体的大木桶。");
     SetMass(2000);
     SetBaseCost("silver",10);
     SetVendorType(VT_TREASURE);

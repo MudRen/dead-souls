@@ -13,8 +13,8 @@ protected void create()
     SetKeyName("bulletin board");
     SetId( ({"board", "bulletin board"}) );
     SetAdjectives("stupid");
-    SetShort("a bulletin board");
-    SetLong("Adventurers passing through Ylsrim post their thoughts here.");
+    SetShort("一块公告板");
+    SetLong("经过伊尔斯利姆的冒险者们在这里发布他们的想法。");
     set_board_id("ylsrim");
 }
 

@@ -14,9 +14,8 @@ protected void create() {
     SetKeyName("shovel");
     SetId("shovel", "spade");
     SetAdjectives("wooden");
-    SetShort("a shovel");
-    SetLong("A plain, wooden shovel.  You probably can dig things with "
-            "it.");
+    SetShort("一把铲子");
+    SetLong("一把普通的木铲。你大概可以用它来挖掘。");
     SetMass(87);
     SetValue(50);
 }

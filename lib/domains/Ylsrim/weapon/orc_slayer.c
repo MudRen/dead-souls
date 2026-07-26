@@ -15,8 +15,8 @@ protected void create() {
     SetKeyName("orc slayer");
     SetId("sword", "slayer", "orcslayer");
     SetAdjectives("orc", "metal", "dull");
-    SetShort("a dull sword");
-    SetLong("This long, dull sword has some ancient runes on it.");
+    SetShort("一把暗淡的长剑");
+    SetLong("这把暗淡的长剑上刻着一些古老的符文。");
     SetRead("Orc Slayer");
     SetMass(140);
     SetValue(110);
@@ -36,8 +36,7 @@ int eventStrike(object target) {
         // send a cool message to everyone in the room
         // environment() is the person using the sword
         // environment(environment()) thus would be the room
-        environment(environment())->eventPrint("The Orc Slayer flares with "
-                "hatred of orcs.");
+        environment(environment())->eventPrint("斩兽剑因对兽人的仇恨而闪耀。");
         // add a random(5) to the default damage
         x += random(5);
     }

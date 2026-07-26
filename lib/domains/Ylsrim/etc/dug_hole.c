@@ -10,19 +10,19 @@ inherit LIB_DOOR;
 
 string checkOpenDown(object who) {
     if( GetClosed() ) {
-        return "You would need to dig a hole.";
+        return "你需要挖一个洞。";
     }
     else {
-        return "It is a deep, dark hole in the desert sand.";
+        return "这是沙漠沙地中的一个又深又黑的洞。";
     }
 }
 
 string checkOpenUp(object who) {
     if( GetClosed() ) {
-        return "There is no hole here.";
+        return "这里没有洞。";
     }
     else {
-        return "It leads into the open air.";
+        return "它通向开阔的天空。";
     }
 }
 

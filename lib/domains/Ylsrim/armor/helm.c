@@ -17,10 +17,9 @@ protected void create() {
     SetKeyName("desert helm");
     SetId( ({ "helm", "desert helm" }) );
     SetAdjectives( ({ "sandy", "brown" }) );
-    SetShort("a dusty helm");
-    SetLong("This helm is the Desert helm, bestowed upon honoured "
-            "knights of the desert.  It is made from a magic sand bound "
-            "together to protect the heads of the righteous.");
+    SetShort("一顶布满灰尘的头盔");
+    SetLong("这顶头盔是沙漠头盔，授予沙漠中受尊敬的骑士。"
+            "它由魔力沙凝聚而成，保护正义之士的头部。");
     SetDamagePoints(3000);
     SetVendorType(VT_ARMOR);
     SetMass(200);
@@ -36,11 +35,11 @@ protected void create() {
 varargs int WearHelm(object who, mixed where) {
     object env = environment(who);
     if( who->GetMorality() < 300 ) {
-        who->eventPrint("The helm burns your head!");
+        who->eventPrint("头盔灼烧着你的头！");
         who->eventReceiveDamage(0, HEAT, random(10) + 10, 0, "head");
         return 0;
     }
-    who->eventPrint("You wear the desert helm.");
+    who->eventPrint("你戴上了沙漠头盔。");
     if(env) tell_room(env, who->GetName()+" wears the desert helm.", ({who}));
     return 1;
 }

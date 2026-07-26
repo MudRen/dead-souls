@@ -13,13 +13,13 @@ protected void create() {
     vendor::create();
     SetKeyName("shiela");
     SetId("shiela", "vendor", "shop keeper", "keeper", "shopkeeper");
-    SetShort("Shiela, the local weapon vendor");
-    SetLong("She buys and sells weapons.");
+    SetShort("希拉，当地武器商");
+    SetLong("她买卖各种武器。");
     SetLevel(15);
     SetRace( "human");
     SetGender("female");
     SetMorality(40);
-    SetListen("She has a very gruff voice.");
+    SetListen("她的声音非常沙哑。");
     AddCurrency("electrum", random(200));
     // the room where she stores stuff to sell
     SetStorageRoom("/domains/Ylsrim"+ "/room/weaponry_storage");

@@ -61,8 +61,8 @@ protected void create() {
     sentient::create();
     SetKeyName("traveler");
     SetId( ({"traveller", "human", "npc"}) );
-    SetShort("a traveler");
-    SetLong("He looks a bit worn down, but also a bit shifty.");
+    SetShort("一个旅行者");
+    SetLong("他看起来有些疲惫，但也有点鬼鬼祟祟。");
     SetLevel(5);
     SetRace("human");
     SetClass("fighter");
@@ -77,7 +77,7 @@ protected void create() {
     // Set him to wander
     SetWander(25);
     // Any time he hears the word dork, he goes ballistic!
-    SetTalkResponses(([ "dork" : "no, YOU are a dork!" ]));
+    SetTalkResponses(([ "dork" : "不，你才是笨蛋！" ]));
 }
 void init(){
     ::init();
