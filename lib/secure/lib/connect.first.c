@@ -16,11 +16,10 @@ int blindmode;
 protected void InputName(string str);
 
 protected void logon() {
-    receive("Welcome to the Dead Souls " + mudlib_version() +
-            " installation process!!\n\n");
-    receive("You will be asked a series of questions for creating an "
-            "admin character.\n\n");
-    receive("What is your MUD admin username?\n ");
+    receive("欢迎来到 Dead Souls " + mudlib_version() +
+            " 安装过程！！\n\n");
+    receive("你将被问到一系列问题来创建一个管理员角色。\n\n");
+    receive("你的MUD管理员用户名是什么？\n ");
     input_to((: InputName :), I_NOESC);
 }
 
@@ -28,26 +27,26 @@ protected void InputPassword(string str);
 
 protected void CheckBlind(string str){
     if( !str || str == "" || lower_case(str)[0..0] == "y" ) {
-        receive("\nOk, disabling default overhead map.\n");
+        receive("\n好的，已禁用默认俯视地图。\n");
         blindmode = 1;
     }
-    else receive("\Ok, allowing default overhead map behavior.\n");
-    receive("\nCreate a password of at least 5 letters: \n");
+    else receive("\n好的，允许默认俯视地图行为。\n");
+    receive("\n请创建一个至少5个字符的密码: \n");
     input_to((: InputPassword :), I_NOECHO | I_NOESC);
 }
 
 protected void InputName(string str) {
-    if( !(BANISH_D->valid_name(Name = convert_name(CapName = str))) 
+    if( !(BANISH_D->valid_name(Name = convert_name(CapName = str)))
             || lower_case(str) == "guest") {
-        receive("That is not a valid name.\n");
-        receive("Name: ");
+        receive("这不是一个有效的名字。\n");
+        receive("名字: ");
         input_to((: InputName :));
         return;
     }
     Admin = master()->player_object(Name);
     Admin->SetKeyName(Name);
     mkdir(DIR_PLAYERS "/" + Name[0..0]);
-    receive("\nDo you use a screen reader for the visually impaired? (y/n)\n");
+    receive("\n你是否使用为视障人士设计的屏幕阅读器？(y/n)\n");
     input_to((: CheckBlind :), I_NOESC);
 }
 
@@ -55,13 +54,13 @@ protected void ConfirmPassword(string str);
 
 protected void InputPassword(string str) {
     if( strlen(str) < 5 ) {
-        receive("Password must be at least 5 letters.\n");
-        receive("Password: ");
+        receive("密码长度必须至少为5个字符。\n");
+        receive("密码: ");
         input_to((: InputPassword :), I_NOECHO | I_NOESC);
         return;
     }
     Password = str;
-    receive("\nConfirm password: ");
+    receive("\n确认密码: ");
     input_to((: ConfirmPassword :), I_NOECHO | I_NOESC);
 }
 
@@ -69,13 +68,13 @@ protected void InputCapName(string str);
 
 protected void ConfirmPassword(string str) {
     if( str != Password) {
-        receive("\nPasswords do not match.  Password: ");
+        receive("\n两次输入的密码不一致。密码: ");
         input_to((: InputPassword :), I_NOECHO | I_NOESC);
         return;
     }
     Admin->SetPassword(crypt(Password, 0));
     CapName = capitalize(CapName);
-    receive("\nEnter your display name (" + CapName + " is default): ");
+    receive("\n输入你的显示名称 (" + CapName + " 是默认值): ");
     input_to((: InputCapName :), I_NOESC);
 }
 
@@ -84,12 +83,12 @@ protected void InputGender(string str);
 protected void InputCapName(string str) {
     if( !str || str == "" ) str = CapName;
     if( convert_name(str) != Name ) {
-        receive("\nYou cannot do that! Display name (hit Enter for default): ");
+        receive("\n你不能这样做！显示名称 (按回车使用默认值): ");
         input_to((: InputCapName :), I_NOESC);
         return;
     }
     Admin->SetCapName(CapName = capitalize(str));
-    receive("\nPlease choose a gender (male, female, neutral, or none): ");
+    receive("\n请选择一个性别 (male男性, female女性, neutral中性, 或none无): ");
     input_to((: InputGender :), I_NOESC);
 }
 
@@ -99,8 +98,8 @@ protected void InputGender(string str) {
     if( str ) str = lower_case(str);
     if( !str || str == "" || ((str[0] != 'f' && str[0] != 'm') &&
                 member_array(str, ({"male","female","neutral","none"})) == -1)){
-        receive("\nPlease choose a gender (male, female, neutral, or none): ");
-        receive("Male, female, neutral or none? ");
+        receive("\n请选择一个性别 (male男性, female女性, neutral中性, 或none无): ");
+        receive("男性、女性、中性还是无？ ");
         input_to((: InputGender :));
         return;
     }
@@ -108,7 +107,7 @@ protected void InputGender(string str) {
     else if( str[0] == 'm' ) Admin->SetGender("male");
     else if( str == "none" ) Admin->SetGender("neuter");
     else Admin->SetGender("neutral");
-    receive("What is your real name? ");
+    receive("你的真实姓名是什么？ ");
     input_to((: InputRealName :), I_NOESC);
 }
 
@@ -117,7 +116,7 @@ protected void InputEmail(string str);
 protected void InputRealName(string str) {
     if( !str || str == "" ) str = "Unknown";
     Admin->SetRealName(str);
-    receive("What is your email address? ");
+    receive("你的电子邮箱地址是什么？ ");
     input_to((: InputEmail :), I_NOESC);
 }
 
@@ -183,20 +182,20 @@ protected void InputEmail(string str) {
 #endif
     err = rename(filep, filec);
     if(err){
-        receive("\nAn unfortunate error has ocurred. Mojo meditation: QQ\n");
+        receive("\n发生了一个不幸的错误。\n");
     }
-    receive("\nYou will be disconnected and the MUD will shut down.\n");
-    receive("Restart the MUD and login again as the admin character.\n");
+    receive("\n你将被断开连接，MUD将关闭。\n");
+    receive("请重启MUD并以管理员角色重新登录。\n");
     flush_messages();
     destruct(master());
     tool = load_object("/secure/cmds/admins/admintool");
     if(tool) foo = tool->eventChangeName("Dead_Souls_"+Name, 1); 
     if(foo){
-        receive("\n\nMud name changed. Use admintool to customize it.");
-        receive("\nFor more info, log in and type: help admintool\n");
+        receive("\n\nMUD名称已更改。使用 admintool 进行自定义。");
+        receive("\n更多信息，请登录后输入: help admintool\n");
     }
     else {
-        receive("Mud name unchanged.\n");
+        receive("MUD名称未更改。\n");
     }
     flush_messages();
     cp(IMC2_D+".c", "/secure/save/backup/imc2.orig");
