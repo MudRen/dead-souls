@@ -5,14 +5,14 @@ void create() {
     ::create();
     SetProperty("light", 0);
     SetProperty("indoors", 1);
-    SetShort( "An orc soldier's chamber");
+    SetShort( "兽人士兵的房间");
     SetLong(
-            "You are in a dark living chamber inside the orc fortress. "
-            "A passage east leads to the courtyard.");
+            "你身处兽人堡垒内一间黑暗的生活房间中。"
+            "东面的通道通向庭院。");
     SetItems(
-            (["chamber" : "It is small with little in the way of furnishings.",
-             "furnishings" : "They are nothing of interest.",
-             "passage" : "It leads out to the courtyard."]) );
+            (["chamber" : "房间很小，几乎没有家具。",
+             "furnishings" : "没什么值得注意的东西。",
+             "passage" : "它通向庭院。"]) );
     SetExits( (["east" : "/domains/Praxis/orc_valley/passage2"]) );
 }
 
@@ -24,9 +24,8 @@ void reset() {
         ob = new("/lib/npc");
         ob->SetKeyName("soldier");
         ob->SetId( ({ "orc", "orc soldier", "soldier" }) );
-        ob->SetShort( "Orc soldier");
-        ob->SetLong( "He is ugly and very unhappy about "
-                "your presence.");
+        ob->SetShort( "兽人士兵");
+        ob->SetLong( "他长得很丑，对你的到来感到非常不快。");
         ob->SetClass("fighter");
         ob->SetSkill("two handed", 50);
         ob->SetRace( "orc");
@@ -42,8 +41,8 @@ void reset() {
         thing = new(LIB_ITEM);
         thing->SetKeyName("sword");
         thing->SetId( ({ "sword", "two-handed sword" }) );
-        thing->SetShort( "Two-handed sword");
-        thing->SetLong( "It was clearly made by orcs.");
+        thing->SetShort( "双手剑");
+        thing->SetLong( "这显然是兽人制造的。");
         thing->SetType("two handed");
         thing->SetClass(15);
         thing->SetMass(450);

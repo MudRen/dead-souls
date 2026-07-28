@@ -11,7 +11,7 @@ mixed cmd(string str){
     }
     else {
         str = absolute_path(this_player()->query_cwd(), str);
-        if(!str) return "File not found.";
+        if(!str) return "文件未找到。";
         room = find_object(str);
         if(room) path = base_name(room);
     }

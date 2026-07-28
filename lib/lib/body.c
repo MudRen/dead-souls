@@ -1156,7 +1156,7 @@ mixed CanWear(object ob, string *limbs){
                 }
                 /* not gonna allow 2 shields or a shield and weapon here */
                 if( tmp & (A_SHIELD | A_WEAPON) )
-                    return "You cannot wear " + short + " there right now.";
+                    return "你现在不能把" + short + "穿在那里。";
             }
             return 1; /* ok */
 #endif

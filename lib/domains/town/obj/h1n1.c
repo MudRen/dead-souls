@@ -15,8 +15,8 @@ string victimname;
 int InfectMess(object ob){
     victim=ob;
     victimname=victim->GetName();
-    tell_room(environment(victim), victimname+" looks weak and woozy.",({victim}) );
-    tell_object(victim, "You feel weak and dizzy.");
+    tell_room(environment(victim), victimname+"看起来虚弱且头晕目眩。",({victim}) );
+    tell_object(victim, "你感到虚弱且头晕。");
     return 1;
 }
 
@@ -94,13 +94,13 @@ int FatigueLevel() {
 
 string GetAffectLong(object ob) {
     if(!ob || !living(ob)) return 0;
-    return ob->GetName() + " is disheveled.\n"+ob->GetName()+" looks very ill and disoriented.";
+    return ob->GetName() + "蓬头垢面。\n"+ob->GetName()+"看起来病得很重，神志不清。";
 }
 
 int damage1(){
     if(victim){
-        tell_object(victim,"You feel weak and ill.");
-        tell_room(environment(victim),victimname+" looks pale and ill.", ({victim}) );
+        tell_object(victim,"你感到虚弱不适。");
+        tell_room(environment(victim),victimname+"看起来脸色苍白。", ({victim}) );
         if(FatigueLevel() > 10) victim->AddStaminaPoints(random(-15)-15);
     }
     return 1;
@@ -108,8 +108,8 @@ int damage1(){
 
 int damage2(){
     if(victim){
-        tell_object(victim,"You are racked by a fit of gruesome-sounding, hacking coughs.");
-        tell_room(environment(victim),victimname+" is racked by a fit of gruesome-sounding, hacking coughs.", ({victim}) );
+        tell_object(victim,"你被一阵可怕的干咳折磨着。");
+        tell_room(environment(victim),victimname+"被一阵可怕的干咳折磨着。", ({victim}) );
         if(DangerLevel() != 100) victim->AddHP(-(random(20)+10));
         if(FatigueLevel() > 10) victim->AddStaminaPoints(random(-10)-5);
     }
@@ -118,8 +118,8 @@ int damage2(){
 
 int damage3(){
     if(victim){
-        tell_room(environment(victim),victimname+" lets out a groan of discomfort.", ({victim}) );
-        tell_object(victim,"You let out a groan of discomfort as a wave of weakness hits you.");
+        tell_room(environment(victim),victimname+"发出一声痛苦的呻吟。", ({victim}) );
+        tell_object(victim,"一阵虚弱袭来，你发出一声痛苦的呻吟。");
         if(FatigueLevel() > 10) victim->AddStaminaPoints(random(-10)-10);
     }
     return 1;
@@ -127,8 +127,8 @@ int damage3(){
 
 int damage4(){
     if(victim){
-        tell_room(environment(victim),victimname+" gags violently, then chokes out a thick rope of vomit onto the ground.", ({victim}) );
-        tell_object(victim,"You gag violently, then choke out a thick rope of vomit onto the ground.");
+        tell_room(environment(victim),victimname+"剧烈地干呕，然后吐出一大滩呕吐物。", ({victim}) );
+        tell_object(victim,"你剧烈地干呕，然后吐出一大滩呕吐物。");
         if(DangerLevel() != 100) victim->AddHP(-(random(30)+15));
         if(FatigueLevel() > 10) victim->AddStaminaPoints(random(-25)-20);
     }
@@ -138,13 +138,13 @@ int damage4(){
 int damage5(){
     if(victim){
         if(victim->GetPosition() != 1){
-            tell_room(environment(victim),victimname+" makes a horrendous flatulent noise and falls helplessly to the floor, soiling "+objective(victim)+"self.", ({victim}) );
-            tell_object(victim,"You make a horrendous flatulent noise and fall helplessly to the floor, soiling yourself.");
+            tell_room(environment(victim),victimname+"发出一声可怕的屁响，无助地倒在地上，弄脏了自己。", ({victim}) );
+            tell_object(victim,"你发出一声可怕的屁响，无助地倒在地上，弄脏了自己。");
             victim->SetPosition(1);
         }
         if(victim->GetPosition() == 1){
-            tell_room(environment(victim),victimname+" makes a horrendous flatulent noise as "+nominative(victim)+" lies helplessly on the ground.", ({ victim}));
-            tell_object(victim,"You make a horrendous flatulent noise as you lie helplessly on the ground.");
+            tell_room(environment(victim),victimname+"躺在地上无助地发出一声可怕的屁响。", ({ victim}));
+            tell_object(victim,"你躺在地上无助地发出一声可怕的屁响。");
         }
         if(DangerLevel() != 100) victim->AddHP(-(random(35)+15));
         if(FatigueLevel() > 10) victim->AddStaminaPoints(random(-35)-25);
@@ -152,5 +152,5 @@ int damage5(){
     return 1;
 }
 
-mixed CanGet(object ob) { return "Your fingers slip on your runny snot.";}
-mixed CanDrop(object ob) { return "Your fingers slip on your runny snot.";}
+mixed CanGet(object ob) { return "你的手指在鼻涕上打滑。";}
+mixed CanDrop(object ob) { return "你的手指在鼻涕上打滑。";}

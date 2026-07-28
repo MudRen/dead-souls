@@ -11,14 +11,14 @@ mixed cmd(string str) {
     if (str) {
         ob = find_player(str);
         if (!ob) {
-            return "Player not found.";
+            return "玩家未找到。";
         }
     } else
         ob = this_player();
     if (error = ob->GetLastError()) {
         return sprintf("%s\n", master()->standard_trace(error, 1));
     } else write("没有错误。\n");
-    return "dbxwhere run complete.";
+    return "dbxwhere运行完成。";
 }
 
 string GetHelp(){

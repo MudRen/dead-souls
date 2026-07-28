@@ -18,7 +18,7 @@ mixed CanLock(object who, string id){
         return tmp;
     }
     if( !GetClosed() ){
-        return "You cannot lock it while it is open.";
+        return "它开着的时候你不能锁上。";
     }
     return 1;
 }

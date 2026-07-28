@@ -26,7 +26,7 @@ void create() {
     AddMoney("silver",1000);
 }
 
-mixed CanGet(object ob) { return "The safe is bolted to the floor and does not move.";}
+mixed CanGet(object ob) { return "保险箱固定在地上，搬不动。";}
 void init(){
     ::init();
 }

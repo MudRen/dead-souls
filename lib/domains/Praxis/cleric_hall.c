@@ -108,39 +108,39 @@ string get_new_title(object tp)
 
 string get_male(int lev) {
     switch(lev) {
-        case 1: return "the novice cleric"; break;
-        case 2: return "the new student of nature"; break;
-        case 3: return "the student of nature"; break;
-        case 4: return "the advanced student of nature"; break;
-        case 5: return "the minor believer in natural unity"; break;
-        case 6: return "the believer in natural unity"; break;
-        case 7: return "the unity of nature"; break;
-        case 8: return "the minor low priest"; break;
-        case 9: return "the minor priest"; break;
-        case 10: return "the high minor priest"; break;
-        case 11: return "the low cleric"; break;
-        case 12: return "the junior cleric"; break;
-        case 13: return "the cleric"; break;
-        case 14: return "the cleric"; break;
-        case 15: return "the high cleric"; break;
-        case 16: return "the low master priest"; break;
-        case 17: return "the master priest"; break;
-        case 18: return "the high master priest"; break;
-        case 19: return "the grand high priest"; break;
-        case 20: return "the new high mortal cleric"; break;
+        case 1: return "新手牧师"; break;
+        case 2: return "自然新手学徒"; break;
+        case 3: return "自然学徒"; break;
+        case 4: return "高级自然学徒"; break;
+        case 5: return "初级自然统一信仰者"; break;
+        case 6: return "自然统一信仰者"; break;
+        case 7: return "自然之合一"; break;
+        case 8: return "初级低阶牧师"; break;
+        case 9: return "低阶牧师"; break;
+        case 10: return "高阶低阶牧师"; break;
+        case 11: return "初级牧师"; break;
+        case 12: return "初级神职者"; break;
+        case 13: return "神职者"; break;
+        case 14: return "神职者"; break;
+        case 15: return "高阶神职者"; break;
+        case 16: return "初级大师牧师"; break;
+        case 17: return "大师牧师"; break;
+        case 18: return "高阶大师牧师"; break;
+        case 19: return "大祭司长"; break;
+        case 20: return "高等凡人牧师"; break;
         default: return ""; break;
     }
 }
 
 string get_female(int lev) {
     switch(lev) {
-        case 8: return "the minor low priestess"; break;
-        case 9: return "the minor priestess"; break;
-        case 10: return "the high minor priestess"; break;
-        case 16: return "the low master priestess"; break;
-        case 17: return "the master priestess"; break;
-        case 18: return "the high master priestess"; break;
-        case 19: return "the grand high priestess"; break;
+        case 8: return "初级低阶女牧师"; break;
+        case 9: return "低阶女牧师"; break;
+        case 10: return "高阶低阶女牧师"; break;
+        case 16: return "初级大师女牧师"; break;
+        case 17: return "大师女牧师"; break;
+        case 18: return "高阶大师女牧师"; break;
+        case 19: return "大女祭司长"; break;
         default: return get_male(lev); break;
     }
 }

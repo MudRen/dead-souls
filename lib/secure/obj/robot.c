@@ -723,12 +723,12 @@ int do_connect(string args)
 
     if( !args || args == "" )
     {
-        notify_fail( "You fail." ) ;
+        notify_fail( "你失败了。" ) ;
         return 0 ;
     }
     if( sscanf( args, "%s %d", ip_address, port ) != 2 )
     {
-        notify_fail( "You fail." ) ;
+        notify_fail( "你失败了。" ) ;
         return 0 ;
     }
     if( attempting )

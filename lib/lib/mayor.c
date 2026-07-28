@@ -33,7 +33,7 @@ mixed CanRequestCitizenship(object who){
         }
     }
     if( who->GetTown() == GetTown() ){
-        return "You are already a citizen of " + GetTown() + ".";
+        return "你已经是" + GetTown() + "的市民了。";
     }
     return 1;
 }
@@ -44,7 +44,7 @@ mixed eventRequestCitizenship(object who){
     homies->eventPrint(who->GetName() + " is now a citizen of " + GetTown() +
             ".");
     who->SetTown(GetTown());
-    who->eventPrint("You are now a citizen of " + GetTown() + ".");
+    who->eventPrint("你现在是" + GetTown() + "的市民了。");
     if( Tax > 0 ){
         int cost = Tax;
 

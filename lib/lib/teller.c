@@ -71,7 +71,7 @@ string GetLocalCurrency(){ return LocalCurrency; }
 
 mixed CanBank(object who){
     if( !who->GetAccountInfo( GetBankName() ) )
-        return "You must create an account with "+GetBankName()+" first.";
+        return "你必须先在"+GetBankName()+"开设一个账户。";
     return 1;
 }
 
@@ -89,13 +89,11 @@ int AddSurcharge(object who, string currency, int amount){
     if( !charge ) return amount;
     if( amount > charge ){
         amount -= charge;
-        who->eventPrint(sprintf("The bank retains a %s "
-                    "surcharge of %d %s.", type, charge, currency));
+        who->eventPrint(sprintf("银行收取了 %d %s 的%s手续费。", charge, currency, type));
         return amount;
     }
     else {
-        who->eventPrint(sprintf("You are unable to afford the "
-                    "%s surcharge of %d %s.", type, charge, currency));
+        who->eventPrint(sprintf("你付不起 %d %s 的%s手续费。", charge, currency, type));
         return 0;
     }
     return amount;
@@ -109,15 +107,13 @@ int eventBalance(object who){
 
     mp = who->GetAccountInfo( GetBankName() );
     if( !mp ) return 0;
-    environment()->eventPrint( who->GetName() + " requests "
-            "current balance.", ({ who }) );
-    ret = "Your account with "+GetBankName()+" was "
-        "opened "+ctime(mp["open"])+".\n";
-    ret += "This location's default currency is "+GetLocalCurrency()+".\n\n";
+    environment()->eventPrint( who->GetName() + " 查询了当前余额。", ({ who }) );
+    ret = "你在"+GetBankName()+"的账户开立于"+ctime(mp["open"])+"。\n";
+    ret += "此分行的默认货币是"+GetLocalCurrency()+"。\n\n";
     tmp = filter(keys(mp), (: member_array($1, Currencies) > -1 :));
     total = 0;
     if( !sizeof(tmp) )
-        ret += "You have made no deposits.\n";
+        ret += "你没有任何存款。\n";
     else foreach(str in tmp){
         if( mp[str] < 1 ) continue;
         ret += sprintf("%-20s : %d\n", str+"", mp[str]);
@@ -130,9 +126,9 @@ int eventBalance(object who){
         }
     }
     ret += sprintf("%-20s ----------\n%-22s %d",
-            "", "Total in "+GetLocalCurrency(), total);
+            "", GetLocalCurrency()+" 总计", total);
     if( mp["last time"] )
-        ret += sprintf("\n\nYour last transaction: %s at %s.",
+        ret += sprintf("\n\n上次交易：%s，时间：%s。",
                 mp["last trans"], ctime(mp["last time"]) );
     who->eventPage(explode(ret, "\n"), "info");
     return 1;
@@ -141,23 +137,20 @@ int eventBalance(object who){
 int eventDeposit(object who, string currency, int amount){
     int i;
     if( amount < 1 ){
-        eventForce("speak " + who->GetName() + ", "
-                "That transaction is unacceptable.");
+        eventForce("speak " + who->GetName() + "，这笔交易不可接受。");
         return 1;
     }
     if( !currency ) currency = GetLocalCurrency();
     if( !(i = who->GetCurrency(currency)) ){
-        eventForce("speak You are not carrying any "+currency+".");
+        eventForce("speak 你身上没有任何"+currency+"。");
         return 1;
     }
     if( amount > i ){
-        eventForce("speak You are not carrying that much "+ currency +".");
+        eventForce("speak 你没有那么多"+currency+"。");
         return 1;
     }
-    who->eventPrint(sprintf("You deposit %d %s into your "
-                "account.", amount, currency));
-    environment()->eventPrint(who->GetName() + " makes "
-            "a deposit.", ({ who }) );
+    who->eventPrint(sprintf("你将 %d %s 存入了你的账户。", amount, currency));
+    environment()->eventPrint(who->GetName() + " 存了一笔钱。", ({ who }) );
     who->AddCurrency(currency, -amount);
     who->AddBank(GetBankName(), currency, amount);
     return 1;
@@ -168,33 +161,30 @@ int eventWithdraw(object who, string currency, int amount){
 
     x = amount;
     if( amount < 1 ){
-        eventForce("speak Withdrawing a negative amount is not a prudent "
-                "idea, "+ who->GetName() +".");
+        eventForce("speak 提取负数可不是个明智的主意，"+ who->GetName() +"。");
         return 1;
     }
     if( !currency ) currency = GetLocalCurrency();
     if( !(i = who->GetBank(GetBankName(), currency)) ){
-        eventForce("speak You have no "+currency+" in your account.");
+        eventForce("speak 你的账户里没有"+currency+"。");
         return 1;
     }
     if( amount > i ){
-        eventForce("speak You do not have that much "+currency+" in your "
-                "account.");
+        eventForce("speak 你的账户里没有那么多"+currency+"。");
         return 1;
     }
     if( !(amount = AddSurcharge(who, currency, amount)) ) return 1;
     charge = x - amount;
     if( who->AddCurrency(currency, x) < 0 ){
-        eventForce("speak You are unable to carry that "
-                "much "+currency+"!");
-        who->eventPrint("The bank credits your account with the fee.");
+        eventForce("speak 你携带不了那么多"+currency+"！");
+        who->eventPrint("银行从你的账户中扣除了手续费。");
         return 1;
     }
     who->AddCurrency(currency, -charge);
     who->AddBank(GetBankName(), currency, -x);
-    who->eventPrint(sprintf("You withdraw %d %s from your account.",
+    who->eventPrint(sprintf("你从账户中提取了 %d %s。",
                 amount, currency));
-    environment()->eventPrint(sprintf("%s withdraws some %s.",
+    environment()->eventPrint(sprintf("%s 提取了一些%s。",
                 who->GetName(), currency), ({ who }));
     return 1;
 }
@@ -207,24 +197,23 @@ int eventExchange(object who, int amount, string str1, string str2){
         amount = who->GetCurrency(str1);
     }
     if( amount < 1 ){
-        eventForce("speak " + who->GetName() + ", that "
-                "transaction cannot be completed.");
+        eventForce("speak " + who->GetName() + "，该交易无法完成。");
         return 1;
     }
     if( amount > who->GetCurrency(str1) ){
-        eventForce("speak You do not have enough of that currency to exchange.");
+        eventForce("speak 你没有那么多该种货币可以兑换。");
         return 1;
     }
     if( str1 == str2 ){
-        eventForce("speak That would be pointless.");
+        eventForce("speak 那样做毫无意义。");
         return 1;
     }
     if( member_array(str1, GetCurrencies()) == -1 ){
-        eventForce("speak You cannot exchange that currency here.");
+        eventForce("speak 你无法兑换那种货币。");
         return 1;
     }
     if( member_array(str2, GetCurrencies()) == -1 ){
-        eventForce("speak You cannot exchange that currency here.");
+        eventForce("speak 你无法兑换那种货币。");
         return 1;
     }
     val = query_base_value(str1,amount);
@@ -235,45 +224,42 @@ int eventExchange(object who, int amount, string str1, string str2){
     else charge = 0;
     if( charge ) i -= charge;
     if( i < 1 ){
-        eventForce("speak That isn't even worth one " + str2 + "!");
+        eventForce("speak 那些东西连一" + str2 + "都不值！");
         return 1;
     }
     if( who->AddCurrency(str2, i) < 0 ){
-        eventForce("speak You cannot carry that much "+str2+", " +
-                who->GetName()+".");
+        eventForce("speak 你携带不了那么多"+str2+"，" +
+                who->GetName()+"。");
         return 1;
     }
     who->AddCurrency(str1, -amount);
-    who->eventPrint(sprintf("You exchange %d %s for %d %s.",
+    who->eventPrint(sprintf("你将 %d %s 兑换为 %d %s。",
                 amount, str1, i, str2));
     if( charge )
-        who->eventPrint(sprintf("You were charged a fee of %d %s.",      
+        who->eventPrint(sprintf("你被收取了 %d %s 的手续费。",
                     charge, str2) );
-    environment()->eventPrint(who->GetName()+" exchanges some "+
-            str1+" for "+str2+".", who);
+    environment()->eventPrint(who->GetName()+" 将一些"+
+            str1+"兑换成了"+str2+"。", who);
     return 1;
 }
 
 int eventOpenAccount(object who){
     if( who->GetAccountInfo( GetBankName() ) ){
-        eventForce("speak You already have an account with "+GetBankName()+", " +
-                who->GetName()+"!");
+        eventForce("speak 你已经在"+GetBankName()+"有账户了，" +
+                who->GetName()+"！");
         return 1;
     }
     if( who->GetCurrency( GetLocalCurrency() ) < OpenFee ){
-        eventForce(" speak "+ sprintf("You must have at least %d %s to open "
-                    "an account at this branch of %s, %s.", GetOpenFee(),
+        eventForce(" speak "+ sprintf("你至少需要 %d %s 才能在%s开户，%s。", GetOpenFee(),
                     GetLocalCurrency(), GetBankName(), who->GetName()));
         return 1;
     }
     if( OpenFee < 1 ) return 0;
     who->AddCurrency(GetLocalCurrency(), -OpenFee);
     who->AddBank(GetBankName(), GetLocalCurrency(), OpenFee);
-    who->eventPrint(sprintf("You deposit %d %s and open an account "
-                "with %s.", OpenFee, GetLocalCurrency(), GetBankName()) );
+    who->eventPrint(sprintf("你存入了 %d %s 并在%s开设了账户。", OpenFee, GetLocalCurrency(), GetBankName()) );
     eventBalance(who);
-    environment()->eventPrint(who->GetName() + " opens an "
-            "account.", who);
+    environment()->eventPrint(who->GetName() + " 开设了一个账户。", who);
     eventForce("smile "+who->GetKeyName());
     return 1;
 }
@@ -291,14 +277,14 @@ int cmdParse(object who, string cmd, string str, mixed args...){
         case "balance" :
             return eventBalance(who);
             break;
-        case "deposit" : 
+        case "deposit" :
             if( !str ){
-                eventForce("speak How much of what?");
+                eventForce("speak 多少？什么货币？");
                 return 1;
             }
             if(str == "all"){
                 if(!sizeof(this_player()->GetCurrencies())){
-                    who->eventPrint("You have no money to deposit.");
+                    who->eventPrint("你没有钱可以存入。");
                     return 1;
                 }
                 foreach(string dinero in this_player()->GetCurrencies()){
@@ -309,33 +295,31 @@ int cmdParse(object who, string cmd, string str, mixed args...){
             }
             sscanf(str, "%d %s", x, s1);
             if( member_array(s1, Currencies) < 0 ){
-                who->eventPrint("That's not a valid currency.");
+                who->eventPrint("那不是有效的货币。");
                 return 1;
             }
             return eventDeposit(who, s1, x);
             break;
         case "withdraw" :
             if( !str ){
-                eventForce("speak How much of what?");
+                eventForce("speak 多少？什么货币？");
                 return 1;
             }
             if(str == "all"){
-                if(this_player()->GetGender() == "female") honorific = "ma'am";
-                else honorific = "sir";
-                eventForce("speak I'm sorry, "+honorific+", but withdrawals must be specified explicitly in terms of currency type and amount.");
+                eventForce("speak 抱歉，取款必须明确指定货币类型和数量。");
                 return 1;
             }
             sscanf(str, "%d %s", x, s1);
             if( member_array(s1, Currencies) < 0 ){
-                if(!s1) who->eventPrint("Please specify a currency.");
-                else who->eventPrint(s1 + " is not supported here!");
+                if(!s1) who->eventPrint("请指定一种货币。");
+                else who->eventPrint(s1 + " 此处不支持！");
                 return 1;
             }
             return eventWithdraw(who, s1, x);
             break;
         case "exchange" :
             if( !str ){
-                eventForce("speak Exchange what for what?");
+                eventForce("speak 用什么兑换什么？");
                 return 1;
             }
             if(sscanf(str, "%d %s for %s", x, s1, s2) < 3){
@@ -356,10 +340,8 @@ int cmdParse(object who, string cmd, string str, mixed args...){
             return eventOpenAccount(who);
             break;
         default:
-            eventForce("speak " + who->GetName() + ", I do not "
-                    "understand what you want.");
-            eventForce("whisper to " + who->GetKeyName() + " Try "
-                    "\"help banking\" if you are confused.");
+            eventForce("speak " + who->GetName() + "，我不明白你想要什么。");
+            eventForce("whisper to " + who->GetKeyName() + " 如果困惑，试试\"help banking\"。");
 
     }
     return 1;

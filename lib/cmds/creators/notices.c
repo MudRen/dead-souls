@@ -23,7 +23,7 @@ mixed cmd(string str) {
             if( sizeof(words) < 2 ) return GetHelp(0);
             x = to_int(words[1]);
             if( x < 1 && words[1] != "0" )
-                return "Bad value ("+words[1]+").";
+                return "无效值（"+words[1]+"）。";
             if( NOTIFY_D->eventRemoveNotice(x) )
                 ob->eventPrint("通知编号 " + x + " 已被删除。");
             else ob->eventPrint("无法删除编号 " + x + "。");
@@ -43,22 +43,20 @@ mixed cmd(string str) {
     }
     x = time() - (OneDay * x);
     if( !NOTIFY_D->eventPrintNotices(this_player(), x) )
-        return "No recent notices found.";
+        return "没有找到最近的通知。";
     else return 1;
 }
 
 string GetHelp(string foo) {
     string str;
-    str = "Syntax: notices [number of days back]\n\n"
-        "Without arguments, this command displays all notices "
-        "posted within the last 24 hours.  You may also "
-        "specify how many days back to search.  For example, "
-        "\"notices 7\" will display all notices posted within "
-        "the last week.";
+    str = "语法：notices [回溯天数]\n\n"
+        "不带参数时，此命令显示过去24小时内发布的所有通知。"
+        "你也可以指定回溯多少天进行搜索。例如，"
+        "\"notices 7\" 将显示过去一周内发布的所有通知。";
     if( archp(this_player()) )
-        str += "\nArch Commands: notices -d <id number>\n"
-            "               notices -p <file name> <number of days back>\n\n"
-            "The d option deletes the specified notice id number.\n"
-            "the p option will dump the output into <file name>";
+        str += "\n管理员命令：notices -d <编号>\n"
+            "               notices -p <文件名> <回溯天数>\n\n"
+            "d 选项删除指定的通知编号。\n"
+            "p 选项将输出导出到<文件名>";
     return str;
 }

@@ -97,7 +97,7 @@ varargs mixed SetTouch(mixed* args...){
 varargs mixed eventTouch(object who, string str){
     str = GetTouch(str, who);
     if( !str ){
-        who->eventPrint("There is nothing to touch.");
+        who->eventPrint("没有可以触摸的东西。");
         return 1;
     }
     environment(who)->eventPrint(who->GetName() + " touches " + GetShort() +

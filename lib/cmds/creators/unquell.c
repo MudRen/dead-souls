@@ -9,14 +9,14 @@ int cmd(string str){
             "and permits hostilities to resume.");
     foreach(object combatant in get_livings(environment(this_player()))){
         combatant->eventUnQuell();
-        if(combatant->GetInCombat()) tell_object(combatant,"You resume fighting.");
+        if(combatant->GetInCombat()) tell_object(combatant,"你恢复了战斗。");
     }
 
     return 1;
 }
 
 string GetHelp(){
-    return "Syntax: unquell\n\n"
-        "Allows quelled combat to resume.\n"
-        "See also: quell";
+    return "语法：unquell\n\n"
+        "允许被停止的战斗恢复进行。\n"
+        "另见：quell";
 }

@@ -31,19 +31,19 @@ mixed CanJump(object who, string id, int type){
     type = Jumps[keys(Jumps)[0]][1];
     switch(type){
         case JUMP_INTO:
-            return "Perhaps you mean to jump into it?";
+            return "你是想跳入它？";
 
         case JUMP_FROM:
-            return "Perhaps you mean to jump from it?";
+            return "你是想跳出它？";
 
         case JUMP_THROUGH:
-            return "Perhaps you mean to jump through it?";
+            return "你是想穿过它？";
 
         case JUMP_OVER:
-            return "Perhaps you mean to jump over it?";
+            return "你是想跳过它？";
 
         case JUMP_ON:
-            return "Perhaps you mean to jump on it?";
+            return "你是想跳上它？";
     }
     return 0;
 }
@@ -86,7 +86,7 @@ mixed eventJump(object who, string id, int type){
     }
     else {
         if( functionp(dest) & FP_OWNER_DESTED ){
-            return "You encountered an error in a functional.";
+            return "你遇到了一个函数错误。";
         }
         return evaluate(dest, who, id, type);
     }

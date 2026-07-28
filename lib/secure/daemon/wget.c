@@ -160,7 +160,7 @@ mixed eventGet(string args) {
     else args_list = "";
     if(sscanf(address,"%d.%d.%d.%d",a,b,c,d) != 4){
         if(!RESOLV_D->GetResolving()){
-            return "Mud is not resolving. Try again with a numerical address.";
+            return "泥巴无法解析域名。请用数字地址重试。";
         }
         PendingResolves[key] = ([ "port" : port, "path" : path ]);
         key = RESOLV_D->eventResolve(address,"resolve_callback");
@@ -177,7 +177,7 @@ void resolve_callback(string name, string ip, int key){
 
 
 string GetErorMessage() {
-    return "There was a problem";
+    return "出现了问题";
 }
 
 string GetHelp() {

@@ -38,7 +38,7 @@ int GetDeterioration(){
 
 string GetItemCondition(){
     if( Deterioration ){
-        return "It has worn down completely.";
+        return "它已完全磨损。";
     }
     else {
         return 0;

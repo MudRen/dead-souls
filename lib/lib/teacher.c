@@ -91,8 +91,7 @@ protected void init(){
     if( !living(this_player()) ) return;
     str = this_player()->GetKeyName();
     if( Students[str] ){
-        eventForce("speak You will have to start your "
-                "studies anew, "+this_player()->GetName());
+        eventForce("speak 你需要重新开始学习，"+this_player()->GetName());
         map_delete(Students, str);
     }
 }
@@ -140,13 +139,12 @@ mapping GetStudents(){ return copy(Students); }
 /**** high-level events ****/
 
 int eventHelp(object who, string unused){
-    eventForce("speak I am not sure of what you are "
-            "asking, " + who->GetName() + ".");
+    eventForce("speak 我不太确定你在问什么，" + who->GetName() + "。");
     if(sizeof( GetTeachingLanguages() )){
-        eventForce("speak My area of expertise covers " +
-                Expertise() + ".");
-        eventForce("speak You can \"ask "+GetKeyName()+" to teach "
-                "<LANGUAGE>\" if you have training points.");
+        eventForce("speak 我擅长的领域涵盖" +
+                Expertise() + "。");
+        eventForce("speak 如果你有训练点数，可以\"ask "+GetKeyName()+" to teach "
+                "<语言>\"。");
     }
     return 1;
 }
@@ -161,21 +159,20 @@ int eventTeachLanguage(object who, string verb, string language){
         language = capitalize(language);
 
         if( Students[ who->GetKeyName() ] ){
-            eventForce("speak I am already teaching you!");
+            eventForce("speak 我已经在教你了！");
             return 0;
         }
         if( !GetAllLanguages() &&
                 member_array(language, this_object()->GetTeachingLanguages()) == -1 ){
-            eventForce("speak I know nothing about the " +capitalize(language)+" language.");
+            eventForce("speak 我对"+capitalize(language)+"语一无所知。");
             return 0;
         }
         if( !commercial && this_player()->GetTrainingPoints() < 1 ){
-            eventForce("speak You need more training points.");
+            eventForce("speak 你需要更多训练点数。");
             return 0;
         }
         if(commercial && this_player()->GetCurrency(GetLocalCurrency()) < teaching_fee){
-            eventForce("speak I charge "+teaching_fee+" "+GetLocalCurrency()+" per lesson. "+
-                    "You don't seem to have the right amount of the right currency.");
+            eventForce("speak 我每节课收"+teaching_fee+" "+GetLocalCurrency()+"。你似乎没有足够数量的正确货币。");
             return 0;
         }
         Students[ who->GetKeyName() ] = language;
@@ -216,23 +213,23 @@ nosave int ContinueTeaching(object who, string language, int x){
  */
 
 int eventStart(object who, string language){
-    who->eventPrint(GetName() + " begins teaching you "
-            "about the " + language + " language.");
-    environment()->eventPrint(GetName() + " begins teaching " +
+    who->eventPrint(GetName() + " 开始教你"
+            + language + "语。");
+    environment()->eventPrint(GetName() + " 开始教" +
             who->GetName() + "...", who);
     return 1;
 }
 
 int eventContinue(object who, string language, int x){
-    who->eventPrint("You listen intently as " + GetName()
-            + " continues " + possessive(this_object())
-            + " dissertation on " + language + ".");
+    who->eventPrint("你专心聆听着" + GetName()
+            + possessive(this_object())
+            + "关于" + language + "的论述。");
     return 1;
 }
 
 int eventComplete(object who, string language){
-    who->eventPrint("You feel somewhat more competent in " + language + ".");
-    eventForce("speak I can teach you no more for now, " +
-            who->GetName() + ".");
+    who->eventPrint("你觉得自己在" + language + "方面略有进步。");
+    eventForce("speak 目前我能教你的就这些了，" +
+            who->GetName() + "。");
     return 1;
 }

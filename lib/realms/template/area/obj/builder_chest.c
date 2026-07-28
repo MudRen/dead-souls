@@ -20,8 +20,8 @@ void create() {
                 ]));
     SetMass(2000);
     SetMaxCarry(10000);
-    SetPreventPut("You cannot put this in there!");
-    SetPreventGet("The chest does not budge.");
+    SetPreventPut("你不能把这个放进去！");
+    SetPreventGet("箱子纹丝不动。");
     SetCanClose(1);
     SetClosed(1);
 }

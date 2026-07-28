@@ -55,11 +55,11 @@ void heart_beat(){
         return;
     }
     if(interactive(environment())){
-        tell_object(environment(), "You are holding a live rocket propelled grenade.");
+        tell_object(environment(), "你正拿着一枚激活的火箭推进榴弹。");
         return;
     }
-    tell_object(environment(),"You hear a low hissing sound.");
-    tell_object(environment(environment()), environment()->GetName()+" is holding a live rocket propelled grenade.");
+    tell_object(environment(),"你听到低沉的嘶嘶声。");
+    tell_object(environment(environment()), environment()->GetName()+"正拿着一枚激活的火箭推进榴弹。");
 }
 
 int detonate(){
@@ -69,17 +69,15 @@ int detonate(){
     ob = environment(this_object());
     if(living(ob)){
         stuffs=ob->GetLimbs();
-        tell_object(ob, "\nKABOOM! You are torn to pieces by a rocket propelled grenade!\n");
-        tell_room(environment(ob), "\nKABOOM! "+ob->GetName()+" is torn to pieces by "+
-                " a rocket propelled grenade!\n",ob);
+        tell_object(ob, "\n轰！你被火箭推进榴弹炸成了碎片！\n");
+        tell_room(environment(ob), "\n轰！"+ob->GetName()+"被火箭推进榴弹炸成了碎片！\n",ob);
         detonated=2;
         foreach(string limb in stuffs){
             if(limb != "head" && limb != "torso" && limb != "neck") ob->RemoveLimb(limb,this_object());
         }
         ob = environment(ob);
     }
-    if(detonated !=2) tell_room(environment(this_object()), "\nKABOOM! A rocket "+
-            "propelled grenade detonates!\n");
+    if(detonated !=2) tell_room(environment(this_object()), "\n轰！一枚火箭推进榴弹爆炸了！\n");
     if(!sizeof(get_livings(ob))) ob = environment(ob);
     if(ob && sizeof(whom = scramble_array(get_livings(ob)[0..12]))){
         foreach(object victim in whom){

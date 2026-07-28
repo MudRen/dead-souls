@@ -15,8 +15,8 @@ string victimname;
 int InfectMess(object ob){
     victim=ob;
     victimname=victim->GetName();
-    tell_room(environment(victim), victimname+" looks suprised and grossed out.",({victim}) );
-    tell_object(victim, "You are suprised and disgusted to realize that fleas are crawling around on you.");
+    tell_room(environment(victim), victimname+"看起来又惊又恶心。",({victim}) );
+    tell_object(victim, "你惊讶又恶心地发现跳蚤在你身上爬来爬去。");
     return 1;
 }
 
@@ -82,36 +82,35 @@ int FatigueLevel() {
 
 string GetAffectLong(object ob) {
     if(!ob || !living(ob)) return 0;
-    return ob->GetName() + " looks uncomfortable and disheveled.";
+    return ob->GetName() + "看起来不舒服，蓬头垢面。";
 }
 
 int damage1(){
-    tell_object(victim,"You feel really itchy all over.");
-    tell_room(environment(victim),victimname+" looks uncomfortable.", ({victim}) );
+    tell_object(victim,"你浑身痒得要命。");
+    tell_room(environment(victim),victimname+"看起来很不自在。", ({victim}) );
     return 1;
 }
 
 int damage2(){
-    tell_object(victim,"You involuntarily start scratching at the maddening itch.");
-    tell_room(environment(victim),victimname+" scratches desperately at "+reflexive(victim)+".", ({victim}) );
+    tell_object(victim,"你不由自主地开始抓挠那令人发疯的痒。");
+    tell_room(environment(victim),victimname+"拼命地抓着自己。", ({victim}) );
     return 1;
 }
 
 int damage3(){
-    tell_room(environment(victim),victimname+" scratches at "+reflexive(victim)+" in a frenzy, ripping "+
-            possessive(victim)+" flesh and drawing blood.", ({victim}) );
-    tell_object(victim,"You scratch at yourself in a mad frenzy, ripping flesh and drawing blood.");
+    tell_room(environment(victim),victimname+"疯狂地抓挠自己，抓破了皮，出了血。", ({victim}) );
+    tell_object(victim,"你疯狂地抓挠自己，抓破了皮，出了血。");
     if(DangerLevel() != 100) victim->eventReceiveDamage(this_object(),DISEASE,random(5)+4,0,"torso");
     return 1;
 }
 
 int damage4(){
-    tell_room(environment(victim),victimname+" looks disgusted.", ({victim}) );
-    tell_object(victim,"You are disgusted as you feel fleas crawling on your body.");
+    tell_room(environment(victim),victimname+"看起来恶心极了。", ({victim}) );
+    tell_object(victim,"你感到恶心，因为你能感觉到跳蚤在身上爬。");
     return 1;
 }
 
 
-mixed CanGet(object ob) { return "You just cant get rid of these parasites.";}
-mixed CanDrop(object ob) { return "You just cant get rid of these parasites.";}
+mixed CanGet(object ob) { return "你根本无法摆脱这些寄生虫。";}
+mixed CanDrop(object ob) { return "你根本无法摆脱这些寄生虫。";}
 

@@ -19,7 +19,7 @@ void create() {
                 ]) );
 }
 
-mixed CanGet(object ob) { return "This table is much too large and heavy to go anywhere with you."; }
+mixed CanGet(object ob) { return "这张桌子太大太重了，你搬不走。"; }
 
 void init(){
     ::init();

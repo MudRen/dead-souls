@@ -109,33 +109,33 @@ string get_new_title(object tp)
 
 string get_male(int lev) {
     switch(lev) {
-        case 1:  return "the rascal";                break;
-        case 2:  return "the little thug";           break;
-        case 3:  return "the petty thief";           break;
-        case 4:  return "the lurking swindler";      break;
-        case 5:  return "the minor rogue";           break;
-        case 6:  return "the creeping cutpurse";     break;
-        case 7:  return "the nasty thug";            break;
-        case 8:  return "the lurking criminal";      break;
-        case 9:  return "the devious bandit";        break;
-        case 10: return "the fearsome rogue";        break;
-        case 11: return "the deceiving fiend";       break;
-        case 12: return "the rich swindler";         break;
-        case 13: return "the accomplished rogue";    break;
-        case 14: return "the corrupt pick-pocket";   break;
-        case 15: return "the cunning thief";         break;
-        case 16: return "the spiteful con-artist";   break;
-        case 17: return "the deceitful backstabber"; break;
-        case 18: return "the perpetual thief";       break;
-        case 19: return "the grand master rogue";    break;
-        case 20: return "the high mortal rogue";     break;
+        case 1:  return "小无赖";                break;
+        case 2:  return "小混混";           break;
+        case 3:  return "小偷";           break;
+        case 4:  return "潜伏的骗子";      break;
+        case 5:  return "小流氓";           break;
+        case 6:  return "扒手";     break;
+        case 7:  return "凶恶的暴徒";            break;
+        case 8:  return "潜伏的罪犯";      break;
+        case 9:  return "狡猾的强盗";        break;
+        case 10: return "令人畏惧的流氓";        break;
+        case 11: return "骗人的恶魔";       break;
+        case 12: return "富有的骗子";         break;
+        case 13: return "老练的盗贼";    break;
+        case 14: return "腐败的小偷";   break;
+        case 15: return "狡猾的神偷";         break;
+        case 16: return "恶毒的骗子";   break;
+        case 17: return "阴险的暗算者"; break;
+        case 18: return "永恒的神偷";       break;
+        case 19: return "盗贼大宗师";    break;
+        case 20: return "高等凡人盗贼";     break;
         default: return ""; break;
     }
 }
 
 string get_female(int lev) {
     switch(lev) {
-        case 8: return "the lesser murderess"; break;
+        case 8: return "低级女杀手"; break;
         default: return get_male(lev); break;
     }
 }

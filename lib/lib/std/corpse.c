@@ -45,7 +45,7 @@ int eventDecay(){
                 SetId(GetId()..., "corpse", "remains","flesh","pile","pile of flesh");
                 SetAdjectives(GetAdjectives()..., "stinky", "rotting");
                 SetShort("一具腐烂尸体散发恶臭的残骸");
-                SetSmell("This corpse is beginning to stink up the entire area.");
+                SetSmell("这具尸体开始散发恶臭了。");
             }
             break;
         case 20:
@@ -54,7 +54,7 @@ int eventDecay(){
                         "area.", MSG_ROOMDESC);
                 SetId(GetId()..., "flesh", "pile", "pile of flesh");
                 SetShort("一堆腐烂的血肉");
-                SetSmell("Its smell is nearly unbearable.");
+                SetSmell("它的气味几乎令人无法忍受。");
             }
             break;
         case 30:

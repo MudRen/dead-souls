@@ -8,7 +8,7 @@ mixed cmd(string args) {
     string buff, file, clone, base;
     int scr, ret;
     object ob;
-    if( !args ) return "You must specify a file to destruct.";
+    if( !args ) return "你必须指定要销毁的文件。";
     sscanf(args, "%s#%s", base, clone);
     if(clone){
         ob = find_object(args);
@@ -30,7 +30,7 @@ mixed cmd(string args) {
     if(!(ob = find_object(file)) && !grepp(args, "/")){
         file = DEFINES_D->GetDefine(args);
     }
-    if(!(ob = find_object(file))) return "Object " + args + " not found.";
+    if(!(ob = find_object(file))) return "对象 " + args + " 未找到。";
     ret = ob->eventDestruct();
     if(!ret || ob) destruct(ob);
     if(ob){

@@ -80,13 +80,13 @@ int valid_timezone(string str){
 string set_tz(string str){
     if(!str) str = "";
     if( str != "" && !valid_timezone(str)) {
-        return "Invalid time zone.";
+        return "无效的时区。";
     }
     tz = str;
     if( !(master()->valid_apply(({ "PRIV_ASSIST", "PRIV_SECURE" }))) ) 
         error("Illegal attempt to modify timezone: "+get_stack()+" "+identify(previous_object(-1)));
     unguarded( (: write_file("/cfg/timezone.cfg",tz,1) :) );
-    return "Mud time zone is now "+read_file("/cfg/timezone.cfg");
+    return "泥巴时区现在为"+read_file("/cfg/timezone.cfg");
 }
 
 varargs string system_month(int i, int abbr){

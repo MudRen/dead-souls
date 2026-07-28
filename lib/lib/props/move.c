@@ -54,7 +54,7 @@ int eventMove(mixed dest){
             if(!ok){
                 if(this_player()){ 
                     if(this_player() == this_object()){
-                        tell_object(this_object(), "You are anchored here.");
+                        tell_object(this_object(), "你被锚定在这里了。");
                     }
                     else {
                         tell_object(this_object(), this_player()->GetName()+
@@ -63,8 +63,8 @@ int eventMove(mixed dest){
                 }
                 return 0;
             }
-            else tell_object(this_object(), "You are about to be moved "+
-                    "to "+identify(dest));
+            else tell_object(this_object(), "你即将被移动到" +
+                    identify(dest));
         }
     }
 

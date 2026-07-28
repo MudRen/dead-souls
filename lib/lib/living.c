@@ -817,58 +817,58 @@ varargs int eventMoveLiving(mixed dest, string omsg, string imsg, mixed dir){
         switch(prevclim){
             case "arid":
                 if( newclim == "tropical" || newclim == "sub-tropical" )
-                    message("environment", "The air is much more humid.",
+                    message("environment", "空气变得更加潮湿了。",
                             this_object());
-                else message("environment", "The air is getting a bit cooler.",
+                else message("environment", "空气变得有些凉爽了。",
                         this_object());
                 break;
             case "tropical":
                 if( newclim != "arid" )
-                    message("environment", "The air is not quite as humid.",
+                    message("environment", "空气不那么潮湿了。",
                             this_object());
-                else message("environment", "The air has become suddenly dry.",
+                else message("environment", "空气突然变得干燥了。",
                         this_object());
                 break;
             case "sub-tropical":
                 if( newclim == "arid" )
-                    message("environment", "The air has become suddenly dry.",
+                    message("environment", "空气突然变得干燥了。",
                             this_object());
                 else if( newclim == "tropical" )
-                    message("environment","The air has gotten a bit more humid.",
+                    message("environment","空气变得更加潮湿了一些。",
                             this_object());
-                else message("environment", "The air is not quite as humid.",
+                else message("environment", "空气不那么潮湿了。",
                         this_object());
                 break;
             case "temperate":
                 if( newclim == "arid" )
-                    message("environment", "The air is a bit drier and warmer.",
+                    message("environment", "空气变得干燥而温暖。",
                             this_object());
                 else if( newclim == "tropical" )
-                    message("environment", "The air is much more humid.",
+                    message("environment", "空气变得更加潮湿了。",
                             this_object());
                 else if( newclim == "sub-tropical" )
-                    message("environment", "The air is a bit more humid.",
+                    message("environment", "空气变得稍微潮湿了一些。",
                             this_object());
-                else message("environment", "The air is a bit colder now.",
+                else message("environment", "空气变得有些寒冷了。",
                         this_object());
                 break;
             case "sub-arctic":
                 if( newclim == "arid" || newclim == "tropical" ||
                         newclim == "sub-tropical" )
-                    message("environment", "It has suddenly grown very hot.",
+                    message("environment", "天气突然变得很热。",
                             this_object());
                 else if( newclim == "arctic" )
-                    message("environment", "It is a bit cooler than before.",
+                    message("environment", "天气比以前凉爽了一些。",
                             this_object());
-                else message("environment", "It is not quite as cold as "
-                        "before.", this_object());
+                else message("environment", "天气不像之前那么冷了。",
+                        this_object());
                 break;
             case "arctic":
                 if( newclim == "sub-arctic" )
-                    message("environment", "It is not quite as cold now.",
+                    message("environment", "天气不像之前那么冷了。",
                             this_object());
-                else message("environment", "It is suddenly much warmer than "
-                        "before.", this_object());
+                else message("environment", "天气突然比之前暖和了许多。",
+                        this_object());
         }
     }
     eventMoveFollowers(environment(this_object()));

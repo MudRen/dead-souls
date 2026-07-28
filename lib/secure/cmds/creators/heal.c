@@ -13,7 +13,7 @@ mixed cmd(string args) {
 
     if(this_player()) tp = this_player()->GetKeyName();
     if( !cmd || cmd == "" ) {
-        return "Syntax: <heal LIVING>";
+        return "语法：<heal 生物>";
     }
 
     if(member_array(args,({ "me","myself", (tp || "") })) != -1 ) self = 1;

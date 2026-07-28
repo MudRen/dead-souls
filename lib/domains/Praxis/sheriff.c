@@ -485,7 +485,7 @@ void pit_part_four(mixed *stuff) {
             stuff[0]);
     here=environment(stuff[0]);
     stuff[0]->eventMoveLiving("/"+__DIR__+"spider_pit",
-            "falls screaming into the pit!!");
+            "尖叫着跌入坑中！！");
     (DIR_STANDARD_DOMAIN+"/square")->SetProperty("no bump", 0);
     message("say", "\n守卫把防护盖拉回洞口上。"
             "你意识到罪犯安详死去的可能性为零，因为洞内传来了沉闷的痛苦尖叫声。",
@@ -513,12 +513,9 @@ int prevent_down() {
 string death_by_stoning(object who) {
     if(member_array(who, __Prisoners) == -1) 
         return who->query_cap_name()+" 不是囚犯。";
-    message("say", "%^RED%^A guard enters and ties your hands together "
-            "with a thick rope.", who);
-    message("say", "\n%^BOLD%^%^RED%^A guard tells you:%^RESET%^ Right "
-            "this way, you scumbag.", who);
-    message("say", "\n%^RED%^The guard grabs you by the arm and drags you "
-            "towards the town square.", who);
+    message("say", "%^RED%^一个守卫走进来，用粗绳绑住你的双手。", who);
+    message("say", "\n%^BOLD%^%^RED%^守卫告诉你：%^RESET%^这边走，人渣。", who);
+    message("say", "\n%^RED%^守卫抓住你的手臂，把你拖向城镇广场。", who);
     // shout("%^RED%^Distant bells sound, signaling the execution "
     // "of "+who->query_cap_name()+" by stoning in the town square.");
     call_out("stoning_part_two", 5, who);
@@ -535,12 +532,10 @@ void stoning_part_two(object who) {
     for(x=0, y=0; y<sizeof(wanted); y++)
         if(find_living(wanted[y])) {
             homes[x]=environment(townsfolk[x]);
-            message("say", townsfolk[x]->query_cap_name()+" cheers in excitment "
-                    "for the upcomming execution!", environment(townsfolk[x]));
+            message("say", townsfolk[x]->query_cap_name()+"为即将到来的处决兴奋地欢呼！", environment(townsfolk[x]));
             x++;
         }
-    townsfolk->eventMoveLiving(DIR_STANDARD_DOMAIN+"/square", "to join in the "
-            "stoning of "+who->query_cap_name());
+    townsfolk->eventMoveLiving(DIR_STANDARD_DOMAIN+"/square", "前来参加对"+who->query_cap_name()+"的石刑。");
     call_out("control_townsfolk", 1, ({ who, townsfolk, homes }));
     (DIR_STANDARD_DOMAIN+"/square")->SetProperty("no bump", 1);
     new("/"+__DIR__+"obj/misc/stones")->move(DIR_STANDARD_DOMAIN+"/square");
@@ -609,35 +604,32 @@ void beheading_part_two(object who) {
     message("say", "一群守卫走了进来，带着一个巨大的"
             "平台，上面放着一个沾满干涸血迹的粗圆木桩。", DIR_STANDARD_DOMAIN+"/square");
     who->eventMoveLiving(DIR_STANDARD_DOMAIN+"/square");
-    message("say", "\n%^RED%^Upon arrival to the town square, you notice "
-            "a large platform with a blood-stained wooden stump.  Standing "
-            "atop the platform is a black-hooded man with a large axe.  It "
-            "is upon this platform, next to the hooded man, where you are "
-            "lead by the guard and commanded to kneal.", who);
+    message("say", "\n%^RED%^到达城镇广场后，你注意到"
+            "一个大型平台上放着一个沾满血迹的木头断头台。"
+            "平台上方站着一个披着黑头罩、手持巨斧的男人。"
+            "守卫把你带到平台上，命令你跪在黑头罩人旁边。", who);
     call_out("beheading_part_three", 3, who);
 }
 
 void beheading_part_three(object who) {
-    message("say", "\n%^RED%^From atop the platform you see the gathering "
-            "crowd, very unfriendly.  A rope is placed around your neck, and "
-            "you are forced to place your head over the stump, you neck "
-            "fearfully exposed to the man in the black hood.  A nearby drum "
-            "begins it's steady death beat...", who);
-    message("say", "\nA guard places a rope around "+who->query_cap_name()+
-            "'s neck and is forced to lie over the stump.  There is a desparate "
-            "look on "+who->query_cap_name()+"'s face as a nearby drum begins "
-            "a steady beat...", environment(who), who);
+    message("say", "\n%^RED%^从平台上你看到聚集的人群，"
+            "充满敌意。一根绳子套在你的脖子上，"
+            "你被迫将头放在木桩上，脖子恐惧地"
+            "暴露在黑头罩人面前。附近的一面鼓"
+            "开始了它稳定的死亡节拍……", who);
+    message("say", "\n一个守卫将绳子套在"+who->query_cap_name()+
+            "的脖子上，并强迫他趴在木桩上。"+who->query_cap_name()+
+            "脸上露出绝望的神情，附近的一面鼓开始了"
+            "稳定的节拍……", environment(who), who);
     call_out("beheading_part_four", 3, who);
 }
 
 void beheading_part_four(object who) {
-    message("say", "\n%^RED%^Without warning, the drum beat comes to a "
-            "sudden stop.", who);
-    message("say", "\nThe drum beat comes to a sudden end, and the black "
-            "hooded brings his axe down through "+who->query_cap_name()+"'s "
-            "neck without hesitation.  "+who->query_cap_name()+"'s head drops "
-            "to the platform with a loud thunk, the expression of desparation "
-            "permanently affixed to "+who->query_possessive()+" face.", 
+    message("say", "\n%^RED%^毫无预警地，鼓声突然停止了。", who);
+    message("say", "\n鼓声戛然而止，黑头罩人毫不犹豫地"
+            "挥斧砍过"+who->query_cap_name()+"的脖子。"
+            +who->query_cap_name()+"的头颅重重地落在平台上，"
+            "绝望的表情永远凝固在"+who->query_possessive()+"脸上。",
             environment(who), who);
     (DIR_STANDARD_DOMAIN+"/square")->SetProperty("no bump", 0);
     who->die();

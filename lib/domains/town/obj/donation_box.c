@@ -29,5 +29,5 @@ void init(){
 }
 
 mixed CanGet(){ 
-    return "This is for the needy, you scum! Earn your keep!";
+    return "这是给穷人的，你这渣滓！自己挣钱去！";
 }

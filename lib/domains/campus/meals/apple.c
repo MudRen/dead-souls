@@ -13,8 +13,8 @@ protected void create() {
     SetStrength(35);
     SetDollarCost(1);
     SetMealType(MEAL_FOOD);
-    SetMealMessages("You wolf down your apple with gusto.",
-            "$N wolfs down $P apple hungrily.");
+    SetMealMessages("你狼吞虎咽地吃完了苹果。",
+            "$N 饥渴地吞下了$P苹果。");
 }
 void init(){
     ::init();

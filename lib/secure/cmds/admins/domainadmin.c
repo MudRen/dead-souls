@@ -12,7 +12,7 @@ mixed cmd(string args) {
 
 
     if(!archp(previous_object()) || this_player()->GetForced()){
-        return "No.";
+        return "不。";
     }
 
     if(!args || args == ""){

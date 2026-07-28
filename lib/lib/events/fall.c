@@ -47,7 +47,7 @@ mixed eventFall(){
             this_object()->eventMove(ROOM_START);
             return 0;
         }
-        tell_object(this_object(),"You plummet downward!");
+        tell_object(this_object(),"你急速下坠！");
         if(err = this_object()->eventMove(rumbo)){
             tell_room(rumbo,capitalize(name)+" plummets in from above.",
                     ({ this_object() }));

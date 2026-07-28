@@ -198,9 +198,9 @@ mixed eventThrow(object who, object target){
     if( target && living(target) ){
         int skill;
 
-        who->eventPrint("You throw " + GetShort() + " at " +
-                target->GetName() + ".");
-        target->eventPrint(who->GetName() + " throws " + GetShort() +" at you.");
+        who->eventPrint("你把" + GetShort() + "扔向" +
+                target->GetName() + "。");
+        target->eventPrint(who->GetName() + "把" + GetShort() + "扔向了你。");
         environment(who)->eventPrint(who->GetName() + " throws " +
                 GetShort() + " at " + target->GetName() +
                 ".", ({ who, target }) );
@@ -232,8 +232,8 @@ mixed eventThrow(object who, object target){
         return 1;
     }
     else if( target ){
-        who->eventPrint("You throw " + GetShort() + " at " +
-                target->GetShort() + ".");
+        who->eventPrint("你把" + GetShort() + "扔向" +
+                target->GetShort() + "。");
         environment(who)->eventPrint(who->GetName() + " throws " +
                 GetShort() + " at " + target->GetShort() +
                 ".", ({ who, target }));
@@ -245,7 +245,7 @@ mixed eventThrow(object who, object target){
         who->eventPrint("你不太擅长扔东西。");
         return 1;
     }
-    who->eventPrint("You throw " + GetShort() + ".");
+    who->eventPrint("你扔出了" + GetShort() + "。");
     environment(who)->eventPrint(who->GetName() + " throws " +
             GetShort() + ".", who);
     return 1;
@@ -272,7 +272,7 @@ mixed eventShow(object who, string component){
     }
     if( GetPoison() ){
         if( random(100) < who->GetSkillLevel("stealth") ){
-            who->eventPrint("You notice a strange substance on it.");
+            who->eventPrint("你注意到上面有奇怪的物质。");
         }
     }
     return 1;
@@ -353,7 +353,7 @@ int direct_sacrifice_obj_to_str(string deus){
     if( !env = environment(this_player()) ) return 0;
     tmp = env->CanSacrifice(this_player(), this_object(), deus);
     if( !tmp ){
-        this_player()->eventPrint("This is not the place for sacrifices.");
+        this_player()->eventPrint("这里不是祭祀的场所。");
         return 0;
     }
     else return 1;

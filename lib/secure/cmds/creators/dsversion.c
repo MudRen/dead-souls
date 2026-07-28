@@ -210,7 +210,7 @@ mixed cmd(string args) {
 }
 
 string GetErorMessage() {
-    return "There was a problem";
+    return "出现了问题";
 }
 
 string GetHelp() {

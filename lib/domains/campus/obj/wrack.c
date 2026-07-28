@@ -29,7 +29,7 @@ void create() {
     SetClosed(0);
 
 }
-mixed CanGet(object ob) { return "The rack does not budge.";}
+mixed CanGet(object ob) { return "架子纹丝不动。";}
 void init(){
     ::init();
 }

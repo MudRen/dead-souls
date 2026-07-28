@@ -30,7 +30,7 @@ string* GetSave(){
 
 mixed CanBait(object who){
     if( GetBait() ){
-        return "There is already bait on " + GetDefiniteShort() + ".";
+        return GetDefiniteShort() + "上已经有鱼饵了。";
     }
     return 1;
 }

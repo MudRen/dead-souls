@@ -8,14 +8,14 @@ inherit LIB_DAEMON;
 
 varargs int cmd(){
     if(this_player()->GetInvis()) {
-        notify_fail("You are already invisible.\n");
+        notify_fail("你已经隐身了。\n");
         return 0;
     }
     this_player()->SetInvis(1);
-    message ("my_action", "You fade into the shadows.", this_player());
+    message ("my_action", "你隐入阴影中。", this_player());
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: invis\n\nMakes you invisible to players of lower levels in all circumstances.\nSee also: vis");
+    return ("语法：invis\n\n使你在任何情况下对低等级玩家不可见。\n另见：vis");
 }

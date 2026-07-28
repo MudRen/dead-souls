@@ -13,11 +13,10 @@ protected void create() {
     SetStrength(2);
     //SetDollarCost(3);
     SetDollarCost(3);
-    SetMealMessages("You finish your salad before you realize it.","$N eats "+
-            "$P salad in two bites.");
+    SetMealMessages("你还没回过神来就吃完了沙拉。","$N 两口就吃完了$P沙拉。");
     SetEmptyName("dish");
-    SetEmptyShort("an empty little plastic salad dish");
-    SetEmptyLong("This little dish used to contain a salad.");
+    SetEmptyShort("一个空的小塑料沙拉碟");
+    SetEmptyLong("这个小碟子曾经装过一份沙拉。");
 }
 void init(){
     ::init();

@@ -61,7 +61,7 @@ mixed CanCapture(object who, object target){
         return capitalize(GetShort()) + " is closed.";
     }
     if( sizeof(GetCaptives()) >= MaxCapture ){
-        return "You cannot capture anything else with " + GetShort() + ".";
+        return "你不能用" + GetShort() + "再捕获更多了。";
     }
     return 1;
 }
@@ -71,8 +71,7 @@ mixed CanFree(object who, object target){
         return "#" + target->GetName() + " is not in " + GetShort() + ".";
     }
     if( GetClosed() ){
-        return "You must open " + GetShort() + " before you can free "
-            "things from it.";
+        return "你必须先打开" + GetShort() + "才能释放里面的东西。";
     }
     return 1;
 }
@@ -82,8 +81,8 @@ mixed eventCapture(object who, object target){
     if( !target->eventMove(this_object()) ){
         return target->GetShort() + " will not fit!";
     }
-    who->eventPrint("You capture " + target->GetName() + " in " +
-            GetShort() + "!");
+    who->eventPrint("你把" + target->GetName() + "捕获到" +
+            GetShort() + "中！");
     environment(who)->eventPrint(who->GetName() + " captures " +
             target->GetName() + " in " + GetShort() +
             ".", ({ who, target }));
@@ -123,8 +122,8 @@ mixed eventEscape(){
 
 mixed eventFree(object who, string target){
     target->eventMove(environment(who));
-    who->eventPrint("You release " + target->GetName() + " from " +
-            GetShort() + ".");
+    who->eventPrint("你把" + target->GetName() + "从" +
+            GetShort() + "中释放。");
     environment(who)->eventPrint(who->GetName() + " releases " +
             target->GetName() + " from " + GetShort()+".",
             ({ who, target }));

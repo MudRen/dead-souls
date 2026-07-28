@@ -9,8 +9,8 @@ int cmd(string arg){
 }
 
 string GetHelp(){
-    return "Syntax: fdinfo\n\n"
-        "Lists the status of the machines's file descriptors."
-        "\nSee man: dump_file_descriptors"
-        "\nSee also: netstat, mstatus, cache, callouts, dumpallobj, opcprof";
+    return "语法：fdinfo\n\n"
+        "列出机器文件描述符的状态。"
+        "\n参见 man: dump_file_descriptors"
+        "\n另见：netstat, mstatus, cache, callouts, dumpallobj, opcprof";
 }

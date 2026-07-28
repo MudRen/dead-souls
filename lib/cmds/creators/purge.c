@@ -15,7 +15,7 @@ mixed cmd(string args) {
         ob = get_object(args);
     }
     if( !ob ) {
-        return "No " + args + " found.";
+        return "未找到 " + args + "。";
     }
     this_player()->eventPrint(sprintf("Cleaning %O", ob), MSG_SYSTEM);
     say(this_player()->GetName()+" purges "+ob->GetShort()+".");
@@ -42,7 +42,6 @@ mixed cmd(string args) {
 }
 
 string GetHelp() {
-    return ("Syntax: purge [OBJECT]\n\n"
-            "This command destroys non-dummy, non-user objects in the inventory "
-            "of the specified object.");
+    return ("语法：purge [对象]\n\n"
+            "此命令销毁指定对象库存中的非虚拟、非用户对象。");
 }

@@ -150,7 +150,7 @@ mixed eventBuyItem(object who, string cmd, string item){
             who->eventPrint(tmp);
         }
         else {
-            eventForce("speak I cannot sell right now");
+            eventForce("speak 我现在没法卖。");
         }
         return 1;
     }
@@ -166,17 +166,17 @@ mixed eventSell(object who, string args){
         if(member_array(args,key) != -1) what = key;
     }
     if( !(ob = load_object(FullMenu[what])) ){
-        eventForce("speak I am having a problem with that item right now.");
+        eventForce("speak 那个物品我现在有点问题。");
         return 1;
     }
     x = query_value(ob->GetBaseCost(),query_base_currency(),GetLocalCurrency());
     if( x > who->GetCurrency(GetLocalCurrency()) ){
-        eventForce("speak You do not have that much in " + GetLocalCurrency());
+        eventForce("speak 你没有那么多" + GetLocalCurrency());
         return 1;
     }
     ob = new(FullMenu[what]);
     if( !ob ){
-        eventForce("speak I seem to be having some troubles.");
+        eventForce("speak 我好像遇到了一些问题。");
         return 1;
     }
     if( !(ob->eventMove(this_object())) ){

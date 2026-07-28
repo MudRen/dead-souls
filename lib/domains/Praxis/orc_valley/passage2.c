@@ -4,11 +4,11 @@ void create() {
     ::create();
     SetProperty("light", 1);
     SetProperty("indooors", 1);
-    SetShort( "A dark passage");
+    SetShort( "黑暗的通道");
     SetLong(
-            "You are in a dark passage inside the orc fortress.");
+            "你身处兽人堡垒内部的一条黑暗通道中。");
     SetItems(
-            (["passage" : "You cannot see much of anything."]) );
+            (["passage" : "你几乎什么都看不见。"]) );
     SetExits( 
             (["west" : "/domains/Praxis/orc_valley/chamber2",
              "east" : "/domains/Praxis/orc_valley/open"]) );

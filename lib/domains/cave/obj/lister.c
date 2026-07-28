@@ -19,7 +19,7 @@ void create(){
     SetMaxFlask(1000); 
     SetMealType(MEAL_DRINK);
     SetTapped(1);
-    SetPreventGet("This structure is not movable.");
+    SetPreventGet("这个装置无法移动。");
 }
 
 void init(){
@@ -27,6 +27,5 @@ void init(){
 }
 
 mixed CanDrink(object who, string what){
-    return "This is a tapped "+GetKeyName()+". You fill something "+
-        "with it, you don't drink directly from it, you barbarian.";
+    return "这是一个带龙头的"+GetKeyName()+"。你应该用容器接水喝，而不是直接对着喝，野蛮人。";
 }

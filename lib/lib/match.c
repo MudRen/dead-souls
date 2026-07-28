@@ -13,21 +13,21 @@ private int StrikeChance = 50;
 
 mixed direct_strike_obj(){
     if( environment() != this_player() ) return "#You don't have that!";
-    if( GetBurning() ) return "It is already lit!";
+    if( GetBurning() ) return "它已经点燃了！";
     return 1;
 }
 
 mixed eventStrike(object who){
     if( !GetFuelAmount() || StrikeChance < random(100) || !eventBurn(who) ){
-        who->eventPrint("You strike " + GetShort() + ", but nothing happens.");
-        environment(who)->eventPrint(who->GetName() + " strikes " +
-                GetShort() + ", but nothing happens.",
+        who->eventPrint("你划了划" + GetShort() + "，但什么也没发生。");
+        environment(who)->eventPrint(who->GetName() + " 划了划" +
+                GetShort() + "，但什么也没发生。",
                 who);
         return 1;
     }
-    who->eventPrint("You strike " + GetShort() + " and it ignites!");
-    environment(who)->eventPrint(who->GetName() + " strikes " +
-            GetShort() + " and it ignites!", who);
+    who->eventPrint("你划了划" + GetShort() + "，它点燃了！");
+    environment(who)->eventPrint(who->GetName() + " 划了划" +
+            GetShort() + "，它点燃了！", who);
     return 1;
 }
 

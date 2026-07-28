@@ -13,7 +13,7 @@ string savefile;
 mixed cmd(string args) {
 
     if(!archp(previous_object())) {
-        write("No.");
+        write("不。");
         return 1;
     }
 

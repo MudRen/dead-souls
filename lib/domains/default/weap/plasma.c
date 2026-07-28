@@ -54,11 +54,11 @@ void heart_beat(){
         return;
     }
     if(interactive(environment())){
-        tell_object(environment(), "You are being melted by a plasma bolt.");
+        tell_object(environment(), "你正被等离子弹熔化。");
         return;
     }
-    tell_object(environment(),"You hear a low hissing sound.");
-    tell_object(environment(environment()), environment()->GetName()+" is being melted by a plasma bolt.");
+    tell_object(environment(),"你听到低沉的嘶嘶声。");
+    tell_object(environment(environment()), environment()->GetName()+"正被等离子弹熔化。");
 }
 
 int detonate(){
@@ -69,15 +69,13 @@ int detonate(){
     ownerob = GetOwnerOb();
     if(living(ob)){
         stuffs=ob->GetLimbs();
-        tell_object(ob, "\nYou are hit by a plasma bolt!\n");
-        tell_room(environment(ob), ob->GetName()+" is hit by "+
-                "a plasma bolt!\n",ob);
+        tell_object(ob, "\n你被等离子弹击中了！\n");
+        tell_room(environment(ob), ob->GetName()+"被等离子弹击中了！\n",ob);
         this_object()->HitLivings(ob);
         detonated=2;
         if(ownerob) ownerob->ReportHit(ob);
     }
-    else tell_room(room_environment(this_object()), "A plasma bolt "+
-            "detonates harmlessly.");
+    else tell_room(room_environment(this_object()), "一枚等离子弹无害地爆炸了。");
     this_object()->eventDestruct();
     return 1;
 }

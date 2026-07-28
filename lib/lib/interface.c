@@ -328,8 +328,8 @@ varargs int SetBlocked(string type, int flag){
         return -1;
     }
     Blocked[type] = flag;
-    message("system", "You are "+(Blocked[type] ? "now blocking" :
-                "no longer blocking")+" "+type+".", this_object());
+    message("system", "你现在"+(Blocked[type] ? "正在屏蔽" :
+                "不再屏蔽")+" "+type+"。", this_object());
     return Blocked[type];
 }
 

@@ -13,7 +13,7 @@ void create() {
     SetMass(274);
     SetBaseCost("silver",1);
     SetMaxCarry(100);
-    SetPreventGet("You cannot get that!");
+    SetPreventGet("你拿不了那个！");
 }
 
 void init(){

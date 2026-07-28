@@ -6,14 +6,14 @@ inherit LIB_DAEMON;
 mixed cmd(string args) {
     object ob, *obs;
 
-    if( !args || args == "" ) return "Expel whom?";
+    if( !args || args == "" ) return "驱逐谁？";
     ob = present(args,environment(this_player()));
     if(args != "all" && (!ob || !living(ob))){
-        return "Expel only works for living things in your environment.";
+        return "驱逐只对周围环境中的生物有效。";
     }
     if(archp(ob) && !archp(this_player())){
         write("你不能驱逐管理员。");
-        tell_player(ob, this_player()->GetName()+" just tried to expel you.");
+        tell_player(ob, this_player()->GetName()+" 刚刚试图驱逐你。");
         return 1;
     }
 
@@ -45,7 +45,7 @@ mixed cmd(string args) {
 }
 
 string GetHelp() {
-    return ("Syntax: expel <living> \n\n"
-            "Forces the specified living thing to leave your environment.\n"
-            "See also: return, goto, move, trans");
+    return ("语法：expel <生物>\n\n"
+            "强制指定的生物离开你的环境。\n"
+            "另见：return, goto, move, trans");
 }

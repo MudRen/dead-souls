@@ -9,8 +9,8 @@ int cmd(string arg){
 }
 
 string GetHelp(){
-    return "Syntax: cache\n\n"
-        "Gets the cache stats from the driver, including the hit rate."
-        "\nSee man: cache_stats"
-        "\nSee also: callouts, mstatus, netstat, opcprof, fdinfo, dumpallobj";
+    return "语法：cache\n\n"
+        "从驱动获取缓存统计信息，包括命中率。"
+        "\n参见 man: cache_stats"
+        "\n另见：callouts, mstatus, netstat, opcprof, fdinfo, dumpallobj";
 }

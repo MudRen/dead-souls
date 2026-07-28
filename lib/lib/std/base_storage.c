@@ -147,7 +147,7 @@ mixed CanPutInto(object who, object what){
 
     if(!tmp = holder::CanPutInto(who, what)){
         if(GetClosed()) return capitalize(GetDefiniteShort()) + " is closed right now.";
-        else return "You can't do that right now.";
+        else return "你现在不能那样做。";
     }
 
     wherefrom=origin();
@@ -159,7 +159,7 @@ mixed CanPutInto(object who, object what){
 
     if( tmp != 1 ){
         if( GetClosed() ) return capitalize(GetDefiniteShort()) + " is closed.";
-        else return "You can't do that at this time.";
+        else return "你现在不能那样做。";
     }
     if( GetClosed() ){
         return capitalize(GetDefiniteShort()) + " is closed.";
@@ -201,8 +201,8 @@ int eventReceiveObject(object ob){
 
 void PutCheck(){
     if(RecurseDepth >= MaxRecurseDepth){
-        this_object()->SetPreventPut("You have enough containers "+
-                "inside containers there. This one will have to stay out.");
+        this_object()->SetPreventPut("那里的容器嵌套太深了。"
+                "这个得留在外面。");
     }
 }
 

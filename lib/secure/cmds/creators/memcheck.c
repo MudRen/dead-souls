@@ -28,7 +28,7 @@ string cmd(string unused) {
             "as a historical curiosity, but is not necessarily reliable.%^RESET%^";
     }
     else {
-        return "This command relies on an efun that is not currently available.";
+        return "该命令依赖一个当前不可用的efun。";
     }
 }
 

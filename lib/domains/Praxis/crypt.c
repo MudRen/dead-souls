@@ -54,8 +54,8 @@ void exaaltar() {
 
     str = "祭坛由古老的灰色石头制成，非常巨大。祭坛两侧雕刻着坦波斯与神话野兽战斗的场景。"
         "祭坛顶部是平的，上面有用%^YELLOW%^金色%^RESET%^描绘的锤子图案。";
-    if (is_hammer) str += "The %^CYAN%^warhammer%^RESET%^ lieing upon it perfectly fits into the traces. ";
-    if (is_phyl) str += "A %^YELLOW%^golden%^RESET%^ phylactery partially covers the traces.";
+    if (is_hammer) str += "%^CYAN%^战锤%^RESET%^放在上面，完美地嵌入痕迹之中。";
+    if (is_phyl) str += "一个%^YELLOW%^金色%^RESET%^护符盒部分遮住了痕迹。";
     write(str);
 }
 
@@ -83,64 +83,60 @@ int pray_func(string str) {
     inv = all_inventory(ob);
     for (i=0; i<sizeof(inv); i++) {
         if ((!str || strlen(str) == 0) && inv[i]->id("hammer of tempos") && is_hammer == 0) {
-            tell_room(this_object(),ob->query_cap_name()+" mutters a prayer in front of the altar. As "+
-                    nominative(ob)+" does so, the shape of a demigod appears on the altar. "
-                    "You feel the might of the shadow and take part in his pleasure with the prayer as you notice that "
-                    "the shadow is an incarnation of Tempos himself! "
-                    "Tempos notices that "+ob->query_cap_name()+" carries his %^CYAN%^warhammer%^RESET%^ and takes it away! "
-                    "As the shadow disappears the %^CYAN%^warhammer%^RESET%^ appears on the altar.",ob);
-            tell_object(ob,"You mutter a prayer in front of the altar. As you "
-                    "do so, the shape of a demigod appears on the altar. "
-                    "You feel the might of the shadow and repeat the prayer as you notice that "
-                    "the shadow is an incarnation of Tempos himself! "
-                    "Tempos notices that you carry his %^CYAN%^warhammer%^RESET%^ and takes it away! "
-                    "As the shadow disappears the %^CYAN%^warhammer%^RESET%^ appears on the altar.");
+            tell_room(this_object(),ob->query_cap_name()+"在祭坛前低声祈祷。当"+
+                    nominative(ob)+"祈祷时，一个半神的影子出现在祭坛上。"
+                    "你感受到暗影的力量，分享着他在祈祷中的喜悦，因为你注意到"
+                    "这个影子是坦波斯本人的化身！"
+                    "坦波斯注意到"+ob->query_cap_name()+"携带着他的%^CYAN%^战锤%^RESET%^并将其取走！"
+                    "暗影消散后，%^CYAN%^战锤%^RESET%^出现在祭坛上。",ob);
+            tell_object(ob,"你在祭坛前低声祈祷。当你祈祷时，一个半神的影子出现在祭坛上。"
+                    "你感受到暗影的力量，跟着重复祈祷，因为你注意到"
+                    "这个影子是坦波斯本人的化身！"
+                    "坦波斯注意到你携带着他的%^CYAN%^战锤%^RESET%^并将其取走！"
+                    "暗影消散后，%^CYAN%^战锤%^RESET%^出现在祭坛上。");
             is_hammer = 1;
             SaveObject(SAVE_FILE);	// save is_hammer
             inv[i]->destruct();
             return 1;
         } else if ((!str || strlen(str) == 0) && inv[i]->id("hammer of tempos") && is_hammer == 1) {
-            tell_room(this_object(),ob->query_cap_name()+" mutters a prayer in front of the altar. As "+
-                    nominative(ob)+" does so, the shape of a demigod appears on the altar. "
-                    "You feel the might of the shadow and take part in his pleasure with the prayer as you notice that "
-                    "the shadow is an incarnation of Tempos himself! "
-                    "Tempos notices that "+ob->query_cap_name()+" carries his %^CYAN%^warhammer%^RESET%^ and takes it away!",ob);
-            tell_object(ob,"You mutter a prayer in front of the altar. As you "
-                    "do so, the shape of a demigod appears on the altar. "
-                    "You feel the might of the shadow and repeat the prayer as you notice that "
-                    "the shadow is an incarnation of Tempos himself! "
-                    "Tempos notices that you carry his %^CYAN%^warhammer%^RESET%^ and takes it away!");
+            tell_room(this_object(),ob->query_cap_name()+"在祭坛前低声祈祷。当"+
+                    nominative(ob)+"祈祷时，一个半神的影子出现在祭坛上。"
+                    "你感受到暗影的力量，分享着他在祈祷中的喜悦，因为你注意到"
+                    "这个影子是坦波斯本人的化身！"
+                    "坦波斯注意到"+ob->query_cap_name()+"携带着他的%^CYAN%^战锤%^RESET%^并将其取走！",ob);
+            tell_object(ob,"你在祭坛前低声祈祷。当你祈祷时，一个半神的影子出现在祭坛上。"
+                    "你感受到暗影的力量，跟着重复祈祷，因为你注意到"
+                    "这个影子是坦波斯本人的化身！"
+                    "坦波斯注意到你携带着他的%^CYAN%^战锤%^RESET%^并将其取走！");
             inv[i]->destruct();
             return 1;
         }
         if ((!str || strlen(str) == 0) && inv[i]->id("phylactery") && is_phyl == 0) {
-            tell_room(this_object(),ob->query_cap_name()+" mutters a prayer in front of the altar. As "+
-                    nominative(ob)+" does so, the shape of a demigod appears on the altar. "
-                    "You feel the might of the shadow and take part in his pleasure with the prayer as you notice that "
-                    "the shadow is an incarnation of Tempos himself! "
-                    "Tempos notices that "+ob->query_cap_name()+" carries his phylactery and takes it away! "
-                    "As the shadow disappears the phylactery appears on the altar.",ob);
-            tell_object(ob,"You mutter a prayer in front of the altar. As you "
-                    "do so, the shape of a demigod appears on the altar. "
-                    "You feel the might of the shadow and repeat the prayer as you notice that "
-                    "the shadow is an incarnation of Tempos himself! "
-                    "Tempos notices that you carry his phylactery and takes it away! "
-                    "As the shadow disappears the phylactery appears on the altar.");
+            tell_room(this_object(),ob->query_cap_name()+"在祭坛前低声祈祷。当"+
+                    nominative(ob)+"祈祷时，一个半神的影子出现在祭坛上。"
+                    "你感受到暗影的力量，分享着他在祈祷中的喜悦，因为你注意到"
+                    "这个影子是坦波斯本人的化身！"
+                    "坦波斯注意到"+ob->query_cap_name()+"携带着他的护符盒并将其取走！"
+                    "暗影消散后，护符盒出现在祭坛上。",ob);
+            tell_object(ob,"你在祭坛前低声祈祷。当你祈祷时，一个半神的影子出现在祭坛上。"
+                    "你感受到暗影的力量，跟着重复祈祷，因为你注意到"
+                    "这个影子是坦波斯本人的化身！"
+                    "坦波斯注意到你携带着他的护符盒并将其取走！"
+                    "暗影消散后，护符盒出现在祭坛上。");
             is_phyl = 1;
             SaveObject(SAVE_FILE);	// save is_phyl
             inv[i]->destruct();
             return 1;
         } else if ((!str || strlen(str) == 0) && inv[i]->id("phylactery") && is_phyl == 1) {
-            tell_room(this_object(),ob->query_cap_name()+" mutters a prayer in front of the altar. As "+
-                    nominative(ob)+" does so, the shape of a demigod appears on the altar. "
-                    "You feel the might of the shadow and take part in his pleasure with the prayer as you notice that "
-                    "the shadow is an incarnation of Tempos himself! "
-                    "Tempos notices that "+ob->query_cap_name()+" carries his phylactery and takes it away! ",ob);
-            tell_object(ob,"You mutter a prayer in front of the altar. As you "
-                    "do so, the shape of a demigod appears on the altar. "
-                    "You feel the might of the shadow and repeat the prayer as you notice that "
-                    "the shadow is an incarnation of Tempos himself! "
-                    "Tempos notices that you carry his phylactery and takes it away!");
+            tell_room(this_object(),ob->query_cap_name()+"在祭坛前低声祈祷。当"+
+                    nominative(ob)+"祈祷时，一个半神的影子出现在祭坛上。"
+                    "你感受到暗影的力量，分享着他在祈祷中的喜悦，因为你注意到"
+                    "这个影子是坦波斯本人的化身！"
+                    "坦波斯注意到"+ob->query_cap_name()+"携带着他的护符盒并将其取走！",ob);
+            tell_object(ob,"你在祭坛前低声祈祷。当你祈祷时，一个半神的影子出现在祭坛上。"
+                    "你感受到暗影的力量，跟着重复祈祷，因为你注意到"
+                    "这个影子是坦波斯本人的化身！"
+                    "坦波斯注意到你携带着他的护符盒并将其取走！");
             inv[i]->destruct();
             return 1;
         }
@@ -155,16 +151,15 @@ int pray_func(string str) {
         if (str == "for warhammer" && j == 0 && ob->query_alignment() >= 1000 && ob->query_level() > 5) {
             ob2 = new(WHAMMER);
             if (ob2) {
-                tell_room(this_object(),ob->query_cap_name()+" mutters a prayer in front of the altar. As "+
-                        nominative(ob)+" does so, the shape of a demigod appears on the altar. "
-                        "You feel the might of the shadow and take part in his pleasure with the prayer as you notice that "
-                        "the shadow is an incarnation of Tempos himself! "
-                        "Tempos notices the %^CYAN%^warhammer%^RESET%^ on top of the altar and hands it to "+ob->query_cap_name()+"!",ob);
-                tell_object(ob,"You mutter a prayer in front of the altar. As you "
-                        "do so, the shape of a demigod appears on the altar. "
-                        "You feel the might of the shadow and repeat the prayer as you notice that "
-                        "the shadow is an incarnation of Tempos himself! "
-                        "Tempos notices his %^CYAN%^warhammer%^RESET%^ on top of the altar and hands it to you!");
+                tell_room(this_object(),ob->query_cap_name()+"在祭坛前低声祈祷。当"+
+                        nominative(ob)+"祈祷时，一个半神的影子出现在祭坛上。"
+                        "你感受到暗影的力量，分享着他在祈祷中的喜悦，因为你注意到"
+                        "这个影子是坦波斯本人的化身！"
+                        "坦波斯注意到祭坛上的%^CYAN%^战锤%^RESET%^并将其交给了"+ob->query_cap_name()+"！",ob);
+                tell_object(ob,"你在祭坛前低声祈祷。当你祈祷时，一个半神的影子出现在祭坛上。"
+                        "你感受到暗影的力量，跟着重复祈祷，因为你注意到"
+                        "这个影子是坦波斯本人的化身！"
+                        "坦波斯注意到祭坛上他的%^CYAN%^战锤%^RESET%^并将其交给了你！");
                 tell_room(this_object(),"祈祷结束后，暗影消失了。",({}));
                 is_hammer = 0;
                 SaveObject(SAVE_FILE);	// save is_hammer
@@ -183,16 +178,15 @@ int pray_func(string str) {
         if (str == "for phylactery" && j==0 && ob->query_alignment()>=800 && ob->query_level()>5 && ob->query_skill("faith")>50) {
             ob2 = new(PHYL);
             if (ob2) {
-                tell_room(this_object(),ob->query_cap_name()+" mutters a prayer in front of the altar. As "+
-                        nominative(ob)+" does so, the shape of a demigod appears on the altar. "
-                        "You feel the might of the shadow and take part in his pleasure with the prayer as you notice that "
-                        "the shadow is an incarnation of Tempos himself! "
-                        "Tempos notices the phylactery on top of the altar and hands it to "+ob->query_cap_name()+"!",ob);
-                tell_object(ob,"You mutter a prayer in front of the altar. As you "
-                        "do so, the shape of a demigod appears on the altar. "
-                        "You feel the might of the shadow and repeat the prayer as you notice that "
-                        "the shadow is an incarnation of Tempos himself! "
-                        "Tempos notices his phylactery on top of the altar and hands it to you!");
+                tell_room(this_object(),ob->query_cap_name()+"在祭坛前低声祈祷。当"+
+                        nominative(ob)+"祈祷时，一个半神的影子出现在祭坛上。"
+                        "你感受到暗影的力量，分享着他在祈祷中的喜悦，因为你注意到"
+                        "这个影子是坦波斯本人的化身！"
+                        "坦波斯注意到祭坛上的护符盒并将其交给了"+ob->query_cap_name()+"！",ob);
+                tell_object(ob,"你在祭坛前低声祈祷。当你祈祷时，一个半神的影子出现在祭坛上。"
+                        "你感受到暗影的力量，跟着重复祈祷，因为你注意到"
+                        "这个影子是坦波斯本人的化身！"
+                        "坦波斯注意到祭坛上他的护符盒并将其交给了你！");
                 tell_room(this_object(),"祈祷结束后，暗影消失了。",({}));
                 is_phyl = 0;
                 SaveObject(SAVE_FILE);	// save is_phyl
@@ -202,42 +196,39 @@ int pray_func(string str) {
         }
     }
     if (prayers < 7) {
-        tell_room(this_object(),ob->query_cap_name()+" mutters a prayer in front of the altar. As "+
-                nominative(ob)+" does so, the shape of a demigod appears on the altar. "
-                "You feel the might of the shadow and take part in his pleasure with the prayer as you notice that "
-                "the shadow is an incarnation of Tempos himself!",ob);
-        tell_object(ob,"You mutter a prayer in front of the altar. As you "
-                "do so, the shape of a demigod appears on the altar. "
-                "You feel the might of the shadow and repeat the prayer as you notice that "
-                "the shadow is an incarnation of Tempos himself!");
-        tell_room(this_object(),"The shadow disappears as the prayer ends.",({}));
+        tell_room(this_object(),ob->query_cap_name()+"在祭坛前低声祈祷。当"+
+                nominative(ob)+"祈祷时，一个半神的影子出现在祭坛上。"
+                "你感受到暗影的力量，分享着他在祈祷中的喜悦，因为你注意到"
+                "这个影子是坦波斯本人的化身！",ob);
+        tell_object(ob,"你在祭坛前低声祈祷。当你祈祷时，一个半神的影子出现在祭坛上。"
+                "你感受到暗影的力量，跟着重复祈祷，因为你注意到"
+                "这个影子是坦波斯本人的化身！");
+        tell_room(this_object(),"祈祷结束后，暗影消失了。",({}));
         if (random(100) <(15+ob->query_base_stats("charisma"))) ob->add_alignment(random(3)+10-prayers);
     } else {
         limb = ob->return_limb();
-        tell_room(this_object(),ob->query_cap_name()+" mutters a prayer in front of the altar. As "+
-                nominative(ob)+" does so, the shape of a demigod appears on the altar. "
-                "You feel the might of the shadow and the fear he installs in your heart! "
-                "The shadow again is an incarnation of Tempos himself, but this time he is annoyed of being "
-                "disturbed that often! With a swing of his hammer he attacks "+ob->query_cap_name()+
-                "! "+ ( is_hammer ?
-                    " This time the hammer turns out to be real!\nTempos destroys "+ob->query_cap_name()+" utterly in the "+limb+
-                    " with his %^CYAN%^warhammer%^RESET%^!"
-                    : "Luckily for "+objective(ob)+ " the hammer is a shadow also, and therefore the damage is minimal."
+        tell_room(this_object(),ob->query_cap_name()+"在祭坛前低声祈祷。当"+
+                nominative(ob)+"祈祷时，一个半神的影子出现在祭坛上。"
+                "你感受到暗影的力量和他在你心中激起的恐惧！"
+                "这个影子再次是坦波斯本人的化身，但这一次他对如此频繁的打扰感到厌烦！"
+                "他挥动战锤攻击了"+ob->query_cap_name()+
+                "！"+ ( is_hammer ?
+                    "这一次战锤是真的！\n坦波斯用他的%^CYAN%^战锤%^RESET%^在"+limb+
+                    "中彻底摧毁了"+ob->query_cap_name()+"！"
+                    : "幸运的是"+objective(ob)+"的战锤也是影子，因此伤害很小。"
                     ) ,ob);
-        tell_room(this_object(),"Tempos decides "+ob->query_cap_name()+" is not "
-                "worth to bother with anyway and disappears.",ob);
-        tell_object(ob,"You mutter a prayer in front of the altar. As you "
-                "do so, the shape of a demigod appears on the altar. "
-                "You feel the might of the shadow and the fear he installs in your heart! "
-                "The shadow again is an incarnation of Tempos himself, but this time he is annoyed of being "
-                "disturbed that often! With a swing of his hammer he attacks you!"
-                + ( is_hammer ? 
-                    " This time the hammer turns out to be real!\nTempos destroys you utterly in the "+limb+
-                    " with his %^CYAN%^warhammer%^RESET%^!"
-                    : " Luckily for you the hammer is a shadow also, and therefore the damage is minimal."
+        tell_room(this_object(),"坦波斯认为"+ob->query_cap_name()+"不值得他费心，便消失了。",ob);
+        tell_object(ob,"你在祭坛前低声祈祷。当你祈祷时，一个半神的影子出现在祭坛上。"
+                "你感受到暗影的力量和他在你心中激起的恐惧！"
+                "这个影子再次是坦波斯本人的化身，但这一次他对如此频繁的打扰感到厌烦！"
+                "他挥动战锤攻击了你！"
+                + ( is_hammer ?
+                    "这一次战锤是真的！\n坦波斯用他的%^CYAN%^战锤%^RESET%^在"+limb+
+                    "中彻底摧毁了你！"
+                    : " 幸运的是战锤也是影子，因此伤害很小。"
                   ) );
         ob->do_damage(limb,5+random(prayers)+is_hammer*25);
-        tell_object(ob,"Tempos decides you are not worth to bother with anyway and disappears.");
+        tell_object(ob,"坦波斯认为你不值得他费心，便消失了。");
     }
     prayers++;
     return 1;

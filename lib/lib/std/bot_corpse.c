@@ -30,7 +30,7 @@ int eventDecay(){
             SetId(GetId()..., "chassis", "body");
             SetAdjectives(GetAdjectives()..., "melting", "corroding");
             SetShort("一副正在腐蚀的人造躯体骨架");
-            SetSmell("The chassis emits an acrid chemical odor.");
+            SetSmell("躯体骨架散发出刺鼻的化学气味。");
             break;
         case 20:
             if(stank)
@@ -38,7 +38,7 @@ int eventDecay(){
                         "area.", MSG_ROOMDESC);
             SetId(GetId()..., "synthetics", "pile", "pile of synthetics");
             SetShort("一堆腐蚀的合成材料");
-            SetSmell("Its smell is nearly unbearable.");
+            SetSmell("它的气味几乎令人无法忍受。");
             break;
         case 30:
             Destruct();

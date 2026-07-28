@@ -21,7 +21,7 @@ mixed cmd(string args) {
     if( args == "" || !args ) 
         args = user_path(this_player()->GetKeyName()) + "tmp.edit";
     if( this_player()->GetForced() ) {
-        message("system", "Someone tried to force you to edit "+ args +"\n" +
+        message("system", "有人试图强迫你编辑 "+ args +"\n" +
                 identify(previous_object(-1)), this_player());
         return 0;
     }

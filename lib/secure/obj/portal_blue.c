@@ -80,12 +80,12 @@ mixed eventDescribeEndpoint() {
     if(dest) file = base_name(dest)+".c";
 
     if(!env || env->GetProperty("no peer")){
-        return "You can't see anything in there.";
+        return "你什么也看不见。";
     }
     if( (i = this_player()->GetEffectiveVision(file,1)) > 5 )
-        return "It is too bright in there.";
+        return "那里太亮了。";
     else if( i < 3 )
-        return "It is too dark there.";
+        return "那里太暗了。";
 
     items = filter(all_inventory(env),
             (: !$1->GetInvis(this_player()) :) );

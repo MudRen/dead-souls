@@ -6,10 +6,8 @@ int searched;
 
 string SearchCrap(){
     string result;
-    result="You rummage through the disgusting pile "+
-        "and find nothing.";
-    say(this_player()->GetName()+" searches a pile of debris "+
-            "with no results.");
+    result="你在那堆恶心的废物中翻找，什么也没发现。";
+    say(this_player()->GetName()+"翻了一堆废物，什么也没找到。");
 
     if(!random(10)){
         object germ = new("/domains/cave/obj/ecoli");
@@ -31,7 +29,7 @@ void create(){
     SetDollarCost(0);
     SetSearch( (: SearchCrap :) );
     SetNoCondition(1);
-    SetPreventGet("The pile of debris isn't at all portable.");
+    SetPreventGet("这堆废物根本搬不动。");
 }
 
 void init(){

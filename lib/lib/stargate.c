@@ -67,13 +67,13 @@ void create(){
 
     SetLong( (: displayLong :) );
 
-    AddItem( "inner ring", "The second ring - the inner ring - is placed "
-            "inside the larger ring and seems to be able to move.");
+    AddItem( "inner ring", "第二个环——内环——放置在大环内部，"
+            "似乎可以转动。");
     SetMass(1000);
     SetBaseCost("silver",50);
-    SetPreventGet("The gate is pure naquadah and cannot be moved.");
-    SetPreventPut("The gate is pure naquadah and cannot be moved!");
-    SetTouch("You feel the stargate beneath your hand humming with energy.");
+    SetPreventGet("星门由纯纳夸达制成，无法移动。");
+    SetPreventPut("星门由纯纳夸达制成，无法移动！");
+    SetTouch("你感到手下的星门嗡嗡作响，充满能量。");
 }
 
 void init(){

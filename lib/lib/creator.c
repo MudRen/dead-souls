@@ -43,7 +43,7 @@ mixed direct_verb_rule(string verb){
 }
 
 mixed direct_give_liv_obj(){
-    if( this_player() == this_object() ) return "Are you confused?";
+    if( this_player() == this_object() ) return "你搞混了吗？";
     return 1;
 }
 
@@ -53,8 +53,8 @@ mixed direct_give_liv_obs(){
 
 mixed indirect_give_obj_to_liv(object item){
     if( !item ) return 0;
-    if( this_player() == this_object() ) return "Are you confused?";
-    if( environment(item) != this_player() ) return "You don't have that!";
+    if( this_player() == this_object() ) return "你搞混了吗？";
+    if( environment(item) != this_player() ) return "你没有那个！";
     return CanCarry(item->GetMass());
 }
 
@@ -85,7 +85,7 @@ protected void net_dead(){
         player::eventReconnect();
         LastCreatorAge = time();
         if( file_exists(tmp = user_path(GetKeyName()) + "dead.edit") )
-            message("system", "\nYour edit file was saved as: "+tmp, this_object());
+            message("system", "\n你的编辑文件已保存为："+tmp, this_object());
     }
 
 varargs int eventShow(object who, string str, string on_id){
@@ -99,7 +99,7 @@ void eventDescribeEnvironment(int verbose){
     object env;
 
     if( !(env = environment()) ){
-        message("room_description", "No environment.", this_object());
+        message("room_description", "没有环境。", this_object());
         return;
     }
     message("system", file_name(env), this_object());
@@ -140,9 +140,9 @@ int Setup(){
         AddSearchPath( ({ tmp }) );
     if( archp() ) AddSearchPath( ({ DIR_ADMIN_CMDS, DIR_SECURE_ADMIN_CMDS }) );
     if( bugs = BUGS_D->GetAssignedBugs(GetKeyName()) )
-        message("system", "\n        >>>  You have " +
+        message("system", "\n        >>>  你有 " +
                 consolidate(bugs, "an incomplete bug") +
-                " assigned to you!!!!  <<<\n", this_object());
+                " 分配给你!!!!  <<<\n", this_object());
     NOTIFY_D->eventPrintNotices(this_object(), laston);
 
     /* Check for new customdefs location */

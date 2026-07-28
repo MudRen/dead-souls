@@ -135,8 +135,8 @@ int boost(string str, int coasting){
     Exit = environment(owner)->GetExitData(str);
 
     if( sizeof(Doors) && Doors[str] && Doors[str]->GetClosed() ){
-        message("my_action", "You bump into " +
-                Doors[str]->GetShort(str) + ".", owner);
+        message("my_action", "你撞上了" +
+                Doors[str]->GetShort(str) + "。", owner);
         return 1;
     }
 
@@ -178,16 +178,14 @@ int eventTurnOn(){
         return 1;
     }
     write("你激活了火箭背包，发出低沉的轰鸣声！");
-    say(this_player()->GetName()+" fires up "+possessive(this_player())+" "
-            "rocket pack with a deep, rumbling roar!");
+    say(this_player()->GetName()+"启动了"+possessive(this_player())+"火箭背包，发出低沉的轰鸣声！");
     activated = 1;
     return 1;
 }
 
 int eventTurnOff(){
     write("你关闭了火箭背包。推进器发出噼啪声后熄灭了。");
-    say(this_player()->GetName()+" deactivates "+possessive(this_player())+" "
-            "rocket pack. The boosters sputter and go silent.");
+    say(this_player()->GetName()+"关闭了"+possessive(this_player())+"火箭背包。推进器噼啪作响后归于沉寂。");
     activated = 0;
     return 1;
 }

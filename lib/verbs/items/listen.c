@@ -57,7 +57,7 @@ mixed do_listen() {
         }
     }
     if( !val ) {
-        val = "You don't hear a thing.";
+        val = "你什么也没听到。";
     }
     environment(this_player())->eventPrint(this_player()->GetName() +
             " puts an ear to the air.",

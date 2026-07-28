@@ -20,7 +20,7 @@ protected void create() {
     SetDollarCost(15);
     SetMaxSitters(3);
 }
-mixed CanGet(object ob) { return "The bench does not budge.";}
+mixed CanGet(object ob) { return "长凳纹丝不动。";}
 void init(){
     ::init();
 }

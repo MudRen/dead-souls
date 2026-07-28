@@ -24,7 +24,7 @@ mixed cmd(string args) {
         }
     }
     if( res = catch(ob = new(file)) ) 
-        return "Error in cloning object: " + res;
+        return "克隆对象时出错：" + res;
     if( !ob ){
         write("克隆文件失败: " + file);
         if(!file_exists(file)){
@@ -50,10 +50,10 @@ mixed cmd(string args) {
 }
 
 string GetHelp() {
-    return ("Syntax: clone <filename | object>\n\n"
-            "Clones the object from the code stored in the file named.  "
-            "If for some reason the object cannot be moved to your "
-            "inventory (it is alive, you cannot carry it, etc.), then "
-            "it will be moved into your environment.\n"
-            "See also: dest, message");
+    return ("语法：clone <文件名 | 对象>\n\n"
+            "从指定文件的代码克隆对象。"
+            "如果由于某种原因对象无法移动到你的库存"
+            "（它是活的、你无法携带它等），"
+            "则它将被移动到你所处的环境中。\n"
+            "另见：dest, message");
 }

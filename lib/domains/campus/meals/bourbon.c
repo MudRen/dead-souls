@@ -18,11 +18,11 @@ protected void create() {
     SetMass(100);
     SetMealType(MEAL_DRINK | MEAL_ALCOHOL);
     SetStrength(100);
-    SetMealMessages("You finish off the bourbon and gasp! WHEW!! Mean stuff!",
-            "$N finishes off a bottle of bourbon and lets loose a rebel yell!");
+    SetMealMessages("你喝完了波本威士忌，倒吸一口气！好烈的酒！",
+            "$N 喝完一瓶波本威士忌，发出一声叛逆的呐喊！");
     SetEmptyName("bottle");
-    SetEmptyShort("an empty bottle of bourbon");
-    SetEmptyLong("This is an empty green bottle that once held bourbon.");
+    SetEmptyShort("一个空的波本威士忌瓶");
+    SetEmptyLong("这是一个空的绿色瓶子，曾经装着波本威士忌。");
 }
 void init(){
     ::init();

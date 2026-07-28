@@ -26,7 +26,7 @@ int cmd( string a )
 
     filename = user_path(previous_object()->GetKeyName());
     if( file_size( filename ) != -2 && !securep(previous_object()) ) {
-        notify_fail( "You must have a valid home directory!\n" );
+        notify_fail( "你必须有一个有效的主目录！\n" );
         return 0;
     }
 

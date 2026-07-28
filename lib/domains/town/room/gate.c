@@ -11,14 +11,14 @@ int PreExit(){
             (!this_player()->GetInvis() && !creatorp(this_player()) &&
              !present("testchar badge",this_player()))){
         if(guard && living(guard)){
-            present("gate guard",this_object())->eventForce("say You're too big to slip by me now. You're not going to the mansion any more.");
+            present("gate guard",this_object())->eventForce("say 你现在太大了，别想从我这溜过去。你不能再去庄园了。");
             return 0;
         }
     }
     if((newbiep(this_player()) || this_player()->GetLevel() <= maxnoob)
             && guard && living(guard)){
-        tell_object(this_player(),"You are such a newbie that the gate guard doesn't even notice you slip by him.");
-        tell_room(this_object(),this_player()->GetName()+" sneaks past the gate guard.",({ this_player() }) );
+        tell_object(this_player(),"你太新手了，城门守卫甚至没注意到你溜了过去。");
+        tell_room(this_object(),this_player()->GetName()+"悄悄溜过了城门守卫。",({ this_player() }) );
     }
     return 1;
 }	

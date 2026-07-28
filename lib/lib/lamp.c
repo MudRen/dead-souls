@@ -28,7 +28,7 @@ protected void heart_beat(){
 
 mixed direct_light_obj(){
     if( GetFuelAmount() < 1 )
-        return "There is no " + GetFuelType() + " in " + GetShort() + ".";
+        return GetShort() + "里没有" + GetFuelType() + "了。";
     return 1;
 }
 

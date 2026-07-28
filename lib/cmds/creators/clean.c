@@ -22,7 +22,7 @@ mixed cmd(string args) {
         ob = get_object(args);
     }
     if( !ob ) {
-        return "No " + args + " found.";
+        return "未找到 " + args + "。";
     }
     previous_object()->eventPrint(sprintf("Cleaning %O", ob), MSG_SYSTEM);
     say(this_player()->GetName()+" cleans "+ob->GetShort()+".");
@@ -45,8 +45,7 @@ mixed cmd(string args) {
 }
 
 string GetHelp() {
-    return ("Syntax: clean [OBJECT]\n\n"
-            "This command destroys all objects in the inventory of a "
-            "specified object.  It skips any item that has a user somewhere "
-            "in its deep inventory.");
+    return ("语法：clean [对象]\n\n"
+            "此命令销毁指定对象库存中的所有物品。"
+            "会跳过深层库存中包含用户的任何物品。");
 }

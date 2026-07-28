@@ -143,10 +143,10 @@ string GetString() {
 
 mixed eventCreateDirectory() {
     if( isFile() ) {
-        return "File exists.";
+        return "文件已存在。";
     }
     else if( isDirectory() ) {
-        return "Directory exists.";
+        return "目录已存在。";
     }
     else {
         if( mkdir(FileName) ) {
@@ -176,7 +176,7 @@ mixed eventDelete() {
         }
     }
     else {
-        return "No such file or directory.";
+        return "没有该文件或目录。";
     }
 }
 
@@ -195,7 +195,7 @@ varargs mixed eventRename(string name, int clobber) {
         mixed tmp;
 
         if( !clobber ) {
-            return "File or directory already exists.";
+            return "文件或目录已存在。";
         }
         tmpfile = new(LIB_FILE);
         tmp = file->eventRename(tmpfile->GetFileName());
@@ -215,7 +215,7 @@ varargs mixed eventRename(string name, int clobber) {
                 if( !tmp ) {
                     tmp = "";
                 }
-                return "Failed to restore destination!! Data lost: " + tmp;
+                return "恢复目标失败！！数据丢失：" + tmp;
             }
         }
         return 0;
@@ -236,7 +236,7 @@ mixed eventWrite(mixed val) {
     int count = (size/max) + 1;
 
     if( file_size(FileName) == -2 ) {
-        return "File is a directory.";
+        return "该文件是目录。";
     }
     for(int i = 0; i<count; i++) {
         int ptr = i * max;

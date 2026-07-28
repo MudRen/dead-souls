@@ -29,7 +29,7 @@ void create() {
     SetCanLock(1);
     SetLocked(0);
 }
-mixed CanGet(object ob) { return "The locker does not budge.";}
+mixed CanGet(object ob) { return "柜子纹丝不动。";}
 void init(){
     ::init();
 }

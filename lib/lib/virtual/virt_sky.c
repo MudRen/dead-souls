@@ -45,7 +45,7 @@ mixed SetPreventLand(mixed val){
 
 mixed CanFly(object who, string dir){
     if( !dir || dir == "" ){
-        return "Fly where?";
+        return "飞向哪里？";
     }
     else if( dir == "down" ){
         if( stringp(PreventLand) ){
@@ -59,11 +59,11 @@ mixed CanFly(object who, string dir){
             }
         }
         if( !GetGround() ){
-            return "There is nothing below you but open sea.";
+            return "你下方只有广阔的海面。";
         }
     }
     if( who->GetPosition() != POSITION_FLYING ){
-        return "You are not flying!";
+        return "你不在飞行状态！";
     }
     return virt_land::CanGo(who, dir);
 }

@@ -8,11 +8,8 @@ string SearchCrap(){
     string result;
     if(!searched){
         if(!random(1000)){
-            result="Rummaging through the disgusting pile, you "+
-                "discover a beautiful gold ring mixed in with the "+
-                "crap.";
-            say(this_player()->GetName()+" searches a pile of debris "+
-                    "and seems to have found something of value.");
+            result="你在那堆恶心的垃圾中翻找，发现了一枚漂亮的金戒指。";
+            say(this_player()->GetName()+"在垃圾堆中翻找，似乎找到了有价值的东西。");
             if(!new("/domains/campus/armor/ring")->eventMove(this_player()))
                 new("/domains/campus/armor/ring")->eventMove(environment(this_object()));
             searched=1;
@@ -20,10 +17,8 @@ string SearchCrap(){
         }
     }
 
-    result="You rummage through the disgusting pile "+
-        "and find nothing.";
-    say(this_player()->GetName()+" searches a pile of debris "+
-            "with no results.");
+    result="你在那堆恶心的垃圾中翻找，什么也没发现。";
+    say(this_player()->GetName()+"翻了翻垃圾堆，什么也没找到。");
     searched=1;
     return result; 
 }
@@ -39,7 +34,7 @@ void create(){
     SetDollarCost(0);
     SetSearch( (: SearchCrap :) );
     SetNoCondition(1);
-    SetPreventGet("The pile of debris isn't at all portable.");
+    SetPreventGet("这堆垃圾根本搬不动。");
 }
 
 void init(){

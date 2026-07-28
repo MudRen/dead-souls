@@ -43,7 +43,7 @@ mixed eventSink(){
         return 0;
     }
 
-    tell_object(this_object(),"You sink downward!");
+    tell_object(this_object(),"你向下沉！");
     if(this_object()->eventMove(rumbo)){
         tell_room(env,capitalize(name)+" continues "+
                 "to sink.", ({ this_object() }));

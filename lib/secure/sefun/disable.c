@@ -5,7 +5,7 @@ mixed hobbled(object ob){
     mapping ret;
 
     missings = ob->GetMissingLimbs();
-    if(!sizeof(missings)) return "No missing limbs.";
+    if(!sizeof(missings)) return "没有缺失的肢体。";
 
     foot = 0;
     leg = 0;
@@ -22,7 +22,7 @@ mixed hobbled(object ob){
         }
     }
 
-    if( foot == 0 && leg == 0 ) return "No missing legs or feet.";
+    if( foot == 0 && leg == 0 ) return "没有缺失的腿或脚。";
 
     ret = ([ "feet" : foot, "legs" : leg , "list" : total ]);
     return ret;

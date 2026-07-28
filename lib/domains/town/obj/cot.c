@@ -18,7 +18,7 @@ protected void create() {
     SetMaxLiers(1);
 }
 
-mixed CanGet(object ob) { return "The cot is bolted to the floor.";}
+mixed CanGet(object ob) { return "行军床固定在地上。";}
 
 void init(){
     ::init();

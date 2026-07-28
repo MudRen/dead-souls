@@ -12,7 +12,7 @@ void create() {
     SetMass(200);
     SetBaseCost("silver",50);
     SetMaxCarry(10);
-    SetPreventPut("You cannot put this in there!");
+    SetPreventPut("你不能把这个放进去！");
     SetMoney( ([
                 "dollars" : random(200),
                 ]) );

@@ -5,7 +5,7 @@ inherit LIB_ARMOR;
 //inherit "/lib/events/read";
 
 string eventReadBill(){
-    return "The front of the cap reads: \"Kiss me, I'm a newbie!\"";
+    return "帽子正面写着：\"吻我，我是新手！\"";
 }
 protected void create(){
     armor::create();
@@ -22,15 +22,13 @@ protected void create(){
     SetProtection(BLADE, 20);
     SetProtection(KNIFE, 20);
     SetItems( ([
-                ({"brim","bill","front"}) : "For some reason the front of this cap "+
-                "is plated with a fine layer of mithril...one of the strongest "+
-                "and most expensive substances known to man.",
-                ({"writing","letters"}): "Something is written on the front of the "+
-                "cap. Perhaps you could \"read writing on cap\"",
+                ({"brim","bill","front"}) : "不知为何，这顶帽子的正面镀有一层精致的秘银……"+
+                "这是人类已知的最坚固、最昂贵的物质之一。",
+                ({"writing","letters"}): "帽子正面写着一些字。也许你可以\"阅读帽子上的字\"",
                 ]) );
 
     SetRead( ([
-                ({"front","writing","letters"}) : "The front of the cap reads: \"Kiss me, I'm a newbie!\"",
+                ({"front","writing","letters"}) : "帽子正面写着：\"吻我，我是新手！\"",
                 ]) );
-    SetDefaultRead("default", "The front of the cap reads: \"Kiss me, I'm a newbie!\"");
+    SetDefaultRead("default", "帽子正面写着：\"吻我，我是新手！\"");
 }

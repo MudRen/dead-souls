@@ -31,4 +31,4 @@ void init(){
     ::init();
 }
 
-mixed CanGet(object ob) { return "The bucket does not budge.";}
+mixed CanGet(object ob) { return "桶纹丝不动。";}

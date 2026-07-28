@@ -90,8 +90,8 @@ mixed CanBurn(object who){
         return "#There is insufficient air.";
     }
     if( FuelRequired && !GetFuelAmount() )
-        return capitalize(GetShort()) + " is out of fuel.";
-    if( GetBurning() ) return "It is already burning!";
+        return capitalize(GetShort()) + " 燃料已耗尽。";
+    if( GetBurning() ) return "它已经在燃烧了！";
     return light::CanLight(who);
 }
 
@@ -119,7 +119,7 @@ mixed direct_light_obj(){
     mixed tmp = CanBurn(this_player());
 
     if( tmp == 1 ){
-        return "Light it with what?";
+        return "用什么点燃？";
     }
 }
 
@@ -140,7 +140,7 @@ mixed CanExtinguish(object who){
             environment() != environment(this_player()) ){
         return "#That is not within your reach!";
     }
-    if( !GetBurning() ) return "It is not burning!";
+    if( !GetBurning() ) return "它没有在燃烧！";
     return 1;
 }
 

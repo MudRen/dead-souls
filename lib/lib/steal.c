@@ -17,11 +17,11 @@ mixed direct_steal_obj_from_liv(){ return CanSteal(this_player()); }
 mixed CanSteal(object who){
     if( GetInvis(who) ) return 0;
     if( PreventSteal ){
-        if( PreventSteal == 1 ) return "You can't steal that!";
+        if( PreventSteal == 1 ) return "你偷不了那个！";
         if( stringp(PreventSteal) ) return PreventSteal;
         if( objectp(PreventSteal) ){
             if( PreventSteal == who )
-                return "Mystical forces prevent your thievery.";
+                return "神秘力量阻止了你的偷窃。";
             return 1;
         }
         return evaluate(PreventSteal, who);

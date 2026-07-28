@@ -16,8 +16,8 @@ protected void create() {
                 "no paralyze":0, 
                 "no teleport":0]));
     SetListen(([
-                ({ "river", "water" }) : "You hear it rushing by.",
-                "default" : "You can hear the roar of the river rushing by.",
+                ({ "river", "water" }) : "你听到河水奔流而过。",
+                "default" : "你能听到河水奔涌的轰鸣声。",
                 ]));
     SetInventory(([
                 "/domains/town/npc/troll" : 1,

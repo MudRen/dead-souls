@@ -19,7 +19,7 @@ protected void create(){
 mixed CanMail(object who, string args){
     if( !interactive(who) ) return 0;
     if( GetTown() != who->GetTown() )
-        return "Any mail you might have will be at your home post office.";
+        return "你的邮件会在你的主页邮局。";
     return 1;
 }
 
@@ -27,11 +27,11 @@ mixed eventMail(object who, string args){
     object ob;
 
     if( !(ob = new(OBJ_POST)) ){
-        who->eventPrint("Failed to load postal object!");
+        who->eventPrint("邮政对象加载失败！");
         return 1;
     }
     if( !(ob->eventMove(who)) ){
-        who->eventPrint("You can't seem to carry the postal object.");
+        who->eventPrint("你似乎拿不了邮政物品。");
         return 1;
     }
     ob->start_post(args);

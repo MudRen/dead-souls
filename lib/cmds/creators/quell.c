@@ -15,7 +15,7 @@ int cmd(string str){
             "and brings peace to the area.");
     foreach(object combatant in get_livings(env)){
         if(combatant->GetInCombat()){
-            tell_object(combatant,"You stop fighting.");
+            tell_object(combatant,"你停止了战斗。");
         }
         combatant->eventQuell();
     }
@@ -23,7 +23,7 @@ int cmd(string str){
 }
 
 string GetHelp(string str) {
-    return "Syntax: quell\n\n"
-        "This command brings peace between combatants in your environment.\n"
-        "See also: unquell";
+    return "语法：quell\n\n"
+        "此命令使你的环境中的战斗者停止战斗。\n"
+        "另见：unquell";
 }

@@ -78,7 +78,7 @@ int CanFillOther(){
 //without havingt to hold the source 
 
 int SetTapped(int x){ 
-    if(x) AddItem("tap", "The thing that lets you pour from it.");
+    if(x) AddItem("tap", "让你从中倒出液体的东西。");
     return (Tapped = x); 
 }
 

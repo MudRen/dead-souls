@@ -110,18 +110,18 @@ mixed CanDrink(object ob){
     type = ob->GetMealType();
     if( (type & MEAL_ALCOHOL) && ((strength + GetAlcohol()) >
                 GetStatLevel("durability")) )
-        return "That drink is too strong for you right now.";
+        return "那杯酒对你来说太烈了。";
     if( (type & MEAL_CAFFEINE) && ((strength + GetCaffeine()) >
                 GetStatLevel("durability")) )
-        return "That is too much caffeine for you right now.";
+        return "你摄入的咖啡因太多了。";
     if( (type & MEAL_DRINK) && ((strength + GetDrink()) > 100) )
-        return "You can't drink any more fluids right now.";
+        return "你喝不下更多了。";
     return 1;
 }
 
 mixed CanEat(object ob){
     if( (ob->GetStrength() + GetFood()) > 100 )
-        return "This is more food than you can handle right now.";
+        return "你吃不下了。";
     else return 1;
 }
 

@@ -106,57 +106,57 @@ string GetErrorMessage(){
     switch(rule){
         case "":
             if( Verb == "pray" ){
-                return "Just pray for it.";
+                return "祈祷就好。";
             }
             else {
-                return "Simply cast it?";
+                return "直接施放吗？";
             }
 
         case "LIV":
             if( Verb == "pray" ){
-                return "Pray for it for whom?";
+                return "为谁祈祷？";
             }
             else {
-                return "Cast it on whom?";
+                return "对谁施法？";
             }
 
         case "OBJ": case "STR":
             if( Verb == "pray" ){
-                return "Pray for it for what?";
+                return "为什么祈祷？";
             }
             else {
-                return "Cast it on what?";
+                return "对什么施法？";
             }
 
         case "STR of LIV":
             if( Verb == "pray" ){
-                return "Pray for it for whom against what?";
+                return "为谁祈祷对抗什么？";
             }
             else {
-                return "Cast it on what of whom?";
+                return "对谁的什么施法？";
             }
 
         case "for LIV":
-            return "Pray for it for whom?";
+            return "为谁祈祷？";
 
         case "for OBJ":
-            return "Pray for it for what?";
+            return "为什么祈祷？";
 
         case "against STR":
             if( Verb == "pray" ){
-                return "Pray against what?";
+                return "祈祷对抗什么？";
             }
             else {
-                return "Cast against what?";
+                return "施放对抗什么？";
             }
 
         case "against STR for LIV":
-            return "Pray against what for whom?";
+            return "为谁祈祷对抗什么？";
     }
     if( Verb == "pray" ){
-        return "Pray for it?";
+        return "祈祷吗？";
     }
-    return "Cast it?";
+    return "施放吗？";
 }
 
 int GetHealing(){
@@ -518,7 +518,7 @@ varargs int CanCast(object who, int level, string limb, object* targets){
 
     if( Religions ){
         if( member_array(who->GetReligion(1), Religions) == -1 ){
-            who->eventPrint("Your deity does not have that kind of power.");
+            who->eventPrint("你的神明没有那种力量。");
             return 0;
         }
     }
@@ -576,12 +576,12 @@ varargs int CanCast(object who, int level, string limb, object* targets){
                 who->eventTrainSkill(skill, level, GetDifficulty(),
                         0, GetTrainingModifier());
         }
-        who->eventPrint("You must have gotten the words wrong.");
+        who->eventPrint("你肯定念错了咒语。");
         return 0;
     }
     if( AutoDamage != -1 ){
         if( CanSpellAttack(who, targets, x) == - 1 ){
-            who->eventPrint("Your powers fail you.");
+            who->eventPrint("你的力量背叛了你。");
             return 0;
         }
     }
@@ -609,7 +609,7 @@ varargs int eventCast(object who, int level, mixed limb, object* targets){
         object ob = new(GetConjure());
 
         if( !ob ){
-            who->eventPrint("An error occurred in conjuring.");
+            who->eventPrint("召唤时发生了错误。");
             return 1;
         }
         send_messages(Messages[0][0], Messages[0][1], who, 0,environment(who));
@@ -746,7 +746,7 @@ varargs mixed eventParse(object who, mixed* args...){
         if( stringp(args[0]) && objectp(args[1]) && living(args[1]) ){
             return ({ args[0], args[1] });
         }
-        return "Cast it on what of whom?";
+        return "对谁的什么施法？";
     }
     else {
         if( count == 1 ){
@@ -772,7 +772,7 @@ varargs mixed eventParse(object who, mixed* args...){
         if( stringp(args[0]) && objectp(args[1]) && living(args[1]) ){
             return ({ args[0], args[1] });
         }
-        return "Pray for it against what for whom?";
+        return "为谁祈祷对抗什么？";
     }
 }
 

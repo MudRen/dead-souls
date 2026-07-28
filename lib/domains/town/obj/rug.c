@@ -19,15 +19,15 @@ void create(){
     SetPress( ([ "default" : (: PushRug :) ]) );
     SetVendorType(VT_TREASURE);
 }
-mixed CanGet(object ob) { return "The rug appears attached to the floor.";}
+mixed CanGet(object ob) { return "地毯似乎固定在地上。";}
 int MoveRug(){
-    send_messages("move", "$agent_name $agent_verb the Persian rug.",
+    send_messages("move", "$agent_name $agent_verb动了动波斯地毯。",
             this_player(), 0, environment(this_player()));
     environment(this_object())->RevealDoor();
     return 1;
 }
 int PushRug(){
-    send_messages("move", "$agent_name $agent_verb the Persian rug.",
+    send_messages("move", "$agent_name $agent_verb动了动波斯地毯。",
             this_player(), 0, environment(this_player()));
     environment(this_object())->RevealDoor();
     return 1;

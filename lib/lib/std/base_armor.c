@@ -301,7 +301,7 @@ mixed CanEquip(object who, string* limbs){
         int armor = GetArmorType();
         string limb;
         if( !guess ){
-            return "You have no limbs!";
+            return "你没有肢体！";
         }
         limbs = LimbGuess(who);
         if(!limbs){
@@ -358,7 +358,7 @@ mixed CanRepair(object who){
 
 mixed CanSteal(object who){
     if( GetWorn() ){
-        return "You can't steal something equipped!";
+        return "你不能偷装备中的东西！";
     }
     return steal::CanSteal(who);
 }
@@ -420,7 +420,7 @@ mixed eventEquip(object who, string* limbs){
     }
     if( functionp(Wear) ){
         if( functionp(Wear) & FP_OWNER_DESTED ){
-            return "You can't wear that there at the moment.";
+            return "你现在不能把它穿在那里。";
         }
         if( !evaluate(Wear, who, limbs) ){
             return 1;
@@ -432,7 +432,7 @@ mixed eventEquip(object who, string* limbs){
             who->eventPrint(tmp);
         }
         else {
-            who->eventPrint("You can't wear that there right now.");
+            who->eventPrint("你现在不能把它穿在那里。");
         }
         return 1;
     }

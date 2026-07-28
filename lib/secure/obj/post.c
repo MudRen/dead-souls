@@ -34,26 +34,19 @@ void create() {
     SetPreventDrop( (: Destruct :) );
     SetPreventPut( (: Destruct :) );
     __PostalOptions = ({
-            ([ "key":"askcc", "value":({"N","Y"}), "desc":"Prompt for cc when "
-             "sending mail:" ]),
-            (["key":"quit", "value":({"N","Y"}), "desc":"Confirm quit from mail:"]),
-            (["key":"metoo", "value":({"N","Y"}),"desc":"Send mail to yourself "
-             "with you in alias:"]),
-            (["key":"delete", "value":({"N","Y"}), "desc":"Confirm deletion of "
-             "letters:" ]),
-            (["key":"notify", "value":({"N","Y"}), "desc":"Notify me when new mail "
-             "is received:" ]),
-            ([ "key":"message", "value":"New mail has arrived from $N\n"
-             "Subject: $S", "desc":"Mail message when notify occurs:" ]),
+            ([ "key":"askcc", "value":({"N","Y"}), "desc":"发送邮件时提示输入抄送：" ]),
+            (["key":"quit", "value":({"N","Y"}), "desc":"退出邮件时确认："]),
+            (["key":"metoo", "value":({"N","Y"}),"desc":"别名中包含自己时也发送给自己："]),
+            (["key":"delete", "value":({"N","Y"}), "desc":"删除信件时确认："]),
+            (["key":"notify", "value":({"N","Y"}), "desc":"收到新邮件时通知："]),
+            ([ "key":"message", "value":"$N 发来了新邮件\n"
+             "主题：$S", "desc":"收到新邮件时的通知消息：" ]),
             ([ "key": "content", "value":({"message only", "header and message"}),
-             "desc":"Content of letters when reading mail:" ]),
-            ([ "key":"forward", "value":"none", "desc":"Address to forward "
-             "incoming mail to:" ]),
-            ([ "key":"sig file", "value":"none", "desc":"Signature file:" ]),
-            ([ "key":"commands", "value":({"N","Y"}), "desc":"Exclude command "
-             "listing from menus:" ]),
-            ([ "key":"read", "value":({"N","Y"}), "desc":"Read letter when you make "
-             "it current:" ])
+             "desc":"阅读信件时显示的内容：" ]),
+            ([ "key":"forward", "value":"none", "desc":"转发 incoming 邮件的地址：" ]),
+            ([ "key":"sig file", "value":"none", "desc":"签名文件：" ]),
+            ([ "key":"commands", "value":({"N","Y"}), "desc":"菜单中隐藏命令列表：" ]),
+            ([ "key":"read", "value":({"N","Y"}), "desc":"设为当前信件时自动阅读：" ])
     });
 }
 
@@ -142,13 +135,13 @@ void start_post(string str) {
                     return;
                 case 'f':
                     if(maxi < 2) {
-                        message("mail", "No folder named.", this_player());
+                        message("mail", "没有该文件夹。", this_player());
                         this_object()->eventDestruct();
                         return;
                     }
                     else if(maxi>2 || (!valid_folder(args[1]) &&
                                 args[1] != "new")) {
-                        message("mail", "Illegal folder name.", this_player());
+                        message("mail", "文件夹名无效。", this_player());
                         this_object()->eventDestruct();
                         return;
                     }
@@ -175,11 +168,11 @@ void start_post(string str) {
 }
 
 private void primary_prompt() {
-    message("prompt", "\nCommand: \n", this_player());
+    message("prompt", "\n命令：\n", this_player());
 }
 
 private void secondary_prompt() {
-    message("prompt", sprintf("\nCommand (%s for %s menu): \n",
+    message("prompt", sprintf("\n命令（%s 返回%s菜单）：\n",
                 __CurrentMenu[0..0],  __CurrentMenu),
             this_player());
 }
@@ -208,10 +201,10 @@ varargs protected void indices(int x, string str) {
     }
     __Begin = x;
     __FromMenu = 1;
-    message("mail", "\n%^INITTERM%^Imaginary Intermud Postal Service "
+    message("mail", "\n%^INITTERM%^星际邮政服务 "
             "(IIPS) 3.1     Descartes of Borg 1993, 1994", this_player());
-    message("mail", sprintf("\n%%^CYAN%%^%s", center(sprintf("Folder is %s "
-                        "with %s.\n",__Folder,consolidate(maxi=sizeof(__BoxInfo),"one letter\n")),
+    message("mail", sprintf("\n%%^CYAN%%^%s", center(sprintf("当前文件夹：%s，共 %s",
+                        __Folder,consolidate(maxi=sizeof(__BoxInfo),"封信\n")),
                     __Screen)), this_player());
     if(!maxi) __Current = -1;
     else for(i=x; i<maxi && i < x+__NumLetters; i++)
@@ -232,10 +225,10 @@ varargs protected void aliases(string str) {
         alias_cmd(str);
         return;
     }
-    message("mail", "\n%^INITTERM%^Imaginary Intermud Postal Service "
+    message("mail", "\n%^INITTERM%^星际邮政服务 "
             "(IIPS) 3.1     Descartes of Borg 1993, 1994", this_player());
-    message("mail", sprintf("\n%%^CYAN%%^%s", center(sprintf("%s and "
-                        "Personal Alias Menu", mud_name()))), this_player());
+    message("mail", sprintf("\n%%^CYAN%%^%s", center(sprintf("%s 群组与"
+                        "个人别名菜单", mud_name()))), this_player());
     message("mail", sprintf("\n%s\n",
                 format_page(keys(OPTIONS_D->query_groups(__Owner) +
                         LOCALPOST_D->query_mud_groups()),__Screen/20)),this_player());
@@ -251,9 +244,9 @@ varargs protected void options(string str) {
         option_cmd(str);
         return;
     }
-    message("mail", "\n%^INITTERM%^Imaginary Intermud Postal Service "
+    message("mail", "\n%^INITTERM%^星际邮政服务 "
             "(IIPS) 3.1     Descartes of Borg 1993, 1994", this_player());
-    message("mail", sprintf("\n%%^CYAN%%^%s", center("IIPS 3.1 Options Menu\n",
+    message("mail", sprintf("\n%%^CYAN%%^%s", center("IIPS 3.1 选项菜单\n",
                     __Screen)), this_player());
     maxi = sizeof(__PostalOptions);
     for(i=0; i<maxi; i++) {
@@ -274,9 +267,9 @@ nosave private void help(string arg, string ind) {
         help_cmd(arg, ind);
         return;
     }
-    message("mail", "\n%^INITTERM%^Imaginary Intermud Postal Service "
+    message("mail", "\n%^INITTERM%^星际邮政服务 "
             "(IIPS) 3.1     Descartes of Borg 1993, 1994", this_player());
-    message("mail",sprintf("\n%%^CYAN%%^%s\n",center("IIPS 3.1 Help Menu",
+    message("mail",sprintf("\n%%^CYAN%%^%s\n",center("IIPS 3.1 帮助菜单",
                     __Screen)), this_player());
     help_menu(ind);
 }
@@ -287,13 +280,12 @@ private void index_menu() {
         input_to("index_cmd");
         return;
     }
-    message("mail", "\n"+center("a)lias menu, c)hange folder, d)elete, "
-        "f)orward, h)elp, m)ail,", __Screen), this_player());
-    message("mail", center("n)ext letter, o)ptions menu, p)revious "
-        "letter, q)uit, Q)uit without saving,", __Screen), this_player());
-    message("mail", center("s)ave to folder, S)ave to file, "
-        "u)ndelete", __Screen), this_player());
-    message("mail", center("<return> to read selected letter\n", __Screen),
+    message("mail", "\n"+center("a)别名菜单, c)切换文件夹, d)删除, "
+        "f)转发, h)帮助, m)写信,", __Screen), this_player());
+    message("mail", center("n)下一封, o)选项菜单, p)上一封, q)退出, Q)不保存退出,", __Screen), this_player());
+    message("mail", center("s)保存到文件夹, S)保存到文件, "
+        "u)取消删除", __Screen), this_player());
+    message("mail", center("按<回车>阅读当前信件\n", __Screen),
             this_player());
     primary_prompt();
     input_to("index_cmd");
@@ -305,11 +297,11 @@ private void alias_menu() {
         input_to("alias_cmd");
         return;
     }
-    message("mail", center("d)elete from an alias, e)nter into an alias, "
-        "h)elp, i)ndex menu, ", __Screen), this_player());
-    message("mail", center("l)ist an alias, m)ake an alias, o)ptions menu, "
-        "q)uit, Q)uit without saving, ", __Screen), this_player());
-    message("mail", center("r)emove an alias\n", __Screen),this_player());
+    message("mail", center("d)从别名中删除, e)添加到别名, "
+        "h)帮助, i)索引菜单, ", __Screen), this_player());
+    message("mail", center("l)列出别名, m)创建别名, o)选项菜单, "
+        "q)退出, Q)不保存退出, ", __Screen), this_player());
+    message("mail", center("r)删除别名\n", __Screen),this_player());
     primary_prompt();
     input_to("alias_cmd");
 }
@@ -320,11 +312,10 @@ private void option_menu() {
         input_to("option_cmd");
         return;
     }
-    message("mail", "\n"+center("Enter the number of an option to "
-                "change it.", __Screen), this_player());
-    message("mail", center("a)lias menu, h)elp, i)ndex menu, "
-        "q)uit, Q)uit without saving,", __Screen), this_player());
-    message("mail", center("s)ave option changes\n", __Screen), this_player());
+    message("mail", "\n"+center("输入选项编号进行修改。", __Screen), this_player());
+    message("mail", center("a)别名菜单, h)帮助, i)索引菜单, "
+        "q)退出, Q)不保存退出,", __Screen), this_player());
+    message("mail", center("s)保存选项更改\n", __Screen), this_player());
     primary_prompt();
     input_to("option_cmd");
 }
@@ -332,42 +323,37 @@ private void option_menu() {
 private void help_menu(string ind) {
     int i, maxi;
 
-    message("help", "\n\n\tEnter one of the following to visit "
-            "another menu:", this_player());
-    message("help", center("a)lias menu, i)ndex menu, o)ptions menu",
+    message("help", "\n\n\t输入以下选项进入其他菜单：", this_player());
+    message("help", center("a)别名菜单, i)索引菜单, o)选项菜单",
         __Screen), this_player());
-    message("help", "\n\tOr enter one of the following for detailed help:",
+    message("help", "\n\t或输入以下选项查看详细帮助：",
             this_player());
     switch(ind) {
         case "index":
-            message("help", center("c)hange folder, d)elete, f)orward, "
-                "m)ail letter, n)ext letter,", __Screen), this_player());
-            message("help", center("p)revious letter, q)uit, "
-                "Q)uit without saving, r)eply,", __Screen), this_player());
-            message("help", center("s)ave to folder, S)ave to file,",
+            message("help", center("c)切换文件夹, d)删除, f)转发, "
+                "m)写信, n)下一封,", __Screen), this_player());
+            message("help", center("p)上一封, q)退出, "
+                "Q)不保存退出, r)回复,", __Screen), this_player());
+            message("help", center("s)保存到文件夹, S)保存到文件,",
                 __Screen), this_player());
-            message("help", center("x) help from another menu, y) detailed "
-                "IIPS user manual\n", __Screen), this_player());
+            message("help", center("x)其他菜单帮助, y)IIPS 详细用户手册\n", __Screen), this_player());
             break;
         case "alias":
-            message("help", center("d)elete from an alias, e)nter into "
-                "an alias, m)ake an alias, q)uit,", __Screen), this_player());
-            message("help", center("Q)uit without saving, r)emove "
-                "an alias,", __Screen), this_player());
-            message("help", center("x) help from another menu, y) detailed "
-                "IIPS user manual\n", __Screen), this_player());
+            message("help", center("d)从别名中删除, e)添加到别名, "
+                "m)创建别名, q)退出,", __Screen), this_player());
+            message("help", center("Q)不保存退出, r)删除别名,", __Screen), this_player());
+            message("help", center("x)其他菜单帮助, y)IIPS 详细用户手册\n", __Screen), this_player());
             break;
         case "option":
             for(i=0, maxi = sizeof(__PostalOptions); i<maxi;i++)
                 message("help", center(sprintf("%d) %s", (i+1),
                             __PostalOptions[i]["desc"]), __Screen), this_player());
-            message("help", sprintf("\n%s",center("Also: q)uit, Q)uit without "
-                    "saving, s)ave option changes,", __Screen)), this_player());
-            message("help", center("x) help from another menu, y) detailed "
-                "IIPS user manual\n", __Screen), this_player());
+            message("help", sprintf("\n%s",center("另有：q)退出, Q)不保存退出, "
+                    "s)保存选项更改,", __Screen)), this_player());
+            message("help", center("x)其他菜单帮助, y)IIPS 详细用户手册\n", __Screen), this_player());
             break;
         default:
-            postal_error("Invalid postal menu.");
+            postal_error("无效的邮政菜单。");
             return;
     }
     primary_prompt();
@@ -382,12 +368,12 @@ protected void index_cmd(string str) {
     __CurrentMenu = "index";
     if(__IncomingFlag) {
         __IncomingFlag = 0;
-        postal_error("New mail has arrived!\nCommand Ignored.");
+        postal_error("新邮件已到达！\n命令已忽略。");
         return;
     }
     if(str == "" || !str) {
         if(__Current < 0 || __Current >= sizeof(__BoxInfo)) {
-            postal_error("No current letter set.");
+            postal_error("未设置当前信件。");
             return;
         }
         if(__FromMenu) read_letter(__Current);
@@ -404,7 +390,7 @@ protected void index_cmd(string str) {
                 indices(__Begin);
             }
         }
-        else postal_error("Invalid letter number.");
+        else postal_error("信件编号无效。");
         return;
     }
     if(!sizeof(tmp = explode(str, " "))) cmd = "";
@@ -436,7 +422,7 @@ protected void index_cmd(string str) {
         case "r": reply(args); return;
         case "s": case "S": save_letter(cmd, args); return;
         default:
-                            postal_error("Invalid postal command.");
+                            postal_error("无效的邮政命令。");
                             return;
     }
 }
@@ -447,8 +433,8 @@ protected void alias_cmd(string str) {
 
     __CurrentMenu = "alias";
     if(str == "" || !str) {
-        if(__CommandLine) destruct_box("Invalid alias command.");
-        else postal_error("Invalid alias command.");
+        if(__CommandLine) destruct_box("无效的别名命令。");
+        else postal_error("无效的别名命令。");
         return;
     }
     cmd = (tmp = explode(str, " "))[0][0..0];
@@ -478,7 +464,7 @@ protected void option_cmd(string str) {
 
     __CurrentMenu = "option";
     if(str == "" || !str) {
-        postal_error("Invalid option command.");
+        postal_error("无效的选项命令。");
         return;
     }
     if(sscanf(str, "%d", x) && x) {
@@ -504,7 +490,7 @@ protected void option_cmd(string str) {
 
 protected void help_cmd(string str, string ind) {
     string tmp, file;      if(str == "" || !str) {
-        postal_error("Invalid help command.", "help", ind);
+        postal_error("无效的帮助命令。", "help", ind);
         return;
     }
     switch(str = str[0..0]) {
@@ -513,7 +499,7 @@ protected void help_cmd(string str, string ind) {
         case "o": options(""); return;
         case "q": case "Q": file = "quitting"; break;
     }
-    if(!(tmp = read_file(DIR_POSTAL_HELP+"/"+file))) tmp = "Not found.\n";
+    if(!(tmp = read_file(DIR_POSTAL_HELP+"/"+file))) tmp = "未找到。\n";
     this_player()->eventPage(explode(tmp, "\n"), "help", (: end_help :));
 }
 
@@ -537,8 +523,8 @@ private string postal_time(mixed val) {
 private string header(mapping borg) {
     int x;
 
-    return sprintf("%s from %%^GREEN%%^%s%%^RESET%%^\nTo: %s%s"
-            "Subject: %%^GREEN%%^%s",
+    return sprintf("%%^GREEN%%^%s%%^RESET%%^ 发来\n收件人：%s%s"
+            "主题：%%^GREEN%%^%s",
             (stringp(borg["date"]) ? ((x=to_int(borg["date"])) ? ctime(x) :
                                       borg["date"]) : ctime(borg["date"])), capitalize(borg["from"]),
             wrap(implode(borg["to"], ",  "), __Screen),
@@ -548,19 +534,19 @@ private string header(mapping borg) {
 
 protected void change_folder(string str) {
     if(str == "" || !str) {
-        message("prompt", "Change to which folder? \n", this_player());
+        message("prompt", "切换到哪个文件夹？\n", this_player());
         input_to("get_folder");
         return;
     }
     if(!valid_folder(str)) {
         __FromMenu = 1;
-        postal_error("Invalid folder name.");
+        postal_error("文件夹名无效。");
         return;
     }
     if(!__Options["delete"] || member_array(1, __Delete) == -1)
         next_folder("", str);
     else {
-        message("prompt", "Delete marked letters (default 'y')? \n",
+        message("prompt", "删除标记的信件（默认'y'）？\n",
                 this_player());
         input_to("next_folder", str);
     }
@@ -571,7 +557,7 @@ protected void next_folder(string str, string folder) {
     else str = (lower_case(str)[0..0]);
     if(str == "y") save_box();
     else if(str != "n") {
-        message("prompt", "Invalid command.  Enter 'y' or 'n': \n",this_player());
+        message("prompt", "无效命令。请输入 'y' 或 'n'：\n",this_player());
         input_to("next_folder");
     }
     restore_box(folder);
@@ -581,7 +567,7 @@ protected void next_folder(string str, string folder) {
 protected void get_folder(string str) {
     if(str == "" || !str) {
         __FromMenu = 1;
-        postal_error("Invalid folder name.");
+        postal_error("文件夹名无效。");
         return;
     }
     change_folder(str);
@@ -601,21 +587,21 @@ nosave private void delete_letter(string cmd, string args) {
         from--;
     }
     if(from > to || from < 0 || to >= sizeof(__BoxInfo)) {
-        postal_error("Invalid letter range.");
+        postal_error("信件范围无效。");
         return;
     }
     for(i= from; i < to+1; i++) {
         if(cmd == "u" && !__Delete[i]) {
             __FromMenu = 1;
-            postal_error(sprintf("Letter %d is not marked for deletion!",i+1));
+            postal_error(sprintf("信件 %d 未标记为删除！",i+1));
         }
         else if(cmd == "d" && __Delete[i])
-            postal_error(sprintf("Letter %d is already marked for deletion!",i+1));
+            postal_error(sprintf("信件 %d 已标记为删除！",i+1));
         else if(!__BoxInfo[i]["read"] && cmd == "d" &&
                 !__Options["unread delete"]) {
-            message("mail", sprintf("\n%%^RED%%^Letter %d is still unread!",
+            message("mail", sprintf("\n%%^RED%%^信件 %d 尚未阅读！",
                         i+1), this_player());
-            message("prompt","Delete it anyways (default n): \n",this_player());
+            message("prompt","仍然删除吗（默认 n）：\n",this_player());
             input_to("unread_delete", ({ i+1, to+1 }));
             return;
         }
@@ -642,10 +628,10 @@ nosave private void delete_letter(string cmd, string args) {
                 __Current-(__NumLetters-1));
         return;
     }
-    if(to == from) postal_success(sprintf("Letter %d %s",from+1,
-                (cmd == "d" ? "marked for deletion" : "undeleted")));
-    else postal_error(sprintf("Letters %d through %d %s.",
-                (from+1), (to+1), (cmd == "d" ? "marked for deletion" : "undeleted")));
+    if(to == from) postal_success(sprintf("信件 %d %s",from+1,
+                (cmd == "d" ? "已标记为删除" : "已取消删除")));
+    else postal_error(sprintf("信件 %d 至 %d %s。",
+                (from+1), (to+1), (cmd == "d" ? "已标记为删除" : "已取消删除")));
 }
 
 protected void unread_delete(string str, int *milk) {
@@ -665,7 +651,7 @@ private void quit_box(string cmd) {
     int i;
 
     if(__Options["quit"]) {
-        message("prompt", "Do you really wish to quit (default 'n')? \n",
+        message("prompt", "你真的想退出吗（默认'n'）？\n",
                 this_player());
         input_to("confirm_quit", cmd);
         return;
@@ -677,27 +663,27 @@ private void really_quit(string cmd) {
     int i;
 
     if(cmd == "Q") {
-        message("mail", "\nExiting from IIPS without saving deletions.\n",
+        message("mail", "\n正在退出 IIPS，不保存删除操作。\n",
                 this_player());
         this_object()->eventDestruct();
         return;
     }
     if(!__Options["delete"]) {
         save_box();
-        message("mail", "\nExiting from IIPS.\n", this_player());
+        message("mail", "\n正在退出 IIPS。\n", this_player());
         this_object()->eventDestruct();
         return;
     }
     i = sizeof(__Delete);
     while(i--) {
         if(__Delete[i]) {
-            message("prompt", "Delete marked letters (default 'y')? \n",
+            message("prompt", "删除标记的信件（默认'y'）？\n",
                     this_player());
             input_to("confirm_delete");
             return;
         }
     }
-    message("mail", "\nExiting from IIPS.\n",
+    message("mail", "\n正在退出 IIPS。\n",
             this_player());
     this_object()->eventDestruct();
 }
@@ -714,7 +700,7 @@ protected void confirm_quit(string str, string cmd) {
                 __Current - (__Lines-1));
         return;
     }
-    message("prompt", "Answer 'y' or 'n': \n", this_player());
+    message("prompt", "请输入 'y' 或 'n'：\n", this_player());
     input_to("confirm_quit", cmd);
 }
 
@@ -723,17 +709,17 @@ protected void confirm_delete(string str) {
     else str = lower_case(str)[0..0];
     if(str == "y") {
         save_box();
-        message("mail", "\nExiting from IIPS.\n", this_player());
+        message("mail", "\n正在退出 IIPS。\n", this_player());
         this_object()->eventDestruct();
         return;
     }
     else if(str == "n") {
-        message("mail", "\nMarked letters will remain undeleted.\n"
-                "Exiting from IIPS.\n", this_player());
+        message("mail", "\n标记的信件将保留不删除。\n"
+                "正在退出 IIPS。\n", this_player());
         this_object()->eventDestruct();
         return;
     }
-    message("prompt", "Answer 'y' or 'n': \n", this_player());
+    message("prompt", "请输入 'y' 或 'n'：\n", this_player());
     input_to("confirm_delete");
 }
 
@@ -760,8 +746,8 @@ nosave private void save_letter(string cmd, string args) {
     if(!letter) letter = __Current;
     else letter--;
     if(!folder) {
-        if(cmd == "S") message("prompt","Save to which file? \n",this_player());
-        else message("prompt", sprintf("Save to which folder (default %s)? \n",
+        if(cmd == "S") message("prompt","保存到哪个文件？\n",this_player());
+        else message("prompt", sprintf("保存到哪个文件夹（默认 %s）？\n",
                     sprintf("=%s", convert_name(__BoxInfo[letter]["from"]))),
                 this_player());
         input_to("get_save_location", ({ letter, cmd }));
@@ -769,11 +755,11 @@ nosave private void save_letter(string cmd, string args) {
     }
     if(cmd == "s") {
         if(!valid_folder(folder)) {
-            postal_error("Invalid folder name.");
+            postal_error("文件夹名无效。");
             return;
         }
         FOLDERS_D->add_post(__Owner, folder, __BoxInfo[letter]);
-        message("mail", "\nLetter saved.\n", this_player());
+        message("mail", "\n信件已保存。\n", this_player());
         set_current(letter);
         __Delete[__Current] = 1;
     }
@@ -781,12 +767,12 @@ nosave private void save_letter(string cmd, string args) {
         folder = absolute_path(this_player()->get_path(), folder);
         if(!creatorp(this_player()) ||
                 !(master()->valid_write(folder, this_player()))) {
-            postal_error("Access denied.");
+            postal_error("访问被拒绝。");
             return;
         }
         write_file(folder,
                 LETTERS_D->query_letter(__BoxInfo[letter]["id"]));
-        message("mail", sprintf("Letter saved to %s.\n", folder),
+        message("mail", sprintf("信件已保存到 %s。\n", folder),
                 this_player());
         set_current(letter);
         __Delete[__Current] = 1;
@@ -807,7 +793,7 @@ protected void get_save_location(string str, mixed *vals) {
         if(vals[1] == "s")
             str = sprintf("=%s", convert_name(__BoxInfo[vals[0]]["from"]));
         else {
-            postal_error("Invalid file name.");
+            postal_error("文件名无效。");
             return;
         }
     }
@@ -818,8 +804,8 @@ private void read_letter(int x) {
     string tmp;
 
     if(__Options["content"])
-        message("Nmail", sprintf("\n%%^INITTERM%%^Letter %d%s\n", (x+1),
-                    (__Delete[x] ? " [DELETED]:" : ":")), this_player());
+        message("Nmail", sprintf("\n%%^INITTERM%%^信件 %d%s\n", (x+1),
+                    (__Delete[x] ? " [已删除]:" : ":")), this_player());
     else message("Nmail", "\n%^INITTERM%^\n", this_player());
     if(__Options["content"]) tmp = header(__BoxInfo[x])+"\n";
     else tmp = "";
@@ -840,31 +826,31 @@ nosave private void alias_members(string cmd, string args) {
     string grp;
 
     if(args == "" || !args) {
-        message("prompt", sprintf("%s which alias? \n",
-                    (cmd == "e" ? "Enter into" : "Delete from")), this_player());
+        message("prompt", sprintf("%s哪个别名？\n",
+                    (cmd == "e" ? "添加到" : "从")), this_player());
         input_to("get_alias", cmd);
         return;
     }
     if(sizeof(members = explode(args, " ")) == 1) {
-        message("prompt", sprintf("%s which members? \n",
-                    (cmd == "e" ? "Enter" : "Delete")), this_player());
+        message("prompt", sprintf("%s哪些成员？\n",
+                    (cmd == "e" ? "添加" : "删除")), this_player());
         input_to("get_members", ({ cmd, args }));
         return;
     }
     if(!sizeof(members -= ({ grp =  members[0] }))) {
-        if(__CommandLine) destruct_box("Invalid alias member.");
-        else postal_error("Invalid alias member.");
+        if(__CommandLine) destruct_box("别名成员无效。");
+        else postal_error("别名成员无效。");
         return;
     }
     if(user_exists(grp = lower_case(grp)) ||
             LOCALPOST_D->query_mud_group(grp)) {
-        if(__CommandLine) destruct_box("Invalid alias.");
-        else postal_error("Invalid alias.");
+        if(__CommandLine) destruct_box("别名无效。");
+        else postal_error("别名无效。");
         return;
     }
     if(!(old_members = OPTIONS_D->query_group(__Owner, grp))) {
-        if(__CommandLine) destruct_box("No such alias.");
-        else postal_error(sprintf("No such alias %s.", grp));
+        if(__CommandLine) destruct_box("没有该别名。");
+        else postal_error(sprintf("没有名为 %s 的别名。", grp));
         return;
     }
     if(cmd == "e") members = distinct_array(members + old_members);
@@ -872,11 +858,11 @@ nosave private void alias_members(string cmd, string args) {
     OPTIONS_D->set_group(__Owner, grp, members);
     if(cmd == "d") {
         if(!members)
-            message("mail", "\n%^GREEN%^All members deleted.\n", this_player());
-        else message("mail", "\n%^GREEN%^Members deleted from alias.\n",
+            message("mail", "\n%^GREEN%^所有成员已删除。\n", this_player());
+        else message("mail", "\n%^GREEN%^成员已从别名中删除。\n",
                 this_player());
     }
-    else message("mail", "\n%^GREEN%^Members entered into alias.\n",
+    else message("mail", "\n%^GREEN%^成员已添加到别名中。\n",
             this_player());
     if(__CommandLine) this_object()->eventDestruct();
     else {
@@ -887,8 +873,8 @@ nosave private void alias_members(string cmd, string args) {
 
 protected void get_alias(string str, string cmd) {
     if(str == "" || !str) {
-        if(__CommandLine) destruct_box("Invalid alias name.");
-        else postal_error("Invalid alias name.");
+        if(__CommandLine) destruct_box("别名名无效。");
+        else postal_error("别名名无效。");
         return;
     }
     alias_members(cmd, str);
@@ -896,8 +882,8 @@ protected void get_alias(string str, string cmd) {
 
 protected void get_members(string str, string *args) {
     if(str == "" || !str) {
-        if(__CommandLine) destruct_box("Invalid alias members.");
-        else postal_error("Invalid alias members.");
+        if(__CommandLine) destruct_box("别名成员无效。");
+        else postal_error("别名成员无效。");
         return;
     }
     alias_members(args[0], sprintf("%s %s", args[1], str));
@@ -907,46 +893,46 @@ nosave private void alias_creation(string cmd, string args) {
     string *members;
 
     if(args == "" || !args) {
-        message("prompt", sprintf("Name of alias to %s: \n",
-                    (cmd == "m" ? "make" : "remove")), this_player());
+        message("prompt", sprintf("要%s的别名名称：\n",
+                    (cmd == "m" ? "创建" : "删除")), this_player());
         input_to("get_alias_name", cmd);
         return;
     }
     if(cmd == "m" && sizeof(members=explode(args=lower_case(args)," ")) == 1) {
-        message("prompt", "Enter members for the alias: \n", this_player());
+        message("prompt", "输入别名成员：\n", this_player());
         input_to("get_new_alias_members", ({ cmd, args }));
         return;
     }
     else if(cmd == "m") members = members - ({ args = members[0] });
     else members = 0;
     if(cmd == "m" && (user_exists(args) || LOCALPOST_D->query_mud_group(args))) {
-        if(__CommandLine) destruct_box("Invalid alias name.");
-        else postal_error("Invalid alias name.");
+        if(__CommandLine) destruct_box("别名名无效。");
+        else postal_error("别名名无效。");
         return;
     }
     if(!(OPTIONS_D->query_group(__Owner, args))) {
         if(cmd == "r") {
-            if(__CommandLine) destruct_box("No such alias to remove.");
-            else postal_error("No such alias to remove.");
+            if(__CommandLine) destruct_box("没有该别名可删除。");
+            else postal_error("没有该别名可删除。");
             return;
         }
     }
     else if(cmd == "m") {
-        if(__CommandLine) destruct_box("Alias already exists.");
-        else postal_error("That alias already exists.");
+        if(__CommandLine) destruct_box("该别名已存在。");
+        else postal_error("该别名已存在。");
         return;
     }
     OPTIONS_D->set_group(__Owner, args, members);
     if(__CommandLine)
-        destruct_box(sprintf("Alias %s.", (cmd == "m" ? "made" : "removed")));
+        destruct_box(sprintf("别名已%s。", (cmd == "m" ? "创建" : "删除")));
     else
-        postal_success(sprintf("Alias %s.", (cmd == "m" ? "made" : "removed")));
+        postal_success(sprintf("别名已%s。", (cmd == "m" ? "创建" : "删除")));
 }
 
 protected void get_alias_name(string str, string cmd) {
     if(str == "" || !str) {
-        if(__CommandLine) destruct_box("Invalid alias name.");
-        else postal_error("Invalid alias name.");
+        if(__CommandLine) destruct_box("别名名无效。");
+        else postal_error("别名名无效。");
         return;
     }
     alias_creation(cmd, lower_case(str));
@@ -954,8 +940,8 @@ protected void get_alias_name(string str, string cmd) {
 
 protected void get_new_alias_members(string str, string *args) {
     if(str == "" || !str) {
-        if(__CommandLine) destruct_box("Invalid alias members.");
-        else postal_error("Invalid alias members.");
+        if(__CommandLine) destruct_box("别名成员无效。");
+        else postal_error("别名成员无效。");
         return;
     }
     alias_creation(args[0], sprintf("%s %s", args[1], lower_case(str)));
@@ -965,19 +951,19 @@ private void list_alias(string str) {
     string *who;
 
     if(str == "" || !str) {
-        if(__CommandLine) destruct_box("Invalid alias name.");
-        else postal_error("Invalid alias name.");
+        if(__CommandLine) destruct_box("别名名无效。");
+        else postal_error("别名名无效。");
         return;
     }
     if(!(who = LOCALPOST_D->query_mud_group(str=lower_case(str)))) {
         who = OPTIONS_D->query_group(__Owner, str);
     }
     if(!who) {
-        if(__CommandLine) destruct_box("No such alias exists.");
-        else postal_error("No such alias exists.");
+        if(__CommandLine) destruct_box("该别名不存在。");
+        else postal_error("该别名不存在。");
         return;
     }
-    message("mail", "\n%^INITTERM%^"+center(sprintf("Alias: %s", str),
+    message("mail", "\n%^INITTERM%^"+center(sprintf("别名：%s", str),
                 __Screen), this_player());
     message("mail", "\n\n"+implode(who, ",   "), this_player());
     if(__CommandLine) this_object()->eventDestruct();
@@ -992,14 +978,14 @@ private void save_options() {
     int i;
 
     if(!__ChangedOptions) {
-        postal_error("No options have changed.");
+        postal_error("没有更改任何选项。");
         return;
     }
     i = sizeof(cles = keys(__ChangedOptions));
     while(i--)
         OPTIONS_D->set_option(__Owner, cles[i], __ChangedOptions[cles[i]]);
     __Options = OPTIONS_D->query_options(__Owner);
-    postal_success("New options now saved.");
+    postal_success("选项已保存。");
 }
 
 private void change_option(int x) {
@@ -1010,7 +996,7 @@ private void change_option(int x) {
             this_player());
     }
     else message("mail", __PostalOptions[x]["desc"], this_player());
-    message("prompt", "Enter in a proper value: \n", this_player());
+    message("prompt", "请输入有效的值：\n", this_player());
     input_to("really_change_option", 0, x);
 }
 
@@ -1020,13 +1006,13 @@ protected void really_change_option(string str, int x) {
     if(!__ChangedOptions) __ChangedOptions = ([]);
     if(pointerp(__PostalOptions[x]["value"])) {
         if((y=to_int(str)) != 0 && y != 1) {
-            postal_error("Invalid value.  No option has changed.");
+            postal_error("值无效。选项未更改。");
             return;
         }
         __ChangedOptions[__PostalOptions[x]["key"]] = y;
     }
     else __ChangedOptions[__PostalOptions[x]["key"]] = (str == "" ? 0 : str);
-    postal_success("You must remember to save for this option to take effect.");
+    postal_success("请记得保存后选项才会生效。");
 }
 
 private void reply(string str) {
@@ -1035,14 +1021,14 @@ private void reply(string str) {
     if(str == "" || !str) x = __Current;
     else x = to_int(str)-1;
     if(x < 0 || x >= sizeof(__BoxInfo)) {
-        postal_error("Invalid letter number for reply.");
+        postal_error("信件编号无效，无法回复。");
         return;
     }
     set_current(x);
     __TmpPost = ([ "date":time(), "from": this_player()->GetKeyName()]);
     if((__TmpPost["subject"] = __BoxInfo[x]["subject"])[0..2] != "Re:")
         __TmpPost["subject"] = sprintf("Re: %s", __TmpPost["subject"]);
-    message("prompt", "Include original text (default 'n'): \n", this_player());
+    message("prompt", "包含原文吗（默认'n'）？\n", this_player());
     input_to("get_reply_confirm");
 }
 
@@ -1051,14 +1037,13 @@ protected void get_reply_confirm(string str) {
     else str = lower_case(str)[0..0];
     if(str == "y") __FwdRply = ({ "r", query_reply_text() });
     else if(str != "n") {
-        message("prompt", "Answer 'y' or 'n': \n", this_player());
+        message("prompt", "请输入 'y' 或 'n'：\n", this_player());
         input_to("get_reply_confirm");
         return;
     }
     else __FwdRply = 0;
-    message("mail", sprintf("\n%s", center("Reply to: a)ll, c)c list and "
-            "sender, s)ender only, t)o list and sender",__Screen)), this_player());
-    message("prompt", "\nEnter choice (default 's'): \n", this_player());
+    message("mail", sprintf("\n%s", center("回复给：a)全部, c)抄送列表和发件人, s)仅发件人, t)收件列表和发件人",__Screen)), this_player());
+    message("prompt", "\n请选择（默认's'）：\n", this_player());
     input_to("get_reply_list");
 }
 
@@ -1080,13 +1065,13 @@ protected void get_reply_list(string str) {
                   __TmpPost["cc"] = ({});
                   break;
         default:
-                  message("prompt","Invalid choice.  Choose again: \n", this_player());
+                  message("prompt","选择无效。请重新选择：\n", this_player());
                   input_to("get_reply_list");
                   return;
     }
     if(!__Options["askcc"]) get_cc("");
     else {
-        message("prompt", "Copies to: \n", this_player());
+        message("prompt", "抄送至：\n", this_player());
         input_to("get_cc");
     }
 }
@@ -1103,7 +1088,7 @@ nosave private void forward_letter(string str, int flag) {
     int i, x;
 
     if(str == "" || !str) {
-        message("prompt", "To: \n", this_player());
+        message("prompt", "收件人：\n", this_player());
         input_to("get_forward_list");
         return;
     }
@@ -1125,7 +1110,7 @@ nosave private void forward_letter(string str, int flag) {
             else args = args[0..(i-1)] + args[(i+1)..];
         }
         if(x < 0 || x > sizeof(__BoxInfo)) {
-            postal_error("Letter number is out of range.");
+            postal_error("信件编号超出范围。");
             return;
         }
         if(!sizeof(args)) {
@@ -1139,14 +1124,14 @@ nosave private void forward_letter(string str, int flag) {
             "(fwd)") __TmpPost["subject"] = sprintf("(fwd) %s",__TmpPost["subject"]);
     __TmpPost["from"] = this_player()->GetKeyName();
     __TmpPost["date"] = time();
-    message("prompt", "Comment on original letter (default 'n')? \n",
+    message("prompt", "对原信添加注释吗（默认'n'）？\n",
             this_player());
     input_to("confirm_comments");
 }
 
 protected void get_forward_list(string str) {
     if(str == "" || !str) {
-        message("prompt","Invalid recipients.  Abort forward (default 'y')? \n",
+        message("prompt","收件人无效。中止转发（默认'y'）？\n",
                 this_player());
         input_to("confirm_forward_abort");
         return;
@@ -1163,13 +1148,13 @@ protected void confirm_comments(string str) {
         __TmpPost["message"] = query_forward_text();
     }
     else {
-        message("prompt", "Answer 'y' or 'n': \n", this_player());
+        message("prompt", "请输入 'y' 或 'n'：\n", this_player());
         input_to("confirm_comments");
         return;
     }
     if(!__Options["askcc"]) get_cc("");
     else {
-        message("prompt", "Copies to: \n", this_player());
+        message("prompt", "抄送至：\n", this_player());
         input_to("get_cc");
     }
 }
@@ -1179,25 +1164,25 @@ private string query_forward_text() {
 
     tmp = LETTERS_D->query_letter(__BoxInfo[__Current]["id"]);
     tmp = ">"+replace_string(tmp, "\n", "\n>");
-    return sprintf("Original letter sent by %s %s:\n%s\n%s\n",
+    return sprintf("原信由 %s 于 %s 发送：\n%s\n%s\n",
             capitalize(__BoxInfo[__Current]["from"]),
             postal_time(__BoxInfo[__Current]["date"]),
-            center("---  ---    Begin Forwarded Text    ---  ---"), tmp);
+            center("---  ---    转发内容开始    ---  ---"), tmp);
 }
 
 protected void confirm_forward_abort(string str) {
     if(str == "" || !str) str = "y";
     else str = lower_case(str)[0..0];
     if(str == "y") {
-        postal_error("Forward aborted.");
+        postal_error("转发已中止。");
         return;
     }
     else if(str != "n") {
-        message("prompt", "Answer 'y' or 'n': \n", this_player());
+        message("prompt", "请输入 'y' 或 'n'：\n", this_player());
         input_to("confirm_forward_abort");
         return;
     }
-    message("prompt", "To: \n", this_player());
+    message("prompt", "收件人：\n", this_player());
     input_to("get_forward_list");
 }
 
@@ -1206,7 +1191,7 @@ private void send_letter(string *args) {
     int j, i, maxi, x;
 
     if(!args || !sizeof(args)) {
-        message("prompt", "To: \n", this_player());
+        message("prompt", "收件人：\n", this_player());
         input_to("get_to");
         return;
     }
@@ -1246,7 +1231,7 @@ private void send_letter(string *args) {
                                   return;
                               }
                               __TmpPost = ([]);
-                              postal_error("Access denied.");
+                              postal_error("访问被拒绝。");
                               return;
                           }
                           if(!file_exists(tmp)) {
@@ -1255,11 +1240,11 @@ private void send_letter(string *args) {
                                   return;
                               }
                               __TmpPost = ([]);
-                              postal_error(sprintf("File %s does not exist.",tmp));
+                              postal_error(sprintf("文件 %s 不存在。",tmp));
                               return;
                           }
                           if(!(__TmpPost["message"] = read_file(tmp)))
-                              __TmpPost["message"] = "EMPTY FILE";
+                              __TmpPost["message"] = "空文件";
                           break;
             }
             flag = 0;
@@ -1276,19 +1261,19 @@ private void send_letter(string *args) {
         }
     }
     if(!__TmpPost["to"]) {
-        message("prompt", "To: \n", this_player());
+        message("prompt", "收件人：\n", this_player());
         input_to("get_to");
         return;
     }
     if(!__TmpPost["subject"]) {
-        message("prompt", "Subject:\n ", this_player());
+        message("prompt", "主题：\n ", this_player());
         input_to("get_subject");
         return;
     }
-    else message("mail", sprintf("Subject: %s", __TmpPost["subject"]),
+    else message("mail", sprintf("主题：%s", __TmpPost["subject"]),
             this_player());
     if(!__TmpPost["cc"] && __Options["askcc"]) {
-        message("prompt", "Copies to: \n", this_player());
+        message("prompt", "抄送至：\n", this_player());
         input_to("get_cc");
         return;
     }
@@ -1307,7 +1292,7 @@ protected void get_to(string str) {
             this_object()->eventDestruct();
             return;
         }
-        postal_error("No recipients given.  Mail aborted.");
+        postal_error("未指定收件人。邮件已中止。");
         return;
     }
     send_letter(explode(str, ","));
@@ -1317,14 +1302,14 @@ protected void get_subject(string str) {
     string tmp;
 
     if(str == "" || !str) {
-        message("prompt", "No subject given.  Continue (default 'n')? \n",
+        message("prompt", "未填写主题。继续吗（默认'n'）？\n",
                 this_player());
         input_to("confirm_subject");
         return;
     }
     __TmpPost["subject"] = str;
     if(!__TmpPost["cc"] && __Options["askcc"]) {
-        message("prompt", "Copies to: \n", this_player());
+        message("prompt", "抄送至：\n", this_player());
         input_to("get_cc");
         return;
     }
@@ -1346,12 +1331,12 @@ protected void confirm_subject(string str) {
             return;
         }
         __TmpPost = ([]);
-        postal_error("Mail aborted.");
+        postal_error("邮件已中止。");
         return;
     }
-    else if(str == "y") get_subject("[No Subject]");
+    else if(str == "y") get_subject("[无主题]");
     else {
-        message("prompt", "Answer 'y' or 'n': \n", this_player());
+        message("prompt", "请输入 'y' 或 'n'：\n", this_player());
         input_to("confirm_subject");
         return;
     }
@@ -1386,7 +1371,7 @@ void complete_send() {
     string str;
 
     if( !(str = read_file(tmpmail())))
-        str = "No message.";
+        str = "无内容。";
     if(__FwdRply && __FwdRply[0] == "f")
         str = sprintf("%s\n%s\n%s", str, __FwdRply[1], query_signature());
     else str = sprintf("%s%s", str, query_signature());
@@ -1410,8 +1395,8 @@ private string query_signature() {
 }
 
 private void confirm_send() {
-    message("mail", center("e)dit, f)orget, s)end", __Screen), this_player());
-    message("prompt", "\nCommand (default 's'): \n", this_player());
+    message("mail", center("e)编辑, f)放弃, s)发送", __Screen), this_player());
+    message("prompt", "\n命令（默认's'）：\n", this_player());
     input_to("handle_send_choice");
 }
 
@@ -1426,7 +1411,7 @@ protected void handle_send_choice(string str) {
             break;
         case "f":
             __TmpPost = ([]);
-            postal_error("Mail aborted!");
+            postal_error("邮件已中止！");
             break;
         case "e":
             if(file_exists(tmp)) rm(tmp);
@@ -1435,7 +1420,7 @@ protected void handle_send_choice(string str) {
             this_player()->eventEdit(tmp, (: complete_send :));
             break;
         default:
-            message("prompt", "Invalid command.  Command: \n", this_player());
+            message("prompt", "无效命令。命令：\n", this_player());
             input_to("handle_send_choice");
             break;
     }
@@ -1446,9 +1431,9 @@ private void notify_send(string *failures) {
     string tmp;
 
     if(!sizeof(failures))
-        message("mail", "\n\t%^GREEN%^Mail successfully sent!", this_player());
+        message("mail", "\n\t%^GREEN%^邮件发送成功！", this_player());
     else {
-        message("mail", sprintf("\nFailed to send to: %s",
+        message("mail", sprintf("\n发送失败，无法送达：%s",
                     implode(failures, ",  ")), this_player());
         if(creatorp(this_player())) {
             write_file(tmp=homedir()+"/tmp/dead.letter",
@@ -1456,11 +1441,11 @@ private void notify_send(string *failures) {
         }
         else write_file(tmp = sprintf("%s/%s.letter", homedir()+"/tmp",
                     this_player()->GetKeyName()), __TmpPost["message"]);
-        message("mail", sprintf("A copy of the letter was saved to %s", tmp),
+        message("mail", sprintf("信件副本已保存到 %s", tmp),
                 this_player());
     }
     if(sizeof(arr=distinct_array(__TmpPost["to"]+__TmpPost["cc"])-failures))
-        message("mail", sprintf("Mail sent to: %s", implode(arr,",  ")),
+        message("mail", sprintf("邮件已发送至：%s", implode(arr,",  ")),
                 this_player());
     if(__CommandLine) {
         this_object()->eventDestruct();

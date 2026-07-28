@@ -4,8 +4,8 @@
 inherit LIB_FISHING;
 
 varargs string readSign() {
-    string ret = "WARNING! Orcs, dwarves, and some other races cannot "+
-        "swim! If you jump into the sea you will sink and drown!";
+    string ret = "警告！兽人、矮人和其他一些种族不会游泳！"+
+        "如果你跳进海里，你会沉下去淹死的！";
     return ret;
 }
 
@@ -41,10 +41,10 @@ protected void create() {
                 "/domains/town/meals/herring" : 20,
                 ]) );
     SetActionsMap( ([ 
-                "A soft breeze cools your brow." : 5,
-                "You briefly hear seagulls far in the distance." : 7,
-                "A cool breeze flows in from the east, " +
-                "bringing with it the bracing salty smells of the sea.": 2,
+                "一阵微风拂过，带来凉爽。" : 5,
+                "你短暂地听到了远处海鸥的叫声。" : 7,
+                "一阵凉爽的微风从东方吹来，" +
+                "带来了大海清新的咸味。": 2,
                 ]) );
     SetInventory( ([
                 "/domains/town/obj/seawater" : 1,

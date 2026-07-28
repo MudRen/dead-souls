@@ -30,7 +30,7 @@ int cmd(string str) {
     }
     if(str[strlen(str)-1] != '/') str += "/";
     str += CHANGELOG;
-    message("system", "Logging changes to "+str+"...", this_player());
+    message("system", "正在记录变更到 "+str+"...", this_player());
     this_player()->eventEdit(TMP_FILE, (: post_change, ({ file, str }) :));
     return 1;
 }

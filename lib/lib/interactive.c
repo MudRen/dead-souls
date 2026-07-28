@@ -277,7 +277,7 @@ int cmdQuit(){
             (master()->valid_apply( ({ GetKeyName() }) )) ) return 0;
     if( env->GetProperty("no quit") &&
             ! sizeof(previous_object(-1)) ){
-        message("system", "You are unable to escape this reality!",
+        message("system", "你无法逃离这个现实！",
                 this_object());
         return 0;
     }
@@ -632,7 +632,7 @@ protected string process_input(string str){
     }
     if(GetProperty("afk") && strsrch(str, "afk")){
         SetProperty("afk", 0);
-        tell_player(this_object(), "You are back from being afk.");
+        tell_player(this_object(), "你回来了。");
         INSTANCES_D->SendWhoUpdate(GetKeyName());
     }
     return interface::process_input(str);

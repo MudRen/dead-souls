@@ -169,8 +169,8 @@ private void InputName(string namen, string kill_me) {
     }
 
     if(!CheckIp()){
-        receive("\nToo many users from your site are currently logged on.\n");
-        receive("Please try again later.\n");
+        receive("\n来自你站点的用户登录太多了。\n");
+        receive("请稍后再试。\n");
         flush_messages();
         Destruct();
         return;
@@ -233,15 +233,15 @@ private void InputName(string namen, string kill_me) {
         return;
     }
     if( !(BANISH_D->eventConnect(Name, client_ip)) ) {
-        news = read_file(NEWS_BANISHED) || "You are not allowed here.\n";
+        news = read_file(NEWS_BANISHED) || "你不被允许进入。\n";
         receive("\n" + news + "\n");
         Destruct();
         return;
     }
     if( (tmp = CHARACTER_D->eventConnect(Name)) != 1 ) {
         if( tmp ) receive(tmp + "\n");
-        else receive("One of your characters was recently logged in.\n"
-                "You must wait a little longer before logging in.\n");
+        else receive("你的一个角色最近登录过。\n"
+                "你需要再等一会儿才能登录。\n");
         Destruct();
         return;
     }
@@ -249,7 +249,7 @@ private void InputName(string namen, string kill_me) {
     if( find_player(Name) ) NetDead = 1;
 
     if(Name != "guest"){
-        receive("Password: ");
+        receive("密码：");
         input_to((: InputPassword :), I_NOECHO | I_NOESC, name);
     }
     else InputPassword("guest","Guest");
@@ -286,7 +286,7 @@ private void InputPassword(string pass, string cap) {
                 Destruct();
                 return;
             }
-            receive("Password: ");
+            receive("密码：");
             input_to( (: InputPassword :), I_NOECHO | I_NOESC, cap);
             return;
         }
@@ -352,48 +352,48 @@ private void eventCreatePlayer(string cap) {
         Destruct();
         return;
     }
-    receive("Do you really wish to be known as " + cap + "? (y/n) \n");
+    receive("你真的希望以" + cap + "的名字闻名于世吗？(y/n)\n");
     input_to((: ConfirmName :), I_NOESC, cap);
 }
 
 private BlindCheck(string ans, string cap){
     if( !ans || ans == "" || lower_case(ans)[0..0] == "y" ) {
-        receive("\nOk, disabling default overhead map.\n");
+        receive("\n好的，已禁用默认头顶地图。\n");
         blindmode = 1;
     }
-    else receive("\Ok, allowing default overhead map behavior.\n");
+    else receive("\n好的，已启用默认头顶地图。\n");
     log_file("new_players", Name + " (" + ctime(time()) + ")\n");
-    receive("\nCreate a password of at least 5 letters: \n");
+    receive("\n创建一个至少5个字符的密码：\n");
     input_to((: CreatePassword :), I_NOECHO | I_NOESC, cap);
 }
 
 private void AgeCheck(string ans, string cap) {
     if( !ans || ans == "" || lower_case(ans)[0..0] != "y" ) {
-        receive("\nSorry. You are not old enough to play here.\n");
+        receive("\n抱歉。你的年龄不够在这里玩。\n");
         Destruct();
         return;
     }
     log_file("new_players", Name + " (" + ctime(time()) + ")\n");
     unguarded( (: log_file("/secure/log/new_players", Name + " from "
       + client_ip + extra + " (" + ctime(time()) + ")\n") :) );
-    receive("\nDo you use a screen reader for the visually impaired? (y/n)\n");
+    receive("\n你是否使用视障屏幕阅读器？(y/n)\n");
     input_to((: BlindCheck :), I_NOESC, cap);
 }
 
 private void ConfirmName(string ans, string cap) {
     if( !ans || ans == "" || lower_case(ans)[0..0] != "y" ) {
-        receive("\nOk, then enter the name you really want: \n");
+        receive("\n好的，请输入你真正想要的名字：\n");
         input_to( (: InputName :), I_NOESC );
         return;
     }
-    receive("\nAre you 13 years of age or older? (y/n) \n");
+    receive("\n你是否年满13岁？(y/n)\n");
     input_to((: AgeCheck :), I_NOESC, cap);
 }
 
 private void eventReEnterGame(string cap) {
     if( interactive(Player) ) {
-        receive("\nAn interactive copy of you currently exists.\n");
-        receive("Do you wish to take over this copy? (y/n) \n");
+        receive("\n你的一个交互副本当前存在。\n");
+        receive("你想接管这个副本吗？(y/n)\n");
         input_to((: ConfirmReconnect :), I_NOESC, cap);
         return;
     }
@@ -511,12 +511,12 @@ private private void eventEnterGame() {
 
 private void CreatePassword(string pass, string cap) {
     if( strlen(pass) < 3) {
-        receive("\nYour password must be at least 5 letters in length.\n");
-        receive("Please choose another password: ");
+        receive("\n你的密码长度必须至少5个字符。\n");
+        receive("请选择另一个密码：");
         input_to( (: CreatePassword :), I_NOECHO | I_NOESC, cap);
         return;
     }
-    receive("\nPlease confirm your password: ");
+    receive("\n请确认你的密码：");
     input_to( (: ConfirmPassword :), I_NOECHO | I_NOESC, cap, pass);
 }
 
@@ -525,11 +525,11 @@ private void ConfirmPassword(string control, string cap, string pass) {
         Player = master()->player_object(Name);
         pass = crypt(pass, 0);
         Passwort = pass;
-        receive("\n\nPlease choose an interesting gender (male, female, neutral, or none): \n");
+        receive("\n请选择一个性别（male/female/neutral/none）：\n");
         input_to((: InputGender :), I_NOESC, cap);
         return;
     }
-    receive("\nPassword entries do not match, re-choose password: ");
+    receive("\n两次密码输入不一致，请重新选择密码：");
     input_to((: CreatePassword :), I_NOECHO | I_NOESC, cap);
     return;
 }
@@ -537,17 +537,16 @@ private void ConfirmPassword(string control, string cap, string pass) {
 private void InputGender(string str, string cap) {
     if( str != "male" && str != "female"
             && str != "neuter" && str != "neutral" && str != "none") {
-        receive("\nCute, but pretend to be male, female, neutral, or none instead.\n");
-        receive("Gender: ");
+        receive("\n有趣，但请选择 male、female、neutral 或 none。\n");
+        receive("性别：");
         input_to((: InputGender :), I_NOESC, cap);
         return;
     }
     if(str == "none") str = "neuter";
     Gendre = str;
     if(CUSTOM_FORMAT){
-        receive("\nYou may format " + cap + " to appear however you wish "
-                "using spaces, ', or -.\nEnter a display name "
-                "(default: " + cap +"): \n");
+        receive("\n你可以使用空格、' 或 - 来自定义" + cap + "的显示名称。"
+                "请输入显示名称（默认：" + cap + "）：\n");
         input_to((: InputCapName :), I_NOESC, cap);
     }
     else {
@@ -558,15 +557,15 @@ private void InputGender(string str, string cap) {
 private void InputCapName(string name, string cap) {
     if( !name || name == "" ) name = cap;
     if( !(BANISH_D->valid_cap_name(name, Name)) ) {
-        receive("\nThat was not a valid name format, choose again: \n");
+        receive("\n名字格式无效，请重新选择：\n");
         input_to((: InputCapName :), I_NOESC, cap);
         return;
     }
     cap = capitalize(name);
     CapNamen = cap;
-    receive("\nFor security reasons, " + mud_name() + " requires a valid "
-            "email.\n"
-            "Email: \n");
+    receive("\n出于安全原因，" + mud_name() + "需要一个有效的"
+            "邮件地址。\n"
+            "邮件地址：\n");
     input_to((: InputEmail :), I_NOESC);
 }
 
@@ -574,15 +573,15 @@ private void InputEmail(string email) {
     string user, host;
 
     if( !email || sscanf(email, "%s@%s", user, host) != 2 ) {
-        receive("\nThat is not a valid email address.\n");
-        receive("Please enter a valid email address: \n");
+        receive("\n这不是有效的邮件地址。\n");
+        receive("请输入有效的邮件地址：\n");
         input_to( (: InputEmail :), I_NOESC );
         return;
     }
     E_Mail = email;
     if(REAL_NAME){
-        receive("\nIf you do not mind, please enter your real name "
-            "(optional): \n");
+        receive("\n如果你不介意的话，请输入你的真实姓名"
+            "（可选）：\n");
         input_to( (: InputRealName :), I_NOESC );
     }
     else {
@@ -594,18 +593,16 @@ private void InputRealName(string rname) {
     if( !rname || rname == "" ) rname = "Unknown";
     TrueName = rname;
     if(!HUMANS_ONLY){
-        receive("\n\nYou must now pick a race.\n");
-        receive("Picking a race influences what physical traits your character "
-                "will have.\n");
-        receive("\nYou may issue the following commands:\n");
-        receive("\tlist - lists all races from which you can choose\n");
-        receive("\thelp - get help on what races mean\n");
-        receive("\thelp RACE - (e.g. \"help human\") gives you information on "
-                "a race\n");
-        receive("\tpick RACE - pick a particular race for yourself\n");
-        receive("\n\tValid races: ");
+        receive("\n\n你现在必须选择一个种族。\n");
+        receive("选择种族会影响你的角色将拥有的身体特征。\n");
+        receive("\n你可以使用以下命令：\n");
+        receive("\tlist - 列出所有可选种族\n");
+        receive("\thelp - 获取种族含义的帮助\n");
+        receive("\thelp 种族名 - （例如 \"help human\"）获取某个种族的信息\n");
+        receive("\tpick 种族名 - 为自己选择一个特定种族\n");
+        receive("\n\t可选种族：");
         receive(implode(sort_array(RACES_D->GetRaces(1), 1), " "));
-        receive("\n\nRace: \n");
+        receive("\n\n种族：\n");
         input_to((: InputRace :), I_NOESC);
     }
     else InputRace("pick human");
@@ -616,7 +613,7 @@ private void InputRace(string str) {
     string *valid = ( RACES_D->GetRaces(1) || ({}) );
 
     if( str == "" || !str ) {
-        receive("\nRace: ");
+        receive("\n种族：");
         input_to((: InputRace :), I_NOESC);
         return;
     }
@@ -642,7 +639,7 @@ private void InputRace(string str) {
         return;
 
         default:
-        receive("\nInvalid command.\nRace: \n");
+        receive("\n无效命令。\n种族：\n");
         input_to((: InputRace :), I_NOESC);
         return;
     }
@@ -654,17 +651,17 @@ private void cmdHelp(string args) {
     string help;
 
     f = function(string str) {
-        receive("\nRace: \n");
+        receive("\n种族：\n");
         input_to((: InputRace :), I_NOESC);
     };
     if( !args ) {
         help = read_file(DIR_PLAYER_HELP + "/races") ||
-            "Error reading help file.\n";
+            "读取帮助文件出错。\n";
         eventPage(explode(help, "\n"), MSG_HELP, f);
         return;
     }
     if( member_array(args = lower_case(args), races) == -1 ) {
-        receive("No such race exists.\n\nRace: \n");
+        receive("没有该种族。\n\n种族：\n");
         input_to((: InputRace :), I_NOESC);
         return;
     }
@@ -677,19 +674,19 @@ private void cmdList() {
 
     list = format_page(sort_array(RACES_D->GetRaces(1), 1), 5);
     receive(list);
-    receive("\nRace: \n");
+    receive("\n种族：\n");
     input_to((: InputRace :), I_NOESC);
 }
 
 private void cmdPick(string args) {
     if( !args || args == "" ) {
-        receive("You must specify a race to pick.\n\nRace: \n");
+        receive("你必须指定一个种族。\n\n种族：\n");
         input_to((: InputRace :), I_NOESC);
         return;
     }
     if( member_array(args = lower_case(args),
                 RACES_D->GetRaces(1)) == -1 ) {
-        receive("No such race.\nRace: \n");
+        receive("没有该种族。\n种族：\n");
         input_to((: InputRace :), I_NOESC);
         return;
     }
@@ -703,29 +700,26 @@ private void cmdPick(string args) {
     }
     if(AUTO_WIZ == 2) InputCre("creator");
     else {
-        receive("This mud has enabled AUTO_WIZ.\n");
-        receive("This means that if you wish, you may be automatically \n");
-        receive("promoted to creator status. \n\n");
-        receive("If you want to be a player, enter: player\n");
-        receive("If you want to be a creator, enter: creator\n");
-        receive("What is your choice?\n");
+        receive("本 MUD 启用了自动晋升（AUTO_WIZ）。\n");
+        receive("这意味着如果你愿意，可以自动晋升为创造者状态。\n\n");
+        receive("如果你想做普通玩家，请输入：player\n");
+        receive("如果你想做创造者，请输入：creator\n");
+        receive("你的选择是什么？\n");
         input_to((: InputCre :), I_NOESC);
     }
 }
 
 private void eventSelectClass(){
-    receive("\n\nYou must now pick a class.\n");
-    receive("Picking a class influences what skills your character "
-            "will have.\n");
-    receive("\nYou may issue the following commands:\n");
-    receive("\tlist - lists all classes from which you can choose\n");
-    receive("\thelp - get help on what classes mean\n");
-    receive("\thelp CLASS - (e.g. \"help explorer\") gives you information on "
-            "a class\n");
-    receive("\tpick CLASS - pick a particular class for yourself\n");
-    receive("\n\tValid classes: ");
+    receive("\n\n你现在必须选择一个职业。\n");
+    receive("选择职业会影响你的角色将拥有的技能。\n");
+    receive("\n你可以使用以下命令：\n");
+    receive("\tlist - 列出所有可选职业\n");
+    receive("\thelp - 获取职业含义的帮助\n");
+    receive("\thelp 职业名 - （例如 \"help explorer\"）获取某个职业的信息\n");
+    receive("\tpick 职业名 - 为自己选择一个特定职业\n");
+    receive("\n\t可选职业：");
     receive(implode(sort_array(CLASSES_D->GetClasses(1), 1), " "));
-    receive("\nClass: \n");
+    receive("\n职业：\n");
     input_to((: InputClass :), I_NOESC);
 }
 
@@ -734,7 +728,7 @@ private void InputClass(string str){
     string *valid = ( CLASSES_D->GetClasses(1) || ({}) );
 
     if( str == "" || !str ) {
-        receive("\nClass: ");
+        receive("\n职业：");
         input_to((: InputClass :), I_NOESC);
         return;
     }
@@ -760,7 +754,7 @@ private void InputClass(string str){
         return;
 
         default:
-        receive("\nInvalid command.\nClass: \n");
+        receive("\n无效命令。\n职业：\n");
         input_to((: InputClass :), I_NOESC);
         return;
     }
@@ -772,17 +766,17 @@ private void cmdHelpClass(string args){
     string help;
 
     f = function(string str) {
-        receive("\nClass: \n");
+        receive("\n职业：\n");
         input_to((: InputClass :), I_NOESC);
     };
     if( !args ) {
         help = HELP_D->GetHelp("player documents classes") ||
-            "Error reading help file.\n";
+            "读取帮助文件出错。\n";
         eventPage(explode(help, "\n"), MSG_HELP, f);
         return;
     }
     if( member_array(args = lower_case(args), Classes) == -1 ) {
-        receive("No such Class exists.\n\nClass: \n");
+        receive("没有该职业。\n\n职业：\n");
         input_to((: InputClass :), I_NOESC);
         return;
     }
@@ -795,19 +789,19 @@ private void cmdListClasses() {
 
     list = format_page(sort_array(CLASSES_D->GetClasses(1), 1), 5);
     receive(list);
-    receive("\nClass: \n");
+    receive("\n职业：\n");
     input_to((: InputClass :), I_NOESC);
 }
 
 private void cmdPickClass(string args) {
     if( !args || args == "" ) {
-        receive("You must specify a class to pick.\n\nClass: \n");
+        receive("你必须指定一个职业。\n\n职业：\n");
         input_to((: InputClass :), I_NOESC);
         return;
     }
     if( member_array(args = lower_case(args),
                 CLASSES_D->GetClasses(1)) == -1 ) {
-        receive("No such Class.\nClass: \n");
+        receive("没有该职业。\n职业：\n");
         input_to((: InputClass :), I_NOESC);
         return;
     }
@@ -850,17 +844,17 @@ int eventCheckPending(string str){
 void InputCre(string str){
     if(!str || str == "" || !sizeof(str) || !stringp(str)) str = "foo";
     if(str != "creator" && str != "player"){
-        receive("\nInvalid choice.\n");
-        receive("If you want to be a player, enter: player\n");
-        receive("If you want to be a creator, enter: creator\n");
-        receive("What is your choice?\n");
+        receive("\n无效选择。\n");
+        receive("如果你想做普通玩家，请输入：player\n");
+        receive("如果你想做创造者，请输入：creator\n");
+        receive("你的选择是什么？\n");
         input_to((: InputCre :), I_NOESC);
         return;
     }
     if(str == "creator"){
         yescre = 1;
-        receive("\n---\nYou will automatically be made a creator shortly");
-        receive(" after login.\n---\n");
+        receive("\n---\n登录后你将很快自动成为创造者");
+        receive("。\n---\n");
     }
     if(CLASS_SELECTION){
         eventSelectClass();
@@ -953,7 +947,7 @@ private void window_size(int width, int height) {
 }
 
 private void CreateGuest() {
-    receive("Enter the name you wish to use: \n");
+    receive("请输入你想使用的名字：\n");
     input_to( (: GetGuestName :), I_NOESC );
 }
 
@@ -962,7 +956,7 @@ private void GetGuestName(string nom) {
 
     return;
     if( !nom || nom == "" || user_exists(convert_name(nom)) ) {
-        receive("Illegal name choice, try again: ");
+        receive("名字选择无效，请重试：");
         return;
     }
     ob->SetCapName(nom);

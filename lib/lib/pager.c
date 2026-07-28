@@ -21,7 +21,7 @@ varargs mixed eventPage(mixed val, mixed msg_class, function f,mixed args...){
     mixed* files;
     int maxi;
 
-    if( InPager ) return "You are already in the pager.";
+    if( InPager ) return "你已经在分页器中了。";
     if( !stringp(val) && !arrayp(val) )
         error("Bad argument 1 to eventPage().\n");
     if(!sizeof(val)) return 0;
@@ -43,14 +43,14 @@ varargs mixed eventPage(mixed val, mixed msg_class, function f,mixed args...){
     else {
         string tmp;
         val = wild_card(val);
-        if( !val || !sizeof(val) ) return "File not found.";
+        if( !val || !sizeof(val) ) return "文件未找到。";
         files = ({});
         foreach(tmp in val){
             mapping file = ([]);
             string str;
 
             if( file_size(tmp) == -2 ){
-                if( sizeof(val) == 1 ) return "That is a directory.";
+                if( sizeof(val) == 1 ) return "那是目录。";
                 else continue;
             }
             if(!file_exists(tmp)) continue;
@@ -269,8 +269,8 @@ protected void cmdPage(string str, mapping file){
                 return;
             }
             file["Marks"][args] = file["CurrentLine"];
-            eventPrint("Mark " + args + " set to line " +
-                    (file["CurrentLine"] + 1) + ".", file["MessageClass"]);
+            eventPrint("标记" + args + "已设置到第" +
+                    (file["CurrentLine"] + 1) + "行。", file["MessageClass"]);
             eventPrint(GetPagerPrompt(file), MSG_PROMPT);
             input_to((: cmdPage :), file);
             return;
@@ -310,7 +310,7 @@ protected void cmdPage(string str, mapping file){
             return;
 
         case "v":
-            eventPrint("Dead Souls Pager v3.0 by Descartes of Borg 951104",
+            eventPrint("死灵之魂分页器 v3.0 作者 Descartes of Borg 951104",
                     MSG_HELP);
             eventPrint(GetPagerPrompt(file), MSG_PROMPT);
             input_to((: cmdPage :), file);
@@ -352,26 +352,26 @@ private string GetPagerPrompt(mapping file){
 
 string GetHelp(string str){
     if( str != "pager" ) return 0;
-    return ("/<pattern>, ?<pattern>\n"
-            "The pattern is optional.  / searches forward for a pattern.  "
-            "If no pattern is specified, the last search pattern is "
-            "repeated.  ? does the same, except searching backwards.\n"
+    return ("/<模式>, ?<模式>\n"
+            "模式可选。/ 向前搜索模式。"
+            "若未指定模式，则重复上次搜索。"
+            "? 同样搜索，但方向向后。\n"
             "b\n"
-            "Move back one page.\n"
-            "<return>\n"
-            "Move ahead one page.\n"
+            "向后翻一页。\n"
+            "<回车>\n"
+            "向前翻一页。\n"
             "n\n"
-            "Move to the next file in the group of files being paged.\n"
-            "m<tag>\n"
-            "Mark the current line and asociate it with tag.  You can mark "
-            "any number of lines.\n"
-            ",<tag>\n"
-            "Move to the named tag.\n"
-            "g<line>, G<line>\n"
-            "Go to the named line.  If no line is named, 'g' goes to the "
-            "beginning of the file.  In contras, 'G' will go to the end.\n"
-            "p<percent>\n"
-            "Move to the line <percent> lines into the file.\n"
+            "跳到分组中的下一个文件。\n"
+            "m<标记>\n"
+            "标记当前行并与标记关联。可以标记"
+            "任意多行。\n"
+            ",<标记>\n"
+            "跳到指定标记。\n"
+            "g<行号>, G<行号>\n"
+            "跳到指定行。若未指定行号，'g'跳到文件"
+            "开头，'G'跳到文件末尾。\n"
+            "p<百分比>\n"
+            "跳到文件百分之<百分比>的位置。\n"
             "q\n"
-            "Quit out of the pager.");
+            "退出分页器。");
 }

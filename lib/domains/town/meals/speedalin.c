@@ -17,8 +17,8 @@ protected void create() {
     SetBaseCost("gold",2);
     SetStrength(1);
     SetMealType(MEAL_FOOD);
-    SetMealMessages("You swallow a pill.",
-            "$N swallows a pill.");
+    SetMealMessages("你吞下一颗药丸。",
+            "$N 吞下一颗药丸。");
     SetDuration(20);
     SetStats( ([ "speed" : 1 ]) );
     SetPoints( ([ "caffeine" : 30 ]) );

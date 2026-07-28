@@ -41,7 +41,7 @@ int SetMealAction(function f){
 
 mixed direct_drink_obj(){
     if( environment() != this_player() ) return "#You don't have that!";
-    if( MealType & MEAL_FOOD ) return "Wouldn't you rather eat it?";
+    if( MealType & MEAL_FOOD ) return "你不想吃掉它吗？";
     return this_player()->CanDrink(this_object());
 }
 
@@ -53,7 +53,7 @@ mixed direct_drink_from_obj(){
 
 mixed direct_eat_obj(){
     if( environment() != this_player() ) return "#You don't have that!";
-    if( !(MealType & MEAL_FOOD) ) return "Wouldn't you rather drink it?";
+    if( !(MealType & MEAL_FOOD) ) return "你不想喝掉它吗？";
     return this_player()->CanEat(this_object());
 }
 
@@ -103,7 +103,7 @@ mixed eventDrink(object who){
 
     if( x = GetPoison() ){
         if( random(who->GetStatLevel("luck")) > 35 )
-            who->eventPrint("That didn't seem to taste quite right.");
+            who->eventPrint("味道似乎不太对劲。");
         who->AddPoison(x);
     }
     Destruct();
@@ -129,7 +129,7 @@ mixed eventEat(object who){
     }
     if( x = GetPoison() ){
         if( random(who->GetStatLevel("luck")) > 35 )
-            who->eventPrint("You notice a strange aftertaste.");
+            who->eventPrint("你注意到一股奇怪的后味。");
         who->AddPoison(x);
     }
     if( (x = functionp(MealAction)) && !(x & FP_OWNER_DESTED) ){

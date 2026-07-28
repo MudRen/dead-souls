@@ -26,7 +26,7 @@ string GetInternalDesc(){
     }
     else if( functionp(val) ){
         if( functionp(val) & FP_OWNER_DESTED ){
-            return "Error evaluating internal description.";
+            return "计算内部描述时出错。";
         }
         return evaluate(val, this_player());
     }
@@ -56,7 +56,7 @@ varargs mixed CanShowInterior(object who, object target){
     }
 
     if(living() && !inherits(LIB_VEHICLE,this_object())){
-        return "You can't look inside of a living being.";
+        return "你不能查看活物的内部。";
     }
 
     if( target ){
@@ -82,11 +82,11 @@ varargs mixed eventShowInterior(object who, object target){
     dabei=present(this,who);
 
     if( target ){
-        return "A strange event has occurred, which you should report.";
+        return "发生了一个奇怪的事件，请报告。";
     }
 
     if(!imhere && !dabei){
-        who->eventPrint("That is not here.");
+        who->eventPrint("那个不在这里。");
         return 0;
     }
 

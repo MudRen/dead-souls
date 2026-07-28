@@ -62,17 +62,17 @@ mapping GetSession(string name){
 }
 
 mixed eventWriteFile(string file, string content, string name, string shibboleth ){
-    mixed ret = "Odd Fail.";
+    mixed ret = "奇怪的错误。";
     validate(name, shibboleth);
     //if(unguarded( (: file_exists($(file)) || directory_exists($(file)) :) ) ){
     //    return "A file or directory by that name already exists. Please rename your file.";
     //}
     if(unguarded( (: !directory_exists(path_prefix($(file))) :))){
-        return "Invalid target path selected.<br>";
+        return "选择的目标路径无效。<br>";
     }
 
     if(unguarded( (: directory_exists($(file)) :))){
-        return "Refusing to overwrite directory.<br>";
+        return "拒绝覆盖目录。<br>";
     }
     if(!strsrch(file,"/realms/"+name+"/")){
         ret = unguarded( (: write_file($(file), $(content),1) :) ); 
@@ -118,27 +118,27 @@ mixed eventWebCreate(string operand, string args, string name, string shibboleth
     mixed ret = "";
     int exists;
     validate(name, shibboleth);
-    if(!operand || !args) return "Invalid arguments.";
+    if(!operand || !args) return "无效的参数。";
     exists = unguarded( (: (file_exists($(operand)) || directory_exists($(operand))) :) );
-    if(exists) return "Refusing to overwrite "+
-        ( unguarded( (: file_exists($(operand)) :) ) ? "file." : "directory.");
-    if(strsrch(operand,"/realms/"+name+"/")) return "Access to "+ path_prefix(operand)+" denied.";
+    if(exists) return "拒绝覆盖 "+
+        ( unguarded( (: file_exists($(operand)) :) ) ? "文件。" : "目录。");
+    if(strsrch(operand,"/realms/"+name+"/")) return "对 "+ path_prefix(operand)+" 的访问被拒绝。";
     if(!unguarded( (: directory_exists(path_prefix($(operand))) :) )){     
-        return path_prefix(operand)+" doesn't exist.";
+        return path_prefix(operand)+" 不存在。";
     }
     if(args == "file"){
         if(!unguarded( (: write_file($(operand), "", 1) :) )){
-            return "Unknown error writing file.";
+            return "写入文件时出现未知错误。";
         }
         else return 1;
     }
 
     else if(args == "dir"){
         if(!unguarded( (: mkdir($(operand)) :) )){
-            return "Unknown error creating directory.";
+            return "创建目录时出现未知错误。";
         }
         else return 1;
     }
 
-    else return "Invalid operation.";
+    else return "无效的操作。";
 }

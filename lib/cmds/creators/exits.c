@@ -14,10 +14,10 @@ mixed cmd(){
     object oEnv;
 
     if ( !( oEnv = environment( this_player() ) ) )
-        return "You do not have a valid environment.";
+        return "你没有有效的环境。";
     if(oEnv->GetRiders()) oEnv = environment( oEnv );
     if ( !oEnv )
-        return "Invalid environment.";
+        return "无效的环境。";
 
     asExits = oEnv->GetExits();
     asEnters = oEnv->GetEnters();
@@ -26,9 +26,9 @@ mixed cmd(){
             this_player() );
 
     if ( !( sizeof( asExits ) ) )
-        message( "my_action", "This room has no exits.", this_player() );
+        message( "my_action", "这个房间没有出口。", this_player() );
     else {
-        message( "Nmy_action", "This room has the following exits :\n\n",
+        message( "Nmy_action", "这个房间有以下出口：\n\n",
                 this_player() );
         foreach( sExit in asExits ) {
             message( "my_action", sprintf( "\t%10s -> %s", sExit,
@@ -37,9 +37,9 @@ mixed cmd(){
     }
 
     if ( !( sizeof( asEnters ) ) )
-        message( "my_action", "\nThis room has no enters.", this_player() );
+        message( "my_action", "\n这个房间没有入口。", this_player() );
     else {
-        message( "Nmy_action", "\nThis room has the following enters :\n\n",
+        message( "Nmy_action", "\n这个房间有以下入口：\n\n",
                 this_player() );
         foreach( sExit in asEnters ) {
             message( "my_action", sprintf( "\t%10s -> %s", sExit,
@@ -51,6 +51,5 @@ mixed cmd(){
 }
 
 string GetHelp(){ 
-    return ("Syntax: exits\n\nDisplays exit and enter "
-            "information for the current room.");
+    return ("语法：exits\n\n显示当前房间的出口和入口信息。");
 }

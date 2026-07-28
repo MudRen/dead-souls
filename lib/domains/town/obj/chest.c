@@ -26,4 +26,4 @@ void init(){
     ::init();
 }
 
-mixed CanGet(object ob) { return "The chest does not budge.";}
+mixed CanGet(object ob) { return "箱子纹丝不动。";}

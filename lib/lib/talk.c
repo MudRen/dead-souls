@@ -128,17 +128,17 @@ string* GetTalkHistTypes(){
 
 varargs mixed CanSpeak(object target, string verb, string msg, string lang){
     if(!this_player()->CanBreathe()){
-        return "You can't even breathe.";
+        return "你连呼吸都做不到。";
     }
     if( lang && (!this_object()->GetPolyglot() && (!GetLanguageLevel(lang) || !GetLanguageName(lang)) ) )
-        return "You don't speak that language!";
+        return "你不会说那种语言！";
     if( target ){
         if( target == this_object() )
-            return "Are you really intent on talking to yourself?";
+            return "你真的想自言自语吗？";
         if( userp(target) && !interactive(target) )
-            return target->GetName() + " is net-dead.";
+            return target->GetName() + " 已断线。";
         if( target->GetBlocked("tell") )
-            return target->GetName() + " is blocking all tells.";
+            return target->GetName() + " 正在屏蔽所有私聊。";
     }
     return 1;
 }

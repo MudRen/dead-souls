@@ -12,7 +12,7 @@ varargs mixed CanBuryWith(object who, object what){
     int fp = functionp(environment(who)->GetBury());
 
     if( !fp || (fp & FP_OWNER_DESTED) ){
-        return "This is not a very good place for burying.";
+        return "这里不太适合掩埋。";
     }
     return 1;
 }
@@ -25,7 +25,7 @@ varargs mixed CanDigWith(object who, object what){
         int fp = functionp(environment(who)->GetDig());
 
         if( !fp || (fp & FP_OWNER_DESTED) ){
-            return "This is not a very good place for that kind of digging.";
+            return "这里不太适合那种挖掘。";
         }
         return 1;
     }
@@ -38,7 +38,7 @@ mixed eventBuryWith(object who, object what){
         return tmp;
     }
     else {
-        who->eventPrint(tmp || "The burial did not work well.");
+        who->eventPrint(tmp || "掩埋不太成功。");
     }
     return 1;
 }
@@ -58,7 +58,7 @@ varargs mixed eventDigWith(object who, object what){
         return tmp;
     }
     else {
-        who->eventPrint(tmp || "The digging did not work so well.");
+        who->eventPrint(tmp || "挖掘不太成功。");
         return 1;
     }
 }
@@ -82,7 +82,7 @@ mixed direct_dig_str_with_obj(string what){
         return "#You must have it to dig with it!";
     }
     if( remove_article(lower_case(what)) != "hole" ){
-        return "Dig a what?";
+        return "挖什么？";
     }
     return CanDigWith(this_player());
 }

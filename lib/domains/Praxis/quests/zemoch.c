@@ -4,11 +4,10 @@ void create() {
     ::create();
     set_name("zemoch");
     set_id( ({ "zemoch", "quest_object", "zemoch quest" }));
-    set_short("The Zemoch Quest");
+    set_short("泽莫克任务");
     set_long(
-            "You must stop the evil Zemochs from sacrificing any more innocents.\n"
-            "Helping others will help yourself in destroying the evil god of the\n"
-            "Zemochs, Azash.\n"
-            "Quest rating: High Mortal, extremely difficult\n" );
+            "你必须阻止邪恶的泽莫克人继续献祭无辜者。\n"
+            "帮助他人将有助于你摧毁泽莫克人的邪神阿扎什。\n"
+            "任务等级：高等凡人，极其困难\n" );
     set_quest_points(45);
 }

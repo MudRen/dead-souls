@@ -16,14 +16,14 @@ mixed cmd(string args) {
 #ifndef __HAS_RUSAGE__
     write("此命令依赖于一个不可用的外部函数。");
 #else
-    if( !args || args == "" ) return "You must specify a command to execute.";
+    if( !args || args == "" ) return "你必须指定要执行的命令。";
     before = rusage();
     catch(eval_cost = previous_object()->eventForce(args));
     after = rusage();
     usertime = after["utime"] - before["utime"];
     stime = after["stime"] - before["stime"];
-    message("system", "\n" + stime + " ms system time, " + usertime +
-            " ms user time, and " + eval_cost + " CPU cycles eval cost.",
+    message("system", "\n" + stime + " 毫秒系统时间，" + usertime +
+            " 毫秒用户时间，" + eval_cost + " CPU周期评估开销。",
             this_player());
 #endif
     return 1;

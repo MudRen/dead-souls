@@ -9,7 +9,7 @@ mixed cmd(string str) {
     int ret, curr;
 
     if(!sizeof(str)) str = "me";
-    if(str == "what") return "lol wat";
+    if(str == "what") return "锚已设置。";
     if(str == "me") str = this_player()->GetKeyName();
     if(!target = present(str, environment(this_player()))){
         if(arch && (target = find_player(str))){
@@ -28,10 +28,10 @@ mixed cmd(string str) {
         if(target != this_player()) str = nominative(target)+"'s";
         else str = "You're ";
         if(curr < 2 && arch){
-            write(capitalize(str) + " currently anchored at creator level.");
+            write(capitalize(str) + " 当前固定在创造者级别。");
         }
         else {
-            write(capitalize(str) + " already anchored.");
+            write(capitalize(str) + " 已经被固定了。");
             return 1;
         }
     }
@@ -50,7 +50,7 @@ mixed cmd(string str) {
 }
 
 string GetHelp() {
-    return ("Syntax: anchor <target>\n\n"
-            "Prevents the target from leaving the environment.\n"
-            "See also: unanchor");
+    return ("语法：anchor <目标>\n\n"
+            "阻止目标离开当前环境。\n"
+            "另见：unanchor");
 }                                                    

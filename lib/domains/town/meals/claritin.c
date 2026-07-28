@@ -18,8 +18,8 @@ protected void create() {
     SetBaseCost("silver",10);
     SetMealType(MEAL_FOOD);
     SetMealAction((: MealCure :));
-    SetMealMessages("You swallow the pill.",
-            "$N swallows a pill.");
+    SetMealMessages("你吞下药丸。",
+            "$N 吞下一颗药丸。");
 }
 void init(){
     ::init();
@@ -39,7 +39,7 @@ int MealCure(object who){
         }
     }
     if(effect){
-        tell_player(who,"You feel a little better already.");
+        tell_player(who,"你感觉好了一点。");
     }
 
     return 1;

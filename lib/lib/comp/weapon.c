@@ -112,7 +112,7 @@ mixed CanEquip(object who, string* limbs){
         return "#You do not have enough limbs for that weapon!";
     }
     if( newbiep(who) && GetClass() > 30 ){
-        return "You are not skilled enough to wield this weapon.";
+        return "你的技能还不足以挥舞这件武器。";
     }
     return 1;
 }

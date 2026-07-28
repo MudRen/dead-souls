@@ -15,8 +15,8 @@ protected void create() {
     SetStrength(1);
     SetBaseCost("silver", 1);
     SetMealType(MEAL_FOOD);
-    SetMealMessages("You gnaw on the jerky and manage to choke it down.",
-            "$N gnaws on and chokes down $P strip of jerky.");
+    SetMealMessages("你啃着肉干，勉强咽了下去。",
+            "$N 啃着$P肉干，勉强咽了下去。");
 }
 
 void init(){

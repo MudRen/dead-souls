@@ -84,7 +84,7 @@ int eventLoadObject(mixed val, int recurse){
                     else return;
 
                     if( !env ){
-                    p->eventPrint("You lose " + GetShort() + ".");
+                    p->eventPrint("你丢失了" + GetShort() + "。");
                     }
                     else {
                     p->eventPrint("你丢下了" + GetShort() + "。");

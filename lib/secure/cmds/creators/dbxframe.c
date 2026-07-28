@@ -7,7 +7,7 @@ int cmd(string str) {
     string ret = "";
 
     if (!str || (sscanf(str, "%d", num)==0 && sscanf(str, "%s %d", who, num)==0)) {
-        write("dbxframe [who] <frame>");
+        write("dbxframe [谁] <帧>");
         return 1;
     }
     if (who) {
@@ -24,7 +24,7 @@ int cmd(string str) {
         return 1;
     }
     if (num<0 || num>=sizeof(frame["trace"]))
-        return notify_fail("No such frame.\n");
+        return notify_fail("没有该帧。\n");
     frame = frame["trace"][num];
 
     ret += sprintf("------\n%s:%i - %s(%s)\n", frame["program"], frame["line"],

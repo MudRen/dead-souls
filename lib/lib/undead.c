@@ -87,12 +87,12 @@ protected void heart_beat(){
     type = GetUndeadType();
     if( random(100) + 1 > 90 ){
         if( type == "ghost" || type == "phantom" ){
-            eventPrint("You wail mournfully.");
+            eventPrint("你悲伤地哀嚎。");
             environment()->eventPrint(GetName() + " wails mournfully.",
                     this_object());
         }
         else if( type == "zombie" || type == "ghoul" ){
-            eventPrint("You groan painfully.");
+            eventPrint("你痛苦地呻吟。");
             environment()->eventPrint(GetName() + " groans painfully.",
                     this_object());
         }

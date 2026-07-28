@@ -40,7 +40,7 @@ int eventBreak(){
 
 mixed CanCast(object who){
     if( GetBroken() )
-        return "You cannot cast a broken " + strip_article(GetShort()) + "!";
+        return "你不能抛出损坏的" + strip_article(GetShort()) + "！";
     else return 1;
 }
 

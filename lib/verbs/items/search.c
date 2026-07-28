@@ -53,7 +53,7 @@ mixed do_search() {
         }
     }
     if( !val ) {
-        val = "You don't find a thing.";
+        val = "你什么也没找到。";
     }
     environment(this_player())->eventPrint(this_player()->GetName() +
             " searches around.", this_player());

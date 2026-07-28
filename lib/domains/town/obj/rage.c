@@ -33,8 +33,8 @@ int InfectMess(object ob){
         eventDestruct();
         return 1;
     }
-    tell_room(environment(victim), "%^BOLD%^RED%^"+victimname+" suddenly lets out a bloodcurdling scream!%^RESET%^",({victim}) );
-    tell_object(victim, "%^BOLD%^RED%^You scream as you are suddenly possessed by an uncontrollable rage!%^RESET%^");
+    tell_room(environment(victim), "%^BOLD%^RED%^"+victimname+"突然发出一声令人毛骨悚然的尖叫！%^RESET%^",({victim}) );
+    tell_object(victim, "%^BOLD%^RED%^你尖叫着被一阵无法控制的狂怒所占据！%^RESET%^");
     ob->SetEncounter(100);
     ob->SetMelee(1);
     if(ob->GetRace() != "human" && ob->GetRace() != "orc") MakeHostile(ob);
@@ -118,13 +118,13 @@ int FatigueLevel() {
 
 string GetAffectLong(object ob) {
     if(!ob || !living(ob)) return 0;
-    return "%^BOLD%^RED%^"+ob->GetName() + " looks crazed and violently insane!%^RESET%^";
+    return "%^BOLD%^RED%^"+ob->GetName() + "看起来疯狂而暴怒！%^RESET%^";
 }
 
 int damage1(){
     if(victim){
-        tell_object(victim,"%^BOLD%^RED%^You feel blinded by hatred and madness!%^RESET%^");
-        tell_room(environment(victim),victimname+" looks maniacally insane and drools uncontrollably.", ({victim}) );
+        tell_object(victim,"%^BOLD%^RED%^你感到被仇恨和疯狂所蒙蔽！%^RESET%^");
+        tell_room(environment(victim),victimname+"看起来疯狂至极，口水不受控制地流下。", ({victim}) );
         victim->AddStaminaPoints(random(50)+10);
         victim->AddStatBonus("strength", 10);
         victim->AddStatBonus("durability", 10);
@@ -138,8 +138,8 @@ int damage1(){
 
 int damage2(){
     if(victim){
-        tell_object(victim,"%^BOLD%^RED%^You feel your body exploding with rage!%^RESET%^");
-        tell_room(environment(victim),victimname+" is shaking with fury.", ({victim}) );
+        tell_object(victim,"%^BOLD%^RED%^你感到全身被怒火引爆！%^RESET%^");
+        tell_room(environment(victim),victimname+"在暴怒中颤抖。", ({victim}) );
         victim->AddStaminaPoints(random(50)+20);
         victim->AddStatBonus("strength", 20);
         victim->AddStatBonus("durability", 20);
@@ -154,8 +154,8 @@ int damage2(){
 
 int damage3(){
     if(victim){
-        tell_room(environment(victim),victimname+" lets out a horrific roar!", ({victim}) );
-        tell_object(victim,"%^BOLD%^RED%^You let out a horrific roar as a spasm of fury rips through you!%^RESET%^");
+        tell_room(environment(victim),victimname+"发出一声可怕的怒吼！", ({victim}) );
+        tell_object(victim,"%^BOLD%^RED%^一阵狂怒的痉挛穿过你的身体，你发出一声可怕的怒吼！%^RESET%^");
         victim->AddStaminaPoints(random(60)+30);
         victim->AddStatBonus("strength", 30);
         victim->AddStatBonus("durability", 30);
@@ -170,8 +170,8 @@ int damage3(){
 
 int damage4(){
     if(victim){
-        tell_room(environment(victim),victimname+"'s entire body vibrates madly, throwing off hot blood drops, sweat, and saliva.", ({victim}) );
-        tell_object(victim,"%^BOLD%^RED%^Your entire body vibrates uncontrollably, spraying blood, sweat, and spit everywhere.%^RESET%^");
+        tell_room(environment(victim),victimname+"全身疯狂地颤抖，溅出热血、汗水和唾液。", ({victim}) );
+        tell_object(victim,"%^BOLD%^RED%^你的全身不受控制地颤抖，到处喷溅着血、汗和口水。%^RESET%^");
         victim->AddStaminaPoints(random(70)+40);
         victim->AddStatBonus("strength", 40);
         victim->AddStatBonus("durability", 40);
@@ -191,10 +191,8 @@ int damage4(){
 
 int damage5(){
     if(victim){
-        tell_room(environment(victim),victimname+" makes a horrible, gurgling, coughing noise and hacks up "+
-                "a huge glob of phlegm.", ({victim}) );
-        tell_object(victim,"You cough up a huge glob of phlegm, accidentally inhale it, and choke while coughing it "+
-                "back up.");
+        tell_room(environment(victim),victimname+"发出可怕的咕噜咳嗽声，咳出一大团痰。", ({victim}) );
+        tell_object(victim,"你咳出一大团痰，不小心又吸了回去，呛得直咳。");
         //Fix below courtesy of Jonez
         victim->AddStaminaPoints(random(80)+50);
         victim->AddStatBonus("strength", 50);
@@ -209,5 +207,5 @@ int damage5(){
 }
 
 
-mixed CanGet(object ob) { return "Your fingers slip on your runny snot.";}
-mixed CanDrop(object ob) { return "Your fingers slip on your runny snot.";}
+mixed CanGet(object ob) { return "你的手指在鼻涕上打滑。";}
+mixed CanDrop(object ob) { return "你的手指在鼻涕上打滑。";}

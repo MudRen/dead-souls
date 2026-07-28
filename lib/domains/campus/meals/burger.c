@@ -14,8 +14,8 @@ protected void create() {
     //SetDollarCost(4);
     SetDollarCost(4);
     SetMealType(MEAL_FOOD);
-    SetMealMessages("You wolf down your hamburger with gusto.",
-            "$N wolfs down $P hamburger hungrily.");
+    SetMealMessages("你狼吞虎咽地吃完了汉堡。",
+            "$N 饥渴地吞下了$P汉堡。");
 }
 void init(){
     ::init();

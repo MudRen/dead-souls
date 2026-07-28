@@ -32,8 +32,8 @@ mixed eventAsk(object who, string str){
 
     if( (tmp = sentient::eventAsk(who, orig)) == 1 ) return 1;
     if( !str || str == "" ){
-        eventForce("speak ask me to what? To describe " + 
-                (GetClass() || "thing") + "s?");
+        eventForce("speak 让我描述什么？描述" +
+                (GetClass() || "东西") + "吗？");
         return 1;
     }
     if( sscanf(str, "%s %s", cmd, args) != 2 ){
@@ -58,13 +58,13 @@ mixed eventAsk(object who, string str){
             break;
 
         default:
-            eventForce("speak I am not sure what you want");
+            eventForce("speak 我不太明白你的意思");
             if( who->GetClass() ){
-                eventForce("speak do you mean to ask me to teach a spell?");
+                eventForce("speak 你是想让我教你一个法术吗？");
             }
             else {
-                eventForce("speak do you mean to ask me to describe " +
-                        pluralize((GetClass()||"thing")) + "?");
+                eventForce("speak 你是想让我描述" +
+                        pluralize((GetClass()||"东西")) + "吗？");
             }
             break;
     }
@@ -73,11 +73,11 @@ mixed eventAsk(object who, string str){
 
 void eventConvert(object who, string args){
     if( GetSkillLevel("faith") < 1 ){
-        eventForce("speak I don't do conversions");
+        eventForce("speak 我不做 conversions");
         return;
     }
     if( !args || args == "" ){
-        eventForce("speak convert whom?");
+        eventForce("speak 转化谁？");
         return;
     }
     if( args != "me" ){
@@ -85,22 +85,22 @@ void eventConvert(object who, string args){
 
         ob = present(args, environment());
         if( !ob ){
-            eventForce("speak I don't see any such thing here");
+            eventForce("speak 我没看到那种东西在这里");
             return;
         }
         if( !living(ob) ){
             eventForce("laugh");
-            eventForce("speak would you like to worship some cheese too?");
+            eventForce("speak 你还想让我崇拜一块奶酪吗？");
             return;
         }
         if( ob != who ){
-            eventForce("speak " + ob->GetName() + " must request "
-                    "conversion of " + possessive(ob) + " own free will.");
+            eventForce("speak " + ob->GetName() + " 必须自愿请求"
+                    "转化。");
             return;
         }
     }
     who->SetProperty("converting", GetReligion(1));
-    eventForce("speak I will give it a try, I hope my faith serves me");
+    eventForce("speak 我试试看，希望我的信仰没有辜负我");
     call_out((: eventForce("convert " + ($(who))->GetKeyName()) :), 1);
 }
 
@@ -108,7 +108,7 @@ void eventPreview(object who, string args){
     if( args ) args = remove_article(lower_case(args));
     if( args && args != "" && args != (""+GetClass()) ){
         if( args[0..<2] != GetClass() ){
-            eventForce("speak You want me to describe what?");
+            eventForce("speak 你想让我描述什么？");
             return;
         }
     }
@@ -118,44 +118,43 @@ void eventPreview(object who, string args){
 void eventJoin(object who, string args){
     string myclass = (GetClass() || "thing");
     if( !args || args == "" ){
-        eventForce("speak Do you mean you wish to become " +
-                add_article(myclass) + "?");
+        eventForce("speak 你是想成为" +
+                add_article(myclass) + "吗？");
         return;
     }
     args = remove_article(lower_case(args));
     if( args != myclass && args[0..<2] != myclass && 
             args != pluralize(myclass) ){
-        eventForce("speak you want me to make you a what?");
-        eventForce("speak people only ask me to join the " +
-                pluralize(myclass));
+        eventForce("speak 你想让我把你变成什么？");
+        eventForce("speak 人们只要求我加入" +
+                pluralize(myclass) + "。");
         return;
     }
     if( who->ClassMember(myclass) ){
-        eventForce("speak You are already " + add_article(myclass));
+        eventForce("speak 你已经是" + add_article(myclass) + "了");
         return;
     }
     if( who->GetClass() == who->SetClass(GetClass()) ){
-        eventForce("speak You cannot become " + add_article(GetClass()) + "!");
+        eventForce("speak 你无法成为" + add_article(GetClass()) + "！");
         eventForce("attack " + who->GetKeyName());
         return;
     }
     if( !(who->GetReligion()) && GetReligion() )
         who->SetReligion(GetReligion(0), GetReligion(1));
-    environment()->eventPrint(GetName() + " makes " + who->GetName() +
-            " " + add_article(GetClass()) + ".",
+    environment()->eventPrint(GetName() + " 使 " + who->GetName() +
+            " 成为了" + add_article(GetClass()) + "。",
             ({ who, this_object() }));
-    eventForce("speak welcome new " + GetClass() + "!");
-    eventForce("speak Inside this hall, you will find sanctuary.");
+    eventForce("speak 欢迎新的" + GetClass() + "！");
+    eventForce("speak 在这座殿堂里，你将找到庇护。");
     eventForce(GetClass() + " " + who->GetName() +
-            " just joined our ranks!");
+            " 刚刚加入了我们的行列！");
     who->SetShort("foo");  /* reset title */
     return;
 }
 
 int eventPreAttack(object ob){
     if( member_array(ob, GetEnemies()) > -1 ) return sentient::eventPreAttack(ob);
-    eventForce(GetClass() + " " + pluralize((GetClass() || "citizen")) + "! Our home is " 
-            "being raided by " + ob->GetName() + "!");
+    eventForce(GetClass() + " " + pluralize((GetClass() || "市民")) + "！我们的家园正被" + ob->GetName() + "侵袭！");
     return sentient::eventPreAttack(ob);
 }
 
@@ -165,25 +164,24 @@ int eventTeachPlayer(object who, string spell){
     if( ob ){
         foreach(string skill in ob->GetSkills()){
             if( GetSkillLevel(skill) < ob->GetRequiredSkill(skill) ){
-                eventForce("speak I don't know " + spell + ".");
+                eventForce("speak 我不懂" + spell + "。");
                 return 1;
             }
         }
         if( !who->eventLearnSpell(spell) ){
-            eventForce("speak You are not prepared for that spell!");
+            eventForce("speak 你还没有准备好学习那个法术！");
             return 1;
         }
-        who->eventPrint(GetName() + " touches your forehead and gives "
-                "you knowledge of " + spell + ".");
-        environment()->eventPrint(GetName() + " touches " +
+        who->eventPrint(GetName() + " 触碰了你的额头，赐予了你"
+                + spell + "的知识。");
+        environment()->eventPrint(GetName() + " 触碰了" +
                 possessive_noun(who) +
-                " forehead and gives " +
-                objective(who) + " knowledge of " +
-                spell + ".", who);
+                " 额头，赐予了" +
+                objective(who) + spell + "的知识。", who);
         return 1;
     }
     else {
-        eventForce("speak I have never heard of such a spell");
+        eventForce("speak 我从未听说过那种法术");
         return 1;
     }
 }

@@ -115,7 +115,7 @@ varargs mixed eventSmell(object who, string str){
 
 mixed direct_smell_obj(){
     if( !Smell ){
-        return "You notice no unusual odor.";
+        return "你没注意到什么特殊的气味。";
     }
     else {
         return 1;
@@ -125,7 +125,7 @@ mixed direct_smell_obj(){
 mixed direct_smell_str_word_obj(string str){
     str = remove_article(lower_case(str));
     if( !Smells[str] ){
-        return "You notice no unusual odor.";
+        return "你没注意到什么特殊的气味。";
     }
     else {
         return 1;

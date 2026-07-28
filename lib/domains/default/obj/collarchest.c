@@ -18,7 +18,7 @@ void create() {
     SetMass(274);
     SetDollarCost(50);
     SetMaxCarry(500);
-    SetPreventPut("You cannot put this in there!");
+    SetPreventPut("你不能把这个放进去！");
     SetInventory(([
                 "/secure/obj/medtric" : 1,
                 "/domains/default/armor/collar" : 5,
@@ -26,4 +26,4 @@ void create() {
     SetCanClose(1);
     SetClosed(1);
 }
-mixed CanGet(object ob) { return "The chest does not budge.";}
+mixed CanGet(object ob) { return "箱子纹丝不动。";}

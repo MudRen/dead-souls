@@ -23,7 +23,7 @@ mixed indirect_give_liv_obj(object target){
     }
     tmp = CanDrop(this_player());
     if( tmp != 1 ){
-        return (tmp || "You can't drop " + GetDefiniteShort() + ".");
+        return (tmp || "你无法丢弃" + GetDefiniteShort() + "。");
     }
     tmp = target->CanCarry(GetMass());
     if( tmp != 1 ){

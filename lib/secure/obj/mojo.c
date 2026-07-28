@@ -59,7 +59,7 @@ int damage4(){
 void heart_beat(){
     if(environment() && !living(environment())) this_object()->eventDestruct();
     if(counter == 100){
-        if(environment()) tell_object(environment(),"You feel the effects of the healing salve wear off.");
+        if(environment()) tell_object(environment(),"你感到治疗药膏的效果消退了。");
         this_object()->eventMove("/domains/town/room/furnace");
     }
 

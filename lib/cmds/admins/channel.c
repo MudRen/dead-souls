@@ -66,9 +66,8 @@ int cmd(string str) {
 }
 
 string GetHelp() {
-    return "Syntax: channel <add|remove> <player> <channel>\n"
-        "        channel <player>\n\n"
-        "Used to restrict a player from using a line, or to allow them back "
-        "onto that line. You can also request a listing of a players currently "
-        "restricted lines with this command.";
+    return "语法：channel <add|remove> <玩家> <频道>\n"
+        "        channel <玩家>\n\n"
+        "用于限制玩家使用某个频道，或恢复其频道使用权限。"
+        "也可以使用此命令查看玩家当前被限制的频道列表。";
 }

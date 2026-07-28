@@ -11,7 +11,7 @@ mixed cmd(string str) {
 
     types = load_object(RACES_D)->GetRaces(1);
     if( !sizeof(types) ) {
-        return "No list at this time.";
+        return "当前没有列表。";
     }
     types = sort_array(types, 1);
     message("help", format_page(types, 5), this_player() );
@@ -19,8 +19,7 @@ mixed cmd(string str) {
 }
 
 string GetHelp() {
-    return ("Syntax: praces\n\n"
-            "A simple tool for creators which will list "
-            "available player races.");
+    return ("语法：praces\n\n"
+            "一个简单的创造者工具，列出可用的玩家种族。");
 }
 

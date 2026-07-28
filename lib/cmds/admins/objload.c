@@ -44,7 +44,6 @@ mixed cmd(string args) {
 }
 
 string GetHelp() {
-    return "Syntax: objload\n\n"
-        "Provides you with information about how many objects "
-        "each creator has in the game.";
+    return "语法：objload\n\n"
+        "显示每位创造者在游戏中拥有多少对象的信息。";
 }

@@ -9,8 +9,8 @@ int cmd(string arg){
 }
 
 string GetHelp(){
-    return "Syntax: dumpallobj\n\n"
-        "Puts a list of all currently loaded objects in /tmp/objects."
-        "\nSee man: dumpallobj"
-        "\nSee also: callouts, cache, mstatus, netstat, fdinfo, opcprof";
+    return "语法：dumpallobj\n\n"
+        "将所有当前加载的对象列表输出到 /tmp/objects。"
+        "\n参见 man: dumpallobj"
+        "\n另见：callouts, cache, mstatus, netstat, fdinfo, opcprof";
 }

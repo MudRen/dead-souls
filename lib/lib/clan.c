@@ -72,26 +72,26 @@ string GetClanSkill(){ return Clan->skill; }
 int eventBring(string str){
     object who;
 
-    if(!str) return notify_fail("Bring whom?\n");
+    if(!str) return notify_fail("带来谁？\n");
     who = find_player(lower_case(str));
     if(!who)
-        return notify_fail(who->GetName() + " is nowhere to be found.\n");
+        return notify_fail(who->GetName() + " 无处可寻。\n");
     if(who->GetClan() != GetClanName())
-        return notify_fail(who->GetName() + " is not one of you!\n");
+        return notify_fail(who->GetName() + " 不是我们的人！\n");
     if(   environment(who)->GetProperty("no teleport")
             || environment(this_player())->GetProperty("no teleport")
             || environment(this_player())->GetProperty("no magic"))
-        return notify_fail("A magic force blocks your powers.\n");
+        return notify_fail("一股魔力阻止了你的法术。\n");
     if(present(who, environment(this_player())))
-        return notify_fail(capitalize(str) + " is here.\n");
+        return notify_fail(capitalize(str) + " 就在这里。\n");
     if(this_player()->GetMagicPoints() < 70)
-        return notify_fail("Too low on magic power.\n");
+        return notify_fail("魔力不足。\n");
     this_player()->AddMagicPoints(-70);
-    who->eventPrint("%^CYAN%^Your clan leader summons you.%^RESET%^");
+    who->eventPrint("%^CYAN%^你的门派领袖召唤了你。%^RESET%^");
     who->eventMoveLiving(environment(this_player()));
     if(!present(who, environment(this_player())))
         this_player()->eventPrint("%^CYAN%^" + capitalize(str)
-                + " is beyond your reach.%^RESET%^");
+                + " 超出了你的能力范围。%^RESET%^");
     return 1;
 }
 
@@ -100,17 +100,16 @@ int eventInitiate(string str){
     object clanObject;
     mixed ret;
 
-    if(!str) return notify_fail("Initiate whom?\n");
+    if(!str) return notify_fail("接纳谁？\n");
     initiate = present(lower_case(str), environment(this_player()));
     if(!initiate || !living(initiate))
-        return notify_fail("No one of that nature here.\n");
+        return notify_fail("这里没有这样的人。\n");
     if(stringp(ret = CanJoin(initiate))) return notify_fail(ret);
     else if(!ret) return ret;
     if(this_player()->GetMagicPoints() < 300)
-        return notify_fail("Too low on magic power.\n");
+        return notify_fail("魔力不足。\n");
     if(initiate->GetClan())
-        return notify_fail("You may only initiate people without clan "
-                + "affiliation.\n");
+        return notify_fail("你只能接纳没有门派归属的人。\n");
     initiate->SetClan(GetClanName());
     initiate->SetSkill(GetClanSkill(), 1, 1);
     if(clanObject = new(GetClanObject()))
@@ -121,23 +120,21 @@ int eventInitiate(string str){
 }
 
 void eventJoin(object ob){
-    ob->eventPrint("%^YELLOW%^You are now a member of the "
-            + pluralize(GetClanName()) + ".%^RESET%^");
+    ob->eventPrint("%^YELLOW%^你现在是" + pluralize(GetClanName()) + "的一员了。%^RESET%^");
     environment(ob)->eventPrint("%^YELLOW%^" +ob->GetName()
-            + " is now a member of the "
-            + pluralize(GetClanName()) + ".%^RESET%^", ob);
+            + " 现在是" + pluralize(GetClanName()) + "的一员了。%^RESET%^", ob);
 }
 
 int eventRetire(string str){
     object retiree;
     object clanObject;
 
-    if(!str) return notify_fail("Retire whom?\n");
+    if(!str) return notify_fail("驱逐谁？\n");
     retiree = present(lower_case(str), environment(this_player()));
     if(!retiree || !living(retiree))
-        return notify_fail("No one of that nature here.\n");
+        return notify_fail("这里没有这样的人。\n");
     if(retiree->GetClan() != GetClanName())
-        return notify_fail(retiree->GetName() + " is not one of us!\n");
+        return notify_fail(retiree->GetName() + " 不是我们的人！\n");
     clanObject = present(GetClanName() + "_clan_object", retiree);
     if(!clanObject) error("Problem with clan object.");
     clanObject->eventDestruct();
@@ -148,15 +145,12 @@ int eventRetire(string str){
 }
 
 void eventUnjoin(object ob){
-    ob->eventPrint("%^RED%^You are no longer a member of the "
-            + pluralize(GetClanName()) + ".%^RESET%^");
+    ob->eventPrint("%^RED%^你不再是" + pluralize(GetClanName()) + "的一员了。%^RESET%^");
     environment(ob)->eventPrint("%^RED%^" + ob->GetName()
-            + " is no longer a member of the "
-            + pluralize(GetClanName()) + ".%^RESET%^", ob);
+            + " 不再是" + pluralize(GetClanName()) + "的一员了。%^RESET%^", ob);
 }
 
 void eventWelcome(object ob){
-    ob->eventPrint("%^YELLOW%^Welcome, fellow " + GetClanName()
-            + ".%^RESET%^");
+    ob->eventPrint("%^YELLOW%^欢迎，同为" + GetClanName() + "的伙伴。%^RESET%^");
 }
 

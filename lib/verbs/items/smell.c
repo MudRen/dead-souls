@@ -53,7 +53,7 @@ mixed do_smell() {
         }
     }
     if( !val ) {
-        val = "You don't smell a thing.";
+        val = "你什么也没闻到。";
     }
     environment(this_player())->eventPrint(this_player()->GetName() +
             " smells around.", this_player());

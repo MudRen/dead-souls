@@ -9,15 +9,15 @@ varargs string translate_vision(object ob){
     if(!ob) vision = this_player()->GetEffectiveVision();
     else vision = ob->GetEffectiveVision();
     switch(vision){
-        case 0 : ret = "level 0: blindness.";break;
-        case 1 : ret = "level 1: too dark.";break;
-        case 2 : ret = "level 2: dark.";break;
-        case 3 : ret = "level 3: dim.";break;
-        case 4 : ret = "level 4: clear.";break;
-        case 5 : ret = "level 5: light.";break;
-        case 6 : ret = "level 6: bright.";break;
-        case 7 : ret = "level 7: too bright.";break;
-        default : ret = "a mystery.";
+        case 0 : ret = "等级0：失明。";break;
+        case 1 : ret = "等级1：太暗了。";break;
+        case 2 : ret = "等级2：黑暗。";break;
+        case 3 : ret = "等级3：昏暗。";break;
+        case 4 : ret = "等级4：清晰。";break;
+        case 5 : ret = "等级5：明亮。";break;
+        case 6 : ret = "等级6：耀眼。";break;
+        case 7 : ret = "等级7：太亮了。";break;
+        default : ret = "未知。";
     }
     return ret;
 }
@@ -39,11 +39,11 @@ varargs mixed EvaluateRadiantLight(object ob, int report){
         }
     }
     if(!report) return x;
-    else return "Livings: \n"+rep+"\nObjects:\n"+subrep;
+    else return "生物：\n"+rep+"\n物品：\n"+subrep;
 }
 
 string DefaultReading(){
-    write("这个小设备是一个便携式光线计。它告诉你 available light is what。");
+    write("这个小设备是一个便携式光线计。它告诉你可用的光线情况。");
     write("这里的环境光线是："+environment(this_player())->GetAmbientLight());
     write("这里的总辐射光线是："+EvaluateRadiantLight());
     write("你的视觉范围是："+this_player()->GetEffectiveVision(environment(this_player()),1));

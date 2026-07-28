@@ -12,7 +12,7 @@ mixed cmd(string args) {
     if( args == "" || !args ) 
         args = user_path(this_player()->GetKeyName()) + "tmp.edit";
     if( this_player()->GetForced() ) {
-        message("system", "Someone tried to force you to edit "+ args +"\n" +
+        message("system", "有人试图强迫你编辑 "+ args +"\n" +
                 identify(previous_object(-1)), this_player());
         return 0;
     }
@@ -28,9 +28,9 @@ mixed cmd(string args) {
     }
     args = absolute_path( this_player()->query_cwd(), args );
     if( (x = file_size(args)) == -2 ) 
-        return "You cannot edit a directory!";
+        return "你不能编辑目录！";
     else if( x == -1 )
-        message("editor", args + ", new file, starting in input mode.\n",
+        message("editor", args + "，新文件，开始输入模式。\n",
                 this_player());
     else message("editor", args + ", " + x + " bytes\n", this_player());
     CMD_BK->cmd(args);

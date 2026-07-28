@@ -19,17 +19,17 @@ protected void create() {
     SetDamageType(BLADE);
     SetWeaponType("blade");
     SetItems( ([
-                ({"rune","runes"}) : "The runes' meaning is undecipherable to you.",
-                ({"picture","engraving"}) : "An almost comical image of a startled orc sliced in half.",
+                ({"rune","runes"}) : "这些符文的含义你无法解读。",
+                ({"picture","engraving"}) : "一幅近乎滑稽的图案：一只惊恐的兽人被劈成两半。",
                 ]) );
     SetRead( ([
-                ({"rune","runes"}) : "You do not understand them."
+                ({"rune","runes"}) : "你看不懂这些符文。"
                 ]) );
-    AddItem("thing" , "A thing.");
+    AddItem("thing" , "一个东西。");
 }
 int eventStrike(object target) {
     if( target->GetRace() != "orc" ) return item::eventStrike(target);
-    message("environment", "The orc slayer sword glows blue and emits a ghastly shrieking sound!",
+    message("environment", "屠兽者之剑发出蓝色的光芒，发出可怕的尖叫声！",
             environment(target));
     return item::eventStrike(target) + random(50)+10;
 }

@@ -4,7 +4,7 @@
 inherit LIB_DAEMON;
 
 mixed cmd(string str) {
-    return "This is your own, personal command.";
+    return "这是你自己的专属命令。";
 }
 
 

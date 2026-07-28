@@ -6,16 +6,16 @@ string SearchFun(){
     string result;
     if(found == 0){
         object ob = new("/domains/town/obj/safe_key");
-        result="You search the room and find a complex key!";
-        tell_room(this_object(),this_player()->GetName()+ 
-                " searches the room and finds something ",
+        result="你搜索房间，找到了一把复杂的钥匙！";
+        tell_room(this_object(),this_player()->GetName()+
+                "搜索了房间，似乎找到了什么东西。",
                 ({ this_player() }) );
         if(ob->eventMove(this_player()))
             ob->eventMove(this_object());
         found = 1;
         return result;
     }
-    return "You find nothing special.";
+    return "你什么也没找到。";
 }
 protected void create() {
     room::create();

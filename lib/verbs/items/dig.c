@@ -27,8 +27,8 @@ varargs protected void eventPrepareDig(object who, object tool, object what) {
     function f = (: eventDig($(who), $(tool), $(what), environment($(who))) :);
 
     if( this_player()->GetInCombat() ) {
-        send_messages("start", "$agent_name $agent_verb to dig with " +
-                tool->GetShort() + ".", who, 0, environment(who));
+        send_messages("start", "$agent_name $agent_verb 用" +
+                tool->GetShort() + "挖掘。", who, 0, environment(who));
         who->SetAttack(0, f, ROUND_OTHER);
     }
     else {

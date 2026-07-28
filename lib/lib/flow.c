@@ -73,13 +73,13 @@ void eventFlood(mixed targets){
             flooder->SetProperty("LastLocation", base_name(env)); 
             flood = flooder->eventMove(room);
             if(!flood) continue;
-            tell_room(room,"This area starts flooding with water!");
-            tell_room(arch,base_name(room)+" has been flooded.");
+            tell_room(room,"这片区域开始被水淹没了！");
+            tell_room(arch,base_name(room)+" 已被淹没。");
         }
         if(flooder->GetPressure() < press){
             if(press && flooder->AddPressure(1)) press--;
             if(press < 2){ 
-                tell_room(env,"The water recedes a bit.");
+                tell_room(env,"水退了一些。");
             }
         }
     }
@@ -162,10 +162,10 @@ int AddPressure(int x){
     if(i && x > 0 && press >= i) return 0;
     if(x){
         if(press == 1 && x > 0){
-            tell_room(env,"The area completely fills with water!");
+            tell_room(env,"这片区域完全被水充满了！");
         } 
         if(press > 1 && x < 0){
-            tell_room(env,"The water recedes a bit.");
+            tell_room(env,"水退了一些。");
         }
         press += x;
     }
@@ -215,10 +215,10 @@ void init(){
 
 string GetRoomAffectLong(){
     if(press > 1){
-        return "\n%^CYAN%^This area is completely filled with water!%^RESET%^";
+        return "\n%^CYAN%^这片区域完全被水充满了！%^RESET%^";
     }
     if(press == 1){
-        return "\n%^BOLD%^%^BLUE%^This area is flooded with water.%^RESET%^";
+        return "\n%^BOLD%^%^BLUE%^这片区域被水淹没了。%^RESET%^";
     }
     return "";
 }

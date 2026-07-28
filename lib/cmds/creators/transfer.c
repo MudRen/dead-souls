@@ -17,28 +17,28 @@ mixed cmd(string args) {
     mixed res;
 
     if(!args || args == ""){
-        return "Syntax: <transfer OBJECT into OBJECT>\n\n";
+        return "语法：<transfer 物品 into 容器>\n\n";
     }
 
     if( sscanf(args, "%s into %s", a, b) != 2 &&
             sscanf(args, "%s to %s", a, b) != 2 ) {
-        return "Syntax: <transfer OBJECT into OBJECT>\n\n";
+        return "语法：<transfer 物品 into 容器>\n\n";
     }
     what = get_object(a);
     destination = get_object(b);
     if( !what ) {
-        return "Unable to find " + a + ".";
+        return "找不到 " + a + "。";
     }
     if( !destination ) {
-        return "Unable to find " + b + ".";
+        return "找不到 " + b + "。";
     }
     if( living(what) && living(destination) ) {
-        return "None of that nonsense.";
+        return "不能这样做。";
     }
     res = what->eventMove(destination);
     if( !res ) {
-        return "Failed to transfer " + identify(what) + " into " +
-            identify(destination) + ".";
+        return "无法将 " + identify(what) + " 转移到 " +
+            identify(destination) + "。";
     }
     else if( res != 1 ) {
         return res;
@@ -52,8 +52,7 @@ mixed cmd(string args) {
 }
 
 string GetHelp() {
-    return ("Syntax: transfer <OBJECT into OBJECT>\n\n"
-            "Allows you to transfer the object you name into the container "
-            "you name.\n"
-            "See also: trans, expel, goto, return");
+    return ("语法：transfer <物品 into 容器>\n\n"
+            "允许你将指定物品转移到指定容器中。\n"
+            "另见：trans, expel, goto, return");
 }

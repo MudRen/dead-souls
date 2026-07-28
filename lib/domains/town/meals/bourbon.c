@@ -15,8 +15,8 @@ protected void create() {
     SetBaseCost("silver",20);
     SetMealType(MEAL_DRINK | MEAL_ALCOHOL);
     SetStrength(30);
-    SetMealMessages("You finish off the bourbon and gasp! WHEW!! Mean stuff!",
-            "$N finishes off a bottle of bourbon and gasps.");
+    SetMealMessages("你喝完了波本威士忌，倒吸一口气！好烈的酒！",
+            "$N 喝完一瓶波本威士忌，倒吸一口气。");
 }
 void init(){
     ::init();

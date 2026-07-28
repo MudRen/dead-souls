@@ -201,7 +201,7 @@ void set_eval_limit(int i){
 string debug_info(int debuglevel, mixed arg){
     if(master()->valid_apply(({ "SECURE", "ASSIST" })))
         return efun::debug_info(debuglevel, arg);
-    else return "This sefun is not available to unprivileged objects.";
+    else return "该系统函数不对非特权对象开放。";
 }
 
 string* groups(){

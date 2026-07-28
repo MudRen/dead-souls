@@ -21,24 +21,24 @@ mixed cmd(string args) {
         log_file("adm/call", query_privs(previous_object())
                 +" ("+ctime(time())+"): call "+args+"\n");
     }
-    if( !args || args == "" ) return "Call ob->func(arg1, arg2)\n";
+    if( !args || args == "" ) return "调用 ob->func(arg1, arg2)\n";
     if( sscanf(args, "%s->%s(%s", arg_targ, arg_func, args) != 3 )
-            return "Call ob->func(arg1, arg2)\n";
+            return "调用 ob->func(arg1, arg2)\n";
             args = trim(args);
             if( args != ")" ) args = args[0..<2];
             else args = "";
             if( !(target = to_object(arg_targ)) )
-                return "Cannot identify any object as \"" + arg_targ + "\".";
+                return "无法将任何对象识别为 \"" + arg_targ + "\"。";
             if( !function_exists(arg_func, target) )
-                return "The function " + arg_func +"() is not in " +
-                    identify(target) + "\n";
+                return "函数 " + arg_func +"() 不在 " +
+                    identify(target) + " 中\n";
             f = (: call_other, target, arg_func :);
             if( args == "" ) {
                 err = catch(val = evaluate(f));
                 if( err) {
                     message("error", identify(target) + " -> " + arg_func + "()",
                             this_player());
-                    message("error", "Error in execution: " + err, this_player());
+                    message("error", "执行错误：" + err, this_player());
                     return 1;
                 }
                 else {
@@ -56,7 +56,7 @@ mixed cmd(string args) {
             }
             if( err ) {
                 message("error", args + ")", this_player());
-                message("error", "Error in execution: " + err, this_player());
+                message("error", "执行错误：" + err, this_player());
                 return 1;
             }
             args += " ) = " + identify(val);

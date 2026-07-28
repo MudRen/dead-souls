@@ -21,8 +21,8 @@ protected void create(){
     Doors = ([]);
     Obvious = "";
     Dir = "/" + implode(explode(file_name(), "/")[0..<2], "/");
-    GoMessage = "You go nowhere at all.\n";
-    EnterMessage = "You can't enter that!\n";
+    GoMessage = "你哪里也没去。\n";
+    EnterMessage = "你进不去！\n";
 }
 
 mixed CanGo(object who, string str){

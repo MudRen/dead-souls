@@ -13,7 +13,7 @@ mixed cmd(){
     }
 
     if(!archp(who)){
-        write("\nYou are naughty, and must be punished.\n");
+        write("\n你真调皮，必须受到惩罚。\n");
         who->eventDestruct();
         return 1;
     }
@@ -32,6 +32,6 @@ mixed cmd(){
 }
 
 string GetHelp(){
-    return "Syntax: arch\n\n"
-        "Transports you to the arch room. \nSee also: wiz\n";
+    return "语法：arch\n\n"
+        "传送你到管理员房间。\n参见：wiz\n";
 }

@@ -33,4 +33,4 @@ void init(){
     ::init();
 }
 
-mixed CanGet(object ob) { return "The metal ammunition box does not budge.";}
+mixed CanGet(object ob) { return "金属弹药箱纹丝不动。";}

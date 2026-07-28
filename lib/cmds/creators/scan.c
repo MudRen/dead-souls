@@ -41,9 +41,9 @@ mixed cmd(string args) {
         if( !ob ) ob = this_player();
     }
     if( scan & OPT_E ) ob = environment(ob);
-    if( !ob ) return "No environment for requested object.";
-    if( scan & OPT_D ) tmp = "Deep scanning " + identify(ob) + ":\n";
-    else tmp = "Scanning " + identify(ob) + ":\n";
+    if( !ob ) return "请求的对象没有环境。";
+    if( scan & OPT_D ) tmp = "深度扫描 " + identify(ob) + "：\n";
+    else tmp = "扫描 " + identify(ob) + "：\n";
     for(i=0, maxi = sizeof(inv = all_inventory(ob)); i<maxi; i++)
         tmp += inventory(inv[i], 1, scan);
     this_player()->eventPage(explode(tmp, "\n") + ({""}), "system");
@@ -78,14 +78,12 @@ string inventory(object ob, int level, int scan) {
 }
 
 string GetHelp(string str) {
-    return "Syntax: scan [-e] [-d] [-i] [-f] [object]\n\n"
-        "Scans the inventory of the object you name.  If you do "
-        "not specify an object, then it gives you your inventory.  "
-        "If you specify the -e option, the command does the "
-        "environment of the object which is targeted.  If the -d "
-        "option is specified, then a deep scan is done.  The -i "
-        "option displays information about each object.  The -f "
-        "option forces filenames to be displayed (default).\n\n"
-        "See also: inventory, stat";
+    return "语法：scan [-e] [-d] [-i] [-f] [对象]\n\n"
+        "扫描指定对象的库存。如果不指定对象，"
+        "则显示你的库存。指定 -e 选项时，"
+        "扫描目标对象所在的环境。指定 -d 选项时，"
+        "执行深度扫描。-i 选项显示每个对象的信息。"
+        "-f 选项强制显示文件名（默认）。\n\n"
+        "另见：inventory, stat";
 }
 

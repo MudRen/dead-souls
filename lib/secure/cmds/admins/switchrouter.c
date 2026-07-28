@@ -9,7 +9,7 @@ mixed cmd(string args) {
     string ip, name;
     int port, octet1, octet2, octet3, octet4;
 
-    if(!archp(previous_object())) return "No.";
+    if(!archp(previous_object())) return "不。";
 
     if(!args || args == ""){
         object omud = find_object(INTERMUD_D);

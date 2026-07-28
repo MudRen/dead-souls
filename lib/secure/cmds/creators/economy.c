@@ -25,7 +25,7 @@ int cmd(string str) {
             str+" ("+ctime(time())+")\n");
     if(sscanf(str, "add %s %f %f %f", type, rate, infl, wt) == 4) {
         ECONOMY_D->add_currency(type, rate, infl, wt);
-        message("info", "Currency "+type+" added!", this_player());
+        message("info", "货币 "+type+" 已添加！", this_player());
     }
     else if(sscanf(str, "change %s for %s to %f", key, type, wt) == 3) {
         ECONOMY_D->change_currency(type, key, wt);

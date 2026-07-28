@@ -19,7 +19,7 @@ void create(){
     SetMaxFlask(1000); 
     SetMealType(MEAL_ALCOHOL);
     SetTapped(1);
-    SetPreventGet("The cask is firmly attached to the floor.");
+    SetPreventGet("木桶固定在地上。");
 }
 
 void init(){
@@ -27,7 +27,6 @@ void init(){
 }
 
 mixed CanDrink(object who, string what){
-    return "This is a tapped "+GetKeyName()+". You fill something "+
-        "with it, you don't drink directly from it, you barbarian.";
+    return "这是一个带龙头的"+GetKeyName()+"。你应该用容器接酒喝，而不是直接对着喝，野蛮人。";
 }
 

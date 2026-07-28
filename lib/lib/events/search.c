@@ -43,7 +43,7 @@ mapping FoundTraps(){
 varargs string GetSearch(string str, object who){
     mixed val;
     mapping Traps = FoundTraps();
-    string trapdesc = "You discover it is boobytrapped!\n";
+    string trapdesc = "你发现它装了陷阱！\n";
 
     if(sizeof(Traps)){
         int i = 0;
@@ -94,7 +94,7 @@ mapping RemoveSearch(string item){
     }
     else {
         //map_delete(Searches, item);
-        Searches["item"] = "You find nothing.";
+        Searches["item"] = "你什么也没找到。";
     }
     return Searches;
 }
@@ -143,7 +143,7 @@ varargs mixed SetSearch(mixed* args...){
 varargs mixed eventSearch(object who, string str){
     str = GetSearch(str, who);
     if( !str ){
-        who->eventPrint("You find nothing.");
+        who->eventPrint("你什么也没找到。");
         return 1;
     }
     environment(who)->eventPrint(who->GetName() + " searches "

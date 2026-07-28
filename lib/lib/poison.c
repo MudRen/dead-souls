@@ -17,7 +17,7 @@ protected void create(){
 
 mixed indirect_poison_obj_with_obj(){
     if( environment() != this_player() ) return 0;
-    if( PoisonStrength < 1 ) return "The poison is all used up.";
+    if( PoisonStrength < 1 ) return "毒药用完了。";
     return 1;
 }
 
@@ -25,8 +25,7 @@ mixed eventSpreadPoison(object who, object target){
     if( !who || !target || !PoisonUses ) return 0;
     PoisonUses--;
     if( random(50) > who->GetStatLevel("coordination") ){
-        this_player()->eventPrint("You fumble around with the poison, "
-                "spilling it on yourself.");
+        this_player()->eventPrint("你笨手笨脚地弄毒药，洒到了自己身上。");
         environment(this_player())->eventPrint(who->GetName() +
                 " fumbles around with some "
                 "poison, spilling it on " +

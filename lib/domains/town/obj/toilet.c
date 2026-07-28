@@ -28,4 +28,4 @@ int flush(string str){
     else return 0;
 }
 
-mixed CanGet(object ob) { return "The toilet does not budge.";}
+mixed CanGet(object ob) { return "马桶纹丝不动。";}

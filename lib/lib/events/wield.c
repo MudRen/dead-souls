@@ -29,7 +29,7 @@ mixed direct_wield_obj(){
     limbs = (this_player()->GetWieldingLimbs() || ({}));
     limbs = filter(limbs, (: !this_player()->GetWielded($1) :));
     if( !sizeof(limbs) ){
-        return "You have nowhere to wield it!";
+        return "你无处挥舞它！";
     }
     if( sizeof(limbs) > hands ){
         limbs = limbs[0..(hands-1)];

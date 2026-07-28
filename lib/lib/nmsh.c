@@ -131,17 +131,17 @@ nomask protected int cmd_alias(string str){
     if(key[0] == '$'){
         key = key[1..strlen(key)];
         if(Xverbs[key])
-            message("system", sprintf("Alias for $%s altered to (%s).",
+            message("system", sprintf("$%s 的别名已更改为 (%s)。",
                         key, thing), this_player());
-        else message("system", sprintf("Alias $%s (%s) added.", key, thing),
+        else message("system", sprintf("别名 $%s (%s) 已添加。", key, thing),
                 this_player());
         Xverbs[key] = thing;
     }
     else {
         if(Aliases[key])
-            message("system", sprintf("Alias for %s altered to (%s).", key, thing),
+            message("system", sprintf("%s 的别名已更改为 (%s)。", key, thing),
                     this_player());
-        else message("system", sprintf("Alias %s (%s) added.", key, thing),this_player());
+        else message("system", sprintf("别名 %s (%s) 已添加。", key, thing),this_player());
         Aliases[key] = thing;
     }
     return 1;
@@ -195,7 +195,7 @@ nomask protected int cmd_nickname(string str){
     }
     if(sscanf(str, "%s %s", key, thing) != 2){
         if(Nicknames[str]){
-            message("system", sprintf("Nickname %s removed.", str),
+            message("system", sprintf("昵称 %s 已移除。", str),
                     this_player());
             map_delete(Nicknames, str);
         }
@@ -204,9 +204,9 @@ nomask protected int cmd_nickname(string str){
     }
     else {
         if(Nicknames[key])
-            message("system", sprintf("Nickname %s altered to (%s).", key, thing),
+            message("system", sprintf("昵称 %s 已更改为 (%s)。", key, thing),
                     this_player());
-        else message("system", sprintf("Nickname %s (%s) added.", key, thing),
+        else message("system", sprintf("昵称 %s (%s) 已添加。", key, thing),
                 this_player());
         Nicknames[key] = thing;
     }

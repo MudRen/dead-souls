@@ -80,7 +80,7 @@ void heart_beat(){
     } 
     if(!RACES_D->GetNonMeatRace(ob->GetRace()) && interactive(ob)
             && !(ob->GetUndead())){
-        tell_object(ob,"You bleed heavily from your gunshot wounds.");
+        tell_object(ob,"你的枪伤在大量出血。");
         tell_room(environment(ob), ob->GetName()+
                 " bleeds heavily from "+possessive(ob)+" gunshot "+
                 "wounds.",environment());
