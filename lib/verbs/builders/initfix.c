@@ -9,7 +9,7 @@ protected void create() {
     verb::create();
     SetVerb("initfix");
     SetRules("OBJ", "here");
-    SetErrorMessage("initfix what?");
+    SetErrorMessage("initfix什么？");
     SetHelp("语法: initfix <OBJ>\n\n"
             "如果你对指定对象的文件有写权限，此命令会添加一个init(){}函数。"
             "缺少此函数会导致许多对象损坏或行为不可预测。\n"

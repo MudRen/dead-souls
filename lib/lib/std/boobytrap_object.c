@@ -54,7 +54,7 @@ void init(){
 
 varargs mixed CanBoobytrap(object who, mixed what){
     if(!environment() || environment() != who) 
-        return "#You don't have that.";
+        return "#你没有那个东西。";
     //return 0;
     return 1;
 }
@@ -63,16 +63,16 @@ varargs int eventBoobytrap(object who, mixed target, mixed trap){
     object shadowtrap;
     if(stringp(target)) target = to_object(target);
     if(!target){
-        write("It seems that cannot be boobytrapped.");
+        write("那个东西似乎无法安装陷阱。");
         return 1;
     }
     if(living(target)){
-        write("You cannot boobytrap a living thing.");
+        write("你不能对活物安装陷阱。");
         return 1;
     }
     shadowtrap = new(shadow_object);
     if(!shadowtrap){
-        write("There is somethign wrong with the boobytrap. You fail to set it.");
+        write("陷阱有问题。你安装失败了。");
         return 1;
     }
     if(this_player()){
@@ -80,8 +80,8 @@ varargs int eventBoobytrap(object who, mixed target, mixed trap){
             traplevel += this_player()->GetSkill("concealment")["level"];
         traplevel += random(this_player()->GetStat("luck")["level"]);
         traplevel += this_player()->GetStat("coordination")["level"];
-        write("You boobytrap "+target->GetShort()+" with your "+remove_article(trap->GetShort())+".");
-        say(this_player()->GetCapName()+" seems to attach something to "+target->GetShort()+".");
+        write("你用你的"+remove_article(trap->GetShort())+"在"+target->GetShort()+"上安装了陷阱。");
+        say(this_player()->GetCapName()+"似乎在"+target->GetShort()+"上.attach了什么东西。");
     }
 
     shadowtrap->SetTrapDescription(this_object()->GetLong());

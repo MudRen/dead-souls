@@ -15,7 +15,7 @@ protected void create() {
     verb::create();
     SetVerb("copy");
     SetRules("STR", "OBJ STR");
-    SetErrorMessage("Copy what?");
+    SetErrorMessage("复制什么？");
     SetHelp("语法: copy <OBJ> <NAME>\n"
             "        copy <FILENAME>\n\n"
             "以房间的文件名作为参数，此命令将该房间的所有内容（出口除外）"
@@ -121,7 +121,7 @@ mixed do_copy_str(string str) {
 
     load_object("/secure/cmds/creators/bk")->cmd(new_room+".c");
     write("已备份此房间。要从此备份恢复，请输入: ");
-    write("restore "+last_string_element(new_room,"/"));
+    write("恢复 "+last_string_element(new_room,"/"));
     write("然后: update");
 
     staff->eventCopyRoom(str,new_room+".c");

@@ -15,7 +15,7 @@ protected void create() {
     verb::create();
     SetVerb("touch");
     SetRules("OBJ", "STR on OBJ", "STR of OBJ");
-    SetErrorMessage("Touch something?");
+    SetErrorMessage("触摸什么？");
     SetHelp("Syntax: <touch ITEM>\n"
             "        <touch THING on ITEM>\n\n"
             "This command allows you to touch an object to get an idea "

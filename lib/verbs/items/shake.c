@@ -7,7 +7,7 @@ protected void create() {
     SetVerb("shake");
     SetRules("OBJ", "STR on OBJ");
     SetSynonyms("jiggle");
-    SetErrorMessage("Shake what? Or shake what on what?");
+    SetErrorMessage("摇什么？或者把什么摇在什么上？");
     SetHelp("Syntax: <shake OBJECT>\n"
             "        <shake THING on OBJECT>\n\n"
             "Allows you to shake an object, or perhaps a thing on the "

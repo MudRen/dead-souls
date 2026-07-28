@@ -8,7 +8,7 @@ protected void create() {
     verb::create();
     SetVerb("pour");
     SetRules("from OBJ into OBJ","from OBJ in OBJ", "OBJ in OBJ","OBJ into OBJ","OBJ on OBJ","OBJ onto OBJ","OBJ out","out OBJ");
-    SetErrorMessage("Pour what into what?");
+    SetErrorMessage("把什么倒入什么？");
     SetHelp("Syntax: pour <substance> into <vessel>\n\n"
             "Allows you to pour into a vessel designed for containing a substance.");
 }

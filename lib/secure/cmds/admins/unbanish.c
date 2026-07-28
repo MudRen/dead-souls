@@ -12,15 +12,15 @@ inherit LIB_DAEMON;
 int cmd(string str) {
     if(!archp(previous_object())) return 0;
     if(!str){
-        write("Syntax: unbanish <string>");
+        write("语法: unbanish <字符串>");
         return 1;
     }
-    write(capitalize(str = lower_case(str))+" is no longer banished.\n");
+    write(capitalize(str = lower_case(str))+" 已解除封禁。\n");
     catch(call_other(BANISH_D, "unbanish_name", str));
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: unbanish <name>\n\n"
-            "Removes a name from the list of banished names.");
+    return ("语法: unbanish <名称>\n\n"
+            "从封禁名称列表中移除一个名称。");
 }

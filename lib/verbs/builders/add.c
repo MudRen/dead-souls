@@ -12,7 +12,7 @@ protected void create() {
     verb::create();
     SetVerb("add");
     SetRules("OBJ", "OBJ to OBJ", "OBJ to here", "OBJ to room");
-    SetErrorMessage("Add what?");
+    SetErrorMessage("添加什么？");
     SetHelp("语法: add <OBJ> to <OBJ>\n"
             "        add <OBJ>\n"
             "此命令将第一个对象添加到第二个对象的永久库存中，"

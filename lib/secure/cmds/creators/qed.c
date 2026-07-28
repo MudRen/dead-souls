@@ -34,24 +34,22 @@ mixed cmd(string args) {
         this_player()->SetProperty("EdWarned", 1);
     }
     args = absolute_path( this_player()->query_cwd(), args );
-    if( (x = file_size(args)) == -2 ) 
-        return "You cannot edit a directory!";
+    if( (x = file_size(args)) == -2 )
+        return "你不能编辑一个目录！";
     else if( x == -1 )
-        message("editor", args + ", new file, starting in input mode.\n",
+        message("editor", args + "，新文件，以输入模式开始。\n",
                 this_player());
-    else message("editor", args + ", " + x + " bytes\n", this_player());
+    else message("editor", args + "，" + x + " 字节\n", this_player());
     this_player()->eventPauseMessages(1,MSG_EDIT);
     this_player()->eventEdit(args, (: UnMuff(this_player()) :) );
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: qed [filename]\n\n"
-            "This is the quiet version of ed. While editing, "
-            "you will receive only editing data and some other limited "
-            "messages. "
-            "Once done editing, the game messages you missed will be "
-            "displayed to you. Be careful where you use this command, for you "
-            "may engage in combat and be killed without knowing about it "
-            "until you complete your editing.\nSee also: ed, ced, qcs, creweb");
+    return ("语法: qed [文件名]\n\n"
+            "这是 ed 的安静版本。编辑时，你只会收到编辑数据和一些有限的消息。"
+            "编辑完成后，你会看到错过的游戏消息。"
+            "请小心使用此命令的位置，因为你可能会在编辑期间"
+            "参与战斗并被杀死而不自知。\n"
+            "另见: ed, ced, qcs, creweb");
 }

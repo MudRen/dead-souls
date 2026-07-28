@@ -12,14 +12,14 @@
 inherit LIB_DAEMON;
 
 mixed cmd(string args) {
-    if( !args || args == "" ) return "Syntax: <removeclass CLASS>";
+    if( !args || args == "" ) return "语法: removeclass <职业名>";
     CLASSES_D->RemoveClass(args);
-    previous_object()->eventPrint("Class removed.");
+    previous_object()->eventPrint("职业已移除。");
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: removeclass <CLASS>\n\n"
-            "Removes a class from the game.\n"
-            "See also: addclass, addemote, addrace, removerace");
+    return ("语法: removeclass <职业名>\n\n"
+            "从游戏中移除一个职业。\n"
+            "另见: addclass, addemote, addrace, removerace");
 }

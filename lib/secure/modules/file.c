@@ -17,7 +17,7 @@ string eventAppendLast(string file, string fun, string addendum){
     globalstr = file;
 
     if(!grepp(file,"\n") && unguarded( (:file_exists(globalstr):) ) && !check_privs(this_player(),globalstr)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return "";
     }
     if(!grepp(file,"\n") && unguarded( (: file_exists(globalstr):) )) {
@@ -51,7 +51,7 @@ string eventAppend(string file, string *params, string addendum){
     else globalstr = file;
 
     if(!grepp(globalstr,"\n") && unguarded( (: file_exists(globalstr):) ) && !check_privs(this_player(),globalstr)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return "";
     }
     if(!grepp(globalstr,"\n") && unguarded( (: file_exists(globalstr):) )) {
@@ -105,7 +105,7 @@ varargs mapping eventReadMapping(string file, string *params, int destructive){
     mixed mixed_var;
 
     if(file_exists(file) && !check_privs(this_player(),file)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return ([]);
     }
 
@@ -150,9 +150,9 @@ varargs mapping eventReadMapping(string file, string *params, int destructive){
     mapping_array = file_arr[primary_line..secondary_line];
 
     new_string = implode(mapping_array," ");
-    if(!new_string) write("Problem here.");
+    if(!new_string) write("此处有问题。");
     if(sscanf(new_string,"%s([%s])%s",junk1,mapping_string, junk2) < 3){
-        write("It's a null mapping");
+        write("这是一个空映射");
         return ([]);
     }
     mapping_array = explode(mapping_string,",");
@@ -187,7 +187,7 @@ varargs mapping eventReadMapping(string file, string *params, int destructive){
 
 string* eventReadLines(string source){
     if(file_exists(source) && !check_privs(this_player(),source)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return ({});
     }
     globalstr = source;
@@ -218,19 +218,19 @@ string* eventReadFunctions(string source){
     tmpsource = generate_tmp(source);
 
     if(file_exists(source) && !check_privs(this_player(),source)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return ({});
     }
 
     if(file_exists(tmpsource) && !check_privs(this_player(),tmpsource)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return ({});
     }
     globalstr3 = tmpsource;
     globalstr = source;
     unguarded( (: cp(globalstr, globalstr3) :) );
-    if(!file_exists(source)) return ({"Source read failed."});
-    if(!file_exists(tmpsource)) return ({"Read failed."});
+    if(!file_exists(source)) return ({"源文件读取失败。"});
+    if(!file_exists(tmpsource)) return ({"读取失败。"});
 
 
     for(i=1; line; i++){
@@ -283,7 +283,7 @@ string* eventReadFunctions(string source){
                     globalstr2 = file;
 
                     if(file_exists(file) && !check_privs(this_player(),file)){
-                        write("You do not appear to have write access to this file. Modification aborted.");
+                        write("你似乎没有对此文件的写权限。修改已中止。");
                         return 1;
                     }
 
@@ -340,7 +340,7 @@ varargs int eventModString(string file, string param, mixed replace, string *par
     string check_include, ret, tmpfile;
     int terrain_include = 0;
     if(file_exists(file) && !check_privs(this_player(),file)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return 1;
     }
     if(!params) where_append = ({"SetLong","SetShort"});
@@ -382,7 +382,7 @@ varargs int eventModString(string file, string param, mixed replace, string *par
             if(globalstr3 == "SetMealType" && !grepp(replace,"MEAL_")) replace = "MEAL_"+replace;
             if(globalstr3 == "SetPosition" && !grepp(replace,"POSITION_")) replace = "POSITION_"+replace;
             if(!grepp(read_file(check_include),replace)) {
-                write("Invalid type. Please review "+check_include+" for valid types.");
+                write("无效类型。请查看 "+check_include+" 了解有效类型。");
                 return 1;
             }
             if(grepp(replace,"MEAL_ALCOHOL")) replace = "MEAL_DRINK | MEAL_ALCOHOL";
@@ -427,7 +427,7 @@ int eventModHeader(object ob, string what, string value){
     }
 
     if(grepp(globalstr3,value)) {
-        write("That object already contains that line.");
+        write("该对象已经包含这一行了。");
         return 1;
     }
     if(what == "inherit"){
@@ -454,7 +454,7 @@ int eventModHeader(object ob, string what, string value){
     unguarded( (: write_file(globalstr,globalstr3,1) :) );
 
     if( catch(load_object(globalstr))){
-        write("This change would hose up the object. Modification aborted.");
+        write("此更改会破坏该对象。修改已中止。");
         return 1;
     }
 
@@ -473,7 +473,7 @@ int eventAddCreate(string file){
     globalstr2 = file;
 
     if(file_exists(file) && !check_privs(this_player(),file)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return 1;
     }
 

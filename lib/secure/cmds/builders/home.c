@@ -20,35 +20,35 @@ mixed GoHome(string str) {
         who = this_player()->GetKeyName();
     }
     else who = lower_case(str);
-    if(!user_exists(who)) return "There's no such user.";
+    if(!user_exists(who)) return "没有这样的用户。";
     room = PLAYERS_D->GetHomeRoom(who);
     if(!room || !strsrch(room, "/tmp/")){
         str = user_path(who, 1);
-        if(!directory_exists(str)) return "That person has no home dir.";
+        if(!directory_exists(str)) return "该用户没有主目录。";
         str = user_path(who, 1)+"workroom.c";
         arg = str;
         if(!unguarded((: file_exists(arg) :)))
-            return capitalize(who)+" has no active workroom.";
+            return capitalize(who)+" 没有可用的工作间。";
     }
     else str = room;
     catch(ob = load_object(str));
     if(!ob){
         if(who != this_player()->GetKeyName())
-            return "\n"+capitalize(who)+"'s workroom is broken.";
-        return "\nYour workroom is broken.";
+            return "\n"+capitalize(who)+"的工作间有问题。";
+        return "\n你的工作间有问题。";
     }
     if(ob == prev)
-        return "You twitch.";
+        return "你抽搐了一下。";
     if(who == this_player()->GetKeyName())
-        if( this_player()->eventMoveLiving(ob,"$N goes home.","$N returns home.") ) {
+        if( this_player()->eventMoveLiving(ob,"$N 回家了。","$N 回到了家。") ) {
             return 1;
         }
     if(who != this_player()->GetKeyName())
-        if( this_player()->eventMoveLiving(ob,"$N leaves to visit "+capitalize(who)+".",
-                    "$N comes in for a visit.") ) {
+        if( this_player()->eventMoveLiving(ob,"$N 去拜访"+capitalize(who)+"了。",
+                    "$N 来访了。") ) {
             return 1;
         }
-    return "You stay where you are.";
+    return "你留在原地不动。";
 }
 
 mixed cmd(string str){
@@ -56,10 +56,9 @@ mixed cmd(string str){
 }
 
 string GetHelp(){
-    return ("Syntax: home\n        home [creator]\n\n"
-            "Without arguments, this command will take you to your workroom.  "
-            "With arguments, it takes you to the workroom of the person "
-            "you specify. Non-creator builders can only go to their own "
-            "workroom.\n"
-            "See also: goto, trans, homeroom");
+    return ("语法: home\n        home [创造者]\n\n"
+            "不带参数时，此命令将你传送回你的工作间。\n"
+            "带参数时，将你传送至指定创造者的工作间。\n"
+            "非创造者的建造者只能回到自己的工作间。\n"
+            "参见: goto, trans, homeroom");
 }

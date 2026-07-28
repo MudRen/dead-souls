@@ -7,7 +7,7 @@ protected void create() {
     SetVerb("pull");
     SetRules("OBJ", "STR on OBJ", "STR from OBJ");
     SetSynonyms("yank", "haul", "drag");
-    SetErrorMessage("Pull what? Or pull what on what?");
+    SetErrorMessage("拉什么？或者把什么拉到什么上？");
     SetHelp("Syntax: <pull OBJECT>\n"
             "        <pull THING on OBJECT>\n\n"
             "Allows you to pull an object, or perhaps a thing on the "

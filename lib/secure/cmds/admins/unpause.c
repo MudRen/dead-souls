@@ -6,39 +6,38 @@ inherit LIB_DAEMON;
 mixed cmd(string args) {
     object ob;
     args = lower_case(args);
-    if(!user_exists(args)) return capitalize(args) + " is not a member of " +
-        possessive_noun(mud_name()) + " reality.";
+    if(!user_exists(args)) return capitalize(args) + " 不是 " +
+        mud_name() + " 的成员。";
     if(!ob = find_player(args)){
         if(member_array(args, PLAYERS_D->GetPendingPauses()) != -1){
             PLAYERS_D->RemovePendingPause(args);
-            write("Pending pause for "+capitalize(args)+" removed.");
+            write("已移除 "+capitalize(args)+" 的待处理暂停。");
         }
         if(!(PLAYERS_D->GetPlayerData(args, "Paused"))){
-            return capitalize(args) + " is already unpaused.";
+            return capitalize(args) + " 已处于未暂停状态。";
         }
         if(member_array(args, PLAYERS_D->GetPendingUnpauses()) != -1){
-            return capitalize(args) + " is already pending an unpause.";
+            return capitalize(args) + " 已在等待解除暂停处理。";
         }
         PLAYERS_D->AddPendingUnpause(args);
-        write(capitalize(args)+" will be unpaused next time they log in.");
+        write(capitalize(args)+" 将在下次登录时解除暂停。");
         return 1;
     }
     if(ob == this_player()){
-        write("You can't unpause yourself.");
+        write("你不能解除自己的暂停。");
         return 1;
     }
     if(!(ob->GetPlayerPaused())){
-        write(capitalize(args) + " is already unpaused!");
+        write(capitalize(args) + " 已处于未暂停状态！");
         return 1;
     }
-    write("You unpause "+capitalize(args)+".");
+    write("你已解除 "+capitalize(args)+" 的暂停。");
     ob->SetPlayerPaused(0);
-    ob->eventPrint("You have been unpaused. Commands will work now.");
+    ob->eventPrint("你已被解除暂停。现在可以正常使用命令了。");
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: unpause <PLAYER>\n\n"
-            "Causes the player to be able to run commands "
-            "after being paused.");
+    return ("语法: unpause <玩家名>\n\n"
+            "使被暂停的玩家能够重新执行命令。");
 }

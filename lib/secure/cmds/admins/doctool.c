@@ -78,7 +78,7 @@ varargs int eventSetSection(string content, string header){
 }
 
 int eventQueryEntry(string header){
-    write("Please enter the "+header+" data for "+funcname+"(): ");
+    write("请输入 "+funcname+"() 的 "+header+" 数据：");
     input_to( (: eventSetSection :) , header);
     return 1;
 }
@@ -111,25 +111,24 @@ mixed cmd(string args) {
     if(!archp(previous_object())) return 0;
 
     if(!args || args == ""){
-        write("You'll need to be more specific. Try: help doctool");
+        write("您需要更具体一些。尝试：help doctool");
         return 1;
     }
 
     if(sscanf(args,"%s %s",doctype, funcname) != 2){
-        write("This commands takes two arguments. For example:\n"
+        write("此命令需要两个参数。例如：\n"
                 "doctool lfun GetFunky\n"
-                "would begin a doctool session for the library (aka local) function \"GetFunky\".");
+                "将开始为库（本地）函数 \"GetFunky\" 执行文档工具。");
         return 1;
     }
 
     funcname = replace_string(funcname, " ", "");
     if(grepp(funcname,"/")) funcname = last_string_element(funcname, "/");
-    write("Document type: "+doctype);
-    write("Function name: "+funcname);
+    write("文档类型："+doctype);
+    write("函数名："+funcname);
 
     if(member_array(doctype, valid_docs) == -1){
-        write("That is an unknown document type. Try "
-                "one of the following: "+implode(valid_docs, ", ")+".");
+        write("这是未知的文档类型。请尝试以下类型之一："+implode(valid_docs, ", ")+"。");
         return 1;
     }
 
@@ -167,14 +166,13 @@ mixed cmd(string args) {
 }
 
 string GetHelp(){
-    return ("Syntax: doctool [doctype] FUNCTION_NAME\n\n"
-            "Assists in creating sefun and lfun documentation.\n"
-            "Because it automatically scans many files and performs \n"
-            "operations on them, this command may seriously lag the \n"
-            "mud it is run on. It should therefore be used only when \n"
-            "substantial occasional lag is acceptable."
+    return ("语法：doctool [文档类型] 函数名\n\n"
+            "协助创建 sefun 和 lfun 文档。\n"
+            "由于它会自动扫描许多文件并对其执行操作，\n"
+            "此命令可能会严重延迟运行它的 MUD。\n"
+            "因此，仅在可以接受偶尔出现较大延迟时使用。"
             "\n\n"
-            "It is not unusual for this command to error out on \"Too long "
-            "evaluation\" the first few times you run it.\n"
-            "See also: man, help");
+            "前几次运行此命令时出现 \"Too long "
+            "evaluation\" 错误是正常的。\n"
+            "另见：man, help");
 }

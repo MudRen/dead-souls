@@ -126,9 +126,9 @@ mixed aa_ring(string str)
    NOTE 2! The nested if.  Could also have been written:
    if ( numrings>5 && ! present("orc",this_object()))
    {
-   write("Now you've done it!  An orc walks in a bonks you on the head.\n");
-   say("Now " + this_player->GetName() + " has done it!  An orc walks in a bonks " +
-   objective(this_player()) " +  " on the head.\n");
+   write("这下你闯祸了！一个兽人走进来敲了你的头。\n");
+   say(this_player()->GetName() + "闯祸了！一个兽人走进来敲了" +
+   objective(this_player()) + "的头。\n");
    new(ORC)->eventMove(this_object());  //this_object IS -this- room!
    }
    But, if you are having problems with the booleans && || and the code

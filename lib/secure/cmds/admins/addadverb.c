@@ -15,21 +15,20 @@ mixed cmd(string args) {
     string* adverbs;
 
     if( !args || args == "" ) {
-        return "Add which adverb?";
+        return "要添加哪个副词？";
     }
     adverbs = map(explode(args, ","), (: trim :));
     if( !SOUL_D->AddAdverbs(adverbs...) ) {
-        previous_object()->eventPrint("Addition of adverbs failed.");
+        previous_object()->eventPrint("副词添加失败。");
         return 1;
     }
-    previous_object()->eventPrint("Adverbs added.");
+    previous_object()->eventPrint("副词已添加。");
     return 1;
 }
 
 string GetHelp(string args) {
-    return ("Syntax: addadverb ADVERB1,..,ADVERBn\n\n"
-            "Allows you to add 1 or more adverbs separated by commas to "
-            "the system adverbs that can be used as adverbs in most soul "
-            "commands.\n"
-            "See also: addemote,removeadverb,removeemote");
+    return ("语法: addadverb 副词1,..,副词n\n\n"
+            "允许你添加一个或多个用逗号分隔的副词到系统副词列表中，"
+            "这些副词可以在大多数灵魂命令中使用。\n"
+            "另见: addemote,removeadverb,removeemote");
 }

@@ -12,7 +12,7 @@ mixed cmd(string str) {
     int number;
     object here;
 
-    if( !str ) return "You must specify a file to restore.";
+    if( !str ) return "你必须指定要恢复的文件。";
     if(str && sscanf(str,"%s %d",s1, number) > 1) str = s1;
     else false();
 
@@ -80,19 +80,16 @@ mixed cmd(string str) {
 }
 
 string GetHelp(){
-    return ("Syntax: restore <STRING> [NUMBER]\n\n"
-            "Restores the specified file  from your bak/ directory. "
-            "If you specify a number, the command will try to find "
-            "the Nth newest file to restore. Examples:\n"
-            "To restore the most recent version of file.c:\n"
+    return ("语法: restore <文件名> [数字]\n\n"
+            "从你的 bak/ 目录恢复指定文件。\n"
+            "如果指定了数字，命令会尝试找到第 N 新的文件来恢复。示例:\n"
+            "恢复 file.c 的最新版本:\n"
             "restore file.c\n"
-            "To restore the version you backed up before the most "
-            "recent version:\n"
+            "恢复最近一次备份之前的版本:\n"
             "restore file.c 2\n"
-            "And so on.\n"
-            "\"restore here\" will attempt to restore a backup of the room "
-            "you are currently standing in, and will reload it, if possible. "
-            "This is the only case in which the command will automatically "
-            "reload a restored object.\n"
-            "See also: bk");
+            "依此类推。\n"
+            "\"restore here\" 会尝试恢复你当前所在房间的备份，\n"
+            "并在可能的情况下重新加载。这是唯一会自动重新加载\n"
+            "恢复对象的情况。\n"
+            "另见: bk");
 }

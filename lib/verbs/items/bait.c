@@ -15,7 +15,7 @@ protected void create() {
     verb::create();
     SetVerb("bait");
     SetRules("OBJ with OBJ");
-    SetErrorMessage("Bait what with what?");
+    SetErrorMessage("用什么给什么上饵？");
     SetHelp("Syntax: bait <POLE> with <BAIT>\n\n"
             "The bait command is normally used to fasten bait onto "
             "a fishing pole.  The POLE must be a device of some "
@@ -27,7 +27,7 @@ mixed can_bait_obj_with_obj(string verb) { return this_player()->CanManipulate()
 
 mixed do_bait_obj_with_obj(object pole, object bait) {
     if( pole == bait ) {
-        this_player()->eventPrint("You can't use it to bait itself!");
+        this_player()->eventPrint("你不能用它给自己上饵！");
         return 1;
     }
     return bait->eventBait(this_player(), pole);

@@ -54,19 +54,19 @@ mixed check_light(object who) {
     object env;
     if(!who) who = this_player();
     env = environment(who);
-    if(!env) return "You are nowhere.";
+    if(!env) return "你无处可存。";
     if(env->GetMount() || base_name(env) == LIB_CORPSE){
         env = environment(environment(this_player()));
         if(!env){
-            return "You are in serious trouble. Ask an admin for help.";
+            return "你遇到了严重问题。请向管理员求助。";
         }
     }
     light = who->GetEffectiveVision(env);
     if( light < 3 ) {
-        return "It's too dark to see.";
+        return "太暗了，什么也看不见。";
     }
     else if( light > 6 ) {
-        return "It's too bright to see.";
+        return "太亮了，什么也看不见。";
     }
     else {
         return 1;

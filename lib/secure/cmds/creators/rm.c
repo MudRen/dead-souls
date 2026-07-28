@@ -14,7 +14,7 @@ int cmd(string str) {
     int i;
 
     if(!str) {
-        notify_fail("Correct syntax: <rm [file]>\n");
+        notify_fail("正确语法: <rm [文件]>\n");
         return 0;
     }
     if((ob=previous_object())->GetForced()) {
@@ -25,17 +25,17 @@ int cmd(string str) {
     if(!archp(ob) || !sizeof(files = wild_card(tmp)))
         files = ({ tmp });
     if(!(i=sizeof(files))) {
-        message("system", "File "+tmp+" does not exist.", this_player());
+        message("system", "文件 "+tmp+" 不存在。", this_player());
         return 1;
     }
     while(i--) {
         switch(file_size(files[i])) {
-            case -1: message("system", "File "+files[i]+" does not exist.",
+            case -1: message("system", "文件 "+files[i]+" 不存在。",
                              this_player()); break;
-            case -2: message("system", files[i]+" is a directory.", 
+            case -2: message("system", files[i]+" 是一个目录。",
                              this_player()); break;
-            default: message("system", rm(files[i]) ? files[i]+": Ok." :
-                             files[i]+": Permission denied.", this_player());
+            default: message("system", rm(files[i]) ? files[i]+": 完成。" :
+                             files[i]+": 权限被拒绝。", this_player());
                      break;
         }
     }
@@ -43,11 +43,9 @@ int cmd(string str) {
 }
 
 string GetHelp(){
-    string ret = "Syntax: rm [file]\n\n"
-        "The command deletes the file named.  Once deleted, the file "
-        "cannot be recovered. Seriously.";
+    string ret = "语法: rm [文件]\n\n"
+        "此命令删除指定文件。一旦删除，文件无法恢复。真的无法恢复。";
     if(archp(this_player()))
-        ret += "Note for arches: wild cards work with this command, "
-            "but there is no prompt, so be VERY CAREFULL!!!!"; 
+        ret += "\n大管理员注意: 通配符可用于此命令，但没有确认提示，请非常小心！"; 
     return ret;
 }

@@ -80,7 +80,7 @@ int eventCharge(int i){
 
 int eventUse(int i){
     if(query_verb() == "use"){
-        write("That's not how it works.");
+        write("不是这样使用的。");
         return 1;
     }
     if(i == 0){

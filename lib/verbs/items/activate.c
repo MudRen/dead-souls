@@ -7,7 +7,7 @@ protected void create() {
     verb::create();
     SetVerb("activate");
     SetRules("OBJ","OBJ on OBJ","STR on OBJ");
-    SetErrorMessage("Activate something?");
+    SetErrorMessage("激活什么？");
     SetHelp("Syntax: activate THING\n"
             "        \n"
             "See also: deactivate");  
@@ -30,7 +30,7 @@ mixed can_activate_str_on_obj(mixed foo) {
 }
 
 mixed do_activate() {
-    return "Activate what?";
+    return "激活什么？";
     return 1;
 }
 

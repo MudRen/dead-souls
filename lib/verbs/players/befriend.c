@@ -6,7 +6,7 @@ protected void create() {
     ::create();
     SetVerb("befriend");
     SetRules("LIV");
-    SetErrorMessage("Whom would you like to befriend?");
+    SetErrorMessage("你想和谁交朋友？");
     SetHelp("Syntax: befriend <LIVING>\n\n"
             "If a living object is specified, this command allows "
             "you to try to make friends. This is a prerequisite to " 

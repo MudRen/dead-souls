@@ -24,12 +24,12 @@ mixed make(string str) {
     globalstr = globalstr2 = globaltmp = "";
 
     if(!str || str == "") {
-        write("You'll need to be more specific. Try 'help create'");
+        write("你需要更具体一些。请输入 'help create'");
         return 1;
     }
 
     if(environment(this_player())->GetDirectionMap()){
-        write("This is a virtual room. It cannot be modified with the QCS.");
+        write("这是一个虚拟房间。无法使用QCS进行修改。");
         return 1;
     }
 
@@ -40,7 +40,7 @@ mixed make(string str) {
         else enter = 1;
     }
     else {
-        write("Usage: create room <direction> <file>");
+        write("用法: create room <方向> <文件>");
         return 1;
     }
 
@@ -54,25 +54,25 @@ mixed make(string str) {
     else room_dir = current_dir;
 
     if(file_exists(current_room+".c") && !check_privs(this_player(),current_room+".c")){
-        write("You do not appear to have write access to this room file. Modification aborted.");
+        write("你似乎没有对此房间文件的写权限。修改已中止。");
         return 1;
     }
 
     if(!write_file(room_dir+"/"+foo+".foo","",1)) {
-        write("You do not have write privileges to this area.");
+        write("你没有此区域的写权限。");
         return 1;
     }
 
     rm(room_dir+"/"+foo+".foo");
-    write("It appears you have write access to this area.");
+    write("看起来你对此区域有写权限。");
     this_room = read_file(current_room+".c");
     new_room = read_file("/obj/room.c");
 
     if(!blank){
 
         if(environment(this_player())->GetNoModify() ){
-            write("This should be edited by hand. Change cancelled.");
-            write("Please see http://dead-souls.net/ds-creator-faq.html#2.69");
+            write("此文件应手工编辑。更改已取消。");
+            write("请参见 http://dead-souls.net/ds-creator-faq.html#2.69");
             return 1;
         }
 
@@ -80,12 +80,12 @@ mixed make(string str) {
         enters = room->GetEnters();
 
         if(member_array(arg1,exits) != -1){
-            write("This room already has an exit in that direction.");
+            write("这个房间在该方向已经有一个出口了。");
             return 1;
         }
 
         if(member_array(arg1,enters) != -1){
-            write("This room already has an enter by that name.");
+            write("这个房间已经有一个同名的进入点了。");
             return 1;
         }
     }
@@ -110,7 +110,7 @@ mixed make(string str) {
     }
 
     if(!check_privs(this_player(),new_file)){
-        write("Invalid directory.");
+        write("无效目录。");
         return 1;
     }
 
@@ -142,7 +142,7 @@ varargs int eventCreateExit(string dir, string room, string file, int remote){
     string *file_arr;
 
     if(file_exists(room) && !check_privs(this_player(),room)){
-        write("You do not appear to have write access to this room file. Modification aborted.");
+        write("你似乎没有对此房间文件的写权限。修改已中止。");
         return 1;
     }
 
@@ -170,15 +170,15 @@ varargs int eventCreateExit(string dir, string room, string file, int remote){
 
     if(!remote) {
         eventCreateExit(opposite_dir(dir), file, room, 1 );
-        write("You begin uttering a magical incantation.");
-        say(this_player()->GetCapName()+" begins uttering a magical incantation.");
+        write("你开始吟唱一段魔法咒语。");
+        say(this_player()->GetCapName()+" 开始吟唱一段魔法咒语。");
         this_object()->eventGeneralStuff(room);
     }
     this_object()->eventAddInit(room);
     if(remote){
         this_object()->eventGeneralStuff(room);
-        write("You wave your hand, and a new exit appears.");
-        say(this_player()->GetCapName()+" waves "+possessive(this_player())+" hand and a new exit appears.");
+        write("你挥了挥手，一个新的出口出现了。");
+        say(this_player()->GetCapName()+" 挥了挥手，一个新的出口出现了。");
     }
     return 1;
 }
@@ -190,7 +190,7 @@ int eventRemoveExit(string dir, string filename){
     mapping ExitsMap = load_object(filename)->GetExitMap();
 
     if(file_exists(filename) && !check_privs(this_player(),filename)){
-        write("You do not appear to have write access to this room's file. Modification aborted.");
+        write("你似乎没有对此房间文件的写权限。修改已中止。");
         return 1;
     }
 
@@ -231,7 +231,7 @@ int eventRemoveExit(string dir, string filename){
         unguarded( (: cp(globalstr, globalstr2) :) );
         reload(filename);
         rm(tmpfile);
-        write("With a puff of smoke, an exit vanishes!");
+        write("随着一缕青烟升起，一个出口消失了！");
         return 1;
     }
 
@@ -253,11 +253,11 @@ int eventRemoveExit(string dir, string filename){
         eventProcessExits(filename);
         reload(filename);
         rm(tmpfile);
-        write("With a puff of smoke, an exit vanishes!");
+        write("随着一缕青烟升起，一个出口消失了！");
         return 1;
     }
 
-    write("This room's SetExits does not contain that direction.");
+    write("这个房间的 SetExits 中没有该方向。");
     return 1;
 }
 
@@ -268,7 +268,7 @@ varargs mixed eventProcessExits(string filename, string dir, string location){
     mapping ExitsMap = load_object(filename)->GetExitMap();
 
     if(file_exists(filename) && !check_privs(this_player(),filename)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return 1;
     }
 
@@ -306,12 +306,12 @@ string eventCopyRoom(string source, string dest){
 
     if(file_exists(source) && (!check_privs(this_player(),source) &&
                 strsrch(source,"/obj/"))){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return "";
     }
 
     if(file_exists(dest) && !check_privs(this_player(),dest)){
-        write("You do not appear to have write access to that file. Modification aborted.");
+        write("你似乎没有对该文件的写权限。修改已中止。");
         return "";
     }
 
@@ -320,9 +320,9 @@ string eventCopyRoom(string source, string dest){
     globalstr = tmpsource;
     unguarded( (: cp(globalstr2, globalstr) :) );
     globalstr2 = dest;
-    if(!file_exists(source)) return "Source read has failed.";
-    if(!file_exists(tmpsource)) return "Read failed.";
-    if(!file_exists(dest)) return "Destination read failed.";
+    if(!file_exists(source)) return "源文件读取失败。";
+    if(!file_exists(tmpsource)) return "读取失败。";
+    if(!file_exists(dest)) return "目标文件读取失败。";
     homedir = "/realms/"+this_player()->GetKeyName();
     areadir = homedir+"/area";
 
@@ -366,25 +366,25 @@ string eventCopyRoom(string source, string dest){
     globalstr2 = dest;
 
     if(!unguarded( (: cp(globalstr, globalstr2) :) )){
-        return "Write failed.";
+        return "写入失败。";
     }
 
     this_object()->eventAddInit(dest);
     this_object()->eventGeneralStuff(dest);
     rm(tmpsource);
-    return "Room data copy complete.";
+    return "房间数据复制完成。";
 }
 
 varargs int eventCreateEnter(string dir, string room, string file, int remote){
 
     if(file_exists(room) && !check_privs(this_player(),room)){
-        write("You do not appear to have write access to this room file. Modification aborted.");
+        write("你似乎没有对此房间文件的写权限。修改已中止。");
         return 1;
     }
 
     if(!present(dir,environment(this_player()))){ 
-        write("This room needs a corresponding SetItem to make a SetEnter ");
-        write("of "+dir);
+        write("此房间需要一个对应的 SetItem 才能创建 SetEnter ");
+        write(dir);
         return 1;
     }
 
@@ -404,15 +404,15 @@ varargs int eventCreateEnter(string dir, string room, string file, int remote){
     if(!remote) {
         eventProcessEnters(room, dir, file);
         this_object()->eventCreateExit("out", file, room, 1 );
-        say(this_player()->GetCapName()+" waves "+possessive(this_player())+" hand and a new enter appears.");
+        say(this_player()->GetCapName()+" 挥了挥手，一个新的进入点出现了。");
         this_object()->eventGeneralStuff(room);
     }
     this_object()->eventAddInit(room);
     if(remote){
         this_object()->eventGeneralStuff(room);
-        write("You begin uttering a magical incantation.");
-        write("You wave your hand, and a new enter appears.");
-        say(this_player()->GetCapName()+" begins uttering a magical incantation.");
+        write("你开始吟唱一段魔法咒语。");
+        write("你挥了挥手，一个新的进入点出现了。");
+        say(this_player()->GetCapName()+" 开始吟唱一段魔法咒语。");
 
     }
     reload(room);
@@ -435,7 +435,7 @@ int eventRemoveEnter(string dir, string filename){
     mapping EntersMap = load_object(filename)->GetEnterMap();
 
     if(file_exists(filename) && !check_privs(this_player(),filename)){
-        write("You do not appear to have write access to this room's file. Modification aborted.");
+        write("你似乎没有对此房间文件的写权限。修改已中止。");
         return 1;
     }
 
@@ -478,7 +478,7 @@ int eventRemoveEnter(string dir, string filename){
                 unguarded( (: cp(globalstr, globalstr2) :) );
                 rm(tmpfile);
                 reload(filename);
-                write("With a puff of smoke, an enter vanishes!");
+                write("随着一缕青烟升起，一个进入点消失了！");
                 return 1;
                 }
 
@@ -500,11 +500,11 @@ int eventRemoveEnter(string dir, string filename){
                 eventProcessEnters(filename);
                 reload(filename);
                 rm(tmpfile);
-                write("With a puff of smoke, an enter vanishes!");
+                write("随着一缕青烟升起，一个进入点消失了！");
                 return 1;
                 }
 
-                write("This room's SetEnters does not contain that direction.");
+                write("这个房间的 SetEnters 中没有该方向。");
                 return 1;
 }
 
@@ -522,7 +522,7 @@ varargs mixed eventProcessEnters(string filename, string dir, string location, o
     }
 
     if(file_exists(filename) && !check_privs(this_player(),filename)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return 1;
     }
 

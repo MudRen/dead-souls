@@ -60,7 +60,7 @@ int eventStartSnoop(string str){
     str = lower_case(str);
     guy = str;
 
-    if(!ob=find_player(str)) { write("Target not found."); return; }
+    if(!ob=find_player(str)) { write("未找到目标。"); return; }
     unguarded((: write_file("/secure/log/adm/snoop.err",snoop(this_object(), ob)?"":guy+": snoop failed.\n") :));
     if(query_snooping(this_object())) snoopee = identify(query_snooping(this_object()));
     SNOOP_D->RegisterSnooper();

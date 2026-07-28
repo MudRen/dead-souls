@@ -25,7 +25,7 @@ string ConvertLine(string str, int change, int line, string search)
         val = val - (val / (100 / change));
         n = sprintf("%s, %d)", s1[0] + "@@@" + s1[1..], val);
         str = replace_string(str, cut, n);
-        write("Line "+line+": "+cut+" -> "+val+".");
+        write("行 "+line+": "+cut+" -> "+val+"。");
     }
     str = replace_string(str, search[0] + "@@@" + search[1..], search);
     return str;
@@ -41,7 +41,7 @@ void Convert(string s, int change) {
     else args = s;
     files = wild_card(args);
     if( !i = sizeof(files) ) {
-        message("info", "No file(s) found: "+implode(files, " "),
+        message("info", "未找到文件: "+implode(files, " "),
                 this_player() );
         return;
     }
@@ -52,7 +52,7 @@ void Convert(string s, int change) {
         str = read_file(file);
         if( !sizeof(str) ) continue;
         i = sizeof(tmp = explode(str, "\n"));
-        write("Checking: "+file);
+        write("正在检查: "+file);
         while(i--) {
             line = tmp[i];
             line = ConvertLine(line, change, i, "SetSkill");
@@ -62,7 +62,7 @@ void Convert(string s, int change) {
         }
         if( changed ) {
             rename(file, file+"~");
-            write(file+": Writing new file...");
+            write(file+": 正在写入新文件...");
             write_file(file, implode(tmp, "\n"));
         }
     }
@@ -84,13 +84,11 @@ mixed cmd(string str) {
 
 
 string GetHelp(){
-    return ("Syntax: statconvert <filename | wild card> <percentage>\n\n"
-            "This command searches through the specified file(s) and lowers "
-            "all occurrences of SetSkill and SetStat by a <percentage> "
-            "amount.\n\n"
-            "Example: statconvert *.c 10\n"
-            "  - Searches all .c files in your currenct path, and reduces\n"
-            "    all skill and stat settings by 10%\n\n"
-            "Note: It is possible to raise settings by passing "
-            "a negative number.");
+    return ("语法: statconvert <文件名 | 通配符> <百分比>\n\n"
+            "此命令搜索指定文件，将所有 SetSkill 和 SetStat "
+            "按指定百分比降低。\n\n"
+            "示例: statconvert *.c 10\n"
+            "  - 搜索当前路径下所有 .c 文件，将所有\n"
+            "    技能和属性设置降低10%\n\n"
+            "注意: 传入负数可以提高设置值。");
 }

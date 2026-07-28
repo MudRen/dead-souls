@@ -12,7 +12,7 @@ mixed cmd(mixed args) {
     if(!archp(previous_object())) return 0;
     if(!args) args = 0;
     if(stringp(args)){
-        if(sscanf(args,"%d",integer) != 1) return "Failed.";
+        if(sscanf(args,"%d",integer) != 1) return "失败。";
         args = integer;
     }
     //tc("pre: "+SEASONS_D->GetCurrentTime());
@@ -38,17 +38,15 @@ mixed cmd(mixed args) {
 
     if(minutes < 10) nulle = "0";
 
-    write("In the MUD, the time is "+hours+":"+nulle+minutes+meridiem+"."); 
+    write("MUD中的时间是 "+hours+":"+nulle+minutes+meridiem+"。"); 
 
     return 1;
 
 }
 
 string GetHelp(){
-    return ("Syntax: ticktock <seconds>\n\n"
-            "Changes in-game mud time by the number of seconds "
-            "specified. This is useful for changing night to "
-            "day and vice versa, when testing ambient light and "
-            "variable room descriptions. The timeshift does not "
-            "persist between reboots.");
+    return ("语法: ticktock <秒数>\n\n"
+            "将游戏内MUD时间改变指定的秒数。这在测试环境光线"
+            "和可变房间描述时，用于将夜晚变为白天或反之。"
+            "时间偏移在重启后不会保留。");
 }

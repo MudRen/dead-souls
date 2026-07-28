@@ -21,8 +21,8 @@ void init(){
 
 int flush(string str){
     if(!str || str == "" ||str == "toilet"){
-        write("ba-WHOOSH!");
-        say(this_player()->GetName()+" flushes the toilet. ba-WHOOSH!");
+        write("哗——！");
+        say(this_player()->GetName()+"按下了冲水按钮。哗——！");
         return 1;
     }
     else return 0;

@@ -52,18 +52,18 @@ protected mixed ResetGrid(){
         lerr = catch( reload(start, 0, 1));
         if(lerr){ 
             err++;
-            write("Error reloading "+start+": "+lerr);
+            write("重新加载出错 "+start+"："+lerr);
             continue;
         }
         drone = new("/domains/default/npc/drone3");
         lerr = catch( drone->eventMove(start) );
-        if(lerr){ 
+        if(lerr){
             err++;
-            write("Error moving drone to "+start+": "+lerr);
+            write("移动映射无人机到 "+start+" 时出错："+lerr);
         }
-        else write("Assigning mapper drone to: "+start);
+        else write("正在为 "+start+" 分配映射无人机");
     }
-    write("\nRemapping in progress. "+err+" errors encountered.");
+    write("\n正在重新映射。遇到 "+err+" 个错误。");
     return 1;
 }
 
@@ -74,7 +74,7 @@ mixed cmd(string args) {
     int err;
     if(!this_player() || !archp(this_player())) return "lol";
     if(!args){
-        write("Try: help gridconfig");
+        write("尝试：help gridconfig");
         return 1;
     }
     if(args == "reset"){
@@ -85,29 +85,29 @@ mixed cmd(string args) {
         cmd = s1;
         coord = s3;
         if(!file){
-            write("Room not found.");
+            write("未找到房间。");
             return 1;
         }
         if(objectp(file)) room = file;
         if(!room) err = catch(room = load_object(file));
         if(err || !room){
-            write("Room not loadable.");
+            write("房间无法加载。");
             return 1;
         }
         if(cmd != "set"){
-            write("Try: help gridconfig");
+            write("尝试：help gridconfig");
             return 1;
         }
         if(sscanf(coord,"%s,%s,%s",s1,s2,s3) != 3){
             s3 = 0;
             if(sscanf(coord,"%s,%s",s1,s2) != 2){
-                write("Type: help gridconfig");
+                write("输入：help gridconfig");
                 return 1;
             }
         }
         coord = coord + (s3 ? "" : ",0");
         ROOMS_D->SetRoom(room, this_player(), coord);
-        write("Coordinates for "+file+" are: "+
+        write(file+" 的坐标为："+
                 ROOMS_D->GetCoordinates(room));
         return 1;
     }
@@ -115,37 +115,35 @@ mixed cmd(string args) {
         file = findit(s2);
         cmd = s1;
         if(!file){
-            write("Room not found.");
+            write("未找到房间。");
             return 1;
         }
         if(objectp(file)) room = file;
         if(!room) err = catch(room = load_object(file));
         if(err || !room){
-            write("Room not loadable.");
+            write("房间无法加载。");
             return 1;
         }
         if(cmd != "unset"){
-            write("Try: help gridconfig");
+            write("尝试：help gridconfig");
             return 1;
         }
         ROOMS_D->SetRoom(room, this_player(), "0,0,0");
-        write("Coordinates for "+file+" are: "+
+        write(file+" 的坐标为："+
                 ROOMS_D->GetCoordinates(room));
         return 1;
     }
-    write("You fail to use this command properly.");
+    write("您未能正确使用此命令。");
     return 1;
 }
 
 string GetHelp(string args) {
-    return ("Syntax: gridconfig set <room> <coordinates>\n"
-            "        gridconfig unset <room>\n"
+    return ("语法：gridconfig set <房间> <坐标>\n"
+            "        gridconfig unset <房间>\n"
             "        gridconfig reset\n\n"
-            "Modifies the grid coordinate table in ROOMS_D for the "
-            "specified room. If \"reset\" is the argument, the rooms "
-            "daemon and map daemon are purged and slowly rebuilt using "
-            "mapper drones. Note that this may lag your mud. Note also "
-            "that the rooms daemon will disregard coordinate setting "
-            "of rooms in /realms/ and /open/ .\n"
-            "See also: mudconfig, admintool");
+            "修改 ROOMS_D 中指定房间的网格坐标表。"
+            "如果参数为 \"reset\"，则清除房间守护进程和地图守护进程，"
+            "并使用映射无人机缓慢重建。注意这可能会导致MUD延迟。"
+            "另请注意，房间守护进程将忽略 /realms/ 和 /open/ 中房间的坐标设置。\n"
+            "另见：mudconfig, admintool");
 }

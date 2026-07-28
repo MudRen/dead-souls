@@ -80,20 +80,20 @@ int cmd(string str) {
             localdest = 1;
             if( sizeof(files) > 1 )
                 continue;
-            else write( "cp: "+file+" is a directory." );
+            else write( "cp: "+file+" 是一个目录。" );
         } 
-        else if( file_size(file) < 1 ) { write( "cp: couldn't find  "+file ); }
-        else if( file == dest ) write( "cp: You cant copy a file on to itself!" );
-        else if( file_size(dest) > 0 && !ow && !sscanf(dest, "%*s.save" )) write( "cp: "+dest+" already exists." );
-        else if( !master()->valid_read( file, this_player(), "cp" ) ) write( file+": Permission denied." );
-        else if( !master()->valid_write( dest, this_player(), "cp" ) ) write( dest+": Permission denied." );
+        else if( file_size(file) < 1 ) { write( "cp: 找不到 "+file ); }
+        else if( file == dest ) write( "cp: 不能将文件复制到自身！" );
+        else if( file_size(dest) > 0 && !ow && !sscanf(dest, "%*s.save" )) write( "cp: "+dest+" 已存在。" );
+        else if( !master()->valid_read( file, this_player(), "cp" ) ) write( file+": 权限被拒绝。" );
+        else if( !master()->valid_write( dest, this_player(), "cp" ) ) write( dest+": 权限被拒绝。" );
         else { 
             /* Dunno what this was about. Commenting rather
              * than deleting, in case there was a good reason.
              * write_file( dest, read_file(file), 1 );
              */
             if(cp(file, dest) > 0){
-                write( "Copied: "+file+" to "+dest );
+                write( "已复制: "+file+" 到 "+dest );
             }
             else {
                 write("复制失败。");
@@ -105,13 +105,12 @@ int cmd(string str) {
 
 
 string GetHelp(){
-    return ("Command: cp\nSyntax: cp <oldfile> [pathname]<newfile>\n"
-            "This command makes a copy of the file using the new name "
-            "and location passed.  If a new pathname is not specified "
-            "then the copy is put into the present working directory. "
-            "Optionally, wild cards can be used by employing the * operator.\n"
-            "The -f flag forces overwriting of an existing file.\n\n" 
-            "Examples:\n"
+    return ("命令: cp\n语法: cp <旧文件> [路径]<新文件>\n"
+            "此命令使用新名称和位置创建文件的副本。\n"
+            "如果未指定新路径，副本将放在当前工作目录中。\n"
+            "可以使用 * 通配符。\n"
+            "-f 标志强制覆盖已存在的文件。\n\n"
+            "示例:\n"
             "cp -f workroom.bak workroom.c\n"
             "cp workroom.bak /tmp/");
 }

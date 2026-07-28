@@ -11,7 +11,7 @@ protected void create() {
     verb::create();
     SetVerb("pulsecheck");
     SetRules("LVS");
-    SetErrorMessage("pulsecheck what?");
+    SetErrorMessage("pulsecheck什么？");
     SetHelp("语法: pulsecheck <CREATURE>\n\n"
             "检查一个生物的心跳。\n"
             "另见: zap");

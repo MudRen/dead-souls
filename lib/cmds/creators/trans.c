@@ -11,23 +11,23 @@ inherit LIB_DAEMON;
 mixed cmd(string args) {
     object ob;
 
-    if( !args || args == "" ) return "Trans whom?";
+    if( !args || args == "" ) return "传送谁？";
     if( !(ob = find_player(convert_name(args))) && !(ob = find_living(args)) )
-        return "No such being exists anywhere presently.";
-    if( environment(ob) == environment(this_player()) ) 
-        return ob->GetCapName() + " is right here.";
+        return "当前不存在该生物。";
+    if( environment(ob) == environment(this_player()) )
+        return ob->GetCapName() + "就在这里。";
     if(archp(ob) && !archp(this_player())){
         write("你不能传送管理员。");
-        tell_player(ob, this_player()->GetName()+" just tried to trans you.");
+        tell_player(ob, this_player()->GetName()+"刚刚试图传送你。");
         return 1;
     }
     ob->SetProperty("ReturnSite",base_name(environment(ob)));
-    message("system", "You have been summoned by " + 
-            this_player()->GetName() + ".", ob);
+    message("system", "你已被 " +
+            this_player()->GetName() + " 召唤。", ob);
     if( !(ob->eventMoveLiving(environment(this_player()))) )
-        return "Failed to move " + ob->GetCapName() + ".";
-    else message("system", "You trans " + ob->GetCapName() + 
-            " to you.", this_player());
+        return "无法移动 " + ob->GetCapName() + "。";
+    else message("system", "你将 " + ob->GetCapName() +
+            " 传送到了你身边。", this_player());
     return 1;
 }
 

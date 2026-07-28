@@ -25,30 +25,30 @@ mixed cmd(string args) {
     player_ob = 0;
 
     if( args == "" || !stringp(args) ) 
-        return "Who do you want to make a player?";
+        return "你要将谁降为玩家？";
     nom = convert_name(args);
-    if( !user_exists(nom) ) return capitalize(nom) + " is not a member of " +
-        possessive_noun(mud_name()) + " reality.";
+    if( !user_exists(nom) ) return capitalize(nom) + " 不是 " +
+        mud_name() + " 的成员。";
     WEB_SESSIONS_D->EndSession(lower_case(nom));
     if( !strsrch(file = player_save_file(nom), DIR_PLAYERS) )
-        return "You cannot make "+capitalize(args)+" a player.";
+        return "你无法将 "+capitalize(args)+" 降为玩家。";
 
     if(!ob = find_player(nom)){
         if(nom == this_player()->GetKeyName()){
-            return "I've no idea how you've managed this, but \"no\".";
+            return "我不知道你是怎么做到的，但\"不行\"。";
         }
         PLAYERS_D->RemovePendingEncre(lower_case(nom));
         PLAYERS_D->AddPendingDecre(lower_case(nom));
-        write(capitalize(nom)+" will be demoted on their next login.");
+        write(capitalize(nom)+" 将在下次登录时被降级。");
         return 1;
     }
     else {
         mixed attrape;
         if(ob == this_player() || securep(ob)){
-            return "Nonsense.";
+            return "胡说。";
         }
         home_dir = homedir(ob);
-        write("You decre "+capitalize(nom)+".");
+        write("你已将 "+capitalize(nom)+" 降级。");
         PlayerName = nom;
 
         //Try to remove inventory and move the guy to the pod
@@ -68,7 +68,7 @@ mixed cmd(string args) {
         if( file_size(DIR_PLAYERS+"/"+nom[0..0]) != -2) 
             mkdir(DIR_PLAYERS+"/"+nom[0..0]);
         if(rename(file, save_file(DIR_PLAYERS+"/"+nom[0..0]+"/"+nom))) 
-            return "You failed due to lack of write access to "+DIR_PLAYERS+".";
+            return "由于缺少对 "+DIR_PLAYERS+" 的写入权限，操作失败。";
         //Remove their homedir, save it to a backup dir.
         if(home_dir && directory_exists(home_dir))
             rename(home_dir,"/secure/save/decre/"+nom+"."+timestamp());
@@ -80,9 +80,9 @@ mixed cmd(string args) {
         attrape = catch(player_ob = (object)master()->player_object(nom));
         PlayerName = 0;
         if( attrape || !player_ob ) {
-            message("system", "\nFailed to create a player object.", 
+            message("system", "\n创建玩家对象失败。",
                     this_player());
-            message("system", "Please log out and log back in.", ob);
+            message("system", "请退出后重新登录。", ob);
             return 1;
         }
 
@@ -119,8 +119,8 @@ mixed cmd(string args) {
     player_ob->eventMoveLiving(ROOM_START);
     player_ob->SetLoginSite(ROOM_START);
     unguarded( (: player_ob->save_player(player_ob->GetKeyName()) :) );
-    message("system", "You are now a player.", player_ob);
-    message("system", player_ob->GetName() + " is now a player!",
+    message("system", "你现在是一名玩家。", player_ob);
+    message("system", player_ob->GetName() + " 现在是玩家了！",
             this_player());
     return 1;
 }
@@ -128,10 +128,8 @@ mixed cmd(string args) {
 string GetKeyName() { return PlayerName; }
 
 string GetHelp(){
-    return ("Syntax: decre <person>\n\n"
-            "Demotes the specified creator to player status. "
-            "If the target is not "
-            "logged in, they will be made a player when "
-            "they next log in.\n"
-            "See also: encre, rid");
+    return ("语法: decre <玩家名>\n\n"
+            "将指定的创造者降级为玩家状态。"
+            "如果目标未登录，他们将在下次登录时被降级。\n"
+            "另见: encre, rid");
 }

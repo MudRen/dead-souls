@@ -22,26 +22,26 @@ mixed cmd(string args) {
         error("Illegal encre attempt: "+get_stack()+" "+identify(previous_object(-1)));
 
     if( args == "" || !stringp(args) ) 
-        return "Who do you want to make a creator?";
+        return "你要将谁提升为创造者？";
     nom = convert_name(args);
-    if( !user_exists(nom) ) return capitalize(nom) + " is not a member of " +
-        possessive_noun(mud_name()) + " reality.";
+    if( !user_exists(nom) ) return capitalize(nom) + " 不是 " +
+        mud_name() + " 的成员。";
     if( !strsrch(filep, DIR_CRES) )
-        return "You cannot make "+capitalize(args)+" a creator.";
+        return "你无法将 "+capitalize(args)+" 提升为创造者。";
 
     if(!ob=find_player(nom)){
         if(member_array(nom, PLAYERS_D->GetPendingEncres()) != -1){
-            write("That person is already pending creatorship.");
+            write("该人员已在等待提升为创造者。");
             return 1;
         }
         PLAYERS_D->RemovePendingDecre(lower_case(nom));
         PLAYERS_D->AddPendingEncre(lower_case(nom));
-        write(capitalize(nom)+" will be a creator next time they log in.");
+        write(capitalize(nom)+" 将在下次登录时成为创造者。");
         return 1;
     }
     if( file_size(DIR_CRES+"/"+nom[0..0]) != -2) mkdir(DIR_CRES+"/"+nom[0..0]);
     if(rename(filep, filec))
-        return "You failed due to lack of write access to "+DIR_CRES+".";
+        return "由于缺少对 "+DIR_CRES+" 的写入权限，操作失败。";
     PLAYERS_D->eventCre(lower_case(nom));
     if( ob = find_player(nom) ) {
         home_dir = homedir(ob);
@@ -50,8 +50,8 @@ mixed cmd(string args) {
         catch(cre_ob = (object)master()->player_object(nom));
         PlayerName = 0;
         if( !cre_ob ) {
-            message("system", "Failed to create a cre object.", this_player());
-            message("system", "Please log out and log back in.", ob);
+            message("system", "创建创造者对象失败。", this_player());
+            message("system", "请退出后重新登录。", ob);
             return 1;
         }
         exec(cre_ob, ob);
@@ -67,8 +67,8 @@ mixed cmd(string args) {
             cre_ob->SetProperty("screenlock", oldlock);
         }
         ob->eventDestruct();
-        message("system", "You are now a creator.", cre_ob);
-        message("shout", cre_ob->GetName() + " is now a creator!",
+        message("system", "你现在是一名创造者。", cre_ob);
+        message("shout", cre_ob->GetName() + " 现在是创造者了！",
                 users(), ({ this_player(), cre_ob }));
         if(file_exists(filep)) rm(filep);
         make_workroom(cre_ob, 1);
@@ -112,9 +112,8 @@ mixed cmd(string args) {
 string GetKeyName() { return PlayerName; }
 
 string GetHelp() {
-    return ("Syntax: encre <person>\n\n"
-            "Makes the target a creator. If the target is not "
-            "logged in, they will be made a creator when "
-            "they next log in.\n"
-            "See also: decre, rid");
+    return ("语法: encre <玩家名>\n\n"
+            "将目标提升为创造者。如果目标未登录，"
+            "他们将在下次登录时成为创造者。\n"
+            "另见: decre, rid");
 }

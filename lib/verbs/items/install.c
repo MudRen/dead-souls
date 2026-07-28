@@ -7,7 +7,7 @@ protected void create() {
     verb::create();
     SetVerb("install");
     SetRules("", "OBJ","OBJ on OBJ","OBJ into OBJ","OBJ in OBJ");
-    SetErrorMessage("Install something?");
+    SetErrorMessage("安装什么？");
     SetHelp("Syntax: install THING\n"
             "        install THING on THING\n"
             "");  
@@ -26,7 +26,7 @@ mixed can_install_obj_word_obj(mixed foo) {
 }
 
 mixed do_install() {
-    return "Install what?";
+    return "安装什么？";
     return 1;
 }
 

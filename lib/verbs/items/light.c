@@ -13,7 +13,7 @@ protected void create() {
     verb::create();
     SetVerb("light");
     SetRules("OBS", "OBS with OBJ");
-    SetErrorMessage("Light what?  Or light what with what?");
+    SetErrorMessage("点燃什么？或者用什么点燃什么？");
     SetHelp("Syntax: <light OBJECT>\n"
             "        <light OBJECT with OBJECT>\n\n"
             "Using the first syntax, you can light things which "
@@ -45,7 +45,7 @@ mixed do_light_obs(mixed *targs) {
     string tmp;
 
     if( !sizeof(targs) ) {
-        this_player()->eventPrint("There is no such thing to be lit.");
+        this_player()->eventPrint("没有这样的东西可以点燃。");
         return 1;
     }
     obs = filter(targs, (: objectp :));
@@ -59,9 +59,9 @@ mixed do_light_obs(mixed *targs) {
     obs = filter(obs, (: $1->eventLight(this_player()) :));
     if( !sizeof(obs) ) return 1;
     tmp = item_list(obs);
-    this_player()->eventPrint("You light " + tmp + ".");
+    this_player()->eventPrint("你点燃了" + tmp + "。");
     environment(this_player())->eventPrint(this_player()->GetName() +
-            " lights " + tmp + ".",
+            "点燃了" + tmp + "。",
             this_player());
     return 1;
 }
@@ -70,7 +70,7 @@ mixed do_light_obs_with_obj(mixed *targs, object source) {
     object *obs;
     string tmp;
     if( !sizeof(targs) ) {
-        this_player()->eventPrint("There is no such thing to be lit.");
+        this_player()->eventPrint("没有这样的东西可以点燃。");
         return 1;
     }
     obs = filter(targs, (: objectp :));
@@ -84,11 +84,11 @@ mixed do_light_obs_with_obj(mixed *targs, object source) {
     obs = filter(obs, (: $1->eventLight(this_player(), $(source)) :));
     if( !sizeof(obs) ) return 1;
     tmp = item_list(obs);
-    this_player()->eventPrint("You light " + tmp + " with " +
-            source->GetShort() + ".");
+    this_player()->eventPrint("你用" +
+            source->GetShort() + "点燃了" + tmp + "。");
     environment(this_player())->eventPrint(this_player()->GetName() +
-            " lights " + tmp + " with " +
-            source->GetShort() + ".",
+            "用" + source->GetShort() + "点燃了" +
+            tmp + "。",
             this_player());
     return 1;
 }

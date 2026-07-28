@@ -32,16 +32,16 @@ int cmd(string str) {
         return 1;
     }
 
-    write("Category selected: "+str);
+    write("已选择分类: "+str);
     str = homedir(this_player()) + "/area/" + str;
 
     if(!directory_exists(homedir(this_player()) + "/area")){
-        write(homedir(this_player()) + "/area/ does not exist!");
+        write(homedir(this_player()) + "/area/ 不存在！");
         return 1;
     }
 
     if(!directory_exists(str)){
-        write(str + " does not exist!");
+        write(str + " 不存在！");
         return 1;
     }
 
@@ -56,7 +56,7 @@ int cmd(string str) {
     }
 
     if(!sizeof(ret)){
-        write("No files.");
+        write("没有文件。");
         return 1;
     }
 
@@ -65,10 +65,8 @@ int cmd(string str) {
 }
 
 string GetHelp(){
-    return ("Syntax: arealist [ npc | room | weapon | armor | obj ]\n\n"
-            "Provides a list of the available files in a given category "
-            "that are under the control of the builder issuing the command. "
-            "For example, to see the list of rooms belonging to a builder, "
-            "she might issue the command: arealist room\n"
-            "See also: areaclone, areagoto");
+    return ("语法: arealist [ npc | room | weapon | armor | obj ]\n\n"
+            "列出执行命令的建造者所控制的指定分类下的可用文件。\n"
+            "例如，要查看建造者拥有的房间列表，可以执行: arealist room\n"
+            "参见: areaclone, areagoto");
 }

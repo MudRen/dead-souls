@@ -15,7 +15,7 @@ protected void create() {
     verb::create();
     SetVerb("search");
     SetRules("", "OBJ", "STR on OBJ", "STR of OBJ");
-    SetErrorMessage("Search something?");
+    SetErrorMessage("搜索什么？");
     SetHelp("Syntax: <search>\n"
             "        <search ITEM>\n"
             "        <search THING on ITEM>\n\n"
@@ -27,7 +27,7 @@ protected void create() {
 
 mixed can_search() {
     if( !environment(this_player()) ) {
-        return "You are nowhere.";
+        return "你哪里也不在。";
     }
     return 1;
 }

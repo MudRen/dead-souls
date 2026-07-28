@@ -23,19 +23,19 @@ mixed cmd(string str) {
     mixed *fs;
     arr = ({});
 
-    if( !str ) return "You must specify a file.";
+    if( !str ) return "你必须指定一个文件。";
     else if(this_player()) str = absolute_path(this_player()->query_cwd(), str);
     if( !file_exists(str) ) str += ".c";
-    if( !file_exists(str) ) return "File " + str + " not found.";
+    if( !file_exists(str) ) return "文件 " + str + " 未找到。";
     else if( !(content = read_file(str)) )
-        return "Unable to read file " + str + ".";
+        return "无法读取文件 " + str + "。";
     else tmp = "";
     content = replace_string(content, " *", " array ");
     if(!tmp = FUNCTION_D->GetFunctions(str)){
         tmp = "";
         lines = explode(content, "\n");
         ob = load_object(str);
-        if(!ob) return "File cannot be loaded.";
+        if(!ob) return "文件无法加载。";
         else arr = query_local_functions(ob);
         fs = functions(ob);
         raw_lines = filter(lines, (: reverse_memberp($1, types) :) );
@@ -58,6 +58,6 @@ mixed cmd(string str) {
 }
 
 string GetHelp(){
-    return ("Syntax: showfuns <file>\n\n"
-            "Displays the functions defined in the file.");
+    return ("语法: showfuns <文件>\n\n"
+            "显示文件中定义的函数。");
 }

@@ -13,7 +13,7 @@ mixed cmd(string str) {
     string cmd, what, ret = "";;
 
     if(!this_player() || !archp(this_player())){
-        write("Sorry, this is an arch command.");
+        write("抱歉，这是一个 arch 命令。");
         return 1;
     }
 
@@ -35,7 +35,7 @@ mixed cmd(string str) {
     }
 
     if(!ob){
-        write(truncate(what,2)+" not found.");
+        write(truncate(what,2)+" 未找到。");
         return 1;
     }
 
@@ -54,10 +54,10 @@ mixed cmd(string str) {
 }
 
 string GetHelp(){
-    return ("Syntax: vars <object or file>\n\n"
-            "Dumps the variables of an object as well as their values.\n"
-            "Examples:\n"
+    return ("语法：vars <对象或文件>\n\n"
+            "输出对象的所有变量及其值。\n"
+            "示例：\n"
             "vars kim\n"
             "vars /daemon/classes\n"
-            "See also: var, variables");
+            "另见：var, variables");
 }

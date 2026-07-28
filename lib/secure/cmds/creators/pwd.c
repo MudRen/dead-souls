@@ -7,8 +7,8 @@
 inherit LIB_DAEMON;
 
 string GetHelp() {
-    return ("Syntax: pwd\n\n"
-            "Defined internal to the user object.\n"
-            "Prints your current working directory.\n"
-            "See also: cd");
+    return ("语法: pwd\n\n"
+            "定义在用户对象内部。\n"
+            "显示你的当前工作目录。\n"
+            "另见: cd");
 }

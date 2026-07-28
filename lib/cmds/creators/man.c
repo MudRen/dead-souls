@@ -15,15 +15,15 @@ int cmd(string str) {
     string *pages;
     int i;
 
-    if(!str) return notify_fail("Usage: man <function>\n");
+    if(!str) return notify_fail("用法：man <函数名>\n");
     i = sizeof(MAN_PAGES);
     pages = ({});
     while(i--) 
         if(file_exists(tmp = sprintf("%s/%s/%s", DIR_DOCS, MAN_PAGES[i],
                         str))) pages += ({ tmp });
-    if(!(i = sizeof(pages))) return notify_fail("No such man page.\n");
-    else if(i > 1) 
-        message("system", "Showing only the first of "+i+" man pages.",
+    if(!(i = sizeof(pages))) return notify_fail("没有该手册页。\n");
+    else if(i > 1)
+        message("system", "仅显示第 1 个，共 "+i+" 个手册页。",
                 this_player());
     this_player()->eventPage(pages[0]);
     return 1;

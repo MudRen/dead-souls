@@ -7,7 +7,7 @@ protected void create() {
     verb::create();
     SetVerb("crawl");
     SetRules("STR", "into STR");
-    SetErrorMessage("Crawl in which direction?");
+    SetErrorMessage("往哪个方向爬行？");
     SetHelp("Syntax: crawl <DIRECTION>\n"
             "        crawl into <PLACE>\n\n"
             "Moves you towards the direction you specify, or into the place "
@@ -16,23 +16,23 @@ protected void create() {
 }
 
 mixed can_crawl_str(string str) {
-    if( !environment(this_player()) ) return "You are nowhere.";
+    if( !environment(this_player()) ) return "你哪里也不在。";
     if( this_player()->GetStaminaPoints() <3 )
-        return "You are too tired to crawl anywhere right now.";
+        return "你现在太累了，无法爬行。";
     if(this_player()->GetPosition() != POSITION_LYING &&
             this_player()->GetPosition() != POSITION_SITTING){
-        return "You can't crawl in your current position.";
+        return "你当前的姿势无法爬行。";
     }
     return 1;
 }
 
 mixed can_crawl_into_str(string str) {
-    if( !environment(this_player()) ) return "You are nowhere.";
+    if( !environment(this_player()) ) return "你哪里也不在。";
     if( this_player()->GetStaminaPoints() <3 )
-        return "You are too tired right now.";
+        return "你现在太累了。";
     if(this_player()->GetPosition() != POSITION_LYING &&
             this_player()->GetPosition() != POSITION_SITTING){
-        return "You can't crawl in your current position.";
+        return "你当前的姿势无法爬行。";
     }
     return 1;
 }
@@ -48,7 +48,7 @@ mixed do_crawl_into_str(string str) {
     str = remove_article(lower_case(str));
     targ = present(str,environment(this_player()));
     if(!targ) targ = present(str,this_player());
-    if(!targ) return "That's not possible.";
+    if(!targ) return "那不可能。";
     this_player()->AddStaminaPoints(-5);
     return targ->eventEnter(this_player(), str,"crawl");
 }

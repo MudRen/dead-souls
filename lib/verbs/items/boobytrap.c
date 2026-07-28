@@ -6,7 +6,7 @@ protected void create() {
     verb::create();
     SetVerb("boobytrap");
     SetRules("OBJ with OBJ");
-    SetErrorMessage("Boobytrap what with what?");
+    SetErrorMessage("用什么设置陷阱？");
     SetHelp("Syntax: <boobytrap OBJ with OBJ>\n\n"
             "The first object is something you wish to boobytrap, like a "
             "door or a chest.  The second is the thing you wish to use to "
@@ -16,7 +16,7 @@ protected void create() {
 
 mixed can_boobytrap_obj_with_obj(string verb) {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     return this_player()->CanManipulate();
 }

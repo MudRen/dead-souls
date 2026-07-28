@@ -6,8 +6,8 @@ void create() {
     ::create();
     SetKeyName("easter egg");
     SetId( ({ "egg", "easter egg" }) );
-    SetShort("an %^RED%^e%^GREEN%^a%^YELLOW%^s%^BLUE%^t%^MAGENTA%^e"
-            "%^CYAN%^r%^RESET%^ egg");
+    SetShort("一个 %^RED%^复%^GREEN%^活%^YELLOW%^节%^BLUE%^彩%^MAGENTA%^蛋"
+            "%^RESET%^");
     SetLong(
             "一个由复活节兔子带来的美丽复活节彩蛋。看起来很好吃。"
             "如果你不想吃它，为什么不把它藏起来留给别人呢？"

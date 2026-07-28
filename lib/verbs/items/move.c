@@ -7,7 +7,7 @@ protected void create() {
     SetVerb("move");
     SetRules("OBJ", "STR on OBJ");
     SetSynonyms("shove");
-    SetErrorMessage("Move what? Or move what on what?");
+    SetErrorMessage("移动什么？或者把什么移到什么上？");
     SetHelp("Syntax: <move OBJECT>\n"
             "        <move THING on OBJECT>\n\n"
             "Allows you to move an object, or perhaps a thing on the "

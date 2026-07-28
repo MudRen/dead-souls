@@ -20,13 +20,10 @@ mixed cmd(string str){
 }
 
 string GetHelp() {
-    return ("Syntax: homedir [directory]\n\n"
-            "Sets the specified directory to be your \"home\" "
-            "directory, i.e. the directory your path changes to "
-            "when you type \"cd\" with no arguments. If you do "
-            "not specify a directory, your home directory is "
-            "reset to your default.\nNOTE: Changing your home "
-            "directory may have an impact on where the QCS puts items "
-            "you create.\n"
-            "See also: pwd, cd, env, homeroom");
+    return ("语法: homedir [目录]\n\n"
+            "将指定目录设为你的\"主目录\"，\n"
+            "即输入 \"cd\" 不带参数时切换到的目录。\n"
+            "如果不指定目录，主目录会重置为默认值。\n"
+            "注意: 更改主目录可能会影响 QCS 放置你创建的物品的位置。\n"
+            "另见: pwd, cd, env, homeroom");
 }

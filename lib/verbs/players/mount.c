@@ -8,7 +8,7 @@ protected void create() {
     verb::create();
     SetVerb("mount");
     SetRules("LIV");
-    SetErrorMessage("Mount something?");
+    SetErrorMessage("骑什么？");
     SetHelp("Syntax: mount <CREATURE>\n\n"
             "This command allows you to put yourself astride a "
             "creature suitable and ready for riding.\n"

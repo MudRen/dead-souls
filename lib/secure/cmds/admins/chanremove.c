@@ -9,10 +9,10 @@ mixed cmd(string chan) {
 
     if(!archp(previous_object())) return 0;
     if( !chan || chan == "") {
-        return "Huh?";
+        return "什么？";
     }
-    if(member_array(chan,INTERMUD_D->GetChannels()) == -1) 
-        return "No such channel.";
+    if(member_array(chan,INTERMUD_D->GetChannels()) == -1)
+        return "没有这个频道。";
 
     else INTERMUD_D->eventWrite( ({ "channel-remove", 5, mud_name(), 
                 this_player()->GetKeyName(), INTERMUD_D->GetNameserver(), 
@@ -20,15 +20,14 @@ mixed cmd(string chan) {
 
     load_object("/secure/cmds/creators/update")->cmd("/daemon/intermud");
 
-    write("Channel removal request sent.");
+    write("频道移除请求已发送。");
 
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: chanremove <channel>\n\n"
-            "Submits to the intermud router a request to remove the "
-            "channel specified. If you do not own the channel, the "
-            "request will not be honored.\nSee also: "
-            "chanban, chanunban, chancreate");
+    return ("语法: chanremove <频道名>\n\n"
+            "向跨MUD路由器提交请求，移除指定的频道。"
+            "如果你不拥有该频道，请求将不会被处理。\n"
+            "另见: chanban, chanunban, chancreate");
 }

@@ -18,22 +18,21 @@ mixed cmd(string str) {
     str = absolute_path(this_player()->query_cwd(), str);
     if( file_size(str) != -1 )
     {
-        notify_fail("mkdir: "+str+": file already exists.\n");
+        notify_fail("mkdir: "+str+": 文件已存在。\n");
         return 0;
     }
     if( master()->valid_write(str, previous_object(), "rmdir") == 0 )
     {
-        notify_fail(str+": Permission denied.\n");
+        notify_fail(str+": 权限被拒绝。\n");
         return 0;
     }
-    write(mkdir(str) ? "Ok.\n" : str+": couldn't make directory.\n");
+    write(mkdir(str) ? "完成。\n" : str+": 无法创建目录。\n");
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: mkdir <directory>\n\n"
-            "This command makes a new directory with the name specified. "
-            "If no path information is supplied, the new directory will be "
-            "a sub directory of the present working directory. For more "
-            "on specifying paths see: help cd");
+    return ("语法: mkdir <目录>\n\n"
+            "此命令创建指定名称的新目录。\n"
+            "如果未提供路径信息，新目录将是当前工作目录的子目录。\n"
+            "有关路径指定的更多信息，请见: help cd");
 }

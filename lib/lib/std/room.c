@@ -829,7 +829,7 @@ varargs int eventShow(object who, string args){
     string str;
 
     if( !(str = SEASONS_D->GetLong(args)) ){
-        who->eventPrint("You do not see that there.");
+        who->eventPrint("你在那里没有看到那个。");
         return 1;
     }
     who->eventPrint(str);
@@ -839,10 +839,10 @@ varargs int eventShow(object who, string args){
 /***********          /lib/room.c events          ***********/
 mixed eventBuryItem(object who, object tool, object what){
     if( !functionp(Bury) ){
-        return "You cannot bury things here!";
+        return "你不能在这里埋东西！";
     }
     if( functionp(Bury) & FP_OWNER_DESTED ){
-        return "You cannot bury things here.";
+        return "你不能在这里埋东西。";
     }
     return evaluate(Bury, who, tool, what);
 }
@@ -965,7 +965,7 @@ int CanReceive(object ob){
         string verb = query_verb();
         string *allowed = ({ "go", "climb", "jump", "enter", "fly", "crawl" });
         if(member_array(verb, allowed) == -1 && !archp(this_player())){
-            write("Your teleportation is prevented.");
+            write("你的传送被阻止了。");
             return 0;
         }
     }

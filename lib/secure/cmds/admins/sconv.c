@@ -28,11 +28,11 @@ int ok, ok2;
 
 mixed cmd(string args){
 #ifndef __FLUFFOS__
-    write("This command only works under FluffOS.");
+    write("此命令仅在 FluffOS 下有效。");
     return 1;
 #else
     if(args == "clear"){
-        write("Resetting the converter variables.");
+        write("正在重置转换器变量。");
         RELOAD_D->eventReload(this_object(),0);
         return 1;
     }
@@ -59,7 +59,7 @@ int Report(string str){
 
 int DisplayVnum(string str){
     if(!str || !AreaMap[str]){
-        write("No such vnum in this area.");
+        write("此区域中没有这样的vnum。");
         return 1;
     }
     print_long_string(this_player(),"vnum "+str+":\n"+identify(AreaMap[str]),1);
@@ -78,24 +78,24 @@ int ConvertArea(string arg){
     string *segmented = ({});
 
     if(!arg || sscanf(arg,"%s %s",str, name) != 2){
-        write("convert FILE AREA");
+        write("convert 文件 区域名");
         return 1;
     }
 
     if(!str){
-        write("Try: help sconv");
+        write("尝试：help sconv");
         return 1;
     }
 
     if(!file_exists(str)){ str = this_player()->query_cwd()+"/"+str; }
 
     if(!file_exists(str)){
-        write("No such area file exists.");
+        write("该区域文件不存在。");
         return 1;
     }
 
     if(directory_exists(DOMAINS_DIRS+"/"+name)){
-        write("That domain already exists. Backing up the current domain to a unique name.");
+        write("该域已存在。正在将当前域备份到唯一名称。");
         rename(DOMAINS_DIRS+"/"+name, DOMAINS_DIRS+"/"+name+"."+time());
     }
 
@@ -178,7 +178,7 @@ int ConvertArea(string arg){
         if(directory_exists(truncate(prefix,1))){
             write_file(prefix+lines[0]+"_"+ob_name+".c",header,1);
         }
-        else write("Directory "+truncate(prefix,1)+" does not exist.");
+        else write("目录 "+truncate(prefix,1)+" 不存在。");
 
         if(!AreaMap) AreaMap = ([]);
 
@@ -241,7 +241,7 @@ int ConvertArea(string arg){
             if(directory_exists(truncate(prefix,1))){
                 write_file(prefix+lines[0]+"_"+ob_name+".c",header,1);
             }
-            else write("Directory "+truncate(prefix,1)+" does not exist.");
+            else write("目录 "+truncate(prefix,1)+" 不存在。");
 
             if(!AreaMap) AreaMap = ([]);
 
@@ -321,7 +321,7 @@ int ConvertArea(string arg){
         if(directory_exists(truncate(prefix,1))){
             write_file(prefix+lines[0]+".c",header,1);
         }
-        else write("Directory "+truncate(prefix,1)+" does not exist.");
+        else write("目录 "+truncate(prefix,1)+" 不存在。");
 
         if(!AreaMap) AreaMap = ([]);
 
@@ -333,11 +333,11 @@ int ConvertArea(string arg){
 }
 
 string GetHelp() {
-    message("help", "Syntax: sconv <file> <area>\n\n"
-            "Tries to convert a Smaug area file into a Dead Souls domain.\n"
-            "Example: sconv /tmp/fubar.are Foo\n"
-            "This would try to create /domains/Foo and convert the area described\n"
-            "in /tmp/fubar.are into LPC files in that domain."
+    message("help", "语法：sconv <文件> <区域名>\n\n"
+            "尝试将 Smaug 区域文件转换为 Dead Souls 域。\n"
+            "示例：sconv /tmp/fubar.are Foo\n"
+            "这将尝试创建 /domains/Foo 并将\n"
+            "/tmp/fubar.are 中描述的区域转换为该域中的 LPC 文件。"
             "\n", this_player());
 }
 

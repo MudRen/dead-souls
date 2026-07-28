@@ -881,13 +881,13 @@ void start_logon(){
     }
 
     varargs protected void tell_out(object from, string targname, string targmud, string msg, int reply, int emote){
-        string ret = "%^BOLD%^RED%^You tell " + capitalize(targname) +
+        string ret = "%^BOLD%^RED%^您告诉 " + capitalize(targname) +
           "@" + targmud + ":%^RESET%^ " + msg;
 
         //Check for privs to send imc tell
         if(RESTRICTED_INTERMUD) {
             if(!imud_privp(lower_case(from->GetKeyName()))) {
-                this_player(1)->eventPrint("You lack the power to send tells to other worlds.", MSG_CONV);
+                this_player(1)->eventPrint("您没有向其他世界发送消息的能力。", MSG_CONV);
                 return;
             }
         }
@@ -918,7 +918,7 @@ void start_logon(){
         eret = "%^BOLD%^RED%^" + sender + "@" + origin +
           " %^RESET%^ " + data["text"];
         ret = "%^BOLD%^RED%^" + sender + "@" + origin +
-          " tells you:%^RESET%^ " + data["text"];
+          " 告诉您:%^RESET%^ " + data["text"];
         if(who
 #ifdef INVIS
           && VISIBLE(who)
@@ -933,11 +933,11 @@ void start_logon(){
                 break;
             case 1: // reply
                 who->eventPrint(ret, MSG_CONV);
-                blmsg=sprintf("%s@%s replied to you: %s\n", NETWORK_ID,sender,origin,data["text"]);
+                blmsg=sprintf("%s@%s 回复了您: %s\n", NETWORK_ID,sender,origin,data["text"]);
                 break;
             default:
                 who->eventPrint(ret , MSG_CONV);
-                blmsg=sprintf("%s@%s told you: %s\n", sender,origin,data["text"]);
+                blmsg=sprintf("%s@%s 告诉了您: %s\n", sender,origin,data["text"]);
                 break;
             }
             who->eventTellHist(ret);
@@ -968,7 +968,7 @@ void start_logon(){
             call_other(TELL_BOT,"got_tell",sender, origin, target, data["text"]);
 #endif
             send_packet("*","tell",sender,origin,
-              sprintf("level=-1 text=\"%s is not online on this mud.\" isreply=1",target));
+              sprintf("level=-1 text=\"%s 在本 MUD 上不在线。\" isreply=1",target));
         }
     }
 
@@ -981,7 +981,7 @@ void start_logon(){
         }
         i = sscanf(arg,"%s@%s %s",targplayer, targmud, msg);
         if(i != 3 ){
-            write("There was an error in your message. See: \"help imc2\"");
+            write("您的消息有误。请参阅: \"help imc2\"");
             return 1;
         }
         tell_out(who, targplayer, this_object()->find_mud(targmud), msg, 0, 0);
@@ -1146,7 +1146,7 @@ void start_logon(){
         object targuser;
         if(target) targuser = FIND_PLAYER(lower_case(target));
         if(targuser){
-            output = NETWORK_ID+" who reply from: %^CYAN%^"+origin+"%^RESET%^\n";
+            output = NETWORK_ID+" who 回复来自: %^CYAN%^"+origin+"%^RESET%^\n";
             output += imc2_to_pinkfish(data["text"])+"\n";
             IMC2_MSG(output,targuser);
         }
@@ -1164,7 +1164,7 @@ void start_logon(){
 #ifdef USER_EXISTS
         else if(USER_EXISTS(lower_case(targ))){
             send_packet(targ,"whois-reply",fromname,frommud,
-              "text=\"Exists but is offline\"");
+              "text=\"存在但已离线\"");
         }
 #endif
     }
@@ -1173,7 +1173,7 @@ void start_logon(){
         object who;
         if(targ) who = FIND_PLAYER(lower_case(targ));
         if(who){
-            IMC2_MSG(sprintf("%s whois reply: %s@%s: %s\n",
+            IMC2_MSG(sprintf("%s whois 回复: %s@%s: %s\n",
                 NETWORK_ID,fromname,frommud,data["text"]),who);
         }
     }
@@ -1186,12 +1186,12 @@ void start_logon(){
           && VISIBLE(who)
 #endif
         ){
-            IMC2_MSG(sprintf("%s- %%^CYAN%%^%s@%s%%^RESET%%^ \abeeps you.\n",
+            IMC2_MSG(sprintf("%s- %%^CYAN%%^%s@%s%%^RESET%%^ \a向您发出呼叫。\n",
                 NETWORK_ID,sender,origin,data["text"]), who);
         }
         else{
             send_packet("*","tell",sender,origin,
-              sprintf("level=-1 text=\"%s is not online.\" isreply=1",target));
+              sprintf("level=-1 text=\"%s 不在线。\" isreply=1",target));
         }
     }
 
@@ -1210,7 +1210,7 @@ void start_logon(){
         }
         if(target) who = FIND_PLAYER(lower_case(target));
         if(who){
-            IMC2_MSG(sprintf("%s route to %%^CYAN%%^%s%%^RESET%%^ is: %s\n",
+            IMC2_MSG(sprintf("%s 到 %%^CYAN%%^%s%%^RESET%%^ 的路由为: %s\n",
                 NETWORK_ID,origin,data["path"]), who);
         }
     }
@@ -1229,7 +1229,7 @@ void start_logon(){
         object targuser;
         if(target) targuser = FIND_PLAYER(lower_case(target));
         if(targuser){
-            output = NETWORK_ID+" chanwho reply from "+origin+" for "+data["channel"]+"\n";
+            output = NETWORK_ID+" chanwho 回复来自 "+origin+" 关于 "+data["channel"]+"\n";
             output += imc2_to_pinkfish(data["list"]);
             IMC2_MSG(output,targuser);
         }
@@ -1271,24 +1271,24 @@ void start_logon(){
         if(!mudinfo || sizeof(mudinfo) == 0) {return;}
         muds = sort_array(filter(keys(mudinfo), (: stringp($1) :)),1);
         if (!mode==MODE_CONNECTED) {
-            message("system",MUDNAME+" is not connected to the "+NETWORK_ID+" network!\n",towho);
+            message("system",MUDNAME+" 未连接到 "+NETWORK_ID+" 网络！\n",towho);
             return;
         } else if (!sizeof(mudinfo)){
-            message("system","There are no muds on the "+NETWORK_ID+" network!\n",towho);
+            message("system",NETWORK_ID+" 网络上没有其他 MUD！\n",towho);
             return;
         } else {
             x=0; y=0;
-            output=sprintf("[%s] %-20s %-20s %-20s\n","U/D?","Name","Network","IMC2 Version");
+            output=sprintf("[%s] %-20s %-20s %-20s\n","状态","名称","网络","IMC2 版本");
             foreach (mud in filter(muds, (: mudinfo[$1]["online"] :) )){
-                if(!mudinfo[mud]) output += "Error on mud: "+mud+"\n";
+                if(!mudinfo[mud]) output += "MUD 出错: "+mud+"\n";
                 else {
                     if(mudinfo[mud]["online"]) x++; else y++;
                     output += sprintf("[%s] %-20s %-20s %-20s\n",
-                      (mudinfo[mud]["online"] ? "%^GREEN%^ UP %^RESET%^" : "%^RED%^DOWN%^RESET%^"),
+                      (mudinfo[mud]["online"] ? "%^GREEN%^ 在线 %^RESET%^" : "%^RED%^离线%^RESET%^"),
                       mud, mudinfo[mud]["networkname"], mudinfo[mud]["versionid"]);
                 }
             }
-            output += sprintf("%d of %d MUDs are online.\n",x,x+y);
+            output += sprintf("%d / %d 个 MUD 在线。\n",x,x+y);
             message("system",output,towho);
             return;
         }
@@ -1304,24 +1304,24 @@ void start_logon(){
         string output;
 
         if(!args) {
-            message("system","See info for which MUD?",towho);
+            message("system","查看哪个 MUD 的信息？",towho);
             return;
         }
 
         str=find_mud(args);
         if(!str) {
-            message("system","MUD isn't known on "+NETWORK_ID+".",towho);
+            message("system","该 MUD 在 "+NETWORK_ID+" 上未知。",towho);
             return;
         }
 
-        output=("Mud info for: "+str+"\nStatus: ");
+        output=("MUD 信息: "+str+"\n状态: ");
 
-        if(mudinfo[str]["online"]) output+=("%^GREEN%^Online%^RESET%^\n");
-        else output+=("%^RED%^Offline%^RESET%^\n");
+        if(mudinfo[str]["online"]) output+=("%^GREEN%^在线%^RESET%^\n");
+        else output+=("%^RED%^离线%^RESET%^\n");
 
-        if(mudinfo[str]["versionid"])   output+=("Version ID: "+mudinfo[str]["versionid"]+"\n");
+        if(mudinfo[str]["versionid"])   output+=("版本 ID: "+mudinfo[str]["versionid"]+"\n");
         if(mudinfo[str]["url"]) 	    output+=("URL: "+mudinfo[str]["url"]+"\n");
-        if(mudinfo[str]["networkname"]) output+=("Network name: "+mudinfo[str]["networkname"]+"\n");
+        if(mudinfo[str]["networkname"]) output+=("网络名称: "+mudinfo[str]["networkname"]+"\n");
 
         message("system",output,towho);
         return;
@@ -1331,20 +1331,20 @@ void start_logon(){
     void mudwho(string mudname,object towho) {
         string str;
         if(!mudname) {
-            message("system","Send who request to which MUD?",towho);
+            message("system","向哪个 MUD 发送 who 请求？",towho);
             return;
         }
         str=find_mud(mudname);
         if(!str) {
-            message("system","MUD isn't known on "+NETWORK_ID+".",towho);
+            message("system","该 MUD 在 "+NETWORK_ID+" 上未知。",towho);
             return;
         }
         if(!mudinfo[str]["online"]) {
-            message("system",str+" is offline right now.",towho);
+            message("system",str+" 当前离线。",towho);
             return;
         }
         who_out(capitalize(this_player()->GetKeyName()),str);
-        message("system",NETWORK_ID+" sent a who request to "+str+"\n",towho);
+        message("system",NETWORK_ID+" 已向 "+str+" 发送 who 请求\n",towho);
         return;
     }
 
@@ -1352,20 +1352,20 @@ void start_logon(){
     mixed pingmud(string mudname,object towho) {
         string str;
         if(!mudname) {
-            message("system","Send ping to which MUD?",towho);
+            message("system","向哪个 MUD 发送 ping？",towho);
             return;
         }
         str=find_mud(mudname);
         if(!str) {
-            message("system","MUD isn't known on "+NETWORK_ID+".",towho);
+            message("system","该 MUD 在 "+NETWORK_ID+" 上未知。",towho);
             return;
         }
         if(!mudinfo[str]["online"]) {
-            message("system",str+" is offline right now.",towho);
+            message("system",str+" 当前离线。",towho);
             return;
         }
         ping_out(capitalize(towho->GetKeyName()),str);
-        message("system","Sent a ping to "+str+".",towho);
+        message("system","已向 "+str+" 发送 ping。",towho);
         return;
     }
 
@@ -1374,23 +1374,23 @@ void start_logon(){
         string output;
 
         output=sprintf(@EndText
-            IMC2 NETWORK INFORMATION
+            IMC2 网络信息
             ------------------------
-            Status: %s
-            Hub address: %s
-            Hub port: %d
-            The hub calls itself: %s
-            The network calls itself: %s
-            Command to use this network: %s
-            The MUD calls this connection: %s
+            状态: %s
+            枢纽地址: %s
+            枢纽端口: %d
+            枢纽自称: %s
+            网络自称: %s
+            使用此网络的命令: %s
+            MUD 称此连接为: %s
 
-            Packet logging: %s
+            数据包记录: %s
 
-            The network calls the MUD: %s
-            The MUD's Version ID: %s
-            The MUD's URL: %s
+            网络称 MUD 为: %s
+            MUD 的版本 ID: %s
+            MUD 的 URL: %s
 EndText,
-          ((mode==MODE_CONNECTED) ? "Connected" : "Not connected"),
+          ((mode==MODE_CONNECTED) ? "已连接" : "未连接"),
 #ifdef HOSTNAME
           HOSTNAME,
 #else
@@ -1398,9 +1398,9 @@ EndText,
 #endif
           HOSTPORT,hub_name,network_name,COMMAND_NAME,NETWORK_ID,
 #ifdef IMC2_LOGGING
-          "on",
+          "开",
 #else
-          "off",
+          "关",
 #endif
           MUDNAME,VERSION,URL);
 
@@ -1416,20 +1416,20 @@ EndText,
     void interbeep(string args, object towho) {
         string a,b;
         if(!args || sscanf(args,"%s@%s",a,b)!=2) {
-            message("system","Invalid syntax.",towho);
+            message("system","语法无效。",towho);
             return;
         }
         b=find_mud(b);
         if(!b) {
-            message("system","MUD isn't known on "+NETWORK_ID+".",towho);
+            message("system","该 MUD 在 "+NETWORK_ID+" 上未知。",towho);
             return;
         }
         if(!mudinfo[b]["online"]) {
-            message("system",b+" is offline right now.",towho);
+            message("system",b+" 当前离线。",towho);
             return;
         }
         beep_out(towho,a,b);
-        message("system",sprintf("You beep %s@%s.",capitalize(a),b),towho);
+        message("system",sprintf("您向 %s@%s 发送了呼叫。",capitalize(a),b),towho);
         return;
     }
 
@@ -1437,37 +1437,37 @@ EndText,
     void finger(string args, object towho) {
         string a,b;
 
-        if(!args) return notify_fail("Send finger request to who@where?\n");;
+        if(!args) return notify_fail("向 who@where 发送 finger 请求？\n");;
         if(sscanf(args,"%s@%s",a,b)!=2){
-            return notify_fail("Send finger request to who@where?\n");;
+            return notify_fail("向 who@where 发送 finger 请求？\n");;
         }
         b=find_mud(b);
         who_out(GET_CAP_NAME(towho),b,"finger "+a);
-        IMC2_MSG(NETWORK_ID"- Sent a finger request to "+a+"@"+b+"\n",THIS_PLAYER);
+        IMC2_MSG(NETWORK_ID"- 已向 "+a+"@"+b+" 发送 finger 请求\n",THIS_PLAYER);
     }
 
     //Gets whois for user@mud stored in 'args', returns it to user object 'towho'
     void whois(string args, object towho) {
-        if(!args || !sizeof(args)) return notify_fail("Locate who?\n");
+        if(!args || !sizeof(args)) return notify_fail("定位谁？\n");
 
         send_packet(GET_CAP_NAME(THIS_PLAYER),"whois",args,"*", sprintf("level=%d ",level(THIS_PLAYER)));
 
-        IMC2_MSG("Sent a request on "+NETWORK_ID+" looking for "+args+"\n",THIS_PLAYER);
+        IMC2_MSG("已在 "+NETWORK_ID+" 上发送查找 "+args+" 的请求\n",THIS_PLAYER);
     }
 
     //Gets MUD Info for a mud 'args', returns it to user object 'towho'
     void getremotemudinfo(string args, object towho) {
         string str;
 
-        if(!args) return notify_fail("Send info request to which MUD?\n");
+        if(!args) return notify_fail("向哪个 MUD 发送信息请求？\n");
 
         str=find_mud(args);
 
-        if(!str) return notify_fail("MUD isn't known on "+NETWORK_ID+".\n");
-        if(!mudinfo[str]["online"]) return notify_fail(NETWORK_ID+"- "+str+" is offline right now.\n");
+        if(!str) return notify_fail("该 MUD 在 "+NETWORK_ID+" 上未知。\n");
+        if(!mudinfo[str]["online"]) return notify_fail(NETWORK_ID+"- "+str+" 当前离线。\n");
 
         who_out(GET_CAP_NAME(THIS_PLAYER),str,"info");
-        IMC2_MSG(NETWORK_ID"- Sent an info request to "+str+"\n",THIS_PLAYER);
+        IMC2_MSG(NETWORK_ID+"- 已向 "+str+" 发送信息请求\n",THIS_PLAYER);
     }
 
     //Write list of all channels to screen
@@ -1475,9 +1475,9 @@ EndText,
         string output;
         string a;
 
-        output=NETWORK_ID+" channels:\n";
+        output=NETWORK_ID+" 频道:\n";
         output += sprintf("%-23s %-17s %-7s %-6s %-10s %-10s\n",
-          "Name","Owner","Policy","Level","Suggested","Local Name");
+          "名称","所有者","策略","级别","建议","本地名称");
 
         foreach(a in sort_array(
             filter(keys(chaninfo), (: stringp($1) :) ),1)){
@@ -1485,7 +1485,7 @@ EndText,
               a,chaninfo[a]["owner"],
               chaninfo[a]["policy"],
               chaninfo[a]["level"],chaninfo[a]["localname"],
-              (localize_channel(a) ? localize_channel(a) : "<none>"));
+              (localize_channel(a) ? localize_channel(a) : "<无>"));
         }
         IMC2_MSG(output,THIS_PLAYER);
 
@@ -1495,14 +1495,14 @@ EndText,
     void chancmd(string args, object towho) {
         string a, b, c;
 
-        if(!ADMIN(THIS_PLAYER)) return notify_fail("You aren't allowed to use chancmd.\n");
+        if(!ADMIN(THIS_PLAYER)) return notify_fail("您不被允许使用 chancmd。\n");
         if(!args || (sscanf(args,"%s:%s %s",a,b,c)!=3))
-            return notify_fail("Syntax: "+COMMAND_NAME+" chancmd hub:channel command\n");
+            return notify_fail("语法: "+COMMAND_NAME+" chancmd hub:channel command\n");
         if(!chaninfo[a+":"+b])
-            write(a+" is not listed as a channel, sending command anyway...\n");
+            write(a+" 未被列为频道，但仍发送命令...\n");
         send_packet(GET_CAP_NAME(THIS_PLAYER),"ice-cmd","IMC",b, sprintf("channel=%s command=\"%s\"", a+":"+b,escape(c)));
 
-        IMC2_MSG(sprintf("%s- Sent a command for the %s channel to %s\n",NETWORK_ID,a,GET_CAP_NAME(THIS_PLAYER),b),THIS_PLAYER);
+        IMC2_MSG(sprintf("%s- 已向 %s 的 %s 频道发送命令\n",NETWORK_ID,a,GET_CAP_NAME(THIS_PLAYER),b),THIS_PLAYER);
     }
 
     int command(string str){
@@ -1583,14 +1583,14 @@ EndText,
 
     string main_help(){
         return sprintf(@EndText
-            IMC2 system by Tim, set up for %s.
-            To use this, type the command '%s' followed by one of the following:
-            info (name) - lists information about a MUD
-            list - lists the MUDs on this network
-            finger (name)@(mud) - send a finger request for information about name@mud
-            ping (mud) - pings a mud
-            setup - shows information about this IMC2 network
-            help - see this help message
+            IMC2 系统由 Tim 开发，为 %s 配置。
+            使用方法：输入命令 '%s' 后跟以下选项之一：
+            info (名称) - 列出有关 MUD 的信息
+            list - 列出此网络上的 MUD
+            finger (名称)@(MUD) - 发送 finger 请求获取 name@mud 的信息
+            ping (MUD) - ping 一个 MUD
+            setup - 显示有关此 IMC2 网络的信息
+            help - 查看此帮助信息
 EndText, NETWORK_ID,COMMAND_NAME);
     }
 
@@ -1606,14 +1606,14 @@ EndText, NETWORK_ID,COMMAND_NAME);
         case "list":
             muds = sort_array(keys(mudinfo),1);
             if (!sizeof(mudinfo)){
-                return ("There are no muds on the "+NETWORK_ID+" network!\n");
+                return (NETWORK_ID+" 网络上没有其他 MUD！\n");
             }
             else{
-                output="<tr><td><b>Status</b></td><td><b>Name</b></td><td><b>Network</b></td><td><b>IMC2 Version</b></td></tr>\n";
+                output="<tr><td><b>状态</b></td><td><b>名称</b></td><td><b>网络</b></td><td><b>IMC2 版本</b></td></tr>\n";
                 foreach (mud in muds){
                     if(mudinfo[mud]["online"]) x++; else y++;
                     output += sprintf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>\n",
-                      (mudinfo[mud]["online"] ? "UP" : "DOWN"),
+                      (mudinfo[mud]["online"] ? "在线" : "离线"),
                       mudinfo[mud]["url"] ? "<a href=\""+
                       ((mudinfo[mud]["url"][0..6]!="http://") ? "http://"+mudinfo[mud]["url"] : mudinfo[mud]["url"])
                       +"\">"+mud+"</a>" : mud,
@@ -1621,36 +1621,36 @@ EndText, NETWORK_ID,COMMAND_NAME);
                       mudinfo[mud]["versionid"]);
                 }
             }
-            return sprintf("<B>%d of %d MUDs are on %s.</B.\n<BR><table>%s</table>",
-              x,x+y,NETWORK_ID,output);
+            return sprintf("<B>%s 上共有 %d / %d 个 MUD。</B.\n<BR><table>%s</table>",
+              NETWORK_ID,x,x+y,output);
             break;
         case "backlog":
             if(b && localchaninfo[b] && (localchaninfo[b]["perm"]==BACKLOG_WEB_LEVEL)){
                 // Show backlog for channel.
-                return b+" channel backlog:\n"+implode(localchaninfo[b]["backlog"],"\n");
+                return b+" 频道历史记录:\n"+implode(localchaninfo[b]["backlog"],"\n");
             }
             // List the channels
-            output = NETWORK_ID+" channels on "+MUDNAME+":\n";
+            output = MUDNAME+" 上的 "+NETWORK_ID+" 频道:\n";
             foreach(b in sort_array(keys(localchaninfo),1)){
                 if(localchaninfo[b]["perm"]==BACKLOG_WEB_LEVEL) // is public
                     output += "<a href=\""+HTML_LOCATION+"backlog_"+b+"\">";
                 output += b;
                 output += " - "+chan_perm_desc(localchaninfo[b]["perm"]);
                 if(localchaninfo[b]["perm"]==BACKLOG_WEB_LEVEL) // is public
-                    output += " - on web</a>";
+                    output += " - 在网页上</a>";
                 else
-                    output += " - not on web";
+                    output += " - 不在网页上";
                 output += "\n";
             }
             return output;
             break;
         default:
-            return MUDNAME+" uses Tim's LPC IMC2 system to connect to the "+
-            NETWORK_ID+" network.\n"+
-            "(version:"+VERSION+")\n"+
-            "From here, you can look at the <a href=\""+HTML_LOCATION+"list\">list of muds</a>,\n"+
-            "view the <a href=\""+HTML_LOCATION+"backlog\">public channel backlogs</a>,\n"+
-            "or go to the main <a href=\""+URL+"\">"+MUDNAME+"</a> web site.\n";
+            return MUDNAME+" 使用 Tim 的 LPC IMC2 系统连接到 "+
+            NETWORK_ID+" 网络。\n"+
+            "(版本:"+VERSION+")\n"+
+            "从这里，您可以查看 <a href=\""+HTML_LOCATION+"list\">MUD 列表</a>，\n"+
+            "浏览 <a href=\""+HTML_LOCATION+"backlog\">公共频道历史记录</a>，\n"+
+            "或访问 <a href=\""+URL+"\">"+MUDNAME+"</a> 主网站。\n";
             break;
         }
     }

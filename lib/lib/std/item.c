@@ -134,7 +134,7 @@ mixed CanRepair(object who){
 
 mixed CanSteal(object who){
     if( GetWorn() ){
-        return "You can't steal something equipped!";
+        return "你不能偷已装备的东西！";
     }
     return steal::CanSteal(who);
 }
@@ -225,8 +225,8 @@ mixed eventThrow(object who, object target){
             who->AddSkillPoints("projectile attack", 10);
             environment(who)->eventPrint(capitalize(GetShort()) + " does not "
                     "hit "+target->GetName() + ".",({ target, who }));
-            write("Your throw misses its mark.");
-            tell_object(target, capitalize(GetShort()) + " does not hit you.");
+            write("你投掷的东西没有命中目标。");
+            tell_object(target, capitalize(GetShort()) + "没有击中你。");
             eventMove(environment(who));
         }
         return 1;
@@ -242,7 +242,7 @@ mixed eventThrow(object who, object target){
         return target->eventReceiveThrow(who, this_object());
     }
     if( !eventMove(environment(who)) ){
-        who->eventPrint("You are not too good at throwing things.");
+        who->eventPrint("你不太擅长扔东西。");
         return 1;
     }
     who->eventPrint("You throw " + GetShort() + ".");
@@ -325,7 +325,7 @@ mixed indirect_judge_obj_to_obj(){
 
 mixed direct_use_obj_to_str(){
     if( environment() != this_player() )
-        return "#You need better access to it.";
+        return "#你需要更好地接触到它。";
     else return 1;
 }
 
@@ -335,7 +335,7 @@ mixed direct_use_obj(){
 
 mixed direct_throw_obj_word_obj(){
     if( environment() != this_player() ){
-        return "#Throw something you are not holding?";
+        return "#扔一个你没有拿着的东西？";
     }
     else return 1;
 }
@@ -362,14 +362,14 @@ int direct_sacrifice_obj_to_str(string deus){
 
 mixed direct_bless_obj(){
     if( environment() != this_player() ){
-        return "#You don't have that!";
+        return "#你没有那个东西！";
     }
     return 1;
 }
 
 mixed direct_curse_obj(){
     if( environment() != this_player() ){
-        return "#You don't have that!";
+        return "#你没有那个东西！";
     }
     return 1;
 }

@@ -53,15 +53,15 @@ mixed gmake(string str) {
 
     legal_dirs = ({"meals","doors", "obj","armor","weap","npc"});
     if(member_array(dir, legal_dirs) == -1) {
-        write("That is not a valid argument. You may create the following: room, npc, "+
-                "door, weapon, armor, container, item, table, chair, bed, meal, worn_storage.");
+        write("这不是一个有效的参数。你可以创建以下类型: room, npc, "+
+                "door, weapon, armor, container, item, table, chair, bed, meal, worn_storage。");
         return 1;
     }
 
     else if(!filename || filename == ""){
-        write("You must specify a filename. For example: create "+creation+
+        write("你必须指定一个文件名。例如: create "+creation+
                 " "+thingy+"_14.c");
-        write("or: create "+thingy+" /realms/my_name/area/"+dir+"/my_first_"+creation+".c");
+        write("或者: create "+thingy+" /realms/你的名字/area/"+dir+"/我的第一个_"+creation+".c");
         return 1;
     }
 
@@ -70,33 +70,33 @@ mixed gmake(string str) {
     if(last(filename,2) != ".c") filename += ".c";
 
     if(!this_player()->query_cwd()){
-        write("You have no current working directory. Please type: cd\nthen try again.");
+        write("你没有当前工作目录。请先输入: cd\n然后重试。");
         return 1;
     }
 
     if(grepp(filename,"/") && directory_exists(path_prefix(filename)) &&
             check_privs(this_player(), filename)){
-        write("Ok, using yer filename: "+filename);
+        write("好的，使用文件名: "+filename);
     }
     else if(last_string_element(this_player()->query_cwd(),"/") == dir &&
             check_privs(this_player(), this_player()->query_cwd())){
-        write("Using your cwd: "+this_player()->query_cwd()+"/"+filename);
+        write("使用你的工作目录: "+this_player()->query_cwd()+"/"+filename);
         filename = this_player()->query_cwd()+"/"+filename;
     }
     else if(this_player()->query_cwd() != "/" &&
             member_array(dir,get_dir(this_player()->query_cwd()+"/")) != -1 &&
             check_privs(this_player(), this_player()->query_cwd()+"/"+dir)){
-        write("Using your cwd plus "+dir+": "+this_player()->query_cwd()+"/"+dir+"/"+filename);
+        write("使用你的工作目录加 "+dir+": "+this_player()->query_cwd()+"/"+dir+"/"+filename);
         filename = this_player()->query_cwd()+"/"+dir+"/"+filename;
     }
     else if(member_array(dir,get_dir(path_prefix(this_player()->query_cwd())+"/")) != -1 &&
             check_privs(this_player(), path_prefix(this_player()->query_cwd())+"/"+dir)){
-        write("Using your cwd plus ../"+dir+": "+path_prefix(this_player()->query_cwd())+"/"+dir+"/"+filename);
+        write("使用你的工作目录加 ../"+dir+": "+path_prefix(this_player()->query_cwd())+"/"+dir+"/"+filename);
         filename = path_prefix(this_player()->query_cwd())+"/"+dir+"/"+filename;
     }
     else { 
         area_dir = homedir(this_player())+"/area";
-        write("I'm going to go with the appropriate area directory: "+area_dir+"/"+dir+"/"+
+        write("将使用相应的区域目录: "+area_dir+"/"+dir+"/"+
                 replace_string(filename,"/",""));
         filename = area_dir+"/"+dir+"/"+replace_string(filename,"/","");
 
@@ -105,20 +105,20 @@ mixed gmake(string str) {
     creation = "/obj/"+creation+".c";
     if(file_exists(creation) && cp(creation,filename)) true();
     else {
-        write("Creation failed.");
+        write("创建失败。");
         return 1;
     }
 
     if(thingy != "door") {
         template = new(filename);
         template->eventMove(environment(this_player()));
-        write("You wave your hand mysteriously and "+template->GetShort()+" materializes!");
-        say(this_player()->GetCapName()+" waves "+possessive(this_player())+" hand mysteriously and "+template->GetShort()+" materializes!");
+        write("你神秘地挥了挥手，"+template->GetShort()+" 具现化了！");
+        say(this_player()->GetCapName()+" 神秘地挥了挥手，"+template->GetShort()+" 具现化了！");
     }
 
     else {
-        write("You wave your hand mysteriously and a new door begins to materialize.");
-        say(this_player()->GetCapName()+" waves "+possessive(this_player())+" hand mysteriously and a new door begins to materialize.");
+        write("你神秘地挥了挥手，一扇新门开始具现化。");
+        say(this_player()->GetCapName()+" 神秘地挥了挥手，一扇新门开始具现化。");
         this_object()->eventCreateDoor(val, filename);
     }
     return 1;
@@ -130,17 +130,16 @@ varargs int eventStartGenericQuestions(object ob, string tempfile, string *new_a
     NewArr -= ({ 0 });
     NewArr = new_arr;
     func = what;
-    write("This setting takes multiple values. If you have no more values to "+
-            "enter, then enter a dot on a blank line. To cancel, enter a single q on "+
-            "a blank line.");
+    write("此设置接受多个值。如果你没有更多值要输入，\n"
+            "请在空行输入一个点。要取消，请在空行输入单个 q。");
     if(NewArr && sizeof(NewArr)) array_val = NewArr;
     else array_val = ({});
     array_val -= ({0});
     array_val -= ({"0"});
     if(sizeof(array_val))
-        write("You may now enter the next value. So far, we have: "+identify(array_val));
-    else write("You may now enter the next value. So far, it is blank.");
-    write("If you're done entering values, enter a dot on a blank line.");
+        write("现在可以输入下一个值。目前已有: "+identify(array_val));
+    else write("现在可以输入下一个值。目前为空。");
+    write("如果已完成输入，请在空行输入一个点。");
 
     input_to( (: eventGetArray :) );
     return 1;
@@ -148,10 +147,10 @@ varargs int eventStartGenericQuestions(object ob, string tempfile, string *new_a
 
 int eventGetArray(string str){
     if(!str || str == "" || str == "."){
-        write("Entries complete. Final array is: "+identify(array_val));
+        write("输入完成。最终数组为: "+identify(array_val));
         NewArr = array_val;
         if(!sizeof(array_val)){
-            write("Blank array. Modification cancelled.");
+            write("空数组。修改已取消。");
             return 1;
         }
         if(target->GetDoor() || inherits(LIB_DOOR,target)){
@@ -165,10 +164,10 @@ int eventGetArray(string str){
         array_val += ({str});
         array_val -= ({0});
         array_val -= ({"0"});
-        if(sizeof(array_val)) 
-            write("You may now enter the next value. So far, we have: "+identify(array_val));
-        else write("You may now enter the next value. So far, it is blank.");
-        write("If you're done entering values, enter a dot on a blank line.");
+        if(sizeof(array_val))
+            write("现在可以输入下一个值。目前已有: "+identify(array_val));
+        else write("现在可以输入下一个值。目前为空。");
+        write("如果已完成输入，请在空行输入一个点。");
         input_to( (: eventGetArray :) );
     }
 
@@ -180,7 +179,7 @@ int eventDeleteItem(object ob1, object ob2){
 
     name = base_name(ob1);
     if(!check_privs(this_player(), base_name(ob2)) ){
-        write("Insufficient privileges. Addition halted.");
+        write("权限不足。添加已中止。");
         return 1;
     }
 
@@ -202,18 +201,17 @@ int eventAddItem(object ob, string addendum){
     target = ob;
     v2 = addendum;
     if(!check_privs(this_player(), base_name(target))){
-        write("Insufficient privileges. Addition halted.");
+        write("权限不足。添加已中止。");
         return 1;
     }
     this_object()->eventGeneralStuff(base_name(ob)+".c");
 
     InvMap = this_object()->QueryMap("SetInventory",ob);
     if(!inherits(LIB_NPC,ob)){
-        write("Please enter the number of these that you want to add:");
+        write("请输入你想添加的数量:");
     }
-    else write("Please enter a command for the NPC to perform with this "+
-            "item. If you have no such command to enter, enter the number of "+
-            "these items you want to add:");
+    else write("请输入NPC对此物品要执行的命令。如果你没有此类命令，\n"
+            "请输入你想添加的数量:");
     input_to( (: eventDoAddition :) );
     return 1;
 }
@@ -247,7 +245,7 @@ int eventGeneralStuff(string str){
     globalstr2 = replace_string(globalstr2,"//snuf","");
     globalstr2 = replace_string(globalstr2,"//extras","");
     unguarded( (: write_file(globalstr, globalstr2, 1) :) );
-    write("Indenting file...");
+    write("正在格式化文件...");
     unguarded( (: indent_file(globalstr) :) );
     repstr = "";
     return 1;

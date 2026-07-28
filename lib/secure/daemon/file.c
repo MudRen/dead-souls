@@ -18,14 +18,13 @@ private void validate() {
         error("Illegal attempt to access FILE_D: "+get_stack()+" "+identify(previous_object(-1)));
     }
     if(query_os_type() == "windows"){
-        error("The file daemon has been disabled for your mud "+
-                "because it is running on windows. Intensive file operations "+
-                "in windows are not yet supported on Dead Souls.");
+        error("文件守护进程已在您的 MUD 上禁用，"+
+                "因为它运行在 Windows 上。Dead Souls 尚不支持 "+
+                "Windows 下的高强度文件操作。");
     }
     if(!(MASTER_D->GetPerfOK())){
-        error("Your system performance is too weak to support the "+
-                "file daemon's resource-intensive operations, so file "+
-                "indexing has been disabled.");
+        error("您的系统性能不足以支持文件守护进程的资源密集型操作，"+
+                "因此文件索引已被禁用。");
     }
 }
 
@@ -81,7 +80,7 @@ protected mixed Report(){
     //log_file("adm/file","FILE_D Report accessed and run by: "+identify(previous_object(-1))+"\n");
     foreach(mixed arr in call_out_info()){
         if(arr[0] == this_object()){
-            write("File scan is not complete.");
+            write("文件扫描尚未完成。");
             return 1;
         }
     }
@@ -125,7 +124,7 @@ int SearchFiles(string str){
     //log_file("adm/file",timestamp()+" FILE_D search for "+str+" run by: "+identify(previous_object(-1))+"\n");
 
     if(!str || str == ""){
-        write("Please specify the filename or substring you're looking for.");
+        write("请指定您要搜索的文件名或子字符串。");
         return 1;
     }
 
@@ -154,10 +153,10 @@ int SearchFiles(string str){
         if(!strict && grepp(last_string_element(tmpelement,"/"), tmpstr)) ret += element + "\n";
         else if(strict && last_string_element(tmpelement,"/") == tmpstr) ret += element + "\n";
     }
-    write("Matches:");
+    write("匹配结果：");
     if(sizeof(ret)) write(ret);
     //write_file("/tmp/search.out", ret, 1);
-    else write("None.");
+    else write("无。");
     return 1;
 }
 

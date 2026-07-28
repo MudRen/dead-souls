@@ -8,7 +8,7 @@ protected void create() {
     verb::create();
     SetVerb("target");
     SetRules("LVS", "only LVS","LVS only");
-    SetErrorMessage("Target whom?");
+    SetErrorMessage("锁定谁？");
     SetHelp("Syntax: target <LIVING>\n"
             "        target all of <LIVING>\n"
             "        target <all>\n\n"
@@ -24,13 +24,13 @@ mixed can_target_liv(object target) {
     int pos = this_player()->GetPosition();
 
     if( this_player()->GetParalyzed() ) {
-        return "You cannot move!";
+        return "你无法移动！";
     }
     if( pos == POSITION_SITTING || pos == POSITION_LYING ) {
-        return "You cannot target in that position!";
+        return "你当前的姿势无法锁定目标！";
     }
     if( environment(this_player())->GetProperty("no target") ) {
-        message("environment", "A mystical force prevents your malice.",
+        message("environment", "一股神秘力量阻止了你的恶意。",
                 this_player());
         return this_player()->CanManipulate();
     }
@@ -77,10 +77,10 @@ varargs mixed do_target_lvs(mixed *targets, int exclusive) {
     if(sizeof(notarget)) this_player()->AddNonTargets(notarget);
     this_player()->SetAttack(obs);
     tmp = item_list(obs);
-    obs->eventPrint(this_player()->GetName() + " targets you!");
+    obs->eventPrint(this_player()->GetName() + "锁定了你！");
     environment(this_player())->eventPrint(this_player()->GetName() +
-            " targets " + tmp + "!",
+            "锁定了" + tmp + "！",
             ({ this_player(), obs... }));
-    this_player()->eventPrint("You target " + tmp + ".");
+    this_player()->eventPrint("你锁定了" + tmp + "。");
     return 1;
 }

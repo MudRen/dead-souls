@@ -8,12 +8,12 @@ int cmd(string str) {
         if(!member_group(previous_object(), "LAW")) return 0;
     }
     if(!str) {
-        notify_fail("Correct syntax: <unallow [str]>\n");
+        notify_fail("正确语法: unallow [名称]\n");
         return 0;
     }
     if(member_array(str = lower_case(str), 
                 BANISH_D->query_allowed()) == -1) {
-        notify_fail(capitalize(str)+" is not set to be let in.\n");
+        notify_fail(capitalize(str)+" 未被设置为允许进入。\n");
         return 0;
     }
     BANISH_D->unallow_name(str);
@@ -23,9 +23,8 @@ int cmd(string str) {
 }
 
 string GetHelp(){
-    return ("Syntax: unallow <name>\n\n"
-            "Removes a name from the list of names which may be used by\n"
-            "players from banned sites to create a new character.\n"
-            "See also:\nletin, wholetin, banish, whobanished, unbanish, "
+    return ("语法: unallow <名称>\n\n"
+            "从允许被封禁站点玩家创建新角色的名称列表中移除一个名称。\n"
+            "另见:\nletin, wholetin, banish, whobanished, unbanish, "
             "register, unregister, whoregistered");
 }

@@ -8,7 +8,7 @@ protected void create(){
     verb::create();
     SetVerb("teach");
     SetRules("","STR to LIV","LIV to STR");
-    SetErrorMessage("Syntax: teach <ability> to <person>");
+    SetErrorMessage("用法：teach <能力> to <人物>");
     SetHelp("Syntax: teach <ability> to <person>\n\n"
             "This command allows you to teach another person "
             "an ability, spell, or skill.\nSee also: learn");
@@ -17,11 +17,11 @@ protected void create(){
 mixed can_teach_str_to_liv(string str, object ob){
     int pos = this_player()->GetPosition();
     if( this_player()->GetParalyzed() ) {
-        return "You cannot move!";
+        return "你无法移动！";
     }
     if( pos == POSITION_SITTING || pos == POSITION_LYING &&
             !RACES_D->GetLimblessCombatRace(this_player()->GetRace()) ){
-        return "You cannot teach in that position!";
+        return "你当前的姿势无法教学！";
     }
     return 1;
 }
@@ -31,8 +31,8 @@ mixed can_teach_liv_to_str(object ob, string str){
 }
 
 mixed can_teach(){
-    return "Syntax: teach <%^BOLD%^%^CYAN%^ability%^RESET%^> to "
-        "<%^BOLD%^%^ORANGE%^person%^RESET%^>";
+    return "用法：teach <%^BOLD%^%^CYAN%^能力%^RESET%^> to "
+        "<%^BOLD%^%^ORANGE%^人物%^RESET%^>";
 }
 
 mixed do_teach_str_to_liv(string spell, object target){

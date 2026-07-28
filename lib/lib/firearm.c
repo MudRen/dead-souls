@@ -79,44 +79,44 @@ int InitRevolver(string *arr){
     }
 }
 mixed CanGetFrom(object who, object item){
-    return "It doesn't work that way. Try unloading it.";
+    return "不能这样做。试试卸载它。";
 }
 
 mixed CanPutInto(object who, object what){
-    return "It doesn't work that way. Try loading the "+GetFirearmName()+" with something.";
+    return "不能这样做。试试给"+GetFirearmName()+"装弹。";
 }
 
 int CanReceive(object ob){
     string *idarray;
     if(FirearmType=="revolver"){
         if(rounds == MaxAmmo){
-            write("It is already fully loaded.");
+            write("它已经装满弹药了。");
             return 1;
         }
     }
     if(FirearmType != "auto" && ob->GetKeyName() != "revolver cylinder"){
-        write("This "+GetFirearmName()+" only receives bullets.");
+        write("这个"+GetFirearmName()+"只能装子弹。");
         return 0;
     }
     idarray=ob->GetId();
     if(FirearmType=="auto" && member_array("magazine",idarray) == -1){
-        write("This "+GetFirearmName()+" only receives ammunition clips.");
+        write("这个"+GetFirearmName()+"只能装弹夹。");
         return 0;
     }
     if(FirearmType=="auto" && ob->GetMillimeter() != this_object()->GetMillimeter() ){
-        write("That is not the correct ammunition clip size.");
+        write("弹夹尺寸不匹配。");
         return 0;
     }
     if(FirearmType=="auto" && ob->GetCaliber() != this_object()->GetCaliber() ){
-        write("That is not the correct ammunition clip caliber.");
+        write("弹夹口径不匹配。");
         return 0;
     }
     if(FirearmType=="auto" && ob->GetAmmoType() != this_object()->GetAmmoType() ){
-        write("That is not the correct ammunition clip type.");
+        write("弹夹类型不匹配。");
         return 0;
     }
     if(FirearmType=="auto" && mag){
-        write("The "+GetFirearmName()+" is already loaded.");
+        write("这个"+GetFirearmName()+"已经装弹了。");
         return 0;
     }
     if(FirearmType=="auto"){
@@ -139,7 +139,7 @@ varargs mixed eventShoot(object ob, mixed target, string dir, string whom){
     object *obs;
 
     if(!target || dir){
-        write("You can't shoot that way with this weapon.");
+        write("这件武器不能往那个方向射击。");
         return 1;
     }
 
@@ -155,19 +155,19 @@ varargs mixed eventShoot(object ob, mixed target, string dir, string whom){
     if(cible) target = cible->GetName();
 
     else {
-        write("It seems there's a problem targeting "+target+".");
+        write("似乎无法锁定目标"+target+"。");
         return 1;
     }
 
     if(!rounds || rounds == 0){
-        write("Your weapon is not loaded.\n");
-        say(environment(this_object())->GetName()+" tries to shoot "+capitalize(target)+" with an unloaded weapon.\n");
+        write("你的武器没有装弹。\n");
+        say(environment(this_object())->GetName()+"试图用一把空枪射击"+capitalize(target)+"。\n");
         return 1;
     }
-    write("You shoot at "+capitalize(target)+"!\n");
-    say(environment(this_object())->GetName()+" shoots at "+capitalize(target)+"!\n");
+    write("你向"+capitalize(target)+"开枪！\n");
+    say(environment(this_object())->GetName()+"向"+capitalize(target)+"开枪！\n");
     if(cible) tell_object(cible, environment(this_object())->GetName()+
-            " shoots at you!\n");
+            "向你开枪！\n");
     this_object()->eventFire(target);
     if(FirearmType=="auto"){
         shell = new(LIB_SHELL);
@@ -212,14 +212,14 @@ int eventFire(mixed str){
     if(!ob && !sizeof(obs)) ob = present(str,environment(this_player()));
     else if(!ob) ob = obs[0];
     if(creatorp(ob)){
-        write(ob->GetName()+" catches your bullet in "+possessive(ob)+" teeth.\n");
-        say(ob->GetName()+" catches the bullet in "+possessive(ob)+" teeth.\n");
+        write(ob->GetName()+"用牙齿接住了你的子弹。\n");
+        say(ob->GetName()+"用牙齿接住了子弹。\n");
         autohit=0;
         return 1;
     }
     if(ob && !living(ob) && base_name(ob) != LIB_CORPSE){
         tell_room(environment(environment(this_object())),
-                "The bullet smashes into "+lower_case(ob->GetShort())+"!\n");
+                "子弹击碎了"+lower_case(ob->GetShort())+"！\n");
         if(!sscanf(ob->GetLong(),"%sIt has been damaged by gun%s",s1,s2)){
             tempclass=ob->GetClass();
             if(tempclass) ob->SetClass(tempclass/2);
@@ -254,9 +254,9 @@ int eventFire(mixed str){
     if((ob && living(ob)) && (i < dex || autohit==1)){
         if(random(2)) limbname = ob->GetTorso();
         else limbname = scramble_array(ob->GetLimbs())[0];
-        tell_room(environment(environment(this_object())),"The bullet smashes into "+
-                capitalize(str)+"'s "+limbname+"!\n",ob);
-        tell_object(ob,"The bullet smashes into your "+limbname+"!\n");
+        tell_room(environment(environment(this_object())),"子弹击中了"+
+                capitalize(str)+"的"+limbname+"！\n",ob);
+        tell_object(ob,"子弹击中了你的"+limbname+"！\n");
         ob->AddLead("gunshot_wounds", 1);
         ob->SetAttack(this_agent());
         if(!present("firearms_wound",ob)){
@@ -281,7 +281,7 @@ int eventFire(mixed str){
         dam -= random(ob->GetStatLevel("luck"));
         dam -= random(ob->GetSkillLevel("projectile defense"));
 
-        if(creatorp(this_player())) write("you do "+dam+" points of damage");
+        if(creatorp(this_player())) write("你造成了 "+dam+" 点伤害");
 
         ob->eventReceiveDamage(environment(this_object()),(PIERCE), dam, 0, limbname);
         if(!ob->GetInCombat()){
@@ -290,8 +290,8 @@ int eventFire(mixed str){
         autohit=0;
         return 1;
     }
-    write("Your shot misses its mark.\n");
-    say(environment(this_object())->GetName()+"'s shot misses its mark.\n");
+    write("你的射击没有命中目标。\n");
+    say(environment(this_object())->GetName()+"的射击没有命中目标。\n");
     this_object()->missed_shot();
     return 1;
 }
@@ -308,10 +308,9 @@ int missed_shot(){
     inv=all_inventory(environment(environment(this_object())));
     i=random(sizeof(inv));
     if(living(inv[i])){
-        tell_room(environment(environment(this_object())), inv[i]->GetName()+" is struck "+
-                "by the stray bullet!",inv[i]);
-        tell_object(inv[i],"You are struck by a stray bullet from "+environment(this_object())->GetName()+
-                "'s gun.\n");
+        tell_room(environment(environment(this_object())), inv[i]->GetName()+"被流弹击中！",inv[i]);
+        tell_object(inv[i],"你被"+environment(this_object())->GetName()+
+                "的流弹击中了。\n");
     }
     if(!living(inv[i])){
         string shortd = (inv[i]->GetShort() || "");
@@ -365,8 +364,8 @@ int CalculateAmmoSize(){
     AmmoSize=this_object()->GetMillimeter();
     return 1;
 }
-int ShowRounds(){ environment(this_object())->eventPrint("Firearm has: "+rounds+" rounds.\n");
-    environment(this_object())->eventPrint("Firearm has: "+shells+" shells.\n");
+int ShowRounds(){ environment(this_object())->eventPrint("武器剩余："+rounds+" 发子弹。\n");
+    environment(this_object())->eventPrint("武器剩余："+shells+" 发弹壳。\n");
     return 1;
 }
 int SetAmmo(int i){ rounds=i; return 1; }
@@ -391,7 +390,7 @@ mixed eventLoad(object ob){
     mixed can = CanLoad(this_player());
     if(!can || !intp(can)) return 0;
     if(!ob || !objectp(ob) || (objectp(ob) && living(ob))){
-        write("Load "+GetKeyName()+" with what?");
+        write("用什么来给"+GetKeyName()+"装弹？");
         return 1;
     }
     if(GetFirearmType() == "revolver" && ob && objectp(ob) &&
@@ -410,7 +409,7 @@ mixed eventUnload(mixed what){
     if(!can || !intp(can)) return 0;
 
     if(FirearmType=="auto" && !mag){
-        write("It's already unloaded.");
+        write("它已经卸过了。");
         return 1;
     }
     if(mag==1 && environment(this_object()) == this_player()){
@@ -420,12 +419,12 @@ mixed eventUnload(mixed what){
     if(FirearmType=="revolver" && 
             environment(this_object()) == this_player()){
         if(rounds == 0 && shells == 0){
-            write("Your "+GetFirearmName()+" is already empty.");
+            write("你的"+GetFirearmName()+"已经是空的了。");
             return 1;
         }
         if(intp(what) && what < 7 && what > 0) true();
         else what = "all";
-        write("You unload your "+GetFirearmName()+".");
+        write("你卸下了你的"+GetFirearmName()+"。");
         this_object()->doRevolverUnload("all",what);
         return 1;
     }
@@ -433,11 +432,11 @@ mixed eventUnload(mixed what){
 
 int doMagUnload(){
     if(!present("clip",this_object())){
-        write("The "+GetFirearmName()+" is already empty.");
+        write("这个"+GetFirearmName()+"已经是空的了。");
         return 0;
     }
-    write("You unload an ammo clip from your "+GetFirearmName()+".");
-    say(this_player()->GetName()+" unloads an ammo clip from "+possessive(this_player())+" "+GetFirearmName()+".");
+    write("你从你的"+GetFirearmName()+"上卸下了一个弹夹。");
+    say(this_player()->GetName()+"从"+possessive(this_player())+"的"+GetFirearmName()+"上卸下了一个弹夹。");
     present("clip",this_object())->eventMove(environment(this_object()));
     mag=0;
     loaded=0;
@@ -471,15 +470,15 @@ int doRevolverUnload(string what, string num){
     if(n2 > 0){
         string things = "rounds";
         if(n2 == 1) things = "round";
-        write("You unload "+cardinal(n2)+" "+things+" from your "+GetFirearmName()+".");
+        write("你从你的"+GetFirearmName()+"里退出了"+cardinal(n2)+"发"+things+"。");
     }
     if(n1 > 0){
         string things = "shells";
         if(n1 == 1) things = "shell";
-        write("You unload "+cardinal(n1)+" "+things+" from your "+GetFirearmName()+".");
+        write("你从你的"+GetFirearmName()+"里退出了"+cardinal(n1)+"发"+things+"。");
     }
-    say(environment(this_object())->GetName()+" unloads some cartridges from "+
-            possessive(environment(this_object()))+" revolver.");
+    say(environment(this_object())->GetName()+"从"+
+            possessive(environment(this_object()))+"左轮手枪里退出了一些弹药。");
     return 1;
 }
 

@@ -6,7 +6,7 @@ protected void create() {
     verb::create();
     SetVerb("ride");
     SetRules("STR", "into STR" );
-    SetErrorMessage("Ride in which direction?");
+    SetErrorMessage("往哪个方向骑行？");
     SetHelp("Syntax: ride <DIRECTION>\n"
             "        ride into <PLACE>\n\n"
             "Moves your mount towards the direction you specify, or "
@@ -21,13 +21,13 @@ mixed can_ride_str(string str) {
     object where;
 
     if(mount) where = environment(mount); 
-    if(mount && !mount->GetMount()) return "You are not mounted.";
+    if(mount && !mount->GetMount()) return "你没有坐骑。";
 
-    if( !mount ) return "You are nowhere.";
-    if( !where ) return "Your mount is nowhere.";
+    if( !mount ) return "你哪里也不在。";
+    if( !where ) return "你的坐骑不在任何地方。";
     if( mount->GetStaminaPoints() <3 )
-        return "Your mount is too tired to go anywhere right now.";
-    if(!stringp(hobbled(mount))) return "Your mount is incapacitated.";
+        return "你的坐骑太累了，现在哪儿也去不了。";
+    if(!stringp(hobbled(mount))) return "你的坐骑已丧失行动能力。";
     if(str) switch(str){
         case "n" : str = "north"; break;
         case "s" : str = "south"; break;
@@ -47,14 +47,14 @@ mixed can_ride_into_str(string str) {
     object mount = environment(this_player());
     object where;
 
-    if(mount) where = environment(mount); 
-    if(mount && !mount->GetMount()) return "You are not mounted.";
+    if(mount) where = environment(mount);
+    if(mount && !mount->GetMount()) return "你没有坐骑。";
 
-    if( !mount ) return "You are nowhere.";
-    if( !where ) return "Your mount is nowhere.";
+    if( !mount ) return "你哪里也不在。";
+    if( !where ) return "你的坐骑不在任何地方。";
     if( mount->GetStaminaPoints() <3 )
-        return "Your mount is too tired to go anywhere right now.";
-    if(!stringp(hobbled(mount))) return "Your mount is incapacitated.";
+        return "你的坐骑太累了，现在哪儿也去不了。";
+    if(!stringp(hobbled(mount))) return "你的坐骑已丧失行动能力。";
     return where->CanEnter(mount, str);
 }
 

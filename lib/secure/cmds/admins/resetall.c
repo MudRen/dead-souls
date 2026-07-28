@@ -6,7 +6,7 @@ inherit LIB_DAEMON;
 int cmd(string str) {
     object *rooms = ({});
 
-    write("Compiling list of loaded rooms...");
+    write("正在编译已加载房间的列表...");
     flush_messages(this_player());
 
     rooms = filter(objects(), (: inherits(LIB_ROOM, $1) :) );
@@ -15,7 +15,7 @@ int cmd(string str) {
     if(archp(previous_object())){
 
         foreach(object room in rooms){
-            write("Updating: "+base_name(room));
+            write("正在更新："+base_name(room));
             update(base_name(room));
         }
 
@@ -23,18 +23,18 @@ int cmd(string str) {
         reap_other();
         reap_other();
 
-        write("Done.");
+        write("完成。");
 
         return 1;
     }
-    write("You are not admin. This is command forbidden.");
+    write("您不是管理员。此命令被禁止。");
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: resetall\n\n"
-            "Unloads and reloads all rooms currently in memory. "
-            "This tends to destroy all non-interactive objects in "
-            "the rooms, and dumps all players at the start room "
-            "or The Void, so use this command with caution.");
+    return ("语法：resetall\n\n"
+            "卸载并重新加载当前内存中的所有房间。"
+            "这往往会销毁房间中的所有非交互对象，"
+            "并将所有玩家送到起始房间或虚空，"
+            "因此请谨慎使用此命令。");
 }

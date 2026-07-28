@@ -157,7 +157,7 @@ string eDE(int brief) {
         eventPrint(dude->GetName());
         eventPrint(file_name(dude));
         eventPrint(base_name(environment(find_object(file_name(dude)))));
-        eventPrint("You are nowhere.","Room Desc");
+        eventPrint("你不在任何地方。","Room Desc");
         return;
     }
     desc = env->GetObviousExits() || "";

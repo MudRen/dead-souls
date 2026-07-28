@@ -39,59 +39,58 @@ int cmd(string str) {
 
     if(!env || strsrch(base_name(env), homedir(this_player()))){
         if(creatorp(this_player())){
-            write("You are a creator. Use the clone command.");
+            write("你是一名创造者。请使用 clone 命令。");
         }
         else {
-            write("You can only do this while in your area.");
+            write("你只能在自己的区域内执行此操作。");
         }
         return 1;
     }
 
     if(str == "room"){
-        write("Rooms can't be cloned. Try: areagoto");
+        write("房间无法克隆。请尝试: areagoto");
         return 1;
     }
 
     str = homedir(this_player()) + "/area/" + str + "/" + what;
     if(last(str,2) != ".c") str += ".c";
-    write("File selected: "+str);
+    write("已选择文件: "+str);
 
     if(!file_exists(str)){
-        write(str + " does not exist!");
+        write(str + " 不存在！");
         return 1;
     }
 
     if( ret = catch(ob = new(str)) ){
-        write("Error in cloning object: " + ret);
+        write("克隆对象时出错: " + ret);
         return 1;
     }
 
     if(!ob){
-        write("Failed to clone file: " + str);
+        write("克隆文件失败: " + str);
         return 1;
     }
 
     if( !(ob->eventMove(this_player())) &&
             !(ob->eventMove(environment(this_player()))) ) {
-        write("Failed to properly move the object.");
+        write("无法正确移动该对象。");
         return 1;
     }
 
     nom = ob->GetShort();
 
     if( !(ret = this_player()->GetMessage("clone", ob)) )
-        ret = this_player()->GetName() + " clones " + nom + ".";
+        ret = this_player()->GetName() + "克隆了" + nom + "。";
 
     say(ret);
-    write("You clone " + nom + " ( " + str + " ).");
+    write("你克隆了" + nom + "( " + str + " )。");
 
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: areaclone [ npc | weapon | armor | obj ] <name>\n\n"
-            "Allows a builder to bring into existence a copy of one of "
-            "her creations. To see the available items, use the arealist "
-            "command.\n"
-            "See also: arealist, areagoto");
+    return ("语法: areaclone [ npc | weapon | armor | obj ] <名称>\n\n"
+            "允许建造者克隆自己创建的物品副本。要查看可用物品，\n"
+            "请使用 arealist 命令。\n"
+            "参见: arealist, areagoto");
 }

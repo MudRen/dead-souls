@@ -70,8 +70,8 @@ int CanReceive(object sneak) {
     if(!living_stack || !arrayp(living_stack)) living_stack = ({ sneak });
     foreach(object ob in living_stack){
         if(!archp(ob) && ob->GetKeyName() != lower_case(privs)){
-            message("info","You bounce off the privacy field.", ob);
-            message("info",ob->GetName()+" bounced off the privacy field.",
+            message("info","你被隐私力场弹开了。", ob);
+            message("info",ob->GetName()+" 被隐私力场弹开了。",
               this_object());
             if(!environment(ob)) ob->eventMoveLiving(ROOM_START);
             return 0;
@@ -79,8 +79,8 @@ int CanReceive(object sneak) {
     }
     ret = ::CanReceive(sneak);
     if(ret){
-        tell_room(this_object(), "\n\nPRIVACY WARNING: "+identify(sneak)+
-          " has entered the room.\n\n", sneak);
+        tell_room(this_object(), "\n\n隐私警告："+identify(sneak)+
+          " 进入了房间。\n\n", sneak);
     }
     return ret;
 }
@@ -92,7 +92,7 @@ static int set_privacy(int i){
     SetProperty("no peer", i);
     if(sizeof(npcs)){
         foreach(object npc in npcs){
-            tell_room(this_object(),"Ejecting "+identify(npc),npc);
+            tell_room(this_object(),"正在移出 "+identify(npc),npc);
             npc->eventMove(ROOM_FURNACE);
         }
     }
@@ -102,8 +102,8 @@ static int set_privacy(int i){
 static int mod_privacy(string str){
     if(!archp(this_player()) &&
       this_player()->GetKeyName() != lower_case(privs)) {
-	write("You lack the adequate privileges to do that.");
-	say(this_player()->GetName()+" is trying to muck around with the privacy field system.");
+	write("你没有足够的权限执行此操作。");
+	say(this_player()->GetName()+"正在试图操作隐私力场系统。");
 	return 1;
     }
     if(!str || str == ""){
@@ -112,15 +112,14 @@ static int mod_privacy(string str){
     }
     if(str=="on" || str == "1"){
 	set_privacy(1);
-	write("You enable the privacy field.\n");
-	say(this_player()->GetName()+" enables a privacy force field around the
-room.");
+	write("你启用了隐私力场。\n");
+	say(this_player()->GetName()+"在房间周围启用了隐私力场。");
         return 1;
     }
     if(str=="off" || str == "0"){
         set_privacy(0);
-        write("You disable the privacy field.\n");
-        say(this_player()->GetName()+" disables a privacy force field around the room.");
+        write("你关闭了隐私力场。\n");
+        say(this_player()->GetName()+"关闭了房间周围的隐私力场。");
         return 1;
     }
 }

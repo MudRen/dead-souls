@@ -22,7 +22,7 @@ mixed cmd(string args) {
     isverb = 0;
 
     if( !args ) {
-        return "You want to know information on which command?";
+        return "你想查询哪个命令的信息？";
     }
     if(member_array(args,keys(VERBS_D->GetVerbs())) != -1){
         dirs += ({ (VERBS_D->GetVerbs())[args] });
@@ -39,26 +39,25 @@ mixed cmd(string args) {
     aa = filter(this_player()->GetCommands(), (: $1[0] == $(args) :) );
     if(sizeof(aa)){
         msg += "\n";
-        msg += args + " is an add_action() defined in "+identify(aa[0][2]);
+        msg += args + " 是一个 add_action()，定义于 "+identify(aa[0][2]);
     }
     ret = this_player()->GetAlias(args);
     if(ret){
-        msg += "\n"+ args + " is an alias that expands to: "+ret;
+        msg += "\n"+ args + " 是一个别名，展开为: "+ret;
     }
     if( (ret = this_player()->GetXverb(args)) ){
-        msg += "\n"+ args + " is an xverb that expands to: "+ret;
+        msg += "\n"+ args + " 是一个 xverb，展开为: "+ret;
     }
     if(member_array(args, SOUL_D->GetEmotes()) != -1){
-        msg += "\n"+ args + " is an emote, or 'feeling'.";
+        msg += "\n"+ args + " 是一个表情(emote)。";
     }
-    if(!sizeof(msg)) msg = args +": not found.";
+    if(!sizeof(msg)) msg = args +": 未找到。";
     previous_object()->eventPrint(msg, MSG_SYSTEM);
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: which [command]\n\n"
-            "Gives you a listing of all locations in which a command "
-            "object may be found for you.\n"
-            "See also: help, man, help");
+    return ("语法: which [命令]\n\n"
+            "列出可以找到指定命令对象的所有位置。\n"
+            "另见: help, man");
 }

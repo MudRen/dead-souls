@@ -120,7 +120,7 @@ int posture(int i){
     allowed=preAction();
     if(allowed == 2) return 1;
     if(!i) {
-        write("Please include the position number desired.");
+        write("请指定想要的姿态编号。");
         return 0;
     }
     this_player()->SetPosition(i);
@@ -136,15 +136,15 @@ int deshadow(string str){
         target = present(str,environment(this_player()));
     }
     if(!target){
-        write("That's not here.");
+        write("那不在这里。");
         return 1;
     }
     else {
         if(shadow(target,0)){
             remove_shadow(target);
-            write("You deshadow "+str);
+            write("你已移除 "+str+" 上的阴影");
         }
-        else write("No shadows there.");
+        else write("那里没有阴影。");
     }
     return 1;
 }
@@ -158,7 +158,7 @@ int enshadow(string str){
     else if(sscanf(str,"%sshadow/%s.c %s",s1,s2,s3) > 0) file = s2;
     else if(sscanf(str,"%s %s",s1,s2) > 0) file = s1;
     else {
-        write("You must specify a file within /shadows and a target.");
+        write("你必须指定 /shadows 目录中的一个文件和一个目标。");
         return 1;
     }
     if( s3 && s3 != "") target = present(s3,environment(this_player()));
@@ -166,17 +166,17 @@ int enshadow(string str){
     else target = present(s2,environment(this_player()));
 
     if(!target) {
-        write("Please specify a file within /shadows and a target.");
+        write("请指定 /shadows 目录中的一个文件和一个目标。");
         return 1;
     }
 
     if(file_size("/shadow/"+file) < 1){
-        write("That is not a valid shadow.");
+        write("这不是一个有效的阴影。");
         return 1;
     }
 
     new("/shadow/"+file)->eventShadow(target);
-    write("You enshadow "+target->GetName()+" with /shadow/"+file);
+    write("你用 /shadow/"+file+" 对 "+target->GetName()+" 施加了阴影");
     return 1;
 }
 
@@ -184,19 +184,19 @@ int medscan(string str){
     allowed=preAction();
     if(allowed == 2) return 1;
     if(!str || str == "") {
-        write("Please rephrase, including your target this time.");
+        write("请重新描述，这次请包含你的目标。");
         return 1;
     }
     if(str == "me") str = this_player()->GetKeyName();
     person=present(str,environment(scanner));
     if(!person  || !living(person)){
-        write("Disease check: No such being found");
+        write("疾病检查：未找到该生物");
         return 1;
     }
-    write("Scanning for germs...");
+    write("正在扫描病菌...");
     this_object()->germ_scan(str);
-    write("Germ scan complete.\n");
-    write("Wound scan currently offline.");
+    write("病菌扫描完成。\n");
+    write("伤口扫描当前离线。");
     return 1;
 }
 
@@ -208,7 +208,7 @@ int germ_scan(mixed strob ){
         if(str == "me") str = this_player()->GetKeyName();
         person=present(str,environment(scanner));
         if(!person  || !living(person)){
-            write("This being was not found.");
+            write("未找到该生物。");
             return 2;
         }
     }
@@ -217,35 +217,35 @@ int germ_scan(mixed strob ){
         str = person->GetName();
     }
     if(!str || str == "") {
-        write("Please rephrase, including your target this time.");
+        write("请重新描述，这次请包含你的目标。");
         return 1;
     }
     if(!living(person)){
-        write("This thing is not alive.");
+        write("该生物不是活的。");
         return 2;
     }
     ngstuff=all_inventory(person);
     gstuff = ({});
-    say(scanner->GetName()+" waves a tricorder at "+person->GetName()+".",({scanner,person}) );
-    tell_object(person,scanner->GetName()+" waves a tricorder at you.");
+    say(scanner->GetName()+"用三录仪扫描了 "+person->GetName()+"。",({scanner,person}) );
+    tell_object(person,scanner->GetName()+"用三录仪扫描了你。");
 
     for(i=0;i<sizeof(ngstuff);i++){
         if(ngstuff[i]->isGerm()== 1 && !sizeof(gstuff)) gstuff = ({ngstuff[i]});
         if(ngstuff[i]->isGerm()== 1 && sizeof(gstuff) > 0 ) gstuff += ({ngstuff[i]});
     }
     if(!sizeof(gstuff)){
-        write(person->GetName()+" has no detectable diseases.");
+        write(person->GetName()+"没有检测到疾病。");
         return 2;
     }
     for(i=0;i<sizeof(gstuff);i++){
-        if(!a=gstuff[i]->GetKeyName() || a == ""  ) a = "generic disease";
-        if(!b=gstuff[i]->GetType() || b == ""  ) b = "unknown type";
+        if(!a=gstuff[i]->GetKeyName() || a == ""  ) a = "普通疾病";
+        if(!b=gstuff[i]->GetType() || b == ""  ) b = "未知类型";
         if(intp(gstuff[i]->GetCure())) c=gstuff[i]->GetCure();
         if(!c) c = 0;
-        write("Disease: "+a+", type: "+b+", severity: "+c);
+        write("疾病："+a+"，类型："+b+"，严重程度："+c);
         return 1;
     }
-    write("Please specify a living being that shares your current location.");
+    write("请指定一个与你同处的活的生物。");
     return 2;
 }
 
@@ -255,20 +255,19 @@ int germ_squash(string str){
     allowed=preAction(1);
     if(allowed == 2) return 1;
     if(!str || str == "") {
-        write("Please specify a living thing, or \"all\" for everything in "+
-                "your environment.");
+        write("请指定一个活的生物，或输入 \"all\" 治疗环境中的所有生物。");
         return 1;
     }
     if(str == "me") str = this_player()->GetKeyName();
     person=present(str,environment(scanner));
     whom = ({});
     if(!person && str !="all"){
-        write("Disease check: No such being found");
+        write("疾病检查：未找到该生物");
         return 1;
     }
 
     if( str !="all" && !living(person)){
-        write("Disease check: No such living being found");
+        write("疾病检查：未找到该活的生物");
         return 1;
     }
     if(str =="all") whom = get_livings(environment(this_player()));
@@ -276,24 +275,23 @@ int germ_squash(string str){
     foreach(object ingrate in whom){
         i=germ_scan(ingrate);
         if(i!=2 && intp(gstuff[i]->GetCure()) ) bar=gstuff[i]->GetCure();
-        if(i!=2 && !intp(gstuff[i]->GetCure()) ) write("GetCureType: "+typeof(gstuff[i]->GetCure()));
-        if(!i) { write("Extremely weird error here."); return 1; }
+        if(i!=2 && !intp(gstuff[i]->GetCure()) ) write("GetCure类型："+typeof(gstuff[i]->GetCure()));
+        if(!i) { write("出现了极其奇怪的错误。"); return 1; }
         for(i=0;i<sizeof(gstuff);i++){
             if(gstuff[i] && gstuff[i]->isGerm() ){
                 c=10;
                 gstuff[i]->SetCure(c);
                 if(intp(gstuff[i]->GetCure()) ){
                     gstuff[i]->eventCure(ingrate,c,gstuff[i]->GetType());
-                    write("You cure "+ingrate->GetName()+"'s disease.");
-                    say(ingrate->GetName()+" looks healthier.",ingrate);
-                    tell_object(ingrate,"You feel less sick.");
+                    write("你治愈了 "+ingrate->GetName()+" 的疾病。");
+                    say(ingrate->GetName()+"看起来更健康了。",ingrate);
+                    tell_object(ingrate,"你感觉不那么难受了。");
                 }
                 if(gstuff[i] && gstuff[i]->isGerm() && !intp(gstuff[i]->GetCure())){
-                    write("This disease uses a functional as its SetCure condition.");
-                    write("It will not be cured by this device. You will have to "+
-                            "manually review the germ's code to determine what will cure it.");
-                    write("SetCure() data type: "+typeof(gstuff[i]->GetCure()));
-                    write("Filename: "+base_name(gstuff[i])+"\n");
+                    write("该疾病使用函数作为其 SetCure 条件。");
+                    write("此设备无法治愈它。你需要手动检查病菌代码来确定治愈方法。");
+                    write("SetCure() 数据类型："+typeof(gstuff[i]->GetCure()));
+                    write("文件名："+base_name(gstuff[i])+"\n");
                 }
             }
         }
@@ -309,29 +307,29 @@ int infect(string str){
     allowed=preAction(1);
     if(allowed == 2) return 1;
     if(!str){
-        write("Please indicate whom to infect, and with what. Example:");
+        write("请指定感染对象和疾病。示例：");
         write("infect doofus cold");
-        write("Current valid diseases: cold, flu, fleas, lice, h1n1");
+        write("当前有效疾病：cold, flu, fleas, lice, h1n1");
         return 1;
     }
     if(sscanf(str,"%s %s",whom,what)) {
         if(!whom || !what || whom == "" || what == ""){
-            write("Please indicate whom to infect, and with what. Example:");
+            write("请指定感染对象和疾病。示例：");
             write("infect doofus cold");
-            write("Current valid diseases: cold, flu, fleas, lice");
+            write("当前有效疾病：cold, flu, fleas, lice");
             return 1;
         }
     }
     if(!whom || !what || whom == "" || what == ""){
-        write("Please indicate whom to infect, and with what. Example:");
+        write("请指定感染对象和疾病。示例：");
         write("infect doofus cold");
-        write("Current valid diseases: cold, flu, fleas, lice");
+        write("当前有效疾病：cold, flu, fleas, lice");
         return 1;
     }
     if(whom == "me") whom = this_player()->GetKeyName();
     person=present(whom,environment(scanner));
     if(!person  || !living(person)){
-        write("This being was not found.");
+        write("未找到该生物。");
         return 1;
     }
     if(what == "cold") disease  = "/domains/town/obj/cold";
@@ -341,19 +339,19 @@ int infect(string str){
     else if(what == "rage") disease  = "/domains/town/obj/rage";
     else if(what == "h1n1") disease  = "/domains/town/obj/h1n1";
     else if(what != "") {
-        write("That isn't a valid disease.");
+        write("这不是一个有效的疾病。");
         return 1;
     }
     if(person){
-        write(person->GetName()+" located. Infecting...");
-        say(scanner->GetName()+" waves a tricorder at "+person->GetName()+".",person);
+        write("已定位 "+person->GetName()+"。正在感染...");
+        say(scanner->GetName()+"用三录仪指向了 "+person->GetName()+"。",person);
         if(present(whom,environment(scanner))) {
-            tell_object(person,scanner->GetName()+" waves a tricorder at you.");
+            tell_object(person,scanner->GetName()+"用三录仪指向了你。");
         }
     }
     ob=new(disease);
     if(ob) foo = ob->eventInfect(person);
-    else write("There's a problem with that parasite.");
+    else write("该寄生虫有问题。");
     return 1;
 }
 
@@ -362,7 +360,7 @@ int amputate(string str){
     allowed=preAction();
     if(allowed == 2) return 1;
     if(!str){
-        write("Please indicate whose limbs you wish to amputate, and which. Example:");
+        write("请指定你要截肢的对象和部位。示例：");
         write("amputate joey left hand");
         return 1;
     }
@@ -371,17 +369,17 @@ int amputate(string str){
     }
     if(whom && whom == "me") whom = this_player()->GetKeyName();
     if(!whom || !limb){
-        write("Please indicate whose limbs you wish to amputate, and which. Example:");
+        write("请指定你要截肢的对象和部位。示例：");
         write("amputate joey left hand");
         return 1;
     }
     if(!person=present(whom,environment(scanner))){
-        write(capitalize(whom)+" isn't here.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(whom)+"不在这里。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(!creatorp(this_player()) && strsrch(base_name(person), homedir(this_player()))){
-        write("Builders can only do this to NPC's that belong to them.");
+        write("建造者只能对他们自己的NPC执行此操作。");
         return 1;
     }
     both = limb;
@@ -389,43 +387,39 @@ int amputate(string str){
     //write("both: "+both);
 
     if(!person->RemoveLimb(both, scanner)){
-        write("You wave your tricorder menacingly, but nothing happens.");
-        tell_room(environment(person),scanner->GetName()+" waves a tricorder at "+person->GetName()+" in a threatening manner.", ({ scanner,person }) );
-        tell_object(person,scanner->GetName()+" waves "+possessive(scanner)+" tricorder menacingly at you.");
+        write("你威胁性地挥动三录仪，但什么也没发生。");
+        tell_room(environment(person),scanner->GetName()+"以威胁的方式用三录仪指向了"+person->GetName()+"。", ({ scanner,person }) );
+        tell_object(person,scanner->GetName()+"威胁性地用"+possessive(scanner)+"三录仪指向了你。");
         return 1;
     }
 
     if(both == "head"){
-        tell_room(environment(person),scanner->GetName()+" waves a tricorder at "+person->GetName()+", and "+
-                person->GetName()+"'s head falls off!", ({ scanner,person }) );
-        write("You decapitate "+person->GetName()+".");
-        tell_object(person,scanner->GetName()+" decapitates you with a wave of "+possessive(scanner)+" tricorder!");
+        tell_room(environment(person),scanner->GetName()+"用三录仪指向了"+person->GetName()+"，"+
+                person->GetName()+"的头掉了下来！", ({ scanner,person }) );
+        write("你斩首了"+person->GetName()+"。");
+        tell_object(person,scanner->GetName()+"用三录仪一挥斩下了你的头！");
         //person->RemoveLimb(both, scanner);
         return 1;
     }
     stumps=person->GetLimbs();
     if(!stumps) {
-        write(person->GetName()+" hasn't any limbs.");
-        say(scanner->GetName()+" waves a tricorder at "+person->GetName()+".",scanner,person);
-        tell_object(person,scanner->GetName()+" waves a tricorder at you.");
+        write(person->GetName()+"没有任何肢体。");
+        say(scanner->GetName()+"用三录仪扫描了"+person->GetName()+"。",scanner,person);
+        tell_object(person,scanner->GetName()+"用三录仪扫描了你。");
         return 1;
     }
     if(member_array(both,stumps) != -1){
         person->RemoveLimb(both, scanner);
-        write("You amputate "+person->GetName()+"'s "+both);
-        say(scanner->GetName()+" has amputated "+person->GetName()+"'s "+both+" "+
-                "with an energy beam from a medical tricorder.",scanner,person);
-        tell_object(person,scanner->GetName()+" waves a tricorder at you and "+
-                "your "+both+" is severed.");
+        write("你截断了"+person->GetName()+"的"+both);
+        say(scanner->GetName()+"用医疗三录仪的能量光束截断了"+person->GetName()+"的"+both+"。",scanner,person);
+        tell_object(person,scanner->GetName()+"用三录仪指向了你，你的"+both+"被切断了。");
         return 1;
     }
     if(member_array(limb,stumps)!= -1){
         //person->RemoveLimb(limb, scanner);
-        write("You amputate "+person->GetName()+"'s "+limb+".");
-        say(scanner->GetName()+" has amputated "+person->GetName()+"'s "+both+" "+
-                "with an energy beam from a medical tricorder.",scanner,person);
-        tell_object(person,scanner->GetName()+" waves a tricorder at you and"+
-                "your "+limb+" is severed.");
+        write("你截断了"+person->GetName()+"的"+limb+"。");
+        say(scanner->GetName()+"用医疗三录仪的能量光束截断了"+person->GetName()+"的"+both+"。",scanner,person);
+        tell_object(person,scanner->GetName()+"用三录仪指向了你，你的"+limb+"被切断了。");
         return 1;
     }
     //write("There is some sort of problem, it looks like. No "+
@@ -437,31 +431,31 @@ int regenerate(string str){
     allowed=preAction();
     if(allowed==2) return 1;
     if(!str){
-        write("Please indicate whose limbs you wish to regenerate.");
+        write("请指定你要再生肢体的对象。");
         return 1;
     }
     if(str == "me") str = this_player()->GetKeyName();
     if(!person=present(str,environment(scanner))){
-        write(capitalize(str)+" isn't here.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(str)+"不在这里。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     stumps=person->GetMissingLimbs();
     if(!stumps) {
-        write(person->GetName()+" isn't missing any limbs.");
-        say(scanner->GetName()+" waves a tricorder at "+person->GetName()+".",scanner,person);
-        tell_object(person,scanner->GetName()+" waves a tricorder at you.");
+        write(person->GetName()+"没有缺失任何肢体。");
+        say(scanner->GetName()+"用三录仪扫描了"+person->GetName()+"。",scanner,person);
+        tell_object(person,scanner->GetName()+"用三录仪扫描了你。");
         return 1;
     }
     if(!creatorp(this_player()) && strsrch(base_name(person), homedir(this_player()))){
-        write("Builders can only do this to NPC's that belong to them.");
+        write("建造者只能对他们自己的NPC执行此操作。");
         return 1;
     }
     for(i=0;i<sizeof(stumps);i++){
         person->RestoreLimb(stumps[i]);
-        write("You regenerate "+person->GetName()+"'s "+stumps[i]+".");
-        say(scanner->GetName()+" regenerates "+person->GetName()+"'s "+stumps[i]+".",scanner,person);
-        tell_object(person,scanner->GetName()+" regenerates your "+stumps[i]+".");
+        write("你再生了"+person->GetName()+"的"+stumps[i]+"。");
+        say(scanner->GetName()+"再生了"+person->GetName()+"的"+stumps[i]+"。",scanner,person);
+        tell_object(person,scanner->GetName()+"再生了你的"+stumps[i]+"。");
     }
     return 1;
 }
@@ -473,11 +467,11 @@ int DoSkillChange(string str, int i){
     if(this_skill["level"] < i) more_or_less = 1;
     skillclass=this_skill["class"];
     person->SetSkill(str,i,skillclass);
-    say(scanner->GetName()+" waves a medical tricorder at "+person->GetName()+".",({person,scanner}));
-    tell_object(person,scanner->GetName()+" waves a medical tricorder at you.");
-    if(more_or_less == 1) tell_room(environment(person), person->GetName()+" looks somehow more experienced.",({person}) );
-    if(more_or_less != 1) tell_room(environment(person), person->GetName()+" looks somehow less experienced.",({person}) );
-    write("You've set "+person->GetName()+"'s "+str+" to level "+i+".");
+    say(scanner->GetName()+"用医疗三录仪扫描了"+person->GetName()+"。",({person,scanner}));
+    tell_object(person,scanner->GetName()+"用医疗三录仪扫描了你。");
+    if(more_or_less == 1) tell_room(environment(person), person->GetName()+"看起来更有经验了。",({person}) );
+    if(more_or_less != 1) tell_room(environment(person), person->GetName()+"看起来经验有所不足。",({person}) );
+    write("你已将"+person->GetName()+"的"+str+"设置为等级"+i+"。");
     return 1;
 }
 int DoAllSkills(int foo){
@@ -486,11 +480,11 @@ int DoAllSkills(int foo){
         this_skill = person->GetSkill(skilllist[i]);
         skillclass=this_skill["class"];
         person->SetSkill(skilllist[i],foo,skillclass);
-        write("You've set "+person->GetName()+"'s "+skilllist[i]+" to level "+foo+".");
+        write("你已将"+person->GetName()+"的"+skilllist[i]+"设置为等级"+foo+"。");
     }
-    say(scanner->GetName()+" waves a medical tricorder at "+person->GetName()+".",({person,scanner}));
-    say(person->GetName()+" seems to undergo an almost undetectable, subtle transformation.",({person,scanner}));
-    tell_object(person,scanner->GetName()+" waves a medical tricorder at you.");
+    say(scanner->GetName()+"用医疗三录仪扫描了"+person->GetName()+"。",({person,scanner}));
+    say(person->GetName()+"似乎经历了一种几乎无法察觉的微妙变化。",({person,scanner}));
+    tell_object(person,scanner->GetName()+"用医疗三录仪扫描了你。");
     return 1;
 }
 int setskill(string str){
@@ -500,10 +494,9 @@ int setskill(string str){
     allowed=preAction();
     if(allowed==2) return 1;
     if(!str) {
-        write("Syntax: setskill <person> <skill> <amount>");
-        write("If there is a space in the skill name, replace it with "+
-                "an underscore. Example:\nsetskill schmucky blade_attack 5");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：setskill <人物> <技能> <数值>");
+        write("如果技能名称中有空格，请用下划线替换。示例：\nsetskill schmucky blade_attack 5");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(!sscanf(str,"%s %s %d",whom,skill,amt)) { sscanf(str,"%s %s",whom,skill);  }
@@ -511,20 +504,20 @@ int setskill(string str){
         whom = rubbish;
         skill = skill1 + " " +skill2;
     }
-    write("skill: "+skill);
+    write("技能："+skill);
     if(!whom || whom == ""){
-        write("Syntax: setskill <person> <skill> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：setskill <人物> <技能> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(whom == "me") whom = this_player()->GetKeyName();
     if(!person=present(whom,environment(scanner))){
-        write(capitalize(whom)+" isn't here.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(whom)+"不在这里。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(!creatorp(this_player()) && strsrch(base_name(person), homedir(this_player()))){
-        write("Builders can only do this to NPC's that belong to them.");
+        write("建造者只能对他们自己的NPC执行此操作。");
         return 1;
     }
     this_skill = ([]);
@@ -533,16 +526,15 @@ int setskill(string str){
     if(amt < 0) amt = 0;
     if(allowed==2) return 1;
     if ( !whom || !skill || !amt || !intp(amt) ){
-        write("Syntax: setskill <person> <skill> <amount>");
-        write("If there is a space in the skill name, replace it with "+
-                "an underscore. Example:\nsetskill schmucky blade_attack 5");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：setskill <人物> <技能> <数值>");
+        write("如果技能名称中有空格，请用下划线替换。示例：\nsetskill schmucky blade_attack 5");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(skill == "all") { DoAllSkills(amt); return 1; }
     if(member_array(skill,skilllist) == -1) {
-        write(capitalize(whom)+" doesn't have that skill.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(whom)+"没有那个技能。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     DoSkillChange(skill, amt);
@@ -553,9 +545,9 @@ int DoStatChange(string str, int i){
     this_stat = person->GetStat(str);
     statclass=this_stat["class"];
     person->SetStat(str,i,statclass);
-    say(scanner->GetName()+" waves a medical tricorder at "+person->GetName()+".",({person,scanner}));
-    tell_object(person,scanner->GetName()+" waves a medical tricorder at you.");
-    write("You've set "+person->GetName()+"'s "+str+" to level "+i+".");
+    say(scanner->GetName()+"用医疗三录仪扫描了"+person->GetName()+"。",({person,scanner}));
+    tell_object(person,scanner->GetName()+"用医疗三录仪扫描了你。");
+    write("你已将"+person->GetName()+"的"+str+"设置为等级"+i+"。");
     return 1;
 }
 int DoAllStats(int foo){
@@ -564,10 +556,10 @@ int DoAllStats(int foo){
         this_stat = person->GetStat(statlist[i]);
         statclass=this_stat["class"];
         person->SetStat(statlist[i],foo,statclass);
-        write("You've set "+person->GetName()+"'s "+statlist[i]+" to level "+foo+".");
+        write("你已将"+person->GetName()+"的"+statlist[i]+"设置为等级"+foo+"。");
     }
-    say(scanner->GetName()+" waves a medical tricorder at "+person->GetName()+".",({person,scanner}));
-    tell_object(person,scanner->GetName()+" waves a medical tricorder at you.");
+    say(scanner->GetName()+"用医疗三录仪扫描了"+person->GetName()+"。",({person,scanner}));
+    tell_object(person,scanner->GetName()+"用医疗三录仪扫描了你。");
     return 1;
 }
 int setstat(string str){
@@ -576,24 +568,24 @@ int setstat(string str){
     allowed=preAction();
     if(allowed==2) return 1;
     if(!str) {
-        write("Syntax: setstat <person> <stat> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：setstat <人物> <属性> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(!sscanf(str,"%s %s %d",whom,stat,amt)) { sscanf(str,"%s %s",whom,stat);  }
     if(!whom || whom == ""){
-        write("Syntax: setstat <person> <stat> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：setstat <人物> <属性> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(whom == "me") whom = this_player()->GetKeyName();
     if(!person=present(whom,environment(scanner))){
-        write(capitalize(whom)+" isn't here.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(whom)+"不在这里。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(!creatorp(this_player()) && strsrch(base_name(person), homedir(this_player()))){
-        write("Builders can only do this to NPC's that belong to them.");
+        write("建造者只能对他们自己的NPC执行此操作。");
         return 1;
     }
     this_stat = ([]);
@@ -602,14 +594,14 @@ int setstat(string str){
     if(amt < 0) amt = 0;
     if(allowed==2) return 1;
     if ( !whom || !stat || !amt || !intp(amt) ){
-        write("Syntax: setstat <person> <stat> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：setstat <人物> <属性> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(stat == "all") { DoAllStats(amt); return 1; }
     if(member_array(stat,statlist) == -1) {
-        write(capitalize(whom)+" doesn't have that stat.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(whom)+"没有那个属性。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     DoStatChange(stat, amt);
@@ -622,31 +614,31 @@ int modstam(string str, int stamina){
     allowed=preAction();
     if(allowed==2) return 1;
     if(!str){
-        write("Syntax: modstam <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：modstam <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     sscanf(str,"%s %d",whom,stamina);
     if (!whom || !stamina){
-        write("Syntax: modstam <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：modstam <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(whom == "me") whom = this_player()->GetKeyName();
     if(!intp(stamina)){
-        write("Syntax: modstam <person> <amount>");
-        write("Where <amount> is an integer. For example:\nmodstam joe 3\nmodstam mike -10\n");
-        say(scanner->GetName()+" fumbles stupidly with a medical tricorder.",scanner);
+        write("语法：modstam <人物> <数值>");
+        write("其中<数值>为整数。示例：\nmodstam joe 3\nmodstam mike -10\n");
+        say(scanner->GetName()+"愚蠢地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     person=present(whom,environment(scanner));
     if(!person){
-        write(capitalize(whom)+" isn't here.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(whom)+"不在这里。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(!creatorp(this_player()) && strsrch(base_name(person), homedir(this_player()))){
-        write("Builders can only do this to NPC's that belong to them.");
+        write("建造者只能对他们自己的NPC执行此操作。");
         return 1;
     }
     staminalevel=person->GetStaminaPoints();
@@ -656,23 +648,21 @@ int modstam(string str, int stamina){
     }
     person->AddStaminaPoints(stamina);
     if(stamina > 0){
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks a bit more at ease.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel stronger.");
-        write("You've raised "+capitalize(whom)+"'s stamina level by "+stamina+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来更轻松了。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到更强壮了。");
+        write("你已将"+capitalize(whom)+"的体力提升了"+stamina+"点。");
         return 1;
     }
     if(stamina < 0){
         stamina=absolute_value(stamina);
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks uncomfortable.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel weaker.");
-        write("You've lowered "+capitalize(whom)+"'s stamina level by "+stamina+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来不太舒服。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到更虚弱了。");
+        write("你已将"+capitalize(whom)+"的体力降低了"+stamina+"点。");
         return 1;
     }
-    write("Aucun effet.");
+    write("无效。");
     return 1;
 }
 int modtox(string str, int poison){
@@ -682,31 +672,31 @@ int modtox(string str, int poison){
     allowed=preAction();
     if(allowed==2) return 1;
     if(!str){
-        write("Syntax: modtox <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：modtox <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     sscanf(str,"%s %d",whom,poison);
     if (!whom || !poison){
-        write("Syntax: modtox <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：modtox <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(whom == "me") whom = this_player()->GetKeyName();
     if(!intp(poison)){
-        write("Syntax: modtox <person> <amount>");
-        write("Where <amount> is an integer. For example:\nmodtox joe 3\nmodtox mike -10\n");
-        say(scanner->GetName()+" fumbles stupidly with a medical tricorder.",scanner);
+        write("语法：modtox <人物> <数值>");
+        write("其中<数值>为整数。示例：\nmodtox joe 3\nmodtox mike -10\n");
+        say(scanner->GetName()+"愚蠢地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     person=present(whom,environment(scanner));
     if(!person){
-        write(capitalize(whom)+" isn't here.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(whom)+"不在这里。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(!creatorp(this_player()) && strsrch(base_name(person), homedir(this_player()))){
-        write("Builders can only do this to NPC's that belong to them.");
+        write("建造者只能对他们自己的NPC执行此操作。");
         return 1;
     }
     poisonlevel=person->GetPoison();
@@ -716,24 +706,22 @@ int modtox(string str, int poison){
     }
     person->AddPoison(poison);
     if(poison > 0){
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks paler and shaky.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel ill.");
-        write("You've raised "+capitalize(whom)+"'s poison level by "+poison+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来更苍白且在颤抖。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到不适。");
+        write("你已将"+capitalize(whom)+"的毒素提升了"+poison+"点。");
         return 1;
     }
     if(poison < 0){
         poison=absolute_value(poison);
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks less ill.", ({person,scanner})
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来不那么难受了。", ({person,scanner})
            );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel better than before.");
-        write("You've lowered "+capitalize(whom)+"'s poison level by "+poison+" points.");
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感觉比之前好多了。");
+        write("你已将"+capitalize(whom)+"的毒素降低了"+poison+"点。");
         return 1;
     }
-    write("Aucun effet.");
+    write("无效。");
     return 1;
 }
 int modmag(string str, int magic){
@@ -743,32 +731,32 @@ int modmag(string str, int magic){
     allowed=preAction();
     if(allowed==2) return 1;
     if(!str){
-        write("Syntax: modmagic <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：modmagic <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     sscanf(str,"%s %d",whom,magic);
     if (!whom || !magic){
-        write("Syntax: modmagic <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：modmagic <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(whom == "me") whom = this_player()->GetKeyName();
 
     if(!intp(magic)){
-        write("Syntax: modmagic <person> <amount>");
-        write("Where <amount> is an integer. For example:\nmodmagic joe 3\nmodmagic mike -10\n");
-        say(scanner->GetName()+" fumbles stupidly with a medical tricorder.",scanner);
+        write("语法：modmagic <人物> <数值>");
+        write("其中<数值>为整数。示例：\nmodmagic joe 3\nmodmagic mike -10\n");
+        say(scanner->GetName()+"愚蠢地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     person=present(whom,environment(scanner));
     if(!person){
-        write(capitalize(whom)+" isn't here.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(whom)+"不在这里。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(!creatorp(this_player()) && strsrch(base_name(person), homedir(this_player()))){
-        write("Builders can only do this to NPC's that belong to them.");
+        write("建造者只能对他们自己的NPC执行此操作。");
         return 1;
     }
     magiclevel=person->GetMagicPoints();
@@ -778,23 +766,21 @@ int modmag(string str, int magic){
     }
     person->AddMagicPoints(magic);
     if(magic > 0){
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" glows briefly.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel more magical.");
-        write("You've raised "+capitalize(whom)+"'s magic level by "+magic+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"短暂地发出了光芒。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到魔力充盈。");
+        write("你已将"+capitalize(whom)+"的魔法提升了"+magic+"点。");
         return 1;
     }
     if(magic < 0){
         magic=absolute_value(magic);
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks somehow more plain.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel less magical.");
-        write("You've lowered "+capitalize(whom)+"'s magic level by "+magic+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来平淡了些。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到魔力减退了。");
+        write("你已将"+capitalize(whom)+"的魔法降低了"+magic+"点。");
         return 1;
     }
-    write("Aucun effet.");
+    write("无效。");
     return 1;
 }
 int moddrink(string str, int drink){
@@ -804,32 +790,32 @@ int moddrink(string str, int drink){
     allowed=preAction();
     if(allowed==2) return 1;
     if(!str){
-        write("Syntax: moddrink <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：moddrink <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     sscanf(str,"%s %d",whom,drink);
     if (!whom || !drink){
-        write("Syntax: moddrink <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：moddrink <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(whom == "me") whom = this_player()->GetKeyName();
 
     if(!intp(drink)){
-        write("Syntax: moddrink <person> <amount>");
-        write("Where <amount> is an integer. For example:\nmoddrink joe 3\nmoddrink mike -10\n");
-        say(scanner->GetName()+" fumbles stupidly with a medical tricorder.",scanner);
+        write("语法：moddrink <人物> <数值>");
+        write("其中<数值>为整数。示例：\nmoddrink joe 3\nmoddrink mike -10\n");
+        say(scanner->GetName()+"愚蠢地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     person=present(whom,environment(scanner));
     if(!person){
-        write(capitalize(whom)+" isn't here.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(whom)+"不在这里。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(!creatorp(this_player()) && strsrch(base_name(person), homedir(this_player()))){
-        write("Builders can only do this to NPC's that belong to them.");
+        write("建造者只能对他们自己的NPC执行此操作。");
         return 1;
     }
     drinklevel=person->GetDrink();
@@ -839,23 +825,21 @@ int moddrink(string str, int drink){
     }
     person->AddDrink(drink);
     if(drink > 0){
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks a bit more at ease.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel more hydrated.");
-        write("You've raised "+capitalize(whom)+"'s drink level by "+drink+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来更轻松了。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到不那么渴了。");
+        write("你已将"+capitalize(whom)+"的饮水提升了"+drink+"点。");
         return 1;
     }
     if(drink < 0){
         drink=absolute_value(drink);
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks uncomfortable.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel thirstier.");
-        write("You've lowered "+capitalize(whom)+"'s drink level by "+drink+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来不太舒服。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到更渴了。");
+        write("你已将"+capitalize(whom)+"的饮水降低了"+drink+"点。");
         return 1;
     }
-    write("Aucun effet.");
+    write("无效。");
     return 1;
 }
 int modfood(string str, int food){
@@ -865,32 +849,32 @@ int modfood(string str, int food){
     allowed=preAction();
     if(allowed==2) return 1;
     if(!str){
-        write("Syntax: modfood <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：modfood <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     sscanf(str,"%s %d",whom,food);
     if (!whom || !food){
-        write("Syntax: modfood <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：modfood <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(whom == "me") whom = this_player()->GetKeyName();
 
     if(!intp(food)){
-        write("Syntax: modfood <person> <amount>");
-        write("Where <amount> is an integer. For example:\nmodfood joe 3\nmodfood mike -10\n");
-        say(scanner->GetName()+" fumbles stupidly with a medical tricorder.",scanner);
+        write("语法：modfood <人物> <数值>");
+        write("其中<数值>为整数。示例：\nmodfood joe 3\nmodfood mike -10\n");
+        say(scanner->GetName()+"愚蠢地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     person=present(whom,environment(scanner));
     if(!person){
-        write(capitalize(whom)+" isn't here.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(whom)+"不在这里。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(!creatorp(this_player()) && strsrch(base_name(person), homedir(this_player()))){
-        write("Builders can only do this to NPC's that belong to them.");
+        write("建造者只能对他们自己的NPC执行此操作。");
         return 1;
     }
     foodlevel=person->GetFood();
@@ -900,23 +884,21 @@ int modfood(string str, int food){
     }
     person->AddFood(food);
     if(food > 0){
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks a bit more at ease.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel more nourished.");
-        write("You've raised "+capitalize(whom)+"'s food level by "+food+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来更轻松了。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到更饱了。");
+        write("你已将"+capitalize(whom)+"的食物提升了"+food+"点。");
         return 1;
     }
     if(food < 0){
         food=absolute_value(food);
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks uncomfortable.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel hungrier.");
-        write("You've lowered "+capitalize(whom)+"'s food level by "+food+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来不太舒服。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到更饿了。");
+        write("你已将"+capitalize(whom)+"的食物降低了"+food+"点。");
         return 1;
     }
-    write("Aucun effet.");
+    write("无效。");
     return 1;
 }
 int modcaff(string str, int caff){
@@ -926,32 +908,32 @@ int modcaff(string str, int caff){
     allowed=preAction();
     if(allowed==2) return 1;
     if(!str){
-        write("Syntax: modcaff <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：modcaff <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     sscanf(str,"%s %d",whom,caff);
     if (!whom || !caff){
-        write("Syntax: modcaff <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：modcaff <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(whom == "me") whom = this_player()->GetKeyName();
 
     if(!intp(caff)){
-        write("Syntax: modcaff <person> <amount>");
-        write("Where <amount> is an integer. For example:\nmodcaff joe 3\nmodcaff mike -10\n");
-        say(scanner->GetName()+" fumbles stupidly with a medical tricorder.",scanner);
+        write("语法：modcaff <人物> <数值>");
+        write("其中<数值>为整数。示例：\nmodcaff joe 3\nmodcaff mike -10\n");
+        say(scanner->GetName()+"愚蠢地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     person=present(whom,environment(scanner));
     if(!person){
-        write(capitalize(whom)+" isn't here.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(whom)+"不在这里。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(!creatorp(this_player()) && strsrch(base_name(person), homedir(this_player()))){
-        write("Builders can only do this to NPC's that belong to them.");
+        write("建造者只能对他们自己的NPC执行此操作。");
         return 1;
     }
     cafflevel=person->GetCaffeine();
@@ -961,23 +943,21 @@ int modcaff(string str, int caff){
     }
     person->AddCaffeine(caff);
     if(caff > 0){
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks a bit keener.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel tipsy.");
-        write("You've raised "+capitalize(whom)+"'s caffeine level by "+caff+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来更敏锐了些。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到有些亢奋。");
+        write("你已将"+capitalize(whom)+"的咖啡因提升了"+caff+"点。");
         return 1;
     }
     if(caff < 0){
         caff=absolute_value(caff);
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks more focused and alert.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel more awake.");
-        write("You've lowered "+capitalize(whom)+"'s caffeine level by "+caff+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来更专注清醒了。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到更清醒了。");
+        write("你已将"+capitalize(whom)+"的咖啡因降低了"+caff+"点。");
         return 1;
     }
-    write("Aucun effet.");
+    write("无效。");
     return 1;
 }
 int modalc(string str, int alc){
@@ -987,33 +967,33 @@ int modalc(string str, int alc){
     allowed=preAction();
     if(allowed==2) return 1;
     if(!str){
-        write("Syntax: modalc <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：modalc <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     sscanf(str,"%s %d",whom,alc);
     if (!whom || !alc){
-        write("Syntax: modalc <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：modalc <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(whom == "me") whom = this_player()->GetKeyName();
 
     if(!intp(alc)){
-        write("Syntax: modalc <person> <amount>");
-        write("Where <amount> is an integer. For example:\nmodalc joe 3\nmodalc mike -10\n");
-        say(scanner->GetName()+" fumbles stupidly with a medical tricorder.",scanner);
+        write("语法：modalc <人物> <数值>");
+        write("其中<数值>为整数。示例：\nmodalc joe 3\nmodalc mike -10\n");
+        say(scanner->GetName()+"愚蠢地摆弄着医疗三录仪。",scanner);
         return 1;
     }
 
     person=present(whom,environment(scanner));
     if(!person){
-        write(capitalize(whom)+" isn't here.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(whom)+"不在这里。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(!creatorp(this_player()) && strsrch(base_name(person), homedir(this_player()))){
-        write("Builders can only do this to NPC's that belong to them.");
+        write("建造者只能对他们自己的NPC执行此操作。");
         return 1;
     }
     alclevel=person->GetAlcohol();
@@ -1024,23 +1004,21 @@ int modalc(string str, int alc){
 
     person->AddAlcohol(alc);
     if(alc > 0){
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks dizzier and more disoriented.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel tipsy.");
-        write("You've raised "+capitalize(whom)+"'s alcohol level by "+alc+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来更眩晕和迷失方向。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到有些醉意。");
+        write("你已将"+capitalize(whom)+"的酒精提升了"+alc+"点。");
         return 1;
     }
     if(alc < 0){
         alc=absolute_value(alc);
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks more focused and alert.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel more sober.");
-        write("You've lowered "+capitalize(whom)+"'s alcohol level by "+alc+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来更专注清醒了。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到更清醒了。");
+        write("你已将"+capitalize(whom)+"的酒精降低了"+alc+"点。");
         return 1;
     }
-    write("Aucun effet.");
+    write("无效。");
     return 1;
 }
 int addhp(string str, int hp){
@@ -1049,53 +1027,51 @@ int addhp(string str, int hp){
     allowed=preAction();
     if(allowed==2) return 1;
     if(!str){
-        write("Syntax: addhp <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：addhp <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     sscanf(str,"%s %d",whom,hp);
     if (!whom || !hp){
-        write("Syntax: addhp <person> <amount>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("语法：addhp <人物> <数值>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(whom == "me") whom = this_player()->GetKeyName();
 
     if(!intp(hp)){
-        write("Syntax: addhp <person> <amount>");
-        write("Where <amount> is an integer. For example:\naddhp joe 3\naddhp mike -10\n");
-        say(scanner->GetName()+" fumbles stupidly with a medical tricorder.",scanner);
+        write("语法：addhp <人物> <数值>");
+        write("其中<数值>为整数。示例：\naddhp joe 3\naddhp mike -10\n");
+        say(scanner->GetName()+"愚蠢地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     person=present(whom,environment(scanner));
     if(!person){
-        write(capitalize(whom)+" isn't here.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(whom)+"不在这里。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(!creatorp(this_player()) && strsrch(base_name(person), homedir(this_player()))){
-        write("Builders can only do this to NPC's that belong to them.");
+        write("建造者只能对他们自己的NPC执行此操作。");
         return 1;
     }
     person->AddHP(hp);
     if(hp > 0){
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks stronger and more refreshed.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel stronger and more refreshed.");
-        write("You've raised "+capitalize(whom)+"'s health by "+hp+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来更强壮更有精神了。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到更强壮更有精神了。");
+        write("你已将"+capitalize(whom)+"的生命值提升了"+hp+"点。");
         return 1;
     }
     if(hp < 0){
         hp=absolute_value(hp);
-        say(scanner->GetName()+" points a medical tricorder at "+capitalize(whom)+", "+
-                "and "+nominative(person)+" looks weaker and duller.", ({person,scanner}) );
-        tell_object(person,scanner->GetName()+" points a medical tricorder at you and you "+
-                "suddenly feel weaker and more frail.");
-        write("You've lowered "+capitalize(whom)+"'s health by "+hp+" points.");
+        say(scanner->GetName()+"用医疗三录仪指向"+capitalize(whom)+"，"+
+                ""+nominative(person)+"看起来更虚弱更萎靡了。", ({person,scanner}) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪指向了你，你突然感到更虚弱更脆弱了。");
+        write("你已将"+capitalize(whom)+"的生命值降低了"+hp+"点。");
         return 1;
     }
-    write("Aucun effet.");
+    write("无效。");
     return 1;
 }
 int extract(string str){
@@ -1105,27 +1081,27 @@ int extract(string str){
     allowed=preAction();
     if(allowed==2) return 1;
     if(!str){
-        write("Extract what from whom?");
-        write("Example: extract slug from <person>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("从谁身上提取什么？");
+        write("示例：extract slug from <人物>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     sscanf(str,"%s from %s",what,whom);
     if (!what || ! whom){
-        write("Extract what from whom?");
-        write("Example: extract slug from <person>");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write("从谁身上提取什么？");
+        write("示例：extract slug from <人物>");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(whom == "me") whom = this_player()->GetKeyName();
     person=present(whom,environment(scanner));
     if(!person){
-        write(capitalize(whom)+" isn't here.");
-        say(scanner->GetName()+" fumbles with a medical tricorder.",scanner);
+        write(capitalize(whom)+"不在这里。");
+        say(scanner->GetName()+"笨拙地摆弄着医疗三录仪。",scanner);
         return 1;
     }
     if(!creatorp(this_player()) && strsrch(base_name(person), homedir(this_player()))){
-        write("Builders can only do this to NPC's that belong to them.");
+        write("建造者只能对他们自己的NPC执行此操作。");
         return 1;
     }
     slug=present("firearms_wound",person);
@@ -1133,21 +1109,21 @@ int extract(string str){
     wounds=person->GetLead("gunshot_wounds");
     wounds+=person->GetLead("rifleshot_wounds");
     if(!slug && what=="slug"){
-        write(capitalize(whom)+" has no gunshot injury.");
-        say(scanner->GetName()+" looks a bit silly waving a medical tricorder at "+capitalize(whom)+".",({ scanner, person }) );
-        tell_object(person,scanner->GetName()+" looks a bit silly waving a medical tricorder at you.");
+        write(capitalize(whom)+"没有枪伤。");
+        say(scanner->GetName()+"用医疗三录仪对着"+capitalize(whom)+"比划，看起来有点傻。",({ scanner, person }) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪对着你比划，看起来有点傻。");
         return 1;
     }
     if(slug && what=="slug" && wounds > 0 ){
-        write("You extract a lead slug from "+capitalize(whom)+"'s body.");
-        say(scanner->GetName()+" deftly extracts a lead slug from "+capitalize(whom)+" with a medical tricorder.",({ scanner, person }) );
-        tell_object(person,scanner->GetName()+" deftly extracts a lead slug from you with a medical tricorder.");
+        write("你从"+capitalize(whom)+"的身体中取出了一个铅弹头。");
+        say(scanner->GetName()+"用医疗三录仪灵巧地从"+capitalize(whom)+"身上取出了一个铅弹头。",({ scanner, person }) );
+        tell_object(person,scanner->GetName()+"用医疗三录仪灵巧地从你身上取出了一个铅弹头。");
         firearms_wounds=person->GetLead("firearms_wounds");
         rifleshot_wounds=person->GetLead("rifleshot_wounds");
         slug=new("/domains/town/obj/spent");
         if(person->GetLead("gunshot_wounds") > 0) {
             person->AddLead("gunshot_wounds", -1);
-            slug->SetShort("a spent pistol slug");
+            slug->SetShort("一枚用过的手枪弹壳");
             --wounds;
             slug->eventMove(environment(scanner));
             if(person->GetLead() < 1){
@@ -1159,7 +1135,7 @@ int extract(string str){
         }
         if(person->GetLead("rifleshot_wounds") > 0) {
             person->AddLead("rifleshot_wounds", -1);
-            slug->SetShort("a spent rifle slug");
+            slug->SetShort("一枚用过的步枪弹壳");
             --wounds;
             slug->eventMove(environment(scanner));
             if(person->GetLead() < 1){
@@ -1199,46 +1175,44 @@ int fscan(string str){
         name = ob->GetName();
     }
     if(!ob){
-        write("The tricorder fails to locate any such person, object, or environment.\n");
-        say(this_player()->GetName()+" scans around aimlessly with "+
-                " a medical tricorder.\n");
+        write("三录仪无法定位该人物、对象或环境。\n");
+        say(this_player()->GetName()+"漫无目的地用医疗三录仪扫描着。\n");
         return 1;
     }
-    write("You perform a file scan of "+name+".\n\n");
-    write("\n"+name+" is in posession of the following items:");
+    write("你对"+name+"执行了文件扫描。\n\n");
+    write("\n"+name+"拥有以下物品：");
     write("-------------------------------------------");
-    say(this_player()->GetName()+" performs a tricorder scan of "+name+".\n",ob);
-    tell_object(ob,this_player()->GetName()+" scans you with "+
-            "a medical tricorder.\n");
+    say(this_player()->GetName()+"用三录仪扫描了"+name+"。\n",ob);
+    tell_object(ob,this_player()->GetName()+"用医疗三录仪扫描了你。\n");
     stuffs=deep_inventory(ob);
     filter(stuffs, (: this_object()->analyze(file_name($1)) :), this_object());
     filter(stuffs, (: this_object()->getname($1) :), this_object());
     stuff=deep_inherit_list(ob);
-    write("\n"+name+" is composed of the following files:\n");
+    write("\n"+name+"由以下文件组成：\n");
     write("-------------------------------------------");
     foreach(mixed gene in deep_inherit_list(ob)) {
         if(!stringp(gene)) break;
         if(!gene) gene="";
         write(gene);
     }
-    write("\nSCAN COMPLETE");
+    write("\n扫描完成");
     return 1;
 }
 void analyze(string str){
     string temp, temp2;
     sscanf(str,"%s#%s",temp,temp2);
     if(temp=="/lib/corpse"){
-        write("Found a corpse. Absolute name:\n"+str);
+        write("发现一具尸体。绝对名称：\n"+str);
         return;
     }
     return;
 }
 string getname(object ob){
     string temp, temp2;
-    if(!ob) return "No object found.";
+    if(!ob) return "未找到对象。";
     else
         sscanf(file_name(ob),"%s#%s",temp,temp2);
-    write(ob->GetName()+",\t\tfilename: "+temp+".c");
+    write(ob->GetName()+",\t\t文件名："+temp+".c");
     return ob->GetName();
 }
 mixed assess(string args) {
@@ -1251,10 +1225,10 @@ mixed assess(string args) {
     if( !(ob = present(args, environment(this_player()))) )
         if( !(ob = find_player(convert_name(args))) &&
                 !(ob = find_living(lower_case(args))) )
-            return capitalize(args) + " is nowhere to be found.";
-    if( creatorp(ob) ) return "You cannot get stat information on a creator.";
+            return capitalize(args) + "无处可寻。";
+    if( creatorp(ob) ) return "你无法获取创造者的属性信息。";
     if(!creatorp(this_player()) && strsrch(base_name(ob), homedir(this_player()))){
-        write("Builders can only do this to NPC's that belong to them.");
+        write("建造者只能对他们自己的NPC执行此操作。");
         return 1;
     }
     if(tmp1 = ob->GetGender()) {
@@ -1335,7 +1309,7 @@ mixed assess(string args) {
         return 1;
     }
     else {
-        write("You can't stat a non-living object!");
+        write("你无法查看非活物的属性！");
         return 1;
     }
 }

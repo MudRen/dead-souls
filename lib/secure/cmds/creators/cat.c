@@ -13,20 +13,20 @@ mixed cmd(string str) {
     string *arr;
     string tmp;
 
-    if( !str ) return "You must specify a file to cat.";
+    if( !str ) return "你必须指定要查看的文件。";
     else str = absolute_path(this_player()->query_cwd(), str);
-    if( !file_exists(str) ) return "File " + str + " not found.";
+    if( !file_exists(str) ) return "文件 " + str + " 未找到。";
     else if( !(tmp = read_file(str)) )
-        return "Unable to read file " + str + ".";
-    if( sizeof(arr = explode(tmp, "\n")) > 100 ) 
-        tmp = implode(arr[0..99], "\n") + "\n\t***  TRUNCATED  ***";
+        return "无法读取文件 " + str + "。";
+    if( sizeof(arr = explode(tmp, "\n")) > 100 )
+        tmp = implode(arr[0..99], "\n") + "\n\t***  已截断  ***";
     message("system", tmp, this_player());
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: cat <file>\n\n"
-            "Displays the contents of the file mentioned all at once. "
-            "May truncate output if it is a long file.\n"
-            "See also: longcat");
+    return ("语法: cat <文件>\n\n"
+            "一次性显示指定文件的内容。\n"
+            "如果文件过长，输出可能会被截断。\n"
+            "另见: longcat");
 }

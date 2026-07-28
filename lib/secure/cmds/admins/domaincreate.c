@@ -36,10 +36,10 @@ mixed cmd(string args) {
 
     domain_path = "/domains/"+args;
 
-    write("Domain path is: "+domain_path);
+    write("域路径为："+domain_path);
 
     if(directory_exists(domain_path)){
-        write("That domain already exists.");
+        write("该域已存在。");
         return 1;
     }
 
@@ -47,7 +47,7 @@ mixed cmd(string args) {
 
     foreach(string dir in subdirs){
         string newdir = domain_path + "/" + dir;
-        write("Creating: "+newdir);
+        write("正在创建："+newdir);
         mkdir_recurse(newdir);
     }
 
@@ -65,13 +65,13 @@ mixed cmd(string args) {
     gfilecont = replace_string(gfilecont,"CHANGEME",args);
     write_file(domain_path+"/virtual/void.c",gfilecont,1);
 
-    write("Ok.");
+    write("好的。");
     return 1;
 }
 
 string GetHelp(string args) {
-    return ("Syntax: domaincreate <domainname>\n\n"
-            "This command creates a new directory in the /domains dir, "
-            "and adds the appropriate subdirs needed by a domain.\n"
-            "See also: domainadmin, admintool");
+    return ("语法：domaincreate <域名>\n\n"
+            "此命令在 /domains 目录下创建一个新的域目录，"
+            "并添加域所需的适当子目录。\n"
+            "另见：domainadmin, admintool");
 }

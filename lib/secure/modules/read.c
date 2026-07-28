@@ -104,7 +104,7 @@ mapping eventMappifyLine(string file, string param){
     else schmutz = "(["+schmutz+"])";
     RetMap = restore_variable(schmutz);
     if(!mapp(RetMap)){
-        write("Mappification unsuccessful.");
+        write("映射转换失败。");
         return ([]);
     }
     else return RetMap;

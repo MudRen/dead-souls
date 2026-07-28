@@ -13,7 +13,7 @@ protected void create() {
     verb::create();
     SetVerb("reload");
     SetRules("OBJ", "STR OBJ", "STR here", "here", "every STR");
-    SetErrorMessage("reload what?");
+    SetErrorMessage("reload什么？");
     SetHelp("语法: reload [every] <OBJ>\n\n"
             "此命令将你指定对象的文件加载到内存中，并用新副本替换当前副本。"
             "例如，如果你更改了你持有的一把剑的某些属性，"
@@ -97,13 +97,13 @@ mixed do_reload_str_obj(string str, object ob) {
 mixed do_reload_word(string wrd) {
     object ob = environment(this_player());
     if(wrd == "here") return do_reload_obj(ob);
-    else return "failed.";
+    else return "失败。";
 }
 
 mixed do_reload_str_word(string wrd1, string wrd2) {
     object ob = environment(this_player());
     if(wrd1 == "-r" && wrd2 = "here") reload(ob, 1);
-    else return "Failed.";
+    else return "失败。";
 }
 
 mixed do_reload_every_str(string str){

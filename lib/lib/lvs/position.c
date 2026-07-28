@@ -33,7 +33,7 @@ varargs mixed eventLay(object target){
     mixed tmp;
 
     if( Position != POSITION_STANDING && Position != POSITION_SITTING){
-        eventPrint("You must be standing or sitting in order to lie.");
+        eventPrint("你必须站立或坐着才能躺下。");
         return 1;
     }
     if( !target ){
@@ -45,7 +45,7 @@ varargs mixed eventLay(object target){
     tmp = target->eventReceiveLay(this_object());
     if( tmp != 1 ){
         if( !tmp ){
-            eventPrint("You cannot lie there!");
+            eventPrint("你不能躺在那里！");
         }
         else {
             eventPrint(tmp);
@@ -64,7 +64,7 @@ varargs mixed eventKneel(object target){
     mixed tmp;
 
     if( Position != POSITION_STANDING && Position != POSITION_SITTING){
-        eventPrint("You must be standing or sitting in order to kneel.");
+        eventPrint("你必须站立或坐着才能跪下。");
         return 1;
     }
     if( !target ){
@@ -80,7 +80,7 @@ varargs mixed eventSit(object target){
     mixed tmp;
 
     if( Position != POSITION_STANDING && Position != POSITION_LYING ){
-        eventPrint("You can't sit from that position.");
+        eventPrint("你无法从当前姿势坐下。");
         return 1;
     }
     if( !target ){
@@ -97,7 +97,7 @@ varargs mixed eventSit(object target){
     tmp = target->eventReceiveSit(this_object());
     if( tmp != 1 ){
         if( !tmp ){
-            eventPrint("You cannot sit there!");
+            eventPrint("你不能坐在那里！");
         }
         else {
             eventPrint(tmp);
@@ -117,7 +117,7 @@ mixed eventFly(){
 
         if( tmp != 1 ){
             if( !tmp ){
-                eventPrint("You cannot get up!");
+                eventPrint("你无法站起来！");
             }
             else {
                 eventPrint(tmp);
@@ -127,8 +127,8 @@ mixed eventFly(){
         Chair = 0;
     }
     if(this_object()->CanFly() && Position != POSITION_FLYING){
-        tell_object(this_object(),"You begin flying.");
-        say(this_object()->GetName()+" begins flying and hovers in the air.");
+        tell_object(this_object(),"你开始飞行。");
+        say(this_object()->GetName()+"开始飞行，悬浮在空中。");
         Position = POSITION_FLYING;
     }
     return 1;
@@ -140,7 +140,7 @@ mixed eventSwim(){
 
         if( tmp != 1 ){
             if( !tmp ){
-                eventPrint("You cannot!");
+                eventPrint("你做不到！");
             }
             else {
                 eventPrint(tmp);
@@ -150,8 +150,8 @@ mixed eventSwim(){
         Chair = 0;
     }
     if(this_object()->CanSwim() && Position != POSITION_SWIMMING){
-        tell_object(this_object(),"You begin swimming.");
-        say(this_object()->GetName()+" begins swimming.");
+        tell_object(this_object(),"你开始游泳。");
+        say(this_object()->GetName()+"开始游泳。");
         Position = POSITION_SWIMMING;
     }
     return 1;
@@ -163,7 +163,7 @@ mixed eventFloat(){
 
         if( tmp != 1 ){
             if( !tmp ){
-                eventPrint("You can't!");
+                eventPrint("你做不到！");
             }
             else {
                 eventPrint(tmp);
@@ -173,8 +173,8 @@ mixed eventFloat(){
         Chair = 0;
     }
     if(this_object()->CanFloat() && Position != POSITION_FLOATING){
-        tell_object(this_object(),"You begin floating.");
-        say(this_object()->GetName()+" begins floating.");
+        tell_object(this_object(),"你开始漂浮。");
+        say(this_object()->GetName()+"开始漂浮。");
         Position = POSITION_FLOATING;
     }
     return 1;
@@ -186,8 +186,8 @@ mixed eventLand(){
     if(! Position == POSITION_FLYING ) return 0;
     if( env->GetMedium() == MEDIUM_AIR || env->GetMedium() == MEDIUM_WATER ||
             env->GetMedium() == MEDIUM_SPACE ) return 0;  
-    write("You stop flying.");
-    say(this_object()->GetName()+" stops flying.");
+    write("你停止了飞行。");
+    say(this_object()->GetName()+"停止了飞行。");
     if(stringp(hobbled(this_object()))) Position = POSITION_STANDING;
     else Position = POSITION_LYING;
     return 1;
@@ -195,15 +195,15 @@ mixed eventLand(){
 
 mixed eventStand(){
     if(!stringp(hobbled(this_object()))){
-        eventPrint("Your injuries prevent you from standing.");
+        eventPrint("你的伤势使你无法站立。");
         return 1;
     }
     if(RACES_D->GetLimblessRace(this_object()->GetRace()) ){
-        eventPrint("You aren't endowed with limbs with which to stand.");
+        eventPrint("你没有可以站立的四肢。");
         return 1;
     }
     if( Position == POSITION_STANDING ){
-        eventPrint("You are already standing!");
+        eventPrint("你已经站着了！");
         return 1;
     }
     if( Position == POSITION_FLYING){
@@ -215,7 +215,7 @@ mixed eventStand(){
 
         if( tmp != 1 ){
             if( !tmp ){
-                eventPrint("You cannot get up!");
+                eventPrint("你无法站起来！");
             }
             else {
                 eventPrint(tmp);

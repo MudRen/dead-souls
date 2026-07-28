@@ -18,7 +18,7 @@ protected void create() {
     verb::create();
     SetVerb("poison");
     SetRules("OBJ with OBJ");
-    SetErrorMessage("Poison what with what?");
+    SetErrorMessage("用什么毒害什么？");
     SetHelp("Syntax: <poison ITEM with POISON>\n\n"
             "This command allows you to poison items, provided you "
             "have a poisoning agent, and something to poison.  The "
@@ -39,11 +39,11 @@ mixed do_poison_obj_with_obj(object target, object agent) {
 void eventPoison(object who, object target, object agent) {
     if( !who ) return;
     if( environment(agent) != this_player() ) {
-        who->eventPrint("You no longer have your poison.");
+        who->eventPrint("你不再有毒药了。");
         return;
     }
     if( !(agent->GetPoisonUses()) ) {
-        who->eventPrint("Your poison is all used up.");
+        who->eventPrint("你的毒药已经用完了。");
         return;
     }
     agent->eventSpreadPoison(who, target);

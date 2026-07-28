@@ -7,7 +7,7 @@ protected void create() {
     verb::create();
     SetVerb("show");
     SetRules("OBJ LIV", "LIV OBJ", "OBJ to LIV" );
-    SetErrorMessage("Show what to whom?");
+    SetErrorMessage("把什么给谁看？");
     SetHelp("Syntax: <show LIVING ITEM>\n"
             "        <show ITEM to LIVING>\n"
             "This command allows you to show something you have to "
@@ -35,14 +35,14 @@ mixed do_show_obj_liv(object what, object target) {
 }
 
 mixed do_show_obj_to_liv(object what, object target) {
-    this_player()->eventPrint("You show " + target->GetName() + " " +
-            what->GetShort() + ".");
-    target->eventPrint(this_player()->GetName() + " shows you " +
-            what->GetShort() + ".");
+    this_player()->eventPrint("你把" + target->GetName() + "给" +
+            what->GetShort() + "看了。");
+    target->eventPrint(this_player()->GetName() + "给你看了" +
+            what->GetShort() + "。");
     environment(this_player())->eventPrint(this_player()->GetName() +
-            " shows " +
+            "给" +
             target->GetName() +
-            " " + what->GetShort() +".",
+            "看了" + what->GetShort() +"。",
             ({ this_player(), target }));
     what->eventShow(target);
     return 1;

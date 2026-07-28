@@ -17,8 +17,7 @@ mixed cmd(string args) {
 }
 
 string GetHelp() {
-    return ("Syntax: snoopreport\n\n"
-            "Displays a list of who is snooping whom, who is being "
-            "monitored (aka logged), and so on.\nSee also: snoop, unsnoop, "
-            "monitor");
+    return ("语法: snoopreport\n\n"
+            "显示谁在监听谁、谁正在被监控（即记录）等信息。\n"
+            "另见: snoop, unsnoop, monitor");
 }

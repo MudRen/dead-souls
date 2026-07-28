@@ -40,7 +40,7 @@ protected void create() {
     ob->SetId( ({ "board", "chalkboard", "dusty board", "dusty chalkboard" }) );    
     ob->set_board_id("adv_guild_board");
     ob->set_max_posts(30);
-    ob->SetShort("a dusty chalkboard");
+    ob->SetShort("一块布满灰尘的黑板");
     ob->eventMove(this_object());
     SetNoClean(1);
 }

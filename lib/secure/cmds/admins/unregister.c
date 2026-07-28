@@ -15,20 +15,19 @@ int cmd(string str) {
     }
     if(!str) return 0;
     if(member_array(str, BANISH_D->query_registered()) == -1) {
-        write("That site is not on the list of sites needing to register.\n");
+        write("该站点不在需要注册的站点列表中。\n");
         return 1;
     }
     BANISH_D->unregister_site(str);
     log_file("watch/register", previous_object()->GetKeyName()+
             " UNREGISTERED "+str+": "+ctime(time())+"\n");
-    write("Site : "+str+" is now not on the registration list.\n");
+    write("站点: "+str+" 已从注册列表中移除。\n");
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: unregister <site>\n\n"
-            "Takes a site off the list of sites which must register their "
-            "character before being allowed in.\nSee also: "
-            "register, whoregistered, banish, unbanish, whobanished, letin, "
-            "wholetin, unletin");
+    return ("语法: unregister <站点>\n\n"
+            "将站点从必须注册角色才能进入的列表中移除。\n"
+            "另见: register, whoregistered, banish, unbanish, "
+            "whobanished, letin, wholetin, unletin");
 }

@@ -17,7 +17,7 @@ protected void eventDig(object who, object tool, object what, object check) {
         return;
     }
     if( !tool || (environment(tool) != who) ) {
-        who->eventPrint("You have lost your equipment.");
+        who->eventPrint("你失去了你的装备。");
         return;
     }
     tool->eventDigWith(who, what);
@@ -40,7 +40,7 @@ protected void create() {
     verb::create();
     SetVerb("dig");
     SetRules("with OBJ", "STR with OBJ", "OBJ with OBJ");
-    SetErrorMessage("Dig with what?  Is there anything in particular to dig?");
+    SetErrorMessage("用什么挖？有什么特别要挖的吗？");
     SetHelp("Syntax: <dig with TOOL>\n"
             "        <dig THING with TOOL>\n\n"
             "Allows you to dig with digging tools.  Sometimes you may "
@@ -52,10 +52,10 @@ protected void create() {
 
 mixed can_dig_with_obj() {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything!";
+        return "你什么也做不了！";
     }
     if( this_player()->GetPosition() != POSITION_STANDING ) {
-        return "Dig when you are not standing?";
+        return "你没站着怎么挖？";
     }
     return this_player()->CanManipulate();
 }

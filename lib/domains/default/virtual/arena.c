@@ -26,7 +26,7 @@ int PreExit(mixed arg1, mixed arg2){
     object ob = this_player();
     if(!ob) return 0;
     if(ob->GetPosition() != POSITION_FLYING){
-        write("You are not flying!");
+        write("你不在飞行状态！");
         return 0;
     }
     return 1;

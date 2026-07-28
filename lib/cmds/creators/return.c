@@ -13,11 +13,11 @@ mixed cmd(string args) {
     }
     else {
         if( !(ob = find_player(convert_name(args))) && !(ob = find_living(args)) )
-            return "No such being exists anywhere presently.";
+            return "当前不存在该生物。";
         name = "They";
     }
     if(!last_loc = ob->GetProperty("LastLocation")){
-        write(name+" have nowhere to return to.");
+        write(name+"没有可以返回的地方。");
         return 1;
     }
 
@@ -26,12 +26,12 @@ mixed cmd(string args) {
 
     if(!where){
         write("该位置存在问题。");
-        write(name+" remain where "+lower_case(name)+" are.");
+        write(name+"留在了原地。");
         return 1;
     }
 
     if(environment(ob) == where){
-        write(name+" are already there.");
+        write(name+"已经在那里了。");
         return 1;
     }
 
@@ -39,13 +39,13 @@ mixed cmd(string args) {
 
     if(ob != this_player()){
         if(result){
-            message("system", "You have been returned to your previous location by " +
-                    this_player()->GetName() + ".", ob);
-            message("system", "You return " + ob->GetCapName() +
-                    " to their previous location.", this_player());
+            message("system", "你已被 " +
+                    this_player()->GetName() + " 送回上一个位置。", ob);
+            message("system", "你将 " + ob->GetCapName() +
+                    " 送回了其上一个位置。", this_player());
         }
         else {
-            return "Failed to move " + ob->GetCapName() + ".";
+            return "无法移动 " + ob->GetCapName() + "。";
         }
     }
     return 1;

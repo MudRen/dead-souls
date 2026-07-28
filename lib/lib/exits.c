@@ -27,7 +27,7 @@ protected void create(){
 
 mixed CanGo(object who, string str){
     int noclip;
-    if( who->GetParalyzed() ) return "You are unable to move.";
+    if( who->GetParalyzed() ) return "你无法移动。";
     noclip = who->GetProperty("noclip");
     if( !noclip && !Exits[str] && str != "up" && str != "down" &&
             !(sizeof(this_object()->GetFlyRoom())) &&
@@ -41,14 +41,14 @@ mixed eventGo(object who, string str){
     int noclip = who->GetProperty("noclip");
     if(query_verb() == "go" && interactive(who) && !noclip){
         if( who->GetPosition() != POSITION_STANDING ){
-            write("You are not standing.");
+            write("你没有站立。");
             switch(who->GetPosition()){
-                case POSITION_LYING : write("Try: crawl "+str);break;
-                case POSITION_SITTING : write("Try: crawl "+str);break;
-                case POSITION_KNEELING : write("Try: crawl "+str);break;
-                case POSITION_FLOATING : write("You are floating.");break;
-                case POSITION_SWIMMING : write("Try: swim "+str);break;
-                case POSITION_FLYING : write("Try: fly "+str);break;
+                case POSITION_LYING : write("试试：crawl "+str);break;
+                case POSITION_SITTING : write("试试：crawl "+str);break;
+                case POSITION_KNEELING : write("试试：crawl "+str);break;
+                case POSITION_FLOATING : write("你在漂浮。");break;
+                case POSITION_SWIMMING : write("试试：swim "+str);break;
+                case POSITION_FLYING : write("试试：fly "+str);break;
             }
             return 0;
         }
@@ -57,26 +57,26 @@ mixed eventGo(object who, string str){
         if( who->GetPosition() != POSITION_LYING &&
                 who->GetPosition() != POSITION_KNEELING &&
                 who->GetPosition() != POSITION_SITTING ){
-            write("You are not in the correct position for crawling.");
+            write("你的姿态不适合爬行。");
             return 0;
         }
     }
     else if(query_verb() == "fly"){
         if( who->GetPosition() != POSITION_FLYING ){
-            write("You are not flying.");
+            write("你没有在飞行。");
             return 0;
         }
     }
     else if(query_verb() == "swim"){
         if( who->GetPosition() != POSITION_SWIMMING ){
-            write("You are not swimming.");
+            write("你没有在游泳。");
             return 0;
         }
     }
 
     if(!noclip && sizeof(Doors) && Doors[str] && Doors[str]->GetClosed() ){
-        message("my_action", "You bump into " +
-                Doors[str]->GetShort(str) + ".", who);
+        message("my_action", "你撞上了" +
+                Doors[str]->GetShort(str) + "。", who);
         return 1;
     }
     if(!noclip && Exits[str] && Exits[str]["pre"] &&
@@ -99,7 +99,7 @@ mixed eventGo(object who, string str){
             return 1;
         }
         if(!noclip){
-            write("You can't go that way.");
+            write("你不能往那个方向走。");
             return 0;
         }
     }
@@ -112,11 +112,11 @@ mixed eventGo(object who, string str){
         int moved;
         string ndest = ROOMS_D->GetDirectionRoom(this_object(),str,1);
         if(!ndest){
-            write("You cannot noclip in that direction.");
+            write("你不能穿墙到那个方向。");
         }
         moved = who->eventMoveLiving(ndest,0,0,str);
         if(base_name(environment(who)) != ndest){
-            write("You fail to noclip in that direction.");
+            write("你穿墙失败，无法往那个方向移动。");
         }
         return 1;
     }

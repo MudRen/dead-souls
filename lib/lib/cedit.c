@@ -359,7 +359,7 @@ int rCtrl(string c){
 
     /* special chars */
     if(c == "q"){ /* Ctrl-Q for quitting without saving */
-        write("Cancelling cedit!");
+        write("取消编辑！");
         ScreenData["cedmode"] = 0;
         FileData = ([ "file" : "", "map" : ([]) ]);
         ClearBuffers();
@@ -435,7 +435,7 @@ int rCtrl(string c){
             ret = CeditSave();
             if(ret){
                 ScreenData["report"] = FileData["file"]+" saved.";
-                write("Exiting screen editor.\n");
+                write("退出屏幕编辑器。\n");
                 ScreenData["cedmode"] = 0;
                 FileData = ([ "file" : "", "map" : ([]) ]);
                 ClearBuffers();

@@ -23,11 +23,11 @@ mixed direct_light_obj(){
     mixed tmp = CanBurn(this_player());
 
     if( tmp == 1 ){
-        return "Light it with what?";
+        return "用什么点燃它？";
     }
 
     if( GetFuelAmount() < 1 )
-        return "There is no " + GetFuelType() + " in " + GetShort() + ".";
+        return GetShort()+"里没有" + GetFuelType() + "。";
     return 1;
 }
 
@@ -75,12 +75,12 @@ int GetLastPuff(){
 
 mixed eventSmoke(object who, object what){
     if(!GetLit()){
-        write("It is not lit!");
+        write("它没有点燃！");
         return 1;
     }
-    write("You smoke your "+remove_article(GetShort())+".");
-    say(who->GetName()+" smokes from "+possessive(who)+" "
-            +remove_article(GetShort())+".");
+    write("你吸了一口你的"+remove_article(GetShort())+"。");
+    say(who->GetName()+"吸了一口"+possessive(who)+" "
+            +remove_article(GetShort())+"。");
     lastpuff = time();
     eventDecreaseFuel(1);
     if( !GetFuelAmount() ) eventBurnOut();

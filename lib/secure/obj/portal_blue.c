@@ -64,7 +64,7 @@ int eventEnter(object who){
         who->eventMoveLiving(dest);
     }
     else {
-        write("You are unable to enter it.");
+        write("你无法进入。");
     }
     return 1;
 }

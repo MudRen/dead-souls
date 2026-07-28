@@ -19,8 +19,8 @@ string GetLocalCurrency();
 mixed eventSell(object who, string args);
 
 int indirect_sell_obj_to_liv(){
-    write("Your offer is refused.");
-    say(this_player()->GetName()+"'s sell offer is refused.");
+    write("你的提议被拒绝了。");
+    say(this_player()->GetName()+"的出售提议被拒绝了。");
     return 0;
 }
 
@@ -132,7 +132,7 @@ mixed CanSell(object who, string item){
         if(member_array(item,key) != -1) what = key;
     }
     if( !FullMenu[what] ){
-        return "There is no such thing for sale.";
+        return "没有这种东西出售。";
     }
     return 1;
 }

@@ -152,7 +152,7 @@ int add_target(string str){
         return 0;
     }
     if(target){
-        write("seeking "+str);
+        write("正在追踪 "+str);
         if(environment(target)){
             this_object()->eventMove(environment(target));
             this_object()->AddEnemy(target);
@@ -168,7 +168,7 @@ int track_target(string str){
     }
     qname = str;
     if(target){
-        write("tracking "+str);
+        write("正在追踪目标 "+str);
         if(environment(target)){
             quarry = target;
             this_object()->eventMove(environment(target));

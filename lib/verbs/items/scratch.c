@@ -6,7 +6,7 @@ protected void create() {
     verb::create();
     SetVerb("scratch");
     SetRules("OBJ", "on OBJ", "STR on OBJ");
-    SetErrorMessage("Scratch on what? Or scratch what on what?");
+    SetErrorMessage("在哪刮？或者把什么刮在什么上？");
     SetHelp("Syntax: <scratch on OBJECT>\n"
             "        <scratch THING on OBJECT>\n\n"
             "Allows you to scratch on an object, or perhaps a thing on the "

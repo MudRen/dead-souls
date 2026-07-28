@@ -91,7 +91,7 @@ varargs int eventProcessDoor(mixed door, string property, mixed value, string co
     string other_room;
 
     if(!door || ! property ){
-        write("Wrong number of arguments to eventProcessDoor");
+        write("eventProcessDoor 参数数量错误");
         return 0;
     }
 
@@ -100,7 +100,7 @@ varargs int eventProcessDoor(mixed door, string property, mixed value, string co
     if(objectp(door)) door = base_name(door);
     if(last(door,2) != ".c") door += ".c";
     if(!file_exists(door)){
-        write("No such door file.");
+        write("没有这个门文件。");
         return 0;
     }
 
@@ -193,7 +193,7 @@ int eventCreateDoor(string dir, string filename){
     my_room_file = base_name(my_room)+".c";
     other_room_file = my_room->GetExit(dir)+".c";
     if(!file_exists(other_room_file)) {
-        tell_room(my_room,"The new door fades away and disappears.");
+        tell_room(my_room,"新门渐渐消散，消失了。");
         return 0;
     }
     unguarded( (: my_room_contents = read_file(my_room_file) :) );

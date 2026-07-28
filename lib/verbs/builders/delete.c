@@ -13,7 +13,7 @@ protected void create() {
     verb::create();
     SetVerb("delete");
     SetRules("enter STR", "room STR", "enter STR", "exit STR", "OBJ", "OBJ from OBJ", "OBJ from here", "OBJ from room");
-    SetErrorMessage("Delete what?");
+    SetErrorMessage("删除什么？");
     SetHelp("语法: delete exit <DIRECTION>\n"
             "        delete <OBJECT>\n"
             "        delete <OBJECT> from <OBJECT>\n"

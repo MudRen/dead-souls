@@ -324,7 +324,7 @@ varargs int SetBlocked(string type, int flag){
     if( !type ) return 0;
     if( undefinedp(flag) ) flag = !Blocked[type];
     if( Blocked[type] == 2 && !archp(this_player()) ){
-        this_player()->eventPrint("Unable to unblock " + type + ".");
+        this_player()->eventPrint("无法解除屏蔽" + type + "。");
         return -1;
     }
     Blocked[type] = flag;

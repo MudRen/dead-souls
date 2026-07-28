@@ -20,7 +20,7 @@ int cmd(string str) {
     int all_files, long_details, time_sort, no_load_info, i, x, maxi;
 
     if(str == "" || !str) str = previous_object()->query_cwd();
-    if(!str) return notify_fail("No current working directory.\n");
+    if(!str) return notify_fail("没有当前工作目录。\n");
     i = sizeof(args = explode(str, " "));
     if(args[0][0] == '-') {
         if((x = strlen(args[0])) > 1) options = explode(args[0][1..x-1], "");
@@ -47,7 +47,7 @@ int cmd(string str) {
     for(i=0, maxi = sizeof(paths), files = ({}); i<maxi; i++)
         if(tmp = wild_card(paths[i])) files += tmp;
     if(!sizeof(files)) {
-        message("error", "No such file or directory.", this_player());
+        message("error", "没有该文件或目录。", this_player());
         return 1;
     }
     dirs = filter(files, "is_dir", this_object());
@@ -192,25 +192,23 @@ string map_files(mixed *file, int *flags) {
 }
 
 string GetHelp(){
-    return ("Syntax: <ls [-ablmnst] (directories|files)>\n\n"
-            "If you pass a single directory as an argument, it will list all "
-            "files and directories in that directory.  If you list a single "
-            "file, then information about that file will be displayed.  If you "
-            "use special characters like wild cards, then relevant information "
-            "regarding those files and/or directories will be displayed.  The "
-            "options have the following meanings:\n"
-            "    -a List all files, including files beginning with a '.'\n"
-            "    -b Brief listing, leaving out the directory name\n"
-            "    -l Long listing of all details about a file\n"
-            "    -m Page the output through more\n"
-            "    -n No display of loaded object information\n"
-            "    -s No display of size information\n"
-            "    -t Sort directory listings by time last modified\n\n"
-            "The -l option overrides the -n and -s options.  The columns "
-            "in the -l listing break down in the following manner:\n"
-            "    * if loaded, blank space if not loaded\n"
-            "    Access permissions, in the form of rwx\n"
-            "    Time last modified\n"
-            "    Size of the file\n"
-            "    File name\n\nSee also: cd, mkdir, mv, pwd, rm, rmdir");
+    return ("语法: <ls [-ablmnst] (目录|文件)>\n\n"
+            "如果传入单个目录作为参数，将列出该目录中的所有文件和子目录。\n"
+            "如果列出单个文件，则显示该文件的信息。\n"
+            "如果使用通配符等特殊字符，将显示相关文件和/或目录的信息。\n"
+            "选项含义:\n"
+            "    -a 列出所有文件，包括以 '.' 开头的文件\n"
+            "    -b 简要列表，不显示目录名\n"
+            "    -l 详细列出文件的所有信息\n"
+            "    -m 通过分页器显示输出\n"
+            "    -n 不显示对象加载信息\n"
+            "    -s 不显示大小信息\n"
+            "    -t 按最后修改时间排序\n\n"
+            "-l 选项会覆盖 -n 和 -s 选项。\n"
+            "-l 列表的列含义:\n"
+            "    * 表示已加载，空格表示未加载\n"
+            "    访问权限，格式为 rwx\n"
+            "    最后修改时间\n"
+            "    文件大小\n"
+            "    文件名\n\n另见: cd, mkdir, mv, pwd, rm, rmdir");
 }

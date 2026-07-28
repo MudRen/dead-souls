@@ -11,7 +11,7 @@ protected void create() {
     verb::create();
     SetVerb("dest");
     SetRules("OBS");
-    SetErrorMessage("dest what?");
+    SetErrorMessage("dest什么？");
     SetHelp("语法: dest <OBJ>\n\n"
             "销毁一个对象。\n"
             "另见: zap");
@@ -95,7 +95,7 @@ mixed do_dest_str(string str){
         write("对象未加载。");
         return 1;
     }
-    write("ob: "+identify(ob));
+    write("对象: "+identify(ob));
     ob->eventDestruct();
     if(ob) destruct(ob);
     if(ob){

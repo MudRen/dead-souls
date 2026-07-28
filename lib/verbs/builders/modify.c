@@ -9,7 +9,7 @@ protected void create() {
     verb::create();
     SetVerb("modify");
     SetRules("OBJ STR", "here STR", "room STR");
-    SetErrorMessage("Modify what how?");
+    SetErrorMessage("修改什么怎么改？");
     SetHelp("语法: modify <OBJ | here> <SETTING> <VALUE>\n\n"
             "如果你对指定对象的文件有写权限，此命令会根据你提供的参数"
             "对该文件进行更改。例如，要更改你所在房间的简短描述：\n"

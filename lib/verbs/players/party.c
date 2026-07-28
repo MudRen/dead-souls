@@ -17,7 +17,7 @@ protected void create() {
     verb::create();
     SetVerb("party");
     SetRules("WRD", "WRD WRD", "WRD LIV");
-    SetErrorMessage("You must specify an action, see \"help party\".");
+    SetErrorMessage("你必须指定一个动作，请参阅\"help party\"。");
 }
 
 int livings_are_remote() { return 1; }
@@ -32,7 +32,7 @@ mixed can_party_wrd(string cmd) {
             return PARTY_D->CanLeaveParty(this_player());
 
         default:
-            return "That doesn't seem to be something you can do.";
+            return "那似乎不是你能做的。";
     }
 }
 
@@ -40,10 +40,10 @@ mixed can_party_wrd_wrd(string cmd, string party) {
     if( !cmd || !party ) return 0;
     if(cmd == "invite"){
         if(!party || !present(party,environment(this_player()))){
-            return "That person isn't here.";
+            return "那个人不在这里。";
         }
         if(!living(present(party,environment(this_player())))){
-            return "That is not a living thing.";
+            return "那不是活物。";
         }
     }
     switch(cmd) {
@@ -54,7 +54,7 @@ mixed can_party_wrd_wrd(string cmd, string party) {
             return PARTY_D->CanJoinParty(this_player(), party);
 
         default:
-            return "It doesn't work that way.";
+            return "不能那样操作。";
     }
 }
 
@@ -67,7 +67,7 @@ mixed can_party_wrd_liv(string cmd) {
             return 1;
 
         default:
-            return "That is an unknown party action.";
+            return "那是未知的队伍动作。";
     }
 }
 
@@ -104,7 +104,7 @@ mixed do_party_wrd_liv(string cmd, object targ) {
             foo = PARTY_D->CanRemoveMember(this_player(), targ);
             break;
         default:
-            return "You fail to do that.";
+            return "你未能做到。";
     }
     if( stringp(foo) ) 
         return this_player()->eventPrint(foo), 1;    

@@ -14,7 +14,7 @@ create() {
     ::create();
     SetKeyName("stone");
     SetId( ({ "stone", "throwing stone" }) );
-    SetShort("a throwing stone");
+    SetShort("一块投掷石");
     SetLong( (: "long_func" :) );
     SetMass(2);
     SetValue(0);

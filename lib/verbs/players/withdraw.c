@@ -23,7 +23,7 @@ mixed can_withdraw(){
     mixed  err;
     if( !(env = environment(this_player())) ) return 0;
     err = env->CanWithdraw( this_player() );
-    if( !err ) return "This doesn't seem the proper place for it.";
+    if( !err ) return "这里似乎不是做这件事的合适地方。";
     else return err;
 }
 

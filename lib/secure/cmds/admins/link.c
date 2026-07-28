@@ -36,9 +36,9 @@ mixed cmd(string args) {
             + "s %:-" + lastOnSize + "s";
 
         tmp = ({ center("%^CYAN%^  " + mud_name()
-                    + " Approved Character Links%^YELLOW%^", screenSize) });
+                    + " 已批准的角色关联%^YELLOW%^", screenSize) });
 
-        tmp += ({ sprintf(formatString, "Player", "Email", "Last On%^RESET%^") });
+        tmp += ({ sprintf(formatString, "玩家", "邮箱", "最后登录%^RESET%^") });
 
         links = CHARACTER_D->GetLinks();
         foreach(string p in sort_array(keys(links), 1)) {   
@@ -48,10 +48,10 @@ mixed cmd(string args) {
             l = links[p];
             if( !(maxi = sizeof(l->Secondaries)) ) continue;
             tmp += ({ sprintf(formatString, capitalize(p), l->Email,
-                        ((l->LastOnWith == p) ? ctime(l->LastOnDate) : "unknown")) });
+                        ((l->LastOnWith == p) ? ctime(l->LastOnDate) : "未知")) });
             foreach(string pl in l->Secondaries)
                 tmp += ({ sprintf(formatString, "  " + capitalize(pl), "",
-                            ((l->LastOnWith == pl) ? ctime(l->LastOnDate) : "unknown")) });
+                            ((l->LastOnWith == pl) ? ctime(l->LastOnDate) : "未知")) });
         }
         this_player(1)->eventPage(tmp, MSG_SYSTEM);
         return 1;
@@ -59,17 +59,17 @@ mixed cmd(string args) {
 
     // Or, link a secondary to a primary.
     else if( sscanf(args, "%s to %s", secondary, primary) == 2 ) {
-        this_player(1)->eventPrint("Email for player: ", MSG_PROMPT);
+        this_player(1)->eventPrint("该玩家的邮箱: ", MSG_PROMPT);
         input_to(function(string email, string primary, string secondary) {
                 mixed tmp;
 
                 if( !email || email == "" ) {
-                this_player(1)->eventPrint("Aborted.", MSG_SYSTEM);
+                this_player(1)->eventPrint("已中止。", MSG_SYSTEM);
                 return;
                 }
                 tmp = CHARACTER_D->eventLink(primary, secondary, email);
-                if( !tmp ) this_player(1)->eventPrint("Failed.", MSG_SYSTEM);
-                else if( tmp == 1) this_player(1)->eventPrint("Linked.", MSG_SYSTEM);
+                if( !tmp ) this_player(1)->eventPrint("失败。", MSG_SYSTEM);
+                else if( tmp == 1) this_player(1)->eventPrint("已关联。", MSG_SYSTEM);
                 else this_player(1)->eventPrint(tmp, MSG_SYSTEM);
                 }, primary, secondary);
         return 1;
@@ -81,13 +81,13 @@ mixed cmd(string args) {
         string str;
 
         mp = CHARACTER_D->GetLink(convert_name(args));
-        if( !mp ) this_player()->eventPrint(capitalize(args) + " has no "
-                "links listed.", MSG_SYSTEM);
+        if( !mp ) this_player()->eventPrint(capitalize(args) + " 没有"
+                "已记录的关联。", MSG_SYSTEM);
         else {
-            str = "Primary: " + capitalize(mp["primary"]) + "\n";
-            str += "Last on " + ctime(mp["last on"]) + " with " +
-                capitalize(mp["last char"]) + "\n";
-            str += "Secondaries: " + implode(mp["secondaries"], ",");
+            str = "主角色: " + capitalize(mp["primary"]) + "\n";
+            str += "最后于 " + ctime(mp["last on"]) + " 使用 " +
+                capitalize(mp["last char"]) + " 登录\n";
+            str += "关联角色: " + implode(mp["secondaries"], ",");
             this_player()->eventPrint(str, MSG_SYSTEM);
         }
         return 1;
@@ -95,23 +95,17 @@ mixed cmd(string args) {
 }
 
 string GetHelp(){
-    return ("Syntax: link <SECONDARY> to <PRIMARY>\n"
-            "        link <PLAYER>\n"
+    return ("语法: link <关联角色> to <主角色>\n"
+            "        link <玩家名>\n"
             "        link\n\n"
-            "In the first form, it allows you to mark two characters "
-            "as being controlled by the same real individual.  It "
-            "creates a relationship where one character is considered "
-            "primary, and the other is secondary.  If link relationships "
-            "already exist for one or more, this will alter those "
-            "and create a new one with the primary one you specify as "
-            "primary.  For example, if both characters were already set "
-            "up as primary links, the one you specify with this command "
-            "as primary becomes the sole primary link for these characters, "
-            "and the secondary plus its secondaries all become secondaries "
-            "for his primary.\n\n"
-            "If you just pass a player name as an argument, this command "
-            "will show you the link information on that player.\n\n"
-            "If you give no arguments, then this command will list all "
-            "known links/\n\n"
-            "See also: finger, unlink");
+            "第一种形式允许你将两个角色标记为由同一个真人控制。"
+            "它创建一个关系，其中一个角色被视为主要角色，另一个为关联角色。"
+            "如果一个或多个角色已有关联关系，这将修改这些关系，"
+            "并以你指定的主角色创建新的关联。例如，如果两个角色"
+            "都已被设为主要关联，你用此命令指定为主要角色的那个"
+            "将成为这些角色的唯一主要关联，而关联角色及其关联角色"
+            "都将成为其关联角色。\n\n"
+            "如果只传入玩家名作为参数，此命令将显示该玩家的关联信息。\n\n"
+            "如果不带参数，此命令将列出所有已知的关联。\n\n"
+            "另见: finger, unlink");
 }

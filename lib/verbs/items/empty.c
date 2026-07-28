@@ -8,7 +8,7 @@ protected void create() {
     verb::create();
     SetVerb("empty");
     SetRules("OBJ");
-    SetErrorMessage("Empty what?");
+    SetErrorMessage("倒空什么？");
     SetHelp("Syntax: empty <vessel>\n\n"
             "Removes the fluid from a vessel.");
 }

@@ -13,7 +13,7 @@ protected void create() {
     verb::create();
     SetVerb("bump");
     SetRules("LIV");
-    SetErrorMessage("Whom would you like to bump?");
+    SetErrorMessage("你想撞开谁？");
     SetHelp( "Syntax: bump <LIVING>\n\n"        
             "This command allows you bump the living object named "
             "into an adjacent room.  It is quite possible that "
@@ -22,9 +22,9 @@ protected void create() {
 
 mixed can_bump_liv() {
     object env = environment(this_player());
-    if( !env ) return "You are nowhere!";
+    if( !env ) return "你哪里也不在！";
     if( env->GetProperty("no bump") )
-        return "Mystical forces prevent your pushy actions.";
+        return "神秘力量阻止了你的推挤行为。";
     return 1;
 }
 
@@ -38,14 +38,14 @@ mixed do_bump_liv(object ob) {
     if( !ob ) return 0;
     if( !(env = environment(ob)) ) return 0;
     if( ob->GetProperty("no bump") ) {
-        message("my_action", "You try to bump "+
-                ob->GetCapName()+".",
+        message("my_action", "你试图撞开"+
+                ob->GetCapName()+"。",
                 this_player() );
-        message("other_action", this_player()->GetCapName()+" tries "
-                "to bump "+ob->GetCapName()+".",
+        message("other_action", this_player()->GetCapName()+"试图"
+                "撞开"+ob->GetCapName()+"。",
                 environment(ob), ({ ob, this_player() }) );
-        message("other_action", this_player()->GetCapName()+" tries "
-                "to bump you.",
+        message("other_action", this_player()->GetCapName()+"试图"
+                "撞开你。",
                 ob);
         if( !playerp(ob) )
             ob->eventForce("growl "+this_player()->GetKeyName());
@@ -55,16 +55,14 @@ mixed do_bump_liv(object ob) {
     this_player()->AddStaminaPoints( -(random(15) + 3) );
     if( ( ob->GetStatLevel("agility") / 2 ) >
             ( this_player()->GetStatLevel("strength")) ) {
-        message("my_action", "You deftly sidestep "+
-                possessive_noun(this_player()->GetCapName())+" attempt "
-                "to bump you.",
+        message("my_action", "你灵巧地闪开了"+
+                possessive_noun(this_player()->GetCapName())+"撞开你的企图。",
                 ob);
-        message("other_action", ob->GetCapName()+" deftly sidesteps "
-                "your attempt to bump "+objective(ob)+".",
+        message("other_action", ob->GetCapName()+"灵巧地闪开了"
+                "你试图撞开"+objective(ob)+"的企图。",
                 this_player() );
-        message("other_action", ob->GetCapName()+" deftly sidesteps "+
-                possessive_noun(this_player()->GetCapName())+" attempt "
-                "to bump "+objective(ob)+".",
+        message("other_action", ob->GetCapName()+"灵巧地闪开了"+
+                possessive_noun(this_player()->GetCapName())+"撞开"+objective(ob)+"的企图。",
                 env, ({ this_player(), ob }));
         return 1;
     }
@@ -74,26 +72,25 @@ mixed do_bump_liv(object ob) {
         random( ob->GetStatLevel("agility") / 2 );
     if( (Strength - TargetStrength) < -10 ) {
         this_player()->eventReceiveDamage(ob, BLUNT, random(5) + 1);
-        message("other_action", ob->GetCapName()+" shoves you "
-                "to the ground!",
+        message("other_action", ob->GetCapName()+"把你"
+                "推倒在地！",
                 this_player() );
-        message("my_action", this_player()->GetCapName()+" is shoved "
-                "to the ground while trying to bump you.",
+        message("my_action", this_player()->GetCapName()+"在试图撞开你时"
+                "被推倒在地。",
                 ob);
-        message("other_action", this_player()->GetCapName()+" is shoved "
-                "to the ground while trying to bump "+ob->GetCapName()+".",
+        message("other_action", this_player()->GetCapName()+"在试图撞开"
+                +ob->GetCapName()+"时被推倒在地。",
                 env, ({ ob, this_player() }) );
         return 1;
     }
     else if( (Strength - TargetStrength) < (5 + random(20)) ) {
         this_player()->eventReceiveDamage(ob, BLUNT, random(3) + 1);
-        message("my_action", "You fail to bump "+ob->GetCapName()+" out "
-                "of the way.", this_player() );
-        message("other_action", this_player()->GetCapName()+" fails in "
-                "an attempt to bump you.",
+        message("my_action", "你未能将"+ob->GetCapName()+"撞开。", this_player() );
+        message("other_action", this_player()->GetCapName()+"试图撞开你"
+                "但失败了。",
                 ob);
-        message("other_action", this_player()->GetCapName()+" fails in "
-                "an attempt to bump "+ob->GetCapName()+".",
+        message("other_action", this_player()->GetCapName()+"试图撞开"
+                +ob->GetCapName()+"但失败了。",
                 environment(ob), ({ ob, this_player() }) );
         return 1;
     } else {
@@ -103,27 +100,24 @@ mixed do_bump_liv(object ob) {
                 (: !(object)$(env)->GetDoor($1) ||
                  !(object)$(env)->GetDoor($1)->GetClosed() :) );
         if( !sizeof(Exits) ) {
-            message("system", "There is nowhere for "+ob->GetCapName()
-                    +" to go!", this_player() );
+            message("system", ob->GetCapName()
+                    +"无处可去！", this_player() );
             return 1;
         }
         NewLocation = Exits[ random(sizeof(Exits)) ];
         NewLocation = environment(ob)->GetExit(NewLocation);
         OldLocation = base_name(environment(ob));
-        message("my_action", "You shove "+ob->GetCapName()+" out "
-                "of the way!",
+        message("my_action", "你把"+ob->GetCapName()+"推开了！",
                 this_player() );
-        message("other_action", "You are shoved out of the way by "+
-                this_player()->GetCapName()+"!",
+        message("other_action", "你被"+
+                this_player()->GetCapName()+"推开了！",
                 ob);
-        message("other_action", this_player()->GetCapName()+" shoves "+
-                ob->GetCapName()+" out of the way!",
+        message("other_action", this_player()->GetCapName()+"把"+
+                ob->GetCapName()+"推开了！",
                 environment(ob), ({ ob, this_player() }) );
         if( !ob->eventMove(NewLocation) ) {
-            message("other_action", ob->GetCapName()+" is bounced "
-                    "back into the room.", environment(ob), ob);
-            message("my_action", "You are bounced back to your original "
-                    "location.",
+            message("other_action", ob->GetCapName()+"被弹回了房间。", environment(ob), ob);
+            message("my_action", "你被弹回了原来的位置。",
                     ob);
         } else {
             ob->eventDescribeEnvironment(0);
@@ -140,8 +134,8 @@ mixed do_bump_liv(object ob) {
 void MoveBack(object ob, string where) {
     if( !ob ) return;
     ob->eventForce("growl");
-    tell_room(environment(ob),capitalize(ob->GetShort())+" leaves angrily.");
+    tell_room(environment(ob),capitalize(ob->GetShort())+"愤怒地离开了。");
     ob->eventMove(where);
-    tell_room(environment(ob),capitalize(ob->GetShort())+" enters angrily.");
+    tell_room(environment(ob),capitalize(ob->GetShort())+"愤怒地进来了。");
     ob->eventForce("say wtf");
 }

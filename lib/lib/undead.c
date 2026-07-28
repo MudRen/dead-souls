@@ -67,15 +67,13 @@ mixed eventBite(object target){
 
 mixed eventTurn(object who){
     if( who ){
-        environment()->eventPrint(GetName() + " is turned from the world of "
-                "the living.", this_object());
-        eventPrint(who->GetName() +" turns you from the world of the living.");
+        environment()->eventPrint(GetName() + " 被驱逐出了生者的世界。", this_object());
+        eventPrint(who->GetName() + " 将你驱逐出了生者的世界。");
         who->eventDestroyEnemy(this_object());
     }
     else {
-        environment()->eventPrint(GetName() + " is turned from the world "
-                "of the living.", this_object());
-        eventPrint("You have been turned from the world of the living.");
+        environment()->eventPrint(GetName() + " 被驱逐出了生者的世界。", this_object());
+        eventPrint("你被驱逐出了生者的世界。");
     }
     return 1;
 }

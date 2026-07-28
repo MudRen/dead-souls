@@ -36,7 +36,7 @@ mixed cmd(string str){
         if(!force){
             if(file_size(t2=absolute_path(this_player()->query_cwd(),t2)) > 0)
             {
-                notify_fail("mv: "+t2+" already exists.\n");
+                notify_fail("mv: "+t2+" 已存在。\n");
                 return 0;
             }
         }
@@ -45,7 +45,7 @@ mixed cmd(string str){
         if(directory_exists(t1)) dir = 1;
         else if(file_exists(t1)) dir = 0;
         else {
-            write(t1+": no such file or directory.");
+            write(t1+": 没有该文件或目录。");
             return 1;
         }
         if(!dir && directory_exists(t2)){
@@ -55,18 +55,18 @@ mixed cmd(string str){
         rename(t1,t2);
         if((dir && directory_exists(t2) && !directory_exists(t1)) ||
                 (!dir && file_exists(t2) && !file_exists(t1)) )
-            write("mv: Ok.");
-        else write("mv: Failed.");
+            write("mv: 完成。");
+        else write("mv: 失败。");
     }
     return 1;
 }
 
 string GetHelp() {
-    return "Syntax: mv <file1> <file2|directory>\n\n" 
-        "Renames a file or moves it into the directory specified.\n" 
-        "The -f flag forces the overwriting of an existing file.\n\n"
-        "Examples:\n"+
+    return "语法: mv <文件1> <文件2|目录>\n\n"
+        "重命名文件或将其移动到指定目录。\n"
+        "-f 标志强制覆盖已存在的文件。\n\n"
+        "示例:\n"+
         "mv -f workroom.bak workroom.c\n"+
         "mv workroom.bak /tmp/\n\n"
-        "See also: rm";
+        "另见: rm";
 }

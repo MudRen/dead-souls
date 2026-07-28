@@ -8,7 +8,7 @@ protected void create() {
     verb::create();
     SetVerb("kneel");
     SetRules("down","");
-    SetErrorMessage("Kneel down?");
+    SetErrorMessage("跪下？");
     SetSynonyms("genuflect");
     SetHelp("Syntax: kneel <down>\n\n"
             "Allows you to kneel.\n"
@@ -17,15 +17,15 @@ protected void create() {
 
 mixed can_kneel_down() {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
 
     if( this_player()->GetPosition() == POSITION_KNEELING ) {
-        return "You are already kneeling!";
+        return "你已经跪着了！";
     }
 
     if(!environment(this_player())->CanKneel(this_player())){
-        return "You can't kneel here.";
+        return "你不能在这里跪下。";
     }
 
     return 1;

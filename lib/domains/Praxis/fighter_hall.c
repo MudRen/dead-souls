@@ -213,17 +213,17 @@ int cost(string str) {
     if(bing < 1) write("等级：\t\t升级不需要花费。");
     else write("等级：\t\t"+bing+"\n");
     write("技能：你通过花费你想要的经验值来训练。");
-    write("strength:\t\t" + get_cost("strength",
+    write("力量：\t\t" + get_cost("strength",
                 this_player()->query_base_stats("strength")) +
-            "\t\tconstitution:\t\t" + get_cost("constitution",
+            "\t\t体质：\t\t" + get_cost("constitution",
                 this_player()->query_base_stats("constitution")) );
-    write("intelligence:\t\t" + get_cost("intelligence",
+    write("智力：\t\t" + get_cost("intelligence",
                 this_player()->query_base_stats("intelligence")) +
-            "\t\tdexterity:\t\t" + get_cost("dexterity",
+            "\t\t敏捷：\t\t" + get_cost("dexterity",
                 this_player()->query_base_stats("dexterity")) );
-    write("wisdom:\t\t" + get_cost("wisdom",
+    write("智慧：\t\t" + get_cost("wisdom",
                 this_player()->query_base_stats("wisdom")) +
-            "\t\tcharisma:\t\t" + get_cost("charisma",
+            "\t\t魅力：\t\t" + get_cost("charisma",
                 this_player()->query_base_stats("charisma")) );
     return 1;
 }

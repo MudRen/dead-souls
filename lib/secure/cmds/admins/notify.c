@@ -20,8 +20,8 @@ mixed cmd(string str) {
         eventNotify(ob, str);
         return 1;
     }
-    ob->eventPrint("[ Dead Souls Notification System ]");
-    ob->eventPrint("Please compose your notification now. \n");
+    ob->eventPrint("[ Dead Souls 通知系统 ]");
+    ob->eventPrint("请编写你的通知消息。\n");
     ob->eventEdit(DIR_TMP + "/" +who+ ".notice", (: eventNotify, ob, 0 :));
     return 1;
 }
@@ -41,18 +41,16 @@ varargs private void eventNotify(object who, string text) {
     if( !sizeof(str) ) return;
     x = NOTIFY_D->eventAddNotice(who, str);
     if( x )
-        who->eventPrint("Your notice [id #"+(x-1)+"] has been posted!");
+        who->eventPrint("你的通知 [编号 #"+(x-1)+"] 已发布！");
     else
-        who->eventPrint("Error adding notice.");
+        who->eventPrint("添加通知时出错。");
 }
 
 string GetHelp(){
-    return ("Syntax: notify\n"
-            "        notify <message>\n\n"
-            "This command allows users with proper access to "
-            "add a message to a database of notifications.  "
-            "All new notifications are displayed to any creator "
-            "upon login.  Typing \"notify\" alone will put you "
-            "into the text editor.  Otherwise, the passed "
-            "message will be used.");
+    return ("语法: notify\n"
+            "        notify <消息内容>\n\n"
+            "此命令允许具有相应权限的用户将消息添加到通知数据库中。"
+            "所有新通知会在任何创造者登录时显示。"
+            "单独输入 \"notify\" 会进入文本编辑器。"
+            "否则将使用传入的消息。");
 }

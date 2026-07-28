@@ -43,11 +43,11 @@ varargs int eventStartArmorQuestions(string what, object ob){
     truncate(protections,2);
     protections += ".";
 
-    write("Your armor can protect against one or more of the following types of damage: ");
+    write("你的护甲可以抵御以下一种或多种伤害类型: ");
     write(protections+".");
-    write("\nPlease enter which ones your armor should protect from, one at a time. ");
-    write("When you are done, please type a dot on a blank line.");
-    if(sizeof(prot_array))  write("So far, we have: "+identify(prot_array));
+    write("\n请输入你的护甲应该抵御的类型，每次一个。");
+    write("完成后，请在空行输入一个点。");
+    if(sizeof(prot_array))  write("目前已有: "+identify(prot_array));
 
     input_to( (: GetProts :) );
     return 1;
@@ -62,12 +62,12 @@ int GetProts(string str){
         }
 
         if(!sizeof(prot_array)){
-            write("Modification cancelled.");
+            write("修改已取消。");
             return 1;
         }
 
         else {
-            write("Protections list complete.");
+            write("防护列表输入完成。");
             eventProcessValues();
             return 1;
         }
@@ -79,9 +79,9 @@ int GetProts(string str){
     }
     else prot_array += ({ str });
 
-    if(sizeof(prot_array))	write("You may now enter the next value. So far, we have: "+identify(prot_array));
-    else write("You may now enter the next value. So far, it is blank.");
-    write("If you're done entering values, enter a dot on a blank line.");
+    if(sizeof(prot_array))	write("现在可以输入下一个值。目前已有: "+identify(prot_array));
+    else write("现在可以输入下一个值。目前为空。");
+    write("如果已完成输入，请在空行输入一个点。");
 
     input_to( (: GetProts :) );
     return 1;
@@ -99,7 +99,7 @@ int eventProcessValues(){
 }
 
 int eventStartQuery(string str){
-    write("Please enter the protection value for: "+str);
+    write("请输入以下防护值: "+str);
     input_to( (: eventReceiveValue :) );
     return 1;
 }
@@ -107,7 +107,7 @@ int eventStartQuery(string str){
 int eventReceiveValue(string str){
     int val;
     if(!sscanf(str,"%d",val)) {
-        write("Please enter an integer value.");
+        write("请输入一个整数值。");
         eventStartQuery(current);
         return 1;
     }
@@ -128,7 +128,7 @@ mixed eventReadProtectionSettings(string str){
     if(file_exists(str+".c")) str += ".c";
     if(file_exists(str)) {
         if(!check_privs(this_player(),str)) {
-            write("You lack sufficient privileges for this.");
+            write("你的权限不足，无法执行此操作。");
             return 1;
         }
         else {
@@ -143,7 +143,7 @@ mixed eventReadProtectionSettings(string str){
 
     fun_array = this_object()->eventReadFunctions(str);
     if(!sizeof(fun_array)) {
-        write("Unknown error.");
+        write("未知错误。");
         return 1;
     }
     foreach(string element in fun_array){
@@ -173,7 +173,7 @@ varargs int eventModifyProtections(mapping Protecciones, string filename, object
     string new_lines;
 
     if(!check_privs(this_player(),filename)){
-        write("You do not have sufficient privileges to perform this action.");
+        write("你的权限不足，无法执行此操作。");
         return 1;
     }
     globaltmp = filename;

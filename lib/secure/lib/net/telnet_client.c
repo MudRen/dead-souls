@@ -13,11 +13,11 @@ protected void create()
     SetKeyName( "client" ) ;
     SetShort( "a telnet client" ) ;
     SetId(({ "telnet","terminal" })) ;
-    SetLong( "It's a small pocket sized telnet terminal.\n"
-            "Use 'telnet' or 'connect' to begin.\n\nCommands:\n"
-            "[connect|telnet] : start telnet session.\nreset [client]"
-            " : reset the telnet client.\nreconnect : reconnect to session"
-            " (if you go netdead)\n");
+    SetLong( "这是一个小型便携式 telnet 终端。\n"
+            "使用 'telnet' 或 'connect' 开始。\n\n命令：\n"
+            "[connect|telnet] : 启动 telnet 会话。\nreset [client]"
+            " : 重置 telnet 客户端。\nreconnect : 重新连接到会话"
+            "（如果网络断线）\n");
     SetMass( 5 ) ;
     attempting = 0 ;
     connected = 0 ;
@@ -36,10 +36,10 @@ int do_reconnect()
 {
     if( !connected )
     {
-        notify_fail( "The telnet client is not connected!\n" ) ;
+        notify_fail( "Telnet 客户端未连接！\n" ) ;
         return 0 ;
     }
-    write("Reconnecting into telnet session.\n");
+    write("正在重新连接到 telnet 会话。\n");
     person = this_player() ;
     input_to( "parse_comm", 0 ) ;
     return 1 ;
@@ -47,7 +47,7 @@ int do_reconnect()
 
 int do_reset( string args )
 {
-    notify_fail( "Usage: reset client\n" ) ;
+    notify_fail( "用法: reset client\n" ) ;
     if( !args || args == "" )
     {
         return 0 ;
@@ -56,7 +56,7 @@ int do_reset( string args )
     {
         return 0 ;
     }
-    write("Resetting telnet client ...\n");
+    write("正在重置 telnet 客户端...\n");
     if( connected )
     {
         if( socket )
@@ -68,17 +68,17 @@ int do_reset( string args )
     connected = 0 ;
     socket = 0 ;
     person = 0 ;
-    write("Done!\n");
+    write("完成！\n");
     return 1 ;
 }
 
 string help()
 {
     return "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"
-        "  Usage : connect [ip_address] [port]\n"
+        "  用法 : connect [IP地址] [端口]\n"
         "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"
-        "Note: use telnet port number 23 if you \n"
-        "      are connecting to a normal site. \n"
+        "注意: 如果连接到普通站点，\n"
+        "      请使用 telnet 端口号 23。\n"
         "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n" ;
 }
 
@@ -99,12 +99,12 @@ int do_connect(string args)
     }
     if( attempting )
     {
-        notify_fail( "Telnet connection attempt already in progress.\n" ) ;
+        notify_fail( "Telnet 连接尝试正在进行中。\n" ) ;
         return 0 ;
     }
     if( connected )
     {
-        notify_fail( "Already connected...\n" ) ;
+        notify_fail( "已经连接...\n" ) ;
         return 0 ;
     }
     new_socket = socket_create( STREAM, "read_callback", "close_callback" ) ;
@@ -149,8 +149,8 @@ int do_connect(string args)
     socket = new_socket ;
     person = (object)previous_object() ;
     player=this_player();
-    write("Telnet Client Version 1.2\n");
-    write("Attempting connection to: " + ip_address + " " + port + "...\nEnter 'dcon' at any time to abort.\n");
+    write("Telnet 客户端版本 1.2\n");
+    write("正在尝试连接到: " + ip_address + " " + port + "...\n随时输入 'dcon' 可中止连接。\n");
     input_to( "parse_comm", 0 ) ;
     return 1 ;
 }
@@ -164,13 +164,13 @@ void close_callback( int fd )
 {
     if( connected )
     {
-        write("Connection closed by foreign host.\n");
+        write("连接被远程主机关闭。\n");
     }
     if( attempting )
-    {       
-        write("Attempt failed.\n");
+    {
+        write("连接尝试失败。\n");
     }
-    write("Type 'dcon' to finalize exit.\n");
+    write("输入 'dcon' 完成退出。\n");
     socket_close( fd ) ;
     attempting = 0 ;
     connected = 0 ;
@@ -179,7 +179,7 @@ void close_callback( int fd )
 
 void write_callback( int fd )
 {
-    write("Connected...\n");
+    write("已连接...\n");
     attempting = 0 ;
     connected = 1 ;
 }
@@ -188,7 +188,7 @@ int parse_comm( string str )
 {
     if( str == "dcon" )
     {
-        write("Disconnecting...\n");
+        write("正在断开连接...\n");
         socket_close( socket ) ;
         attempting = 0 ;
         connected = 0 ;
@@ -198,14 +198,14 @@ int parse_comm( string str )
     } else {
         if( !connected )
         {
-            write("You are not connected. Type \"dcon\" to stop using the client.\n");
+            write("您尚未连接。输入 \"dcon\" 停止使用客户端。\n");
             input_to( "parse_comm", 0 ) ;
             return 1 ;
         }
         if( attempting )
         {
-            write("Please wait, still attempting connection, "
-                    "type 'dcon' to exit.\n");
+            write("请稍候，仍在尝试连接中，"
+                    "输入 'dcon' 退出。\n");
             input_to( "parse_comm", 0 ) ;
             return 1 ;
         }

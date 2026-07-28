@@ -6,7 +6,7 @@ protected void create() {
     verb::create();
     SetVerb("drive");
     SetRules("STR", "into STR" );
-    SetErrorMessage("Drive in which direction?");
+    SetErrorMessage("往哪个方向驾驶？");
     SetHelp("Syntax: drive <DIRECTION>\n"
             "        drive into <PLACE>\n\n"
             "Moves your vehicle towards the direction you specify, or into the place "
@@ -20,13 +20,13 @@ mixed can_drive_str(string str) {
     object where;
 
     if(vehicle) where = environment(vehicle); 
-    if(vehicle && !vehicle->GetMount()) return "You are not mounted.";
+    if(vehicle && !vehicle->GetMount()) return "你没有载具。";
 
-    if( !vehicle ) return "You are nowhere.";
-    if( !where ) return "Your mount is nowhere.";
+    if( !vehicle ) return "你哪里也不在。";
+    if( !where ) return "你的载具不在任何地方。";
     if( vehicle->GetStaminaPoints() <3 )
-        return "Your vehicle lacks fuel.";
-    if(!stringp(hobbled(vehicle))) return "Your vehicle is incapacitated.";
+        return "你的载具缺少燃料。";
+    if(!stringp(hobbled(vehicle))) return "你的载具已瘫痪。";
     if(str) switch(str){
         case "n" : str = "north"; break;
         case "s" : str = "south"; break;
@@ -47,13 +47,13 @@ mixed can_drive_into_str(string str) {
     object where;
 
     if(vehicle) where = environment(vehicle); 
-    if(vehicle && !vehicle->GetMount()) return "You are not mounted.";
+    if(vehicle && !vehicle->GetMount()) return "你没有载具。";
 
-    if( !vehicle ) return "You are nowhere.";
-    if( !where ) return "Your mount is nowhere.";
+    if( !vehicle ) return "你哪里也不在。";
+    if( !where ) return "你的载具不在任何地方。";
     if( vehicle->GetStaminaPoints() <3 )
-        return "Your vehicle has insufficient fuel.";
-    if(!stringp(hobbled(vehicle))) return "Your vehicle is incapacitated.";
+        return "你的载具燃料不足。";
+    if(!stringp(hobbled(vehicle))) return "你的载具已瘫痪。";
     return where->CanEnter(vehicle, str);
 }
 

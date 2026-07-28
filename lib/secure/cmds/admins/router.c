@@ -35,7 +35,7 @@ mixed cmd(string args) {
     if(!archp(previous_object())) return 0;
 
     if(!router && (args != "on" && args != "online")){
-        write("Router is not loaded. First try: mudconfig router enable");
+        write("路由器未加载。请先尝试：mudconfig router enable");
         return 1;
     }
 
@@ -47,13 +47,13 @@ mixed cmd(string args) {
     }
 
     if(args == "show"){
-        write("Router config:");
+        write("路由器配置：");
         router->get_info();
         return 1;
     }
 
     if(!router){
-        write("Router is not loaded.");
+        write("路由器未加载。");
         return 1;
     }
 
@@ -124,7 +124,7 @@ mixed cmd(string args) {
             }
         }
         if( !sizeof(borg) ) {
-            message("system", "No MUDs match your query.", this_player());
+            message("system", "没有MUD匹配您的查询。", this_player());
             return 1;
         }
         else if( sizeof(borg) == 1 ) {
@@ -190,8 +190,8 @@ mixed cmd(string args) {
                             replace_string(mud,"%^","%%^^"), info["mud_type"], info["driver"], info["base_mudlib"], info["ip"], info["player_port"]) });
         }
         list = sort_array(list, 1);
-        list = ({ replace_string(mud_name(),"%^","%%^^") + " recognizes " + consolidate(sizeof(borg), "a mud")+
-                " matching your query: ", "" }) + list;
+        list = ({ replace_string(mud_name(),"%^","%%^^") + " 共识别出 " + consolidate(sizeof(borg), "一个MUD")+
+                " 匹配您的查询：", "" }) + list;
         this_player()->eventPage(list);
         return 1;
     }
@@ -206,58 +206,58 @@ mixed cmd(string args) {
             router->SetList();
             router->eventDestruct();
             router = find_object(ROUTER_D);
-            if(router) write("Router unload failed.");
-            else write("Router unloaded from memory.");
+            if(router) write("路由器卸载失败。");
+            else write("路由器已从内存中卸载。");
             flush_messages();
         }
         if(args == "restart" || args == "reset"){
             if(rsocket) rsocket->eventDestruct();
             if(rsocket) destruct(rsocket);
-            if(rsocket) write("%^RED%^BOLD%^Router socker not destructed.%^RESET%^");
+            if(rsocket) write("%^RED%^BOLD%^路由器套接字未销毁。%^RESET%^");
             rsocket = load_object(RSOCKET_D);
-            if(!rsocket) write("Could not reload router socket daemon.");
+            if(!rsocket) write("无法重新加载路由器套接字守护进程。");
         }
-        write("Loading router daemon...");
+        write("正在加载路由器守护进程...");
         flush_messages();
         router = load_object(ROUTER_D);
-        if(!router) write("Router load failed.");
-        else write("Router loaded.");
+        if(!router) write("路由器加载失败。");
+        else write("路由器已加载。");
         return 1;
     }
 
     if(args == "on" || args == "online"){
         if(router){
-            write("The router daemon is already online.");
+            write("路由器守护进程已在线。");
             return 1;
         }
         else {
-            write("Loading router daemon...");
+            write("正在加载路由器守护进程...");
             flush_messages();
             router = load_object(ROUTER_D);
-            if(!router) write("Router load failed.");
-            else write("Router loaded.");
+            if(!router) write("路由器加载失败。");
+            else write("路由器已加载。");
             return 1;
         }
     }
 
     if(args == "off" || args == "offline"){
         if(!router){
-            write("The router daemon is already offline.");
+            write("路由器守护进程已离线。");
             return 1;
         }
         else {
-            write("Unloading router daemon...");
+            write("正在卸载路由器守护进程...");
             flush_messages();
             router->eventDestruct();
             router = find_object(ROUTER_D);
-            if(router) write("Router unload failed.");
-            else write("Router unloaded from memory.");
+            if(router) write("路由器卸载失败。");
+            else write("路由器已从内存中卸载。");
             return 1;
         }
     }
 
     if(!router){
-        write("The intermud router is not loaded.");
+        write("跨MUD路由器未加载。");
         return 1;
     }
 
@@ -266,94 +266,94 @@ mixed cmd(string args) {
     if(arg1 == "ban" || arg1 == "banned"){
         if(sizeof(router->GetBannedMuds())) banned_arr = router->GetBannedMuds();
         else banned_arr = ({});
-        if(!sizeof(banned_arr)) banned = "No banned muds.";
+        if(!sizeof(banned_arr)) banned = "没有被封禁的MUD。";
         else banned = implode(banned_arr,", ");
         if(!arg2){
-            write("Banned muds: "+banned);
+            write("被封禁的MUD："+banned);
             return 1;
         }
         tmp = match_mud_name(arg2, allmuds);
         if(!sizeof(tmp)){
-            write("There is no such mud, but I am adding the name to the list.");
+            write("没有这个MUD，但我仍将把该名称添加到列表中。");
         }
         else arg2 = tmp;
 
         router->AddBannedMud(arg2);
-        write(arg2+" has been added to the banned list.");
+        write(arg2+" 已被添加到封禁列表。");
         return 1;
     }
 
     if(arg1 == "unban" || arg1 == "unbanned"){
         if(sizeof(router->GetBannedMuds())) banned_arr = router->GetBannedMuds();
         else banned_arr = ({});
-        if(!sizeof(banned_arr)) unbanned = "No banned muds.";
+        if(!sizeof(banned_arr)) unbanned = "没有被封禁的MUD。";
         else {
             banned = implode(banned_arr,", ");
             unbanned_arr = filter(keys(mudlist), (: member_array($1, banned_arr) == -1 :) ) || ({});
             unbanned = implode(unbanned_arr,", ");
         }
         if(!arg2){
-            write("Unbanned muds: "+unbanned);
+            write("未被封禁的MUD："+unbanned);
             return 1;
         }
 
         router->RemoveBannedMud(arg2);
-        write(arg2+" has been removed from the banned list.");
+        write(arg2+" 已从封禁列表中移除。");
         return 1;
     }
 
     if(arg1 == "blacklist" || arg1 == "blacklisted"){
         if(sizeof(router->GetBlacklistedMuds())) blacklisted_arr = router->GetBlacklistedMuds();
         else blacklisted_arr = ({});
-        if(!sizeof(blacklisted_arr)) blacklisted = "No blacklisted muds.";
+        if(!sizeof(blacklisted_arr)) blacklisted = "没有被列入黑名单的MUD。";
         else blacklisted = implode(blacklisted_arr,", ");
         if(!arg2){
-            write("Blacklisted muds: "+blacklisted);
+            write("被列入黑名单的MUD："+blacklisted);
             return 1;
         }
         tmp = match_mud_name(arg2, allmuds);
         if(!sizeof(tmp)){
-            write("There is no such mud, but I am adding the name to the list.");
+            write("没有这个MUD，但我仍将把该名称添加到列表中。");
         }
         else arg2 = tmp;
 
         router->AddBlacklistedMud(arg2);
-        write(arg2+" has been added to the blacklisted list.");
+        write(arg2+" 已被添加到黑名单。");
         return 1;
     }
 
     if(arg1 == "unblacklist" || arg1 == "unblacklisted"){
         if(sizeof(router->GetBlacklistedMuds())) blacklisted_arr = router->GetBlacklistedMuds();
         else blacklisted_arr = ({});
-        if(!sizeof(blacklisted_arr)) unblacklisted = "No blacklisted muds.";
+        if(!sizeof(blacklisted_arr)) unblacklisted = "没有被列入黑名单的MUD。";
         else {
             blacklisted = implode(blacklisted_arr,", ");
             unblacklisted_arr = filter(keys(mudlist), (: member_array($1, blacklisted_arr) == -1 :) ) || ({});
             unblacklisted = implode(unblacklisted_arr,", ");
         }
         if(!arg2){
-            write("Unblacklisted muds: "+unblacklisted);
+            write("未被列入黑名单的MUD："+unblacklisted);
             return 1;
         }
 
         router->RemoveBlacklistedMud(arg2);
-        write(arg2+" has been removed from the blacklisted list.");
+        write(arg2+" 已从黑名单中移除。");
         return 1;
     }
 
     if(arg1 == "id" || arg1 == "identify"){
         if(!arg2){
-            write("Identify which mud?");
+            write("要识别哪个MUD？");
             return 1;
         }
         tmp = match_mud_name(arg2, allmuds);
         if(!sizeof(tmp)){
-            write("Mud not found.");
+            write("未找到该MUD。");
             return 1;
         }
         else arg2 = tmp;
 
-        write("The proper name is: "+arg2);
+        write("正式名称为："+arg2);
         return 1;
     }
 
@@ -370,7 +370,7 @@ mixed cmd(string args) {
             else s1 = "*"+s1;
         }
         if(!s3){
-            write("Syntax: router config NAME IP PORT");
+            write("语法：router config 名称 IP 端口");
             return 1;
         }
         if(s2) s2 = reverse_string(s2);
@@ -379,118 +379,118 @@ mixed cmd(string args) {
         router->SetRouterIP(s2);
         router->SetRouterPort(s3);
         router->SetRouterList();
-        write("Config complete. To activate, type: router reset");
+        write("配置完成。要激活，请输入：router reset");
         return 1;
     }
 
     if(arg1 == "deletemud"){
         if(!arg2 || !sizeof(arg2)){
-            write("Syntax: router deletemud MUDNAME");
+            write("语法：router deletemud MUD名称");
             return 1;
         }
-        arg2 = match_mud_name(arg2, allmuds); 
+        arg2 = match_mud_name(arg2, allmuds);
         router->remove_mud(arg2, 1);
-        write("Mud removed.");
+        write("MUD已删除。");
         return 1;
     }
 
     if(arg1 == "name"){
         if(!arg2 || !sizeof(arg2)){
-            write("Syntax: router name NAME");
+            write("语法：router name 名称");
             return 1;
         }
         router->SetRouterName(arg2);
-        write("Router name set.");
+        write("路由器名称已设置。");
         return 1;
     }
 
 
     if(arg1 == "ip"){
         if(!arg2 || !sizeof(arg2)){
-            write("Syntax: router ip ADDRESS");
+            write("语法：router ip 地址");
             return 1;
         }
         router->SetRouterIP(arg2);
-        write("Router ip set.");
+        write("路由器IP已设置。");
         return 1;
     }
 
 
     if(arg1 == "port"){
         if(!arg2 || !sizeof(arg2)){
-            write("Syntax: router port NUMBER");
+            write("语法：router port 端口号");
             return 1;
         }
         router->SetRouterPort(arg2);
-        write("Router port set.");
+        write("路由器端口已设置。");
         return 1;
     }
 
     if(arg1 == "irn"){
         if(!arg2){
-            write("Please specify an irn subcommand: enable, disable, "
-                    "check, force.");
+            write("请指定一个irn子命令：enable, disable, "
+                    "check, force。");
             return 1;
         }
         if(arg2 == "check"){
             ROUTER_D->irn_checkstat();
-            write("irn status check issued.");
+            write("已发出irn状态检查。");
             return 1;
         }
         if(arg2 == "enable"){
             if(ROUTER_D->query_irn_enabled()){
-                write("irn already enabled.");
+                write("irn已处于启用状态。");
                 return 1;
             }
             ROUTER_D->toggle_irn(1);
-            ROUTER_D->irn_checkstat(); 
-            write("irn enabled.");
+            ROUTER_D->irn_checkstat();
+            write("irn已启用。");
             return 1;
         }
         if(arg2 == "disable"){
             if(!(ROUTER_D->query_irn_enabled())){
-                write("irn already disabled.");
+                write("irn已处于禁用状态。");
                 return 1;
             }
             ROUTER_D->toggle_irn(0);
             ROUTER_D->irn_clear();
-            write("irn disabled.");
+            write("irn已禁用。");
             return 1;
-        } 
+        }
         if(arg2 == "force"){
             ROUTER_D->toggle_irn(1);
             ROUTER_D->irn_setup(1);
-            write("irn forcibly reloaded.");
+            write("irn已强制重新加载。");
             return 1;
         }
     }
 
-    write("Router command completed.");
+    write("路由器命令已完成。");
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: router [subcommand [arg]]\n\n"
-            "With no arguments, router status is displayed.\n"
-            "Examples:\n" 
-            "router reload : bounces the router without dropping connections\n"
-            "router restart : bounces the router dropping all connections\n"
-            "router reset : like restart but also clears all saved mud info\n"
-            "router irn [enable|disable|check|force] : manages IRN subsystem\n"
-            "router ban : lists banned muds\n"
-            "router ban <mudname> : bans the mud with the name <mudname>\n"
-            "router unban <mudname> : the opposite of banning\n"
-            "router blacklist : lists blacklisted names and IP's\n"
-            "router blacklist [name | ip address] : a harsher kind of ban\n"
-            "router unblacklist [name | ip address] : the opposite of blacklisting\n"
-            "router config <name> <ip> <port> : config the router in one line\n"
-            "router port <portnum> : sets the router port\n"
-            "router ip <ip number> : sets the ip address, e.g. 11.22.33.44\n"
-            "router name <routername> : sets the router name\n"
-            "router mudlist : display information of known muds\n" 
-            "router mudlist -i : display muds sorted by ip\n" 
-            "router mudlist -f : display connected muds sorted by file descriptor\n" 
+    return ("语法：router [子命令 [参数]]\n\n"
+            "不带参数时，显示路由器状态。\n"
+            "示例：\n"
+            "router reload : 重启路由器但不断开连接\n"
+            "router restart : 重启路由器并断开所有连接\n"
+            "router reset : 类似restart，但还会清除所有已保存的MUD信息\n"
+            "router irn [enable|disable|check|force] : 管理IRN子系统\n"
+            "router ban : 列出被封禁的MUD\n"
+            "router ban <MUD名称> : 封禁名为<MUD名称>的MUD\n"
+            "router unban <MUD名称> : 解除封禁\n"
+            "router blacklist : 列出黑名单中的名称和IP\n"
+            "router blacklist [名称 | IP地址] : 更严格的封禁\n"
+            "router unblacklist [名称 | IP地址] : 解除黑名单\n"
+            "router config <名称> <IP> <端口> : 一行配置路由器\n"
+            "router port <端口号> : 设置路由器端口\n"
+            "router ip <IP地址> : 设置IP地址，如 11.22.33.44\n"
+            "router name <路由器名称> : 设置路由器名称\n"
+            "router mudlist : 显示已知MUD的信息\n"
+            "router mudlist -i : 按IP排序显示MUD\n"
+            "router mudlist -f : 按文件描述符排序显示已连接的MUD\n"
             "\n"
-            "To bring the router online or offline, use the "
-            "mudconfig command.");
+            "要使路由器上线或离线，请使用 "
+            "mudconfig 命令。");
 }

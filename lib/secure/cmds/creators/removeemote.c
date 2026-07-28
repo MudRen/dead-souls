@@ -20,7 +20,7 @@ mixed cmd(string args){
     }
 
     if( !args || args == "" ) {
-        return "Remove which emote?";
+        return "要移除哪个表情？";
     }
     if( sscanf(args, "%s %s", verb, rule) != 2 ) {
         verb = args;
@@ -44,11 +44,10 @@ mixed cmd(string args){
 }
 
 string GetHelp(){
-    return ("Syntax: removeemote <EMOTE> [RULE]\n\n"
-            "Allows you to remove an emote or a rule for an emote from "
-            "the soul.  If you specify a rule, only that rule gets removed.  "
-            "If you fail to specify a rule, the entire emote is removed.\n\n"
-            "You must be admin or member of the EMOTES group to "
-            "use this command.\n"
-            "See also: addadverb, addemote, removeadverb");
+    return ("语法: removeemote <表情> [规则]\n\n"
+            "允许你从 soul 中移除一个表情或表情的规则。\n"
+            "如果指定了规则，只移除该规则。\n"
+            "如果未指定规则，则移除整个表情。\n\n"
+            "你必须是管理员或 EMOTES 组成员才能使用此命令。\n"
+            "另见: addadverb, addemote, removeadverb");
 }

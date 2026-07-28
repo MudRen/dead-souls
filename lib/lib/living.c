@@ -69,10 +69,10 @@ mixed direct_dismount_from_liv(){
 
 mixed direct_attack_liv(){
     if(this_player() == this_object()){
-        return "#You can't attack yourself.";
+        return "#你不能攻击自己。";
     }
     if(intp(Attackable) && !Attackable){
-        return "You are unable to attack "+this_object()->GetShort()+".";
+        return "你无法攻击"+this_object()->GetShort()+"。";
     }
     if(stringp(Attackable)) return Attackable;
     return 1;
@@ -80,19 +80,19 @@ mixed direct_attack_liv(){
 
 mixed CanAttack(){
     if(this_player() == this_object()){
-        return "You can't attack yourself.";
+        return "你不能攻击自己。";
     }
     if( userp(this_player()) && userp(this_object()) ){
         if(!(environment()->CanAttack(this_player(), this_object()))){
-            return "Player killing is not permitted in this area!";
+            return "这个区域不允许玩家杀戮！";
         }
         if(intp(Attackable) && !Attackable){
-            return "You are unable to attack "+this_object()->GetShort()+".";
+            return "你无法攻击"+this_object()->GetShort()+"。";
         }
         if(this_player()->GetPK() && this_object()->GetPK()){
-            if(!PLAYER_KILL) return "This is not a PK mud.";
+            if(!PLAYER_KILL) return "这不是一个允许PK的MUD。";
         }
-        else return "One of you is not a player killer. You cannot fight them.";
+        else return "你们中有一个不是玩家杀手。你无法与他们战斗。";
     }
     if(functionp(Attackable)) return evaluate(Attackable, this_player());
     else {
@@ -160,11 +160,11 @@ mixed direct_get_obj(mixed args...){
         return get::direct_get_obj(args...);
     }
     if(interactive(this_player()) && creatorp(this_object())){
-        return "NO.";
+        return "不行。";
     }
     if(this_object()->GetBefriended(this_player())) return 1;
     if((theirsize - mysize) > 1) return get::direct_get_obj(args...);
-    return "It's too big!";
+    return "它太大了！";
 }
 
 mixed direct_get_obj_from_obj(mixed args...){
@@ -172,14 +172,14 @@ mixed direct_get_obj_from_obj(mixed args...){
 }
 
 mixed direct_show_liv_obj(){
-    if( this_player() == this_object() ) return "Are you confused?";
+    if( this_player() == this_object() ) return "你糊涂了吗？";
     return 1;
 }
 
 mixed indirect_show_obj_to_liv(object item){
     if( !item ) return 0;
-    if( this_player() == this_object() ) return "Are you confused?";
-    if( environment(item) != this_player() ) return "You don't have that!";
+    if( this_player() == this_object() ) return "你糊涂了吗？";
+    if( environment(item) != this_player() ) return "你没有那个东西！";
     else return 1;
 }
 
@@ -192,14 +192,14 @@ mixed direct_give_liv_obs(){
 }
 
 mixed direct_give_liv_obj(){
-    if( this_player() == this_object() ) return "Are you confused?";
+    if( this_player() == this_object() ) return "你糊涂了吗？";
     return 1;
 }
 
 mixed indirect_give_obj_to_liv(object item){
     if( !item ) return 0;
-    if( this_player() == this_object() ) return "Are you confused?";
-    if( environment(item) != this_player() ) return "You don't have that!";
+    if( this_player() == this_object() ) return "你糊涂了吗？";
+    if( environment(item) != this_player() ) return "你没有那个东西！";
     if(!CanCarry(item->GetMass())){
         return this_object()->GetName()+" is carrying too much.";
     }
@@ -227,8 +227,8 @@ mixed direct_give_wrd_wrd_to_liv(string num, string curr){
     int amt;
 
     if( this_object() == this_player() )
-        return "Are you feeling a bit confused?";
-    if( (amt = to_int(num)) < 1 ) return "What sort of amount is that?";
+        return "你是不是有点糊涂？";
+    if( (amt = to_int(num)) < 1 ) return "那是什么数量？";
     tmp = CanCarry(currency_mass(amt, curr));
     if( tmp != 1 ) return GetName() + " cannot carry that much "+ curr+ ".";
     return 1;
@@ -236,9 +236,9 @@ mixed direct_give_wrd_wrd_to_liv(string num, string curr){
 
 mixed direct_steal_wrd_from_liv(string wrd){
     if( wrd != "money" ) return 0;
-    if( this_player() == this_object() ) return "Are you a fool?";
+    if( this_player() == this_object() ) return "你是傻瓜吗？";
     if( this_player()->GetInCombat() )
-        return "You are too busy fighting at the moment.";
+        return "你现在太忙于战斗了。";
     return 1;
 }
 
@@ -246,12 +246,12 @@ mixed indirect_steal_obj_from_liv(object item, mixed args...){
     mixed tmp;
 
     if( environment()->GetProperty("no attack") )
-        return "Mystical forces prevent your malice.";
+        return "神秘力量阻止了你的恶意。";
     if( !item ) return 1;
     if( environment(item) != this_object() ) return 0;
-    if( this_player() == this_object() ) return "Are you a fool?";
+    if( this_player() == this_object() ) return "你是傻瓜吗？";
     if( this_player()->GetInCombat() )
-        return "You are too busy fighting at the moment.";
+        return "你现在太忙于战斗了。";
     tmp = item->CanDrop(this_object());
     if( tmp != 1 )
         return GetName() + " will not let go of " + item->GetShort()+".";
@@ -260,12 +260,12 @@ mixed indirect_steal_obj_from_liv(object item, mixed args...){
 
 mixed direct_backstab_liv(){
     if( this_object() == this_player() )
-        return "That would be messy.";
+        return "那样做会很混乱。";
     if( member_array(this_object(), this_player()->GetEnemies()) != -1 )
         return "%^RED%^You have lost the element of surprise.";
     if( environment()->GetProperty("no attack") ||
             GetProperty("no backstab") )
-        return "A mysterious forces stays your hand.";
+        return "一股神秘的力量阻止了你。";
     return 1;
 }
 
@@ -276,7 +276,7 @@ mixed direct_heal_str_of_liv(string limb){
     limb = lower_case(remove_article(limb));
     if( !limbs ){
         if( this_object() == this_player() ){
-            return "You have no limbs!";
+            return "你没有四肢！";
         }
         else {
             return GetName() + " has no limbs!";
@@ -284,7 +284,7 @@ mixed direct_heal_str_of_liv(string limb){
     }
     else if( member_array(limb, limbs) == -1 ){
         if( this_object() == this_player() ){
-            return "You have no " + limb + ".";
+            return "你没有" + limb + "。";
         }
         else {
             return GetName() + " has no " + limb + ".";
@@ -301,11 +301,11 @@ mixed direct_remedy_str_of_liv(string limb){
     string *limbs;
     limbs = GetLimbs();
     if( !limbs ){
-        if( this_object() == this_player() ) return "You have no limbs!";
+        if( this_object() == this_player() ) return "你没有四肢！";
         else return GetName() + " has no limbs!";
     }
     else if( member_array(limb, limbs) == -1 ){
-        if( this_object() == this_player() ) return "You have no " + limb + ".";
+        if( this_object() == this_player() ) return "你没有" + limb + "。";
         else return GetName() + " has no " + limb + ".";
     }
     return CanReceiveMagic(0, "remedy");
@@ -314,7 +314,7 @@ mixed direct_remedy_str_of_liv(string limb){
 mixed direct_regen_str_on_liv(string limb){
     if( !limb ) return 0;
     if( member_array(limb, GetMissingLimbs()) == -1 ){
-        return "That is not a missing limb!";
+        return "那不是缺失的四肢！";
     }
     return CanReceiveMagic(0, "regen");
 }
@@ -322,7 +322,7 @@ mixed direct_regen_str_on_liv(string limb){
 mixed direct_teleport_to_liv(){
     if( environment()->GetProperty("no teleport") ||
             environment()->GetProperty("no magic") ){
-        return "Mystical forces prevent your magic.";
+        return "神秘力量阻止了你的魔法。";
     }
     else return CanReceiveMagic(0, "teleport");
 }
@@ -333,7 +333,7 @@ mixed direct_portal_to_liv(){
 
 mixed direct_resurrect_liv(){
     if( this_player() == this_object() )
-        return "You cannot resurrect yourself.";
+        return "你不能复活自己。";
     if( !GetUndead() )
         return GetName() + " is not dead!";
     return CanReceiveMagic(0, "resurrect");
@@ -343,7 +343,7 @@ mixed direct_scry_liv(){
     object env = environment();
 
     if( this_player() == this_object() )
-        return "Scry yourself??";
+        return "窥视自己？？";
     if( !env ) return GetName() + " is nowhere.";
     if( env->GetProperty("no magic") || env->GetProperty("no scry") )
         return GetName() + " is beyond your reach.";
@@ -450,7 +450,7 @@ mixed CanReceiveMagic(int hostile, string spell){
     }
     if( !hostile ) return 1;
     if( this_player() == this_object() ){
-        eventPrint("That would be construed as quite foolish.");
+        eventPrint("那样做会被认为非常愚蠢。");
         return 0;
     }
     return 1;
@@ -459,18 +459,18 @@ mixed CanReceiveMagic(int hostile, string spell){
 varargs mixed CanCastMagic(int hostile, string spell){
     object env = environment();
 
-    if( !env ) eventPrint("You are nowhere!");
+    if( !env ) eventPrint("你哪里也不在！");
     if( spell && GetProperty("no " + spell) ){
-        eventPrint("A mysterious forces prevents you from doing that.");
+        eventPrint("一股神秘的力量阻止了你那样做。");
         return 0;
     }
     if( env->GetProperty("no magic") ){
-        eventPrint("Mystical forces prevent your magic.");
+        eventPrint("神秘力量阻止了你的魔法。");
         return 0;
     }
     if( !hostile ) return 1;
     if( env->GetProperty("no attack" ) ){
-        eventPrint("Mystical forces prevent your hostile intentions.");
+        eventPrint("神秘力量阻止了你的敌意。");
         return 0;
     }
     return 1;
@@ -557,7 +557,7 @@ varargs mixed eventSteal(object who, mixed what, object target, int skill){
 
             x = sizeof(what);
             if( GetStaminaPoints() < 20.0*x ){
-                eventPrint("You are clumsy in your fatigue.");
+                eventPrint("你因疲劳而笨手笨脚。");
                 if(target->GetRace() != "kender"){
                     target->SetAttack(this_object());
                     target->eventExecuteAttack(this_object());
@@ -570,7 +570,7 @@ varargs mixed eventSteal(object who, mixed what, object target, int skill){
 
             /* You can't steal from this target */
             if( !tmp )
-                return "You cannot steal from " + target->GetName() +".";
+                return "你不能从" + target->GetName() +"那里偷东西。";
 
             /* Steal from target was succesful */
             else if( tmp == 1 ){
@@ -601,12 +601,12 @@ varargs mixed eventSteal(object who, mixed what, object target, int skill){
         /* This part deals with stealing money */
 
         amt = GetNetWorth();
-        eventPrint("You reach for " + possessive_noun(target) + " money.");
+        eventPrint("你伸手去拿"+possessive_noun(target)+"钱。");
         tmp = target->eventSteal(who, what, target, skill2);
 
         /* You can't steal from this target */
         if( !tmp )
-            return "You cannot steal from " + target->GetName() + ".";
+            return "你不能从" + target->GetName() + "那里偷东西。";
 
         /* Steal from target was succesful */
         else if( tmp == 1 ){
@@ -617,7 +617,7 @@ varargs mixed eventSteal(object who, mixed what, object target, int skill){
             AddSkillPoints("stealth", random(amt));
             AddStatPoints("coordination", random(amt));
             AddStaminaPoints(-3);
-            eventPrint("You come away with some money!");
+            eventPrint("你拿到了一些钱！");
             return tmp;
         }
 
@@ -643,8 +643,8 @@ varargs mixed eventSteal(object who, mixed what, object target, int skill){
     if( objectp(what) ) sr = 100 * sizeof(what);
     else sr = 100;
     if( random(sr) > skill ){
-        target->eventPrint("You notice " + who->GetName() + " trying "
-                "to steal from you!");
+        target->eventPrint("你注意到" + who->GetName() + "正在"
+                "试图偷你的东西！");
         if( !userp(this_object()) ){
             who->eventPrint("%^RED%^" + GetName() + "%^RED%^ "
                     "notices your attempt at treachery!",
@@ -656,8 +656,8 @@ varargs mixed eventSteal(object who, mixed what, object target, int skill){
     }
 
     if( random(2*sr) > skill ){
-        who->eventPrint("You are unsure if anyone noticed your foolish "
-                "attempt at thievery.",environment(who) );
+        who->eventPrint("你不确定有没有人注意到你愚蠢的"
+                "盗窃企图。",environment(who) );
         return 2;
     }
 
@@ -725,7 +725,7 @@ varargs int eventMoveLiving(mixed dest, string omsg, string imsg, mixed dir){
     int check = GUARD_D->CheckMove(this_object(), dest, dir);
 
     if(!check){
-        eventPrint("You remain where you are.", MSG_SYSTEM);
+        eventPrint("你留在原地。", MSG_SYSTEM);
         return 0;
     }
     if(omsg && stringp(omsg)){
@@ -746,7 +746,7 @@ varargs int eventMoveLiving(mixed dest, string omsg, string imsg, mixed dir){
             }
         }
         if( !eventMove(dest) ){
-            eventPrint("You remain where you are.", MSG_SYSTEM);
+            eventPrint("你留在原地。", MSG_SYSTEM);
             return 0;
         }
         if(prev){
@@ -774,7 +774,7 @@ varargs int eventMoveLiving(mixed dest, string omsg, string imsg, mixed dir){
         if(sizeof(inv)) inv->eventPrint(omsg, MSG_ENV);
     }
     else if( !eventMove(dest) ){
-        eventPrint("You remain where you are.", MSG_SYSTEM);
+        eventPrint("你留在原地。", MSG_SYSTEM);
         return 0;
     }
     inv = filter(all_inventory(environment()),

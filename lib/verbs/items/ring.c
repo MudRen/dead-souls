@@ -13,7 +13,7 @@ protected void create() {
     verb::create();
     SetVerb("ring");
     SetRules("OBJ", "STR on OBJ", "OBJ with OBJ", "STR on OBJ with OBJ");
-    SetErrorMessage("Ring what?");
+    SetErrorMessage("摇什么？");
     SetHelp("Syntax: <ring OBJECT>\n"
             "        <ring OBJECT on OBJECT>\n"
             "        <ring OBJECT with OBJECT>\n"
@@ -23,7 +23,7 @@ protected void create() {
 
 mixed can_ring_obj() {
     if( this_player()->GetParalized() > 0 ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     return this_player()->CanManipulate();
 }

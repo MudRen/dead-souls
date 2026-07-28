@@ -87,6 +87,6 @@ protected void heart_beat(){
     save_player(GetKeyName());
     if( !builderp(this_object()) && !present("visitor pass",this_object())
             && !testp(this_object()) ){
-        eventPrint("Autosaving...", MSG_SYSTEM);
+        eventPrint("自动保存中...", MSG_SYSTEM);
     }
 }

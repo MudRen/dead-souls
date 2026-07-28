@@ -86,13 +86,13 @@ void close_callback( int fd ){
     {
         // Process HTML here
 #ifdef _DEBUG
-        player->eventPrint("dsversion: Connection closed by host.");
+        player->eventPrint("dsversion: 连接被主机关闭。");
 #endif
         ProcessHTTPResult();
     }
     if( status == SOCK_CONNECTING )
     {       
-        player->eventPrint("dsversion: Connection attempt failed.");
+        player->eventPrint("dsversion: 连接尝试失败。");
     }
     socket_close( fd ) ;
     status = SOCK_DISCONNECTED;

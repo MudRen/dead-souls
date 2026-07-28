@@ -15,7 +15,7 @@ protected void create() {
     verb::create();
     SetVerb("backstab");
     SetRules("LIV");
-    SetErrorMessage("Who do you want to backstab?");
+    SetErrorMessage("你想暗算谁？");
     SetHelp("Syntax: backstab <LIVING>\n\n"
             "This sneaky attack allows more devious players to "
             "backstab a specified target.");
@@ -24,7 +24,7 @@ protected void create() {
 mixed can_backstab_liv() {
     if( !environment(this_player()) ) return 0;
     if( this_player()->GetInCombat() )
-        return "You are too busy with combat!";
+        return "你正在战斗中，无法分心！";
     else return this_player()->CanManipulate();
 }
 
@@ -35,12 +35,12 @@ mixed do_backstab_liv(object ob) {
     if( this_player()->GetPosition() != POSITION_STANDING )
         this_player()->eventStand();   
     if(!ob || !present(ob, env)) {
-        this_player()->eventPrint("Your hapless victim is no longer present.");
+        this_player()->eventPrint("你的受害者已经不在这里了。");
         return 1;
     }
     this_player()->RemoveNonTargets(({ob}));
-    this_player()->eventPrint("%^RED%^You sneak up behind " + 
-            ob->GetName() + "...%^RESET%^");
+    this_player()->eventPrint("%^RED%^你悄悄绕到" +
+            ob->GetName() + "身后...%^RESET%^");
     this_player()->SetAttack(ob, (:eventBackstab, this_player(), ob:));
     return 1;
 }
@@ -56,7 +56,7 @@ int eventBackstab(object backstabber, object target) {
 
     if(!backstabber || !(env = environment(backstabber))) return 0;
     if(!target || !present(target, env)) {
-        backstabber->eventPrint("Your hapless victim is no longer present.");
+        backstabber->eventPrint("你的受害者已经不在这里了。");
         return 1;
     }
 
@@ -77,11 +77,11 @@ int eventBackstab(object backstabber, object target) {
 
     if(suprise < random(100) || !present(target, environment(backstabber))) {
         backstabber->eventPrint("%^RED%^" + target->GetName()
-                + " evades your poorly executed backstab.%^RESET%^");
-        target->eventPrint("%^RED%^You easily dodge " + possessive_noun(backstabber)
-                + " attempted backstab.%^RESET%^");
+                + "闪开了你笨拙的暗杀。%^RESET%^");
+        target->eventPrint("%^RED%^你轻松闪开了" + possessive_noun(backstabber)
+                + "暗杀企图。%^RESET%^");
         environment(backstabber)->eventPrint("%^RED%^" + target->GetName()
-                + " dodges " + possessive_noun(backstabber) + " attempted backstab.%^RESET%^",
+                + "闪开了" + possessive_noun(backstabber) + "暗杀企图。%^RESET%^",
                 ({backstabber, target}));
         return 1;
     }  
@@ -90,12 +90,12 @@ int eventBackstab(object backstabber, object target) {
     numberOfWeapons = sizeof(weapons);
 
     if(!numberOfWeapons) {
-        backstabber->eventPrint("%^RED%^You beat your fists ineffectively on "
-                + possessive_noun(target) + " back.%^RESET%^");
-        target->eventPrint("%^RED%^Somebody beats ineffectively upon your back.%^RESET%^");
+        backstabber->eventPrint("%^RED%^你徒劳地用双拳捶打"
+                + possessive_noun(target) + "背部。%^RESET%^");
+        target->eventPrint("%^RED%^有人在你的背上徒劳地捶打着。%^RESET%^");
         environment(backstabber)->eventPrint("%^RED%^" + backstabber->GetName()
-                + " backstabs " + target->GetName() + " expertly... unfortunately "
-                + nominative(backstabber) + " forgot " + possessive(backstabber) + " knives.%^RESET%^",
+                + "熟练地暗算" + target->GetName() + "……不幸的是"
+                + nominative(backstabber) + "忘了带刀。%^RESET%^",
                 ({backstabber, target}));
         return 1;
     }
@@ -104,8 +104,8 @@ int eventBackstab(object backstabber, object target) {
     for(i = 0; i < numberOfWeapons && target; i++)
         numberOfStabs += eventStab(backstabber, target, weapons[i]);
     if(!numberOfStabs) {
-        target->eventPrint("%^RED%^You dodge " + possessive_noun(backstabber)
-                + " attempted backstab.%^RESET%^");
+        target->eventPrint("%^RED%^你闪开了" + possessive_noun(backstabber)
+                + "暗杀企图。%^RESET%^");
         return 1;
     }
 
@@ -158,39 +158,39 @@ int eventPrintDamage(object backstabber, object target, object weapon, int perce
     string verb;
 
     if(!percentDamage) {
-        backstabber->eventPrint("%^RED%^You fumble awkwardly with your "
-                + strip_article(weapon->GetShort()) + ".%^RESET%^");
+        backstabber->eventPrint("%^RED%^你笨拙地摆弄着你的"
+                + strip_article(weapon->GetShort()) + "。%^RESET%^");
         environment(backstabber)->eventPrint("%^RED%^" + backstabber->GetName()
-                + " fumbles awkwardly with " + possessive(backstabber) + " "
+                + "笨拙地摆弄着" + possessive(backstabber) + " "
                 + strip_article(weapon->GetShort()) + ".%^RESET%^",
                 ({backstabber, target}));
         return 1;
     }
 
     if(percentDamage < 15) {
-        myVerb = "jab ";
-        verb = "jabs ";
-        adverb = "sharply ";
+        myVerb = "猛刺 ";
+        verb = "猛刺 ";
+        adverb = "犀利地 ";
     }
     else if(percentDamage < 30) {
-        myVerb = "stab ";
-        verb = "stabs ";
-        adverb = "painfully ";
+        myVerb = "刺入 ";
+        verb = "刺入 ";
+        adverb = "痛苦地 ";
     }
     else {
-        myVerb = "slam ";
-        verb = "slams ";
-        adverb = "deep ";
+        myVerb = "深刺 ";
+        verb = "深刺 ";
+        adverb = "深深地 ";
     }
 
-    backstabber->eventPrint("%^RED%^You " + myVerb + "your "
-            + strip_article(weapon->GetShort()) + " " + adverb + "into "
-            + possessive_noun(target) + " back.%^RESET%^");
-    target->eventPrint("%^RED%^Your back sears with pain as a " + weapon->GetWeaponType()
-            + " " + verb + adverb + "into you.%^RESET%^");
+    backstabber->eventPrint("%^RED%^你" + myVerb + "你的"
+            + strip_article(weapon->GetShort()) + " " + adverb + "刺入"
+            + possessive_noun(target) + "的背部。%^RESET%^");
+    target->eventPrint("%^RED%^你的背部感到灼烧般的剧痛，一把" + weapon->GetWeaponType()
+            + " " + verb + adverb + "刺入了你的身体。%^RESET%^");
     environment(backstabber)->eventPrint("%^RED%^" + backstabber->GetName() + " "
             + verb + possessive(backstabber) + " " + strip_article(weapon->GetShort())
-            + " " + adverb + "into " + possessive_noun(target) + " back.%^RESET%^",
+            + " " + adverb + "刺入" + possessive_noun(target) + "背部。%^RESET%^",
             ({backstabber, target}));
 
     return 1;

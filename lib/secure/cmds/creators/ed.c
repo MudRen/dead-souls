@@ -19,7 +19,7 @@ mixed cmd(string args) {
     if( args == "" || !args ) 
         args = user_path(this_player()->GetKeyName()) + "tmp.edit";
     if( this_player()->GetForced() ) {
-        message("system", "Someone tried to force you to edit "+ args +"\n" +
+        message("system", "有人试图强迫你编辑 "+ args +"\n" +
                 identify(previous_object(-1)), this_player());
         return 0;
     }
@@ -32,26 +32,25 @@ mixed cmd(string args) {
         this_player()->SetProperty("EdWarned", 1);
     }
     args = absolute_path( this_player()->query_cwd(), args );
-    if( (x = file_size(args)) == -2 ) 
-        return "You cannot edit a directory!";
+    if( (x = file_size(args)) == -2 )
+        return "你不能编辑一个目录！";
     else if( x == -1 )
-        message("editor", args + ", new file, starting in input mode.\n",
+        message("editor", args + "，新文件，以输入模式开始。\n",
                 this_player());
-    else message("editor", args + ", " + x + " bytes\n", this_player());
+    else message("editor", args + "，" + x + " 字节\n", this_player());
     this_player()->eventEdit(args, (: ed_callback, this_player() :) );
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: ed [filename]\n\n"
-            "Ye olde LP mud in-game text editor. It is a line-mode editor, "
-            "meaning it is archaic, hard to use, and complimicated. "
-            "But it's the "
-            "one way to edit stuff in-game that works for sure. "
-            "For a brief walkthrough:\n"
+    return ("语法: ed [文件名]\n\n"
+            "经典的 LP MUD 游戏内文本编辑器。它是行模式编辑器，\n"
+            "意味着它古老、难用且复杂。但它是游戏内\n"
+            "确定可用的编辑方式。\n"
+            "简要指南:\n"
             "%^GREEN%^faq ed%^RESET%^\n"
-            "For a lengthy doc:\n"
-            "%^GREEN%^help editor%^RESET%^\n"    
-            "For a web page FAQ, use your web browser to go to; http://dead-souls.net/editor.html\n\n"
-            "See also: ced, creweb, qcs");
+            "详细文档:\n"
+            "%^GREEN%^help editor%^RESET%^\n"
+            "网页 FAQ，请使用浏览器访问: http://dead-souls.net/editor.html\n\n"
+            "另见: ced, creweb, qcs");
 }

@@ -20,7 +20,7 @@ mixed cmd(string str){
     string cmd, args, name, addy;
     validate();
     if(!sizeof(str)) {
-        write("Try: help instconfig");
+        write("尝试：help instconfig");
         return 1;
     }
     i = sscanf(str, "%s %s", cmd, args);
@@ -29,29 +29,29 @@ mixed cmd(string str){
         i = sscanf(args,"%s %s %d", name, addy, port);
         if(i != 3) i = sscanf(args,"%s %d", name, port);
         if(i < 2) {
-            write("Try: help instconfig");
+            write("尝试：help instconfig");
             return 1;
         }
         if(undefinedp(addy)) addy = "127.0.0.1";
         ret = INSTANCES_D->InstCreate(name, addy, port);
         if(!ret){
-            write("Some sort of problem occurred.");
+            write("出现了某种问题。");
             return 1;
         }
         if(stringp(ret)) write(ret);
-        else write("Done.");
+        else write("完成。");
         return 1;
     }
 
     if(cmd == "remove"){
-        write("Trying to remove: "+args);
+        write("正在尝试移除："+args);
         if(member_array(args, INSTANCES_D->GetInstances()) == -1){
-            write("No such instance found.");
+            write("未找到该实例。");
             return 1;
         }
         ret = INSTANCES_D->InstDelete(args);
         if(intp(ret)){
-            write("Removal of "+args+" successful.");
+            write("成功移除 "+args+"。");
         }
         else {
             write(ret);
@@ -69,7 +69,7 @@ mixed cmd(string str){
             ret += "%^RESET%^\n";
         }
         if(!sizeof(ret)){
-            ret = "The instance daemon is aware of no configured instances.";
+            ret = "实例守护进程未发现任何已配置的实例。";
         }
         write(ret);   
         return 1;
@@ -77,14 +77,13 @@ mixed cmd(string str){
 }
 
 string GetHelp(){
-    return ("Syntax: instconfig list\n"
-            "        instconfig create <name> <port>\n"
-            "        instconfig remove <name>\n\n"
-            "Modifies your instance configuration. To add an instance "
-            "named Alpha on port 5555, you would type:\n"
+    return ("语法：instconfig list\n"
+            "        instconfig create <名称> <端口>\n"
+            "        instconfig remove <名称>\n\n"
+            "修改您的实例配置。要添加一个名为 Alpha、端口为 5555 的实例，请输入：\n"
             "instconfig create Alpha 5555\n\n"
-            "To remove it:\n"
+            "要移除它：\n"
             "instconfig remove Alpha\n\n"
-            "See also: instances, admintool, mudconfig");
+            "另见：instances, admintool, mudconfig");
 }
 

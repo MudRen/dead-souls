@@ -7,7 +7,7 @@ protected void create() {
     SetVerb("knock");
     SetRules("OBJ", "on OBJ", "STR on OBJ");
     SetSynonyms("rap");
-    SetErrorMessage("Knock on what? Or knock what on what?");
+    SetErrorMessage("敲什么？或者把什么敲在什么上？");
     SetHelp("Syntax: <knock on OBJECT>\n"
             "        <knock THING on OBJECT>\n\n"
             "Allows you to knock on an object, or perhaps a thing on the "

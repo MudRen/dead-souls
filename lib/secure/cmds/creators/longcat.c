@@ -15,12 +15,12 @@ mixed cmd(string str) {
     int bmax = (__LARGEST_PRINTABLE_STRING__ - 1024);
     int chunks, rem, currchunk, smax = (get_config(__MAX_STRING_LENGTH__) - 10);
 
-    if( !str ) return "You must specify a file to longcat.";
+    if( !str ) return "你必须指定要查看的文件。";
     else str = absolute_path(this_player()->query_cwd(), str);
-    if( !file_exists(str) ) return "File " + str + " not found.";
+    if( !file_exists(str) ) return "文件 " + str + " 未找到。";
     if((tmp = file_size(str)) < smax){
         if( !(tmp = read_file(str)) )
-            return "Unable to read file " + str + ".";
+            return "无法读取文件 " + str + "。";
         arr = explode(tmp,"\n");
         foreach(string line in arr){
             message("system", line, this_player());
@@ -47,7 +47,7 @@ mixed cmd(string str) {
 }
 
 string GetHelp() {
-    return ("Syntax: longcat <file>\n\n"
+    return ("语法: longcat <文件>\n\n"
             "    /\___/\ \n"
             "   /       \ \n"
             "  |  #    # | \n"
@@ -83,8 +83,7 @@ string GetHelp() {
             "  | |      | | \n"
             " /  |      |  \ \n"
             " \__/      \__/ \n"
-            "Displays the contents of the file mentioned all at once, "
-            "with no limit on the output size. Note that the output "
-            "for ludicrously large files may lag the mud and cause "
-            "the command to error out with a \"Too long evaluation\".");
+            "一次性显示指定文件的全部内容，不限制输出大小。\n"
+            "注意：过大的文件可能会导致延迟，\n"
+            "并可能因\"求值时间过长\"而报错。");
 }

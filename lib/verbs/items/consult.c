@@ -6,7 +6,7 @@ protected void create() {
     verb::create();
     SetVerb("consult");
     SetRules("OBJ");
-    SetErrorMessage("Consult what? Or consult whom?");
+    SetErrorMessage("查阅什么？或者咨询谁？");
     SetHelp("Syntax: <consult OBJECT>\n"
             "        <consult PERSON>\n\n"
             "Allows you to consult an object or a person.\n"

@@ -24,7 +24,7 @@ int cmd(string str) {
 
     int err, i, i_lines, max, max_lines, flags;
 
-    notify_fail("Correct syntax: <grep [-nr] '[pattern]' [file] (> [output])>\n");
+    notify_fail("正确语法: <grep [-nr] '[模式]' [文件] (> [输出])>\n");
     if(!str) return 0;
     //CHECK FOR FLAGS
     if(str[0] == '-'){
@@ -47,7 +47,7 @@ int cmd(string str) {
     if(sscanf(str, "'%s' %s", exp, file) != 2 &&
             sscanf(str, "%s %s", exp, file) != 2) return 0;
     if(!(max = sizeof(files = wild_card(file)))) {         
-        message("system", "File not found.", this_player());
+        message("system", "文件未找到。", this_player());
         return 1;
     }
 
@@ -64,25 +64,25 @@ int cmd(string str) {
                 continue;
             }
             if(file_size(files[i]) > MAX_FILE_SIZE){
-                write(files[i]+": too large. Skipping.");
+                write(files[i]+": 文件过大，跳过。");
                 continue;
             }
 #if 0
             if(member_array(last(files[i],2), allowed_types1) == -1 &&
                     member_array(last(files[i],4), allowed_types3) == -1 &&
                     grepp(files[i],".")){
-                write(files[i]+": unrecognized extension. Skipping.");
+                write(files[i]+": 未识别的扩展名，跳过。");
                 continue;
             }
 #endif
             err = catch(txt = read_file(files[i]));
             if(err){
-                if(file_exists(files[i])) write(files[i]+": corrupted file, or not text. Skipping.");
+                if(file_exists(files[i])) write(files[i]+": 文件损坏或非文本，跳过。");
                 continue;
             }
             if(txt) lines = explode(txt, "\n");
             else {
-                write(files[i]+": unreadable file or directory. Skipping.");
+                write(files[i]+": 不可读的文件或目录，跳过。");
                 continue;
             }
             borg[files[i]] = ({});
@@ -107,46 +107,46 @@ int cmd(string str) {
                 continue;
             }
             if(file_size(files[i]) > MAX_FILE_SIZE){
-                write(files[i]+": too large. Skipping.");
+                write(files[i]+": 文件过大，跳过。");
                 continue;
             }
 #if 0
             if(member_array(last(files[i],2), allowed_types1) == -1 &&
                     member_array(last(files[i],4), allowed_types3) == -1 &&
                     grepp(files[i],".")){
-                write(files[i]+": unrecognized extension. Skipping.");
+                write(files[i]+": 未识别的扩展名，跳过。");
                 continue;
             }
 #endif
             err = catch(txt = read_file(files[i]));
             if(err || !txt){
-                if(file_exists(files[i])) write(files[i]+": corrupted file, or not text. Skipping.");
+                if(file_exists(files[i])) write(files[i]+": 文件损坏或非文本，跳过。");
                 continue;
             }
             borg[files[i]] = regexp(explode(txt, "\n"), exp);
             if(!sizeof(borg[files[i]])) map_delete(borg, files[i]);
         }
     }
-    if(!(max = sizeof(files = keys(borg)))) str = "No matches found.\n";
+    if(!(max = sizeof(files = keys(borg)))) str = "未找到匹配项。\n";
     else {
         for(i=0, str = ""; i<max; i++)           str += sprintf("%s:\n%s\n\n", files[i], implode(borg[files[i]],"\n"));
     }
     if(output) {
-        if(!write_file(output, str)) message("system", "Failed to write to: "+output, this_player());
-        else message("system", "Grep sent to: "+output, this_player());
+        if(!write_file(output, str)) message("system", "写入失败: "+output, this_player());
+        else message("system", "grep 结果已发送至: "+output, this_player());
     }
     else message("system", str, this_player());
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: grep [-nr] '[pattern]' [file] (> [redirect])\n\n"
-            "Searches a file or group of files for a specific pattern.  "
-            "If the pattern is a single word, then no '' is needed.  Patterns "
-            "of more than one word or beginning with a '-' however, need to be enclosed in ''.  "
-            "You may redirect the output of the grep to a file using the >."
-            "\n  Options:\n"
-            "    -r  recursive search, search extends to child directories.\n"
-            "    -n  numbered lines, includes line numbers of successful hits."
-            "\nSee also: cd, ls, mv, pwd, rm");
+    return ("语法: grep [-nr] '[模式]' [文件] (> [重定向])\n\n"
+            "在文件或文件组中搜索特定模式。\n"
+            "如果模式是单个单词，不需要引号。\n"
+            "多个单词或以 '-' 开头的模式需要用引号括起来。\n"
+            "可以使用 > 将 grep 输出重定向到文件。"
+            "\n  选项:\n"
+            "    -r  递归搜索，搜索扩展到子目录。\n"
+            "    -n  显示行号，包含匹配行的行号。"
+            "\n另见: cd, ls, mv, pwd, rm");
 } 

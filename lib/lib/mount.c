@@ -93,27 +93,27 @@ varargs mixed eventMount(object who, int quiet, int forced){
     }
     if(environment(who) && environment(who) == this_object()){
         if(!forced && !quiet){
-            return who->eventPrint("You are already mounted.", MSG_ERROR);
+            return who->eventPrint("你已经骑上了。", MSG_ERROR);
         }
     }
     if((rider_weight + this_object()->GetCarriedMass()) > 
             this_object()->GetMaxCarry()){
         if(!forced && !quiet){
             return write(this_object()->GetShort()+
-                    " cannot handle that much "+weight+".");
+                    "无法承受那么多"+weight+"。");
         }
     }
     if(this_object()->GetMountOwner() != who){
         if(!forced && !quiet){
-            write(this_object()->GetName()+" doesn't know you well "
-                    "enough to let you ride "+objective(this_object())+".");
+            write(this_object()->GetName()+"和你不够熟悉，"
+                    "不允许你骑"+objective(this_object())+"。");
             return 0;
         }
     }
     this_object()->SetNoClean(1);
     if(!quiet){
-        write("You mount "+this_object()->GetShort()+".");
-        say(who->GetName()+" mounts "+this_object()->GetShort()+".");
+        write("你骑上了"+this_object()->GetShort()+"。");
+        say(who->GetName()+"骑上了"+this_object()->GetShort()+"。");
     }
     who->SetProperty("mount", this_object());
     if(who->eventMove(this_object())) return AddRider(who);
@@ -127,13 +127,13 @@ varargs mixed eventDismount(object who, int quiet, int forced){
     if(!environment(this_object())) return 0;
     if(environment(who) && environment(who) != this_object()){
         if(!forced || !quiet){
-            return who->eventPrint("You are already dismounted.", MSG_ERROR);
+            return who->eventPrint("你已经下马了。", MSG_ERROR);
         }
     }
     else {
         if(!quiet){
-            write("You dismount from "+this_object()->GetPlainShort()+".");
-            tell_room(environment(this_object()),who->GetName()+" dismounts from " +this_object()->GetPlainShort()+".", ({ this_object(), who }));
+            write("你从"+this_object()->GetPlainShort()+"上下来了。");
+            tell_room(environment(this_object()),who->GetName()+"从" +this_object()->GetPlainShort()+"上下来了。", ({ this_object(), who }));
         }
         who->RemoveProperty("mount");
         if(who->eventMove(environment(this_object()))) return RemoveRider(who);
@@ -149,11 +149,11 @@ mixed eventBuck(object who){
         return 0;
     }
     else {
-        tell_player(who,"You are thrown from "+
-                (this_object()->GetPlainShort() || this_object()->GetShort())+"!");
+        tell_player(who,"你被从"+
+                (this_object()->GetPlainShort() || this_object()->GetShort())+"上甩了下来！");
         tell_room(environment(this_object()),who->GetName()+
-                " is thrown from "+(this_object()->GetPlainShort() ||
-                    this_object()->GetShort())+"!", ({ this_object(), who }));
+                "被从"+(this_object()->GetPlainShort() ||
+                    this_object()->GetShort())+"上甩了下来！", ({ this_object(), who }));
         who->RemoveProperty("mount");
         who->SetPosition(POSITION_LYING);
         if(who->eventMove(environment(this_object()))) return RemoveRider(who);

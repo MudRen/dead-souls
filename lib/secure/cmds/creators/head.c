@@ -13,11 +13,11 @@ int cmd(string str) {
     string file;
     int x;
 
-    if(!str) return notify_fail("Syntax: head <file>\n");
+    if(!str) return notify_fail("语法: head <文件>\n");
     file = absolute_path(this_player()->query_cwd(),str);
-    if(!file_exists(file)) return notify_fail("No such file: "+file+"\n");
+    if(!file_exists(file)) return notify_fail("没有该文件: "+file+"\n");
     else if(!(str = read_file(file)))
-        return notify_fail("Empty file: "+file+"\n");
+        return notify_fail("空文件: "+file+"\n");
     if((x = sizeof(lines = explode(str, "\n"))) > 22) x = 23;
     str = implode(lines[0..x-1], "\n");
     message("system", str, this_player());
@@ -25,7 +25,7 @@ int cmd(string str) {
 }
 
 string GetHelp() {
-    return ("Syntax: head <file>\n\n"
-            "Gives you the first lines in the file specified.\n"
-            "See also: cat, more, tail");
+    return ("语法: head <文件>\n\n"
+            "显示指定文件的开头若干行。\n"
+            "另见: cat, more, tail");
 }

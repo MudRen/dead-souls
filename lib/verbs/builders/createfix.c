@@ -9,7 +9,7 @@ protected void create() {
     verb::create();
     SetVerb("createfix");
     SetRules("OBJ", "here");
-    SetErrorMessage("createfix what?");
+    SetErrorMessage("createfix什么？");
     SetHelp("语法: createfix <OBJ>\n\n"
             "如果你对指定对象的文件有写权限，此命令会添加一个::create调用。"
             "缺少此调用会导致许多对象损坏或行为不可预测。"

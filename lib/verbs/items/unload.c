@@ -8,7 +8,7 @@ protected void create() {
     SetVerb("unload");
     SetSynonyms("discharge","deplete");
     SetRules("OBJ","OBJ from OBJ","OBJ in OBJ","OBJ on OBJ", "OBJ out of OBJ");
-    SetErrorMessage("Unload something?");
+    SetErrorMessage("卸载什么？");
     SetHelp("Syntax: unload THING\n"
             "        unload THING from THING\n"
             "Synonyms: discharge, deplete\n");  
@@ -27,7 +27,7 @@ mixed can_unload_obj_word_obj(mixed foo) {
 }
 
 mixed do_unload() {
-    return "Unload what?";
+    return "卸载什么？";
     return 1;
 }
 

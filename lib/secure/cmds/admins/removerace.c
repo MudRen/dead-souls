@@ -12,14 +12,14 @@
 inherit LIB_DAEMON;
 
 mixed cmd(string args) {
-    if( !args || args == "" ) return "Syntax: removerace <RACE>";
+    if( !args || args == "" ) return "语法: removerace <种族名>";
     RACES_D->RemoveRace(args);
-    previous_object()->eventPrint("Race removed.");
+    previous_object()->eventPrint("种族已移除。");
     return 1;
 }
 
 string GetHelp(string str) {
-    return ("Syntax: removerace <RACE>\n\n"
-            "Removes a race from the game.\n"
-            "See also: addclass, addemote, addrace, removeclass");
+    return ("语法: removerace <种族名>\n\n"
+            "从游戏中移除一个种族。\n"
+            "另见: addclass, addemote, addrace, removeclass");
 }

@@ -70,7 +70,7 @@ int SetDrainRate(int i){
 
 varargs int eventUse(mixed i, mixed foo){
     if(query_verb() == "use"){
-        write("That's not how it works.");
+        write("不是这样使用的。");
         return 1;
     }
     Lit = i;
@@ -88,10 +88,10 @@ int eventDie(){
         ob->eventUse(0);
     }
     //SetShort(baseshort);
-    tell_object(environment(this_object()),"The "+me+" flickers and dies.");
+    tell_object(environment(this_object()),me+"闪烁了一下然后熄灭了。");
     if(living(environment())){
-        tell_room(environment(environment()),environment()->GetName()+"'s "+me+
-                " flickers and dies.",({ environment() }) );
+        tell_room(environment(environment()),environment()->GetName()+"的"+me+
+                "闪烁了一下然后熄灭了。",({ environment() }) );
     }
     set_heart_beat(0);
     return 1;
@@ -100,12 +100,12 @@ int eventDie(){
 int flicker(){
     if(noflicker ==1) return 0;
     if(!living(environment())){
-        tell_object(environment(),capitalize(baseshort)+" flickers and shines less brightly than before.");
+        tell_object(environment(),capitalize(baseshort)+"闪烁了一下，变得比之前暗淡了。");
         return 1;
     }
-    tell_room(environment(environment()),environment()->GetName()+"'s "+me+
-            " flickers and shines less brightly than before.",({ environment() }) );
-    tell_object(environment(),"The "+me+" flickers and shines less brightly.");
+    tell_room(environment(environment()),environment()->GetName()+"的"+me+
+            "闪烁了一下，变得比之前暗淡了。",({ environment() }) );
+    tell_object(environment(),me+"闪烁了一下，变得更暗淡了。");
     return 1;
 }
 
@@ -157,9 +157,9 @@ void regetID(){
 
 varargs mixed eventTurn(string str){
     regetID();
-    if( player != env ){ write("You don't have that."); return 0; }
-    write("You turn the "+me+" over in your hands.");
-    say(name+" turns over a "+me+" in "+possessive(player)+" hands.");
+    if( player != env ){ write("你没有那个东西。"); return 0; }
+    write("你在手中翻转着"+me+"。");
+    say(name+"在"+possessive(player)+"手中翻转着一个"+me+"。");
     return 1;
 }
 
@@ -168,17 +168,17 @@ int eventTurnOn(object ob){
     CheckPower();
 
     if(powered != 1){
-        write("It isn't powered.");
+        write("它没有电源。");
         return 1;
     }
 
     if(player != env  && environment(player) !=env){
-        write("It isn't within reach.");
+        write("它不在你够得到的地方。");
         return 1;
     }
     if(Lit < 1){
-        write("You turn on the "+me+".");
-        say(name+" turns on a "+me+".");
+        write("你打开了"+me+"。");
+        say(name+"打开了一个"+me+"。");
         if(drainrate && drainrate > 0) eventUse(drainrate);
         else eventUse(1);
         eventRadiate(lightlevel);
@@ -187,17 +187,17 @@ int eventTurnOn(object ob){
         return 1;
     }
     if(Lit >= 1){
-        write("It is already lit.");
+        write("它已经亮着了。");
         return 1;
     }
 }
 
 varargs mixed eventTurnOff(string str){
     regetID();
-    if(player != env  && environment(player) !=env){ write("It isn't within reach."); return 1; }
+    if(player != env  && environment(player) !=env){ write("它不在你够得到的地方。"); return 1; }
     if(Lit > 0){
-        write("You turn off the "+me+".");
-        say(name+" turns off a "+me+".");
+        write("你关掉了"+me+"。");
+        say(name+"关掉了"+me+"。");
         eventRadiate(0);
         eventUse(0);
         set_heart_beat(0);
@@ -205,7 +205,7 @@ varargs mixed eventTurnOff(string str){
         return 1;
     }
     if(Lit < 1){
-        write("It is already off.");
+        write("它已经关了。");
         return 1;
     }
 }

@@ -97,7 +97,7 @@ int cmd(string str) {
     for(i = 75; i < screenSize; i++) bar += "-";
     bar += "\n";
     msg = bar;
-    tmp1 = " " + maxi + ((maxi != 1) ? " people" : " person") + " in current sort ";
+    tmp1 = " " + maxi + " 人（当前排序） ";
     tmp2 = query_people_time() + " ";
     i = sizeof(tmp1) + sizeof(tmp2);
     msg += tmp1;
@@ -256,7 +256,7 @@ nosave string map_info(object ob, string formatString) {
     else idle = sprintf("%:-2d m", x/60);
     ip = query_ip_name(ob);
     if(ip == "0.0.0.0" || ip == "w.x.y.z") ip = "";
-    if(!room_env(ob)) env = "no environment";
+    if(!room_env(ob)) env = "无环境";
     else env = file_name(room_env(ob));
     if(!strsrch(env, REALMS_DIRS))
         env = "~" + env[strlen(REALMS_DIRS)+1..];
@@ -269,40 +269,37 @@ private string query_people_time() {
     string tzone;
     if(this_player()) tzone = this_player()->GetProperty("timezone");
     if(!tzone || !valid_timezone(tzone)) tzone = query_tz();
-    return tzone + " time is: " + local_ctime(time(), tzone);
+    return tzone + " 时间为: " + local_ctime(time(), tzone);
 }
 
 string GetHelp() {
-    return ("Syntax: people [-abceghlmnprsu]\n\n"
-            "Gives you a listing of people on "+mud_name()+".  Output is "
-            "formatted into columns with the following meanings:\n"
-            "    amount of time spent total on "+mud_name()+"\n"
-            "    level\n"
-            "    name\n"
-            "    address from which the person is connecting\n"
-            "    amount of time idle\n"
-            "    blocking information, if any... A is all, C cre, G gossip\n"
-            "    current environment file name\n\n"
-            "Command flags have the following meanings:\n"
-            "    -a list all arches\n"
-            "    -b list all ambassadors\n"
-            "    -c list all non-arch creators\n"
-            "    -e sort the listing by race\n"
-            "    -g sort the listing by age\n"
-            "    -h list all high mortals\n"
-            "    -l sort the listing by level\n"
-            "    -m pipe the listing through the more pager\n"
-            "    -n list all newbies\n"
-            "    -p list all non-newbie and non-high mortal mortals\n"
-            "    -r sort the listing by current environment\n"
-            "    -s sort the listing by class\n"
-            "    -u list all undead people\n\n"
-            "People in the editor or in mail or posting will be "
-            "marked with [].  "
-            "People who are invisible to others, but not to you will be marked "
-            "with ().  The default sort is by arch, then by creator, then by "
-            "ambassador, then by level.  You can perform multiple sorts, but "
-            "you cannot change the priority.  Sorts priority is: class, race, "
-            "realm, level, age.  You can also include multiple groups in your "
-            "listing. Fart.\nSee also: who, users");
+    return ("语法: people [-abceghlmnprsu]\n\n"
+            "列出 "+mud_name()+" 上的在线用户。输出按列排列，含义如下:\n"
+            "    在 "+mud_name()+" 上的总时间\n"
+            "    等级\n"
+            "    名字\n"
+            "    连接地址\n"
+            "    空闲时间\n"
+            "    屏蔽信息... A=全部, C=创造者, G=闲聊\n"
+            "    当前环境文件名\n\n"
+            "命令参数含义:\n"
+            "    -a 列出所有大管理员\n"
+            "    -b 列出所有大使\n"
+            "    -c 列出所有非大管理员的创造者\n"
+            "    -e 按种族排序\n"
+            "    -g 按年龄排序\n"
+            "    -h 列出所有高等凡人\n"
+            "    -l 按等级排序\n"
+            "    -m 通过分页器显示\n"
+            "    -n 列出所有新手\n"
+            "    -p 列出所有非新手非高等凡人\n"
+            "    -r 按当前环境排序\n"
+            "    -s 按职业排序\n"
+            "    -u 列出所有亡灵\n\n"
+            "在编辑器、邮件或公告中的用户会标记为 []。\n"
+            "对你不可见的其他用户会标记为 ()。\n"
+            "默认排序为大管理员、创造者、大使、等级。\n"
+            "你可以进行多种排序，但不能更改优先级。\n"
+            "排序优先级: 职业、种族、领域、等级、年龄。\n"
+            "另见: who, users");
 }

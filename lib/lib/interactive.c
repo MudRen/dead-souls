@@ -191,7 +191,7 @@ void eventReconnect(){
     interface::eventReconnect();
     LastAge = time();
     HostSite = query_ip_number(this_object());
-    eventPrint("Reconnected.", MSG_SYSTEM);
+    eventPrint("已重新连接。", MSG_SYSTEM);
     PLAYERS_D->PlayerUpdate(GetKeyName(), 1);
     if(!(archp(this_object()) && this_object()->GetInvis())){
         CHAT_D->eventSendChannel("SYSTEM","connections","[" +

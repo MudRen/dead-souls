@@ -14,7 +14,7 @@ protected void create() {
     verb::create();
     SetVerb("nominate");
     SetRules("STR");
-    SetErrorMessage("Who would you like to nominate?");
+    SetErrorMessage("你想提名谁？");
     SetHelp("Syntax: nominate <STR>\n"
             "Nominates a candidate for class voting.");
 }
@@ -24,7 +24,7 @@ mixed can_nominate_str() {
     mixed  err;
     if( !(env = environment(this_player())) ) return 0;
     err = env->CanNominate( this_player() );
-    if( !err ) return "This doesn't seem the proper place for it.";
+    if( !err ) return "这里似乎不是做这件事的合适地方。";
     else return err;
 }
 

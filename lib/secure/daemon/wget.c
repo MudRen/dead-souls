@@ -106,7 +106,7 @@ int openHTTPConnection()
         return 0 ;
     }
 #ifdef _DEBUG
-    write("Attempting to connect to "+host+ " on port "+ port + "\n");
+    write("正在尝试连接到 "+host+ " 端口 "+ port + "\n");
 #endif	
     sc_result = socket_connect( sock, address + " " + port,
             "read_callback", "write_callback" ) ;
@@ -181,8 +181,8 @@ string GetErorMessage() {
 }
 
 string GetHelp() {
-    return ("Syntax: dsversion [version]\n\n" +
-            "Shows the latest version of Dead Souls and release notes.\n"+
-            "e.g. dsversion, dsversion r1, dsversion 2.0r1");
+    return ("语法: dsversion [版本]\n\n" +
+            "显示 Dead Souls 的最新版本和发布说明。\n"+
+            "例如: dsversion, dsversion r1, dsversion 2.0r1");
 }
 

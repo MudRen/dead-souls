@@ -108,12 +108,12 @@ mixed eventModify(object ob, string str){
     special_map_array = ({ "SetProperties", "SetStats", "SetSkills"});
 
     if(!check_privs(this_player(),filename)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return 1;
     }
 
     if(!check_privs(this_player(),tmpfile)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return 1;
     }
 
@@ -142,11 +142,10 @@ mixed eventModify(object ob, string str){
     if(inherits(LIB_VEHICLE,ob)) inheritance += " vehicle";
 
     if(!inheritance || inheritance == ""){
-        write("The object you want to modify lacks an init() function.");
-        write("Please correct this by issuing the initfix command, then try again.");
-        write("\nIf you are certain the object has a working init(), then");
-        write("This error indicates that its library object type is not");
-        write("currently supported by the Quick Creation System.");
+        write("你要修改的对象缺少 init() 函数。");
+        write("请执行 initfix 命令来修正，然后重试。");
+        write("\n如果你确定该对象有可用的 init()，那么");
+        write("此错误表示其库对象类型目前不被快速创建系统(QCS)支持。");
         return 1;
     }
 
@@ -494,42 +493,40 @@ mixed eventModify(object ob, string str){
     }
 
     if(out == "SetExits") {
-        write("SetExits is a special setting, which isn't modified like others.");
-        write("To make an exit to a room, or to create a new room, type:\n");
-        write("create room DIRECTION FILE");
-        write("For example: create room east test_room1");
-        write("To get rid of an exit, it's: delete exit DIRECTION");
-        write("For example: delete exit east");
+        write("SetExits 是一个特殊设置，修改方式与其他设置不同。");
+        write("要创建一个通往某房间的出口，或创建新房间，请输入:\n");
+        write("create room 方向 文件");
+        write("例如: create room east test_room1");
+        write("要删除出口，请输入: delete exit 方向");
+        write("例如: delete exit east");
         return 1;
     }
 
     if(out == "SetEnters") {
-        write("SetEnters is a special setting, which isn't modified like others.");
-        write("To make an Enter, first identify an item that already exists ");
-        write("in SetItems. For example, if SetItems contains a pub:\n");
+        write("SetEnters 是一个特殊设置，修改方式与其他设置不同。");
+        write("要创建一个进入点，首先需要识别 SetItems 中已存在的一个物品。");
+        write("例如，如果 SetItems 包含一个酒馆:\n");
         write("create enter pub test_pub1\n");
-        write("To get rid of that enter: delete enter pub");
-        write("Please note that if the \"thing to be entered\" isn't already ");
-        write("in SetItems, things won't work right.");
+        write("要删除该进入点: delete enter pub");
+        write("请注意，如果\"要进入的物品\"不在 SetItems 中，将无法正常工作。");
         return 1;
     }
 
     if(out == "SetInventory"){
-        write("SetInventory is a special setting, which isn't modified like others.");
-        write("To add something to something else's inventory, the \"thing ");
-        write("to be added\" has to be in your environment, or carried by you.");
-        write("So if you want to add a chair to your sample room:\n");
+        write("SetInventory 是一个特殊设置，修改方式与其他设置不同。");
+        write("要将某物添加到另一物的库存中，\"要添加的物品\"必须在你");
+        write("的环境中，或者由你携带。所以如果你想添加一把椅子到你的示例房间:\n");
         write("home");
         write("go east");
         write("cd /domains/town/obj");
         write("clone chair");
         write("add chair to room");
         write("1\n");
-        write("If you want to add a sword to your fighter: \n");
+        write("如果你想给你的战士添加一把剑:\n");
         write("clone sword");
         write("add sword to fighter");
         write("wield sword\n");
-        write("To remove items from a thing's permanent inventory:");
+        write("要从物品的永久库存中移除物品:");
         write("delete chair");
         write("delete sword from fighter");
         return 1;
@@ -559,7 +556,7 @@ mixed eventModify(object ob, string str){
     else if(grepp(inheritance,"item") && member_array(out,item_arr) != -1) invalid = 0;
 
     if(invalid) {
-        write("Invalid property.");
+        write("无效属性。");
         return 1;
     }
     if(out == "SetProtection"){
@@ -631,7 +628,7 @@ mixed eventModify(object ob, string str){
     }
     mixed_tmp = reload(tmpfile);
     if(!mixed_tmp || !intp(mixed_tmp)) {
-        write("This would screw up your file. Aborting modification.");
+        write("此更改会导致文件出错。修改已中止。");
         return 1;
     }
     this_object()->eventGeneralStuff(tmpfile);
@@ -654,12 +651,12 @@ int eventDelete(object ob, string value){
 
     if(!check_privs(this_player(),filename)){
 
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return 1;
     }
 
     if(!check_privs(this_player(),tmpfile)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return 1;
     }
 
@@ -668,7 +665,7 @@ int eventDelete(object ob, string value){
     unguarded( (: cp(global1,global2) :) );
     mixed_tmp = reload(tmpfile);
     if(!mixed_tmp || !intp(mixed_tmp)) {
-        write("Target file is screwed up. Aborting delete.");
+        write("目标文件有问题。删除已中止。");
         return 1;
     }
     globalvalue = value;
@@ -676,13 +673,13 @@ int eventDelete(object ob, string value){
     unguarded( (: write_file(global2,globaltmp,1) :) );
     mixed_tmp = reload(tmpfile);
     if(!mixed_tmp || !intp(mixed_tmp)) {
-        write("This change would screw up your file. Aborting delete.");
+        write("此更改会导致文件出错。删除已中止。");
         return 1;
     }
     else unguarded( (: cp(global2, global1) :) );
     reload(ob);
     unguarded( (: rm(global2) :) );
-    write("Setting deleted.");
+    write("设置已删除。");
     return 1;
 }
 
@@ -693,7 +690,7 @@ int eventResumeArrayMod(object target, string tmpfile, string *NewArr, string fu
     filename = base_name(target)+".c";
 
     if(!check_privs(this_player(),filename)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return 1;
     }
     global2 = tmpfile;
@@ -718,14 +715,14 @@ int eventResumeArrayMod(object target, string tmpfile, string *NewArr, string fu
     this_object()->eventGeneralStuff(tmpfile);
     mx = reload(tmpfile);
     if(!mx || !intp(mx)){
-        write("This change would screw up the object. Aborting.");
+        write("此更改会导致对象出错。已中止。");
         return 1;
     }
     global1 = tmpfile;
     global2 = filename;
     unguarded( (: cp(global1, global2) :) );
     reload(target);
-    write(func+" modification complete.");
+    write(func+" 修改完成。");
     unguarded( (: rm(global1) :) );
     return 1;
 }
@@ -739,7 +736,7 @@ int eventResumeMappingChange(object target, string tmpfile, mapping NewMap, stri
     filename = base_name(target)+".c";
 
     if(!check_privs(this_player(),filename)){
-        write("You do not appear to have write access to this file. Modification aborted.");
+        write("你似乎没有对此文件的写权限。修改已中止。");
         return 1;
     }
 
@@ -761,7 +758,7 @@ int eventResumeMappingChange(object target, string tmpfile, mapping NewMap, stri
     unguarded( (: write_file(global1,global2,1) :) );
     mx = reload(tmpfile);
     if(!mx || !intp(mx)){
-        write("This change would screw up the object. Aborting.");
+        write("此更改会导致对象出错。已中止。");
         return 1;
     }
     this_object()->eventGeneralStuff(tmpfile);
@@ -769,7 +766,7 @@ int eventResumeMappingChange(object target, string tmpfile, mapping NewMap, stri
     global2 = filename;
     unguarded( (: cp(global1, global2) :) );
     if(target) reload(target);
-    write(func+" modification complete.");
+    write(func+" 修改完成。");
     unguarded( (: rm(global1) :) ); 
     return 1;
 }
@@ -779,7 +776,7 @@ int eventAddSettings(object ob, string tmp, mapping NewMap, string func){
     filename = base_name(ob)+".c";
 
     if(!check_privs(this_player(),filename)){
-        write("You do not have sufficient privileges to perform this action.");
+        write("你的权限不足，无法执行此操作。");
         return 1;
     }
     global2 = filename;

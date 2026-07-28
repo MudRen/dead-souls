@@ -93,20 +93,20 @@ int tellforward(string str){
     }
     if(!str){
         if(forwardee && forwarding){
-            write("You are forwarding tells to "+forwardee+".");
+            write("你正在将私聊转发给 "+forwardee+"。");
         }
         else {
-            write("There is no current forwarding recipient.");
+            write("当前没有设置转发对象。");
         }
         return 1;
     }
     if(str == "off"){
-        write("Disabling tell forwarding.");
+        write("已禁用私聊转发。");
         forwarding = 0;
         forwardee = 0;
         return 1;
     }
-    write("You are now forwarding tells to: "+str);
+    write("你现在将私聊转发给："+str);
     forwardee = str;
     forwarding = 1;
     return 1;

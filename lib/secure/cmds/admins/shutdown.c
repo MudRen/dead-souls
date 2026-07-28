@@ -23,28 +23,28 @@ void DoSaves(){
 int cmd(string str) {
     downer = previous_object();
     if(downer->GetForced()){
-        write("Forced attempt to shutdown.");
+        write("被强制尝试关闭。");
         return 1;
     }
     if(!archp(downer)) {
-        write("You are not permitted to shutdown the game.\n");
+        write("您没有权限关闭游戏。\n");
         return 1;
     }
     if(!str) {
-        write("You must give a shutdown reason as argument.\n");
+        write("您必须提供关闭原因作为参数。\n");
         return 1;
     }
     if(str == "cancel"){
         int cancel = EVENTS_D->eventCancelShutdown();
         if(cancel == -1){
-            write("There was no shutdown in progress.");
+            write("没有正在进行的关闭。");
         }
         else if(cancel > -1){
-            write("Shutdown cancelled.");
-            shout("Shutdown cancelled by " + downer->GetKeyName() + ".\n");
+            write("关闭已取消。");
+            shout("关闭已被 " + downer->GetKeyName() + " 取消。\n");
         }
         else {
-            write("Something odd happened. Shutdown may not be cancelled.");
+            write("发生了异常情况。关闭可能无法被取消。");
         }
         return 1;
     }
@@ -67,8 +67,7 @@ int cmd(string str) {
 }
 
 string GetHelp(){
-    return ("Syntax:  shutdown cancel\n"
-            "         shutdown [reason]\n\n"
-            "This will shut down the game immediately, or cancel "
-            "a scheduled shutdown. Use with great care.\nSee also: end");
+    return ("语法：shutdown cancel\n"
+            "         shutdown [原因]\n\n"
+            "这将立即关闭游戏，或取消预定的关闭。请谨慎使用。\n另见：end");
 }

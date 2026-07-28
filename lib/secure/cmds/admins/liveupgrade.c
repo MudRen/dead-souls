@@ -144,19 +144,19 @@ mixed cmd(string str) {
     }
 
     if(!str || str == ""){
-        write("Try: help liveupgrade.");
+        write("尝试：help liveupgrade。");
         return 1;
     }
 
     if(str == "alpha"){
         if(transver){
             transver = 0;
-            write("Alpha/Stable upgrades disabled.");
+            write("Alpha/Stable 升级已禁用。");
             return 1;
         }
         if(!transver){
             transver = 1;
-            write("Alpha/Stable upgrades enabled.");
+            write("Alpha/Stable 升级已启用。");
             return 1;
         }
     }
@@ -165,27 +165,27 @@ mixed cmd(string str) {
         string *vers = get_dir("/secure/upgrades/reverts/");
         string ver, subver;
         if(!vers || !sizeof(vers)){
-            write("There is no previous backup to revert to.");
+            write("没有之前的备份可供恢复。");
             return 1;
         }
         else ver = vers[0];
         vers = get_dir("/secure/upgrades/reverts/"+ver+"/");
         if(!vers || !sizeof(vers)){
-            write("There is no backup instance to revert to.");
+            write("没有备份实例可供恢复。");
             return 1;
         }
         else subver = "/secure/upgrades/reverts/"+ver+"/"+vers[0];
         eventRevert(subver);
         rename(subver,"/secure/upgrades/bak/"+last_string_element(subver,"/"));
         rmdir(path_prefix(subver));
-        write("Reversion complete.");
+        write("恢复完成。");
         return 1;
     }
 
     foreach(mixed element in socks){
         if(element[1] == "DATA_XFER" && element[4] == WEB_SOURCE_IP+"."+WEB_SOURCE_PORT &&
                 str != "cancel"){
-            player->eventPrint("A download is still in progress. Please wait until it is complete.");
+            player->eventPrint("下载仍在进行中。请等待完成。");
             return 1;
         }
     }
@@ -236,8 +236,8 @@ mixed cmd(string str) {
             }
             if(nlob) nlob->eventDestruct();
             if(!rename(nlu, CMD_LIVEUPGRADE)){
-                write("The liveupgrade command has been updated.");
-                write("Please wait five seconds, then again type:\n");
+                write("liveupgrade 命令已更新。");
+                write("请等待五秒，然后再次输入：\n");
                 write("liveupgrade apply");
                 if(!(this_object()->eventDestruct())){
                     RELOAD_D->eventReload(this_object(), 0);
@@ -245,7 +245,7 @@ mixed cmd(string str) {
                 return 1;
             }
         }
-        player->eventPrint("I hope you backed up...\n");
+        player->eventPrint("希望您已经备份了...\n");
         foreach(string element in get_dir(upgrades_files+"/")){
             if(element == "0^0secure0^0sefun0^0mud_info.c"){
                 object thingy = load_object(upgrades_files+"/"+element);
@@ -256,9 +256,8 @@ mixed cmd(string str) {
                     if(((grepp(vers,"a") && !grepp(current_ver, "a")) ||
                                 (!grepp(vers,"a") && grepp(current_ver, "a"))) &&
                             !transver){
-                        write("This upgrade would cross stable/alpha "
-                                "boundaries, but that has not been enabled "
-                                "with \"liveupgrade alpha\" yet.");
+                        write("此升级将跨越稳定版/Alpha版边界，"+
+                                "但尚未通过 \"liveupgrade alpha\" 启用。");
                         return 1;
                     }
                 }
@@ -285,7 +284,7 @@ mixed cmd(string str) {
         patched = 0;
         RELOAD_D->eventReload(this_object(), 15);
         rm("/secure/upgrades/txt/list.txt");
-        player->eventPrint("\nAlmost done...");
+        player->eventPrint("\n即将完成...");
         player = 0;
         return 1;
     }
@@ -298,7 +297,7 @@ mixed cmd(string str) {
             rm(element);
         }
         rm("/secure/upgrades/txt/list.txt");
-        player->eventPrint("Cancelled.");
+        player->eventPrint("已取消。");
         player = 0;
         RELOAD_D->eventReload(this_object(), 2);
         reload(LUGET_D);
@@ -307,35 +306,35 @@ mixed cmd(string str) {
     if(oob){
         if(!inet){
             inet = load_object(INET_D);
-            player->eventPrint("Starting INET_D.");
+            player->eventPrint("正在启动 INET_D。");
             if(member_array(INET_D,preload_file) == -1)
-                player->eventPrint("When you complete the upgrade by using the \"apply\" keyword, the "
-                        "inet daemon will be shut down, since you do not have it enabled by "
-                        "default. Please remember to either apply the upgrades when the downloading "
-                        "is complete, or manually shut down INET_D with the command: mudconfig inet stop\n");
+                player->eventPrint("当您使用 \"apply\" 关键字完成升级后，"+
+                        "inet 守护进程将被关闭，因为您默认未启用它。"+
+                        "请记住在下载完成后执行 apply，"+
+                        "或手动使用命令关闭 INET_D：mudconfig inet stop\n");
         }
         if(!inet){
-            player->eventPrint("There is a problem with INET_D. The upgrade will not proceed.");
+            player->eventPrint("INET_D 存在问题。升级将无法继续。");
             return 1;
         }
 
         if(!INET_D->GetService("oob")){
-            player->eventPrint("The OOB service is not enabled. Enabling it now.");
+            player->eventPrint("OOB 服务未启用。正在启用。");
             INET_D->AddService("oob",OFFSET_OOB,LIB_OOB,0);
         }
 
         if(!INET_D->GetService("oob")){
-            player->eventPrint("There was a problem enabling the OOB service. The upgrade will not proceed.");
+            player->eventPrint("启用 OOB 服务时出现问题。升级将无法继续。");
             return 1;
         }
 
         if(!INET_D->GetServer("oob")){
-            player->eventPrint("The OOB service is not started. Starting it now.");
+            player->eventPrint("OOB 服务未启动。正在启动。");
             INET_D->eventStartServer("oob");
         }
 
         if(!INET_D->GetServer("oob")){
-            player->eventPrint("There was a problem starting the OOB service. The upgrade will not proceed.");
+            player->eventPrint("启动 OOB 服务时出现问题。升级将无法继续。");
             return 1;
         }
 
@@ -349,26 +348,26 @@ mixed cmd(string str) {
 
         mud = INTERMUD_D->GetMudName(mud);
         if(!mud){
-            player->eventPrint("That liveupgrade server appears unavailable.");
+            player->eventPrint("该热更新服务器似乎不可用。");
             return 1;
         }
     }
     if(file == "all"){
         string tmp = replace_string(upgrades_txt+"/upgrades.txt","/","0^0");
         if(player && this_player() && player != this_player()){
-            this_player()->eventPrint("This command is currently locked and in use by "+capitalize(player->GetKeyName())+".");
+            this_player()->eventPrint("此命令当前已被 "+capitalize(player->GetKeyName())+" 锁定并使用中。");
             return 1;
         }
         else if(this_player()) player = this_player();
         else player = this_object();
 
         if(LUGET_D->GetUpgrading()){
-            player->eventPrint("An upgrade in already occurring. Please wait for it to complete.");
+            player->eventPrint("升级已在进行中。请等待完成。");
             return 1;
         }
 
         if(!file_exists(upgrades_txt+"/list.txt")){
-            player->eventPrint("Downloading updates table. Please wait...");
+            player->eventPrint("正在下载更新表。请稍候...");
             rename("/secure/upgrades/files","/secure/upgrades/bak/"+time());
             mkdir("/secure/upgrades/files");
             if(oob){
@@ -395,22 +394,20 @@ mixed cmd(string str) {
             LUGET_D->eventMajorUpgrade(WEB_SOURCE_IP, allnames,WEB_SOURCE_NAME);
         }
         rm(upgrades_txt+"/list.txt");
-        player->eventPrint("Full upgrade begun.");
-        player->eventPrint("Please wait until you receive a completion message,  "+
-                "then issue the command: liveupgrade apply\n\n");
-        player->eventPrint("%^FLASH%^RED%^WARNING! %^BLACK%^WARNING! %^YELLOW%^WARNING! %^RESET%^WARNING!");
-        player->eventPrint("You must *always* do a full backup before applying the liveupgrade. "+
-                "If the liveupgrade screwed up, and you get garbage files because of connection "+
-                "problems, it may be necessary for you to restore from backup to be able to "+
-                "start the mud again. You've been warned.");
+        player->eventPrint("完整升级已开始。");
+        player->eventPrint("请等待收到完成消息，然后执行命令：liveupgrade apply\n\n");
+        player->eventPrint("%^FLASH%^RED%^警告！%^BLACK%^警告！%^YELLOW%^警告！%^RESET%^警告！");
+        player->eventPrint("在执行热更新之前，您必须*始终*进行完整备份。"+
+                "如果热更新出错，由于连接问题导致文件损坏，"+
+                "您可能需要从备份恢复才能重新启动MUD。特此警告。");
         return 1;
     }
     if(oob){
         OOB_D->GetFile(mud,file);
-        player->eventPrint("Requesting the file \""+file+"\" from "+INTERMUD_D->GetMudName(mud)+".");
+        player->eventPrint("正在从 "+INTERMUD_D->GetMudName(mud)+" 请求文件 \""+file+"\"。");
     }
     else {
-        player->eventPrint("Requesting the file \""+file+"\" from "+WEB_SOURCE_IP);
+        player->eventPrint("正在从 "+WEB_SOURCE_IP+" 请求文件 \""+file+"\"。");
         LUGET_D->GetFile(WEB_SOURCE_IP, upgrade_prefix+file);
     }
     return 1;
@@ -433,24 +430,23 @@ int GetDeferment(){
 }
 
 string GetHelp() {
-    return ("Syntax: liveupgrade all\n"
+    return ("语法：liveupgrade all\n"
             "        liveupgrade apply\n"
             "        liveupgrade cancel\n"
             "        liveupgrade revert\n"
             "        liveupgrade alpha\n\n"
-            "To upgrade all files to the next appropriate level for your lib version:\n"
+            "将所有文件升级到您库版本的下一个适当级别：\n"
             "liveupgrade all\n"
-            "Wait until you receive the completion message before finalizing the upgrade. "
-            "You can finalize the upgrade by typing:\n"
+            "等待收到完成消息后再最终确定升级。"
+            "您可以通过输入以下命令最终确定升级：\n"
             "liveupgrade apply\n"
-            "This will delete your old copies of files and copy the newly downloaded "
-            "ones in their place.\n"
-            "NEVER EVER do a liveupgrade without a full backup first.\n"
-            "To cancel the liveupgrade process:\n"
+            "这将删除您的旧文件副本，并将新下载的文件复制到其位置。\n"
+            "绝对不要在没有完整备份的情况下执行热更新。\n"
+            "要取消热更新过程：\n"
             "liveupgrade cancel\n"
-            "To restore your mud to the condition it was in prior to the last liveupgrade.\n"
+            "将MUD恢复到上次热更新之前的状态：\n"
             "liveupgrade revert\n"
-            "To enable liveupgrading between alpha and stable versions:\n"
+            "启用Alpha版和稳定版之间的热更新：\n"
             "liveupgrade alpha\n\n"
-            "Web proxies are *NOT* supported. OOB is no longer supported.");
+            "不支持Web代理。OOB不再受支持。");
 }

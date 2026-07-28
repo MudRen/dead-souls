@@ -424,7 +424,7 @@ int yeik2(string str){
         string file, what = "/lib/blank";
         int on=1, clone, i=2100000000;
         object ob=new(what);
-        write("Starting the bullshit. ob: "+identify(ob));
+        write("开始压测。ob: "+identify(ob));
         sscanf(file_name(ob), "%s#%d", file, clone);
         if(!dirty) destruct(ob);
         if(on){
@@ -441,7 +441,7 @@ int yeik2(string str){
         }
     }
     else {
-        write("Stopping the bullshit.");
+        write("停止压测。");
     }
     return 1;
 }
@@ -462,7 +462,7 @@ int vargon(string str){
 int commcheck(){
     int i, count = 20;
     validate();
-    write("Testing comms...");
+    write("测试通信...");
     write2("\n");
     i = time_expression {
         while(count){
@@ -473,15 +473,15 @@ int commcheck(){
         }
     };
     write2("\n\n");
-    write("Microseconds: "+i);
+    write("微秒数："+i);
     return 1;
 }
 
 int perfcheck(string foo){
     int sauber = 1, i, count = 1000000;
     validate();
-    write("Testing performance...");
-    write("Recorded perfscore: "+MASTER_D->GetPerformanceScore());
+    write("测试性能...");
+    write("已记录性能分数："+MASTER_D->GetPerformanceScore());
     if(sizeof(foo)){
         int tmp = atoi(foo);
         sauber = 0;
@@ -501,6 +501,6 @@ int perfcheck(string foo){
             }
         };
     }
-    write("Microseconds: "+i);
+    write("微秒数："+i);
     return 1;
 }

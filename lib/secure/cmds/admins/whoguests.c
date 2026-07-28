@@ -13,19 +13,18 @@ int cmd(string str) {
 
     if(!archp(previous_object())) return 0;
     if(str) {
-        notify_fail("Correct syntax: whoguests\n");
+        notify_fail("正确语法: whoguests\n");
         return 0;
     }
     catch(guests = BANISH_D->query_guests());
-    message("info", "The following people are currently allowed in when "
-            "the mud is locked: ", this_player());
-    if(!sizeof(guests)) message("info", "No guests allowed.", this_player());
+    message("info", "以下人员在MUD锁定时被允许进入: ", this_player());
+    if(!sizeof(guests)) message("info", "没有允许的访客。", this_player());
     else this_player()->more(explode(format_page(guests, 5), "\n"));
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: whoguests\n\n"
-            "Lists all the guests allowed into the game when it is locked.\n"
-            "See also: addguest, removeguest");
+    return ("语法: whoguests\n\n"
+            "列出MUD锁定时被允许进入游戏的所有访客。\n"
+            "另见: addguest, removeguest");
 }

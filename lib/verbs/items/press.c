@@ -14,7 +14,7 @@ protected void create() {
     SetVerb("press");
     SetRules("OBJ", "STR on OBJ");
     SetSynonyms("push", "poke", "prod");
-    SetErrorMessage("Press what? Or press what on what?");
+    SetErrorMessage("按什么？或者把什么按在什么上？");
     SetHelp("Syntax: <press OBJECT>\n"
             "        <press THING on OBJECT>\n\n"
             "Allows you to press an object, or perhaps a thing on the "

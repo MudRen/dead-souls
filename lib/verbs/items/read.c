@@ -16,7 +16,7 @@ protected void create() {
     SetVerb("read");
     SetRules("OBJ", "OBJ at OBJ", "STR in OBJ","STR on OBJ", "STR from OBJ",  
             "STR of OBJ");
-    SetErrorMessage("Read something?");
+    SetErrorMessage("阅读什么？");
     SetHelp("Syntax: <read ITEM>\n"
             "        <read ITEM on OBJECT>\n"
             "        <read ITEM from OBJECT>\n\n"

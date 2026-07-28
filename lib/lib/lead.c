@@ -17,12 +17,12 @@ protected void create(){
 }
 
 mixed direct_lead_liv(){
-    if( this_object() == this_player() ) return "That's silly.";
+    if( this_object() == this_player() ) return "那太蠢了。";
     return this_player()->CanLead();
 }
 
 mixed direct_evade_liv(){
-    if( this_object() == this_player() ) return "That's silly.";
+    if( this_object() == this_player() ) return "那太蠢了。";
     return this_player()->CanEvade(this_object());
 }
 
@@ -86,20 +86,20 @@ int GetFollowBonus(object follower){
 varargs mixed CanLead(object ob){
     if( ob ){
         if( !ob->CanFollow() )
-            return "You are not empowered to lead " + ob->GetName();
+            return "你没有权力领导" + ob->GetName();
         if( ob->IsFollowing(this_object()) )
-            return "You are already leading " + ob->GetName();
+            return "你已经在领导" + ob->GetName() + "了";
         if( this_object()->IsFollowing(ob) )
-            return ob->GetName() + " is already leading you.";
+            return ob->GetName() + "已经在领导你了。";
         if( ob == this_object() )
-            return "You cannot possibly do that.";
+            return "你不可能那样做。";
     }
     return 1;
 }
 
 varargs mixed CanEvade(object ob){
     if( ob && !ob->IsFollowing(this_object()) )
-        return ob->GetName() + " is not following you.";
+        return ob->GetName() + "没有在跟随你。";
     return 1;
 }
 
@@ -137,7 +137,7 @@ int eventEvade(object ob){
     ret = CanEvade(ob);
     if( stringp(ret) ) error(ret);
     if( ret = 1 ){
-        ob->eventPrint(this_object()->GetName() + " has evaded you.");	this_object()->eventPrint("You have evaded " + ob->GetName() + ".");
+        ob->eventPrint(this_object()->GetName() + "甩掉了你。");	this_object()->eventPrint("你甩掉了" + ob->GetName() + "。");
         return 1;
     }
     return 0;

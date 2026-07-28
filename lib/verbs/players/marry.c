@@ -15,7 +15,7 @@ protected void create() {
     verb::create();
     SetVerb("marry");
     SetRules("LIV to LIV");
-    SetErrorMessage("Marry whom to whom?");
+    SetErrorMessage("让谁和谁结婚？");
     SetHelp("Syntax: marry <PLAYER> to <PLAYER>\n\n"
             "Allows people of proper divine or legal authority to join two "
             "souls in marriage. In order to marry people, you must be in an "
@@ -25,7 +25,7 @@ protected void create() {
 
 mixed can_marry_liv_to_liv() {
     if( this_player()->GetSkillLevel("faith") < 5 ){
-        return "You do not have enough faith to join two people.";
+        return "你没有足够的信仰来结合两个人。";
     }
     return 1;
 }
@@ -33,11 +33,11 @@ mixed can_marry_liv_to_liv() {
 mixed do_marry_liv_to_liv(object spouse1, object spouse2) {
     mixed tmp;
     if( this_player() == spouse1 || this_player() == spouse2 )
-        return "You may not perform a marriage on yourself.";
+        return "你不能为自己主持婚礼。";
     tmp = environment(this_player())->CanMarry(this_player(),
             spouse1, spouse2);
     if( !tmp ) {
-        this_player()->eventPrint("This place is not holy to you.");
+        this_player()->eventPrint("这个地方对你来说不够神圣。");
         return 1;
     }
     else if( stringp(tmp) ) {

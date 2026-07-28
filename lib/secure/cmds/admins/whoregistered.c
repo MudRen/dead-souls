@@ -9,17 +9,17 @@ int cmd(string str) {
 
     if(!archp(previous_object())) return 0;
     if(res=catch(sites = call_other(BANISH_D, "query_registered"))) {
-        write("Error in checking sites: "+res+"\n");
+        write("检查站点时出错："+res+"\n");
         return 1;
     }
     sites = sort_array(sites, "order_sites", this_object());
     if(str) {
         if(member_array(str, sites) == -1)
-            write("Site \""+str+"\" is not currently on registration.\n");
-        else write("Site \""+str+"\" is currently on registration.\n");
+            write("站点 \""+str+"\" 当前不在注册列表中。\n");
+        else write("站点 \""+str+"\" 当前在注册列表中。\n");
     }
     else {
-        write("People from these sites must currently register in order to get characters:\n");
+        write("来自这些站点的人当前必须注册才能创建角色：\n");
         this_player()->more(explode(format_page(sites, 5), "\n"));
     }
     return 1;
@@ -42,11 +42,10 @@ int order_sites(string alpha, string beta) {
 }
 
 string GetHelp(){
-    return ("Syntax: whoregistered [site]\n\n"
-            "Without an argument, it lists all sites which need to register "
-            "in order to create a character on the mud.  Given with a site "
-            "as an argument, it will confirm if that site must register. "
-            "Sites must be in ip numeric format.\nSee also: "
+    return ("语法：whoregistered [站点]\n\n"
+            "不带参数时，列出所有需要注册才能在MUD上创建角色的站点。"
+            "指定站点参数时，确认该站点是否需要注册。"
+            "站点必须使用IP数字格式。\n另见："
             "register, unregister, banish, unbanish, whobanished, "
             "watch, unwatch, whowatched");
 }

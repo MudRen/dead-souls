@@ -66,7 +66,7 @@ varargs mixed SpringTrap(mixed arg1, mixed arg2){
 }
 
 varargs mixed eventDisarm(mixed args...){
-    write("You successfully disarm the trap!");
+    write("你成功地拆除了陷阱！");
     eventUnshadow();
     return 1;
 }

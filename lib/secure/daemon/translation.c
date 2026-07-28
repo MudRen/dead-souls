@@ -6,7 +6,7 @@ inherit LIB_DAEMON;
 int eventTranslate(string str){
     string contents;
     if(!file_exists(str)){
-        write("No such file.");
+        write("文件不存在。");
         return 0;
     }
 
@@ -21,7 +21,7 @@ string *eventCompileList(string str){
 
     if(strsrch(str,"/domains/") != 0 &&
             strsrch(str,"/realms/") != 0){
-        write("Don't be stupid.");
+        write("别犯傻。");
         return ({});
     }
 

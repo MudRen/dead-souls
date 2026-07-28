@@ -8,15 +8,15 @@ string cmd(string str) {
     string where, rulefile, tmp;
     int flag;
 
-    notify_fail("Syntax: <indent [file | * | */*]\n");
+    notify_fail("语法: <indent [文件 | * | */*]\n");
 
-    if( !str ) return "You must specify a file or wildcard.";
+    if( !str ) return "你必须指定文件或通配符。";
     else if(str == "*") flag = 1;
     else if(str == "*/*") flag = 2;
     else str = absolute_path(this_player()->query_cwd(), str);
-    if( !file_exists(str) && !flag) return "File " + str + " not found.";
+    if( !file_exists(str) && !flag) return "文件 " + str + " 未找到。";
     else if( !(tmp = read_file(str)) && !flag)
-        return "Unable to read file " + str + ".";
+        return "无法读取文件 " + str + "。";
 
     rulefile = "/tmp/"+this_player()->GetKeyName()+".indent";
     write_file(rulefile, "I",1);
@@ -45,11 +45,11 @@ string cmd(string str) {
     }
 
     rm(rulefile);
-    return "Done."; 
+    return "完成。";
 }
 
 string GetHelp() {
-    return ("Syntax: indent [file | * | */*]\n\n"
-            "Indents a specified file, or all files in a directory."
-            "\nSee also: cd, ls, mv, pwd, rm, lsed, grep");
+    return ("语法: indent [文件 | * | */*]\n\n"
+            "对指定文件或目录中的所有文件进行缩进格式化。"
+            "\n另见: cd, ls, mv, pwd, rm, lsed, grep");
 }

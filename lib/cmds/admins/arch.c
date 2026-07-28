@@ -8,7 +8,7 @@ mixed cmd(){
     int ret, err;
 
     if(env == room){
-        write("You're already there.");
+        write("你已经在那里了。");
         return 1;
     }
 
@@ -19,14 +19,14 @@ mixed cmd(){
     }
 
     if(!room){
-        write("There seems to be a problem with the arch room.");
+        write("管理员房间似乎出了点问题。");
         return 1;
     }
 
     err = catch( ret = who->eventMoveLiving(room) );
 
     if(err || !ret){
-        write("Looks like some kind of problem getting into the arch room.");
+        write("进入管理员房间时似乎遇到了某种问题。");
     }
     return 1;
 }

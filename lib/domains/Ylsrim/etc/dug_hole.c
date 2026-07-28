@@ -37,10 +37,10 @@ mixed CanOpen() {
 protected void create() {
     door::create();
     SetId("down", "hole");
-    SetShort("down", "sand"); // this is what is seen when bumped into
+    SetShort("down", "沙子"); // this is what is seen when bumped into
     SetLong("down", (: checkOpenDown :));
     SetId("up", "hole");
-    SetShort("up", "sand"); // this is what is seen when bumped into
+    SetShort("up", "沙子"); // this is what is seen when bumped into
     SetLong("up", (: checkOpenUp :));
     SetClosed(1);
 }

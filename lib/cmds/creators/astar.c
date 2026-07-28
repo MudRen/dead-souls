@@ -20,7 +20,7 @@ mixed cmd(string str)
     int i, j, l, sz;
     int start, goal;
 
-    write("foo");
+    write("开始寻路...");
 
     map_costs = ([
             ' ': 1,
@@ -146,8 +146,8 @@ mixed cmd(string str)
     write(implode(map_ex, "\n") + "\n");
     write("\n");
 
-    write("sx, sy: " + sx + ", " + sy + "\n");
-    write("gx, gy: " + gx + ", " + gy + "\n");
+    write("起点 x,y: " + sx + ", " + sy + "\n");
+    write("终点 x,y: " + gx + ", " + gy + "\n");
     write("\n");
 
     if(mapp(data))

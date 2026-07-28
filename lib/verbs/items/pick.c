@@ -15,8 +15,7 @@ protected void create() {
     verb::create();
     SetVerb("pick");
     SetRules("STR on OBJ", "STR on OBJ with OBJ", "OBJ");
-    SetErrorMessage("You might pick a flower or perhaps pick the lock on "
-            "something?");
+    SetErrorMessage("你可以摘花，或者撬开...的锁。");
     SetHelp("Syntax: <pick OBJECT>\n"
             "        <pick lock on OBJECT>\n"
             "        <pick lock on OBJECT with TOOL>\n\n"
@@ -32,27 +31,27 @@ protected void create() {
 
 mixed can_pick_obj() {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     return this_player()->CanManipulate();
 }
 
 mixed can_pick_str_on_obj(string str) {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     if( this_player()->GetStaminaPoints() < 20 ) {
-        return "You are too tired.";
+        return "你太累了。";
     }
     return this_player()->CanManipulate();
 }
 
 mixed can_pick_str_on_obj_with_obj(string str) {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     if( this_player()->GetStaminaPoints() < 30 ) {
-        return "You are too tired.";
+        return "你太累了。";
     }
     return this_player()->CanManipulate();
 }
@@ -63,7 +62,7 @@ mixed do_pick_obj(object ob, string id) {
 
 mixed do_pick_str_on_obj(string wrd, object ob, mixed *args...) {
     wrd = remove_article(lower_case(args[1]));
-    this_player()->eventPrint("You eye the lock for weaknesses.");
+    this_player()->eventPrint("你审视着锁的弱点。");
     if( this_player()->GetInCombat() )
         this_player()->SetAttack(0, (: $(ob)->eventPick(this_player(), $(wrd)):),
                 ROUND_OTHER);
@@ -74,7 +73,7 @@ mixed do_pick_str_on_obj(string wrd, object ob, mixed *args...) {
 mixed do_pick_str_on_obj_with_obj(string wrd, object ob, object tool,
         mixed *args...) {
     wrd = remove_article(lower_case(args[1]));
-    this_player()->eventPrint("You eye the lock for weaknesses.");
+    this_player()->eventPrint("你审视着锁的弱点。");
     if( this_player()->GetInCombat() )
         this_player()->SetAttack(0, (: $(ob)->eventPick(this_player(), $(wrd),
                         $(tool)) :),ROUND_OTHER);

@@ -16,11 +16,11 @@ void abort();
 int cmd(string str) {
     if(!archp(previous_object())) return 0;
     if(!str) {
-        notify_fail("Syntax: register <site-ip>\n\n");
+        notify_fail("语法: register <站点IP>\n\n");
         return 0;
     }
-    write("%^RED%^Enter all applicable information, including names, "
-            "offenses and email addresses.");
+    write("%^RED%^请输入所有相关信息，包括名称、"
+            "违规原因和邮箱地址。");
     rm(DIR_TMP+"/"+this_player()->GetKeyName()+".tmp");
     this_player()->eventEdit( DIR_TMP "/" + this_player()->GetKeyName(),
             (: end_edit($(str)) :));
@@ -38,7 +38,7 @@ void end_edit(string site) {
         tmpfile = replace_string(tmpfile, "\n", " ");
     }
     else {
-        write("Nothing written. Registration operation cancelled.");
+        write("未写入任何内容。注册操作已取消。");
         return;
     }
     num = sizeof(lines = explode(wrap(tmpfile, 60), "\n"));
@@ -49,26 +49,25 @@ void end_edit(string site) {
         str +=  "      * "+lines[x]+"\n";
 
     if(res = catch(call_other(BANISH_D, "register_site", site))) 
-        write("Error in registering site: "+res+"\n");
+        write("注册站点时出错: "+res+"\n");
 
     log_file("watch/register", "\n" + str);
-    write("%^RED%^%^BOLD%^"+site+" is now on registration!");
+    write("%^RED%^%^BOLD%^"+site+" 现已加入注册列表！");
 }
 
 void abort() {
     rm(DIR_TMP+"/"+this_player()->GetKeyName()+".tmp");
-    write("%^RED%^Site not registered!");
+    write("%^RED%^站点未注册！");
 }
 
 string GetHelp(){
-    return "Syntax: register <site>\n\n"
-        "Makes a given site needs to register their characters with "
-        "law before being able to play the mud.  A reason must be given "
-        "and it must be good.  In general, only law should be using "
-        "this command.  And if you are not law, you better mail law. "
-        "This command only works with numeric addresses, ie:\n"
-        "    register 134.181.*                ok\n"
-        "    register 134.181.1.12             ok\n"
-        "    register orlith.bates.edu         BAD\n"
-        "See also: unbanish, whobanished, whoregistered, whowatched";
+    return "语法: register <站点>\n\n"
+        "使指定站点需要在法律组注册角色后才能玩MUD。"
+        "必须给出原因，且原因必须合理。通常只有法律组"
+        "应该使用此命令。如果你不是法律组成员，最好给法律组发邮件。"
+        "此命令仅适用于数字地址，例如:\n"
+        "    register 134.181.*                可以\n"
+        "    register 134.181.1.12             可以\n"
+        "    register orlith.bates.edu         不行\n"
+        "另见: unbanish, whobanished, whoregistered, whowatched";
 }

@@ -76,9 +76,9 @@ mixed eventFly(object who, string dir){
     mapping exit = GetExitData(dir);
 
     if( GetDoor(dir) && GetDoor(dir)->GetClosed() ){
-        who->eventPrint("You fly into " + GetDoor(dir)->GetShort(dir) + ".");
-        eventPrint(who->GetName() + " flies into " +
-                GetDoor(dir)->GetShort(dir) + ".", who);
+        who->eventPrint("你飞进了 " + GetDoor(dir)->GetShort(dir) + "。");
+        eventPrint(who->GetName() + " 飞进了 " +
+                GetDoor(dir)->GetShort(dir) + "。", who);
         return 1;
     }
     if( exit["pre"] && !evaluate(exit["pre"], dir) ){

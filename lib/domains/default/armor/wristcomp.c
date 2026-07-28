@@ -49,7 +49,7 @@ protected void create() {
                 ({"panel","functions"}) : (: CheckPanel :),
                 ]) );
     SetRead( ([
-                ({ "panel", "default" }) :"Yautja tactical data system, version .09",
+                ({ "panel", "default" }) :"Yautja战术数据系统，版本.09",
                 //"panel": (: eventRead :),
                 ]) );
     SetMaxClones(2);
@@ -109,9 +109,9 @@ int eventTurnOn(){
         return 1;
     }
     write("你激活了腕式电脑。电脑显示：");
-    say(this_player()->GetName()+" operates "+possessive(this_player())+" "
-            "wrist computer. You hear the computer say: ");
-    yaut_say("Computer online.");
+    say(this_player()->GetName()+" 操作了"+possessive(this_player())+" "
+            "腕式电脑。你听到电脑说：");
+    yaut_say("电脑已上线。");
     if(sizeof(contents)) contents->eventPowerOn();
     active = 1;
     return 1;
@@ -120,9 +120,9 @@ int eventTurnOn(){
 int eventTurnOff(){
     object *contents = all_inventory();
     write("你关闭了腕式电脑。电脑显示：");
-    say(this_player()->GetName()+" operates "+possessive(this_player())+" "
-            "wrist computer. You hear the computer say: ");
-    yaut_say("Computer offline.");
+    say(this_player()->GetName()+" 操作了"+possessive(this_player())+" "
+            "腕式电脑。你听到电脑说：");
+    yaut_say("电脑已离线。");
     if(sizeof(contents)) contents->eventPowerOff();
     active = 0;
     return 1;
@@ -145,22 +145,22 @@ varargs mixed eventUninstallModule(object which, int auto){
     object *contents = all_inventory();
     object module = previous_object();
     if(which) module = which;
-    if(!auto) say(this_player()->GetName()+" operates "+possessive(this_player())+" "
-            "wrist computer.");
+    if(!auto) say(this_player()->GetName()+" 操作了"+possessive(this_player())+" "
+            "腕式电脑。");
     if(!active){
         if(!auto) write("电脑没有激活。");
         return 1;
     }
     if(!auto){
         write("你尝试从腕式电脑中卸载一个模块。电脑显示：");
-        say(this_player()->GetName()+"'s wrist computer says: ");
-        yaut_say("Uninstalling...");
+        say(this_player()->GetName()+"的腕式电脑说：");
+        yaut_say("正在卸载...");
     }
     if(SpecialFuns[module])
         foreach(mixed key, mixed val in SpecialFuns[module]){
             remove_action("foo",SpecialFuns[module][key]["hook"]);
             if(!auto){
-                yaut_say(key+" successfully uninstalled.");
+                yaut_say(key+" 已成功卸载。");
             }
         }
     map_delete(SpecialFuns, module);
@@ -171,8 +171,8 @@ varargs mixed eventInstallModule(mapping ModuleData, int auto){
     string *contents = ({});
     object module = previous_object();
     if(member_array("eventInitialize",call_stack(2)) != -1) auto = 1;
-    if(!auto) say(this_player()->GetName()+" operates "+possessive(this_player())+" "
-            "wrist computer.");
+    if(!auto) say(this_player()->GetName()+" 操作了"+possessive(this_player())+" "
+            "腕式电脑。");
     if(!answers_to("Yautja data module",module)){
         if(!auto) write("那不是这台电脑的正确数据模块。");
         return 0;
@@ -199,7 +199,7 @@ varargs mixed eventInstallModule(mapping ModuleData, int auto){
     if(!auto){
         write("你将一个模块安装到腕式电脑中。电脑显示：");
         say(this_player()->GetName()+"'s wrist computer says: ");
-        yaut_say("Installing...");
+        yaut_say("正在安装...");
     }
     foreach(mixed key, mixed val in SpecialFuns[module]){
         add_action(SpecialFuns[module][key]["function"],SpecialFuns[module][key]["hook"]);
@@ -222,7 +222,7 @@ mixed CanGetFrom(object who, object item){
 varargs mixed eventRead(mixed who, mixed str){
     object dude;
     string what;
-    string ret = "Yautja tactical data system display. Installed modules:\n";
+    string ret = "Yautja战术数据系统显示。已安装模块：\n";
     if(stringp(who)){
         what = who;
         dude = this_player();
@@ -274,7 +274,7 @@ mixed eventClose(object who){
 }
 
 string GetInternalDesc(){
-    return "This is the interface for the wrist computer. You may try to \"read computer\"";
+    return "这是腕式电脑的界面。你可以尝试\"read computer\"来阅读。";
 }
 
 varargs mixed eventUnequip(object who){

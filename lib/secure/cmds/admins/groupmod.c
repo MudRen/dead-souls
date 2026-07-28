@@ -26,7 +26,7 @@ mixed cmd(mixed args) {
     }
 
     if(sscanf(args,"%s %s",s1,s2) != 2){
-        write("Insufficient number of arguments. Try: help groupmod");
+        write("参数不足。尝试：help groupmod");
         return 1;
     }
 
@@ -49,12 +49,12 @@ mixed cmd(mixed args) {
     }
 
     if(sscanf(args,"%s %s",groupname,dudename) == 2 && (abs(action) > 1) ){
-        write("Too many arguments for this operation. Please try: help groupmod.");
+        write("此操作参数过多。请尝试：help groupmod。");
         return 1;
     }
 
     if(sscanf(args,"%s %s",groupname,dudename) != 2 && (abs(action) < 2) ){
-        write("Insufficient arguments for this operation. Please try: help groupmod.");
+        write("此操作参数不足。请尝试：help groupmod。");
         return 1;
     }
 
@@ -83,68 +83,68 @@ mixed cmd(mixed args) {
     cles = keys(GroupsMap);
     if(str == "ASSIST" || str == "SECURE" ) {
         if(!securep(this_player())){
-            write("Only full admins may do this.");
+            write("只有完全管理员才能执行此操作。");
             return 1;
         }
         reload_player = 1;
     }
 
     if(!GroupsMap[str] && (abs(action) < 2)){
-        write("No such group.");
+        write("没有这样的组。");
         return 1;
     }
 
     if(!action){
-        write("I don't understand what you want. Please specify ");
-        write("which action you want, -r, -a, -d, or -c");
+        write("我不理解您的意图。请指定");
+        write("您想要的操作：-r、-a、-d 或 -c");
         return 1;
     }
 
     if(action == 1){
         if(member_array(dudename,GroupsMap[str]) != -1){
-            write("That person is already a member of that group.");
+            write("该人员已经是该组的成员。");
             return 1;
         }
         if(member_array(str,cles) != -1 && !sizeof(GroupsMap[str])) GroupsMap[str] = ({});
         GroupsMap[str] += ({ dudename });
-        write("The group "+str+" now contains the following:\n "+
+        write("组 "+str+" 现在包含以下成员：\n "+
                 implode(GroupsMap[str],":"));
     }
 
     if(action == -1){
         if(member_array(dudename,GroupsMap[str]) == -1){
-            write("That person is already not a member of that group.");
+            write("该人员已经不是该组的成员。");
             return 1;
         }
         if((str == "ASSIST" || str == "SECURE") && dudename == this_player()->GetKeyName() ) {
-            write("This command will not let you remove yourself from the SECURE or ASSIST groups.");
+            write("此命令不允许您将自己从 SECURE 或 ASSIST 组中移除。");
             return 1;
         }
         GroupsMap[str] -= ({ dudename });
-        write("The group "+str+" now contains the following:\n "+
+        write("组 "+str+" 现在包含以下成员：\n "+
                 implode(GroupsMap[str],":"));
     }
 
     if(action == -2){
         if(member_array(args,cles) == -1){
-            write("That group doesn't exist.");
+            write("该组不存在。");
             return 1;
         }
         if(args == "ASSIST" || args == "SECURE" ) {
-            write("I'm not doing that. You'll have to hose your mud manually.");
+            write("我不会执行此操作。您需要手动清理您的MUD。");
             return 1;
         }
         map_delete(GroupsMap,args);
-        write("Group deleted.");
+        write("组已删除。");
     }
 
     if(action == 2){
         if(member_array(args,cles) != -1){
-            write("That group already exists.");
+            write("该组已存在。");
             return 1;
         }
         GroupsMap[args] = ({});
-        write("Group added.");
+        write("组已添加。");
     }
 
     foreach(string key, mixed val in GroupsMap){
@@ -158,9 +158,8 @@ mixed cmd(mixed args) {
     if(reload_player){
         object player = unguarded((: find_player(dudename) :));
         if(player){
-            tell_player(player, "You've had your group membership changed "+
-                    "in an important way.\n\nYour user object will be reloaded in "+
-                    "a few moments.\n\n");
+            tell_player(player, "您的组成员身份发生了重要变更。\n\n"+
+                    "您的用户对象将在稍后被重新加载。\n\n");
             RELOAD_D->eventReload(player, 3);
         }
     }
@@ -169,10 +168,10 @@ mixed cmd(mixed args) {
 }
 
 string GetHelp() {
-    return ("Syntax: groupmod [-a|-r] <GROUP> <NAME> \n"
-            "        groupmod [-c|-d] <GROUP>\n\n"
-            "Modifies /secure/cfg/groups.cfg with the desired information.\n"
-            "To create a group called MUDKIPZ: groupmod -c mudkipz\n"
-            "To add Yotsuba as member of that group: "
+    return ("语法：groupmod [-a|-r] <组名> <人名> \n"
+            "        groupmod [-c|-d] <组名>\n\n"
+            "修改 /secure/cfg/groups.cfg 中的组信息。\n"
+            "创建名为 MUDKIPZ 的组：groupmod -c mudkipz\n"
+            "将 Yotsuba 添加为该组成员："
             "groupmod -a mudkipz yotsuba");
 }

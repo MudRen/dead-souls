@@ -52,10 +52,10 @@ mixed eventDarken(){
     object env;
 
     if( env = environment() ){
-        env->eventPrint("The " + GetKeyName() + " goes dark.");
+        env->eventPrint(GetKeyName() + "变暗了。");
         if( living(env) ){
             environment(env)->eventPrint(possessive_noun(env) + " " +
-                    GetKeyName() + " goes dark.", env);
+                    GetKeyName() + "变暗了。", env);
         }
     }
     SetLit(0);

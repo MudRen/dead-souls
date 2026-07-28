@@ -43,12 +43,9 @@ protected void ReturnAndRelease(object *dudes, string file){
 }
 
 protected void create() {
-    SetHelp("Syntax: update [-r] [file list]\n\n"
-            "Destructs the master copy of the file named "
-            "and then attempts to reload a new version "
-            "of it.\n"
-            "The -r flag attempts to update all "
-            "files in the target's inheritance tree.");
+    SetHelp("语法: update [-r] [文件列表]\n\n"
+            "销毁指定文件的主副本，然后尝试重新加载新版本。\n"
+            "-r 标志尝试更新目标继承树中的所有文件。");
 }
 
 mixed cmd(string args) {
@@ -71,9 +68,9 @@ mixed cmd(string args) {
         }
     }
     if( args == "" || !args ) {
-        if(!this_player()) return "No player.";
+        if(!this_player()) return "没有玩家。";
         ob = room_environment(this_player());
-        if( !ob ) return "You have no environment.";
+        if( !ob ) return "你没有所在环境。";
         file = base_name(ob);
         if(ob->GetVirtual()){
             virt = path_prefix(file);
@@ -85,7 +82,7 @@ mixed cmd(string args) {
         err = catch( ret = eventUpdate(file, flags, virt) );
         if( err || !ret ) {
             obs->eventPrint("你的周围剧烈崩塌，你被抛入了虚空。");
-            return "Error in reloading environment.";
+            return "重新加载环境时出错。";
         }
         obs = filter(obs, (: $1 :));
         if( sizeof(obs) ) ReturnAndRelease(obs, file);
@@ -108,7 +105,7 @@ mixed cmd(string args) {
             if( sizeof(tmp = wild_card(tmpfiles[i])) )
                 files += tmp;
             else {
-                this_player()->eventPrint(tmpfiles[i] + ": File not found.");
+                this_player()->eventPrint(tmpfiles[i] + ": 文件未找到。");
             }
         }
         i = sizeof(files);
@@ -129,8 +126,7 @@ varargs protected int eventUpdate(string args, int flags, string virt) {
         if( !(ob = find_object(args)) ) return 0;
         ancestors = deep_inherit_list(ob);
         if(this_player() && (flags & U_RECURSIVE) && !(flags & U_AUTOMATED))
-            this_player()->eventPrint("(%^CYAN%^Recursive "
-                "update: " + args + "%^RESET%^)\n");
+            this_player()->eventPrint("(%^CYAN%^递归更新: " + args + "%^RESET%^)\n");
         i = sizeof(ancestors);
         while(i--) if( !eventUpdate(ancestors[i], flags ^ U_RECURSIVE) ) {
             if(this_player())
@@ -152,10 +148,10 @@ varargs protected int eventUpdate(string args, int flags, string virt) {
             MAP_D->RemoveCache(coords);
         }
         if( tmp = catch( ob->eventDestruct()) && this_player() )
-            this_player()->eventPrint(args + ": error in eventDestruct()");
+            this_player()->eventPrint(args + ": eventDestruct() 出错");
         if( ob ) destruct(ob);
         if( ob && this_player())
-            this_player()->eventPrint(args + ": Failed to destruct old object.");
+            this_player()->eventPrint(args + ": 销毁旧对象失败。");
     }
     if( args == base_name(this_object()) && this_player() ) {
         this_player()->eventPrint("销毁后无法重新加载更新。\n"
@@ -169,8 +165,8 @@ varargs protected int eventUpdate(string args, int flags, string virt) {
     tmp = catch(call_other(args, "???"));
     if(this_player() && !(flags & U_AUTOMATED) ){
         if( !tmp )
-            this_player()->eventPrint(args + ": Ok");
-        else this_player()->eventPrint(args + ": Error in update\n" + tmp);
+            this_player()->eventPrint(args + ": 完成");
+        else this_player()->eventPrint(args + ": 更新出错\n" + tmp);
     }
     return 1;
 }

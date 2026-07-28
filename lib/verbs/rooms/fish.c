@@ -13,7 +13,7 @@ protected void create() {
     verb::create();
     SetVerb("fish");
     SetRules("with OBJ");
-    SetErrorMessage("Fish with what?");
+    SetErrorMessage("用什么钓鱼？");
     SetHelp("Syntax: fish with <OBJ>\n\n"
             "Starts you fishing so long as OBJ is something you can fish "
             "with and you are in a place that allows fishing.\n"
@@ -26,7 +26,7 @@ mixed can_fish_with_obj(){
     if( !(env = environment(this_player())) ) return 0;
     err = env->CanCast(this_player());
     if( err == 1 ) return this_player()->CanManipulate();
-    else if( !err ) return "It doesn't look like there is much fishing here.";
+    else if( !err ) return "这里看起来没什么鱼可钓。";
     else return err;
 }
 

@@ -15,7 +15,7 @@ protected void create() {
     SetVerb("free");
     SetRules("LIV from OBJ");
     SetSynonyms("release", "liberate", "emancipate");
-    SetErrorMessage("Free what from what?");
+    SetErrorMessage("把什么从什么中释放？");
     SetHelp("Syntax: <free OBJECT from OBJECT>\n\n"
             "Frees an object from a trap.\n\n"
             "Synonyms: emancipate, liberate, release\n\n"

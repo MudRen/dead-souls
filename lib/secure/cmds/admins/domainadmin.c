@@ -28,12 +28,12 @@ mixed cmd(string args) {
     person = lower_case(person);
 
     if(!user_exists(person)){
-        write("Invalid person.");
+        write("无效的人员。");
         return 1;
     }
 
     if(!directory_exists("/domains/"+domain)){
-        write("Invalid domain.");
+        write("无效的域。");
         return 1;
     }
 
@@ -50,7 +50,7 @@ mixed cmd(string args) {
     if(flag == "-a"){
 
         if(member_array(person, admin_array) != -1){
-            write("That person already administers that domain.");
+            write("该人员已经是该域的管理员。");
             return 1;
         }
 
@@ -71,7 +71,7 @@ mixed cmd(string args) {
 
     else if(flag == "-d"){
         if(member_array(person, admin_array) == -1){
-            write("That person does not administer that domain.");
+            write("该人员不是该域的管理员。");
             return 1;
         }
 
@@ -89,26 +89,24 @@ mixed cmd(string args) {
     }
 
     else {
-        write("Invalid flag.");
+        write("无效的标志。");
         return 1;
     }
 
     write_file("/secure/cfg/write.cfg", write_perms, 1);
     update("/secure/daemon/master");
-    write("Ok.");
+    write("好的。");
     return 1;
 }
 
 string GetHelp(string args) {
-    return ("Syntax: domainadmin [-a | -d] <domain> <person>\n\n"
-            "This command manages the write permissions to a specified "
-            "domain. For example, to give a creator named Snuffy write "
-            "privileges to /domains/SnuffLand, you would type: "
+    return ("语法：domainadmin [-a | -d] <域> <人员>\n\n"
+            "此命令管理指定域的写入权限。例如，要授予名为 Snuffy 的创造者 "
+            "/domains/SnuffLand 的写入权限，请输入： "
             "\ndomainadmin -a SnuffLand snuffy\n"
-            "To revoke those privileges:\n"
+            "要撤销该权限：\n"
             "\domainadmin -d SnuffLand snuffy\n"
-            "This permits the creator to use QCS within the domain's "
-            "directories. "
-            "Write privileges are listed in /secure/cfg/write.cfg\n"
-            "See also: domaincreate, admintool");
+            "这允许创造者在域的目录中使用 QCS。 "
+            "写入权限列在 /secure/cfg/write.cfg 中。\n"
+            "另见：domaincreate, admintool");
 }

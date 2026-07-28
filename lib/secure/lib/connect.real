@@ -279,10 +279,9 @@ private void InputPassword(string pass, string cap) {
                 unguarded( (: log_file("/secure/log/security",
                   "Maximum password tries exceeded by " +
                         Name + " from " + client_ip + extra + "\n") :) );
-                filter(users(), (: archp :))->eventPrint("System %^MAGENTA%^"
-                        "<error>%^RESET%^ Maximum password "
-                        "attempts exceeded by " + cap +
-                        " from " + client_ip + ".\n",
+                filter(users(), (: archp :))->eventPrint("系统 %^MAGENTA%^"
+                        "<错误>%^RESET%^ " + cap +
+                        " 密码尝试次数超限，来自 " + client_ip + "。\n",
                         MSG_ERROR);
                 Destruct();
                 return;

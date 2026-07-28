@@ -13,18 +13,17 @@ mixed cmd(string args) {
     int x;
 
     if(!archp(previous_object())) return 0;
-    if( !args || args == "" ) return "You must specify a delay in minutes.";
-    if( !(x = to_int(args)) ) return "You must specify a delay in minutes.";
-    if( x < 2 ) return "The delay must be at least 2 minutes.";
+    if( !args || args == "" ) return "你必须指定延迟分钟数。";
+    if( !(x = to_int(args)) ) return "你必须指定延迟分钟数。";
+    if( x < 2 ) return "延迟时间至少为2分钟。";
     EVENTS_D->eventReboot(x);
-    message("system", "Reboot sequence initiated.", this_player());
+    message("system", "重启序列已启动。", this_player());
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: end [delay]\n\n"
-            "Initiates a reboot sequence which will end in a reboot after "
-            "the specified delay period.  The delay must be specified in "
-            "minutes and it must be of at least two minutes.\n"
-            "See also: nextreboot, setreboot, shutdown");
+    return ("语法: end [延迟时间]\n\n"
+            "启动重启序列，在指定的延迟时间后执行重启。"
+            "延迟时间必须以分钟为单位，且至少为两分钟。\n"
+            "另见: nextreboot, setreboot, shutdown");
 }

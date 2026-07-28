@@ -24,8 +24,7 @@ mixed cmd(string str) {
 }
 
 string GetHelp() {
-    return ("Syntax: usage [command [args]]\n\n"
-            "Quantifies the thinking the mud had to do and how "
-            "long it took to complete the command specified.\n"
-            "See also: man rusage");
+    return ("语法: usage [命令 [参数]]\n\n"
+            "量化MUD执行指定命令所需的思考量和耗时。\n"
+            "另见: man rusage");
 }

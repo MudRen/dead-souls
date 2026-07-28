@@ -6,7 +6,7 @@ protected void create() {
     ::create();
     SetVerb("abandon");
     SetRules("LIV");
-    SetErrorMessage("Whom would you like to abandon?");
+    SetErrorMessage("你想抛弃谁？");
     SetHelp("Syntax: abandon <LIV>\n\n"
             "If a living object is specified, this command allows "
             "you to leave the creature's companionship.\n" 

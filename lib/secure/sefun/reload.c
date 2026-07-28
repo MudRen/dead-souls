@@ -35,7 +35,7 @@ varargs mixed reload(mixed ob, int recursive, int quiet){
     }
 
     if(!ob || !objectp(ob)){
-        if(!quiet) write("No such object.");      
+        if(!quiet) write("对象不存在。");
         return 0;
     }
 
@@ -53,8 +53,8 @@ varargs mixed reload(mixed ob, int recursive, int quiet){
         if(clonep(ob) && !inherits(LIB_ROOM,ob)){
             if(!strsrch(filename,"/lib/") || ob->isDummy() || inherits(LIB_DAEMON,ob)) true(); 
             else if(!quiet)
-                write("This object lacks a working init function. "
-                        "Please run initfix on it as soon as possible.");
+                write("此对象缺少有效的 init 函数。"
+                        "请尽快对其运行 initfix。");
         }
     }
     if(inherits(LIB_ROOM,ob)){
@@ -67,8 +67,8 @@ varargs mixed reload(mixed ob, int recursive, int quiet){
         }
         unguarded( (: mx = catch(load_object(CMD_UPDATE)->cmd(args + filename)) :) );
         if(mx && !quiet) {
-            write("There appears to be a problem updating one or more files.");
-            write("Reload failed.");
+            write("更新一个或多个文件时似乎出现了问题。");
+            write("重载失败。");
         }
         else {
             if(dudes) {
@@ -79,15 +79,15 @@ varargs mixed reload(mixed ob, int recursive, int quiet){
                     }
                 }
             }
-            if(!quiet) write("Reload complete.");
+            if(!quiet) write("重载完成。");
         }
         StringFellows = ([]);
         return 1;
     }
     mx = unguarded( (: load_object(CMD_UPDATE)->cmd(args + " "+ filename) :) );
     if((!mx || !intp(mx) || mx == 0) && !quiet) {
-        write("There appears to be a problem updating one or more files.");
-        write("Reload failed.");
+        write("更新一个或多个文件时似乎出现了问题。");
+        write("重载失败。");
         return 0;
     }
 
@@ -96,6 +96,6 @@ varargs mixed reload(mixed ob, int recursive, int quiet){
         ob->eventMove(ROOM_FURNACE);
         if(next && objectp(next) && env) next->eventMove(env);
     }
-    if(!quiet && this_player()) write("Done.");
+    if(!quiet && this_player()) write("完成。");
     return 1;
 }

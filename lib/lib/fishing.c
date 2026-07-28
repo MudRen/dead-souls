@@ -48,12 +48,12 @@ void heart_beat(){
         if( !present(pole, ob) ) continue;
         if( pole->GetBroken() ) continue;
         if( (object)ob->GetInCombat() ){
-            message("my_action", "You are no longer fishing.", ob);
+            message("my_action", "你不再钓鱼了。", ob);
             RemoveFishing(ob);
             continue;
         }
         if( (object)ob->GetSleeping() ){
-            message("my_action", "You are no longer fishing.", ob);
+            message("my_action", "你不再钓鱼了。", ob);
             RemoveFishing(ob);
             continue;
         }
@@ -106,18 +106,18 @@ void heart_beat(){
 
 mixed CanCast(object who, string where){
     if( this_player()->GetInCombat() )
-        return "You are too busy to fish!";
+        return "你太忙了，不能钓鱼！";
     if( Fishing[this_player()->GetKeyName()] )
-        return "You are already fishing!";
+        return "你已经在钓鱼了！";
     if( GetMaxFishing() <= sizeof(Fishing) )
-        return "It is too crowded here to fish.";
+        return "这里太拥挤了，不能钓鱼。";
     return 1;
 }
 
 mixed CanStop(object who, string str){
     if( str != "fishing" ) return 0;
     str = this_player()->GetKeyName();
-    if( !Fishing[str] ) return "You are not fishing!";
+    if( !Fishing[str] ) return "你没有在钓鱼！";
     return 1;
 }
 
@@ -140,33 +140,33 @@ protected void eventCatch(object who, string fish, object pole){
 
     if( !who || !present(who) ) return;
     if( !pole || !present(pole, who) ){
-        message("my_action", "Having given up " + pole->GetShort() +
-                ", you lose your catch!", who);
+        message("my_action", "放开了" + pole->GetShort() +
+                "，你失去了你的猎物！", who);
         return;
     }
     if( !(pole->eventCatch(who, fish)) ) return;
     food=new(fish);
     RemoveFishing(who);
     who->AddSkillPoints("fishing", fish->GetFight()+fish->GetMass());
-    message("my_action", "You find " + fish->GetShort() + " on " +
-            pole->GetShort() + "!", who);
-    message("other_action", who->GetName() + " finds " +
-            fish->GetShort() + " on " + pole->GetShort() +
-            "!", this_object(), ({ who }));
+    message("my_action", "你在" + pole->GetShort() + "上发现了" +
+            fish->GetShort() + "！", who);
+    message("other_action", who->GetName() + "在" + pole->GetShort() +
+            "上发现了" + fish->GetShort() +
+            "！", this_object(), ({ who }));
     if( !(food->eventMove(who)) ){
         message("my_action", "你丢下了" + food->GetShort() + "！",
                 who);
-        message("other_action", who->GetName() + " drops " +
-                food->GetShort() + "!", this_object(), ({ who }) );
+        message("other_action", who->GetName() + "丢下了" +
+                food->GetShort() + "！", this_object(), ({ who }) );
         food->eventMove(this_object());
     }
 }
 
 mixed eventStop(object who, string str){
     RemoveFishing(this_player());
-    message("my_action", "You stop fishing.", who);
-    message("other_action", who->GetName() + " stops "
-            "fishing.", this_object(), ({ who }) );
+    message("my_action", "你停止了钓鱼。", who);
+    message("other_action", who->GetName() + "停止了"
+            "钓鱼。", this_object(), ({ who }) );
     return 1;
 }
 

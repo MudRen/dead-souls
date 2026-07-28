@@ -173,17 +173,16 @@ varargs int eventDie(mixed agent){
         eventDestroyUndead(agent);
     }
     else  {
-        message("my_action", "Consciousness passes from you after one last "
-                "gasp for air.", this_object());
-        message("my_action", "You awake, but you find your body feels "
-                "different, and the world about you is unfamiliar.",
+        message("my_action", "你的意识在最后一口喘息后消散了。", this_object());
+        message("my_action", "你醒来了，但你发现你的身体感觉"
+                "不同了，周围的世界也变得陌生。",
                 this_object());
         if( agent ){
             message("other_action", GetName() + " is killed by "
                     + agentname + ".",
                     environment(this_object()), ({ agent, this_object() }));
-            message("other_action", "You send " + GetName() + " into the "
-                    "Underworld.", agent);
+            message("other_action", "你将" + GetName() + "送入了"
+                    "冥界。", agent);
         }
         else message("other_action", GetName() + " dies.",
                 environment(), ({ this_object() }) );
@@ -222,8 +221,7 @@ varargs void eventRevive(int nopenalty){
     }
     if(!nopenalty && newbiep(this_object())) {
         nopenalty = 1;
-        write("As a newbie you don't incur an experience penalty"
-                " for this death.\n");
+        write("作为新手，你这次死亡不会损失经验值。\n");
     }
     if(!nopenalty){
         int expee, subexpee;
@@ -575,8 +573,8 @@ int ResetLevel(){
         log_file(file, GetCapName() + " went from level " + x + " to "
                 "level " + y + " (" + ctime(time()) + ")\n");
         if( x < y ){
-            eventPrint("%^YELLOW%^You are now a more experienced " +
-                    GetClass() + ".");
+            eventPrint("%^YELLOW%^你现在是更有经验的" +
+                    GetClass() + "了。");
             TrainingPoints += ( (y-x) * 4 );
         }
         else TrainingPoints -= ( (x-y) * 4 );

@@ -16,7 +16,7 @@ protected void create() {
 
 int CanReceive(object ob) {
     if(playerp(ob) && !creatorp(ob) && !present("testchar badge",ob)) {
-        message("info","Creator staff only, sorry.", ob);
+        message("info","仅限创作者进入，抱歉。", ob);
         return 0;
     }
     return ::CanReceive(ob);

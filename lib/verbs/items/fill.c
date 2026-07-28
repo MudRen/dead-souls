@@ -6,7 +6,7 @@ protected void create() {
     verb::create();
     SetVerb("fill");
     SetRules("OBJ with OBJ","OBJ from OBJ");
-    SetErrorMessage("Fill what with what?");
+    SetErrorMessage("用什么装满什么？");
     SetHelp("Syntax: fill <vessel> with <substance>\n\n"
             "Allows you to fill a vessel designed for containing a substance.");
 }

@@ -6,7 +6,7 @@ protected void create() {
     verb::create();
     SetVerb("disarm");
     SetRules("OBJ");
-    SetErrorMessage("Disarm what?");
+    SetErrorMessage("解除什么武装？");
     SetHelp("Syntax: <disarm OBJ with OBJ>\n\n"
             "Use this command to try to disarm a boobytrapped object, like "
             "a door or a chest.\n\n"
@@ -15,7 +15,7 @@ protected void create() {
 
 varargs mixed can_disarm_obj(mixed args...) {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     return this_player()->CanManipulate();
 }

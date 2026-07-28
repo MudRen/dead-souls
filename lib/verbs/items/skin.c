@@ -18,7 +18,7 @@ protected void create() {
     verb::create();
     SetVerb("skin");
     SetRules("STR with OBJ", "OBJ with OBJ");
-    SetErrorMessage("Skin with what?  Is there anything in particular to skin?");
+    SetErrorMessage("用什么剥皮？有什么特别要剥皮的吗？");
     SetHelp("Syntax:  <skin THING with TOOL>\n\n"
             "Allows you to skin with skinning tools.  Sometimes you may "
             "be required to specify what it is you wish to skin.  In "
@@ -33,7 +33,7 @@ protected void eventSkin(object who, object tool, object target, object check) {
         return;
     }
     if( !tool || (environment(tool) != who) ) {
-        who->eventPrint("You have lost your equipment.");
+        who->eventPrint("你失去了你的装备。");
         return;
     }
     skin = target->GetSkin();
@@ -57,10 +57,10 @@ varargs protected void eventPrepareSkin(object who, object tool, object what) {
 
 mixed can_skin_with_obj(object tool) {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything!";
+        return "你什么也做不了！";
     }
     if( this_player()->GetPosition() != POSITION_STANDING ) {
-        return "skin when you are not standing?";
+        return "你没站着怎么剥皮？";
     }
     return this_player()->CanManipulate();
 }

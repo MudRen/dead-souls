@@ -6,7 +6,7 @@ protected void create() {
     verb::create();
     SetVerb("force");
     SetRules("LIV STR", "LIV to STR");
-    SetErrorMessage("Force whom to do what?");
+    SetErrorMessage("强迫谁做什么？");
     SetHelp("Syntax: <force LIVING SOMETHING>\n"
             "        <force LIVING to DO SOMETHING>\n"
             "Allows you to command some living things to do "
@@ -37,7 +37,7 @@ mixed do_force_liv_to_str(object target, string cmd) {
         return 1;
     }
     target->eventPrint(who->GetName() + " forces you to: " + cmd);
-    who->eventPrint("You force " + target->GetShort() + " to: " + cmd);
+    who->eventPrint("你强迫 " + target->GetShort() + " 去做：" + cmd);
     target->eventForce(cmd);
     return 1;
 }

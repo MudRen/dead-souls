@@ -9,7 +9,7 @@ protected void create() {
     verb::create();
     SetVerb("smoke");
     SetRules("OBJ", "from OBJ");
-    SetErrorMessage("Smoke what?");
+    SetErrorMessage("吸什么？");
     SetHelp("Syntax: <smoke THING>\n"
             "        <smoke from THING>\n\n"
             "Allows you to smoke a smokable item.\n"

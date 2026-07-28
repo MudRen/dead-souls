@@ -53,8 +53,8 @@ mixed cmd(string str) {
     validate();
 
     if(this_player() && !securep(this_player())){
-        write("This command is for full admins only. To become a "+
-                "full admin, you'll need to be added to the SECURE group.");
+        write("此命令仅限完全管理员使用。要成为完全管理员，"+
+                "您需要被添加到 SECURE 组。");
         return 1;
     }
 
@@ -133,7 +133,7 @@ varargs protected int CompleteConfig(string file){
     reload(LIB_CONNECT,0,1);
     reload(BANISH_D,0,1);
     reload(PLAYERS_D,0,1);
-    write("Command complete.");
+    write("命令完成。");
     return 1;
 }
 
@@ -159,7 +159,7 @@ int ModPortOffset(string which, string arg){
     out = implode(new_array,"\n");
 
     write_file(NETWORK_H,out,1);
-    write("The "+service+" port offset is being set to "+offset+".");
+    write(service+" 的端口偏移量已设置为 "+offset+"。");
     RELOAD_D->eventReload(this_object(), 1, 1);
     reload(MASTER_D,0,1);
     return 1;
@@ -190,8 +190,8 @@ int ModPort(string which, mixed arg){
     out = implode(new_array,"\n");
     if(last(out,1) != "\n") out += "\n";
     write_file(NETWORK_H,out,1);
-    write("The "+service+" port is being set to "+atoi(new_port)+".");
-    write("To complete this configuration, wait 2 seconds, then issue the following commands:");
+    write(service+" 的端口已设置为 "+atoi(new_port)+"。");
+    write("要完成此配置，请等待2秒，然后执行以下命令：");
     write("mudconfig "+lower_case(service)+" disable");
     write("mudconfig "+lower_case(service)+" enable");
     RELOAD_D->eventReload(this_object(), 1, 1);
@@ -201,32 +201,32 @@ int ModPort(string which, mixed arg){
 
 protected int NotImplemented(string which){
     validate();
-    write("The keyword \""+which+"\" is not yet implemented in mudconfig.");
+    write("关键字 \""+which+"\" 尚未在 mudconfig 中实现。");
     return 1;
 }
 
 varargs nosave int TestFun(string which, string arg){
     validate();
-    write("Which: "+which+" arg: "+arg);
+    write("参数："+which+" 值："+arg);
     return 1;
 }
 
 varargs nosave int ModStartRoom(string which, string arg){
     if(!arg){
-        write("Please specify the absolute path to the room's file.");
+        write("请指定房间文件的绝对路径。");
         return 1;
     }
     if(first(arg,1) != "/"){
-        write("You've entered a relative path. Please try again, using an absolute path.");
+        write("您输入的是相对路径。请使用绝对路径重试。");
         return 1;
     }
     if(last(arg,2) == ".c") arg = truncate(arg,2);
     if(!file_exists(arg+".c")){
-        write("That file does not exist.");
+        write("该文件不存在。");
         return 1;
     }
     if(catch(load_object(arg))){
-        write("/n/nThat room file is broken. Please fix it and try again.");
+        write("/n/n该房间文件已损坏。请修复后重试。");
         return 1;
     }
     cp(ROOMS_H,"/secure/save/backup/rooms."+time());
@@ -242,31 +242,31 @@ varargs nosave int ModStartRoom(string which, string arg){
     }
     CompleteConfig(ROOMS_H);
     reload(LIB_CREATOR,1,1);
-    write("\nNote: Some objects, like verbs and workrooms, still contain the old "+
-            "START_ROOM value. This will not change until they are reloaded or "+
-            "the mud reboots.");
+    write("\n注意：某些对象（如动词和工作间）仍然包含旧的 "+
+            "START_ROOM 值。在它们被重新加载或 MUD 重启之前，"+
+            "这不会改变。");
     return 1;
 }
 
 varargs nosave int ModDefaultDomain(string which, string arg){
     if(!arg){
-        write("Please specify the absolute path to the domain, eg: /domains/MystyShyre");
+        write("请指定域的绝对路径，例如：/domains/MystyShyre");
         return 1;
     }
 
     if(first(arg,1) != "/"){
-        write("You've entered a relative path. Please try again, using an absolute path. "+
-                "For example: mudconfig defaultdomain /domains/MystyShyre");
+        write("您输入的是相对路径。请使用绝对路径重试。"+
+                "例如：mudconfig defaultdomain /domains/MystyShyre");
         return 1;
     }
 
     if(!directory_exists(arg)){
-        write("That domain does not exist. Type: help domaincreate");
+        write("该域不存在。输入：help domaincreate");
         return 1;
     }
 
     if(!directory_exists(arg+"/room")){
-        write("That directory seems to lack a /room dir. It is not suitable for a domain.");
+        write("该目录似乎缺少 /room 子目录。它不适合作为一个域。");
         return 1;
     }
 
@@ -284,7 +284,7 @@ varargs nosave int ModDefaultDomain(string which, string arg){
 
     CompleteConfig("/secure/include/dirs.h");
 
-    write("\nPlease reboot the mud for this change to take effect.\n");
+    write("\n请重启 MUD 以使此更改生效。\n");
     return 1;
 }
 
@@ -296,14 +296,14 @@ varargs nosave int ModRouter(string which, string arg){
     string noline = "#/secure/daemon/i3router/server";
     validate();
     if(member_array(arg,bools) == -1){
-        write("Please try again, indicating whether you want to enable or disable the intermud router. Note that this setting will persist across reboots.");
+        write("请重试，指明您要启用还是禁用跨MUD路由器。注意此设置将在重启后保留。");
         return 1;
     }
 
     if(member_array(arg,yesbools) != -1){
-        if(member_array(yesline,load_lines) != -1) write("Persistent router activation is already enabled.");
+        if(member_array(yesline,load_lines) != -1) write("路由器持久化启动已处于启用状态。");
         else {
-            write("Enabling persistent router activation.");
+            write("正在启用路由器持久化启动。");
             foreach(string line in load_lines){
                 if(line == noline) line = yesline;
                 ret_arr += ({ line });
@@ -316,22 +316,22 @@ varargs nosave int ModRouter(string which, string arg){
             ret_string = replace_string(ret_string,"\n\n","\n");
             unguarded( (: write_file(CFG_PRELOAD,ret_string,1) :) );
         }
-        if(find_object(ROUTER_D)) write("The intermud router is already running.");
+        if(find_object(ROUTER_D)) write("跨MUD路由器已在运行中。");
         else {
-            write("Starting the intermud router.");
+            write("正在启动跨MUD路由器。");
             load_object(ROUTER_D);
         }
 
         ret_string = "";
-        write("The intermud router is enabled.");
+        write("跨MUD路由器已启用。");
         return 1;
     }
 
     if(member_array(arg,nobools) != -1){
 
-        if(member_array(noline,load_lines) != -1) write("Persistent router activation is already disabled.");
+        if(member_array(noline,load_lines) != -1) write("路由器持久化启动已处于禁用状态。");
         else {
-            write("Disabling persistent router activation.");
+            write("正在禁用路由器持久化启动。");
             foreach(string line in load_lines){
 
                 if(line == yesline) line = noline;
@@ -346,22 +346,22 @@ varargs nosave int ModRouter(string which, string arg){
             unguarded( (: write_file(CFG_PRELOAD,ret_string,1) :) );
 
         }
-        if(!find_object(ROUTER_D)) write("The intermud router is not running.");
+        if(!find_object(ROUTER_D)) write("跨MUD路由器未在运行。");
         else {
-            write("Stopping the intermud router.");
+            write("正在停止跨MUD路由器。");
             find_object(ROUTER_D)->eventDestruct();
         }
         ret_string = "";
-        write("The intermud router is disabled.");
+        write("跨MUD路由器已禁用。");
         return 1;
     }
 }
 
 varargs nosave int ModIntermud(string which, string arg){
     validate();
-    write("Which: "+which+" arg: "+arg);
+    write("参数："+which+" 值："+arg);
     if(arg == "restrict"){
-        write("Restricting intermud...");
+        write("正在限制跨MUD通信...");
         flush_messages(this_player());
         foreach(string element in config){
             if(grepp(element, "RESTRICTED_INTERMUD")) element = "#define RESTRICTED_INTERMUD      1";
@@ -378,7 +378,7 @@ varargs nosave int ModIntermud(string which, string arg){
     if(arg == "reset"){
         object ob = find_object(INTERMUD_D);
         string savei3 = save_file(SAVE_INTERMUD);
-        write("Purging all intermud data (including router password!). Previous data file saved to /secure/save/backup/ .");
+        write("正在清除所有跨MUD数据（包括路由器密码！）。之前的数据文件已保存到 /secure/save/backup/ 。");
         if(!ob){
             if(file_exists(savei3)){
                 rename(savei3, "/secure/save/backup/intermud."+time());
@@ -396,7 +396,7 @@ varargs nosave int ModIntermud(string which, string arg){
     }
 
     if(arg == "unrestrict"){
-        write("Unrestricting intermud...");
+        write("正在解除跨MUD通信限制...");
         flush_messages(this_player());
         foreach(string element in config){
             if(grepp(element, "RESTRICTED_INTERMUD")) element = "#define RESTRICTED_INTERMUD      0";
@@ -410,12 +410,12 @@ varargs nosave int ModIntermud(string which, string arg){
     }
 
     if(member_array(arg,bools) == -1){
-        write("Please try again, indicating whether you want to enable, disable, restrict, unrestrict, or reset intermud.");
+        write("请重试，指明您要启用、禁用、限制、解除限制还是重置跨MUD通信。");
         return 1;
     }
 
     if(member_array(arg,yesbools) != -1){
-        write("Enabling intermud...");
+        write("正在启用跨MUD通信...");
         flush_messages(this_player());
         foreach(string element in config){
             if(grepp(element, "DISABLE_INTERMUD")) element = "#define DISABLE_INTERMUD         0";
@@ -427,7 +427,7 @@ varargs nosave int ModIntermud(string which, string arg){
     }
 
     if(member_array(arg,nobools) != -1){
-        write("Disabling intermud...");
+        write("正在禁用跨MUD通信...");
         if(this_player()) flush_messages(this_player());
         foreach(string element in config){
             if(grepp(element, "DISABLE_INTERMUD")) element = "#define DISABLE_INTERMUD         1";
@@ -445,7 +445,7 @@ nosave int ProcessOther(string which, string arg){
     validate();
 
     if(sscanf(arg,"%d",junk) != 1){
-        write("This parameter requires an integer as an argument.");
+        write("此参数需要一个整数作为参数。");
         return 1;
     }
 
@@ -453,8 +453,8 @@ nosave int ProcessOther(string which, string arg){
         if(grepp(element, which)){
             string s1, s2, s3;
             if(sscanf(element,"#define %s %s",s1,s2) != 2){
-                write("Major problem. You should revert to a backup of "+
-                        CONFIG_H+" immediately.");
+                write("严重问题。您应该立即恢复 "+
+                        CONFIG_H+" 的备份。");
                 return 1;
             }
             s3 = trim(s2);
@@ -474,14 +474,14 @@ nosave int ProcessOther(string which, string arg){
         reload("/cmds/players/date",0,1);
         reload("/cmds/players/nextreboot",0,1);
         reload("/cmds/players/version",0,1);
-        write("This configuration change will require a few minutes to take effect completely.");
+        write("此配置更改需要几分钟才能完全生效。");
     }
     if(which == "GLOBAL_MONITOR") reload(SNOOP_D,0,1);
     if(which == "IDLE_TIMEOUT" || which == "MAX_NEWBIE_LEVEL" ||
             which == "FAST_COMBAT" || which == "GRID" || which == "WIZMAP" ||
             which == "MINIMAP"){
         reload(LIB_CREATOR,1,1);
-        write("This configuration will take effect for each user the next time they log in.");
+        write("此配置将在每个用户下次登录时生效。");
         return 1;
     }
     if(which == "PING_INTERVAL") reload (PING_D,1,1);
@@ -505,8 +505,8 @@ nosave int ProcessString(string which, string arg){
         if(grepp(element, which)){
             string s1, s2, s3;
             if(sscanf(element,"#define %s %s",s1,s2) != 2){
-                write("Major problem. You should revert to a backup of "+
-                        CONFIG_H+" immediately.");
+                write("严重问题。您应该立即恢复 "+
+                        CONFIG_H+" 的备份。");
                 return 1;
             }
             s3 = trim(s2);
@@ -528,7 +528,7 @@ nosave int ProcessModal(string which, string arg){
     validate();
     if(!arg){
         arg = "no";
-        write("No argument: Assuming you want to disable this feature.");
+        write("未提供参数：假定您要禁用此功能。");
     }
     if(member_array(arg,yesbools) != -1) junk = 1;
     if(member_array(arg,nobools) != -1) junk = 0;
@@ -539,7 +539,7 @@ nosave int ProcessModal(string which, string arg){
     arg = itoa(junk);
 
     if(sscanf(arg,"%d",junk) != 1){
-        write("This parameter is a modal or quasi-modal. I have a hunch it requires an integer as an argument, or at least a \"yes\" or \"no\".");
+        write("此参数是模态或准模态参数。它需要一个整数作为参数，或者至少需要 \"yes\" 或 \"no\"。");
         return 1;
     }
 
@@ -588,8 +588,8 @@ nosave int ProcessModal(string which, string arg){
         if(grepp(element, which)){
             string s1, s2, s3;
             if(sscanf(element,"#define %s %s",s1,s2) != 2){
-                write("Major problem. You should revert to a backup of "+
-                        CONFIG_H+" immediately.");
+                write("严重问题。您应该立即恢复 "+
+                        CONFIG_H+" 的备份。");
                 return 1;
             }
             s3 = trim(s2);
@@ -603,7 +603,7 @@ nosave int ProcessModal(string which, string arg){
             which == "BARE_EXITS" || which == "COMMAND_MATCHING" ||
             which == "AUTO_ADVANCE"){
         reload(LIB_CREATOR,1,1);
-        write("This configuration will take effect for each user the next time they log in.");
+        write("此配置将在每个用户下次登录时生效。");
         return 1;
     }
     if(which == "NPC_CATCH_TELL_DEBUG"){
@@ -614,18 +614,17 @@ nosave int ProcessModal(string which, string arg){
     if(which == "CED_DISABLED"){
         reload(CMD_CED,1,1);
         reload(LIB_CREATOR,1,1);
-        write("This configuration will take effect for each user "+
-                "the next time they log in.");
+        write("此配置将在每个用户下次登录时生效。");
     }
     if(which == "NM_STYLE_EXITS"){
         reload(LIB_ROOM,1,1);
         reload(LIB_CREATOR,1,1);
-        write("This configuration will take effect for rooms not yet loaded for each "
-                "user the next time they log in. To ensure all rooms pick up the new configuration, "
-                "either reboot the mud, or type: \"reload every room\", then quit and log back in.");
+        write("此配置将在尚未加载的房间中对每个用户下次登录时生效。"+
+                "要确保所有房间都应用新配置，"+
+                "请重启 MUD，或输入：\"reload every room\"，然后退出并重新登录。");
     }
     if(which == "RETAIN_ON_QUIT" || which == "OBJECT_MATCHING")
-        write("To make this configuration take effect, reboot the mud.");
+        write("要使此配置生效，请重启 MUD。");
     if(which == "LOG_LOCAL_CHANS" || which == "LOG_REMOTE_CHANS"){
         reload(CHAT_D,1,1);
     }
@@ -641,7 +640,7 @@ nosave int ProcessModal(string which, string arg){
     }
     if(which == "FAST_COMBAT"){
         reload(LIB_CREATOR,1,1);
-        write("This configuration will take effect for each user the next time they log in.");
+        write("此配置将在每个用户下次登录时生效。");
     }
 
     if(which == "ENABLE_CGI" || which == "WWW_DIR_LIST" || which == "ENABLE_CREWEB"){
@@ -681,7 +680,7 @@ int ProcessService(string which, string what){
         if( what == "stop" )
             OOB_D->eventDestruct();
     }
-    write("Done.");
+    write("完成。");
     return 1;
 }
 
@@ -697,20 +696,20 @@ int ProcessInet(string which, string arg){
     if(which != "inet"){
         sub = 1;
         if(!find_object(INET_D)){
-            write("The inet service is not running. Please type: mudconfig inet start");
-            write("Or: mudconfig inet enable");
-            write("Then retry your command.");
+            write("inet 服务未运行。请输入：mudconfig inet start");
+            write("或：mudconfig inet enable");
+            write("然后重试您的命令。");
             return 1;
         }
     }
     else {
         if(member_array(arg,yesbools) != -1){
             if(member_array(yesline,load_lines) != -1) {
-                write("Persistent inet activation is already enabled.");
+                write("inet 持久化启动已处于启用状态。");
                 return 1;
             }
             else {
-                write("Enabling persistent inet activation.");
+                write("正在启用 inet 持久化启动。");
                 foreach(string line in load_lines){
                     if(line == noline) line = yesline;
                     ret_arr += ({ line });
@@ -722,18 +721,18 @@ int ProcessInet(string which, string arg){
                 ret_string = implode(ret_arr,"\n")+"\n";
                 ret_string = replace_string(ret_string,"\n\n","\n");
                 unguarded( (: write_file(CFG_PRELOAD,ret_string,1) :) );
-                write("The inet service is enabled.");
+                write("inet 服务已启用。");
                 arg = "start";
             }
         }
 
         if(member_array(arg,nobools) != -1){
             if(member_array(noline,load_lines) != -1){
-                write("Persistent inet activation is already disabled.");
+                write("inet 持久化启动已处于禁用状态。");
                 return 1;
             }
             else {
-                write("Disabling persistent inet activation.");
+                write("正在禁用 inet 持久化启动。");
                 foreach(string line in load_lines){
 
                     if(line == yesline) line = noline;
@@ -746,49 +745,49 @@ int ProcessInet(string which, string arg){
                 ret_string = implode(ret_arr,"\n")+"\n";
                 ret_string = replace_string(ret_string,"\n\n","\n");
                 unguarded( (: write_file(CFG_PRELOAD,ret_string,1) :) );
-                write("The inet service is disabled.");
+                write("inet 服务已禁用。");
                 arg = "stop";
             }
         }
 
         if(arg == "start"){
-            if(find_object(INET_D)) write("The inet service is already running.");
+            if(find_object(INET_D)) write("inet 服务已在运行中。");
             else {
-                write("Starting the inet service.");
+                write("正在启动 inet 服务。");
                 load_object(INET_D);
             }
         }
         else if(arg == "stop"){
-            if(!find_object(INET_D)) write("The inet service is already stopped.");
+            if(!find_object(INET_D)) write("inet 服务已经停止。");
             else {
-                write("Stopping the inet service.");
+                write("正在停止 inet 服务。");
                 find_object(INET_D)->eventDestruct();
             }
         }
         else if(arg == "restart"){
             if(find_object(INET_D)) {
-                write("The inet service is running. Stopping it now...");
+                write("inet 服务正在运行。正在停止...");
                 find_object(INET_D)->eventDestruct();
             }
-            write("Starting the inet service.");
+            write("正在启动 inet 服务。");
             load_object(INET_D);
         }
         else if(arg == "status"){
             if(member_array(yesline,load_lines) != -1){
-                write("Persistent inet activation is enabled.");
+                write("inet 持久化启动已启用。");
             }
             else {
-                write("Persistent inet activation is disabled.");
+                write("inet 持久化启动已禁用。");
             }
 
             if(!find_object(INET_D)){
-                write("The inet service is not running");
+                write("inet 服务未运行");
             }
             else{
                 string *servkeys, *servkeys2;
-                string subret = "The following services are available: ";
-                string subret2 = "The following services are running: ";
-                write("The inet service is running");
+                string subret = "以下服务可用：";
+                string subret2 = "以下服务正在运行：";
+                write("inet 服务正在运行");
                 if(sizeof(servkeys = keys(INET_D->GetServices()))){
                     subret += implode(servkeys,", ")+".\n";
                 }
@@ -801,15 +800,15 @@ int ProcessInet(string which, string arg){
                 return 1;
             }
             ret_string = "";
-            write("Done.");
+            write("完成。");
             return 1;
         }
-        else write("Unsupported inet subcommand.");
+        else write("不支持的 inet 子命令。");
         return 1;
     }
     if(arg == "enable"){
         if(INET_D->GetService(which)){
-            write("The "+which+" service is already enabled. Perhaps you mean to start or restart it?");
+            write(which+" 服务已处于启用状态。您想要启动或重启它吗？");
             return 1;
         }
         ProcessService(which,"add");
@@ -817,7 +816,7 @@ int ProcessInet(string which, string arg){
     }
     if(arg == "disable"){
         if(!(INET_D->GetService(which))){
-            write("The "+which+" service is already disabled.");
+            write(which+" 服务已处于禁用状态。");
             return 1;
         }
         ProcessService(which,"remove");
@@ -826,11 +825,11 @@ int ProcessInet(string which, string arg){
 
     if(arg == "start"){
         if(INET_D->GetServer(which)){
-            write("The "+which+" service is already started. Perhaps you mean to restart it?");
+            write(which+" 服务已经启动。您想要重启它吗？");
             return 1;
         }
         if(!(INET_D->GetService(which))){
-            write("The "+which+" service has been disabled or is not available.");
+            write(which+" 服务已被禁用或不可用。");
             return 1;
         }
         ProcessService(which,"start");
@@ -838,11 +837,11 @@ int ProcessInet(string which, string arg){
     }
     if(arg == "stop"){
         if(!(INET_D->GetService(which))){
-            write("The "+which+" service is already disabled and therefore not running.");
+            write(which+" 服务已被禁用，因此未在运行。");
             return 1;
         }
         if(!(INET_D->GetServer(which))){
-            write("The "+which+" service is already stopped.");
+            write(which+" 服务已经停止。");
             return 1;
         }
         ProcessService(which,"stop");
@@ -854,16 +853,16 @@ int ProcessInet(string which, string arg){
         return 1;
     }
     if(arg == "status"){
-        write("The "+which+" service is "+(INET_D->GetService(which) ? "enabled." : "disabled."));
+        write(which+" 服务"+(INET_D->GetService(which) ? "已启用。" : "已禁用。"));
         if(INET_D->GetService(which))
-            write("The "+which+" service is "+(INET_D->GetServer(which) ? "running." : "stopped."));
+            write(which+" 服务"+(INET_D->GetServer(which) ? "正在运行。" : "已停止。"));
         return 1;
     }
     if(!strsrch(arg,"port ")){
         ProcessService(which,arg);
         return 1;
     }
-    write("Unsupported mudconfig inet service subcommand.");
+    write("不支持的 mudconfig inet 服务子命令。");
     return 1;
 }
 
@@ -876,7 +875,7 @@ varargs nosave int ModCfg(string which, string arg){
 
     justbooted = uptime() - 62;
     if(justbooted < -1){
-        write("Please wait "+abs(justbooted)+" seconds and try again.");
+        write("请等待 "+abs(justbooted)+" 秒后重试。");
         return 1;
     }
 
@@ -890,9 +889,9 @@ varargs nosave int ModCfg(string which, string arg){
         mconfig = "/secure/cfg/mudos."+port+".cfg";
     }
     line_string = read_file(mconfig);
-    if(!sizeof(line_string)) write("Couldn't read file.");
+    if(!sizeof(line_string)) write("无法读取文件。");
     line_array = explode(line_string, "\n");
-    if(!sizeof(line_array)) write("Array is zero length.");
+    if(!sizeof(line_array)) write("数组长度为零。");
 
     if(!sizeof(line_array) || !sizeof(line_string)) {
         return 1;
@@ -914,8 +913,8 @@ varargs nosave int ModCfg(string which, string arg){
 
     if(which == "name"){
         if(!nameline || sscanf(nameline,"%s : %s",junk, name) < 2) {
-            write("Operation failed. You need to copy over "+
-                    mconfig+" immediately with an original.");
+            write("操作失败。您需要立即用原始副本覆盖 "+
+                    mconfig+"。");
             return 1;
         }
 
@@ -939,13 +938,13 @@ varargs nosave int ModCfg(string which, string arg){
         if(i3) destruct(i3);
         ret = MASTER_D->SetMudName(arg);
         write("\n");
-        write("\nMUD's name is now: "+mud_name());
+        write("\nMUD 的名称已更改为："+mud_name());
         if(!DISABLE_IMC2){
-            write("Reloading IMC2...");
+            write("正在重新加载 IMC2...");
             catch(reload(IMC2_D, 0, 1));
         }
         if(!DISABLE_INTERMUD){
-            write("Reloading Intermud-3...");
+            write("正在重新加载 Intermud-3...");
             catch(reload(INTERMUD_D, 0, 1));
         }
         catch(reload(PING_D, 0, 1));
@@ -953,8 +952,8 @@ varargs nosave int ModCfg(string which, string arg){
 
     if(which == "port"){
         if(!portline || sscanf(portline,"%s : telnet %d",junk, oldport) < 2){
-            write("Operation failed. You need to copy over "+
-                    "/secure/cfg/mudos.cfg immediately with an original.");
+            write("操作失败。您需要立即用原始副本覆盖 "+
+                    "/secure/cfg/mudos.cfg。");
             return 1;
         }
 
@@ -970,29 +969,29 @@ varargs nosave int ModCfg(string which, string arg){
                 cp(mconfig,"/secure/cfg/mudos.win32");
             }
         }
-        write("\nMUD's port changed. Reboot the MUD to activate new port.");
-        write("NOTE: If the port you selected is 1024 or below, your OS "+
-                "may require the MUD to run as a privileged user.");
+        write("\nMUD 端口已更改。请重启 MUD 以激活新端口。");
+        write("注意：如果您选择的端口是 1024 或以下，您的操作系统"+
+                "可能要求 MUD 以特权用户身份运行。");
     }
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: mudconfig PARAMETER VALUE \n\n"
-            "Modifies various system settings.\n"
-            "Examples: \n"
+    return ("语法：mudconfig 参数 值 \n\n"
+            "修改各种系统设置。\n"
+            "示例：\n"
             "\nmudconfig autowiz [ yes | no ]"
             "\nmudconfig locked [ yes | no ]"
             "\nmudconfig justenglish [ yes | no ]"
             "\nmudconfig justhumans [ yes | no ]"
             "\nmudconfig encumbrance [ yes | no ]"
-            "\nmudconfig severable [ yes | no ] (whether limbs can be "
-        "severed in combat. Requires a warmboot.)"
+            "\nmudconfig severable [ yes | no ]（战斗中是否可以"
+        "截断肢体。需要热重启。）"
             "\nmudconfig pk [ yes | no ]"
-            "\nmudconfig minimap [ yes | no ] (whether players get a minimap)"
-            "\nmudconfig wizmap [ yes | no ] (whether cres get an area map)"
-            "\nmudconfig grid [ yes | no ] (enable or disable the room grid "
-        "system)"
+            "\nmudconfig minimap [ yes | no ]（玩家是否获得小地图）"
+            "\nmudconfig wizmap [ yes | no ]（创造者是否获得区域地图）"
+            "\nmudconfig grid [ yes | no ]（启用或禁用房间网格"
+        "系统）"
             "\nmudconfig compat [ yes | no ]"
             "\nmudconfig retain [ yes | no ]"
             "\nmudconfig defaultparse [ yes | no ]"
@@ -1000,47 +999,47 @@ string GetHelp(){
             "\nmudconfig matchcommand [ yes | no ]"
             "\nmudconfig matchobject [ yes | no ]"
             "\nmudconfig exitsbare [ yes | no ]"
-            "\nmudconfig nmexits [ yes | no ] (This togggles where default "
-            "exits are displayed)"
-            "\nmudconfig fastcombat [ yes | no ] (heart rate overridden "
-            "in combat)"
-            "\nmudconfig selectclass [ yes | no ] (whether new players "
-            "choose a class on login)"
-            "\nmudconfig instances [ yes | no ] (whether mud instances "
-            "are used)"
+            "\nmudconfig nmexits [ yes | no ]（切换默认"
+            "出口的显示方式）"
+            "\nmudconfig fastcombat [ yes | no ]（战斗中覆盖"
+            "心跳速率）"
+            "\nmudconfig selectclass [ yes | no ]（新玩家"
+            "登录时是否选择职业）"
+            "\nmudconfig instances [ yes | no ]（是否使用"
+            "MUD 实例）"
             "\nmudconfig localtime [ yes | no ]"
-            "\nmudconfig offset <offset from gmt in seconds>"
-            "\nmudconfig extraoffset <offset from GMT in hours>"
-            "\nmudconfig maxcommands <max number of commands per second>"
-            "\nmudconfig maxidle <number of idle seconds before autoquit>"
+            "\nmudconfig offset <距GMT的偏移秒数>"
+            "\nmudconfig extraoffset <距GMT的偏移小时数>"
+            "\nmudconfig maxcommands <每秒最大命令数>"
+            "\nmudconfig maxidle <自动退出前的空闲秒数>"
             "\nmudconfig questrequired [ yes | no ]"
             "\nmudconfig autoadvance [ yes | no ]"
             "\nmudconfig guestallowed [ yes | no ]"
             "\nmudconfig playerintertell [ yes | no ]"
-            "\nmudconfig ced [ yes | no ] (toggles the fullscreen editor)"
-            "\nmudconfig maxip <max connections per IP>"
-            "\nmudconfig pinginterval <i3 ping interval in seconds>"
-            "\nmudconfig monitor <monitoring level, 0 to 2>"
-            "\nmudconfig newbielevel <max newbie level>"
-            "\nmudconfig resets <interval between resets>"
+            "\nmudconfig ced [ yes | no ]（切换全屏编辑器）"
+            "\nmudconfig maxip <每IP最大连接数>"
+            "\nmudconfig pinginterval <I3 ping间隔秒数>"
+            "\nmudconfig monitor <监控级别，0到2>"
+            "\nmudconfig newbielevel <最大新手等级>"
+            "\nmudconfig resets <重置间隔>"
             "\nmudconfig router [ enable | disable ]"
-            "\nmudconfig startroom <filename of start room>"
-            "\nmudconfig defaultdomain </full/path>"
-            "\nmudconfig email <the admin's email address>"
-            "\nmudconfig liveupgrade <the default liveupgrade mud's name>"
-            "\nmudconfig hostip <the computer's ip address "
-            "(eg 111.222.333.444)>"
-            "\nmudconfig websourceip <the remote web server's ip address "
-            "(eg 111.222.333.444)>"
-            "\nmudconfig websourcename <the remote web server's ip name "
-            "(eg a.b.com)>"
-            "\nmudconfig channelpipes [ enable | disable ] (whether to allow "
-            "piping messages. not recommended.)"
+            "\nmudconfig startroom <起始房间文件名>"
+            "\nmudconfig defaultdomain </完整/路径>"
+            "\nmudconfig email <管理员邮箱地址>"
+            "\nmudconfig liveupgrade <默认热更新MUD名称>"
+            "\nmudconfig hostip <计算机IP地址"
+            "（如 111.222.333.444）>"
+            "\nmudconfig websourceip <远程Web服务器IP地址"
+            "（如 111.222.333.444）>"
+            "\nmudconfig websourcename <远程Web服务器IP名称"
+            "（如 a.b.com）>"
+            "\nmudconfig channelpipes [ enable | disable ]（是否允许"
+            "管道消息。不推荐。）"
             "\nmudconfig intermud [ enable | disable | restrict | "
             "unrestrict | reset ]"
             "\nmudconfig imc2 [ enable | disable ]"
-            "\nmudconfig imc2clientpass <client password for IMC2>"
-            "\nmudconfig imc2serverpass <server password for IMC2>"
+            "\nmudconfig imc2clientpass <IMC2客户端密码>"
+            "\nmudconfig imc2serverpass <IMC2服务器密码>"
             "\nmudconfig inet [ enable | disable | start | stop | restart "
             "| status ]"
             "\nmudconfig ftp [ enable | disable | start | stop | restart "
@@ -1053,18 +1052,18 @@ string GetHelp(){
             "| status ]"
             "\nmudconfig http [ enable | disable | start | stop | restart "
             "| status ]"
-            "\nmudconfig cgi [ enable | disable ] (Whether the mud webserver "
-            "should use CGI)"
-            "\nmudconfig dirlist [ enable | disable ] (Allow the webserver "
-            "to display dir contents)"
-            "\nmudconfig creweb [ enable | disable ] (Allow web based "
-            "editing [requires cgi and dirlist])"
-            "\nmudconfig loglocal [ enable | disable ] (whether local "
-            "channels are logged)"
-            "\nmudconfig logremote [ enable | disable ] (whether remote "
-            "channels are logged)"
-            "\nmudconfig mudname <name>"
-            "\nmudconfig mudport <port>"
-            "\n\nSee also: admintool, config");
+            "\nmudconfig cgi [ enable | disable ]（MUD Web服务器"
+            "是否使用CGI）"
+            "\nmudconfig dirlist [ enable | disable ]（允许Web服务器"
+            "显示目录内容）"
+            "\nmudconfig creweb [ enable | disable ]（允许基于Web的"
+            "编辑[需要cgi和dirlist]）"
+            "\nmudconfig loglocal [ enable | disable ]（是否记录"
+            "本地频道）"
+            "\nmudconfig logremote [ enable | disable ]（是否记录"
+            "远程频道）"
+            "\nmudconfig mudname <名称>"
+            "\nmudconfig mudport <端口>"
+            "\n\n另见：admintool, config");
 }
 

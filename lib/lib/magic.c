@@ -41,13 +41,13 @@ int GetSpellLevel(string spell){
 varargs mixed CanCast(object spell){
     string tmp;
     if( GetParalyzed() ){
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     if( environment()->GetProperty("no magic") ){
-        return "Supernatural forces prevent your magic.";
+        return "超自然力量阻止了你的魔法。";
     }
     if( !spell ){
-        return "No such spell exists in this reality.";
+        return "这个现实中不存在这样的法术。";
     }
     if( spell->GetVerb() == "pray" ){
         tmp = "prayer";
@@ -59,17 +59,17 @@ varargs mixed CanCast(object spell){
         tmp = "spell";
     }
     if( !this_object()->GetSpellBook()[spell->GetSpell()] ){
-        return "You have never heard of that " + tmp + " before.";
+        return "你从未听说过这个" + tmp + "。";
     }
     if( GetMagicPoints() < spell->GetRequiredMagic() ){
-        return "You do not have the power required.";
+        return "你没有足够的魔力。";
     }
     if( GetStaminaPoints() < spell->GetRequiredStamina() ){
-        return "You are too tired.";
+        return "你太累了。";
     }
     foreach(string skill in spell->GetSkills()){
         if( GetSkillLevel(skill) < spell->GetSkillRequired(skill) ){
-            return "That " + tmp + " is beyond your comprehension.";
+            return "这个" + tmp + "超出了你的理解范围。";
         }
     }
     return 1;
@@ -88,7 +88,7 @@ varargs mixed eventPrepareCast(string verb, mixed* args...){
             eventPrint(tmp);
         }
         else {
-            eventPrint("You are confused.");
+            eventPrint("你感到困惑。");
         }
         return 1;
     }
@@ -166,7 +166,7 @@ nosave varargs void eventCast(object spell, string limb, object* targs){
 mixed eventLearnSpell(string spell){
     object magic = SPELLS_D->GetSpell(spell = lower_case(spell));
     if(!magic){
-        write("That's not a spell being offered to you for learning.");
+        write("这不是可供你学习的法术。");
         return 0;
     }
 

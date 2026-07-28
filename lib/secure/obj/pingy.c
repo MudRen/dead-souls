@@ -34,11 +34,11 @@ int SetInterval(string str){
     validate();
     interval = atoi(str);
     if(!intp(interval)){
-        write("That is not a valid integer.");
+        write("这不是一个有效的整数。");
         return 1;
     }
 
-    write("Interval set to "+interval+" heartbeats.");
+    write("间隔已设置为 "+interval+" 次心跳。");
     return 1;
 }
 
@@ -46,7 +46,7 @@ int SetKeepalive(string str){
     validate();
     if(!str || str == "") keepalive = "\n";
     else keepalive = str;
-    write("Keepalive set.");
+    write("保活字符串已设置。");
     return 1;
 }
 

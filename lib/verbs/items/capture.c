@@ -15,7 +15,7 @@ protected void create() {
     SetVerb("capture");
     SetRules("LIV with OBJ", "LIV in OBJ");
     SetSynonyms("catch", "trap");
-    SetErrorMessage("Capture what with what?");
+    SetErrorMessage("用什么捕获什么？");
     SetHelp("Syntax: <capture OBJECT with OBJECT>\n\n"
             "Some objects can be used to trap living things.  This command "
             "therefore allows you to capture those things.\n\n"

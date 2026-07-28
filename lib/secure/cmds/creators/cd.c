@@ -8,10 +8,9 @@
 inherit LIB_DAEMON;
 
 string GetHelp() {
-    return ("Syntax: cd [directory]\n\n"
-            "Defined internal to the user object.\n"
-            "Changes your current working directory to the directory "
-            "you specify.  If no directory is specified, it will make your "
-            "home directory current.\n"
-            "See also: pwd, mkdir, rmdir");
+    return ("语法: cd [目录]\n\n"
+            "定义在用户对象内部。\n"
+            "将当前工作目录更改为你指定的目录。\n"
+            "如果未指定目录，将切换到你的主目录。\n"
+            "另见: pwd, mkdir, rmdir");
 }

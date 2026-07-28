@@ -60,7 +60,7 @@ protected void RemoveBlindness(){
         evaluate(val, this_object());
     }
     else {
-        eventPrint("You can see again.");
+        eventPrint("你又能看见了。");
     }
 }
 
@@ -72,12 +72,12 @@ varargs mixed eventBlind(object who, int amt, mixed end){
 }
 
 mixed eventCustomizeStat(string stat, int amount){
-    if( amount < 1 ) return "That is not a valid amount.";
+    if( amount < 1 ) return "这不是一个有效的数量。";
     if( amount > Custom["stats"] )
-        return "You do not have enough points to spend on this customization.";
-    if( !Stats[stat] ) return "You have no such stat.";
+        return "你没有足够的点数来花费在这个自定义上。";
+    if( !Stats[stat] ) return "你没有这个属性。";
     if( Stats[stat]["level"] + amount > 100 )
-        return "You cannot make a stat exceed 100.";
+        return "你不能使属性超过100。";
     Stats[stat]["level"] += amount;
     Stats[stat]["points"] = 0;
     Custom["stats"] -= amount;
@@ -85,12 +85,12 @@ mixed eventCustomizeStat(string stat, int amount){
 }
 
 mixed eventDeviateStat(string stat, int amount){
-    if( amount < 1 ) return "That is not a valid amount.";
+    if( amount < 1 ) return "这不是一个有效的数量。";
     if( amount > Custom["deviations"] )
-        return "You do not have enough points to spend on that deviation.";
-    if( !Stats[stat] ) return "You have no such stat.";
+        return "你没有足够的点数来花费在那个偏差上。";
+    if( !Stats[stat] ) return "你没有这个属性。";
     if( Stats[stat]["class"] - amount < 1 )
-        return "You cannot deviate a stat class below 1.";
+        return "你不能将属性等级偏差降到1以下。";
     Stats[stat]["class"] -= amount;
     Custom["deviations"] -= amount;
     return Stats[stat]["class"];

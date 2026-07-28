@@ -21,7 +21,7 @@ int cmd(string str) {
     if(!str && archp(previous_object())) {
         mp = EVENTS_D->GetEvents();
         i = sizeof(obs = sort_array(keys(mp),-1));
-        message("info", "The following events are pending:", this_player());
+        message("info", "以下是待处理的事件：", this_player());
         while(i--) {
             l=atoi(""+obs[i]);
             message("info", arrange_string(""+l, 30) +
@@ -44,9 +44,9 @@ int cmd(string str) {
                     if (st2[0] == "realms" && st2[1] == name) {
                         if (j == 0) {
                             if (archp(previous_object()))
-                                message("info", name + " has the following events pending:", this_player());
+                                message("info", name + " 有以下待处理事件：", this_player());
                             else
-                                message("info", "You have the following events pending:", this_player());
+                                message("info", "你有以下待处理事件：", this_player());
                             j = 1;
                         }
                         st3 = "~";
@@ -54,14 +54,14 @@ int cmd(string str) {
                             st3 += "/" + st2[k];
                         message("info", arrange_string(st3, 30) +
                                 arrange_string(mp[obs[i]]["function"], 15) +
-                                ctime(mp[obs[i]]["time"])+" Mud Time", this_player());
+                                ctime(mp[obs[i]]["time"])+" 泥巴时间", this_player());
                     }
         }
         if (j == 0) {
             if (archp(previous_object()))
-                message("info", name+" doesn't have any events pending.", this_player());
+                message("info", name+" 没有任何待处理事件。", this_player());
             else
-                message("info", "You don't have any events pending.", this_player());
+                message("info", "你没有任何待处理事件。", this_player());
         }
         return 1;
     }

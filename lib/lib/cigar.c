@@ -34,12 +34,12 @@ int GetLastPuff(){
 
 mixed eventSmoke(object who, object what){
     if(!GetLit()){
-        write("It is not lit!");
+        write("它没有点燃！");
         return 1;
     }
-    write("You smoke your "+remove_article(GetShort())+".");
-    say(who->GetName()+" smokes from "+possessive(who)+" "
-            +remove_article(GetShort())+".");
+    write("你吸了一口你的"+remove_article(GetShort())+"。");
+    say(who->GetName()+"吸了一口"+possessive(who)+" "
+            +remove_article(GetShort())+"。");
     lastpuff = time();
     eventDecreaseFuel(1);
     if( !GetFuelAmount() ) eventBurnOut();

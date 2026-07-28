@@ -15,19 +15,18 @@ int cmd(string str) {
     noms = BANISH_D->query_banished();
     if(str) {
         if(member_array(lower_case(str), noms) == -1) 
-            write(str+" is not currently a banished name.\n");
-        else write(str+" is a banished name.\n");
+            write(str+" 当前不是被封禁的名称。\n");
+        else write(str+" 是一个被封禁的名称。\n");
     }
     else {
-        write("These names are currently banished:\n");
+        write("以下名称当前被封禁:\n");
         this_player()->more(explode(format_page(noms, 4), "\n"));
     }
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: whobanished [name]\n\n"
-            "Without an argument, this command lists all names currently "
-            "listed as being banished.  Otherwise it will confirm whether "
-            "the name is banished or not.");
+    return ("语法: whobanished [名称]\n\n"
+            "不带参数时，此命令列出当前所有被封禁的名称。"
+            "否则将确认该名称是否被封禁。");
 }

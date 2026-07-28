@@ -9,7 +9,7 @@ int CanLearn(){
 
 int eventLearn(object who, string what){
     if(!CanLearn()){
-        write("You can't learn that.");
+        write("你无法学习那个。");
         return 0;
     }
     who->eventTeach(this_player(),what);

@@ -12,13 +12,13 @@ mixed cmd() {
             catch( CLASSES_D->AddClass(str) );
         }
     }
-    write("Done.");
+    write("完成。");
     return 1;
 }
 
 string GetHelp() {
-    return ("Syntax: addclasses\n\n"
-            "Imports all the class files in CFG_CLASSES into  "
-            "CLASSES_D. It may fail if all classes have not been "
-            "removed prior to its use.");
+    return ("语法: addclasses\n\n"
+            "将 CFG_CLASSES 目录中的所有职业文件导入到"
+            "职业守护进程中。如果使用前未移除所有现有职业，"
+            "可能会失败。");
 }

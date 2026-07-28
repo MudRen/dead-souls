@@ -15,7 +15,7 @@ protected void create() {
     verb::create();
     SetVerb("smell");
     SetRules("", "OBJ", "STR on OBJ", "STR of OBJ");
-    SetErrorMessage("Smell something?");
+    SetErrorMessage("闻什么？");
     SetHelp("Syntax: <smell>\n"
             "        <smell ITEM>\n"
             "        <smell THING on ITEM>\n\n"
@@ -27,7 +27,7 @@ protected void create() {
 
 mixed can_smell() {
     if( !environment(this_player()) ) {
-        return "You are nowhere.";
+        return "你哪里也不在。";
     }
     return 1;
 }

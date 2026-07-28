@@ -1,230 +1,228 @@
 /* compiled by Blitz@Dead Souls and Mikla@Dead Souls */
 
-// The SOBER_COMBAT define is intended to make combat messages a
-// bit less emo. The problem with the original combat messages is
-// that if you have, say, two robots fighting, it's weird and 
-// jarring to see them foaming at the mouth or grunting angrily.
-// Just remove the define for the old-style behavior, if you want
-// the bellowing and ranting back. -Crat 05Nov2007
+// SOBER_COMBAT 宏用于使战斗消息不那么夸张。
+// 原始战斗消息中，如果两个机器人在战斗，
+// 看到它们口吐白沫或愤怒咆哮会很奇怪。
+// 如需要旧式行为，移除此定义即可。-Crat 05Nov2007
 
 #define SOBER_COMBAT
 
 #ifndef SOBER_COMBAT
 
 #define MOVE_TYPES ({\
-({ "feint deceptively", "feints deceptively" }),\
-({ "dance around", "dances around" }),\
-({ "lunge quickly", "lunges quickly" }),\
-({ "duck low", "ducks low" }),\
-({ "move fast", "moves fast" }),\
-({ "strike rapidly", "strikes rapidly" }),\
-({ "sidestep nimbly", "sidesteps nimbly" }),\
-({ "growl menacingly", "growls menacingly" }),\
-({ "grin sadistically", "grins sadistically" }),\
-({ "grunt angrily", "grunts angrily" }),\
-({ "bellow loudly", "bellows loudly" }),\
-({ "swing blindly", "swings blindly" }),\
-({ "shout profanities", "shouts profanities" }),\
-({ "swell with ferocity", "swells with ferocity" }),\
-({ "rally with determination", "rallies with determination" }),\
-({ "spit derisively", "spits derisively" }),\
-({ "glare contemptuously", "glares contemptuously" }),\
-({ "stumble fortuitously", "stumbles fortuitously" }),\
-({ "scream, \"Die!\"", "screams, \"Die!\"" }),\
-({ "foam at the mouth", "foams at the mouth" }),\
-({ "rant, \"Aahrrg!\"", "rants, \"Aahrrg!\"" }),\
-({ "execute a diving roll maneuver", "executes a diving roll maneuver" }),\
-({ "attack with renewed frenzy", "attacks with renewed frenzy" }),\
-({ "yell, \"Look!! Behind you!\"", "yells, \"Look!! Behind you!\"" }),\
-({ "go completely berserk", "goes completely berserk" }),\
-({ "rage violently", "rages violently" }),\
-({ "gyrate energetically", "gyrates energetically" }),\
-({ "whirl around quickly", "whirls around quickly" }),\
-({ "whirl blurringly", "whirls blurringly" }),\
-({ "see an opening", "sees an opening" }),\
-({ "do a cunning move", "does a cunning move" }),\
-({ "twirl with finesse", "twirls with finesse" }),\
+({ "虚晃一招", "虚晃一招" }),\
+({ "灵活走位", "灵活走位" }),\
+({ "迅速突刺", "迅速突刺" }),\
+({ "低身闪避", "低身闪避" }),\
+({ "快速移动", "快速移动" }),\
+({ "猛烈连击", "猛烈连击" }),\
+({ "敏捷侧闪", "敏捷侧闪" }),\
+({ "威胁地低吼", "威胁地低吼" }),\
+({ "残忍地狞笑", "残忍地狞笑" }),\
+({ "愤怒地咆哮", "愤怒地咆哮" }),\
+({ "大声怒吼", "大声怒吼" }),\
+({ "盲目挥击", "盲目挥击" }),\
+({ "高声咒骂", "高声咒骂" }),\
+({ "气势汹汹", "气势汹汹" }),\
+({ "坚定地鼓舞士气", "坚定地鼓舞士气" }),\
+({ "轻蔑地吐口水", "轻蔑地吐口水" }),\
+({ "轻蔑地怒视", "轻蔑地怒视" }),\
+({ "踉跄闪避", "踉跄闪避" }),\
+({ "尖叫：\"去死！\"", "尖叫：\"去死！\"" }),\
+({ "口吐白沫", "口吐白沫" }),\
+({ "怒吼：\"啊！！\"", "怒吼：\"啊！！\"" }),\
+({ "翻滚闪避", "翻滚闪避" }),\
+({ "疯狂地再度进攻", "疯狂地再度进攻" }),\
+({ "大喊：\"看后面！！\"", "大喊：\"看后面！！\"" }),\
+({ "彻底暴走", "彻底暴走" }),\
+({ "狂暴地攻击", "狂暴地攻击" }),\
+({ "精力充沛地旋转", "精力充沛地旋转" }),\
+({ "迅速转身", "迅速转身" }),\
+({ "令人眼花缭乱地旋转", "令人眼花缭乱地旋转" }),\
+({ "发现破绽", "发现破绽" }),\
+({ "巧妙闪避", "巧妙闪避" }),\
+({ "优雅地旋转", "优雅地旋转" }),\
 })
 
 #else
 
 #define MOVE_TYPES ({\
-({ "feint", "feints" }),\
-({ "twist swiftly", "twists swiftly" }),\
-({ "lunge quickly", "lunges quickly" }),\
-({ "duck", "ducks" }),\
-({ "move fast", "moves fast" }),\
-({ "strike rapidly", "strikes rapidly" }),\
-({ "sidestep", "sidesteps" }),\
-({ "gyrate briskly", "gyrates briskly" }),\
-({ "whirl around quickly", "whirls around quickly" }),\
-({ "whirl blurringly", "whirls blurringly" }),\
+({ "虚晃", "虚晃" }),\
+({ "迅速闪避", "迅速闪避" }),\
+({ "迅速突刺", "迅速突刺" }),\
+({ "低头闪躲", "低头闪躲" }),\
+({ "快速移动", "快速移动" }),\
+({ "猛烈连击", "猛烈连击" }),\
+({ "侧身闪避", "侧身闪避" }),\
+({ "敏捷旋转", "敏捷旋转" }),\
+({ "迅速转身", "迅速转身" }),\
+({ "令人眼花缭乱地旋转", "令人眼花缭乱地旋转" }),\
 })
 
 #endif
 
- 
+
 #define BLADE_DEGREES ({\
 ({\
-({ "prick", "pricks" }),\
-({ "lightly", "superficially", "just barely" })\
+({ "刺", "刺" }),\
+({ "轻轻地", "浅浅地", "擦过" })\
 }),\
 ({\
-({ "scratch", "scratches" }),\
-({ "mildly", "barely", })\
+({ "划", "划" }),\
+({ "微微", "几乎不着痕迹地", })\
 }),\
 ({\
-({ "jab", "jabs" }),\
-({ "quickly", "meanly", })\
+({ "戳", "戳" }),\
+({ "迅速地", "凶狠地", })\
 }),\
 ({\
-({ "cut", "cuts" }),\
-({ "painfully" }),\
+({ "割", "割" }),\
+({ "令人疼痛地" }),\
 }),\
 ({\
-({ "slice", "slices" }),\
-({ "deeply" }),\
+({ "切", "切" }),\
+({ "深深地" }),\
 }),\
 ({\
-({ "pierce", "pierces" }),\
-({ "wickedly" }),\
+({ "穿透", "穿透" }),\
+({ "恶毒地" }),\
 }),\
 ({\
-({ "slash", "slashes" }),\
-({ "expertly" }),\
+({ "劈", "劈" }),\
+({ "老练地" }),\
 }),\
 ({\
-({ "stab", "stabs" }),\
-({ "fiercely" }),\
+({ "捅", "捅" }),\
+({ "凶猛" }),\
 }),\
 ({\
-({ "carve", "carves" }),\
-({ "to pieces" }),\
+({ "剁", "剁" }),\
+({ "碎尸万段" }),\
 }),\
 ({\
-({ "cleave", "cleaves" }),\
-({ "cruelly" }),\
+({ "砍", "砍" }),\
+({ "残忍地" }),\
 }),\
 ({\
-({ "wound", "wounds" }),\
-({ "greviously" }),\
+({ "重创", "重创" }),\
+({ "严重地" }),\
 }),\
 ({\
-({ "devastate", "devastates" }),\
-({ "completely" }),\
+({ "毁灭性地打击", "毁灭性地打击" }),\
+({ "彻底" }),\
 }),\
 ({\
-({ "destroy", "destroys" }),\
-({ "utterly", }),\
+({ "摧毁", "摧毁" }),\
+({ "完全", }),\
 }),\
 })
- 
+
 #define PROJECTILE_DEGREES ({\
 ({\
-({ "prick", "pricks" }),\
-({ "lightly", "superficially", "just barely" })\
+({ "擦", "擦" }),\
+({ "轻轻地", "浅浅地", "勉强碰到" })\
 }),\
 ({\
-({ "scratch", "scratches" }),\
-({ "mildly", "barely", }),\
+({ "刮", "刮" }),\
+({ "微微", "几乎不着痕迹地", })\
 }),\
 ({\
-({ "graze", "grazes" }),\
-({ "sharply" }),\
+({ "擦伤", "擦伤" }),\
+({ "尖锐地" }),\
 }),\
 ({\
-({ "gash", "gashes" }),\
-({ "deeply" }),\
+({ "撕裂", "撕裂" }),\
+({ "深深地" }),\
 }),\
 ({\
-({ "tear", "tears" }),\
-({ "painfully" }),\
+({ "扯裂", "扯裂" }),\
+({ "令人疼痛地" }),\
 }),\
 ({\
-({ "pierce", "pierces" }),\
-({ "wickedly" }),\
+({ "贯穿", "贯穿" }),\
+({ "恶毒地" }),\
 }),\
 ({\
-({ "shear", "shears" }),\
-({ "to ribbons" }),\
+({ "削", "削" }),\
+({ "成片地" }),\
 }),\
 ({\
-({ "puncture", "punctures" }),\
-({ "deeply", "with a quick thrust" }),\
+({ "刺穿", "刺穿" }),\
+({ "深深地", "迅猛一击" }),\
 }),\
 ({\
-({ "rip", "rips" }),\
-({ "apart", "to pieces" }),\
+({ "撕开", "撕开" }),\
+({ "撕裂", "碎成片" }),\
 }),\
 ({\
-({ "impale", "impales" }),\
-({ "without mercy" }),\
+({ "钉穿", "钉穿" }),\
+({ "毫不留情地" }),\
 }),\
 ({\
-({ "wound", "wounds" }),\
-({ "greviously" }),\
+({ "重创", "重创" }),\
+({ "严重地" }),\
 }),\
 ({\
-({ "devastate", "devastates" }),\
-({ "completely" }),\
+({ "毁灭性地打击", "毁灭性地打击" }),\
+({ "彻底" }),\
 }),\
 ({\
-({ "destroy", "destroys" }),\
-({ "utterly" }),\
+({ "摧毁", "摧毁" }),\
+({ "完全" }),\
 }),\
 })
- 
+
 #define BLUNT_DEGREES ({\
 ({\
-({ "brush", "brushes" }),\
-({ "lightly", "softly", "with little force" }),\
+({ "拂", "拂" }),\
+({ "轻轻地", "柔和地", "几乎无力地" }),\
 }),\
 ({\
-({ "bruise", "bruises" }),\
-({ "mildly" }),\
+({ "淤伤", "淤伤" }),\
+({ "微微" }),\
 }),\
 ({\
-({ "hit", "hits" }),\
-({ "hard" }),\
+({ "击", "击" }),\
+({ "沉重地" }),\
 }),\
 ({\
-({ "pound", "pounds" }),\
-({ "solidly" }),\
+({ "猛捣", "猛捣" }),\
+({ "结实地" }),\
 }),\
 ({\
-({ "hammer", "hammers" }),\
-({ "painfully" }),\
+({ "重锤", "重锤" }),\
+({ "令人疼痛地" }),\
 }),\
 ({\
-({ "pummel", "pummels" }),\
-({ "soundly" }),\
+({ "痛殴", "痛殴" }),\
+({ "狠狠地" }),\
 }),\
 ({\
-({ "thrash", "thrashes" }),\
-({ "viciously" }),\
+({ "猛抽", "猛抽" }),\
+({ "凶残地" }),\
 }),\
 ({\
-({ "smash", "smashes" }),\
-({ "forcefully" }),\
+({ "粉碎", "粉碎" }),\
+({ "强力地" }),\
 }),\
 ({\
-({ "crush", "crushes" }),\
-({ "violently" }),\
+({ "碾压", "碾压" }),\
+({ "猛烈地" }),\
 }),\
 ({\
-({ "slam", "slams" }),\
-({ "powerfully" }),\
+({ "猛撞", "猛撞" }),\
+({ "强有力地" }),\
 }),\
 ({\
-({ "wound", "wounds" }),\
-({ "greviously" }),\
+({ "重创", "重创" }),\
+({ "严重地" }),\
 }),\
 ({\
-({ "devastate", "devastates", }),\
-({ "completely" }),\
+({ "毁灭性地打击", "毁灭性地打击", }),\
+({ "彻底" }),\
 }),\
 ({\
-({ "destroy", "destroys" }),\
-({ "utterly" }),\
+({ "摧毁", "摧毁" }),\
+({ "完全" }),\
 }),\
 })

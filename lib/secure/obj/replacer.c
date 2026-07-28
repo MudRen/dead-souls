@@ -43,11 +43,9 @@ void init(){
 int eventActivate(){
     validate();
     write("随着一声诡异的轰鸣，字符串替换器启动了。你感到了巨大的危险。");
-    write("\n\nWARNING: Your current working directory is:\n\n");
+    write("\n\n警告：你当前的工作目录是：\n\n");
     write(this_player()->query_cwd()+"\n\n");
-    say(this_player()->GetName()+" turns on "+possessive(this_player())+
-            " string replacer and you hear a loud, unearthly "+
-            "roar that makes the ground tremble.");
+    say(this_player()->GetName()+"打开了字符串替换器，你听到一声奇异的、不属于人间的轰鸣，大地为之颤抖。");
     active = 1;
     return 1;
 }
@@ -62,24 +60,24 @@ int eventDeactivate(){
 
 varargs mixed eventTurn(string str){
     validate();
-    if( this_player() != environment() ) { write("You don't have that."); return 0; }
-    write("You turn the replacer over in your hands.");
-    say(this_player()->GetKeyName()+" turns over a string replacer in "+possessive(this_player())+" hands.");
+    if( this_player() != environment() ) { write("你没有那个物品。"); return 0; }
+    write("你把替换器拿在手中翻来覆去。");
+    say(this_player()->GetKeyName()+"在手中翻转着字符串替换器。");
     return 1;
 }
 
 int eventTurnOn(object ob){
     validate();
 
-    if( this_player() != environment() ) { write("You don't have that."); return 0; }
+    if( this_player() != environment() ) { write("你没有那个物品。"); return 0; }
 
     if(!creatorp(this_player())) {
-        write("This device is not usable by mortals.");
+        write("此设备非凡人可用。");
         return 0;
     }
 
     if(active){
-        write("It's already on.");
+        write("它已经打开了。");
         return 0;
     }
     else eventActivate();
@@ -89,9 +87,9 @@ int eventTurnOn(object ob){
 
 varargs mixed eventTurnOff(string str){
     validate();
-    if( this_player() != environment() ) { write("You don't have that."); return 0; }
+    if( this_player() != environment() ) { write("你没有那个物品。"); return 0; }
     if(!active){
-        write("It's already off.");
+        write("它已经关闭了。");
         return 0;
     }
     else eventDeactivate();
@@ -105,12 +103,12 @@ int autorep(string str){
 
     validate();
     if(!active){
-        write("The string replacer is not turned on.");
+        write("字符串替换器未开启。");
         return 1;
     }
 
     if( !str || str=="" || sscanf(str,"%s %s",a1,a2) != 2){
-        write("Syntax: autorep <oldword> <newword>\n");
+        write("语法：autorep <旧词> <新词>\n");
         eventDeactivate();
         return 1;
     }
@@ -129,14 +127,14 @@ int rep_string(string str){
 
     validate();
     if(!active){
-        write("The string replacer is not turned on.");
+        write("字符串替换器未开启。");
         return 1;
     }
 
     valid_line=1;
     n=1;
     if( !str || str==""){
-        write("Syntax: replace <filename> <oldword> <newword>\n");
+        write("语法：replace <文件名> <旧词> <新词>\n");
         eventDeactivate();
         return 1;
     }
@@ -145,7 +143,7 @@ int rep_string(string str){
         file=dir+a1;
 
         if(file_size(file) <= 0 ) {
-            write("Invalid filename.");
+            write("无效的文件名。");
             eventDeactivate();
             return 1;
         }
@@ -154,7 +152,7 @@ int rep_string(string str){
         backup="/tmp/"+lower_case(this_player()->GetName())+"."+a1+".bak";
         if(file_size(backup)){ rm(backup); }
         if(file_size(tempfile)){ rm(tempfile); }
-        write("Searching "+a1+" for string: "+a2+".\n");
+        write("在 "+a1+" 中搜索字符串："+a2+"。\n");
         while(valid_line){
             line=read_file(file, n, 1);
             if(!line || line=="") valid_line=0;
@@ -166,11 +164,11 @@ int rep_string(string str){
         cp(tempfile, file);
         if(file_size(backup)){ rm(backup); }
         if(file_size(tempfile)){ rm(tempfile); }
-        write("Replace action complete. File "+file+" modified.\n");
+        write("替换完成。文件 "+file+" 已修改。\n");
         if(query_verb() == "replace") eventDeactivate();
         return 1;
     }
-    write("Syntax: replace <filename> <oldstring> <newstring>\n");
+    write("语法：replace <文件名> <旧字符串> <新字符串>\n");
     eventDeactivate();
     return 1;
 }
@@ -180,7 +178,7 @@ int replace(string str){
     validate();
     if(sizeof(str) && sscanf(str,"%s"+a2+"%s",s1,s2)>1){
         line=s1+a3+s2;
-        write("Found string in line "+n+". Replacing with: "+a3+".\n");
+        write("在第 "+n+" 行找到字符串。替换为："+a3+"。\n");
         this_object()->replace(line);
     }
     return 1;

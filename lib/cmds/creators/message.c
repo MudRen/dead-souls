@@ -22,10 +22,10 @@ mixed cmd(string args) {
         message("system", tmp, this_player());
         return 1;
     }
-    if( sscanf(args, "%s %s", type, msg) != 2) return "Set it to what?";
+    if( sscanf(args, "%s %s", type, msg) != 2) return "要设置成什么？";
     if( !(this_player()->SetMessage(type, msg)) )
-        return "Invalid message type.";
-    message("system", "Message " + type + " changed to:\n" + msg, 
+        return "无效的消息类型。";
+    message("system", "消息 " + type + " 已更改为：\n" + msg,
             this_player());
     return 1;
 }

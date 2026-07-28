@@ -15,7 +15,7 @@ mixed cmd(string str) {
     int err;
     string tmp;
 
-    if(!str) return "Goto where?";
+    if(!str) return "去哪里？";
     tmp = DEFINES_D->GetDefine(str);
     if(tmp) str = tmp;
     ob = find_player(lower_case(str));
@@ -23,10 +23,10 @@ mixed cmd(string str) {
     if(ob && objectp(ob) && (!ob->GetInvis() || !archp(ob)) && 
             ob = room_environment(ob)) {
         if(ob == room_environment(this_player())) {
-            message("my_action", "You twitch.", this_player());
+            message("my_action", "你抽动了一下。", this_player());
             if(hiddenp(this_player())) return 1;
             message("other_action", this_player()->GetName()+
-                    " twitches.", ob, ({ this_player() }));
+                    "抽动了一下。", ob, ({ this_player() }));
             return 1;
         }
     }
@@ -62,7 +62,7 @@ mixed cmd(string str) {
 
     err = catch( ob = load_object(str) );
     if(err || !ob) {
-        write("\n\nCould not load that location.");
+        write("\n\n无法加载该位置。");
         return 1;
     }
     else this_player()->eventMoveLiving(ob);
@@ -70,8 +70,8 @@ mixed cmd(string str) {
 }
 
 string GetHelp() {
-    return ("Syntax: goto [living thing|file]\n\n"
-            "This command will move you to where the living thing is if it can "
-            "be found, otherwise it will search for the file named and try to "
-            "move you into that file.\nSee also: home, move, trans, expel.");
+    return ("语法: goto [生物|文件]\n\n"
+            "此命令会将你移动到指定生物所在的位置（如果能找到的话），\n"
+            "否则搜索指定文件并尝试将你移入该文件。\n"
+            "另见: home, move, trans, expel");
 }

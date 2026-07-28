@@ -16,18 +16,18 @@ int cmd(string str) {
     if(!archp(previous_object())) return 0;
 
     if(!str) {
-        write("The following sites are on temporary registration:\n"+
+        write("以下站点正在临时注册中:\n"+
                 BANISH_D->query_temp_site_info());
         return 1;
     }
 
 
     if(sscanf(str, "%s %d", site, time) != 2) {
-        notify_fail("Correct syntax: tempban [site] [time in minutes]>\n\n");
+        notify_fail("正确语法: tempban [站点] [分钟数]>\n\n");
         return 0;
     }
 
-    write(site+" is now on register for "+time+" minutes.");
+    write(site+" 现已临时注册 "+time+" 分钟。");
     BANISH_D->temporary_register(site, time*60);
     log_file("watch/register", site+" for "+time+" minutes.\n");
     log_file("watch/register", "by " +this_player()->GetName()+"\n");
@@ -35,12 +35,11 @@ int cmd(string str) {
 }
 
 string GetHelp(){
-    return ("Syntax: tempban [site] [time]\n\n"
-            "This will make new players from "
-            "[site] unable to log in for a period of time [time] "
-            "(given in minutes).  This will last across reboots and site ip "
-            "numbers should be entered in the same manner as the \"register\" "
-            "command requires.  See \"help register\" for more details.\n\n"
-            "Note: tempban without arguments will list all sites on temporary "
-            "registration along with their times of expiration.");
+    return ("语法: tempban [站点] [时间]\n\n"
+            "使来自指定站点的新玩家在指定时间内（以分钟为单位）"
+            "无法登录。此设置在重启后仍然有效，站点IP地址"
+            "的输入方式与 register 命令相同。"
+            "详见 \"help register\"。\n\n"
+            "注意: 不带参数的 tempban 将列出所有临时注册的站点"
+            "及其过期时间。");
 }

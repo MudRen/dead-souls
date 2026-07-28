@@ -29,10 +29,10 @@ mixed indirect_drink_from_obj(){
             !inherits(LIB_FLOW, this_object()) &&
             !this_object()->GetTapped() &&
             !inherits(LIB_BASE_DUMMY, this_object())){
-        return "#You don't have it.";
+        return "#你没有它。";
     }
     if( !EverFill && FlaskUses < 1 ){
-        return "The "+this_object()->GetKeyName()+" is empty.";
+        return this_object()->GetKeyName()+"是空的。";
     }
     return this_object()->CanDrink();
 }
@@ -119,20 +119,20 @@ varargs mixed eventEmpty(object who){
     string *tmpid = GetId();
     if(FlaskContents != "empty") tmpid -= ({ FlaskContents });
     if(environment(this_object()) != who){
-        write("You aren't holding it.");
+        write("你没有拿着它。");
         return 1;
     }
     if(!FlaskUses){
-        write("The "+GetShort()+" is already empty.");
-        say(who->GetName()+" fiddles with "+GetShort()+".");
+        write(GetShort()+"已经是空的了。");
+        say(who->GetName()+"摆弄着"+GetShort()+"。");
         return 1;
     }
     if(EverFill){
-        write("This cannot be emptied.");
+        write("这个无法被倒空。");
         return 1;
     }
-    write("You pour the "+FlaskContents+" out of "+GetShort()+".");
-    say(who->GetName()+" pours the "+FlaskContents+" out of "+GetShort()+".");
+    write("你把"+FlaskContents+"从"+GetShort()+"里倒了出来。");
+    say(who->GetName()+"把"+FlaskContents+"从"+GetShort()+"里倒了出来。");
     SetId(tmpid);
     parse_refresh();
     FlaskContents = "empty";
@@ -149,37 +149,37 @@ mixed eventFill(object who, object from){
             !inherits(LIB_FLOW, from) &&
             !inherits(LIB_BASE_DUMMY, from) &&
             environment(from) != this_player()){
-        write("You are not holding the "+from->GetKeyName()+".");
+        write("你没有拿着"+from->GetKeyName()+"。");
         return 1;
     }
 
     if(from->isDummy() &&
             environment(this_object()) != this_player()){
-        write("You don't have the "+this_object()->GetKeyName()+".");
+        write("你没有"+this_object()->GetKeyName()+"。");
         return 1;
     }
 
     if(from == this_object()){
-        write("You can't fill it with itself!");
+        write("你不能用它自己来装它！");
         return 1;
     }
     if(!howmuch_them){
-        write("The "+from->GetKeyName()+" is empty.");
+        write(from->GetKeyName()+"是空的。");
         return 1;
     }
     if(FlaskUses >= MaxFlask){
         FlaskUses = MaxFlask;
-        write("The "+this_object()->GetKeyName()+" is already full.");
+        write(this_object()->GetKeyName()+"已经满了。");
         return 1;
     }
     if((from->GetFlaskContents() != GetFlaskContents() 
                 || from->GetMealType() != GetMealType())
             && GetFlaskContents() != "empty"){
-        write("Those are incompatible fluids, and you cannot mix them.");
+        write("这些液体不兼容，无法混合。");
         return 1;
     }
     if(from->GetStrength() != GetStrength() && GetStrength()){
-        write("Those are incompatible fluids, and you cannot mix them.");
+        write("这些液体不兼容，无法混合。");
         return 1;
     }
     if(howmuch_them < howmuch_me) howmuch_me = howmuch_them;
@@ -187,9 +187,9 @@ mixed eventFill(object who, object from){
         FlaskUses += howmuch_me;
         from->SetFlaskUses(from->GetFlaskUses() - howmuch_me);
     }
-    write("You pour from "+from->GetShort()+" into "+this_object()->GetShort()+".");
-    say(who->GetName()+" pours from "+from->GetShort()+
-            " into "+this_object()->GetShort()+".");
+    write("你从"+from->GetShort()+"倒入"+this_object()->GetShort()+"。");
+    say(who->GetName()+"从"+from->GetShort()+
+            "倒入"+this_object()->GetShort()+"。");
     SetMealType(from->GetMealType());
     FlaskContents = from->GetFlaskContents();
     FlaskStrength = from->GetStrength();
@@ -219,8 +219,8 @@ varargs mixed CanDrink(object who, string what){
     if(!who) who = this_player();
     if(FlaskUses < 1){
         FlaskUses = 0;
-        say(who->GetName()+" sadly looks at "+GetShort()+".");
-        return "The "+this_object()->GetKeyName()+" is empty.";
+        say(who->GetName()+"难过地看着"+GetShort()+"。");
+        return this_object()->GetKeyName()+"是空的。";
     }
     ret = who->CanDrink(this_object());
     return ret;

@@ -19,12 +19,12 @@ mixed cmd(string str){
     if(!here) return 0;
 
     if(!staff){
-        write("You must be holding the Creator Staff in order to use this command.");
+        write("你必须持有创造者法杖才能使用此命令。");
         return 1;
     }
 
     if(file_exists(base_name(here)+".c")){
-        write("This environment is already not virtual.");
+        write("当前环境已经是非虚拟房间。");
         return 1;
     }
 
@@ -90,12 +90,10 @@ mixed cmd(string str){
 }
 
 string GetHelp() {
-    return ("Syntax: unvirt\n\n"
-            "This command will gather the room data of the virtual room you "
-            "are standing in, and try to make a non-virtual room with it, "
-            "writing to the file that the virtual room is pretending to use. "
-            "If you lack write permissions to that file, the command will fail "
-            "in a rather ugly way.\n"
-            "See also: modify, create, delete, copy, areaclone, "
+    return ("语法: unvirt\n\n"
+            "此命令会收集你当前所站的虚拟房间的数据，并尝试\n"
+            "创建一个非虚拟房间，写入该虚拟房间所模拟使用的文件。\n"
+            "如果你对该文件没有写权限，命令将以一种不太美观的方式失败。\n"
+            "参见: modify, create, delete, copy, areaclone, "
             "areagoto, arealist");
 }

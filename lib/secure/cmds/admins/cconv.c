@@ -34,7 +34,7 @@ mapping ObjectType = ([
 
 mixed cmd(string args){
     if(args == "clear"){
-        write("Resetting the converter variables.");
+        write("正在重置转换器变量。");
         RELOAD_D->eventReload(this_object(),0);
         return 1;
     }
@@ -58,13 +58,13 @@ varargs mixed QueryMaps(string which, string what){
     }
     if(which == "area"){
         if(AreaMap && AreaMap[what]) return identify(AreaMap[what]);
-        else return "No such element.";
+        else return "没有这样的元素。";
     }
     if(which == "raw"){
         if(RawMap && RawMap[what]) return identify(RawMap[what]);
-        else return "No such element.";
+        else return "没有这样的元素。";
     }
-    return "IDK.";
+    return "未知。";
 }
 
 int Report(string str){
@@ -77,7 +77,7 @@ int Report(string str){
 
 int DisplayVnum(string str){
     if(!str || !AreaMap[str]){
-        write("No such vnum in this area.");
+        write("此区域中没有这样的vnum。");
         return 1;
     }
     print_long_string(this_player(),"vnum "+str+":\n"+identify(AreaMap[str]),1);
@@ -93,24 +93,24 @@ int ConvertArea(string arg){
     string *segmented = ({});
 
     if(!arg || sscanf(arg,"%s %s %s",str, area, name) != 3){
-        write("cconv PATH AREA NAME");
+        write("cconv 路径 区域名 域名");
         return 1;
     }
 
     if(!str || !directory_exists(str)){
-        write("No such area directory exists.");
+        write("该区域目录不存在。");
         return 1;
     }
 
     if(directory_exists(DOMAINS_DIRS+"/"+name)){
-        write("That domain already exists. Backing up the current domain to a unique name.");
+        write("该域已存在。正在将当前域备份到唯一名称。");
         rename(DOMAINS_DIRS+"/"+name, DOMAINS_DIRS+"/"+name+"."+time());
     }
 
     foreach(string elemento in source_dirs){
         string path = str+"/"+area+"."+elemento;
         if(!file_exists(path)){
-            write(path+" does not exist. Skipping.");
+            write(path+" 不存在。跳过。");
             continue;
         }
 
@@ -190,7 +190,7 @@ int ConvertArea(string arg){
         if(directory_exists(truncate(prefix,1))){
             write_file(prefix+lines[0]+"_"+ob_name+".c",header,1);
         }
-        else write("Directory "+truncate(prefix,1)+" does not exist.");
+        else write("目录 "+truncate(prefix,1)+" 不存在。");
 
         if(!AreaMap) AreaMap = ([]);
 
@@ -258,7 +258,7 @@ int ConvertArea(string arg){
             if(directory_exists(truncate(prefix,1))){
                 write_file(prefix+lines[0]+"_"+ob_name+".c",header,1);
             }
-            else write("Directory "+truncate(prefix,1)+" does not exist.");
+            else write("目录 "+truncate(prefix,1)+" 不存在。");
 
             if(!AreaMap) AreaMap = ([]);
 
@@ -330,7 +330,7 @@ int ConvertArea(string arg){
         if(directory_exists(truncate(prefix,1))){
             write_file(prefix+lines[0]+".c",header,1);
         }
-        else write("Directory "+truncate(prefix,1)+" does not exist.");
+        else write("目录 "+truncate(prefix,1)+" 不存在。");
 
         if(!AreaMap) AreaMap = ([]);
 
@@ -342,11 +342,11 @@ int ConvertArea(string arg){
 }
 
 string GetHelp() {
-    message("help", "Syntax: cconv <source path> <areaname> <domain name>\n\n"
-            "Tries to convert a Circle area into a Dead Souls domain.\n"
-            "Example: cconv /tmp/areadir qq newdomain\n"
-            "This would try to create /domains/newdomain and convert the area described\n"
-            "in /tmp/areadir/qq.* into LPC files in the new DS domain."
+    message("help", "语法：cconv <源路径> <区域名> <域名>\n\n"
+            "尝试将 Circle 区域转换为 Dead Souls 域。\n"
+            "示例：cconv /tmp/areadir qq newdomain\n"
+            "这将尝试创建 /domains/newdomain 并将\n"
+            "/tmp/areadir/qq.* 中描述的区域转换为新 DS 域中的 LPC 文件。"
             "\n", this_player());
 }
 

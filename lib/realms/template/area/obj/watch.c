@@ -42,27 +42,27 @@ int eventReadWatch(){
 
     hour_string = cardinal(hour);
     switch(minutes){
-        case 0 : minute_string ="o'clock"; break;
-        case 1 : minute_string = hour_string;hour_string ="one minute past"; break;
-        case 2 : minute_string = hour_string;hour_string ="two minutes past"; break;
-        case 3 : minute_string = hour_string;hour_string ="three minutes past"; break;
-        case 4 : minute_string = hour_string;hour_string ="four minutes past"; break;
-        case 5 : minute_string = hour_string;hour_string ="five past"; break;
-        case 6 : minute_string = hour_string;hour_string ="six minutes past"; break;
-        case 7 : minute_string = hour_string;hour_string ="seven minutes past"; break;
-        case 8 : minute_string = hour_string;hour_string ="eight minutes past"; break;
-        case 9 : minute_string = hour_string;hour_string ="nine minutes past"; break;
-        case 10 : minute_string = hour_string;hour_string ="ten past"; break;
-        case 15 : minute_string = hour_string;hour_string ="quarter past"; break;
-        case 45 : minute_string = cardinal(hour+1);hour_string ="quarter of"; break;
-        case 50 : minute_string = cardinal(hour+1);;hour_string ="ten of"; break;
-        case 55 : minute_string = cardinal(hour+1);hour_string ="five of"; break;
+        case 0 : minute_string ="整"; break;
+        case 1 : minute_string = hour_string;hour_string ="过一分"; break;
+        case 2 : minute_string = hour_string;hour_string ="过两分"; break;
+        case 3 : minute_string = hour_string;hour_string ="过三分"; break;
+        case 4 : minute_string = hour_string;hour_string ="过四分"; break;
+        case 5 : minute_string = hour_string;hour_string ="过五分"; break;
+        case 6 : minute_string = hour_string;hour_string ="过六分"; break;
+        case 7 : minute_string = hour_string;hour_string ="过七分"; break;
+        case 8 : minute_string = hour_string;hour_string ="过八分"; break;
+        case 9 : minute_string = hour_string;hour_string ="过九分"; break;
+        case 10 : minute_string = hour_string;hour_string ="过十分"; break;
+        case 15 : minute_string = hour_string;hour_string ="过一刻"; break;
+        case 45 : minute_string = cardinal(hour+1);hour_string ="差一刻"; break;
+        case 50 : minute_string = cardinal(hour+1);;hour_string ="差十分"; break;
+        case 55 : minute_string = cardinal(hour+1);hour_string ="差五分"; break;
         default : minute_string = cardinal(minutes);break;
     }
 
-    if(minute_string == "thirteen") minute_string = "one";
+    if(minute_string == "thirteen") minute_string = "一";
 
-    write("According to the watch, it is "+hour_string+" "+minute_string+".");
+    write("根据怀表显示，现在是"+hour_string+" "+minute_string+"。");
 
     return 1;
 }

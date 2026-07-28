@@ -11,14 +11,13 @@
 inherit LIB_DAEMON;
 
 mixed cmd(string str) {
-    if( !str || str == "" ) return "Syntax: <more FILE>";
+    if( !str || str == "" ) return "语法: <more 文件>";
     return this_player()->eventPage(str, MSG_SYSTEM | MSG_NOCOLOUR);
 }
 
 string GetHelp(){
-    return ("Syntax: more <FILE>\n\n"
-            "Pages through the file you name.  While inside the pager, you "
-            "have access to the following commands:\n" +
+    return ("语法: more <文件>\n\n"
+            "分页显示指定文件。在分页器中，你可以使用以下命令:\n" +
             LIB_PAGER->GetHelp("pager") + "\n\n"
-            "See also: cat, ed, head, tail");
+            "另见: cat, ed, head, tail");
 }

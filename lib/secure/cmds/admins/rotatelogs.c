@@ -9,16 +9,16 @@ int cmd(string arg) {
     if(arg) force = 1;
     ret = LOG_D->RotateLogs(force);
     if(ret){
-        write("Logs rotated.");
+        write("日志已轮转。");
     }
     else {
-        write("Failed to rotate logs.");
+        write("日志轮转失败。");
     }
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: rotatelogs <force>\n\n"
-            "Archives old logs if they are too large. With an argument, "
-            "the archiving occurs regardless of size.");
+    return ("语法: rotatelogs <force>\n\n"
+            "如果旧日志文件过大则进行归档。带参数时，"
+            "无论大小都会执行归档。");
 }

@@ -22,7 +22,7 @@ mixed cmd(string args){
     }
 
     if( !args || args == "" ) {
-        return "Add which emote?";
+        return "要添加哪个表情？";
     }
     if( sscanf(args, "%s %s", emote, xtra) != 2 ) {
         emote = args;
@@ -36,16 +36,16 @@ mixed cmd(string args){
             string token;
 
             if( strlen(xtra) < 5 ) {
-                return "The expression " + xtra + " makes no sense.";
+                return "表达式 " + xtra + " 无意义。";
             }
             prep = xtra[0..<5];
             token = xtra[<3..];
             if( member_array(prep, master()->parse_command_prepos_list()) ==
                     -1 ) {
-                return "The preposition " + prep + " is not a valid.";
+                return "介词 " + prep + " 无效。";
             }
             if( member_array(token, ({ "LIV", "LVS" })) == -1 ) {
-                return "The token " + token + " is invalid.";
+                return "标记 " + token + " 无效。";
             }
             rules = ({ rules..., token });
         }
@@ -98,27 +98,21 @@ mixed cmd(string args){
 }
 
 string GetHelp(){
-    return ("Syntax: stupidemote <EMOTE> [RULE]\n\n"
-            "You must be admin or member of the EMOTES group to "
-            "use this command.\n"
-            "This command allows you to add the most common kinds of "
-            "emote straight from the command line.  Using the first syntax, "
-            "You can add a simple, untargetted emote.  For example, "
-            "if you did <stupidemote cheese>, this would create an emote "
-            "that would allow people to do <cheese> and <cheese adverb> "
-            "with a message that looks like \"Descartes cheeses.\"\n"
-            "The second syntax is for targetted emotes.  You specify a "
-            "targetting rule.  Targetting rules can be one of the following:\n"
-            "\t* LIV\n"
-            "\t* LVS\n"
-            "\t* preposition LIV\n"
-            "\t* preposition LVS\n"
-            "The difference between LIV and LVS just determines whether the "
-            "emote can be targetted at a single living being or one or more "
-            "living beings.  So, to add the \"smile\" emote, you would "
-            "do:\n"
-            "> stupidemote smile at LVS\n"
-            "and that would give you all the functionality of the \"smile\" "
-            "emote that exists on this mudlib.\n\n"
-            "See also: addadverb, addemote, removeadverb, removeemote");
+    return ("语法: stupidemote <表情> [规则]\n\n"
+            "你必须是管理员或 EMOTES 组成员才能使用此命令。\n"
+            "此命令允许你直接从命令行添加最常见的表情类型。\n"
+            "使用第一种语法，你可以添加简单的无目标表情。例如，\n"
+            "执行 <stupidemote cheese> 会创建一个表情，\n"
+            "允许玩家执行 <cheese> 和 <cheese 副词>，\n"
+            "消息类似于 \"Descartes cheeses.\"\n"
+            "第二种语法用于有目标的表情。你需要指定一个目标规则。\n"
+            "目标规则可以是以下之一:\n"
+            "\t* LIV（单个生物）\n"
+            "\t* LVS（多个生物）\n"
+            "\t* 介词 LIV\n"
+            "\t* 介词 LVS\n"
+            "LIV 和 LVS 的区别在于表情是面向单个生物还是多个生物。\n"
+            "例如，添加 \"smile\" 表情:\n"
+            "> stupidemote smile at LVS\n\n"
+            "另见: addadverb, addemote, removeadverb, removeemote");
 }

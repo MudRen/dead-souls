@@ -14,7 +14,7 @@ protected void create() {
     verb::create();
     SetVerb("turn");
     SetRules("", "OBJ", "on OBJ", "off OBJ", "OBJ on", "OBJ off");
-    SetErrorMessage("Turn on or turn off something?");
+    SetErrorMessage("打开或关闭什么？");
     SetHelp("Syntax: <turn>\n"
             "        <turn on ITEM>\n"
             "        <turn off ITEM>\n"
@@ -49,8 +49,8 @@ mixed can_turn_obj_off(mixed foo) {
 
 mixed do_turn() {
     environment(this_player())->eventPrint(this_player()->GetName() +
-            " turns around.", this_player());
-    this_player()->eventPrint("You turn around.");
+            "转过身来。", this_player());
+    this_player()->eventPrint("你转过身来。");
     return 1;
 }
 

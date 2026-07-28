@@ -48,7 +48,7 @@ protected string eventHistory(string str){
         }
     }
     if( !cmd || cmd == "" ){
-        eventPrint("Invalid history command.", MSG_ERROR);
+        eventPrint("无效的历史命令。", MSG_ERROR);
         return "";
     }
     if( !args || args == "" ) return Push(cmd);
@@ -62,7 +62,7 @@ protected string eventHistory(string str){
         if( args[0] == 's' ){
             if( len < 2 || args[1] != '/' ) return Push(cmd + args);
         }
-        eventPrint("Invalid replacement syntax.", MSG_ERROR);
+        eventPrint("无效的替换语法。", MSG_ERROR);
         return "";
     }
     if( args[0] == '^' ){
@@ -77,7 +77,7 @@ protected string eventHistory(string str){
             else i = strsrch(args, "^", i+1);
         }
         if( i == -1 ){
-            eventPrint("Invalid replacement syntax.", MSG_ERROR);
+            eventPrint("无效的替换语法。", MSG_ERROR);
             return "";
         }
         old = args[0..(i-1)];
@@ -98,7 +98,7 @@ protected string eventHistory(string str){
             else i = strsrch(args, "/", i+1);
         }
         if( i == -1 ){
-            eventPrint("Invalid replacement syntax.", MSG_ERROR);
+            eventPrint("无效的替换语法。", MSG_ERROR);
             return "";
         }
         old = args[0..(i-1)];

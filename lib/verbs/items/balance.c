@@ -14,7 +14,7 @@ protected void create() {
     verb::create();
     SetVerb("balance");
     SetRules("OBJ to OBJ");
-    SetErrorMessage("What two things would you like to balance?");
+    SetErrorMessage("你想比较哪两样东西？");
     SetHelp("Syntax: balance OBJ to OBJ\n\n"
             "A simple tool for determining which is the heavier of two objects."
             "See help: item commands");
@@ -28,25 +28,25 @@ mixed can_balance_obj_to_obj() {
 mixed do_balance_obj_to_obj(object obj1, object obj2) {
     string name1, name2;
     object caster = this_player();
-    if(!obj1 || !obj2) return "You must judge one thing vs another.";
-    if(obj1 == obj2) return "That would do a lot of good!";
+    if(!obj1 || !obj2) return "你必须拿一样东西和另一样比较。";
+    if(obj1 == obj2) return "那倒很有用呢！";
     /* Check for presence of objects */
     name1 = obj1->GetShort();
     name2 = obj2->GetShort();
 
     if( environment(obj1) != caster ) {
-        caster->eventPrint("You do not have "+name1+".");
+        caster->eventPrint("你没有" +name1+"。");
         return 1;
     }
 
     if( environment(obj2) != caster ) {
-        caster->eventPrint("You do not have "+name2+".");
+        caster->eventPrint("你没有" +name2+"。");
         return 1;
     }
 
-    caster->eventPrint("You stare intently at "+name1+" and "+name2+".");
+    caster->eventPrint("你专注地凝视着" +name1+"和" +name2+"。");
     environment(caster)->eventPrint( caster->GetName() +
-            " concentrates on " + name1 + " and " + name2 + ".", caster);
+            "专心致志地比较着" + name1 + "和" + name2 + "。", caster);
     if( this_player()->GetInCombat() )
         this_player()->SetAttack(0,
                 (: eventBalance, this_player(), obj1, obj2 :),
@@ -65,14 +65,13 @@ int eventBalance(object caster, object obj1, object obj2) {
 
     if( !(obj1 && obj2) ) return 0;
     if( (environment(obj1) != caster) || (environment(obj2) != caster) ) {
-        caster->eventPrint("You must have both items in your possession "
-                "to compare them.");
+        caster->eventPrint("你必须同时拥有两样物品才能比较。");
         return 0;
     }
     if( cost > caster->GetStaminaPoints() ) {
-        caster->eventPrint("You are too weary to balance right now.");
+        caster->eventPrint("你现在太累了，无法称量。");
         environment(caster)->eventPrint(
-                caster->GetName() + " looks tired.", caster);
+                caster->GetName() + "看起来很累。", caster);
         return 0;
 
     }
@@ -83,7 +82,7 @@ int eventBalance(object caster, object obj1, object obj2) {
     /* Return the right answer */
     if(obj1lvl == obj2lvl) {
         caster->eventPrint("%^BOLD%^%^WHITE%^"
-                "You determine that these two items are equally heavy."
+                "你判断出这两样物品重量相等。"
                 ".%^RESET%^");
         return 1;
     }
@@ -92,8 +91,8 @@ int eventBalance(object caster, object obj1, object obj2) {
     }
     else better = obj2->GetShort();
     caster->eventPrint("%^BOLD%^%^WHITE%^"
-            "You determine that " + better + "%^BOLD%^%^WHITE%^"
-            " is the heavier object.%^RESET%^");
+            "你判断出" + better + "%^BOLD%^%^WHITE%^"
+            "是更重的物品。%^RESET%^");
     return 1;
 
 } 

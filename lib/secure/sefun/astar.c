@@ -398,7 +398,7 @@ mixed *find_path(string map, int startx, int starty, int goalx, int goaly, mappi
 
     g = 0;
     h = calc_h(startx, starty, goalx, goaly);
-    write("Distance estimate: " + h + "\n");
+    write("距离估算: " + h + "\n");
 
     data[start] = ({ -1, startx, starty, g, h, g + h });
 
@@ -479,7 +479,7 @@ mixed *find_path(string map, int startx, int starty, int goalx, int goaly, mappi
 
     }
 
-    write("Maximum binary heap size: " + maxItems + "\n");
+    write("最大二叉堆大小: " + maxItems + "\n");
 
     if(member_array(goal, closed) == -1) return ({ });
 

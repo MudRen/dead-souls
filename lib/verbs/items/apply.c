@@ -6,7 +6,7 @@ protected void create() {
     verb::create();
     SetVerb("apply");
     SetRules("OBJ WRD OBJ", "OBJ OBJ");
-    SetErrorMessage("Apply what to what?");
+    SetErrorMessage("把什么用在什么上？");
     SetHelp("Syntax: apply ITEM to OBJECT\n\n"
             "Allows you to put one thing up against another.\n\n"
             "See also: turn, activate, install");
@@ -14,7 +14,7 @@ protected void create() {
 
 mixed can_apply_obj_word_obj() {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     return this_player()->CanManipulate();
 }

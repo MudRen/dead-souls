@@ -10,16 +10,16 @@ mixed cmd(string args) {
     int massacre, survivors = 0;
     object *obs;
 
-    if(!tp || !archp(tp)) return "No.";
+    if(!tp || !archp(tp)) return "不行。";
 
     if(args) args = replace_string(args,"\"","");
 
-    if(!args) return "Try: help vaarsuvius";
+    if(!args) return "试试: help vaarsuvius";
 
     else obs = findobs(args);
 
     if(!massacre = sizeof(obs)) {
-        write("No such objects found.");
+        write("未找到此类对象。");
         return 1;
     }
 
@@ -28,19 +28,19 @@ mixed cmd(string args) {
         if(ob) destruct(ob);
         if(ob){
             survivors++;
-            write(identify(ob)+" survived the purge.");
+            write(identify(ob)+" 在清除中幸存。");
         }
     }
     if(!survivors){
-        write("All "+massacre+" objects destructed.");
+        write("全部 "+massacre+" 个对象已销毁。");
         return 1;
     }
-    write("Of "+massacre+" targets, "+survivors+" survived the purge.");
+    write("在 "+massacre+" 个目标中，"+survivors+" 个在清除中幸存。");
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: vaarsuvius <THING>\n\n"
-            "Destructs every THING found.\n"
-            "See also: zap, dest, destfile");
+    return ("语法: vaarsuvius <对象>\n\n"
+            "销毁找到的所有指定对象。\n"
+            "另见: zap, dest, destfile");
 }

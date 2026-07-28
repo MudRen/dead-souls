@@ -12,13 +12,13 @@ mixed cmd() {
             catch( RACES_D->AddRace(str) );
         }
     }
-    write("Done.");
+    write("完成。");
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: addraces\n\n"
-            "Imports all the race files in CFG_RACES into  "
-            "RACES_D. It may fail if all races have not been "
-            "removed prior to its use.");
+    return ("语法: addraces\n\n"
+            "将 CFG_RACES 目录中的所有种族文件导入到"
+            "种族守护进程中。如果使用前未移除所有现有种族，"
+            "可能会失败。");
 }

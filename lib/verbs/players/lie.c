@@ -15,7 +15,7 @@ protected void create() {
     verb::create();
     SetVerb("lie");
     SetRules("down", "in OBJ", "down in OBJ", "on OBJ", "down on OBJ");
-    SetErrorMessage("Lie down?");
+    SetErrorMessage("躺下？");
     SetSynonyms("lay");
     SetHelp("Syntax: lie [down]\n"
             "        lie down in <OBJECT>\n\n"
@@ -25,10 +25,10 @@ protected void create() {
 
 mixed can_lie_down() {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything.";
+        return "你什么也做不了。";
     }
     if( this_player()->GetPosition() == POSITION_LYING ) {
-        return "You are already lying down!";
+        return "你已经躺着了！";
     }
     return 1;
 }

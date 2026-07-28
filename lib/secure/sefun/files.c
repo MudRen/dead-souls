@@ -58,14 +58,14 @@ int indent_file(string filename){
     gtempname = tempname;
     gfilename = filename;
     if(!cp(filename,tempname+".dat")){
-        write("You don't have read access to "+filename);
+        write("您没有对 "+filename+" 的读取权限");
         return 0;
     }
 
     load_object("/secure/cmds/creators/lsed")->cmd(tempname+" "+tempname+".dat");
 
     if(!unguarded((: cp(gtempname+".dat", gfilename) :)) ){
-        write("You don't have write access to "+filename);
+        write("您没有对 "+filename+" 的写入权限");
         rm(tempname+".dat");
         rm(tempname);
         return 0;

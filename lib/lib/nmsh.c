@@ -112,22 +112,22 @@ nomask protected int cmd_alias(string str){
                 write(str+": "+Xverbs[str]);
                 return 1;
             }
-            else message("system", sprintf("No such alias $%s.", str), this_player());
+            else message("system", sprintf("没有别名 $%s。", str), this_player());
             return 1;
         }
         if(Aliases[str]){
             write(str+": "+Aliases[str]);
             return 1;
         }
-        else message("system", sprintf("No such alias %s.", str), this_player());
+        else message("system", sprintf("没有别名 %s。", str), this_player());
         return 1;
     }
     if(sizeof(Xverbs) + sizeof(Aliases) >= MAX_CMD_ALIASES){
-        message("system", "You must remove an alias before adding another.",
+        message("system", "你必须先移除一个别名才能添加新的。",
                 this_player());
         return 1;
     }
-    if(key == "alias") return notify_fail("That would be a bad idea.\n");
+    if(key == "alias") return notify_fail("那不是个好主意。\n");
     if(key[0] == '$'){
         key = key[1..strlen(key)];
         if(Xverbs[key])
@@ -150,25 +150,25 @@ nomask protected int cmd_alias(string str){
 nomask protected int cmd_unalias(string str){
     if(this_player() != this_object()) return 0;
     if(!str){
-        write("Unalias what?");
+        write("移除哪个别名？");
         return 1;
     }
     if(str[0] == '$'){
         str = str[1..strlen(str)-1];
         if(Xverbs[str]){
             map_delete(Xverbs, str);
-            message("system", sprintf("Alias $%s removed.", str), this_player());
+            message("system", sprintf("别名 $%s 已移除。", str), this_player());
             return 1;
         }
-        else message("system", sprintf("No such alias $%s.", str), this_player());
+        else message("system", sprintf("没有别名 $%s。", str), this_player());
         return 1;
     }
     if(Aliases[str]){
         map_delete(Aliases, str);
-        message("system", sprintf("Alias %s removed.", str), this_player());
+        message("system", sprintf("别名 %s 已移除。", str), this_player());
         return 1;
     }
-    else message("system", sprintf("No such alias %s.", str), this_player());
+    else message("system", sprintf("没有别名 %s。", str), this_player());
     return 1;
 }
 
@@ -199,7 +199,7 @@ nomask protected int cmd_nickname(string str){
                     this_player());
             map_delete(Nicknames, str);
         }
-        else message("system", sprintf("No such nickname %s.", str),
+        else message("system", sprintf("没有昵称 %s。", str),
                 this_player());
     }
     else {
@@ -222,12 +222,12 @@ nomask protected int cmd_nmsh(string str){
     if(this_player() != this_object()) return 0;
     if(this_player()->GetForced()) return 0;
     if(!(tmp = read_file(absolute_path(query_cwd(), str))))
-        return notify_fail(sprintf("nmsh: script %s not found.\n"));
+        return notify_fail(sprintf("nmsh: 脚本 %s 未找到。\n"));
     maxi = sizeof(lines = explode(tmp, "\n"));
     for(i=0; i < maxi; i++){
         if(lines[i][0] == '#') continue;
         if(!command(lines[i])){
-            message("system", sprintf("nmsh: error in executing %s.", str),
+            message("system", sprintf("nmsh: 执行 %s 时出错。", str),
                     this_player());
             return 1;
         }
@@ -249,7 +249,7 @@ nomask protected int cmd_popd(){
 }
 
 nomask protected int cmd_pwd(){
-    if(!query_cwd()) message("system", "No current directory.", this_object());
+    if(!query_cwd()) message("system", "没有当前目录。", this_object());
     else message("system", query_cwd()+":", this_object());
     return 1;
 }
@@ -271,7 +271,7 @@ nomask protected int cmd_work(string str){
     }
     if(!ob && !(ob = present(str, this_object())))
         ob = present(str, environment(this_object()));
-    if(!ob) return notify_fail("No target object found.\n");
+    if(!ob) return notify_fail("未找到目标对象。\n");
     tmp = explode(file = base_name(ob), "/");
     set_cwd("/"+implode(tmp[0..sizeof(tmp)-2], "/"));
     if(flag){
@@ -505,11 +505,11 @@ private int set_cwd(string str){
     }
     if((x=file_size(str)) != -2){
         if(x > -1){
-            message("system", sprintf("%s: Path is a file.", str), this_player());
+            message("system", sprintf("%s: 路径是一个文件。", str), this_player());
             return 0;
         }
         else {
-            message("system", sprintf("%s: No such reference.", str), this_player());
+            message("system", sprintf("%s: 没有此引用。", str), this_player());
             return 0;
         }
     }
@@ -619,7 +619,7 @@ string GetKeyName(){ return 0; }
 string fail(){
     string fale;
     fale += "";
-    write("lol fail");
+    write("哈哈，失败了");
     return fale;
 }
 #endif
@@ -737,7 +737,7 @@ protected int rEnter(){
 protected int rCtrl(string str){
     string charbuffer = this_object()->GetCharbuffer();
     if(str == "d"){ /* Ctrl-D */
-        write("Canceling charmode!");
+        write("取消字符模式！");
         this_object()->CancelCharmode();
         erase_prompt();
         write_prompt();

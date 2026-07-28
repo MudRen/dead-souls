@@ -101,24 +101,24 @@ void eventConnect(string destination){
     destination = lower_case(destination);
 
     if (origin == destination){
-        write("You attempt to dial the gate, but the last chevron does not engage");
-        say(this_player()->GetName() + " tries to dial the gate but the last chevron does not engage");
+        write("你尝试拨号星门，但最后一个V形标记没有锁定");
+        say(this_player()->GetName() + "尝试拨号星门，但最后一个V形标记没有锁定");
         return;
     }
 
     ret = STARGATE_D->eventConnect(origin, destination);
     if (ret){
         string d = STARGATE_D->GetDestination(destination);
-        write("The ancient rings lock into place and a gateway forms in an explosion of energy.");
-        say("The ancient rings lock into place and a gateway forms in an explosion of energy.");
-        tell_room(d, "The ancient rings lock into place and a gateway forms in an explosion of energy");
+        write("古老的环形结构锁定到位，一道传送门在能量爆发中形成。");
+        say("古老的环形结构锁定到位，一道传送门在能量爆发中形成。");
+        tell_room(d, "古老的环形结构锁定到位，一道传送门在能量爆发中形成");
         call_out("eventDisconnect", 10+random(5));
         connect_time = time();
         return;
     }
 
-    write("You attempt to dial the stargate, but nothing happens.");
-    say(this_player()->GetName() + " tries to dial the gate but fails.");
+    write("你尝试拨号星门，但什么也没有发生。");
+    say(this_player()->GetName() + "尝试拨号星门但失败了。");
 
     return;
 }
@@ -127,8 +127,8 @@ int eventDisconnect(){
     string endpoint = STARGATE_D->GetEndpoint(origin);
     string e = STARGATE_D->GetDestination(origin);
     string d = STARGATE_D->GetDestination(endpoint);
-    if(d) tell_room(d, "The chevrons on the stargate disengage and the gateway disappears.");
-    if(e) tell_room(e, "The chevrons on the stargate disengage and the gateway disappears.");
+    if(d) tell_room(d, "星门上的V形标记解除锁定，传送门消失了。");
+    if(e) tell_room(e, "星门上的V形标记解除锁定，传送门消失了。");
     connect_time = 0;
     return STARGATE_D->eventDisconnect(origin);
 }
@@ -147,7 +147,7 @@ mixed cmdDial(string s){
         eventConnect(s);
         if(sizeof(flipside) && !ob) ob = load_object(flipside);
         if(!ob){
-            write("The Stargate abruptly begins to shuts down.");
+            write("星门突然开始关闭。");
             eventDisconnect();
         }
         return 1;
@@ -174,10 +174,10 @@ int cmdEnter(string what){
     who = this_player();
     endpoint = STARGATE_D->GetEndpoint(origin);
     destination = STARGATE_D->GetDestination(endpoint);
-    who->eventPrint("You step through the event horizon of the stargate.");
-    who->eventMoveLiving(destination, 
-            "$N enters into the event horizon and disappears.", 
-            "$N emerges from the event horizon.");
+    who->eventPrint("你穿过星门的事件视界。");
+    who->eventMoveLiving(destination,
+            "$N走入了事件视界，消失了。",
+            "$N从事件视界中走出。");
     return 1;
 }
 
@@ -189,10 +189,10 @@ int eventEnter(object who){
     endpoint = STARGATE_D->GetEndpoint(origin);
     if (status() == "connected")
     {
-        who->eventPrint("You step through the event horizon of the stargate.");
-        who->eventMoveLiving(endpoint, 
-                "$N enters into the event horizon and disappears.", 
-                "$N emerges from the event horizon.");
+        who->eventPrint("你穿过星门的事件视界。");
+        who->eventMoveLiving(endpoint,
+                "$N走入了事件视界，消失了。",
+                "$N从事件视界中走出。");
     }
     return 1;
 }

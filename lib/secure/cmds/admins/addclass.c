@@ -14,32 +14,30 @@ inherit LIB_DAEMON;
 mixed cmd(string args) {
     string file;
 
-    if( !args || args == "" ) return "Syntax: addclass <CLASS>";
+    if( !args || args == "" ) return "语法: addclass <职业名>";
     if( !file_exists(file=DIR_SECURE_CFG "/classes/" + args) )
-        return "File not found: " + file;
+        return "文件未找到: " + file;
     CLASSES_D->AddClass(file);
-    previous_object()->eventPrint("Class added.");
+    previous_object()->eventPrint("职业已添加。");
     return 1;
 }
 
 string GetHelp(string str) {
-    return ("Syntax: addclass <CLASS>\n\n"
-            "Allows you to add a new class to the class data stored in the "
-            "classes daemon.  Specifically, you create a configuration file "
-            "and then issue this command to load the new class into the "
-            "classes daemon.  The file should be in " + DIR_SECURE_CFG +
-            "/classes.  The format of the file being read is:\n"
-            "class_name\n"
-            "main_class1:multi_class_name1\n"
+    return ("语法: addclass <职业名>\n\n"
+            "允许你向职业守护进程中的职业数据添加一个新职业。"
+            "具体来说，你需要先创建一个配置文件，然后使用此命令将新职业"
+            "加载到职业守护进程中。文件应位于 " + DIR_SECURE_CFG +
+            "/classes 目录下。文件格式如下:\n"
+            "职业名称\n"
+            "主职业1:多职业名称1\n"
             "...\n"
-            "main_classN:multi_class_nameN\n"
-            "skill1:skill_average1:skill_class1\n"
+            "主职业N:多职业名称N\n"
+            "技能1:技能平均值1:技能职业1\n"
             "...\n"
-            "skillN:skill_averageN:skill_classN\n"
-            "An example of a fighter exists in /secure/cfg/classes/fighter.  "
-            "This system is admittedly rather complex, but it beats hard "
-            "coding these values.  In addition, a web-based administration "
-            "client is being developed to make class creation nothing more "
-            "than filling in a form.\n"
-            "See also: addemote, addrace");
+            "技能N:技能平均值N:技能职业N\n"
+            "/secure/cfg/classes/fighter 中有一个战士的示例。"
+            "这个系统确实比较复杂，但比硬编码这些值要好得多。"
+            "此外，正在开发一个基于Web的管理客户端，使职业创建"
+            "变成简单的表单填写。\n"
+            "另见: addemote, addrace");
 }

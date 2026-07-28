@@ -15,7 +15,7 @@ protected void create() {
     verb::create();
     SetVerb("listen");
     SetRules("", "OBJ", "to OBJ", "to STR on OBJ", "to STR of OBJ");
-    SetErrorMessage("Listen to something?");
+    SetErrorMessage("听什么？");
     SetHelp("Syntax: <listen>\n"
             "        <listen to ITEM>\n\n"
             "Without any arguments, this command allowed you to listen "
@@ -28,7 +28,7 @@ protected void create() {
 
 mixed can_listen() {
     if( !environment(this_player()) ) {
-        return "You are nowhere.";
+        return "你哪里也不在。";
     }
     return 1;
 }

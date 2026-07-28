@@ -21,7 +21,7 @@ int cmd(string str) {
     string cmd, what, tmpstr;
 
     if(!this_player() || !archp(this_player())){
-        write("Sorry, this is an arch command.");
+        write("抱歉，这是一个 arch 命令。");
         return 1;
     }
 
@@ -60,19 +60,19 @@ int cmd(string str) {
     }
 
     if(!ob){
-        write(truncate(what,2)+" not found.");
+        write(truncate(what,2)+" 未找到。");
         return 1;
     }
 
     if(!CheckVar(var, ob)){
-        write("No such variable exists in that object.");
+        write("该对象中不存在该变量。");
         return 1;
     }
 
     i = catch( ret = evaluate(bind( (: fetch_variable($(var)) :), ob)) );
 
     if(i){
-        write("Error in variable query.");
+        write("变量查询出错。");
         return 1;
     }
 
@@ -89,16 +89,16 @@ int cmd(string str) {
         return 1;
     }
 
-    write("Error.");
+    write("出错。");
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: var get <variable name> <object or file>\n"
-            "        var set <variable name> <new value> <object or file>\n\n"
-            "Sets or gets the value of a variable in an object.\n"
-            "Examples:\n"
+    return ("语法：var get <变量名> <对象或文件>\n"
+            "        var set <变量名> <新值> <对象或文件>\n\n"
+            "设置或获取对象中变量的值。\n"
+            "示例：\n"
             "var get isPK me\n"
             "var set Attackable 0 fighter\n\n"
-            "Use with EXTREME caution.");
+            "请极其谨慎使用。");
 }

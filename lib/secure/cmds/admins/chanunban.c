@@ -10,30 +10,29 @@ mixed cmd(string args) {
 
     if(!archp(previous_object())) return 0;
     if( !args || args == "" || sscanf(args,"%s %s",chan,mud) != 2) {
-        return "Huh?";
+        return "什么？";
     }
     mud = INTERMUD_D->GetMudName(mud);
-    if(!mud) return "No such mud.";
+    if(!mud) return "没有这个MUD。";
 
-    if(member_array(chan,INTERMUD_D->GetChannels()) == -1) 
-        return "No such channel.";
+    if(member_array(chan,INTERMUD_D->GetChannels()) == -1)
+        return "没有这个频道。";
 
     else INTERMUD_D->eventWrite( ({ "channel-admin", 5, mud_name(), 
                 this_player()->GetKeyName(), INTERMUD_D->GetNameserver(), 
                 0, chan, ({}), ({ mud }) }) );
 
-    write("Unban request for "+mud+" from "+chan+" has been sent.");
+    write("已从 "+chan+" 解封 "+mud+" 的请求已发送。");
 
     return 1;
 }
 
 string GetHelp(){
-    return ("Syntax: chanunban <channel> <mudname>\n\n"
-            "This submits to the intermud router a request to unban the "
-            "specified mud from a channel you own. If you do not own "
-            "the channel you specify, then the router will not honor "
-            "your request. Use the \"real\" channel name, rather than "
-            "its local nickname, ie imud_code and not intercre.\n"
-            "Example: chanunban imud_gossip nanvaent\n"
-            "See also: chanban, chancreate, chanremove");
+    return ("语法: chanunban <频道名> <MUD名>\n\n"
+            "向跨MUD路由器提交请求，将你拥有的频道中解封指定的MUD。"
+            "如果你不拥有指定的频道，路由器将不会处理你的请求。"
+            "请使用频道的\"真实\"名称，而不是本地昵称，"
+            "例如 imud_code 而不是 intercre。\n"
+            "示例: chanunban imud_gossip nanvaent\n"
+            "另见: chanban, chancreate, chanremove");
 }

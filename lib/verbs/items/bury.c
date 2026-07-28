@@ -15,7 +15,7 @@ protected void eventBury(object who, object tool, object what, object check) {
         return;
     }
     if( !tool || (environment(tool) != who) ) {
-        who->eventPrint("You have lost your digging equipment.");
+        who->eventPrint("你失去了你的挖掘装备。");
         return;
     }
     tool->eventBuryWith(who, what);
@@ -38,7 +38,7 @@ varargs protected void eventPrepareBury(object who, object tool, object what) {
 protected void create() {
     verb::create();
     SetVerb("bury");
-    SetErrorMessage("Bury what with what?");
+    SetErrorMessage("用什么埋什么？");
     SetRules("OBJ with OBJ", "STR with OBJ");
     SetHelp("Syntax: <bury ITEM with TOOL>\n\n"
             "Allows you to use a digging tool to bury things.\n\n"
@@ -47,10 +47,10 @@ protected void create() {
 
 mixed can_bury_str_with_obj() {
     if( this_player()->GetParalyzed() ) {
-        return "You cannot do anything!";
+        return "你什么也做不了！";
     }
     if( this_player()->GetPosition() != POSITION_STANDING ) {
-        return "You can only bury things while standing!";
+        return "你只能站着时埋东西！";
     }
     return this_player()->CanManipulate();
 }

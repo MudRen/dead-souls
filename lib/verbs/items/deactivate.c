@@ -7,7 +7,7 @@ protected void create() {
     verb::create();
     SetVerb("deactivate");
     SetRules("", "OBJ","OBJ on OBJ","STR on OBJ");
-    SetErrorMessage("Deactivate something?");
+    SetErrorMessage("停用什么？");
     SetHelp("Syntax: deactivate THING\n"
             "        \n"
             "See also: activate");  
@@ -30,7 +30,7 @@ mixed can_deactivate_str_on_obj(mixed foo) {
 }
 
 mixed do_deactivate() {
-    return "Deactivate what?";
+    return "停用什么？";
     return 1;
 }
 

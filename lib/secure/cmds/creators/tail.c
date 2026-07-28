@@ -13,11 +13,11 @@ mixed cmd(string args) {
     string buff;
     int scr, err;
 
-    if( !args ) return "You must specify a file to tail.";
+    if( !args ) return "你必须指定要查看尾部的文件。";
     else args = absolute_path(this_player()->query_cwd(), args);
-    if( !file_exists(args) ) return "File " + args + " not found.";
+    if( !file_exists(args) ) return "文件 " + args + " 未找到。";
     err = catch(buff = read_file(args));
-    if( err || !buff ) return "Unable to tail " + args + ".";
+    if( err || !buff ) return "无法查看尾部 " + args + "。";
     scr = ((this_player()->GetScreen())[1] || 24);
     if( scr > 100 ) scr = 100;
     if( sizeof(lines = explode(buff, "\n")) > scr ) 
@@ -27,8 +27,7 @@ mixed cmd(string args) {
 }
 
 string GetHelp() {
-    return ("Syntax: tail <file>\n\n"
-            "Displays the last lines of the specified "
-            "file.\n"
-            "See also: cat, head, more.");
+    return ("语法: tail <文件>\n\n"
+            "显示指定文件的最后若干行。\n"
+            "另见: cat, head, more");
 }

@@ -82,11 +82,10 @@ int ejectRabble(string str){
     foreach(object bum in riffraff){
         if( bum->GetKeyName() != patient->GetKeyName() &&
                 bum->GetKeyName() != "clepius" ){
-            tell_object(bum,"The doctor ejects you from his office in order to "+
-                    "treat "+patient->GetName()+".\n\n");
+            tell_object(bum,"医生把你从诊疗室请了出去，以便治疗"+
+                    patient->GetName()+"。\n\n");
             bum->eventMoveLiving("/domains/town/room/healer");
-            tell_object(patient,"The doctor ejects "+bum->GetName()+" from "+
-                    "his office in order to treat you.");
+            tell_object(patient,"医生把"+bum->GetName()+"从诊疗室请了出去，以便为你治疗。");
         }
     }
     return 1;
@@ -149,7 +148,7 @@ int PerformRegenerate(string dude){
     }
     for(i=0;i<sizeof(stumps);i++){
         person->RestoreLimb(stumps[i]);
-        tell_object(person,"The doctor regenerates your "+stumps[i]+".");
+        tell_object(person,"医生再生了你的"+stumps[i]+"。");
         return 1;
     }
 }
@@ -174,7 +173,7 @@ int PerformExcision(string dude){
     slug=new("/domains/town/obj/spent");
     if(wounds > 0) {
         person->AddLead("firearms_wounds", -1);
-        slug->SetShort("a spent firearm slug");
+        slug->SetShort("一枚用过的弹壳");
         --wounds;
         slug->eventMove(this_object());
         if(person->GetLead() < 1){                                         
