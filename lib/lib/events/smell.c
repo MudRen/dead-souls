@@ -104,7 +104,7 @@ varargs mixed SetSmell(mixed* args...){
 varargs mixed eventSmell(object who, string str){
     str = GetSmell(str, who);
     if( !str ){
-        who->eventPrint("There is nothing to smell.");
+        who->eventPrint("没有什么可以闻的。");
         return 1;
     }
     environment(who)->eventPrint(who->GetName() + " smells " + GetShort() +

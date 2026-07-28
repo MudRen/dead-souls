@@ -88,7 +88,7 @@ varargs mixed eventConsult(object who, string component){
     }
     else {
         if( functionp(val) & FP_OWNER_DESTED ){
-            return "Error in evaluating functional.";
+            return "计算函数时出错。";
         }
         return evaluate(val, who, component);
     }

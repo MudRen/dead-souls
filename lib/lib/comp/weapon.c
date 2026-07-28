@@ -148,7 +148,7 @@ mixed eventEquip(object who, string* limbs){
 
     if( functionp(Wield) ){
         if( functionp(Wield) & FP_OWNER_DESTED ){
-            return "Function pointer owner destructed.";
+            return "函数指针所有者已销毁。";
         }
         if( !evaluate(Wield, who, limbs) ){
             return 1;

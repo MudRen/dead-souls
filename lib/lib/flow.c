@@ -40,7 +40,7 @@ void create(){
     SetVendorType(VT_TREASURE);
     shb(5);
     SetNoCondition(1);
-    SetPreventGet("You can't get that.");
+    SetPreventGet("你拿不了那个。");
     if(FlowType == "water"){
         SetFlaskContents("water");
         SetFlaskUses(2);

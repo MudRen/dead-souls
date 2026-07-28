@@ -34,8 +34,8 @@ int eventDecay(){
             break;
         case 20:
             if(stank)
-                environment()->eventPrint("An acrid chemical odor fills the entire "
-                        "area.", MSG_ROOMDESC);
+                environment()->eventPrint("一股刺鼻的化学气味弥漫了整个"
+                        "区域。", MSG_ROOMDESC);
             SetId(GetId()..., "synthetics", "pile", "pile of synthetics");
             SetShort("一堆腐蚀的合成材料");
             SetSmell("它的气味几乎令人无法忍受。");

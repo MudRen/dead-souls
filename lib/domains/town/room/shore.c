@@ -90,8 +90,8 @@ protected void create() {
     //This is a function that allows for a set of actions
     //with different trigger frequencies.
     SetActionsMap( ([ 
-                "A soft breeze cools your brow." : 5,
-                "You briefly hear seagulls far in the distance." : 7,
+                "柔和的微风拂过你的额头。" : 5,
+                "你短暂地听到了远处海鸥的叫声。" : 7,
                 (: ActionFunction2 :) : 2,
                 ]) );
     SetInventory( ([

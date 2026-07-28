@@ -582,7 +582,7 @@ varargs mixed eventSteal(object who, mixed what, object target, int skill){
                         GetSkillLevel("stealing") * GetSkillLevel("stealing")*3);
                 AddSkillPoints("stealth", random(sizeof(what)) * 20);
                 AddStaminaPoints(-2);
-                this_player()->eventPrint(sprintf("You steal %s from %s.",
+                this_player()->eventPrint(sprintf("你从%s那里偷了%s。",
                             "something", target->GetName()) );
                 what->eventMove(this_object());
                 return 1;

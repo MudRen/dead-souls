@@ -145,7 +145,7 @@ string SetDoor(string dir, string file){
 
     if(!unguarded( (: file_exists($(file)) :) ) &&
             !unguarded( (: file_exists($(file)+".c") :) )){
-        return "Door not found.";
+        return "门未找到。";
     }
     file->eventRegisterSide(dir);
     return (Doors[dir] = file);
