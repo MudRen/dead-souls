@@ -56,7 +56,7 @@ void eventDescribeEnvironment(int brief){
             if(!NM_STYLE_EXITS){
                 desc = capitalize(env->GetShort()+"\n" || "\n");
                 if(!(env->GetNoObviousExits())){
-                    altern_obvious = "明显出口$Q: "+env->GetObviousExits() || "无";
+                    altern_obvious = "明显出口: "+env->GetObviousExits() || "无";
                 }
             }
         }
