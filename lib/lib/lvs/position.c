@@ -77,6 +77,7 @@ varargs mixed eventKneel(object target){
 }
 
 varargs mixed eventSit(object target){
+    mixed tmp;
 
     if( Position != POSITION_STANDING && Position != POSITION_LYING ){
         eventPrint("你无法从当前姿势坐下。");
