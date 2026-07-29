@@ -627,10 +627,10 @@ varargs mixed GetSearch(){
     return Search;
 }
 
-varargs void RemoveSearch(mixed item){
+varargs mapping RemoveSearch(mixed item){
     if( !item || item == "default" ){
         Search = 0;
-        return;
+        return 0;
     }
     foreach(object ob in GetDummyItems()){
         if( stringp(item) ){
@@ -1143,7 +1143,7 @@ int GenerateObviousExits(){
 }
 
 int eventReceiveObject(object ob){
-    this_object()->SetSky();
+    this_object()->SetSky(0);
     if(this_object() && ob && (living(ob) || ob->GetMapper())){
         if(MASTER_D->GetPerfOK()){
             int* Coords = ROOMS_D->SetRoom(this_object(), ob);
@@ -1185,7 +1185,7 @@ int GetNoSink(){
 
 string SetSkyDomain(string str){
     SkyDomain = str;
-    this_object()->SetSky();
+    this_object()->SetSky(0);
     return SkyDomain;
 }
 
@@ -1232,7 +1232,6 @@ varargs mixed DestructEmptyVirtual(object ob){
 }
 
 mixed eventPostRelease(object ob){
-    mixed *inv;
     mixed ret = ::eventPostRelease(ob);
     DestructEmptyVirtual(ob);
     return ret;
@@ -1300,13 +1299,13 @@ string SetCoordinates(string str){
     return ret;
 }
 
-void SetSky(){
+string SetSky(string str){
     if(GetMedium() != MEDIUM_LAND && GetMedium() != MEDIUM_SURFACE){
-        return;
+        return 0;
     }
     if(sizeof(SkyDomain) && !sizeof(FlyRoom)){
         mixed coords = this_object()->GetCoords();
-        if(!sizeof(coords)) return;
+        if(!sizeof(coords)) return 0;
         SetFlyRoom("/domains/"+SkyDomain+"/virtual/sky/"+
                 coords[0]+","+coords[1]+","+(coords[2]+1));
         if(sizeof(FlyRoom)){
@@ -1317,7 +1316,7 @@ void SetSky(){
 
 protected void init(){
     object prev = previous_object();
-    SetSky();
+    SetSky(0);
     if(undefinedp(RespirationType)){
         switch(GetMedium()){
             case MEDIUM_WATER : RespirationType = R_WATER; break;

@@ -216,7 +216,7 @@ mixed direct_turn_liv(){
 
 void eventCheckEnvironment(){
     object env = environment();
-    int i, roomres, breathdam;
+    int i, breathdam;
     int restype;
     float j,k;
 
@@ -611,7 +611,7 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal,
         mixed limbs){
     string tmp = GetResistance(type);
     string agentname;
-    int fp, basedam, tmpdam, dmgred;
+    int fp, basedam, dmgred;
 
     if(agent && stringp(agent)){
         agentname = agent;
@@ -682,10 +682,6 @@ varargs int eventReceiveDamage(mixed agent, int type, int x, int internal,
                     dmgred = obs[j]->eventReceiveDamage(
                             (agent || agentname), type, z, 0, limbs[i]);
                     z -= dmgred;
-                    if(z < 1){
-                    }
-                    else {
-                    }
                 }
             }
             y = z;
@@ -926,7 +922,7 @@ int eventRemoveItem(object ob){
  * returns 1 if successful, 0 if failure
  */
 int eventWear(object ob, mixed limbs){
-    string limb,s1;
+    string limb;
     string *target_limb;
     target_limb = ({});
 

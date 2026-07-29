@@ -26,7 +26,6 @@ int ReceiveObs(object ob){
 }
 
 string ReadScreen(){
-    string *base_names = ({});
     string ret = "Top loaded objects:\n";
     int hbs, hbs2, rooms, npcs, meminf;
     mixed *foo = ({});
@@ -146,7 +145,6 @@ string LongDesc(){
 }
 
 protected void create() {
-    object ob;
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);

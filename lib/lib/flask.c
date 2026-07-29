@@ -56,13 +56,13 @@ protected void create(){
     MealType = MEAL_DRINK;
 }
 
-string GetExternalDesc(){
+string GetExternalDesc(object who){
     string ret = "";
     if(!inherits(LIB_BASE_DUMMY,this_object())){
         if(FlaskContents == "empty") ret = "\nIt is empty.";
         else ret = "\nIt contains some "+FlaskContents+".";
     }
-    return item::GetExternalDesc()+ret;
+    return item::GetExternalDesc(who)+ret;
 }
 
 int CanFillMe(){

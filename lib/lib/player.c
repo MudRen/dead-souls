@@ -208,8 +208,6 @@ mixed eventTurn(object who){
 }
 
 varargs void eventRevive(int nopenalty){
-    string skill;
-
     this_object()->SetDead(0);
     if(!creatorp(this_object())) this_object()->SetInvis(0);
     this_object()->SetDeathEvents(0);
@@ -226,6 +224,7 @@ varargs void eventRevive(int nopenalty){
     if(!nopenalty){
         int expee, subexpee;
 #ifdef LIB_PLAYER_SKILL_LOSS
+        string skill;
         foreach(skill in GetSkills()){
             int x;
 

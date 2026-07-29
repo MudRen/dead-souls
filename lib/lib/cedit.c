@@ -7,7 +7,7 @@
 private nosave mapping FileData = ([]);
 private nosave mapping ScreenData = ([]);
 
-nosave int *GetScreen(){ return ({ 79, 24 }); }
+int *GetScreen(){ return ({ 79, 24 }); }
 private int ReceiveChars(string c);
 
 void create(){
@@ -262,7 +262,7 @@ protected int rEnter(){
 
 protected int rAscii(string c){
     string tmp = c;
-    int row, col, arrowed;
+    int row, col;
     if(!ScreenData["charbuffer"]) ScreenData["charbuffer"] = "";
     if(!ScreenData["sessionbuffer"]) ScreenData["sessionbuffer"] = "";
     if(ScreenData["searching"]){
@@ -284,12 +284,6 @@ protected int rAscii(string c){
     }
     if(sizeof(tmp) && tmp[0] != 30 && !ScreenData["sentinel"]){
         receive(tmp);
-        if(tmp[0] == 91){
-        }
-        if(sizeof(ScreenData["sessionbuffer"]) > 2){
-            if(ScreenData["sessionbuffer"][<1] == 91){
-            }
-        }
         if(ScreenData["insert"]){
             string begin;
             string end;
@@ -352,7 +346,7 @@ protected int rDel(){
 
 int rCtrl(string c){
     string tmp;
-    int row, col, arrowed;
+    int row, col;
     if(!ScreenData["charbuffer"]){
         ScreenData["charbuffer"] = this_object()->GetCharbuffer();
     }
@@ -506,7 +500,6 @@ protected int rArrow(string str){
 }
 
 varargs int SetCedmode(int x, string file){
-    int num;
     mixed tmp, lines;
 #ifndef __DSLIB__
     return 0;

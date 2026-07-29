@@ -14,7 +14,7 @@ string current_direction;
 mapping Directions = ([]);
 
 string LongD(){
-    string ret = "这是一个穿戴在背部的大型装置，设计用于"推动"+
+    string ret = "这是一个穿戴在背部的大型装置，设计用于「推动」"+
         "穿戴者在空中或太空中移动。要持续运作，"+
         "应该将其激活。燃料表显示"+
         "百分之"+to_int(percent(charge,maxcharge))+"。";

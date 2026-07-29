@@ -86,8 +86,8 @@ varargs mixed GetSuitHelp(mixed who, string where){
                 "\n当灯亮着时你可以呼吸。"
                 "\n当灯亮着时你可以承受巨大伤害。"
                 "\n当灯亮着时你看得清楚。"
-                "\n当灯亮着时你不会生病。";
-            "\n你不能与他人交换装甲。";
+                "\n当灯亮着时你不会生病。"
+                "\n你不能与他人交换装甲。";
             if(query_verb() == "wear" && !GetWorn()){
                 who->eventPrint("你穿戴上了"+GetShort()+"。");
                 if(env) tell_room(env, who->GetName()+" wears "+
@@ -206,8 +206,7 @@ string* QueryBane(){
 }
 
 void heart_beat(){
-    int notify;
-    string str, envname;
+    string envname;
     object env = environment();
     object room = room_environment();
     if(!env || !room) return;

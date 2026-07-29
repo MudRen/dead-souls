@@ -26,7 +26,6 @@ varargs mixed eventStop(object who, string what, mixed args){
     }
     if(what == "fighting"){
         mixed *enemies = this_object()->GetEnemies();
-        mixed *hostiles = this_object()->GetHostiles();
         foreach(object enemy in enemies){
             if(!enemy) continue;
             write("你不再与"+enemy->GetShort()+"战斗了。");

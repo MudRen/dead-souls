@@ -210,7 +210,7 @@ varargs int eventPauseMessages(int x, int exceptions){
     return PauseMessages;
 }
 
-nosave varargs int PassengerPrint(string msg, mixed arg2,
+varargs int PassengerPrint(string msg, mixed arg2,
         mixed arg3, object *riders){
     object *targs = ({});
     if(riders && sizeof(riders)){

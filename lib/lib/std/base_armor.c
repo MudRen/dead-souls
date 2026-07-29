@@ -228,9 +228,6 @@ int GetMaxProtection(int type){
 }
 
 int GetProtection(int type){
-    int* types;
-    int i;
-
     foreach(int t, int val in Protection){
         if( t & type ){
             int blessing = GetProperty("blessed");
@@ -290,8 +287,6 @@ mixed SetWear(mixed val){
 
 /* ****************** armor.c modals ********************* */
 mixed CanEquip(object who, string* limbs){
-    mixed tmp;
-
     if(Size && !( Size & who->GetSize() ) ){
         return "It doesn't fit.";
     }

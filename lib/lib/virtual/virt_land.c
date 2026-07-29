@@ -73,10 +73,13 @@ string SetResetMessage(mixed str){ Reset_Message = str;}
 
 /******************* virt_land.c attributes *******************/
 
-void SetCoordinates(int x, int y, int z){
+string SetCoordinates(string str){
+    int x, y, z;
+    sscanf(str, "%d,%d,%d", x, y, z);
     CoordX = x;
     CoordY = y;
     CoordZ = z;
+    return str;
 }
 
 mapping GetDirectionMap(){
@@ -202,5 +205,5 @@ void ResetLocation(){
 varargs protected void create(int x, int y,int z){
     SetNoReplace(1);
     room::create();
-    SetCoordinates(x, y, z);
+    SetCoordinates(x+","+y+","+z);
 }

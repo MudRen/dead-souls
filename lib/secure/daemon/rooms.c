@@ -95,7 +95,6 @@ mixed validate_last_room(string room, object player){
     string location_str, current_room_name;
     object location_ob, current_room;
     mapping origin_room = ([]);
-    mapping origin_room_exits = ([]);
     mixed tmp, ret;
     if(player) location_str=player->GetProperty("LastLocation");
     if(!location_str) return 0;
@@ -245,9 +244,9 @@ varargs mixed SetGrid(string arg_room, string coord, object player, int unset){
 
 mixed GetGrid(string str){
 #ifdef __FLUFFOS__ && GRID
-    mixed room, a, b, c, d, e, f, g, h, i, j, k, l, m, n;
+    mixed a, b, c, d, e, f, g, h, i;
     string coord=str;
-    int p, q,x,y,z;
+    int x,y,z;
     mixed xarr, yarr, zarr;
     sscanf(coord,"%d,%d,%d",x,y,z);
     xarr = GenerateNames(x);
@@ -393,8 +392,6 @@ varargs mixed SetRoom(object arg_ob, object player, string manual){
     }
     WorldMap[prefix][room_name]["exits"]["sink"] = ob->GetSinkRoom();
     WorldMap[prefix][room_name]["exits"]["fly"] = ob->GetFlyRoom();
-    if(debugging){
-    }
     if(creator){
         int x,y,z,next = sizeof(Workrooms);
         if(Workrooms[creator]){
@@ -641,7 +638,6 @@ varargs mixed SetRoom(object arg_ob, object player, string manual){
 string GetCoordinates(mixed ob){
 #ifdef __FLUFFOS__ && GRID
     string name, prefix, room_name, ret;
-    int err;
     if(objectp(ob)){
         if(clonep(ob)){
             object env = room_environment(ob);

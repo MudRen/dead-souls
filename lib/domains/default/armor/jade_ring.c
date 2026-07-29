@@ -31,7 +31,7 @@ protected void create(){
 
 void init(){
     armor::init();
-    add_action("SetProtection", "protection");
+    add_action("CmdProtection", "protection");
     add_action("SetReporting", "reporting");
     add_action("SetNPCReporting", "enablereport");
     add_action("UnsetNPCReporting", "disablereport");
@@ -59,9 +59,8 @@ int eventRegenerate(object who){
 
 int PerformHeal(){
     object who;
-    mapping stumps;
     string *limb_arr = ({});
-    int i, mhp, msp, mmp, self;
+    int mhp, msp, mmp;
 
     who = this_player();
 
@@ -147,7 +146,7 @@ int UnsetNPCReporting(string name){
     return 1;
 }
 
-int SetProtection(string str){
+int CmdProtection(string str){
     int booly = 0;
     if(!CheckRing() || !ringshadow){
         write("你必须戴上戒指才能使用它的力量。");

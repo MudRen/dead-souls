@@ -51,7 +51,7 @@ int AddSkillPoints(string skill, int x){
     return abilities::AddSkillPoints(skill, x);
 }
 
-nosave string SetSkillModifier(string skill, string stat){
+string SetSkillModifier(string skill, string stat){
     if(!GetSkill(skill)) return 0;
     else return (SkillModifiers[skill] = stat);
 }

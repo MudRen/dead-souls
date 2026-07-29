@@ -71,7 +71,6 @@ varargs mixed eventPage(mixed val, mixed msg_class, function f,mixed args...){
     if( (maxi = sizeof(files)) > 1 ){
         int i;
         for(i=0; i<maxi; i++){
-            mapping tmp = files[i];
 
             if( i != maxi-1 ){
                 files[i]["Callback"] = (: Page, files[i+1] :);
@@ -91,7 +90,6 @@ protected int Page(mixed tmpfile){
     int endline, tmpcurrline, err;
     mixed tmparr, tmparr2;
     mapping file = ([]);
-    int waschar = this_object()->GetCharmode();
     foreach(mixed clef, mixed val in tmpfile){
         if(clef) file += ([ clef : val ]);
     }

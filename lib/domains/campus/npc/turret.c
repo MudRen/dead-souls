@@ -120,7 +120,7 @@ void init(){
     ::init();
 }
 
-int eventTurnOn(){
+int eventTurnOn(object ob){
     if(active){
         write("炮塔已经处于激活状态。");
         return 1;
@@ -134,7 +134,7 @@ int eventTurnOn(){
     return 1;
 }
 
-int eventTurnOff(){
+int eventTurnOff(object ob){
     if(!active){
         write("炮塔已经处于未激活状态。");
         return 1;

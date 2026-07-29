@@ -405,7 +405,7 @@ int GetCombatBonus(int level){
     }
 }
 
-nosave int GetDamage(int power, string skill){
+int GetDamage(int power, string skill){
     int x = GetSkillLevel(skill);
 
     if( power < 1 ){
@@ -531,7 +531,7 @@ protected int Destruct(){
 /*  *****************   /lib/combat.c events  ***************** */
 
 varargs int eventDie(mixed agent){
-    object ob, env = room_environment();
+    object ob;
     int x;
     if(this_object()->GetGodMode()) return 0;
 

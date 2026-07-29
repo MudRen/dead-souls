@@ -15,7 +15,6 @@ int SignRead(){
 }
 
 protected void create() {
-    object ob;
     room::create();
     SetClimate("indoors");
     SetAmbientLight(30);

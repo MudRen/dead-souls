@@ -260,12 +260,12 @@ void end_edit(string subj, int num){
     message("system", "消息已发布！", this_player());
 }
 
-string GetExternalDesc(){
+string GetExternalDesc(object who){
     mapping *posts;
     string msg;
     int i, maxi;
 
-    msg = item::GetExternalDesc();
+    msg = item::GetExternalDesc(who);
     maxi = sizeof(posts = BBOARD_D->query_posts(query_board_id()));
     msg += "\n";
     if(!maxi) msg += "目前没有帖子。\n";
