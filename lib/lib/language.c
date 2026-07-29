@@ -64,9 +64,22 @@ int GetLanguageLevel(string lang){
 }
 
 string GetLanguageName(string lang){
+    string name;
     lang = convert_name(lang);
     if( !Languages[lang] ) return 0;
-    else return Languages[lang]["name"];
+    name = Languages[lang]["name"];
+    
+    // Translate language names to Chinese
+    switch(lower_case(name)){
+        case "common": return "通用语";
+        case "english": return "英语";
+        case "edhellen": return "精灵语";
+        case "farsi": return "波斯语";
+        case "malkierien": return "马尔基语";
+        case "tangetto": return "坦盖托语";
+        case "poleepkwa": return "波利普克瓦语";
+        default: return name;
+    }
 }
 
 int AddLanguagePoints(string lang, int points){
