@@ -420,13 +420,12 @@ int rCtrl(string c){
         }
     }
     else if(c == "x"){ /* Ctrl-X */
-        int ret;
 #if CED_DISABLED
         ScreenData["report"] = "This alpha editor is not yet in shape to "+
             "save files.";
 #else
         if(sizeof(FileData["file"]) && sizeof(FileData["map"])){
-            ret = CeditSave();
+            int ret = CeditSave();
             if(ret){
                 ScreenData["report"] = FileData["file"]+" saved.";
                 write("退出屏幕编辑器。\n");
@@ -439,13 +438,12 @@ int rCtrl(string c){
 #endif
     }
     else if(c == "s"){ /* Ctrl-S */
-        int ret;
 #if CED_DISABLED
         ScreenData["report"] = "This alpha editor is not yet in shape "+
             "to save files.";
 #else
         if(sizeof(FileData["file"]) && sizeof(FileData["map"])){
-            ret = CeditSave();
+            int ret = CeditSave();
             if(ret) ScreenData["report"] = FileData["file"]+" saved.";
             else ScreenData["report"] = FileData["file"]+" save FAILED.";
         }

@@ -180,8 +180,8 @@ string StrCoord(mapping TmpMap){
 varargs mixed SetGrid(string arg_room, string coord, object player, int unset){
 #ifdef __FLUFFOS__ && GRID
     string room; 
-    mixed a, b, c, d, e, f, g, h, i, j, k, l, m, n;
-    int p, q, x, y, z;
+    mixed a, b, c, d, e, f, g, h, i;
+    int x, y, z;
     mixed xarr, yarr, zarr;
 
     if(this_player() && adminp(this_player())){

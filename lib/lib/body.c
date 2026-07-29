@@ -1662,7 +1662,7 @@ varargs mixed GetWielded(string limb){
  * or for the overall health points
  */
 
-varargs nosave int AddHealthPoints(int x, string limb, mixed agent){
+varargs int AddHealthPoints(int x, string limb, mixed agent){
     int y = 0;
     string agentname;
 

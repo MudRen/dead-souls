@@ -35,7 +35,7 @@ inherit LIB_SHADOW_HOOK;
 private int CustomXP, ActionChance, CombatActionChance, AutoStand;
 private mixed Encounter;
 private string *EnemyNames;
-private nosave int NPCLevel;
+private nosave int NPCLevel, Unique;
 private nosave mixed Die, Action, CombatAction;
 private nosave mapping Inventory;
 private nosave string MountStyle = "ridden";

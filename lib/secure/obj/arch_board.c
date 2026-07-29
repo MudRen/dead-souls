@@ -73,9 +73,9 @@ void end_edit(string subj, int num) {
     return ::end_edit(subj, num);
 }
 
-string GetExternalDesc() {
+string GetExternalDesc(object who) {
     validate();
-    return ::GetExternalDesc();
+    return ::GetExternalDesc(who);
 }
 
 

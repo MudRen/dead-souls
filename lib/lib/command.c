@@ -150,7 +150,7 @@ protected string process_input(string args){
 /*  ***************  /lib/command.c command lfuns  ***************  */
 
 protected int cmdAll(string args){
-    object old_agent, env;
+    object old_agent;
     mixed err;
     string verb, file;
 
